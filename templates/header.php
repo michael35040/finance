@@ -173,7 +173,6 @@
 
 
         <table class="table" align="right" width="100">
-            <tbody>
             <tr>
                 <td style="width:30%"><strong>Name:  </strong><?php echo($username) ?></td>
                 <td style="width:10%"><strong>ID:  </strong><?php echo($userid) ?></td>
@@ -183,7 +182,6 @@
 
 
             </tr>
-            </tbody>
         </table>
         <?php
         }  //bracket for the show on log in argument
