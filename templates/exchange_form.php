@@ -34,6 +34,8 @@ if (!isset($commission)) //set at top of buy.php
 </style>
 
 
+<TABLE class="exchangeForm" BORDER="3" cellspacing="0" cellpadding="5" align="center">
+
 <form action="exchange.php" name="exchange_form" method="post"
       oninput="
           priceAmount.value=price.value;
@@ -53,7 +55,6 @@ if (!isset($commission)) //set at top of buy.php
 
     <fieldset>
 
-        <TABLE class="exchangeForm" BORDER="3" cellspacing="0" cellpadding="5" align="center">
 
             <TR>
                 <TH ROWSPAN="2">Side</TH>
@@ -165,11 +166,7 @@ if (!isset($commission)) //set at top of buy.php
                 </TD>
             </TR>
 
-        </TABLE>
 
-        <div id="nationalOrderText"></div>
-        <div class="input-append"><!--for combining/appending input fields-->
-        </div>
 
 
 
@@ -180,6 +177,12 @@ if (!isset($commission)) //set at top of buy.php
 
     </fieldset>
 </form>
+</TABLE>
+
+        <div id="nationalOrderText"></div>
+        <div class="input-append"><!--for combining/appending input fields-->
+        </div>
+
 
 
 <script>
