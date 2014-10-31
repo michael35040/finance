@@ -69,7 +69,6 @@ if (!isset($commission)) //set at top of buy.php
                 <TD>
                     <input list="symbol" name="symbol" maxlength="8" class="input-small" required><!--<input list="symbol" class="input-small" name="symbol" id="symbol" placeholder="Symbol" type="text" maxlength="5" required-->
                     <datalist id="symbol"><!--select class="input-small" name="symbol" id="symbol" /-->
-              \
                         <?php
                         if (empty($stocks)) {
                             echo("<option value=' '>No Stocks Held</option>");
@@ -179,9 +178,6 @@ if (!isset($commission)) //set at top of buy.php
 </form>
 </TABLE>
 
-        <div id="nationalOrderText"></div>
-        <div class="input-append"><!--for combining/appending input fields-->
-        </div>
 
 
 
