@@ -3,32 +3,7 @@ if (!isset($commission)) //set in constants.php
 { $commission = 0; }
 ?>
 
-<style>
-    .exchangeForm {
-        text-align: center;
-        width: 50%;
-        padding: 0px;
-        position:relative;
-        margin-left: auto;
-        margin-right: auto;
-        left:0;
-        right:0;
-        /*
-        height:600px;
-        display: inline-table;
-        top:0px;
-        bottom:0px;
-        float: left;
-        */
-    }
-    th, td {
-        width: 50%;
-        padding: 10px;
-    }
-</style>
 
-
-<TABLE class="exchangeForm" BORDER="3" cellspacing="0" cellpadding="5" align="center">
 
 <form action="exchange.php" name="exchange_form" method="post"
       oninput="
@@ -48,6 +23,8 @@ if (!isset($commission)) //set in constants.php
     >
 
     <fieldset>
+    <TABLE class="exchangeForm" BORDER="3" cellspacing="0" cellpadding="5" align="center">
+
             <TR>
                 <TH ROWSPAN="2">Side</TH>
                 <TD><INPUT TYPE="radio" NAME="side" VALUE="b" required> Buy / Bid Order</TD>
@@ -158,9 +135,10 @@ if (!isset($commission)) //set in constants.php
             </TR>
 
         <button type="submit" class="btn btn-danger">SUBMIT</button>
+    </TABLE>
     </fieldset>
 </form>
-</TABLE>
+
 
 
 
@@ -171,15 +149,13 @@ if (!isset($commission)) //set in constants.php
         document.getElementById('subMenuPriceText').innerHTML = '<font color=red>Market Order</font>';
         document.getElementById("subMenuPrice").style.opacity = 0;
         document.getElementById("price").disabled = true;
-        //document.getElementById("price").style.opacity = 0;
-        //document.getElementById("price").val = 5;
+        document.getElementById('price').value='0';
     }, false);
+    
     //TYPE LIMIT
     document.getElementById("limitSub").addEventListener("click", function () {
         document.getElementById('subMenuPriceText').innerHTML = '';
         document.getElementById("subMenuPrice").style.opacity = 1;
         document.getElementById("price").disabled = false;
-        //document.getElementById("price").style.opacity = 1;
-        //document.getElementById("price").value = 10;
     }, false);
 </script>
