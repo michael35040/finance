@@ -1,30 +1,24 @@
 <?php
-if (!isset($commission)) //set at top of buy.php
-{
-    $commission = 0;
-}
-
+if (!isset($commission)) //set in constants.php
+{ $commission = 0; }
 ?>
 
 <style>
     .exchangeForm {
-
-
         text-align: center;
         width: 50%;
         padding: 0px;
         position:relative;
         margin-left: auto;
         margin-right: auto;
+        left:0;
+        right:0;
         /*
-            height:600px;
-            display: inline-table;
-                    top:0px;
-        left:0px;
-        right:0px;
+        height:600px;
+        display: inline-table;
+        top:0px;
         bottom:0px;
-                float: left;
-
+        float: left;
         */
     }
     th, td {
@@ -54,8 +48,6 @@ if (!isset($commission)) //set at top of buy.php
     >
 
     <fieldset>
-
-
             <TR>
                 <TH ROWSPAN="2">Side</TH>
                 <TD><INPUT TYPE="radio" NAME="side" VALUE="b" required> Buy / Bid Order</TD>
@@ -165,15 +157,7 @@ if (!isset($commission)) //set at top of buy.php
                 </TD>
             </TR>
 
-
-
-
-
         <button type="submit" class="btn btn-danger">SUBMIT</button>
-
-
-
-
     </fieldset>
 </form>
 </TABLE>
@@ -182,8 +166,6 @@ if (!isset($commission)) //set at top of buy.php
 
 
 <script>
-
-
     //TYPE MARKET
     document.getElementById("marketSub").addEventListener("click", function () {
         document.getElementById('subMenuPriceText').innerHTML = '<font color=red>Market Order</font>';
@@ -200,6 +182,4 @@ if (!isset($commission)) //set at top of buy.php
         //document.getElementById("price").style.opacity = 1;
         //document.getElementById("price").value = 10;
     }, false);
-
-
 </script>
