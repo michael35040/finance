@@ -217,7 +217,7 @@
         }
         ?>
         </tbody>
-        <tr><td colspan="7" bgcolor="black"></td></tr> <!--blank row breaker-->
+
         <tr><td colspan="7" ></td></tr> <!--blank row breaker-->
     </table>
 
@@ -235,6 +235,7 @@
 
 
     <table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center"><tr>
+    <tr><td colspan="3" bgcolor="black">Orderbook</td></tr> <!--blank row breaker-->
             <td>
 
 
