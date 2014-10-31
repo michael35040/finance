@@ -1,26 +1,6 @@
 
-<style>
-    body {
-/*
-        margin: 0 auto;
-        text-align: center;
-        width: 33%;
-
-        padding: 0px;
-        position:relative;
-        margin-left: auto;
-        margin-right: auto;
-*/
-/*width: 960px;*/
-
-    }
-
-</style>
-
-
 <body>
 <form action="test.php" name="test_form" method="post" oninput="quantityAmount.value=quantity.value;">
-    <h3>Insert Orders for Test</h3>
     <fieldset>
 
         <TABLE class="exchangeForm" BORDER="3" cellspacing="0" cellpadding="5" align="center">
