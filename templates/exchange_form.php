@@ -40,7 +40,7 @@ if (!isset($commission)) //set in constants.php
             <TR>
                 <TD ROWSPAN="1">Symbol</TD>
                 <TD>
-                    <input list="symbol" name="symbol" maxlengTD="8" class="input-small" required><!--<input list="symbol" class="input-small" name="symbol" id="symbol" placeholder="Symbol" type="text" maxlengTD="5" required-->
+                    <input list="symbol" name="symbol" maxlength="8" class="input-small" required><!--<input list="symbol" class="input-small" name="symbol" id="symbol" placeholder="Symbol" type="text" maxlength="5" required-->
                     <datalist id="symbol"><!--select class="input-small" name="symbol" id="symbol" /-->
                         <?php
                         if (empty($stocks)) {
