@@ -70,7 +70,8 @@
 
 
 
-<b>Current Orderbook - All Symbols</b><br>
+<b>Current Orderbook</b><br>
+<b>All Symbols</b><br>
 <table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center">
     <!--/////////ORDERS - COMBINED//////-->
     <tr>
