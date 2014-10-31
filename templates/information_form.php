@@ -174,7 +174,7 @@
         <tr><td colspan="7"></td></tr> <!--blank row breaker-->
         <tr>
             <th colspan="7" bgcolor="black" style="color:white" size="+1" >
-                <?php echo($symbol); ?> TRADES
+                <?php echo($symbol); ?> - TRADES
             </th>
         </tr>
 
