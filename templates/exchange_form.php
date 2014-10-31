@@ -5,6 +5,8 @@ if (!isset($commission)) //set in constants.php
 
 
 
+
+
 <form action="exchange.php" name="exchange_form" method="post"
       oninput="
           priceAmount.value=price.value;
@@ -23,10 +25,12 @@ if (!isset($commission)) //set in constants.php
     >
 
     <fieldset>
-    <TABLE class="exchangeForm" BORDER="3" cellspacing="0" cellpadding="5" align="center">
+
+
+        <TABLE class="exchange_form"  BORDER="3" cellspacing="0" cellpadding="5" align="center"
 
             <TR>
-                <TH ROWSPAN="2">Side</TH>
+                <TD ROWSPAN="2">Side</TD>
                 <TD><INPUT TYPE="radio" NAME="side" VALUE="b" required> Buy / Bid Order</TD>
             </TR>
             <TR>
@@ -34,9 +38,9 @@ if (!isset($commission)) //set in constants.php
             </TR>
 
             <TR>
-                <TH ROWSPAN="1">Symbol</TH>
+                <TD ROWSPAN="1">Symbol</TD>
                 <TD>
-                    <input list="symbol" name="symbol" maxlength="8" class="input-small" required><!--<input list="symbol" class="input-small" name="symbol" id="symbol" placeholder="Symbol" type="text" maxlength="5" required-->
+                    <input list="symbol" name="symbol" maxlengTD="8" class="input-small" required><!--<input list="symbol" class="input-small" name="symbol" id="symbol" placeholder="Symbol" type="text" maxlengTD="5" required-->
                     <datalist id="symbol"><!--select class="input-small" name="symbol" id="symbol" /-->
                         <?php
                         if (empty($stocks)) {
@@ -55,7 +59,7 @@ if (!isset($commission)) //set in constants.php
 
 
             <TR>
-                <TH ROWSPAN="2">Type</TH>
+                <TD ROWSPAN="2">Type</TD>
 
                 <TD>
 
@@ -74,7 +78,7 @@ if (!isset($commission)) //set in constants.php
 
 
             <TR>
-                <TH ROWSPAN="1">Price</TH>
+                <TD ROWSPAN="1">Price</TD>
                 <TD>
                     <!--subMenuPrice-->
                     <div id="subMenuPriceText" style="opacity:1;">
@@ -93,7 +97,7 @@ if (!isset($commission)) //set in constants.php
 
 
             <TR>
-                <TH ROWSPAN="1">Quantity</TH>
+                <TD ROWSPAN="1">Quantity</TD>
                 <TD>
                     <input class="input-small" type="range" id="quantity" placeholder="Quantity" name="quantity" value=1
                            min="1" max="100" step="1" style="width:100%;" required><br />
@@ -104,7 +108,7 @@ if (!isset($commission)) //set in constants.php
 
             </TR>
             <TR>
-                <TH ROWSPAN="1">Subtotal</TH>
+                <TD ROWSPAN="1">Subtotal</TD>
                 <TD>
                     $
                     <output name="subtotal" for="price quantity">0</output>
@@ -112,7 +116,7 @@ if (!isset($commission)) //set in constants.php
             </TR>
 
             <TR>
-                <TH ROWSPAN="1">Commission <br> (<?php echo(number_format(100 * $commission, 2, ".", ",")); ?>%)</TH>
+                <TD ROWSPAN="1">Commission <br> (<?php echo(number_format(100 * $commission, 2, ".", ",")); ?>%)</TD>
                 <TD>
                     <?php
 
@@ -127,17 +131,18 @@ if (!isset($commission)) //set in constants.php
                 </TD>
             </TR>
             <TR>
-                <TH ROWSPAN="1">Total</TH>
+                <TD ROWSPAN="1">Total</TD>
                 <TD>
                     $
                     <output name="total" for="price quantity commission">0</output>
                 </TD>
             </TR>
 
-        <button type="submit" class="btn btn-danger">SUBMIT</button>
-    </TABLE>
+        <tr><td colspan="2"> <button type="submit" class="btn btn-danger">SUBMIT</button> <br> <br></td></tr>
+        </TABLE>
     </fieldset>
 </form>
+
 
 
 
@@ -151,7 +156,7 @@ if (!isset($commission)) //set in constants.php
         document.getElementById("price").disabled = true;
         document.getElementById('price').value='0';
     }, false);
-    
+
     //TYPE LIMIT
     document.getElementById("limitSub").addEventListener("click", function () {
         document.getElementById('subMenuPriceText').innerHTML = '';

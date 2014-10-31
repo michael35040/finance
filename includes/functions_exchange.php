@@ -7,6 +7,7 @@
 /////////////////////////////////////
 function orderbook($symbol)
 {
+    require("constants.php");//for $commission
     ////////////////////////
     //PROCESS MARKET ORDERS
     ////////////////////////

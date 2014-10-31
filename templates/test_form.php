@@ -54,6 +54,7 @@
                     <input class="input-small" type="range" id="quantity" placeholder="Quantity" name="quantity"
                            value=1
                            min="1" max="100" step="1" required>
+                    <br>
                     <output name="quantityAmount" for="quantity">1</output>
                 </TD>
             </TR>
