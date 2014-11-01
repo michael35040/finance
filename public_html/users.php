@@ -16,11 +16,17 @@ $terms = $_POST["terms"];
 
 if($terms == "all")
 {
-	
-	
-	
+
+
+/*
+*/
+
+
 	//execute query
-	$rows = query("SELECT * FROM users");
+	$rows = query("
+        SELECT * FROM users, accounts
+        WHERE users.id=accounts.id ;
+        ");
 
 	foreach ($rows as $row)		// for each of user
 	{   
@@ -51,16 +57,14 @@ elseif($terms == "money")
 	
 	
 	//execute query
-	$rows = query("SELECT id, username, email, cash FROM users ORDER BY cash DESC  LIMIT 0, 10"); //top 10 (0-9)
+	$rows = query("SELECT id, units, locked FROM accounts ORDER BY units DESC  LIMIT 0, 10", $id); //top 10 (0-9)
 
 	foreach ($rows as $row)		// for each of user
 	{   
-		$info["id"] = $row["id"];  
-		$info["username"] = $row["username"];   
-		$info["email"] = $row["email"];	
-	// 		$info["password"] = $row["password"]; //not in query
-		$info["cash"] = $row["cash"]; 
- 
+		$info["id"] = $row["id"];
+		$info["units"] = $row["units"];
+		$info["locked"] = $row["locked"];
+
 		$searchusers[] = $info;
 	}
 
@@ -146,11 +150,7 @@ foreach ($rows as $row)		// for each of user
 		
 		$accounts = query("SELECT * FROM accounts WHERE id = ?", $info["id"]);
 			$info["units"] = $accounts[0]["units"];
-			$info["gold"] = $accounts[0]["gold"];
-			$info["silver"] = $accounts[0]["silver"];
-			$info["usd"] = $accounts[0]["usd"];
-			$info["eur"] = $accounts[0]["eur"];
-			$info["btc"] = $accounts[0]["btc"];
+			$info["locked"] = $accounts[0]["locked"];
 			$info["loan"] = $accounts[0]["loan"];
 			$info["rate"] = $accounts[0]["rate"];			
  

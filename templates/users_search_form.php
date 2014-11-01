@@ -1,42 +1,31 @@
-<form action="users.php" method="post">
-<fieldset>
+<style>
 
-<h3>Search Users:</h3>
+    .usersForm table, .usersForm td, .usersForm tr
+    {
+        border:1px solid black;
+    }
+</style>
+<form action="users.php"  class="usersForm" method="post"   >
+    <fieldset>
 
+        <table>
+            <tr>
+                <td><input name="terms" value="all" type="radio">All</td>
+                <td><input name="terms" value="money" type="radio" >Top 10 $</td>
+                <td><input name="terms" value="else" type="radio" >Search</td>
+            </tr>
+            <tr>
+                <td><input name="where" value="1" type="radio">ID#</td>
+                <td><input name="where" value="2" type="radio">Username</td>
+                <td><input name="where" value="3" type="radio">Email</td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="text" placeholder="Search Terms" class="form-control"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><button class="btn btn-info" type="submit">Search!</button></td>
+            </tr>
+        </table>
 
-<div class="input-append">
-
-        	<div class="input-prepend">
-				<span class="add-on"><i class="icon-user"></i></span>
-                	<select name="where" value="where" class="input-small" />
-					  <option value="1">ID #</option>
-					  <option value="2">Username</option>
-					  <option value="3">Email</option>
-					</select>
-			</div><!--input-prepend-->
-            
-        	<div class="input-prepend">
-				<span class="add-on"><i class="icon-search"></i></span>
-                <input  type="text" class="input-medium" name="search" placeholder="Search Terms" !required />
-			</div><!--input-prepend-->
-            
-			<button type="submit" class="btn btn-primary"><b>SEARCH</b></button>
-            
-</div><!--input-append--> 
-
-
-
-            
-
-<br />
-<input type="radio" name="terms" value="else" required  checked/>Search &nbsp; &nbsp; &middot;  &nbsp; &nbsp;
-<input type="radio" name="terms" value="all" required />All &nbsp; &nbsp; &middot;  &nbsp; &nbsp;
-<input type="radio" name="terms" value="money" required />Top 10<br />
-
-
-
-
-
-</fieldset>
+    </fieldset>
 </form>
-

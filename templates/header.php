@@ -108,7 +108,7 @@
                 <div class="input-group">
                 <button id="bankButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-home"></span>
-                    <a href="">Bank</a>
+                    Bank
                     <span class="caret"></span>
                 </button>
 
@@ -128,21 +128,32 @@
             <div class="btn-group">
                 <div class="input-group">
                 <button id="exchangeButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <a href="">
                         <span class="glyphicon glyphicon-stats"></span>
-                        Exchange</a>
+                        Exchange
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="exchange.php">Exchange</a></li>
+                    <li><a href="exchange.php">Place Order</a></li>
                     <li><a href="information.php">Information</a></li>
-                    <li><a href="test.php">Test</a></li>
 
-                    <li><a href="_process.php">Process</a></li>
+                </ul>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <div class="input-group">
+                <button id="testButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-cog"></span>
+                        Test
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="test.php">Create Orders</a></li>
+                    <li><a href="_process.php">Process Orderbook</a></li>
                     <li><a href="_clear_all.php">Clear All</a></li>
                     <li><a href="_clear_orderbook.php">Clear Orders</a></li>
                     <li><a href="_clear_trades.php">Clear Trades</a></li>
-                    <li><a href="_randomOrders.php">Random Orders</a></li>
+
                 </ul>
                 </div>
             </div>
@@ -163,10 +174,10 @@
                 </ul>
                 <?php } ?>
 
-                <button type="button" class="btn btn-danger"><a href="logout.php">
+                    <a href="logout.php"><button type="button" class="btn btn-danger">
                         <span class="glyphicon glyphicon-off"></span>
 
-                        Log Out</a></button>
+                        Log Out</button></a>
                 </div>
             </div>
         </div>

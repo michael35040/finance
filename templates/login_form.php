@@ -82,6 +82,7 @@
 <br>
 <br>
 
+
 <a href="register.php" class="btn btn-success btn-sm">
     <span class="glyphicon glyphicon-pencil"></span>
     <b> &nbsp;  REGISTER </b>
@@ -114,12 +115,12 @@
                         <th style="font-size:25px">Fair</th>
                         <th style="font-size:25px">Markets</th>
                         <th style="font-size:25px">Secure</th>
-                        <th style="font-size:25px">Insured</th>
+                        <th style="font-size:25px">Fast</th>
                     </tr>
 
                     <tr>
-                        <td style="width:20%;" ><i class="fa fa-globe fa-4x"></i></td>
-                        <td style="width:20%;" ><i class="fa fa-exchange fa-4x"></i></td>
+                        <td style="width:20%;" ><span class="glyphicon glyphicon-globe" style="font-size:40px"></span></td>
+                        <td style="width:20%;" ><span class="glyphicon glyphicon-random" style="font-size:40px"></span></td>
                         <td style="width:20%;"  rowspan="2">
 
                             <table class="bstable" border="1" cellspacing="0" cellpadding="0"  style="width:50%; text-align:center;" />
@@ -172,8 +173,8 @@
 
                 Buyer's Bid/Seller's Ask.</td>
 
-                <td width="20%"><i class="fa fa-shield fa-4x"></i></td>
-                <td width="20%"><i class="fa fa-umbrella fa-4x"></i></td>
+                <td width="20%"><span class="glyphicon glyphicon-lock" style="font-size:40px"></span></td>
+                <td width="20%"><span class="glyphicon glyphicon-flash" style="font-size:40px"></span></td>
                 </tr>
 
                 <tr>

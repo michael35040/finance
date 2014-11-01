@@ -32,8 +32,8 @@
                 <input type="checkbox" name="copyunits" onclick="FillUnits(this.form)"> All <?php echo($unittype);?>
                 <br /><br>
                 <button type="submit" class="btn btn-warning btn-sm">
-                    <span class="glyphicon glyphicon-refresh"></span>
-                    &nbsp;  TRANSFER 
+                    <span class="glyphicon glyphicon-transfer"></span>
+                    &nbsp;  TRANSFER
                 </button>
         <br><br>
 
