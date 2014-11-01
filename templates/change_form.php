@@ -1,7 +1,7 @@
 <style>
     .changeForm {
         text-align: center;
-        width: 50%;
+        width: 500px;
         padding: 0px;
         position:relative;
         margin-left: auto;
@@ -10,136 +10,54 @@
 </style>
 
 
-<form action="change.php" name="change_form" method="post">
-    <h3>Edit User Account:</h3>
+<form action="change.php"  class="changeForm" name="change_form" method="post">
     <fieldset>
 
-        <TABLE class="changeForm" BORDER="3" cellspacing="0" cellpadding="5" align="center">
         <div class="control-group">
-                <TD>
-                    <div id="emailMenu" style="opacity:1;">
-                        <INPUT TYPE="radio" NAME="change" VALUE="email" id="emailRadio">Change Email
-                            	<label class="control-label" for="inputIcon"></label>
-                                <div class="controls">
-                                	<div class="input-prepend">
-                        				<span class="add-on"><i class="icon-envelope"></i></span>
-                                        <input class="span2" id="emailInput" name="email" placeholder="New Email" type="email" value=""  />
-                       			</div>
-                        		</div>
-                        
-                        
-                        
 
-                    </div><!--menuEmail-->
-                </TD>
-                   
-            </TR>
-            <TR>
-                <TD>
-                    <div id="phoneMenu" style="opacity:1;">                
-                        <INPUT TYPE="radio" NAME="change" VALUE="phone" id="phoneRadio" >Change Phone
-                           
-                            	<label class="control-label" for="inputIcon"></label>
-                                <div class="controls">
-                                	<div class="input-prepend">
-                        				<span class="add-on"><i class="icon-bell"></i></span>
-                                        <input class="span2" id="phoneInput" name="phone" placeholder="New Phone" type="tel"  value=""  />
-                        			</div>
-                        		</div>
-                        
+            <div id="usernameMenu" style="opacity:1;">
+                <span class="input-group-addon">
+                    <INPUT TYPE="radio" NAME="change" VALUE="username" id="usernameRadio" required>
+                    <span class="glyphicon glyphicon-user"></span> New Username</span>
+                <input class="form-control" id="usernameInput" name="username" placeholder="Username" type="text" maxlength="31"  autofocus required  />
+            </div><!--usernameMenu-->
 
+            <div id="emailMenu" style="opacity:1;">
+                <span class="input-group-addon">
+                    <INPUT TYPE="radio" NAME="change" VALUE="email" id="emailRadio">
+                    <span class="glyphicon glyphicon-envelope"></span> New Email</span>
+                <input class="form-control" id="emailInput" name="email" placeholder="Email" type="email" maxlength="31" required/>
+            </div><!--menuEmail-->
 
+            <div id="phoneMenu" style="opacity:1;">
+                <span class="input-group-addon">
+                    <INPUT TYPE="radio" NAME="change" VALUE="phone" id="phoneRadio" >
+                    <span class="glyphicon glyphicon-earphone"></span> New Phone</span>
+                <input class="form-control" id="phoneInput" name="phone" placeholder="Phone" type="tel" maxlength="20" required/>
+            </div><!--menuPhone-->
 
-                    </div><!--menuPhone-->           
-                </TD>
-                
-            </TR>
-            <TR>
-                <TD>
-                    <div id="newpasswordMenu" style="opacity:1;">                
-                        <INPUT TYPE="radio" NAME="change" VALUE="newpassword" id="newpasswordRadio" required>Change Password
-   
-                                	<label class="control-label" for="inputIcon"></label>
-                                    <div class="controls">
-                                    	<div class="input-prepend">
-                            				<span class="add-on"><i class="icon-star"></i></span>
-                                            <input class="span2" id="newpasswordInput" name="newpassword" placeholder="New Password" type="password" value=""  />
-                            			</div>
-                            		</div>
-                   
-                    </div><!--menuPassword-->                 
-                </TD>
-                
-            </TR>
-            <TR>
-                <TD>
-                    <div id="usernameMenu" style="opacity:1;">                
-                        <INPUT TYPE="radio" NAME="change" VALUE="username" id="usernameRadio" required>Change Username
-                             
-                                	<label class="control-label" for="inputIcon"></label>
-                                    <div class="controls">
-                                    	<div class="input-prepend">
-                            				<span class="add-on"><i class="icon-user"></i></span>
-                                            <input class="span2" id="usernameInput" name="username" placeholder="New Username" type="text"  value=""  />
-                            			</div>
-                            		</div>
+            <div id="newpasswordMenu" style="opacity:1;">
+                <span class="input-group-addon">
+                    <INPUT TYPE="radio" NAME="change" VALUE="newpassword" id="newpasswordRadio" required>
+                    <span class="glyphicon glyphicon-lock"></span> New Password
+                </span>
+                <input class="form-control"  id="newpasswordInput" name="password" placeholder="Password" type="password" maxlength="31" required/>
+            </div><!--menuPassword-->
 
-                     </div> <!--menuUsername-->               
-                </TD>
-                
-            </TR>
-            <TR>
-                <TD>
-                <label class="control-label" for="inputIcon" id="confirmationText">Re-type Confirmation</label>
-                    <div class="controls">
-                        <div class="input-prepend">
-                            <span class="add-on">
+            <span class="input-group-addon">
+                <div id="confirmationText"><span class="glyphicon glyphicon-star"></span> Re-type Confirmation</div>
+            </span>
+            <input class="form-control"  id="confirmation" name="confirmation" placeholder="Confirmation" type="text" maxlength="31" required/>
 
-                                <div id="confirmationIcon">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-lock"></span> Current Password</span>
+            <input class="form-control"  id="password" name="password" placeholder="Password" type="password" maxlength="31" required/>
 
-                                </div>
-
-
-
-
-                                </i></span>
-                    <input class="span2" id="confirmation" name="confirmation" placeholder="Re-type" type="text" value="" required />
-                        </div>
-                    </div>
-                </TD>
-            </TR>
-            
-            <TR>
-                <TD>
-                <label class="control-label" for="inputIcon">Current Password</label>
-                <div class="controls">
-                    <div class="input-prepend">
-                        <span class="add-on"><i class="icon-star"></i></span>
-                        <input class="span2" id="password" name="password" placeholder="Password" type="password" value=""  required  />
-                    </div>
-                </div>
-                              
-                
-                </TD>
-            </TR>
-            <TR>
-                <TD>
-                    <button id="clear" class="btn btn-primary">CLEAR</button>
-                    <button type="reset" class="btn btn-danger">SUBMIT</button>
-                </TD>
-            </TR>
-            
-        </div><!--control Group--> 
-        </TABLE>
-
-
-        <div class="input-append"><!--for combining/appending input fields-->
-        </div>
-
-
-
-
-
+            <BR>
+            <button id="clear" class="btn btn-primary">CLEAR</button>
+            <button type="reset" class="btn btn-danger">SUBMIT</button>
+            <br>  <br>
+        </div><!--control Group-->
 
 
     </fieldset>
@@ -151,102 +69,97 @@
     document.getElementById("emailRadio").addEventListener("click", function () {
         document.getElementById("phoneMenu").style.opacity = 0;
         document.getElementById("phoneRadio").disabled = true;
-        document.getElementById('phoneInput').value=''; 
-        
+        document.getElementById('phoneInput').value='';
+
         document.getElementById("newpasswordMenu").style.opacity = 0;
         document.getElementById("newpasswordRadio").disabled = true;
-        document.getElementById('newpasswordInput').value=''; 
-        
+        document.getElementById('newpasswordInput').value='';
+
         document.getElementById("usernameMenu").style.opacity = 0;
         document.getElementById("usernameRadio").disabled = true;
-        document.getElementById('usernameInput').value=''; 
+        document.getElementById('usernameInput').value='';
 
-        document.getElementById('confirmationText').innerHTML = 'Re-type Email';        
-        document.getElementById('confirmationIcon').innerHTML = '<i class="icon-envelope">';
+        document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-envelope"></span> Email';
     }, false);
 
     //PHONE    
     document.getElementById("phoneRadio").addEventListener("click", function () {
         document.getElementById("emailMenu").style.opacity = 0;
         document.getElementById("emailRadio").disabled = true;
-        document.getElementById('emailInput').value='';  
-        
+        document.getElementById('emailInput').value='';
+
         document.getElementById("newpasswordMenu").style.opacity = 0;
         document.getElementById("newpasswordRadio").disabled = true;
         document.getElementById('newpasswordInput').value='';
-        
+
         document.getElementById("usernameMenu").style.opacity = 0;
         document.getElementById("usernameRadio").disabled = true;
         document.getElementById('usernameInput').value='';
 
-        document.getElementById('confirmationText').innerHTML = 'Re-type Phone';        
-        document.getElementById('confirmationIcon').innerHTML = '<i class="icon-bell">';
+        document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-earphone"></span> Re-type Phone';
     }, false);
 
     //PASSWORD    
     document.getElementById("newpasswordRadio").addEventListener("click", function () {
         document.getElementById("phoneMenu").style.opacity = 0;
         document.getElementById("phoneRadio").disabled = true;
-        document.getElementById('phoneInput').value=''; 
-        
+        document.getElementById('phoneInput').value='';
+
         document.getElementById("emailMenu").style.opacity = 0;
         document.getElementById("emailRadio").disabled = true;
-        document.getElementById('emailInput').value=''; 
-        
+        document.getElementById('emailInput').value='';
+
         document.getElementById("usernameMenu").style.opacity = 0;
         document.getElementById("usernameRadio").disabled = true;
-        document.getElementById('usernameInput').value='';  
-        
-        document.getElementById('confirmationText').innerHTML = 'Re-type New Password';        
-        document.getElementById('confirmationIcon').innerHTML = '<i class="icon-star">';
+        document.getElementById('usernameInput').value='';
+
+        document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-lock"></span> Re-type New Password';
     }, false);
-    
+
     //USERNAME    
     document.getElementById("usernameRadio").addEventListener("click", function () {
         document.getElementById("phoneMenu").style.opacity = 0;
         document.getElementById("phoneRadio").disabled = true;
-        document.getElementById('phoneInput').value='';  
-        
+        document.getElementById('phoneInput').value='';
+
         document.getElementById("newpasswordMenu").style.opacity = 0;
         document.getElementById("newpasswordRadio").disabled = true;
-        document.getElementById('newpasswordInput').value=''; 
-        
+        document.getElementById('newpasswordInput').value='';
+
         document.getElementById("emailMenu").style.opacity = 0;
         document.getElementById("emailRadio").disabled = true;
-        document.getElementById('emailInput').value='';   
-        
-        document.getElementById('confirmationText').innerHTML = 'Re-type Username';        
-        document.getElementById('confirmationIcon').innerHTML = '<i class="icon-user">';
+        document.getElementById('emailInput').value='';
+
+        document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-user"></span> Re-type New Username';
     }, false);
-  
+
     //CLEAR    
     document.getElementById("clear").addEventListener("click", function () {
         document.getElementById("phoneMenu").style.opacity = 1;
         document.getElementById("phoneRadio").disabled = false;
-        document.getElementById('phoneInput').value='';  
-        
+        document.getElementById('phoneInput').value='';
+
         document.getElementById("newpasswordMenu").style.opacity = 1;
         document.getElementById("newpasswordRadio").disabled = false;
-        document.getElementById('newpasswordInput').value='';  
-        
+        document.getElementById('newpasswordInput').value='';
+
         document.getElementById("emailMenu").style.opacity = 1;
         document.getElementById("emailRadio").disabled = false;
-        document.getElementById('emailInput').value='';    
+        document.getElementById('emailInput').value='';
 
         document.getElementById("usernameMenu").style.opacity = 1;
         document.getElementById("usernameRadio").disabled = false;
-        document.getElementById('usernameInput').value='';  
-        
+        document.getElementById('usernameInput').value='';
+
         document.getElementById("phoneRadio").checked = false;
         document.getElementById("newpasswordRadio").checked = false;
         document.getElementById("emailRadio").checked = false;
         document.getElementById("usernameRadio").checked = false;
-        
-        document.getElementById('confirmation').value='';  
-        document.getElementById('password').value='';  
-        
-        document.getElementById('confirmationText').innerHTML = 'Re-type Confirmation';        
-        document.getElementById('confirmationIcon').innerHTML = '';
+
+        document.getElementById('confirmation').value='';
+        document.getElementById('password').value='';
+
+        document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-star"></span> Re-type Confirmation';
     }, false);
-  
+
 </script>

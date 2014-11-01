@@ -3,11 +3,14 @@ if (!isset($commission)) //set in constants.php
 { $commission = 0; }
 ?>
 
+<style>
+    td{width:50%;
+    padding:10px;}
+</style>
 
-
-
-
-<form action="exchange.php" name="exchange_form" method="post"
+<hr>
+<div class="exchangeTable">
+<form action="exchange.php" method="post"
       oninput="
           priceAmount.value=price.value;
           quantityAmount.value=quantity.value;
@@ -21,21 +24,11 @@ if (!isset($commission)) //set in constants.php
           commissionAmount.value=parseFloat(parseInt(quantity.value)*parseInt(price.value)*<?php echo($commission) ?>).toFixed(2);
           subtotal.value=parseFloat(parseFloat(quantity.value)*parseFloat(price.value)).toFixed(2);
           total.value=parseFloat(parseFloat(quantity.value)*parseFloat(price.value)+parseFloat(commissionAmount.value)).toFixed(2);
-          "
-    >
+          ">
 
     <fieldset>
 
-
-        <TABLE class="exchange_form"  BORDER="3" cellspacing="0" cellpadding="5" align="center">
-
-            <TR>
-                <TD ROWSPAN="2">Side</TD>
-                <TD><INPUT TYPE="radio" NAME="side" VALUE="b" required> Buy / Bid Order</TD>
-            </TR>
-            <TR>
-                <TD><INPUT TYPE="radio" NAME="side" VALUE="a" required> Sell / Ask Order</TD>
-            </TR>
+        <TABLE BORDER="3" cellspacing="0" cellpadding="5" align="center"">
 
             <TR>
                 <TD ROWSPAN="1">Symbol</TD>
@@ -56,6 +49,17 @@ if (!isset($commission)) //set in constants.php
                     </datalist>
                 </TD>
             </TR>
+
+
+
+            <TR>
+                <TD ROWSPAN="2">Side</TD>
+                <TD><INPUT TYPE="radio" NAME="side" VALUE="b" required> Buy / Bid Order</TD>
+            </TR>
+            <TR>
+                <TD><INPUT TYPE="radio" NAME="side" VALUE="a" required> Sell / Ask Order</TD>
+            </TR>
+
 
 
             <TR>
@@ -86,8 +90,8 @@ if (!isset($commission)) //set in constants.php
                     <!--subMenuPriceText-->
                     <div id="subMenuPrice" style="opacity:1;">
                         <input class="input-small" type="range" id="price" placeholder="Price" name="price" value=0
-                               min="10" max="50" step=".25" style="width:100%;" required><br />
-                        $<output name="priceAmount" for="price">0</output>
+                               min="10" max="50" step=".25" style="width:100%;" required>
+                        <output name="priceAmount" for="price">0</output>
                     </div>
 
 
@@ -100,7 +104,7 @@ if (!isset($commission)) //set in constants.php
                 <TD ROWSPAN="1">Quantity</TD>
                 <TD>
                     <input class="input-small" type="range" id="quantity" placeholder="Quantity" name="quantity" value=1
-                           min="1" max="100" step="1" style="width:100%;" required><br />
+                           min="1" max="100" step="1" style="width:100%;" required>
                     <output name="quantityAmount" for="quantity">1</output>
                 </TD>
             </TR>
@@ -110,7 +114,6 @@ if (!isset($commission)) //set in constants.php
             <TR>
                 <TD ROWSPAN="1">Subtotal</TD>
                 <TD>
-                    $
                     <output name="subtotal" for="price quantity">0</output>
                 </TD>
             </TR>
@@ -123,7 +126,7 @@ if (!isset($commission)) //set in constants.php
 
                     if ($commission != 0) {
                         $commission *= 100;
-                        echo('$<output name="commissionAmount" for="commission">0</output>');
+                        echo('<output name="commissionAmount" for="commission">0</output>');
                     } else {
                         echo("No Commission! $0 (0%)");
                     }
@@ -133,17 +136,25 @@ if (!isset($commission)) //set in constants.php
             <TR>
                 <TD ROWSPAN="1">Total</TD>
                 <TD>
-                    $
                     <output name="total" for="price quantity commission">0</output>
                 </TD>
             </TR>
 
-        <tr><td colspan="2"> <button type="submit" class="btn btn-danger">SUBMIT</button> <br> <br></td></tr>
-        </TABLE>
-    </fieldset>
+        <tr><td colspan="2"> <br>
+                <button type="submit" class="btn btn-primary">SUBMIT</button><br>
+
+                <br></td></tr>
+
+
+
+</TABLE>
+
+
+
+
+</fieldset>
 </form>
-
-
+</div>
 
 
 

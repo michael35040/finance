@@ -1,30 +1,53 @@
-<form action="information.php" method="post">
-    <h3>Select a symbol:</h3>
+<style>
+    .symbolForm {
+        text-align: center;
+        width: 200px;
+        padding: 0px;
+        position:relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+
+<form action="information.php"  class="symbolForm" method="post"   >
     <fieldset>
-        <!-- removed autofocus             <input autofocus name="symbol" placeholder="Symbol" type="text" maxlength="31"/> -->
 
- <div class="input-append">
-    <div class="input-prepend">
 
-        <input list="symbol" name="symbol" maxlength="8" class="input-small" required><!--<input list="symbol" class="input-small" name="symbol" id="symbol" placeholder="Symbol" type="text" maxlength="5" required-->
-        <datalist id="symbol"><!--select class="input-small" name="symbol" id="symbol" /-->
 
-            <?php
-            if (empty($stocks)) {
-                echo("<option value=' '>No Symbols</option>");
-            } else {
-                foreach ($stocks as $stock) {
-                    $symbol = $stock["symbol"];
-                    echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
-                }
-            }
-            ?>
-        </datalist>
-    </div><!--input-prepend-->
-    <div class="input-prepend">
-        <button type="submit" class="btn btn-danger" >Submit</button><!--national exchange-->
-    </div><!--input-prepend-->
-</div><!--input-append-->
+        <div class="row" style="width:400px;" >
+        <div class="col-lg-6">
+            <div class="input-group">
+
+                <input list="symbol" name="symbol" maxlength="8"  class="form-control"  required>
+                <datalist id="symbol">
+                    <?php
+                    if (empty($stocks)) {
+                        echo("<option value=' '>No Symbols</option>");
+                    } else {
+                        foreach ($stocks as $stock) {
+                            $symbol = $stock["symbol"];
+                            echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
+                        }
+                    }
+                    ?>
+                </datalist>
+<span class="input-group-btn">
+<button type="submit" class="btn btn-info">
+    <b> SUBMIT </b>
+</button>
+</span>
+
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+
+
+
+
+
 
     </fieldset>
 </form>
+
+
+

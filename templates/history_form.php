@@ -105,27 +105,34 @@
 if (isset($title)) 
 {
 if ($title !== "History All")
-{ 
+{
 	echo('
-	<form>
-	<button type="submit" formmethod="post" formaction="history.php" name="history" value="all">
-	<i class="fa fa-archive"></i> ALL HISTORY
-	</button>
-	</form>
+<form>
+<span class="input-group-btn">
+    <button type="submit" class="btn btn-primary" formmethod="post" formaction="history.php" name="history" value="all">
+        <span class="glyphicon glyphicon-calendar"></span>
+        &nbsp;  ALL HISTORY
+    </button>
+</span>
+</form>
 	');
 }
 else
 { 
 	echo('
-	<form>
-	<button type="submit" formmethod="post" formaction="history.php" name="history" value="limit">
-	<i class="fa fa-archive"></i> HISTORY
-	</button>
-	</form>
+<form>
+<span class="input-group-btn">
+    <button type="submit" class="btn btn-primary" formmethod="post" formaction="history.php" name="history" value="limit">
+        <span class="glyphicon glyphicon-calendar"></span>
+        &nbsp; HISTORY
+    </button>
+</span>
+</form>
 	');
 }
 }
 //var_dump(get_defined_vars());
 //&middot; 
 ?>
- <br />  <br /> 
+ <br />  <br />
+

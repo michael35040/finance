@@ -1,5 +1,5 @@
 
-<body>
+
 <form action="test.php" name="test_form" method="post" oninput="quantityAmount.value=quantity.value;">
     <fieldset>
 
@@ -66,8 +66,9 @@
 
     </fieldset>
 </form>
-</body>
 
+<br>
+<br>
 
 
 
@@ -88,7 +89,6 @@
         <th><?php echo($bidsTotal);?></th>
         <th>ALL</th>
     </tr>
-    <tbody>
     <?php
     foreach ($bidsGroup as $order)
     {
@@ -97,7 +97,6 @@
         echo("<tr><td >" . number_format($quantity,0,".",",") . "</td><td >" . number_format($price,2,".",",") . "</td></tr>");
     }
     ?>
-    </tbody>
 </table>
 
 <table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center">
@@ -115,7 +114,6 @@
         <th>ALL</th>
         <th><?php echo($asksTotal);?></th>
     </tr>
-    <tbody>
     <?php
     foreach ($asksGroup as $order)
     {
@@ -124,7 +122,6 @@
         echo("<tr ><td >" . number_format($price,2,".",",") . "</td><td >" . number_format($quantity,0,".",",") . "</td></tr>");
     }
     ?>
-    </tbody>
 
 </table>
 <br />  <br />

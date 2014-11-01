@@ -79,3 +79,7 @@ if ($now > 7 && $now < 20) { //0700-2000 or 7am to 7pm EST
 */
 ?>
 
+form {
+display: inline-block;
+text-align: center;
+}
