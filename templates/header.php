@@ -139,6 +139,7 @@
                 </ul>
                 </div>
             </div>
+            <?php if ($_SESSION["id"] == $adminid) { //ADMIN MENU FOR ADMIN?>
 
             <div class="btn-group">
                 <div class="input-group">
@@ -160,7 +161,6 @@
 
             <div class="btn-group">
                 <div class="input-group">
-                <?php if ($_SESSION["id"] == $adminid) { //ADMIN MENU FOR ADMIN?>
                 <button id="adminButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     <a href="">
                         <span class="glyphicon glyphicon-star"></span>
