@@ -112,7 +112,7 @@
             ]);
             var options2 =
             {
-                title: '<?php echo($symbol); ?> Orderbook',
+                title: '<?php echo($symbol); ?> - ORDERBOOK',
                 hAxis: {title: 'Price',  titleTextStyle: {color: '#333'}},
                 vAxis: {title: 'Quantity', minValue: 0, isStacked: true}
             };
@@ -268,23 +268,8 @@ echo(   "       Bid: " . $spotBid .
 
 
     </td>
-    <td style="
-        width:80%;
-        height: 100%;
-        float:center;
-        margin-left: auto;
-        margin-right: auto;
-
-        ">
-
-                            <div id="chart_div2" style="
-                                width:100%;
-                                height: 100%;
-                                float:center;
-                                margin-left: auto;
-                                margin-right: auto;
-                                "></div>
-
+    <td style="vertical-align: bottom;">
+                            <div id="chart_div2"></div>
     </td>
     <td style="width:10%">
         <table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center; float:right">

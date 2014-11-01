@@ -27,7 +27,7 @@ if (!isset($commission)) //set in constants.php
     <fieldset>
 
 
-        <TABLE class="exchange_form"  BORDER="3" cellspacing="0" cellpadding="5" align="center"
+        <TABLE class="exchange_form"  BORDER="3" cellspacing="0" cellpadding="5" align="center">
 
             <TR>
                 <TD ROWSPAN="2">Side</TD>

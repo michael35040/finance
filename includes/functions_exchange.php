@@ -12,13 +12,13 @@ function orderbook($symbol)
     //PROCESS MARKET ORDERS
     ////////////////////////
 
-    $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY date ASC LIMIT 0, 1", $symbol);
+    $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
     if (!empty($marketOrders)) {
         $marketSide = ($marketOrders[0]["side"]);
         $tradeType = 'market';
 
         if ($marketSide == 'b') {
-            $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, date ASC LIMIT 0, 1", $symbol, 'a');
+            $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
             if (empty($asks)){
                 if (query("DELETE FROM orderbook WHERE (symbol = ? AND type = 'market' AND side = ?)", $symbol, $marketSide) === false)
                 {apologize("Unable to delete unfilled market bid orders.");}
@@ -33,7 +33,7 @@ function orderbook($symbol)
             @$topAskPrice = ($asks[0]["price"]); //limit price
             @$topBidPrice = ($asks[0]["price"]);
         } elseif ($marketSide == 'a') {
-            $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, date ASC LIMIT 0, 1", $symbol, 'b');
+            $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
             if (empty($bids)){
                 if (query("DELETE  FROM orderbook WHERE (symbol = ? AND type = 'market' AND side = ?)", $symbol, $marketSide) === false)
                 {apologize("Unable to delete unfilled market ask orders.");}
@@ -96,7 +96,8 @@ function orderbook($symbol)
 
         if ($topBidPrice >= $topAskPrice) //TRADES ARE POSSIBLE
         {
-            //DETERMINE EXECUTED PRICE (bid or ask) BY EARLIER DATE TIME
+            //DETERMINE EXECUTED PRICE (bid or ask) BY EARLIER DATE TIME (using UID instead of DATE)
+            //UID is unique where you can have 2 similar date times.
             //per market rules, first to orderbook sets trade price if they cross
             //ie. bid comes in at 40, then ask comes in at  38, it executes at 40
             //or ask comes in at 38, then bid comes in at 40, it executes at 38
@@ -372,13 +373,13 @@ function orderbook($symbol)
 
 
 
-        $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY date ASC LIMIT 0, 1", $symbol);
+        $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
         if (!empty($marketOrders)) {
             $marketSide = ($marketOrders[0]["side"]);
             $tradeType = 'market';
 
             if ($marketSide == 'b') {
-                $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, date ASC LIMIT 0, 1", $symbol, 'a');
+                $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
                 if (empty($asks)){
                     if (query("DELETE FROM orderbook WHERE (symbol = ? AND type = 'market' AND side = ?)", $symbol, $marketSide) === false)
                     {apologize("Unable to delete unfilled market bid orders.");}
@@ -393,7 +394,7 @@ function orderbook($symbol)
                 @$topAskPrice = ($asks[0]["price"]); //limit price
                 @$topBidPrice = ($asks[0]["price"]);
             } elseif ($marketSide == 'a') {
-                $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, date ASC LIMIT 0, 1", $symbol, 'b');
+                $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
                 if (empty($bids)){
                     if (query("DELETE  FROM orderbook WHERE (symbol = ? AND type = 'market' AND side = ?)", $symbol, $marketSide) === false)
                     {apologize("Unable to delete unfilled market ask orders.");}

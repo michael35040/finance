@@ -1,11 +1,16 @@
 <style>
+    a:link {color:white;}      /* unvisited link */
+    a:visited {color:white;}  /* visited link */
+    a:hover {color:white;}  /* mouse over link */
+    a:active {color:white;}  /* selected link */
+
 
 #reg {
 	min-height: 94%;
     max-heigh: 94%;
 	align: center;
     width: auto;
-    margin: 0 auto; 
+    margin: 0 auto;
     padding: 5px 5% 0px 5%; /*top, right, bottom, left */
  	/*   border:5px solid #cccccc; */
 
@@ -15,7 +20,7 @@
 	padding-bottom: 0px; /* must be same height as the footer */
 	margin-bottom: 10px;
 	background-color: white;
-	opacity:.96; 
+	opacity:.96;
 	filter:alpha(opacity=96); /* For IE8 and earlier */
 /*	font-weight:bold; */
 	color:black;
@@ -28,18 +33,9 @@
 }
 </style>
 
-<br />
 <form id="reg" action="register.php" method="post">
   <fieldset>
-
-
-<br />
-<a href="login.php" class="btn btn-info"><i class="icon-off"></i> &nbsp; LOG IN</a>
-<br />or
-
-<h3>Register:</h3>
-
-
+      <h3>Register:</h3>
 <div class="control-group">    
     	<label class="control-label" for="inputIcon"><strong>Usernames</strong> must contain only alphanumeric characaters.</label>
         <div class="controls">
@@ -113,9 +109,25 @@
 <br /><br />
 
                
-<button type="submit" class="btn btn-success"><i class="fa fa-pencil"></i> &nbsp; OPEN AN ACCOUNT</button><br />
+      <button type="submit" class="btn btn-success btn-sm">
+          <span class="glyphicon glyphicon-pencil"></span>
+          <b> REGISTER </b>
+      </button>
 
-<br />     
-</fieldset>
+
+
+<hr>
+or
+<br>
+<a href="login.php" class="btn btn-info btn-sm">
+    <span class="glyphicon glyphicon-off"></span>
+    <b> &nbsp;  LOG IN </b>
+</a>
+      <br />   <br />
+  </fieldset>
 </form>
+
+
+
+
 

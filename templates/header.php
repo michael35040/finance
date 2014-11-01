@@ -1,21 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
+<style>
+    .sitenamefont {
+        font-family:Arial;
+        font-family:Georgia, "Times New Roman", Times, serif;
+        font-size:xx-large;
+        padding-top:10px;
+        text-shadow: 1px 1px #000;
+    }
+    .titlefont {
+        font-family:Arial, Helvetica, sans-serif;
+        font-size:large;
+        padding-top:10px;
+        text-shadow: 1px 1px #000;
+    }
+
+    .table {margin-bottom:0;} /*set to 20 in bootstrap*/
+
+</style>
+
+
 <head>
-    <?php require("../includes/constants.php"); //global finance constants
-    ?>
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/scripts.js"></script>
+    <?php require("../includes/constants.php"); //global finance constants  ?>
 
     <link href="css/bootstrap.css" rel="stylesheet"/>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet"/>
     <link href="css/font-awesome-4.2.0/css/font-awesome.css" rel="stylesheet"/><!--extra icons-->
     <link href="css/styles.php" rel="stylesheet" media="screen"/>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
-
 <body>
+
 <div id="page" style="text-align:center">
     <div id="top" style="text-align:center">
 
@@ -37,22 +53,6 @@
 
 
 
-        <style>
-            .sitenamefont {
-                font-family:Arial;
-                font-family:Georgia, "Times New Roman", Times, serif;
-                font-size:xx-large;
-                padding-top:10px;
-            }
-            .titlefont {
-                font-family:Arial, Helvetica, sans-serif;
-                font-size:large;
-                padding-top:10px;
-            }
-
-            .table {margin-bottom:0;} /*set to 20 in bootstrap*/
-
-        </style>
 
 
         <table align="center" width="">
@@ -102,65 +102,74 @@
         //2 pending - not yet implemented
         ?>
 
-        <ul id="nav" align="left">
+        <div class="btn-group">
 
-            <li><a href="index.php"><i class="fa fa-bank"></i> Bank</a>
-                <ul class="mainmenu">
+            <div class="btn-group">
+                <div class="input-group">
+                <button id="bankButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-home"></span>
+                    <a href="">Bank</a>
+                    <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu" role="menu">
                     <li><a href="index.php">Accounts</a></li>
                     <li><a href="history.php">History</a></li>
                     <li><a href="transfer.php">Transfer </a></li><!--<i class="icon-gift"></i>-->
-                    <li><a href="loan.php">Loan</a><?php if ($loan < 0) { //-0.00000001 ?>
-                            <ol>
-                                <li><a href="loanpay.php">Pay</a></li>
-                            </ol>
-                        <?php } ?>
-                    </li>
-
-                    <li><a href="change.php">Edit</a>
-
-
+                    <li><a href="loan.php">Loan</a>
+                    <?php if ($loan < 0) { //-0.00000001 ?>
+                    <li><a href="loanpay.php">Pay Loan</a></li>
+                    <?php } ?></li>
+                    <li><a href="change.php">Edit Account</a>
                 </ul>
-            </li>
+                </div>
+            </div>
 
-            <li><a href="exchange.php"><i class="fa fa-line-chart"></i> Exchange</a>
-                <ul class="mainmenu">
+            <div class="btn-group">
+                <div class="input-group">
+                <button id="exchangeButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <a href="">
+                        <span class="glyphicon glyphicon-stats"></span>
+                        Exchange</a>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
                     <li><a href="exchange.php">Exchange</a></li>
                     <li><a href="information.php">Information</a></li>
-                    <li><a href="test.php">Test &#9776; </a>
-                        <ul>
-                            <li><a href="_process.php">Process</a></li>
-                            <li><a href="_clear_all.php">Clear All</a></li>
-                            <li><a href="_clear_orderbook.php">Clear Orders</a></li>
-                            <li><a href="_clear_trades.php">Clear Trades</a></li>
-                            <li><a href="_randomOrders.php">Random Orders</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="test.php">Test</a></li>
 
+                    <li><a href="_process.php">Process</a></li>
+                    <li><a href="_clear_all.php">Clear All</a></li>
+                    <li><a href="_clear_orderbook.php">Clear Orders</a></li>
+                    <li><a href="_clear_trades.php">Clear Trades</a></li>
+                    <li><a href="_randomOrders.php">Random Orders</a></li>
                 </ul>
-            </li>
+                </div>
+            </div>
 
-            <?php
-            //ADMIN MENU FOR ADMIN
-            if ($_SESSION["id"] == $adminid)
-            {
-                ?>
-                <li><a href=""><i class="fa fa-star-o"></i> Admin &#9776;</a>
-                    <ul class="mainmenu">
+            <div class="btn-group">
+                <div class="input-group">
+                <?php if ($_SESSION["id"] == $adminid) { //ADMIN MENU FOR ADMIN?>
+                <button id="adminButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <a href="">
+                        <span class="glyphicon glyphicon-star"></span>
+                        Admin</a>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="deposit.php">Deposit <i class="icon-download-alt"></i></a></li>
+                    <li><a href="withdraw.php">Withdraw <i class="icon-share"></i></a></li>
+                    <li><a href="users.php">Users <i class="icon-search"></i></a></li>
+                </ul>
+                <?php } ?>
 
-                        <li><a href="deposit.php">Deposit <i class="icon-download-alt"></i></a></li>
-                        <li><a href="withdraw.php">Withdraw <i class="icon-share"></i></a></li>
-                        <li><a href="users.php">Users <i class="icon-search"></i></a></li>
-                    </ul>
-                </li>
-            <?php } ?>
+                <button type="button" class="btn btn-danger"><a href="logout.php">
+                        <span class="glyphicon glyphicon-off"></span>
 
-            <li class="current"><a href="logout.php"><i class="icon-off"></i> Log Out</a></li>
-        </ul>
-
-
-
-
-
+                        Log Out</a></button>
+                </div>
+            </div>
+        </div>
 
 
     </div> <!--top-->
@@ -188,4 +197,4 @@
         //var_dump(get_defined_vars()); //dump all variables anywhere (displays in header)
         ?>
 
-        <hr>
+        <br>
