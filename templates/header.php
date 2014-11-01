@@ -19,10 +19,14 @@
     .table {margin-bottom:0;} /*set to 20 in bootstrap*/
 
 </style>
-
-
 <head>
     <?php require("../includes/constants.php"); //global finance constants  ?>
+
+    <script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/scripts.js"></script>
+
+
 
     <link href="css/bootstrap.css" rel="stylesheet"/>
     <link href="css/font-awesome-4.2.0/css/font-awesome.css" rel="stylesheet"/><!--extra icons-->
@@ -172,14 +176,19 @@
                     <li><a href="withdraw.php">Withdraw <i class="icon-share"></i></a></li>
                     <li><a href="users.php">Users <i class="icon-search"></i></a></li>
                 </ul>
-                <?php } ?>
-
-                    <a href="logout.php"><button type="button" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-off"></span>
-
-                        Log Out</button></a>
                 </div>
             </div>
+            <?php } ?>
+
+            <div class="btn-group">
+                <div class="input-group">
+                    <a href="logout.php"><button type="button" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-off"></span>
+                            Log Out</button></a>
+                </div>
+            </div>
+
+
         </div>
 
 
