@@ -1,14 +1,6 @@
-<style>
-/*
-    table, th, td {
-        border: 1px solid black;
-    }
-*/
-</style>
 
-<table class="table" align="center"> <!--class="bstable"-->
+<table class="table" > <!--class="bstable"-->
 
-    <thead>
     <tr bgcolor="#CCCCCC"><td colspan="7"><font color="black" size="+1">HISTORY</font></td></tr> <!--blank row breaker-->
     <tr >
 
@@ -20,8 +12,7 @@
             <th>Price</th>
             <th>Total</th>
         </tr>
-    </thead>
-    <tbody>
+
     <?php
 	    foreach ($history as $row)
         {   
@@ -65,8 +56,6 @@
         <td ><b><u>Total</u></b></td>
         <td ><b><u>Date</u></b></td>
     </tr>
-    </thead>
-    <tbody>
     <?php
     foreach ($trades as $trade)
     {
@@ -87,14 +76,9 @@
                 <td>" . number_format($price,2,".",",") . "</td>
                 <td>" . number_format($total,2,".",",") . "</td>
                 <td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($date))) . "</td>
-
-
-
-
                 </tr>");
     }
     ?>
-    </tbody>
 
 </table>
 

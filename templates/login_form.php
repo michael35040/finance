@@ -109,88 +109,77 @@
 
 
 
-                <table class="info" style="width:100%" align="center" cellpadding="10px">
-                    <tr>
-                        <th style="font-size:25px">Proven</th>
-                        <th style="font-size:25px">Fair</th>
-                        <th style="font-size:25px">Markets</th>
-                        <th style="font-size:25px">Secure</th>
-                        <th style="font-size:25px">Fast</th>
-                    </tr>
+                    <table class="info" style="width:100%" align="center" cellpadding="10px">
+                        <tr>
+                            <th style="font-size:25px">Proven</th>
+                            <th style="font-size:25px">Fair</th>
+                            <th style="font-size:25px">Markets</th>
+                            <th style="font-size:25px">Secure</th>
+                            <th style="font-size:25px">Fast</th>
+                        </tr>
 
-                    <tr>
-                        <td style="width:20%;" ><span class="glyphicon glyphicon-globe" style="font-size:40px"></span></td>
-                        <td style="width:20%;" ><span class="glyphicon glyphicon-random" style="font-size:40px"></span></td>
-                        <td style="width:20%;"  rowspan="2">
+                        <tr>
+                            <td style="width:20%;" ><span class="glyphicon glyphicon-globe" style="font-size:40px"></span></td>
+                            <td style="width:20%;" ><span class="glyphicon glyphicon-random" style="font-size:40px"></span></td>
+                            <td style="width:20%;"  rowspan="2">
 
-                            <table class="bstable" border="1" cellspacing="0" cellpadding="0"  style="width:50%; text-align:center;" />
-                    <tr>
-                        <td colspan="2" bgcolor="#CCCCCC" style="width:100%;" >
-                            <font color="black" size="+1"><b>Bid</b></font><!--Bid are Buyers when you are Selling, ie your sell price-->
-                        </td>
-                    </tr>
+                                <table class="bstable" border="1" cellspacing="0" cellpadding="0"  style="width:50%; text-align:center;" />
+                                    <tr>
+                                        <td colspan="2" bgcolor="#CCCCCC" style="width:100%;" >
+                                            <font color="black" size="+1"><b>Bid</b></font><!--Bid are Buyers when you are Selling, ie your sell price-->
+                                        </td>
+                                    </tr>
 
-                    <tr>
-                        <td ><b><u>Qty</u></b></td>
-                        <td ><b><u>Price</u></b></td>
-                    </tr>
+                                    <tr>
+                                        <td ><b><u>Qty</u></b></td>
+                                        <td ><b><u>Price</u></b></td>
+                                    </tr>
 
+                                    <?php
+                                    foreach ($bidGroup as $order)
+                                    {
+                                        $quantity = $order["quantity"];
+                                        $price = $order["price"];
+                                        echo("<tr><td>" . number_format($quantity,0,".",",") . "</td><td>" . number_format($price,2,".",",") . "</td></tr>");
+                                    }
+                                    ?>
+                                </table>
 
-                    <?php
+                                <table class="bstable" style="width:50%;" border="1" cellspacing="0" cellpadding="0" align="center" >
 
-                    foreach ($bidGroup as $order)
-                    {
-                        $quantity = $order["quantity"];
-                        $price = $order["price"];
-                        echo("<tr><td>" . number_format($quantity,0,".",",") . "</td><td>" . number_format($price,2,".",",") . "</td></tr>");
-                    }
-                    ?>
-                </table>
+                                    <tr>
+                                        <td colspan="2" bgcolor="#000000" style="width:100%;" >
+                                            <font color="white" size="+1"><b>Ask</b></font>
+                                        </td>
+                                    </tr>
 
-                <table class="bstable" style="width:50%;" border="1" cellspacing="0" cellpadding="0" align="center" >
+                                    <tr>
+                                        <td ><b><u>Price</u></b></td>
+                                        <td ><b><u>Qty</u></b></td>
+                                    </tr>
 
-                    <tr>
-                        <td colspan="2" bgcolor="#000000" style="width:100%;" >
-                            <font color="white" size="+1"><b>Ask</b></font>
-                        </td>
-                    </tr>
+                                    <?php
+                                    foreach ($askGroup as $order)
+                                    {
+                                        $price = $order["price"];
+                                        $quantity = $order["quantity"];
+                                        echo("<tr><td>" . number_format($price,2,".",",") . "</td><td>" . number_format($quantity,0,".",",") . "</td></tr>");
+                                    }
+                                    ?>
+                                </table>
 
-                    <tr>
-                        <td ><b><u>Price</u></b></td>
-                        <td ><b><u>Qty</u></b></td>
-                    </tr>
+                            </td>
+                            <td width="20%"><span class="glyphicon glyphicon-lock" style="font-size:40px"></span></td>
+                            <td width="20%"><span class="glyphicon glyphicon-flash" style="font-size:40px"></span></td>
+                        </tr>
 
-                    <?php
-                    foreach ($askGroup as $order)
-                    {
-                        $price = $order["price"];
-                        $quantity = $order["quantity"];
-                        echo("<tr><td>" . number_format($price,2,".",",") . "</td><td>" . number_format($quantity,0,".",",") . "</td></tr>");
-                    }
-                    ?>
-
-                </table>
-
-                Buyer's Bid/Seller's Ask.</td>
-
-                <td width="20%"><span class="glyphicon glyphicon-lock" style="font-size:40px"></span></td>
-                <td width="20%"><span class="glyphicon glyphicon-flash" style="font-size:40px"></span></td>
-                </tr>
-
-                <tr>
-                    <td>Our proven technology platform is powered by   one of Wall Streets fastest exchange engine  deployed by some of Wall Street's largest proprietary trading firms and institutions.</td>
-                    <td>Our fair market state-of-the-art exchange order book matching engine orders based on price/time priority allowing for transparent markets. No fees to transfer money in and out.
-                    </td>
-                    <td>Our secured system uses two-factor authentication, critical information stored on air-gap remote terminals, multi-tiered multi-firewall architecture allows safe transactions of multiple assets</td>
-                    <td>Our system and exchange has insurance coverage against loss from disasters or theft so that you can rest easy knowing your finances are in good hands.</td>
-                </tr>
-
-                <!--tr>
-                    <td colspan="5">
-                        <iframe id="chart" seamless="seamless" class="chart" name="chart" frameBorder="0" src="chart.php">Browser not compatible.</iframe>
-                    </td>
-                </tr-->
-
+                        <tr>
+                            <td>Our platform is powered by an exchange engine deployed by some of Wall Street's most respected trading institutions.</td>
+                            <td>Our state-of-the-art exchange orderbook matching engine orders based on price/time priority allowing for transparent markets.</td>
+                            <td>Our system has critical information stored on remote terminals and multi-tiered firewall architecture for safe transactions</td>
+                            <td>Our proprietary multiple asset trading system has one of the fastest trade to execution times in the financial industry.</td>
+                        </tr>
+                        <tr><td colspan="5"><br> </td></tr>
                 </table>
 
 

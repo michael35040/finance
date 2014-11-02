@@ -13,7 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		$row = $rows[0];  // first (and only) row
 		if (crypt($_POST["password"], $row["password"]) == $row["password"])// compare password of user's input against password that's in database
 			{
-						if ($change = 'email')
+                $change = $_POST["change"];
+						if ($change == 'email')
 						{
 					        // validate submission
 							if (empty($_POST["email"]) || empty($_POST["confirmation"])){apologize("You must provide a email.");}
@@ -25,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 							if (query("UPDATE users SET email = ( ? ) WHERE id = ( ? )", ($_POST["email"]), $_SESSION["id"]) === false){apologize("Sorry, some internal error ocured.");}
 							redirect("index.php");
 						}//email
-						if ($change = 'phone')
+						if ($change == 'phone')
 						{	
 							        // validate submission
 							if (empty($_POST["phone"]) || empty($_POST["confirmation"])){apologize("You must provide a phone.");}
@@ -38,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 					        if(query("UPDATE users SET phone = ( ? ) WHERE id = ( ? )", $phone, $_SESSION["id"]) === false){ apologize("Sorry, username already taken."); }
 							redirect("index.php");
 						}//phone
-						if ($change = 'password')
+						if ($change == 'password')
 						{	
 							if (empty($_POST["password"]))  // validate submission{apologize("You must provide your old password.");}
 								if (empty($_POST["newpassword"]) || empty($_POST["confirmation"])){apologize("You must enter your new password and re-type it.");}          
@@ -47,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 								redirect("index.php"); // redirect to index  			
 								
 						}//password
-						if ($change = 'username')
+						if ($change == 'username')
 						{	
 						        // validate submission
 					        if (empty($_POST["username"])){apologize("You must provide a username.");}
@@ -58,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 							redirect("index.php");
 						}//username
 			} //password check is correct
-		elseif (crypt($_POST["password"], $row["password"]) != $row["password"]){apologize("Sorry, the old Password was not correct.");}// compare password of user's input against password that's in database
+		elseif (crypt($_POST["password"], $row["password"]) != $row["password"]){apologize("Sorry, the 'Current Password' was not correct.");}// compare password of user's input against password that's in database
 	} //row of # users
 	else {apologize("Sorry, user information incorrect.");}//to many rows
 }  //post

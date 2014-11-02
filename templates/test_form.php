@@ -9,7 +9,7 @@
             <TR>
                 <TH ROWSPAN="1">Symbol</TH>
                 <TD>
-                    <input list="symbol" name="symbol" maxlength="8" class="input-small" required><!--<input list="symbol" class="input-small" name="symbol" id="symbol" placeholder="Symbol" type="text" maxlength="5" required-->
+                    <input list="symbol" placeholder="Symbol" name="symbol" maxlength="8" class="input-small" required><!--<input list="symbol" class="input-small" name="symbol" id="symbol" placeholder="Symbol" type="text" maxlength="5" required-->
                     <datalist id="symbol"><!--select class="input-small" name="symbol" id="symbol" /-->
                         \
                         <?php
@@ -54,7 +54,6 @@
                     <input class="input-small" type="range" id="quantity" placeholder="Quantity" name="quantity"
                            value=1
                            min="1" max="100" step="1" required>
-                    <br>
                     <output name="quantityAmount" for="quantity">1</output>
                 </TD>
             </TR>

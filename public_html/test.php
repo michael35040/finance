@@ -58,10 +58,10 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     //ORDERBOOK --PRE ORDERS
     /////////
     //EXCHANGE ORDERS (COMBINED PRICE)
-    $bidsGroup =	query("SELECT `price`, SUM(`quantity`) FROM `orderbook` WHERE side='b' GROUP BY `price` ORDER BY `price` DESC LIMIT 0, 5");	  // query user's portfolio
-    $asksGroup =	query("SELECT `price`, SUM(`quantity`) FROM `orderbook` WHERE side='a' GROUP BY `price` ORDER BY `price` ASC LIMIT 0, 5");	  // query user's portfolio
-    $bidsTotal =	query("SELECT SUM(`quantity`) AS bidtotal FROM `orderbook` WHERE side='b'");	  // query user's portfolio
-    $asksTotal =	query("SELECT SUM(`quantity`) AS asktotal FROM `orderbook` WHERE side='a'");	  // query user's portfolio
+    $bidsGroup =	query("SELECT `price`, SUM(`quantity`) FROM `orderbook` WHERE side='b' AND symbol=? GROUP BY `price` ORDER BY `price` DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
+    $asksGroup =	query("SELECT `price`, SUM(`quantity`) FROM `orderbook` WHERE side='a' AND symbol=? GROUP BY `price` ORDER BY `price` ASC LIMIT 0, 5", $symbol);	  // query user's portfolio
+    $bidsTotal =	query("SELECT SUM(`quantity`) AS bidtotal FROM `orderbook` WHERE side='b' AND symbol=? ", $symbol);	  // query user's portfolio
+    $asksTotal =	query("SELECT SUM(`quantity`) AS asktotal FROM `orderbook` WHERE side='a' AND symbol=? ", $symbol);	  // query user's portfolio
     $bidsTotal = $bidsTotal[0]['bidtotal'];
     $asksTotal = $asksTotal[0]['asktotal'];
 
@@ -134,10 +134,10 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     //ORDERBOOK - POST ORDERS
     /////////
     //EXCHANGE ORDERS (COMBINED PRICE)
-    $bidsGroup =	query("SELECT `price`, SUM(`quantity`) FROM `orderbook` WHERE side='b' GROUP BY `price` ORDER BY `price` DESC LIMIT 0, 5");	  // query user's portfolio
-    $asksGroup =	query("SELECT `price`, SUM(`quantity`) FROM `orderbook` WHERE side='a' GROUP BY `price` ORDER BY `price` ASC LIMIT 0, 5");	  // query user's portfolio
-    $bidsTotal =	query("SELECT SUM(`quantity`) AS bidtotal FROM `orderbook` WHERE side='b'");	  // query user's portfolio
-    $asksTotal =	query("SELECT SUM(`quantity`) AS asktotal FROM `orderbook` WHERE side='a'");	  // query user's portfolio
+    $bidsGroup =	query("SELECT `price`, SUM(`quantity`) FROM `orderbook` WHERE side='b' AND symbol=? GROUP BY `price` ORDER BY `price` DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
+    $asksGroup =	query("SELECT `price`, SUM(`quantity`) FROM `orderbook` WHERE side='a' AND symbol=? GROUP BY `price` ORDER BY `price` ASC LIMIT 0, 5", $symbol);	  // query user's portfolio
+    $bidsTotal =	query("SELECT SUM(`quantity`) AS bidtotal FROM `orderbook` WHERE side='b' AND symbol=? ", $symbol);	  // query user's portfolio
+    $asksTotal =	query("SELECT SUM(`quantity`) AS asktotal FROM `orderbook` WHERE side='a' AND symbol=? ", $symbol);	  // query user's portfolio
     $bidsTotal = $bidsTotal[0]['bidtotal'];
     $asksTotal = $asksTotal[0]['asktotal'];
 
@@ -211,10 +211,10 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     //ORDERBOOK -POST TRADES
     /////////
     //EXCHANGE ORDERS (COMBINED PRICE)
-    $bidsGroup =	query("SELECT `price`, SUM(`quantity`) FROM `orderbook` WHERE side='b' GROUP BY `price` ORDER BY `price` DESC LIMIT 0, 5");	  // query user's portfolio
-    $asksGroup =	query("SELECT `price`, SUM(`quantity`) FROM `orderbook` WHERE side='a' GROUP BY `price` ORDER BY `price` ASC LIMIT 0, 5");	  // query user's portfolio
-    $bidsTotal =	query("SELECT SUM(`quantity`) AS bidtotal FROM `orderbook` WHERE side='b'");	  // query user's portfolio
-    $asksTotal =	query("SELECT SUM(`quantity`) AS asktotal FROM `orderbook` WHERE side='a'");	  // query user's portfolio
+    $bidsGroup =	query("SELECT `price`, SUM(`quantity`) FROM `orderbook` WHERE side='b' AND symbol=? GROUP BY `price` ORDER BY `price` DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
+    $asksGroup =	query("SELECT `price`, SUM(`quantity`) FROM `orderbook` WHERE side='a' AND symbol=? GROUP BY `price` ORDER BY `price` ASC LIMIT 0, 5", $symbol);	  // query user's portfolio
+    $bidsTotal =	query("SELECT SUM(`quantity`) AS bidtotal FROM `orderbook` WHERE side='b' AND symbol=? ", $symbol);	  // query user's portfolio
+    $asksTotal =	query("SELECT SUM(`quantity`) AS asktotal FROM `orderbook` WHERE side='a' AND symbol=? ", $symbol);	  // query user's portfolio
     $bidsTotal = $bidsTotal[0]['bidtotal'];
     $asksTotal = $asksTotal[0]['asktotal'];
 

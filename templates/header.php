@@ -15,8 +15,15 @@
         padding-top:10px;
         text-shadow: 1px 1px #000;
     }
+    .navigationBar .btn-default
+    {
+        color: #444;
+        background-color: #d1d1d1;
+        border-color: #f8f8f8;
+    }
 
     .table {margin-bottom:0;} /*set to 20 in bootstrap*/
+
 
 </style>
 <head>
@@ -105,12 +112,12 @@
         //1 unapproved
         //2 pending - not yet implemented
         ?>
-
+<div class="navigationBar">
         <div class="btn-group">
 
             <div class="btn-group">
                 <div class="input-group">
-                <button id="bankButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <button id="bankButton" type="button" class="btn btn-default  btn-sm   dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-home"></span>
                     Bank
                     <span class="caret"></span>
@@ -131,7 +138,7 @@
 
             <div class="btn-group">
                 <div class="input-group">
-                <button id="exchangeButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <button id="exchangeButton" type="button" class="btn btn-default  btn-sm dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-stats"></span>
                         Exchange
                     <span class="caret"></span>
@@ -147,7 +154,7 @@
 
             <div class="btn-group">
                 <div class="input-group">
-                <button id="testButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <button id="testButton" type="button" class="btn btn-default  btn-sm dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-cog"></span>
                         Test
                     <span class="caret"></span>
@@ -165,10 +172,9 @@
 
             <div class="btn-group">
                 <div class="input-group">
-                <button id="adminButton" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <a href="">
+                <button id="adminButton" type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-star"></span>
-                        Admin</a>
+                        Admin
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
@@ -182,21 +188,23 @@
 
             <div class="btn-group">
                 <div class="input-group">
-                    <a href="logout.php"><button type="button" class="btn btn-danger">
+                    <a href="logout.php"><button type="button" class="btn btn-danger  btn-sm ">
                         <span class="glyphicon glyphicon-off"></span>
                             Log Out</button></a>
                 </div>
             </div>
 
 
-        </div>
+        </div><!--btn-group-->
+</div><!--navigationBar-->
+
+
+
+
 
 
     </div> <!--top-->
     <div id="middle" style="text-align:center"> <!--placing it here it only shows up when logged on so no box on login screen-->
-
-
-
 
 
 
@@ -216,3 +224,6 @@
         }  //bracket for the show on log in argument
         //var_dump(get_defined_vars()); //dump all variables anywhere (displays in header)
         ?>
+
+
+

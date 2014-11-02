@@ -1,3 +1,11 @@
+<style>
+.symbolForm {
+display: inline-block;
+text-align:center;
+width:25%;
+}
+</style>
+
 <head>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <!--script type="text/javascript" src="../public_html/js/jsapi"></script-->
@@ -7,6 +15,12 @@
         google.setOnLoadCallback(drawChart);
         function drawChart()
         {
+<?php
+            if($tradesGroupChart != null)
+            {
+                ?>
+
+
             /////////////////
             //CHART 1
             //TRADES GROUP
@@ -78,6 +92,15 @@
             //END CHART 2
             ////////////
 
+
+<?php }   //tradesgroupchart != null ?>
+
+
+
+<?php
+if($bidsGroupChart != null)
+{
+ ?>
             //////////
             //CHART 3
             //ORDERBOOK
@@ -124,27 +147,39 @@
             //END CHART 2
             ////////////
 
+ <?php }   //$bidsGroupChart != null ?>
+
         }
     </script>
 </head>
 
 <?php
-//var_dump(get_defined_vars());
+//echo(var_dump(get_defined_vars()));
 
-$lastTrade = number_format(($trades[0]["price"]), 2, '.', '');
-$spotAsk = number_format(($asks[0]["price"]), 2, '.', '');
-$spotBid = number_format(($bids[0]["price"]), 2, '.', '');
-echo(   "       Bid: " . $spotBid .
-    "<br><b>   Trade: " . $lastTrade .
-    "</b><br>   Ask: " . $spotAsk
-);
+
+if(isset($asks[0]["price"])) {echo('<br>   Ask: ' . number_format(($asks[0]["price"]), 2, '.', ''));}
+else {echo('<br>   Trade: None');}
+
+if(isset($trades[0]["price"])) {echo('<br>   Trade: ' . number_format(($trades[0]["price"]), 2, '.', ''));}
+else {echo('<br>   Trade: None');}
+
+if(isset($bids[0]["price"])) {echo('<br>   Bid: ' . number_format(($bids[0]["price"]), 2, '.', ''));}
+else {echo('<br>   Trade: None');}
 ?>
+
 <!--div id="chart_div" style="width: 900px; height: 500px;"></div-->
-
+<?php
+if($tradesGroupChart != null)
+{ ?>
 <div id="chart_div" style="overflow:hidden;"></div>
+<?php } ?>
 
 
+<?php
+if($tradesChart != null)
+{ ?>
 <div id="chart_div1" style="overflow:hidden;"></div>
+<?php } ?>
 
 
 
@@ -153,63 +188,63 @@ echo(   "       Bid: " . $spotBid .
 
 
 
+    <table class="table" align="center"> <!--class="bstable"-->
 
-<table class="table" align="center"> <!--class="bstable"-->
+        <!--/////////TRADES//////-->
+        <tr>
+            <td colspan="7"></td>
+        </tr>
+        <!--blank row breaker-->
+        <tr>
+            <th colspan="7" bgcolor="black" style="color:white" size="+1">
+                <?php echo($symbol); ?> - TRADES
+            </th>
+        </tr>
 
-    <!--/////////TRADES//////-->
-    <tr><td colspan="7"></td></tr> <!--blank row breaker-->
-    <tr>
-        <th colspan="7" bgcolor="black" style="color:white" size="+1" >
-            <?php echo($symbol); ?> - TRADES
-        </th>
-    </tr>
+        <tr>
+            <td>Trade #</td>
+            <td>Buyer/Seller/Type</td>
+            <td>Date/Time (Y/M/D)</td>
+            <td>Symbol</td>
+            <td>Quantity</td>
+            <td>Price</td>
+            <td>Total</td>
+        </tr>
 
-    <tr>
-        <td>Trade #</td>
-        <td>Buyer/Seller/Type</td>
-        <td>Date/Time (Y/M/D)</td>
-        <td>Symbol</td>
-        <td>Quantity</td>
-        <td>Price</td>
-        <td>Total</td>
-    </tr>
+        <?php
 
-    <?php
-    foreach ($trades as $trade)
-    {
-        @$tradeID = $trade["uid"];
-        @$tradeType = $trade["type"];
-        @$buyer = $trade["buyer"];
-        @$seller = $trade["seller"];
-        @$symbol = $trade["symbol"];
-        @$quantity = $trade["quantity"];
-        @$price = $trade["price"];
-        @$total = $trade["total"];
-        @$date = $trade["date"];
-        echo("
+        foreach ($trades as $trade) {
+            @$tradeID = $trade["uid"];
+            @$tradeType = $trade["type"];
+            @$buyer = $trade["buyer"];
+            @$seller = $trade["seller"];
+            @$symbol = $trade["symbol"];
+            @$quantity = $trade["quantity"];
+            @$price = $trade["price"];
+            @$total = $trade["total"];
+            @$date = $trade["date"];
+            echo("
                 <tr>
-                <td>" . number_format($tradeID,0,".",",") . "</td>
+                <td>" . number_format($tradeID, 0, ".", ",") . "</td>
                 <td>" . $buyer . "/" . $seller . "/" . strtoupper($tradeType) . "</td>
-                <td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($date))) . "</td>
+                <td>" . htmlspecialchars(date('Y-m-d H:i:s', strtotime($date))) . "</td>
                 <td>" . htmlspecialchars("$symbol") . "</td>
-                <td>" . number_format($quantity,0,".",",") . "</td>
-                <td>$" . number_format($price,2,".",",") . "</td>
-                <td>$" . number_format($total,2,".",",") . "</td>
-
-
-
+                <td>" . number_format($quantity, 0, ".", ",") . "</td>
+                <td>$" . number_format($price, 2, ".", ",") . "</td>
+                <td>$" . number_format($total, 2, ".", ",") . "</td>
                 </tr>");
-    }
-    ?>
+        } //foreach
 
-    <tr><td colspan="7" >
+        ?>
+
+        <tr>
+            <td colspan="7">
 
 
-
-
-        </td></tr> <!--blank row breaker-->
-</table>
-
+            </td>
+        </tr>
+        <!--blank row breaker-->
+    </table>
 
 
 
@@ -397,5 +432,3 @@ echo(   "       Bid: " . $spotBid .
 
 
 
-<?php //echo(var_dump(get_defined_vars()));
-?>

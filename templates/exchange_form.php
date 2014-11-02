@@ -4,8 +4,11 @@ if (!isset($commission)) //set in constants.php
 ?>
 
 <style>
-    td{width:50%;
-    padding:10px;}
+    .exchangeTable td
+    {
+        width:50%;
+        padding:10px;
+    }
 </style>
 
 <hr>
@@ -33,7 +36,7 @@ if (!isset($commission)) //set in constants.php
             <TR>
                 <TD ROWSPAN="1">Symbol</TD>
                 <TD>
-                    <input list="symbol" name="symbol" maxlength="8" class="input-small" required><!--<input list="symbol" class="input-small" name="symbol" id="symbol" placeholder="Symbol" type="text" maxlength="5" required-->
+                    <input list="symbol" placeholder="Symbol" name="symbol" maxlength="8" class="input-small" required><!--<input list="symbol" class="input-small" name="symbol" id="symbol" placeholder="Symbol" type="text" maxlength="5" required-->
                     <datalist id="symbol"><!--select class="input-small" name="symbol" id="symbol" /-->
                         <?php
                         if (empty($stocks)) {

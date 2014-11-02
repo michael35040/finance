@@ -1,6 +1,6 @@
 
 
-<table class="table" align="center">
+<table class="table">
 
         <tr bgcolor="#CCCCCC"><td colspan="7"><font color="black" size="+1">ACCOUNTS</font></td></tr> <!--blank row breaker-->
         <!-- CASH ROW -->

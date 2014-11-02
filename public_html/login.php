@@ -105,8 +105,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
-    $bidGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` WHERE side='b' GROUP BY `price` ORDER BY `price` DESC LIMIT 8");	  // query user's portfolio
-    $askGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` WHERE side='a' GROUP BY `price` ORDER BY `price` ASC LIMIT 8");	  // query user's portfolio
+    $bidGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` WHERE side='b' GROUP BY `price` ORDER BY `price` DESC LIMIT 5");	  // query user's portfolio
+    $askGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` WHERE side='a' GROUP BY `price` ORDER BY `price` ASC LIMIT 5");	  // query user's portfolio
 
 // else render form
     render("login_form.php", ["title" => "Log In", "bidGroup" => $bidGroup, "askGroup" => $askGroup]);

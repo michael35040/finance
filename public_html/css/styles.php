@@ -5,6 +5,15 @@ a:visited {color:black;}  /* visited link */
 a:hover {color:black;}  /* mouse over link */
 a:active {color:black;}  /* selected link */
 
+form {
+display: inline-block;
+text-align: center;
+}
+
+.table{
+text-align: left;
+}
+
 html {
 position: relative;
 min-height: 100%;
@@ -79,7 +88,3 @@ if ($now > 7 && $now < 20) { //0700-2000 or 7am to 7pm EST
 */
 ?>
 
-form {
-display: inline-block;
-text-align: center;
-}

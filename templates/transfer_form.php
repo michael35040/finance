@@ -15,7 +15,7 @@
 
 
 
-<form action="transfer.php" method="post">
+<form action="transfer.php" class="changeForm"  method="post">
 
     <fieldset>
 
