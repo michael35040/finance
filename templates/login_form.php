@@ -48,7 +48,7 @@
 
     .row
     {   text-align: center;
-        width: 50%;
+        width: 100%; //login bar
         margin: 0 auto;
     }
 </style>
