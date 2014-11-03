@@ -80,7 +80,7 @@
     <tr>
         <th>Symbol</th>
         <th>Quantity</th>
-        <th>Locked</th>
+        <th>Locked - Pending Ask Order</th>
         <th>Price</th>
         <th>Purchase</th>
         <th>Loss/Gain</th>
