@@ -84,9 +84,7 @@
 
 
 <a href="register.php" class="btn btn-success btn-sm">
-    <span class="glyphicon glyphicon-pencil"></span>
-    <b> &nbsp;  REGISTER </b>
-</a>
+    <span class="glyphicon glyphicon-pencil"></span><b>&nbsp;REGISTER&nbsp;</b></a><!--10 chars-->
 
 <br /><br />
 <!--btn-primary/-info/-warning/-danger/-success/default/ -->
@@ -98,9 +96,7 @@
         <div class="panel-heading" style="padding:0; background-color: transparent; " >
             <h4 class="panel-title"  />
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-warning btn-sm" >
-                    <span class="glyphicon glyphicon-stats"></span>
-                    <b> &nbsp;  EXCHANGE </b>
-                </a>
+                    <span class="glyphicon glyphicon-stats"></span><b>&nbsp;EXCHANGE&nbsp;</b></a><!--10 chars-->
 
             </h4>
         </div><!--panel title-->
@@ -191,8 +187,7 @@
 
 
 <a href="mailto:me@gmail.com" class="btn btn-danger btn-sm">
-    <span class="glyphicon glyphicon-envelope"></span>
-    <b> &nbsp; CONTACT </b>
+    <span class="glyphicon glyphicon-envelope"></span><b>&nbsp;CONTACT&nbsp;&nbsp;</b><!--10 chars-->
 </a>
 
 
