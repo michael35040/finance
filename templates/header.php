@@ -7,7 +7,7 @@
         font-family:Georgia, "Times New Roman", Times, serif;
         font-size:xx-large;
         padding-top:10px;
-        text-shadow: 1px 1px #000;
+        text-shadow: 1px 1px 5px #000;
     }
     .titlefont {
         font-family:Arial, Helvetica, sans-serif;
@@ -144,6 +144,7 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
+                    <li><a href="assets.php">Assets</a></li>
                     <li><a href="exchange.php">Place Order</a></li>
                     <li><a href="information.php">Information</a></li>
 

@@ -1,10 +1,11 @@
 
 
-<table class="table">
+<table class="table table-condensed  table-bordered" >
 
-        <tr bgcolor="#CCCCCC"><td colspan="7"><font color="black" size="+1">ACCOUNTS</font></td></tr> <!--blank row breaker-->
-        <!-- CASH ROW -->
-        <tr >
+        <tr  class="success">
+            <td colspan="7" style="font-size:20px; text-align: center;">ACCOUNTS</td>
+        </tr>
+        <tr   class="active">
             <th>Account #</th>
             <th>Type</th>
             <th colspan="4">Description</th>
@@ -16,7 +17,7 @@
         if($units != 0)
         {       ?>
             <tr>
-                <td><?php echo($userid); $i++; echo("-" . $i); ?></td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
                 <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td></td>
                 <td colspan="4"><?php echo($unitdescription); ?></td>
                 <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
@@ -27,7 +28,7 @@
         if($loan <=-0.00000001)
         {   ?>
             <tr>
-                <td><?php echo($userid); $i++; echo("-" . $i); ?></td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
                 <td><?php echo(strtoupper("LOAN")) //set in finance.php ?></td></td>
                 <td colspan="4">APR: <?php echo(htmlspecialchars(number_format($rate,2)));?>%</td>
                 <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
@@ -40,7 +41,7 @@
             ?>
 
             <tr>
-                <td><?php echo($userid);
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid);
                     $i++;
                     echo("-" . $i); ?></td>
                 <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>
@@ -50,6 +51,17 @@
                     <?php echo(number_format($locked, 2, ".", ",")) ?></td>
             </tr>
 
+            <tr  class="active">
+                <td colspan="6"><strong>SUBTOTAL</strong></td>
+                <td>
+                    <strong>
+                        <?php
+                        $accountsTotal = ($units+$loan+$locked);
+                        echo(number_format($accountsTotal, 2, ".", ","))
+                        ?>
+                    </strong>
+                </td>
+            </tr>
         <?php
         }
         if($i == 0)
@@ -67,20 +79,20 @@
 
 
 
-
+        <tr><td colspan="7"> </td></tr><!--blank line-->
     <!-- HEADER ROW -->
-    <tr bgcolor="#CCCCCC">
-        <td colspan="7"><font color="black" size="+1">PORTFOLIO</font></td>
+    <tr class="success">
+        <td colspan="7" style="font-size:20px; text-align: center;">PORTFOLIO</td>
     </tr> <!--blank row breaker-->
 
 
 
 
 
-    <tr>
+    <tr  class="active">
         <th>Symbol</th>
         <th>Quantity</th>
-        <th>Locked - Pending Ask Order</th>
+        <th>Locked*</th>
         <th>Price</th>
         <th>Purchase</th>
         <th>Loss/Gain</th>
@@ -128,8 +140,8 @@
         ?>
 
         <!-- TOTAL STOCK WORTH -->
-        <tr>
-            <td colspan="4"><strong>TOTAL</strong></td>
+        <tr  class="active">
+            <td colspan="4"><strong>SUBTOTAL</strong></td>
             <td><strong>
                     <?php //calculate value of purchase price
                     $purchaseprice = $purchaseprice[0]["purchaseprice"]; //convert array to number
@@ -175,31 +187,34 @@
                     ?></strong>
             </td>
         </tr>
+
     <?php
     } //$i==0 else statement
     ?>
 
-    <tr>
-        <td colspan="7"></td>
-    </tr> <!--blank row breaker-->
-    <tr bgcolor="#CCCCCC">
-        <td colspan="7"><font color="black" size="+1">NETWORTH</font></td>
-    </tr> <!--blank row breaker-->
+        <tr><td colspan="7"> </td></tr><!--blank line-->
+    <tr  class="success">
+        <td colspan="7" style="font-size:20px; text-align: center;">NETWORTH</td>
+    </tr>
 
           <!-- NETWORTH ROW -->
-    <tr> <!-- #FFFF00"> -->
-        <td>Total Value of <?php echo($unittype) //set in finance.php ?>, Locked, Loans, and Stocks<strong></strong>
-        </td>
+    <tr class="active">
+        <td colspan="6"><strong>TOTAL</strong></td>
         <td>
-            <?php
-            echo($unitsymbol);
-            $networth = ($total + $units + $loan + $locked);
-            echo(htmlspecialchars(number_format($networth, 2, ".", ","))); //networth defined previously
-            ?>
+            <strong>
+                <?php
+                echo($unitsymbol);
+                $networth = ($total + $units + $loan + $locked);
+                echo(htmlspecialchars(number_format($networth, 2, ".", ","))); //networth defined previously
+                ?>
+            </strong>
         </td>
     </tr>
 
+        <tr>
 
+            <td colspan="7"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Orders</i></td>
+        </tr>
 
 
     </table>
