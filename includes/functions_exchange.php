@@ -76,7 +76,7 @@ function marketOrderCheck($symbol)
 	        apologize("Market Order Error!");
 	    }
 	
-	return array($asks, $bids);
+	return array($asks, $bids, $topAskPrice, $topBidPrice);
 }
 
 ////////////////////////////////////
@@ -88,32 +88,37 @@ function orderbook($symbol)
     ////////////////////////
     //PROCESS MARKET ORDERS
     ////////////////////////
-
-    list ($asks, bids) = marketOrderCheck($symbol);
-    //price in above market arg
-    @$topAskUID = ($asks[0]["uid"]); //order id; unique id
-    @$topAskSymbol = ($asks[0]["symbol"]); //symbol of equity
-    @$topAskSide = ($asks[0]["side"]); //bid or ask
-    @$topAskDate = ($asks[0]["date"]);
-    @$topAskType = ($asks[0]["type"]); //limit or market
-    @$topAskSize = ($asks[0]["quantity"]); //size or quantity of trade
-    @$topAskUser = ($asks[0]["id"]); //user id
-    //price in above market arg
-    @$topBidUID = ($bids[0]["uid"]); //order id; unique id
-    @$topBidSymbol = ($bids[0]["symbol"]);
-    @$topBidSide = ($bids[0]["side"]); //bid or ask
-    @$topBidDate = ($bids[0]["date"]);
-    @$topBidType = ($bids[0]["type"]); //limit or market
-    @$topBidSize = ($bids[0]["quantity"]);
-    @$topBidUser = ($bids[0]["id"]);
-
+    
+    $marketOrderCheck = marketOrderCheck($symbol);
+    $asks 	 = $marketOrderCheck[1];
+    $bids 	 = $marketOrderCheck[2];
+    $topAskPrice = $marketOrderCheck[3];
+    $topBidPrice = $marketOrderCheck[4];
 
     ////////////////////////
     //PROCESS LIMIT ORDERS
     ////////////////////////
     $orderProcessed = 0; //orders processed
     while ($topBidPrice >= $topAskPrice) {
-        $orderProcessed++; //orders processed plus 1
+    
+	    //price in above market arg
+	    @$topAskUID = ($asks[0]["uid"]); //order id; unique id
+	    @$topAskSymbol = ($asks[0]["symbol"]); //symbol of equity
+	    @$topAskSide = ($asks[0]["side"]); //bid or ask
+	    @$topAskDate = ($asks[0]["date"]);
+	    @$topAskType = ($asks[0]["type"]); //limit or market
+	    @$topAskSize = ($asks[0]["quantity"]); //size or quantity of trade
+	    @$topAskUser = ($asks[0]["id"]); //user id
+	    //price in above market arg
+	    @$topBidUID = ($bids[0]["uid"]); //order id; unique id
+	    @$topBidSymbol = ($bids[0]["symbol"]);
+	    @$topBidSide = ($bids[0]["side"]); //bid or ask
+	    @$topBidDate = ($bids[0]["date"]);
+	    @$topBidType = ($bids[0]["type"]); //limit or market
+	    @$topBidSize = ($bids[0]["quantity"]);
+	    @$topBidUser = ($bids[0]["id"]);
+	  	
+	    $orderProcessed++; //orders processed plus 1
 
         if ($topBidPrice >= $topAskPrice) //TRADES ARE POSSIBLE
         {
@@ -387,88 +392,15 @@ function orderbook($symbol)
             apologize("ERROR!");
         }
 
-        ///////////////
-        //RECALCULATE VALUES FOR DO-WHILE
-        //RECHECK FROM BEGINNING TO SEE IF ANY MORE ORDERS TO PROCESS)
-        //////////////
-
-
-
-        $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
-        if (!empty($marketOrders)) {
-            $marketSide = ($marketOrders[0]["side"]);
-            $tradeType = 'market';
-
-            if ($marketSide == 'b') {
-                $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
-                if (empty($asks)){
-                    if (query("DELETE FROM orderbook WHERE (symbol = ? AND type = 'market' AND side = ?)", $symbol, $marketSide) === false)
-                    {apologize("Unable to delete unfilled market bid orders.");}
-                    if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'no market bid orders', 'functions.php ln351') === false)
-                    {   //UPDATE HISTORY
-                        apologize("Insert History Failure 1");
-                    }
-                    //var_dump(get_defined_vars());
-                    apologize("Market orders require limit orders. No ask limit orders for the bid market order. Deleting all bid market orders.");
-                }
-                $bids = $marketOrders;
-                @$topAskPrice = ($asks[0]["price"]); //limit price
-                @$topBidPrice = ($asks[0]["price"]);
-            } elseif ($marketSide == 'a') {
-                $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
-                if (empty($bids)){
-                    if (query("DELETE  FROM orderbook WHERE (symbol = ? AND type = 'market' AND side = ?)", $symbol, $marketSide) === false)
-                    {apologize("Unable to delete unfilled market ask orders.");}
-                    if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'no market ask orders', 'functions.php ln351') === false)
-                    {   //UPDATE HISTORY
-                        apologize("Insert History Failure 1");
-                    }
-                    //var_dump(get_defined_vars());
-                    apologize("Market orders require limit orders. No bid limit orders for the ask market order. Deleting all ask market orders.");
-                }
-                $asks = $marketOrders;
-                $topAskPrice = ($bids[0]["price"]); //limit price
-                $topBidPrice = ($bids[0]["price"]);
-            } else {
-                apologize("Market Side Error!");
-            }
-        } elseif (empty($marketOrders)) {
-            $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
-            $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
-            if (empty($asks)){apologize("No ask limit orders. Unable to cross any orders.");}
-            if (empty($bids)){apologize("No bid limit orders. Unable to cross any orders.");}
-            @$topAskPrice = ($asks[0]["price"]); //limit price
-            @$topBidPrice = ($bids[0]["price"]);
-            $tradeType = 'limit';
-
-        } else {
-            apologize("Market Order Error!");
-        }
-
-        //price in above market arg
-        @$topAskUID = ($asks[0]["uid"]); //order id; unique id
-        @$topAskSymbol = ($asks[0]["symbol"]); //symbol of equity
-        @$topAskSide = ($asks[0]["side"]); //bid or ask
-        @$topAskDate = ($asks[0]["date"]);
-        @$topAskType = ($asks[0]["type"]); //limit or market
-        @$topAskSize = ($asks[0]["quantity"]); //size or quantity of trade
-        @$topAskUser = ($asks[0]["id"]); //user id
-        //price in above market arg
-        @$topBidUID = ($bids[0]["uid"]); //order id; unique id
-        @$topBidSymbol = ($bids[0]["symbol"]);
-        @$topBidSide = ($bids[0]["side"]); //bid or ask
-        @$topBidDate = ($bids[0]["date"]);
-        @$topBidType = ($bids[0]["type"]); //limit or market
-        @$topBidSize = ($bids[0]["quantity"]);
-        @$topBidUser = ($bids[0]["id"]);
-
-
-
-
-
-
-
-
+	     ///////////////
+	    //RECALCULATE VALUES FOR DO-WHILE
+	    //RECHECK FROM BEGINNING TO SEE IF ANY MORE ORDERS TO PROCESS)
+	    //////////////
+	    $marketOrderCheck = marketOrderCheck($symbol);
+	    $asks 	 = $marketOrderCheck[1];
+	    $bids 	 = $marketOrderCheck[2];
+	    $topAskPrice = $marketOrderCheck[3];
+	    $topBidPrice = $marketOrderCheck[4];
     } //BOTTOM of WHILE STATEMENT
 
 
