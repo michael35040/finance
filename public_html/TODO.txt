@@ -4,7 +4,7 @@
 4. update transfer
 5. add total value of all stocks (pular index)
 6. add ownership percentage in information panel.
-
+7. add icon showing drop down feature in 'assets'
 
 
 
