@@ -43,9 +43,9 @@ function marketOrderCheck($symbol)
             {
                 $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
                 while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'b') && (empty($asks))) 
-                {
+                {  //cancel all bid market orders since there are no limit ask orders.
                     cancelOrder($symbol, $marketOrders[0]["id"], $marketOrders[0]["uid"]);
-                    $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
+                    $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol, 'b');
                     $asks = query("SELECT 	* FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
                 }
                 $bids = $marketOrders;
@@ -59,7 +59,7 @@ function marketOrderCheck($symbol)
                 while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'a') && (empty($bids))) 
                 {
                     cancelOrder($symbol, $marketOrders[0]["id"], $marketOrders[0]["uid"]);
-                    $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
+                    $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol, 'a');
                     $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
                 }
                 $asks = $marketOrders;
