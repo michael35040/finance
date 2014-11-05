@@ -2,6 +2,9 @@
 2. update desposit
 3. update withdraw
 4. update transfer
+5. add total value of all stocks (pular index)
+6. add ownership percentage in information panel.
+
 
 
 
