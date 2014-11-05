@@ -5,23 +5,25 @@
 ////////////////////////////////////
 function cancelOrder($symbol, $id, $uid) 
 {
+    order = ("SELECT * FROM orderbook WHERE (uid = ? AND id = ?) ORDER BY uid ASC LIMIT 0, 1", $uid, $id)
+    
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
     //Delete market order from orderbook since no limit ask orders exist
-    if (query("DELETE FROM orderbook WHERE (uid = ?)", $marketUID) === false) {
+    if (query("DELETE FROM orderbook WHERE (uid = ?)", $order[0]['uid']) === false) { 
         query("ROLLBACK");
         query("SET AUTOCOMMIT=1");
         apologize("Failure Cancel 1");
     }
     //unlock locked shares
-    if (query("UPDATE portfolio SET quantity = (quantity + ?), locked = (locked - ?) WHERE (symbol = ? AND id = ?)", $marketSize, $marketSize, $marketSymbol, $marketID) === false) 
+    if (query("UPDATE portfolio SET quantity = (quantity + ?), locked = (locked - ?) WHERE (symbol = ? AND id = ?)", $order[0]['size'], $order[0]['size'], $order[0]['symbol'], $order[0]['id']) === false) 
         {
             query("ROLLBACK");
             query("SET AUTOCOMMIT=1");
             apologize("Failure Cancel 2");
         }
         ///insert event into errors
-        if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting bid market order, no ask limit orders', 'functions_echange.php') === false) {
+        if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting/canceling order', 'functions_echange.php') === false) {
             query("ROLLBACK");
             query("SET AUTOCOMMIT=1");
             apologize("Failure Cancel 3");
