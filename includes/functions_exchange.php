@@ -3,7 +3,8 @@
 ////////////////////////////////////
 //CANCEL ORDER
 ////////////////////////////////////
-function cancelOrder($symbol, $id, $uid) {
+function cancelOrder($symbol, $id, $uid) 
+{
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
     //Delete market order from orderbook since no limit ask orders exist
@@ -13,7 +14,7 @@ function cancelOrder($symbol, $id, $uid) {
         apologize("Failure Cancel 1");
     }
     //unlock locked shares
-    if (query("UPDATE portfolio SET quantity = (quantity + ?), locked = (locked - ?) WHERE (symbol = ? AND id = ?)", $marketSize, $marketSize, $marketSymbol, $marketID) === false) {
+    if (query("UPDATE portfolio SET quantity = (quantity + ?), locked = (locked - ?) WHERE (symbol = ? AND id = ?)", $marketSize, $marketSize, $marketSymbol, $marketID) === false) 
         {
             query("ROLLBACK");
             query("SET AUTOCOMMIT=1");
@@ -29,65 +30,67 @@ function cancelOrder($symbol, $id, $uid) {
         //apologize("Market orders require limit orders. No ask limit orders for the bid market order. Deleting market order.");
         query("COMMIT;"); //If no errors, commit changes
         query("SET AUTOCOMMIT=1");
-    }
+}
 
 
-    function marketOrderCheck($symbol) {
+function marketOrderCheck($symbol) 
+{
         $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
-        if (!empty($marketOrders)) {
+        if (!empty($marketOrders)) 
+        {
             $tradeType = 'market';
-
-            if ($marketSide == 'b') {
+            if ($marketSide == 'b') 
+            {
                 $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
-                while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'b') && (empty($asks))) {
+                while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'b') && (empty($asks))) 
+                {
                     cancelOrder($symbol, $marketOrders[0]["id"], $marketOrders[0]["uid"]);
                     $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
                     $asks = query("SELECT 	* FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
                 }
-
+                $bids = $marketOrders;
+                //assign top price to the ask since it is a bid market order
+                @$topAskPrice = ($asks[0]["price"]); //limit price
+                @$topBidPrice = ($asks[0]["price"]);
             }
-            $bids = $marketOrders;
-            //assign top price to the ask since it is a bid market order
-            @
+            elseif($marketSide == 'a') 
+            {
+                $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
+                while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'a') && (empty($bids))) 
+                {
+                    cancelOrder($symbol, $marketOrders[0]["id"], $marketOrders[0]["uid"]);
+                    $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
+                    $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
+                }
+                $asks = $marketOrders;
+                //assign top price to the bid since it is an ask market order
+                @$topAskPrice = ($bids[0]["price"]);
+                @$topBidPrice = ($bids[0]["price"]);
+            }
+            else 
+            {
+            apologize("Market Side Error!");
+            }
+        }
+        elseif(empty($marketOrders)) {
+            $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
+            $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
+            if (empty($asks)) {
+                apologize("No ask limit orders. Unable to cross any orders.");
+            }
+            if (empty($bids)) {
+                apologize("No bid limit orders. Unable to cross any orders.");
+            }@
             $topAskPrice = ($asks[0]["price"]); //limit price
             @
-            $topBidPrice = ($asks[0]["price"]);
-        }
-        elseif($marketSide == 'a') {
-            $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
-            while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'a') && (empty($bids))) {
-                cancelOrder($symbol, $marketOrders[0]["id"], $marketOrders[0]["uid"]);
-                $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
-                $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
-            }
-            $asks = $marketOrders;
-            //assign top price to the bid since it is an ask market order
-            @
-            $topAskPrice = ($bids[0]["price"]);@
             $topBidPrice = ($bids[0]["price"]);
-        }
-        else {
-            apologize("Market Side Error!");
-        }
-    }
-    elseif(empty($marketOrders)) {
-        $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
-        $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
-        if (empty($asks)) {
-            apologize("No ask limit orders. Unable to cross any orders.");
-        }
-        if (empty($bids)) {
-            apologize("No bid limit orders. Unable to cross any orders.");
-        }@
-        $topAskPrice = ($asks[0]["price"]); //limit price
-        @
-        $topBidPrice = ($bids[0]["price"]);
-        $tradeType = 'limit';
+            $tradeType = 'limit';
 
-    }
-    else {
+        }
+        else 
+        {
         apologize("Market Order Error!");
-    }
+        }
 
     return array($asks, $bids, $topAskPrice, $topBidPrice);
 }
