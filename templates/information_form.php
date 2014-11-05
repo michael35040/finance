@@ -148,24 +148,58 @@ if($bidsGroupChart != null)
             ////////////
 
  <?php }   //$bidsGroupChart != null ?>
-
+//echo(var_dump(get_defined_vars()));
         }
     </script>
 </head>
 
 <?php
-//echo(var_dump(get_defined_vars()));
-
-
-if(isset($asks[0]["price"])) {echo('<br>   Ask: ' . number_format(($asks[0]["price"]), 2, '.', ''));}
-else {echo('<br>   Trade: None');}
-
-if(isset($trades[0]["price"])) {echo('<br>   Trade: ' . number_format(($trades[0]["price"]), 2, '.', ''));}
-else {echo('<br>   Trade: None');}
-
-if(isset($bids[0]["price"])) {echo('<br>   Bid: ' . number_format(($bids[0]["price"]), 2, '.', ''));}
-else {echo('<br>   Trade: None');}
+if(isset($asks[0]["price"])) {$asksPrice=$asks[0]["price"];}else{$asksPrice=0;}
+if(isset($bids[0]["price"])) {$bidsPrice=$bids[0]["price"];}else{$bidsPrice=0;}
+if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPrice=0;}
 ?>
+
+<table class="table table-condensed table-striped table-bordered" id="assets" style="border-collapse:collapse;">
+    <thead>
+    <tr class="success">
+        <td colspan="7" style="font-size:20px; text-align: center;">INFORMATION</td>
+    </tr> <!--blank row breaker-->
+    <tr class="active">
+        <th width="40%">Symbol</th>
+        <th width="20%">Price</th>
+        <th width="20%">Volume (30d)</th>
+        <th width="20%">Market Cap</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+        echo('<tr>');
+        echo('<td> ' . htmlspecialchars($asset["symbol"]) . '</td>');
+        echo('<td >' . $unitsymbol . number_format($tradesPrice, 2, ".", ",") . '</td>');
+        echo('<td >' . number_format($asset["volume"], 0, ".", ",") . '</td>');
+        echo('<td >' . $unitsymbol . number_format($asset["marketcap"], 2, ".", ",") . '</td>');
+        echo('</tr>');
+        echo('<div  class="hiddenRow">');
+        echo('<tr >');
+        echo('<td colspan="1">' . htmlspecialchars($asset["name"]) . '
+            <br>' . htmlspecialchars($asset["url"]) . '
+            <br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '</td>');
+        echo('<td >' . $unitsymbol . number_format($bidsPrice, 2, ".", ",") . ' - Bid
+            <br>' . $unitsymbol . number_format($asksPrice, 2, ".", ",") . ' - Ask
+            <br>' . $unitsymbol . number_format($asset["avgprice"], 2, ".", ",") . ' - Avg. Price (30d)</td>');
+        echo('<td >' . number_format($asset["public"], 0, ".", ",") . ' - Issued
+            <br>' . number_format($asset["issued"], 0, ".", ",") . ' - Public
+            <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
+        echo('<td >Dividend: ' . number_format($asset["dividend"], 2, ".", ",") .
+            '<br>Rating: ' . htmlspecialchars($asset["rating"]) . '</td>');
+        echo('</tr>');
+        echo('</div>');
+    ?>
+    </tbody>
+</table>
+
+
+
 
 <!--div id="chart_div" style="width: 900px; height: 500px;"></div-->
 <?php

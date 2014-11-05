@@ -9,14 +9,19 @@ $assets = []; //to send to next page
 foreach ($allAssets as $row)		// for each of user's stocks
 {
     $asset = [];
+
     $asset["symbol"] = $row["symbol"]; //set variable from stock info
     $asset["name"] = $row["name"]; //set variable from stock info
-
     $asset["date"] = $row["date"]; //date listed on exchange
     $asset["owner"] = $row["owner"];
     $asset["fee"] = $row["fee"];
     $asset["issued"] = $row["issued"]; //shares issued
-    $asset["public"] = $row["public"]; //shares actually held public
+    $public =	query("SELECT SUM(quantity) AS quantity,  SUM(locked) AS locked FROM portfolio WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
+        if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
+        if(empty($public[0]["locked"])){$public[0]["locked"]=0;}
+        $publicLocked = $public[0]["locked"];
+        $publicQuantity = $public[0]["quantity"];
+    $asset["public"] = $publicLocked+$publicQuantity; //shares actually held public
     $asset["dividend"] = $row["dividend"]; //shares actually held public
     $asset["url"] = $row["url"]; //webpage
     $asset["type"] = $row["type"]; //type of asset (shares, commodity)

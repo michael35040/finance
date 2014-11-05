@@ -179,9 +179,10 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="deposit.php">Deposit <i class="icon-download-alt"></i></a></li>
-                    <li><a href="withdraw.php">Withdraw <i class="icon-share"></i></a></li>
-                    <li><a href="users.php">Users <i class="icon-search"></i></a></li>
+                    <li><a href="admin_deposit.php">Deposit </a></li>
+                    <li><a href="admin_withdraw.php">Withdraw </a></li>
+                    <li><a href="admin_users.php">Users </a></li>
+                    <li><a href="admin_ipo.php">IPO </a></li>
                 </ul>
                 </div>
             </div>

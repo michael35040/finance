@@ -20,8 +20,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
         @$price = (float)$_POST["price"]; //not set on market orders
         @$type = $_POST["type"]; //limit or market
 
-        //CHECKS //FORMATS AND SCRUBS VARIABLES
-        if (empty($symbol) || empty($quantity) ||  empty($type) || empty($side)) { apologize("Please fill all required fields (Symbol, Quantity, Type, Side)."); } //check to see if empty
+
+    if (empty($symbol) || empty($quantity) ||  empty($type) || empty($side)) { apologize("Please fill all required fields (Symbol, Quantity, Type, Side)."); } //check to see if empty
+
+
+    //QUERY TO SEE IF SYMBOL EXISTS
+    $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
+    if (count($symbolCheck) != 1) //row count
+    {apologize("Incorrect Symbol. Not listed on the exchange!");}
+
+
+    //CHECKS //FORMATS AND SCRUBS VARIABLES
 
         if($type=='limit'){
             if (empty($price)) { apologize("Limit orders require price."); }
@@ -67,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
         if ($side == 'b'):
         {
             $transaction = 'BID';
+
             //QUERY CASH & UPDATE
             $units =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
             $units = $units[0]['units'];	//convert array from query to value
@@ -88,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
         {
             $transaction = 'ASK'; //QUERY CASH & UPDATE
             $userQuantity = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol);//
-            $userQuantity = (float)$userQuantity[0]["quantity"];
+            $userQuantity = @(float)$userQuantity[0]["quantity"];
             //WILL CONDUCT ANOTHER CHECK AT ORDERBOOK PROCESS TO ENSURE USER UNITS > 0 and ENOUGH IN LOCKED
             if ($userQuantity < $quantity)
             {
@@ -128,7 +138,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 else
 {
     $stocks =	query("SELECT * FROM portfolio WHERE id = ? ORDER BY symbol ASC", $id);	  // query user's portfolio
-    render("exchange_form.php", ["title" => "Exchange", "stocks" => $stocks]); // render buy form
+    $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC");	  // query user's portfolio
+    render("exchange_form.php", ["title" => "Exchange", "stocks" => $stocks, "assets" => $assets]); // render buy form
 }
 //var_dump(get_defined_vars()); //dump all variables if i hit error  
 ?>

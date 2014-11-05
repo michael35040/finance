@@ -12,22 +12,17 @@ if ($id != 1) { apologize("Unauthorized!");}
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     //get variables
-    $symbol = $_POST["symbol"]; //units
     $quantity = $_POST["quantity"];
     $userid = $_POST["userid"];
     $transaction = 'DEPOSIT';
 
-    if (empty($symbol) || empty($quantity) ||  empty($userid)) { apologize("Please fill all required fields."); } //check to see if empty
+    if ( empty($quantity) ||  empty($userid)) { apologize("Please fill all required fields."); } //check to see if empty
 
     if (preg_match("/^\d+$/", $quantity) == false) { apologize("The number must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
-    if (!ctype_alnum($symbol) || !ctype_alpha($symbol)) { apologize("Symbol must be alpha-numeric!");} //if symbol is alpha (alnum for alphanumeric)
     if (!ctype_digit($quantity)) { apologize("Quantity must be numeric!");} //if quantity is numeric
     if (!ctype_digit($userid)) { apologize("User ID must be numeric!");} //if quantity is numeric
 
-    $symbol = strtoupper($symbol); //cast to UpperCase
-
     // if symbol or quantity empty
-    if (empty($quantity)) {apologize("You did not enter the amount!");}//empty or a value of zero 0.
     if (preg_match("/^([0-9.]+)$/", $quantity) == false) {apologize("You submitted an invalid number.");}
 
 // transaction information
@@ -64,7 +59,7 @@ else // if form hasn't been submitted
 {
 
     // render sell form
-    render("deposit_form.php", ["title" => "Deposit"]);
+    render("admin_deposit_form.php", ["title" => "Deposit"]);
 }
 
 

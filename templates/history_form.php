@@ -1,8 +1,7 @@
 
-<table class="table" > <!--class="bstable"-->
-
-    <tr bgcolor="#CCCCCC"><td colspan="7"><font color="black" size="+1">HISTORY</font></td></tr> <!--blank row breaker-->
-    <tr >
+<table class="table table-condensed  table-bordered" >
+    <tr  class="success"><td colspan="7"  style="font-size:20px; text-align: center;">HISTORY</td></tr> <!--blank row breaker-->
+    <tr   class="active" >
 
             <th>Transaction #</th>
             <th>Transaction</th>
@@ -28,9 +27,8 @@
         }
     ?>
         <tr >
-            <td colspan="1"></td>
-            <td colspan="2"><strong><i>*Figure does not include assets currently held.</i></strong></td>
-            <td colspan="2"><strong>Sum of Listed Transactions</strong></td>
+            <td colspan="3"></td>
+            <td colspan="3"><strong>Sum of Listed Transactions</strong></td>
             <td><?php
                     //calculate gains/losses
                     $acc = array_shift($history);
@@ -39,15 +37,16 @@
                         $acc[$key] += $val;
                         }
                     }
-                    $gainlosses = $acc['price'];
+                    $gainlosses = $acc['total'];
                     echo("<strong>" . $unitsymbol . htmlspecialchars(number_format($gainlosses,2,".",",")) . "</strong>");
                 ?></td>
         </tr>
 
+    <tr><td colspan="7"> </td></tr><!--blank line-->
     <!--/////////TRADES//////-->
 
-    <tr bgcolor="#CCCCCC"><td colspan="7"><font color="black" size="+1">TRADES</font></td></tr> <!--blank row breaker-->
-    <tr >
+    <tr   class="success" ><td colspan="7"  style="font-size:20px; text-align: center;">TRADES</td></tr> <!--blank row breaker-->
+    <tr   class="active" >
         <td ><b><u>Buyer</u></b></td>
         <td ><b><u>Seller</u></b></td>
         <td ><b><u>Symbol</u></b></td>

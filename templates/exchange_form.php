@@ -10,7 +10,13 @@ if (!isset($commission)) //set in constants.php
         padding:10px;
     }
 </style>
-
+<script>
+    function commify(x) {
+        var parts = x.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+    }
+</script>
 <hr>
 <div class="exchangeTable">
 <form action="exchange.php" method="post"
@@ -20,6 +26,11 @@ if (!isset($commission)) //set in constants.php
           commissionAmount.value=parseFloat(parseInt(quantity.value)*parseInt(price.value)*<?php echo($commission) ?>).toFixed(2);
           subtotal.value=parseFloat(parseFloat(quantity.value)*parseFloat(price.value)).toFixed(2);
           total.value=parseFloat(parseFloat(quantity.value)*parseFloat(price.value)+parseFloat(commissionAmount.value)).toFixed(2);
+          priceAmount.value=commify(priceAmount.value);
+          quantityAmount.value=commify(quantityAmount.value);
+          commissionAmount.value=commify(commissionAmount.value);
+          subtotal.value=commify(subtotal.value);
+          total.value=commify(total.value);
           "
       onclick="
           priceAmount.value=price.value;
@@ -27,33 +38,61 @@ if (!isset($commission)) //set in constants.php
           commissionAmount.value=parseFloat(parseInt(quantity.value)*parseInt(price.value)*<?php echo($commission) ?>).toFixed(2);
           subtotal.value=parseFloat(parseFloat(quantity.value)*parseFloat(price.value)).toFixed(2);
           total.value=parseFloat(parseFloat(quantity.value)*parseFloat(price.value)+parseFloat(commissionAmount.value)).toFixed(2);
+          priceAmount.value=commify(priceAmount.value);
+          quantityAmount.value=commify(quantityAmount.value);
+          commissionAmount.value=commify(commissionAmount.value);
+          subtotal.value=commify(subtotal.value);
+          total.value=commify(total.value);
+
           ">
 
     <fieldset>
 
         <TABLE BORDER="3" cellspacing="0" cellpadding="5" align="center"">
 
-            <TR>
-                <TD ROWSPAN="1">Symbol</TD>
-                <TD>
-                    <input list="symbol" placeholder="Symbol" name="symbol" maxlength="8" class="input-small" required><!--<input list="symbol" class="input-small" name="symbol" id="symbol" placeholder="Symbol" type="text" maxlength="5" required-->
-                    <datalist id="symbol"><!--select class="input-small" name="symbol" id="symbol" /-->
-                        <?php
-                        if (empty($stocks)) {
-                            echo("<option value=' '>No Stocks Held</option>");
-                        } else {
-                            foreach ($stocks as $stock) {
-                                $symbol = $stock["symbol"];
-                                $quantity = $stock["quantity"];
-                                echo("<option value='" . $symbol . "'>  " . $symbol . " (" . $quantity . ")</option>");
-                            }
+        <TR>
+            <TD ROWSPAN="1">Symbol</TD>
+            <TD>
+                <!--FOR BASIC INPUT FOR TESTING
+                <input type="text" name="symbol"> -->
+
+                <!-- FOR DATALIST IF I ALSO NEED INPUT
+                <input list="symbol" placeholder="Symbol" name="symbol" maxlength="8" class="input-small" required>
+                <datalist id="symbol">
+                -->
+                <select name="symbol">
+
+                <?php
+
+                    if (empty($stocks)) {
+                        echo("<option value=' '>No Stocks Held</option>");
+                    } else {
+                        echo ('<option class="select-dash" disabled="disabled">-Assets (Owned/Locked)-</option>');
+                        foreach ($stocks as $stock) {
+                            $symbol = $stock["symbol"];
+                            $quantity = $stock["quantity"];
+                            $lockedStock = $stock["locked"];
+                            echo("<option value='" . $symbol . "'>  " . $symbol . " (" . $quantity . "/" . $lockedStock . ")</option>");
                         }
-                        ?>
+                    }
+                    if (empty($assets)) {
+                        echo("<option value=' '>No Assets</option>");
+                    } else {
+                        echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
+                        foreach ($assets as $asset) {
+                            $symbol = $asset["symbol"];
+                            echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
+                        }
+                    }
+
+                    ?>
+                    </select>
+
+                    <!--
                     </datalist>
-                </TD>
-            </TR>
-
-
+                    -->
+            </TD>
+        </TR>
 
             <TR>
                 <TD ROWSPAN="2">Side</TD>

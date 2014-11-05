@@ -319,7 +319,7 @@ function orderbook($symbol)
             } else {
                 query("ROLLBACK"); //rollback on failure
                 query("SET AUTOCOMMIT=1");
-                apologize(var_dump(get_defined_vars()));
+                //apologize(var_dump(get_defined_vars()));
                 //apologize("Failure: #20");
             } //apologizes if first two conditions are not meet
 

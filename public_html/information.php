@@ -3,6 +3,8 @@
 // configuration
 require("../includes/config.php");
 
+$id = $_SESSION["id"]; //get id from session
+
 // if form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -12,7 +14,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if (!ctype_alnum($symbol)) {apologize("Invalid Symbol");}
     $symbol = strtoupper($symbol); //cast to UpperCase
 
-        //EXCHANGE TRADES (PROCESSED ORDERS)
+
+    //COMPANY INFORMATION
+    $asset=[];
+    $asset =	query("SELECT * FROM assets WHERE symbol=?", $symbol);
+    $asset = $asset[0];
+        $public =	query("SELECT SUM(quantity) AS quantity,  SUM(locked) AS locked FROM portfolio WHERE symbol =?", $symbol);	  // query user's portfolio
+        if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
+        if(empty($public[0]["locked"])){$public[0]["locked"]=0;}
+        $publicLocked = $public[0]["locked"];
+        $publicQuantity = $public[0]["quantity"];
+    $asset["public"] = $publicLocked+$publicQuantity; //shares actually held public
+    $volume =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY MONTH(date) ORDER BY uid ASC ", $symbol);	  // query user's portfolio
+        if(empty($volume[0]["quantity"])){$volume[0]["quantity"]=0;}
+        if(empty($volume[0]["price"])){$volume[0]["price"]=0;}
+    $asset["volume"] = $volume[0]["quantity"];
+    $asset["avgprice"] = $volume[0]["price"];
+    $trades =	    query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $symbol);	  // query user's portfolio
+        if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
+        $asset["price"] = $trades[0]["price"]; //stock price per share
+    $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
+
+    //apologize(var_dump(get_defined_vars()));
+
+    //EXCHANGE TRADES (PROCESSED ORDERS)
         //$trades =       query("SELECT (SUM(quantity)/1000) AS quantity, price, date FROM trades WHERE symbol=? GROUP BY DAY(date) ORDER BY date ASC ", $symbol);
         //$tradesGroup =	    query("SELECT * FROM trades WHERE symbol = ? GROUP BY DAY(date) ORDER BY uid DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
         $trades =  query("SELECT * FROM trades WHERE symbol=? ORDER BY uid DESC LIMIT 0, 5", $symbol);
@@ -49,6 +74,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         render("information_form.php", [
             "title" => "Information",
 
+            "asset" => $asset,
+
+
             "trades" => $trades,
             //"tradesGroup" => $tradesGroup,
 
@@ -73,8 +101,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 } // else render quote_form
 else
 {
-    $stocks =	query("SELECT symbol FROM portfolio GROUP BY symbol ORDER BY symbol ASC");	  // query user's portfolio
-    render("information_symbol_form.php", ["title" => "Symbol", "stocks" => $stocks]);
+    $stocks =	query("SELECT * FROM portfolio WHERE id = ? ORDER BY symbol ASC", $id);	  // query user's portfolio
+    $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC");	  // query user's portfolio
+    render("information_symbol_form.php", ["title" => "Symbol", "stocks" => $stocks, "assets" => $assets]);
 }
 
 ?>
