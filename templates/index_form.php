@@ -187,6 +187,9 @@
                     ?></strong>
             </td>
         </tr>
+        <tr>
+            <td colspan="7"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Orders</i></td>
+        </tr>
 
     <?php
     } //$i==0 else statement
@@ -211,10 +214,7 @@
         </td>
     </tr>
 
-        <tr>
 
-            <td colspan="7"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Orders</i></td>
-        </tr>
 
 
     </table>
