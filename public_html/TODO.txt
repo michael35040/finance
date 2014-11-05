@@ -6,5 +6,5 @@
 6. add ownership percentage in information panel.
 7. add icon showing drop down feature in 'assets'
 8. remove <br> in index_form between expanded exchange button
-
+9. change auth check on admin_ pages from 1 to admin id
 
