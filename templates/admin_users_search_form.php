@@ -5,7 +5,7 @@
         border:1px solid black;
     }
 </style>
-<form action="users.php"  class="usersForm" method="post"   >
+<form action="admin_users.php"  class="usersForm" method="post"   >
     <fieldset>
 
         <table>
