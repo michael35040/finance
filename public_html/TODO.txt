@@ -1,0 +1,7 @@
+1. when deleting orders, remove lock from funds/shares (functions_exchange.php)
+2. update desposit
+3. update withdraw
+4. update transfer
+
+
+
