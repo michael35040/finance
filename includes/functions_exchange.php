@@ -1,29 +1,29 @@
 <? php
 
 ////////////////////////////////////
-//CANCLE ORDER
+//CANCEL ORDER
 ////////////////////////////////////
-function cancleOrder($symbol, $id, $uid) {
+function cancelOrder($symbol, $id, $uid) {
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
     //Delete market order from orderbook since no limit ask orders exist
     if (query("DELETE FROM orderbook WHERE (uid = ?)", $marketUID) === false) {
         query("ROLLBACK");
         query("SET AUTOCOMMIT=1");
-        apologize("Failure Cancle 1");
+        apologize("Failure Cancel 1");
     }
     //unlock locked shares
     if (query("UPDATE portfolio SET quantity = (quantity + ?), locked = (locked - ?) WHERE (symbol = ? AND id = ?)", $marketSize, $marketSize, $marketSymbol, $marketID) === false) {
         {
             query("ROLLBACK");
             query("SET AUTOCOMMIT=1");
-            apologize("Failure Cancle 2");
+            apologize("Failure Cancel 2");
         }
         ///insert event into errors
         if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting bid market order, no ask limit orders', 'functions_echange.php') === false) {
             query("ROLLBACK");
             query("SET AUTOCOMMIT=1");
-            apologize("Failure Cancle 3");
+            apologize("Failure Cancel 3");
         }
         //var_dump(get_defined_vars());
         //apologize("Market orders require limit orders. No ask limit orders for the bid market order. Deleting market order.");
@@ -40,7 +40,7 @@ function cancleOrder($symbol, $id, $uid) {
             if ($marketSide == 'b') {
                 $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
                 while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'b') && (empty($asks))) {
-                    cancleOrder($symbol, $marketOrders[0]["id"], $marketOrders[0]["uid"]);
+                    cancelOrder($symbol, $marketOrders[0]["id"], $marketOrders[0]["uid"]);
                     $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
                     $asks = query("SELECT 	* FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
                 }
@@ -56,7 +56,7 @@ function cancleOrder($symbol, $id, $uid) {
         elseif($marketSide == 'a') {
             $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
             while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'a') && (empty($bids))) {
-                cancleOrder($symbol, $marketOrders[0]["id"], $marketOrders[0]["uid"]);
+                cancelOrder($symbol, $marketOrders[0]["id"], $marketOrders[0]["uid"]);
                 $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
                 $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
             }
