@@ -129,7 +129,7 @@ function marketOrderCheck($symbol)
 //EXCHANGE MARKET
 ////////////////////////////////////
 function orderbook($symbol) {
-        require("constants.php"); //for $commission
+        require 'constants.php'; //for $commission
         ////////////////////////
         //PROCESS MARKET ORDERS
         ////////////////////////
