@@ -52,19 +52,16 @@
             <td>Owner User ID #</td>
             <td><input type="number" name="userid"  min="1" max="100000000"  placeholder="ex: 134" required></td>
         </tr>
-
+        
         <tr>
-            <td>Fee %</td>
+            <td>Type</td>
             <td>
-                <input id="fee" type="range" name="fee" min="0" value="0" max=".5"  step=".01" style="width:100%"
-                       onclick="fee_show_value(this.value*100);"
-                       oninput="fee_show_value(this.value*100);"
-                       onchange="fee_show_value(this.value*100);"
-                       >
-                <br><output name="feeAmount" for="fee">0</output>
-                (<span id="fee_slider_value" style="color:black;">0</span>%)
+                <input type="radio" name="type" value="stock" required> Stock<br>
+                <input type="radio" name="type" value="commodity" required> Commodity<br>
             </td>
-        </tr>
+        </tr>            
+
+
         <tr>
             <td>Issued</td>
             <td>
@@ -77,14 +74,19 @@
             </td>
         </tr>
         
+    
         <tr>
-            <td>Type</td>
+            <td>Fee %</td>
             <td>
-                <input type="radio" name="type" value="stock" required> Stock<br>
-                <input type="radio" name="type" value="commodity" required> Commodity<br>
+                <input id="fee" type="range" name="fee" min="0" value="0" max=".5"  step=".01" style="width:100%"
+                       onclick="fee_show_value(this.value*100);"
+                       oninput="fee_show_value(this.value*100);"
+                       onchange="fee_show_value(this.value*100);"
+                       >
+                <br><output name="feeAmount" for="fee">0</output>
+                (<span id="fee_slider_value" style="color:black;">0</span>%)
             </td>
         </tr>        
-        
 
         <tr>
             <td>Owner Email</td>
