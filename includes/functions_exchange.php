@@ -254,11 +254,15 @@ function orderbook($symbol) {
                 ///////////
                 //BID INFO
                 //////////
-                $bidFunds = query("SELECT units, locked FROM accounts WHERE id = ?", $topBidUser);
-                @$bidFundsLocked = $bidFunds[0]["locked"];
-                @$bidFundsUnits = $bidFunds[0]["locked"];
-                $returnAmount = ($lockedAmount - $tradeTotal); //lockedAmount locked in exchange.php
-
+                $bidFunds = query("SELECT locked, units FROM accounts WHERE id = ?", $topBidUser);
+                $bidFundsLocked = $bidFunds[0]["locked"];
+                $bidFundsUnits = $bidFunds[0]["units"];
+                if ($bidFundsUnits < 0) {
+                    query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                    cancelOrder($topBidUID);
+                    apologize("Buyer has negative units. Buyers bid orders deleted");
+                }
+                $returnAmount = ($bidFundsLocked - $tradeTotal); //lockedAmount locked in exchange.php
                 //check funds
                 if ($bidFundsLocked < $tradeTotal)
                 {
@@ -268,57 +272,34 @@ function orderbook($symbol) {
                     apologize("Buyer does not have enough funds. Buyers bid orders deleted");
                 }
                 //determine what to return to bid user
-                elseif($bidFundsLocked >= $tradeTotal) //buyer has enough money
-                    {
-                        if($lockedAmount <= $tradeTotal)
-                        {       if(($returnAmount+$bidFundsUnits)<0)
-                                {
-                                    //since the buyer does not have enough money, delete the his orders ID
-                                    query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                                    cancelOrder($topBidUID);
-                                    apologize("Buyer does not have enough funds. Buyers bid orders deleted");
-                                }
-                                else //user has enough in his units to also fund the transaction. Set locked to zero and subtract from units
-                                {
-                                    //RETURN is a negative and will subtract from locked and units.
-                                    if (query("UPDATE accounts SET units = (units + ?), locked = (locked - ?) WHERE id = ?", $returnAmount, 0, $topBidUser) === false) { //MOVE CASH TO LOCKED FUNDS
-                                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                                        apologize("Update Accounts Failure: #10");
-                                    }
-                                }
-                        }
-                        else //($lockedAmount >= $tradeTotal)
-                        {
-                            ///////////////////////
-                            //REMOVE LOCKED FROM BID USER
-                            ///////////////////////
-                            if (query("UPDATE accounts SET units = (units + ?), locked = (locked - ?) WHERE id = ?", $returnAmount, $tradeTotal, $topBidUser) === false) { //MOVE CASH TO LOCKED FUNDS
-                                query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                                apologize("Update Accounts Failure: #10");
-                            }
-                        }
-
-                        ///////////////////////
-                        //GIVE UNITS TO ASK USER
-                        //////////////////////
-                        if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $tradeAmount, $topAskUser) === false) //tradeAmount since they don't get the commission
-                        {
-                            query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                            apologize("Update Accounts Failure: #11");
-                        }
-                        ///////////////////////
-                        //GIVE UNITS TO ADMIN/OWNER
-                        ////////////////////////
-                        if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commissionAmount, $adminid) === false) //just the commission
+                else //if($bidFundsLocked >= $tradeTotal) //buyer has enough money
+                {
+                    ///////////////////////
+                    //REMOVE LOCKED FUNDS AND RETURN LEFT OVER UNITS TO BID USER
+                    ///////////////////////
+                    if (query("UPDATE accounts SET units = (units + ?), locked = (locked - ?) WHERE id = ?", $returnAmount, $tradeTotal, $topBidUser) === false) 
                         { //MOVE CASH TO LOCKED FUNDS
-                            query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                            apologize("Update Accounts Failure: #11a");
+                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                        apologize("Update Accounts Failure: #10");
                         }
-                    } //elseif buyfunds >= tradetotall
-                else {
-                    query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                    apologize("Failue: #12. Bid Fund & Trade Total");
-                }
+                    ///////////////////////
+                    //GIVE UNITS TO ASK USER
+                    //////////////////////
+                    if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $tradeAmount, $topAskUser) === false) //tradeAmount since they don't get the commission
+                    {
+                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                        apologize("Update Accounts Failure: #11");
+                    }
+                    ///////////////////////
+                    //GIVE UNITS TO ADMIN/OWNER
+                    ////////////////////////
+                    if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commissionAmount, $adminid) === false) //just the commission
+                    { //MOVE CASH TO LOCKED FUNDS
+                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                        apologize("Update Accounts Failure: #11a");
+                    }
+                } //else //if($bidFundsLocked >= $tradeTotal) 
+                
                 //////////
                 //ASK INFO            
                 /////////            
