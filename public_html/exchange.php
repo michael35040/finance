@@ -16,43 +16,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$symbol = $_POST["symbol"];	//assign post variables to local variables, not really needed but makes coding easier
     @$quantity = $_POST["quantity"]; //quantity/volume/amount to trade
     @$side = $_POST["side"]; //buy/bid or sell/ask 
-
-        @$price = (float)$_POST["price"]; //not set on market orders
-        @$type = $_POST["type"]; //limit or market
-
+    @$price = (float)$_POST["price"]; //not set on market orders
+    @$type = $_POST["type"]; //limit or market
 
     if (empty($symbol) || empty($quantity) ||  empty($type) || empty($side)) { apologize("Please fill all required fields (Symbol, Quantity, Type, Side)."); } //check to see if empty
 
-
     //QUERY TO SEE IF SYMBOL EXISTS
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
-    if (count($symbolCheck) != 1) //row count
-    {apologize("Incorrect Symbol. Not listed on the exchange!");}
+    if (count($symbolCheck) != 1) {apologize("Incorrect Symbol. Not listed on the exchange!");} //row count
 
+    if (preg_match("/^\d+$/", $quantity) == false) { apologize("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
+    if (!ctype_alnum($symbol)) {apologize("Symbol must be alphanumeric!");}
+    if(!ctype_alpha($type) || !ctype_alpha($side)) { apologize("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
+    if (!ctype_digit($quantity) ) { apologize("Quantity must be numeric!");} //if quantity is numeric
+    $symbol = strtoupper($symbol); //cast to UpperCase
 
-    //CHECKS //FORMATS AND SCRUBS VARIABLES
-
-        if($type=='limit'){
-            if (empty($price)) { apologize("Limit orders require price."); }
-           // if (preg_match("/^\d+$/", $price) == false) { apologize("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
-
-            $priceModulus = fmod($price, $divisor); //$divisor set in constants
-            if($priceModulus != 0){apologize("Not correct increment. $divisor");} //checks to see if quarter increment
-            //if (!is_float($price)) { apologize("Price is not a number");} //if quantity is numeric
-            //if (!ctype_digit($price)) { apologize("Price must be numeric!");} //if quantity is numeric
-        }
-        else 	{$price = 0; $type="market";}//market orders, forces variable
-        if (preg_match("/^\d+$/", $quantity) == false) { apologize("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
-        if (!ctype_alnum($symbol)) {apologize("Symbol must be alphanumeric!");}
-        if(!ctype_alpha($type) || !ctype_alpha($side)) { apologize("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
-        if (!ctype_digit($quantity) ) { apologize("Quantity must be numeric!");} //if quantity is numeric
-        $symbol = strtoupper($symbol); //cast to UpperCase
-
-
-        //test for symbol existing
-        //$test =	query("SELECT * FROM company WHERE (symbol = ?) ORDER BY price DESC, date ASC LIMIT 0, 5", $symbol);
-        //if (count($test) < 1){apologize("Incorrect symbol!");} //check to see if exists in db
-
+    if($type=='limit'){
+        if (empty($price)) { apologize("Limit orders require price."); }
+        $priceModulus = fmod($price, $divisor); //$divisor set in constants
+        if($priceModulus != 0){apologize("Not correct increment. $divisor");} //checks to see if quarter increment
+        if (!is_float($price)) { apologize("Price is not a number");} //if quantity is numeric
+    }
+    else 	{$price = 0; $type="market";}//market orders, forces variable
 
         //NEW VARS FOR DB INSERT
         $tradeAmount = $price * $quantity;        // calculate total value (stock's price * quantity)
