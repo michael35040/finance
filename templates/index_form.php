@@ -50,6 +50,13 @@
                 <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
                     <?php echo(number_format($locked, 2, ".", ",")) ?></td>
             </tr>
+        <?php
+        }
+        if($i == 0)
+        {
+            echo("<tr><td colspan='7'>You do not have any funds in any accounts</td></tr>");
+
+        } ?>
 
             <tr  class="active">
                 <td colspan="6"><strong>SUBTOTAL</strong></td>
@@ -62,20 +69,6 @@
                     </strong>
                 </td>
             </tr>
-        <?php
-        }
-        if($i == 0)
-        {
-            echo("<tr><td colspan='7'>You do not have any funds in any accounts</td></tr>");
-                 ?>
-                <tr  class="active">
-                        <td colspan="6"><strong>SUBTOTAL</strong></td>
-                        <td><strong>0</strong></td>
-                </tr>
-
-        <?php
-        } ?>
-
 
         <tr><td colspan="7"> </td></tr><!--blank line-->
     <!-- HEADER ROW -->
