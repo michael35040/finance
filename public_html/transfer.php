@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 			apologize("Database Failure."); 
 			}
 		// transfer the cash to admin
-		if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commission, 1)) 
+		if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commission, $adminid)) 
 			{ 
 			query("ROLLBACK"); //rollback on failure
 			query("SET AUTOCOMMIT=1");
@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		// render success form
 	}//if count==1
 
-       if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", 1, $transaction, $symbol, $quantity, $price, $commissionTotal, $id) === false)
+       if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, $transaction, $symbol, $quantity, $price, $commissionTotal, $id) === false)
         {   //UPDATE HISTORY 
             query("ROLLBACK"); //rollback on failure
             query("SET AUTOCOMMIT=1");
