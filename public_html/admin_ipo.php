@@ -6,29 +6,30 @@ if ($id != 1) { apologize("Unauthorized!");}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
-    $symbol = $_POST["symbol"];
-    $name = $_POST["name"];
-    $date = $_POST["date"]; //date issued
-    $userid = $_POST["userid"]; //owner or chief executive
-    $owner = $_POST["owner"]; //owner or chief executive
-    $fee = $_POST["fee"]; //fee?
-    $issued = $_POST["issued"]; //current amount of shares made public, issued for IPO
-    $url = $_POST["url"];
-    $type = $_POST["type"]; //share or commodity
-    $rating = $_POST["rating"]; //1 - 10
-    $description = $_POST["description"];
+    @$symbol = $_POST["symbol"];
+    @$name = $_POST["name"];
+    @$date = $_POST["date"]; //date issued
+    @$userid = $_POST["userid"]; //owner or chief executive
+    @$owner = $_POST["owner"]; //owner or chief executive
+    @$fee = $_POST["fee"]; //fee?
+    @$issued = $_POST["issued"]; //current amount of shares made public, issued for IPO
+    @$url = $_POST["url"];
+    @$type = $_POST["type"]; //share or commodity
+    @$rating = $_POST["rating"]; //1 - 10
+    @$description = $_POST["description"];
+
 
     if (empty($symbol)) { apologize("You must enter symbol."); }
     if (empty($name)) { apologize("You must enter name."); }
-    if (empty($date)) { apologize("You must enter date."); }
-    if (empty($userid)) { apologize("You must enter user id."); }
-    if (empty($owner)) { apologize("You must enter owner."); }
-    if (empty($fee)) { apologize("You must enter fee."); }
+    //if (empty($date)) { apologize("You must enter date."); }
+    if (empty($userid)) { apologize("You must enter user id."); } //owners user id
+    //if (empty($owner)) { apologize("You must enter owner."); } //owners name
+    //if (empty($fee)) { apologize("You must enter fee."); }
     if (empty($issued)) { apologize("You must enter issued."); }
-    if (empty($url)) { apologize("You must enter url."); }
+    //if (empty($url)) { apologize("You must enter url."); }
     if (empty($type)) { apologize("You must enter type."); }
-    if (empty($rating)) { apologize("You must enter rating."); }
-    if (empty($description)) { apologize("You must enter description."); }
+    //if (empty($rating)) { apologize("You must enter rating."); }
+    //if (empty($description)) { apologize("You must enter description."); }
 
 
     $symbol = strtoupper($symbol); //cast to UpperCase
