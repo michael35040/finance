@@ -44,7 +44,7 @@
     }
     if($i==0)
     {
-    echo("<tr colspan='4'><td>No public assets</td></tr>");
+    echo("<tr><td colspan='4'>No public assets</td></tr>");
     }
     ?>
     </tbody>
