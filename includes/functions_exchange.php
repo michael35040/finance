@@ -130,7 +130,8 @@ function marketOrderCheck($symbol)
 ////////////////////////////////////
 function orderbook($symbol) {
         //require 'constants.php'; //for $commission
-        $commission = 0.05;
+        $commission = 0.05;  //constants.php
+        $adminid = 1; //constants.php
         
         ////////////////////////
         //PROCESS MARKET ORDERS
