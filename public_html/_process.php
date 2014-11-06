@@ -9,6 +9,7 @@ orderbook($symbol);
 else
 {
    $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC"); // query assets
+   $title = "Process Orderbook";
     require("../templates/header.php");
   ?>
   
