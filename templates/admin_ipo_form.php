@@ -96,6 +96,15 @@
             <td><input type="url" name="url" maxlength="60" placeholder="ex: abcd.com" ></td>
         </tr>
 
+
+        <tr>
+            <td>Description</td>
+            <td><input type="text" name="description" maxlength="60" placeholder="ex: Makes special gadgets" ></td>
+        </tr>
+
+        <tr>
+        
+        
         <tr>
             <td>Rating (1-10)</td>
             <td>
@@ -104,13 +113,8 @@
                        >
                 <br><span id="rating_slider_value" style="color:black;">1</span>
             </td>
-        </tr>
-        <tr>
-            <td>Description</td>
-            <td><input type="text" name="description" maxlength="60" placeholder="ex: Makes special gadgets" ></td>
-        </tr>
-
-        <tr>
+        </tr>        
+        
             <td colspan="2">    <br>
                 <button type="submit" class="btn btn-info">
                     <b> ISSUE </b>
