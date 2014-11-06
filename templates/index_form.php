@@ -188,7 +188,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="7"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Orders</i></td>
+            <td colspan="7"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order</i></td>
         </tr>
 
     <?php
