@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
                 query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
             apologize("Insert History Failure 3");
         }
-        if (query("INSERT INTO orderbook (symbol, side, type, price, locked, quantity, id) VALUES (?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $lockedAmount, $quantity, $id) === false)
+        if (query("INSERT INTO orderbook (symbol, side, type, price, locked, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $lockedAmount, $quantity, $id) === false)
         {   //INSERT INTO ORDERBOOK
                 query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
             apologize("Insert Orderbook Failure");
