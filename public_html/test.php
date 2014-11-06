@@ -7,6 +7,7 @@ require("../includes/config.php");  // configuration
 //var_dump(get_defined_vars()); //dump all variables if i hit error
 if ($_SERVER["REQUEST_METHOD"] != "POST")// if form is submitted
 {
+
     //////////
 //TOTAL AMOUNT OF BIDS/ASKS IN ORDERBOOK
 ////////
@@ -34,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST")// if form is submitted
 }
 elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
+    //apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
 
     require("../templates/header.php");
 
@@ -802,5 +804,4 @@ foreach ($asks as $row)
 
 } //if post
 else{apologize("error unknown post");}
-//var_dump(get_defined_vars()); //dump all variables if i hit error
 ?>

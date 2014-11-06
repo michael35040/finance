@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2014 at 05:32 AM
+-- Generation Time: Nov 06, 2014 at 04:55 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -38,16 +38,6 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `approved` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Truncate table before insert `accounts`
---
-
-TRUNCATE TABLE `accounts`;
---
--- Dumping data for table `accounts`
---
-
 
 -- --------------------------------------------------------
 
@@ -87,18 +77,7 @@ CREATE TABLE IF NOT EXISTS `error` (
   `type` varchar(100) NOT NULL COMMENT 'short description',
   `description` varchar(255) NOT NULL COMMENT 'longer description',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
-
---
--- Truncate table before insert `error`
---
-
-TRUNCATE TABLE `error`;
---
--- Dumping data for table `error`
---
-
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 -- --------------------------------------------------------
 
@@ -118,17 +97,7 @@ CREATE TABLE IF NOT EXISTS `history` (
   `commission` decimal(65,30) NOT NULL COMMENT 'commission',
   `total` decimal(65,30) NOT NULL COMMENT 'history-id-bid/ask or local-id-ask \r\n\r\nor transafer-id',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='id, transaction, symbol, \r\n\r\nshares, \r\n\r\nprice' ;
-
---
--- Truncate table before insert `history`
---
-
-TRUNCATE TABLE `history`;
---
--- Dumping data for table `history`
---
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='id, transaction, symbol, \r\n\r\nshares, \r\n\r\nprice' AUTO_INCREMENT=10842 ;
 
 -- --------------------------------------------------------
 
@@ -144,17 +113,7 @@ CREATE TABLE IF NOT EXISTS `login` (
   `ip` varchar(15) NOT NULL,
   `success_fail` varchar(1) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
-
---
--- Truncate table before insert `login`
---
-
-TRUNCATE TABLE `login`;
---
--- Dumping data for table `login`
---
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=110 ;
 
 -- --------------------------------------------------------
 
@@ -170,20 +129,11 @@ CREATE TABLE IF NOT EXISTS `orderbook` (
   `side` varchar(1) NOT NULL COMMENT 'a:ask or b:bid',
   `type` varchar(6) NOT NULL COMMENT 'limit or market',
   `price` decimal(65,30) NOT NULL,
+  `locked` decimal(65,30) NOT NULL COMMENT 'locked units from bid order',
   `quantity` int(11) NOT NULL COMMENT 'size quantity of order',
   `id` int(9) NOT NULL COMMENT 'user id',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
-
---
--- Truncate table before insert `orderbook`
---
-
-TRUNCATE TABLE `orderbook`;
---
--- Dumping data for table `orderbook`
---
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -201,13 +151,8 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `price` decimal(65,30) NOT NULL COMMENT 'close',
   `size` int(11) unsigned NOT NULL COMMENT 'volume',
   PRIMARY KEY (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Truncate table before insert `orders`
---
-
-TRUNCATE TABLE `orders`;
 -- --------------------------------------------------------
 
 --
@@ -219,21 +164,11 @@ CREATE TABLE IF NOT EXISTS `portfolio` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'unique id',
   `id` int(10) NOT NULL COMMENT 'user id',
   `symbol` varchar(10) NOT NULL,
-  `name` varchar(63) NOT NULL COMMENT 'company name',
   `quantity` int(65) NOT NULL,
   `locked` int(65) NOT NULL,
   `price` decimal(65,30) NOT NULL COMMENT 'avg buy price',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
-
---
--- Truncate table before insert `portfolio`
---
-
-TRUNCATE TABLE `portfolio`;
---
--- Dumping data for table `portfolio`
---
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -256,18 +191,7 @@ CREATE TABLE IF NOT EXISTS `trades` (
   `askorderuid` int(9) NOT NULL,
   `bidorderuid` int(9) NOT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
-
---
--- Truncate table before insert `trades`
---
-
-TRUNCATE TABLE `trades`;
---
--- Dumping data for table `trades`
---
-
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3616 ;
 
 -- --------------------------------------------------------
 
@@ -289,20 +213,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `active` int(1) NOT NULL DEFAULT '0' COMMENT '0-inactive or 1-active',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
-
---
--- Truncate table before insert `users`
---
-
-TRUNCATE TABLE `users`;
---
--- Dumping data for table `users`
---
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `phone`, `registered`, `last_login`, `ip`, `fails`, `active`) VALUES
-(1, 'a', 'a@a', '$2a$11$ZIiqSdMJtMeW4xWTTQl7zueNNfjw1w.qpoJ03E5AGRfSttU7GJQn2', 1, 1414334245, 2147483647, '::1', 0, 1),
-(2, 'b', 'b@b', '$2a$11$lorocz4ub9L3hy27HldufufXp3P6Z0lGb7YEO4ya3jx77SZTCtz7C', 1, 1414334258, 2147483647, '::1', 0, 1);
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

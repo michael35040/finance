@@ -66,17 +66,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
             //check to see if any limit orders exists
             $price=0;//market order
             if ($side == 'a'){$otherSide='b';}
-            elseif ($side=='b'){$otherSide='a';}
+            elseif ($side=='b')
+                {   $otherSide='a';
+                    $trades =	    query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $symbol);	  // query user's portfolio
+                    $lockedAmount = $trades[0]["price"]*1.1; //give it a 10% buffer
+                }
             else {apologize("error");}
             $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type = 'limit' AND side = ?)", $otherSide);
             $limitOrders = $limitOrdersQ[0]['limitorders'];
             if (is_null($limitOrders) || $limitOrders == 0){apologize("Market Orders require an active Limit Order on the exchange for matching. <br>No Limit Order currently on the exchange.");}
+
         }
 
         if ($side == 'b'):
         {
             $transaction = 'BID';
-
+            $lockedAmount=$tradeTotal;
             //QUERY CASH & UPDATE
             $units =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
             $units = $units[0]['units'];	//convert array from query to value
@@ -85,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
             {
                 apologize("You do not have enough for this transaction. You only have: " . $units . ". Attempted to buy: " . $tradeTotal . "." );
             }
-            if (query("UPDATE accounts SET units = (units - ?), locked = (locked + ?) WHERE id = ?", $tradeTotal, $tradeTotal, $id) === false) //MOVE CASH TO LOCKED FUNDS
+            else (query("UPDATE accounts SET units = (units - ?), locked = (locked + ?) WHERE id = ?", $tradeTotal, $lockedAmount, $id) === false) //MOVE CASH TO LOCKED FUNDS
             {
                 query("ROLLBACK"); //rollback on failure
                 query("SET AUTOCOMMIT=1");
@@ -104,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
             {
                 apologize("You do not have enough for this transaction. You only have: " . $userQuantity . ". Attempted to sell: " . $quantity . "." );
             }
-            if (query("UPDATE portfolio SET quantity = (quantity - ?), locked = (locked + ?) WHERE (id = ? AND symbol = ?)", $quantity, $quantity, $id, $symbol) === false) //MOVE CASH TO LOCKED FUNDS
+            else (query("UPDATE portfolio SET quantity = (quantity - ?), locked = (locked + ?) WHERE (id = ? AND symbol = ?)", $quantity, $quantity, $id, $symbol) === false) //MOVE CASH TO LOCKED FUNDS
             {
                 query("ROLLBACK"); //rollback on failure
                 query("SET AUTOCOMMIT=1");
@@ -120,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
             query("SET AUTOCOMMIT=1");
             apologize("Insert History Failure 3");
         }
-        if (query("INSERT INTO orderbook (symbol, side, type, price, quantity, id) VALUES (?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $quantity, $id) === false)
+        if (query("INSERT INTO orderbook (symbol, side, type, price, locked, quantity, id) VALUES (?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $lockedAmount, $quantity, $id) === false)
         {   //INSERT INTO ORDERBOOK
             query("ROLLBACK"); //rollback on failure
             query("SET AUTOCOMMIT=1");
