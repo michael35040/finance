@@ -396,6 +396,7 @@ function orderbook($symbol) {
                 if ($bidFundsLocked < $tradeTotal)
                 {
                    //since the buyer does not have enough money, delete the his orders ID
+                    
                     query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                     cancelOrder($topBidUID);
                     apologize("Buyer does not have enough funds. Buyers bid orders deleted");
@@ -475,7 +476,7 @@ function orderbook($symbol) {
                 ////////////////
                 $bidQuantityRows = query("SELECT symbol FROM portfolio WHERE (id = ? AND symbol = ?)", $topBidUser, $symbol); //Checks to see if they already own stock to determine if we should insert or update tables
                 $countRows = count($bidQuantityRows);
-                if (count($countRows) == 0) {
+                if ($countRows == 0) {
                     if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $topBidUser, $symbol, $tradeSize, $tradeTotal) === false) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Failure: #18, Bid Quantity & Trade Size");
