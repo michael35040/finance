@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$side = $_POST["side"]; //buy/bid or sell/ask 
     @$price = (float)$_POST["price"]; //not set on market orders
     @$type = $_POST["type"]; //limit or market
+    
 
     if (empty($symbol) || empty($quantity) ||  empty($type) || empty($side)) { apologize("Please fill all required fields (Symbol, Quantity, Type, Side)."); } //check to see if empty
 
@@ -39,20 +40,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
         if($priceModulus != 0){apologize("Not correct increment. $divisor");} //checks to see if quarter increment
         if (!is_float($price)) { apologize("Price is not a number");} //if quantity is numeric
     }
-    else 	{$price = 0; $type="market";}//market orders, forces variable
+    //NEW VARS FOR DB INSERT
+    $tradeAmount = $price * $quantity;        // calculate total value (stock's price * quantity)
+    $commissionTotal = $commission * $tradeAmount; //commission set in finance.php//$commission = 00.0599; //CHANGE THIS VARIABLE TO SET COMMISSION PERCENTAGE //(Ex 00.1525 is 15.25%)
+    $tradeTotal = ($tradeAmount + $commissionTotal);
 
-        //NEW VARS FOR DB INSERT
-        $tradeAmount = $price * $quantity;        // calculate total value (stock's price * quantity)
-        $commissionTotal = $commission * $tradeAmount; //commission set in finance.php//$commission = 00.0599; //CHANGE THIS VARIABLE TO SET COMMISSION PERCENTAGE //(Ex 00.1525 is 15.25%)
-        $tradeTotal = ($tradeAmount + $commissionTotal);
-
-        query("SET AUTOCOMMIT=0");
-        query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
-        if($type=='market')
-        {
+    query("SET AUTOCOMMIT=0");
+    query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+    if($type=='market')
+    {
             //check to see if any limit orders exists
             $price=0;//market order
-            if ($side == 'a'){$otherSide='b';}
+            if ($side == 'a')
+                {$otherSide='b';}
             elseif ($side=='b')
                 {   $otherSide='a';
                     //lock all of the users funds for market orders
@@ -63,11 +63,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
                     apologize("error");}
             $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type = 'limit' AND side = ?)", $otherSide);
             $limitOrders = $limitOrdersQ[0]['limitorders'];
-            if (is_null($limitOrders) || $limitOrders == 0){
+            if (is_null($limitOrders) || $limitOrders == 0 || $limitorder < $quantity){
                 query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
-                apologize("Market Orders require an active Limit Order on the exchange for matching. <br>No Limit Order currently on the exchange.");}
+                apologize("Market Orders require an active Limit Order on the exchange for matching. Not enough or no Limit Orders currently on the exchange.");}
 
-        }
+    }
 
         if ($side == 'b'):
         {
@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
             }
             else 
             {
-                if(query("UPDATE accounts SET units = (units - ?), locked = (locked + ?) WHERE id = ?", $lockedAmount, $lockedAmount, $id) === false) //MOVE CASH TO LOCKED FUNDS
+                if(query("UPDATE accounts SET units = (units - ?), locked = (locked + ?) WHERE id = ?", $lockedUnits, $lockedUnits, $id) === false) //MOVE CASH TO LOCKED FUNDS
                 {
                     query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
                     apologize("Updates Accounts Failure");
@@ -94,6 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
         } // transaction type for history	//b for bid
         elseif ($side == 'a'):
         {
+            $lockedUnits = 0; //all sell ask orders lock zero units
             $transaction = 'ASK'; //QUERY CASH & UPDATE
             $userQuantity = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol);//
             $userQuantity = @(float)$userQuantity[0]["quantity"];
@@ -120,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
                 query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
             apologize("Insert History Failure 3");
         }
-        if (query("INSERT INTO orderbook (symbol, side, type, price, locked, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $lockedAmount, $quantity, $id) === false)
+        if (query("INSERT INTO orderbook (symbol, side, type, price, locked, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $lockedUnits, $quantity, $id) === false)
         {   //INSERT INTO ORDERBOOK
             query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
             apologize(var_dump(get_defined_vars())); //dump all variables if i hit error  
