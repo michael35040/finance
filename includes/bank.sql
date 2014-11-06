@@ -170,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `orderbook` (
   `side` varchar(1) NOT NULL COMMENT 'a:ask or b:bid',
   `type` varchar(6) NOT NULL COMMENT 'limit or market',
   `price` decimal(65,30) NOT NULL,
-  `locked` int(11) NOT NULL COMMENT 'if bid order fund amount that is locked',
+  `locked` decimal(65,30) NOT NULL COMMENT 'if bid order fund amount that is locked',
   `quantity` int(11) NOT NULL COMMENT 'size quantity of order',
   `id` int(9) NOT NULL COMMENT 'user id',
   PRIMARY KEY (`uid`)
