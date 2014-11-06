@@ -135,6 +135,11 @@ function orderbook($symbol) {
         ////////////////////////
         if(empty($symbol)){apologize("No symbol selected!");}
 
+        //QUERY TO SEE IF SYMBOL EXISTS
+        $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
+        if (count($symbolCheck) != 1) //row count
+            {apologize("Incorrect Symbol. Not listed on the exchange!");}
+
         list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType, $lockedAmount) = marketOrderCheck($symbol);
         @$topBidPrice  = (float)$topBidPrice; //convert string to float
         @$topAskPrice  = (float)$topAskPrice; //convert string to float
