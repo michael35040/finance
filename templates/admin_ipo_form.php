@@ -44,10 +44,14 @@
             <td>Name</td>
             <td><input type="text" name="name"  maxlength="60"  placeholder="ex: Acme Inc." required></td>
         </tr>
+        
+        <!-- Current timestamp instead
         <tr>
             <td>Date Issued</td>
             <td><input type="date" name="date" placeholder="12/25/15" required></td>
         </tr>
+        -->
+        
         <tr>
             <td>Owner User ID #</td>
             <td><input type="number" name="userid"  min="1" max="100000000"  placeholder="ex: 134" required></td>
