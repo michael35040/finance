@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     if (!ctype_alnum($symbol)) {apologize("Symbol must be alphanumeric!");}
     if(!ctype_alpha($type) || !ctype_alpha($side)) { apologize("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
     if (!is_int($quantity) ) { apologize("Quantity must be numeric!");} //if quantity is numeric
-    if($quantity < 0){apologize("Quantity must be positive!");
+    if($quantity < 0){apologize("Quantity must be positive!");}
     $symbol = strtoupper($symbol); //cast to UpperCase
 
     if($type=='limit'){
