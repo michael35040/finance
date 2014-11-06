@@ -6,7 +6,7 @@ if ($id != 1) { apologize("Unauthorized!");}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
-orderbook($symbol);
+orderbook($_POST["symbol"]);
 }
 else
 {
