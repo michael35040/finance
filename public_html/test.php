@@ -8,7 +8,7 @@ require("../includes/config.php");  // configuration
 if ($_SERVER["REQUEST_METHOD"] != "POST")// if form is submitted
 {
 
-    //////////
+//////////
 //TOTAL AMOUNT OF BIDS/ASKS IN ORDERBOOK
 ////////
 //EXCHANGE ORDERS (COMBINED PRICE)
@@ -53,6 +53,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     if (!ctype_digit($number)) { apologize("Number must be numeric!");} //if quantity is numeric
     $symbol = strtoupper($symbol); //cast to UpperCase
 
+    //if (count($trades) < 1){apologize("Incorrect symbol!");} //check to see if exists in db
 
 
 
@@ -66,11 +67,6 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $asksTotal =	query("SELECT SUM(`quantity`) AS asktotal FROM `orderbook` WHERE side='a' AND symbol=? ", $symbol);	  // query user's portfolio
     $bidsTotal = $bidsTotal[0]['bidtotal'];
     $asksTotal = $asksTotal[0]['asktotal'];
-
-    ////////
-    //TRADES
-    //////////EXCHANGE TRADES (PROCESSED ORDERS)
-    $trades =	query("SELECT * FROM trades WHERE symbol = ? ORDER BY date DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
     ?>
     <table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center">
         <!--/////////ORDERS - COMBINED//////-->
@@ -126,13 +122,15 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
         </tbody>
 
     </table>
+    
+    
+    
     <?php
     //PLACING ORDERS
     $randomOrders = randomOrders($symbol, $number, $type);
+    
     //market   limit
-    //////////////////////////////////////////////////////////////////////////
-
-    /////////
+    ///////////
     //ORDERBOOK - POST ORDERS
     /////////
     //EXCHANGE ORDERS (COMBINED PRICE)
@@ -142,11 +140,6 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $asksTotal =	query("SELECT SUM(`quantity`) AS asktotal FROM `orderbook` WHERE side='a' AND symbol=? ", $symbol);	  // query user's portfolio
     $bidsTotal = $bidsTotal[0]['bidtotal'];
     $asksTotal = $asksTotal[0]['asktotal'];
-
-    ////////
-    //TRADES
-    //////////EXCHANGE TRADES (PROCESSED ORDERS)
-    $trades =	query("SELECT * FROM trades WHERE symbol = ? ORDER BY date DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
     ?>
     <table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center">
         <!--/////////ORDERS - COMBINED//////-->
@@ -208,7 +201,6 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     //PROCESSING ORDERS FOR TRADES
     $orderbook = orderbook($symbol);
 
-    //////////////////////////////////////////////////////////////////////////
     /////////
     //ORDERBOOK -POST TRADES
     /////////
@@ -219,11 +211,6 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $asksTotal =	query("SELECT SUM(`quantity`) AS asktotal FROM `orderbook` WHERE side='a' AND symbol=? ", $symbol);	  // query user's portfolio
     $bidsTotal = $bidsTotal[0]['bidtotal'];
     $asksTotal = $asksTotal[0]['asktotal'];
-
-    ////////
-    //TRADES
-    //////////EXCHANGE TRADES (PROCESSED ORDERS)
-    $trades =	query("SELECT * FROM trades WHERE symbol = ? ORDER BY date DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
     ?>
     <table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center">
         <!--/////////ORDERS - COMBINED//////-->
@@ -345,203 +332,9 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
 
     //EXCHANGE TRADES (PROCESSED ORDERS)
-    //$trades =       query("SELECT (SUM(quantity)/1000) AS quantity, price, date FROM trades WHERE symbol=? GROUP BY DAY(date) ORDER BY date ASC ", $symbol);
     $trades =	    query("SELECT * FROM trades WHERE symbol = ? GROUP BY DAY(date) ORDER BY uid DESC ", $symbol);	  // query user's portfolio
-    //if (count($trades) < 1){apologize("Incorrect symbol!");} //check to see if exists in db
-    $tradesGroup =  query("SELECT quantity, price, date FROM trades WHERE symbol=? ORDER BY uid DESC ", $symbol);
-
-    //EXCHANGE ORDERS
-    $bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, date ASC LIMIT 0, 5", $symbol, 'b');
-    $asks =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, date ASC LIMIT 0, 5", $symbol, 'a');
-    //EXCHANGE ORDERS (COMBINED PRICE)
-    $asksGroupChart =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='a') GROUP BY `price` ORDER BY `price` ASC", $symbol);	  // query user's portfolio
-    $bidsGroupChart =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='b') GROUP BY `price` ORDER BY `price` ASC", $symbol);	  // query user's portfolio
-    $bidsGroup =	    query("SELECT price, SUM(`quantity`) AS quantity FROM `orderbook` WHERE (symbol = ? AND side ='b') GROUP BY `price` ORDER BY `price` DESC LIMIT 0, 19", $symbol);	  // query user's portfolio
-    $asksGroup =	    query("SELECT price, SUM(`quantity`) AS quantity FROM `orderbook` WHERE (symbol = ? AND side ='a') GROUP BY `price` ORDER BY `price` ASC LIMIT 0, 19", $symbol);	  // query user's portfolio
-
-    //$asksGroup = query("select concat(1*floor(price/1), '-', 1*floor(price/1) + 1) as `price`,     sum(`quantity`) as `quantity` from orderbook WHERE (symbol = ? AND side ='a') group by 1 order by `price`", $symbol);
-
-    //TOTAL AMOUNT OF BIDS/ASKS IN ORDERBOOK
-    $bidsTotal =	query("SELECT SUM(`quantity`) AS bidtotal FROM `orderbook` WHERE (symbol = ? AND side ='b')", $symbol);	  // query user's portfolio
-    $asksTotal =	query("SELECT SUM(`quantity`) AS asktotal FROM `orderbook` WHERE (symbol = ? AND side ='a')", $symbol);	  // query user's portfolio
-    @$bidsTotal = $bidsTotal[0]['bidtotal'];
-    @$asksTotal = $asksTotal[0]['asktotal'];
-    if ($bidsTotal == 0){$bidsTotal = "No Orders";}
-    if ($asksTotal == 0){$asksTotal = "No Orders";}
-
 
 ?>
-
-
-
-
-
-
-
-
-
-    <head>
-        <script type="text/javascript" src="../public_html/js/jsapi"></script>
-        <!--script type="text/javascript" src="https://www.google.com/jsapi"></script-->
-        <script type="text/javascript">
-        google.load("visualization", "1", {packages:["corechart"]});
-            google.setOnLoadCallback(drawChart);
-            function drawChart()
-            {
-                /////////////////
-                //CHART 1
-                //TRADES
-                ////////////////
-                var data = google.visualization.arrayToDataTable([
-                    <?php
-
-                    echo("['Date', 'Price', 'Volume(k)'],"); // ['Year', 'Sales', 'Expenses'],
-                    //SQL QUERY FOR ALL TRADES
-
-                    foreach ($tradesGroup as $trade)	// for each of user's stocks
-                    {
-                        $dbDate = $trade["date"];
-                        $date = strtotime($dbDate);
-                        $price = number_format(($trade["price"]), 2, '.', '');
-                        $quantity = number_format(($trade["quantity"]), 2, '.', '');
-                        //$quantity = (int)$trade["quantity"];
-                        //$quantity = ($quantity/1000);
-
-                        echo("['" . date("m-d-Y", $date) . "', " . $price .  ", " . $quantity . "],");
-                    }//ex: ['2013',  1000, 400],
-                    ?>
-]);
-var options =
-{
-title: '<?php echo($symbol); ?> Trades (Grouped)',
-hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-vAxis: {title: 'Price', minValue: 0}
-};
-var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-chart.draw(data, options);
-//////////////
-//END CHART 1
-////////////
-
-
-//////////
-//CHART 2
-//TRADES GROUP
-//////////
-var data1 = google.visualization.arrayToDataTable([
-<?php
-
-echo("['Date', 'Price', 'Volume'],"); // ['Year', 'Sales', 'Expenses'],
-//SQL QUERY FOR ALL TRADES
-
-foreach ($trades as $trade)	// for each of user's stocks
-{
-    $dbDate = $trade["date"];
-    $date = strtotime($dbDate);
-    $price = number_format(($trade["price"]), 2, '.', '');
-    $quantity = number_format(($trade["quantity"]), 2, '.', '');
-    //$quantity = (int)$trade["quantity"];
-    //$quantity = ($quantity/1000);
-
-    echo("['" . date("m-d-Y", $date) . "', " . $price .  ", " . $quantity . "],");
-}//ex: ['2013',  1000, 400],
-?>
-]);
-var options1 =
-{
-title: '<?php echo($symbol); ?> Trades',
-hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-vAxis: {title: 'Price', minValue: 0}
-};
-var chart1 = new google.visualization.AreaChart(document.getElementById('chart_div1'));
-chart1.draw(data1, options1);
-//////////
-//END CHART 2
-////////////
-
-//////////
-//CHART 3
-//ORDERBOOK
-//////////
-var data2 = google.visualization.arrayToDataTable([
-<?php
-
-echo("['Date', 'Bids', 'Asks'],"); // ['Year', 'Sales', 'Expenses'],
-//SQL QUERY FOR ALL TRADES
-
-
-foreach ($bidsGroupChart as $trade)	// for each of user's stocks
-{
-    $date = 0;
-    $price = number_format(($trade["price"]), 2, '.', '');
-    $quantity = number_format(($trade["quantity"]), 2, '.', '');
-    echo("['" . $price . "', " . $quantity .  ", " . $date . "],");
-}
-
-foreach ($asksGroupChart as $trade)	// for each of user's stocks
-{
-    $date = 0;
-    $price = number_format(($trade["price"]), 2, '.', '');
-    $quantity = number_format(($trade["quantity"]), 2, '.', '');
-    echo("['" . $price . "', " . $date .  ", " . $quantity . "],");
-}
-
-
-
-
-?>
-]);
-var options2 =
-{
-title: '<?php echo($symbol); ?> Orderbook',
-hAxis: {title: 'Price',  titleTextStyle: {color: '#333'}},
-vAxis: {title: 'Quantity', minValue: 0}
-};
-var chart2 = new google.visualization.AreaChart(document.getElementById('chart_div2'));
-chart2.draw(data2, options2);
-//////////
-//END CHART 2
-////////////
-
-}
-</script>
-</head>
-
-<body>
-<?php
-//var_dump(get_defined_vars());
-
-$lastTrade = number_format(($trades[0]["price"]), 2, '.', '');
-$spotAsk = number_format(($asks[0]["price"]), 2, '.', '');
-$spotBid = number_format(($bids[0]["price"]), 2, '.', '');
-echo(   "       Bid: " . $spotBid .
-        "<br><b>   Trade: " . $lastTrade .
-        "</b><br>   Ask: " . $spotAsk
-    );
-?>
-<!--div id="chart_div" style="width: 900px; height: 500px;"></div-->
-
-<div id="chart_div" style="overflow:hidden;"></div>
-
-
-<div id="chart_div1" style="overflow:hidden;"></div>
-
-
-
-
-
-
-
-</body>
-
-<style>
-    /*
-     table, th, td {
-     border: 1px solid black;
-     }
-     */
-</style>
-
 <table class="table" align="center"> <!--class="bstable"-->
 
 <!--/////////TRADES//////-->
@@ -597,211 +390,8 @@ foreach ($trades as $trade)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-<table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center"><tr>
-<td>
-
-
-<table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center">
-
-<!--/////////ORDERS - COMBINED//////-->
-<tr>
-<td colspan="2" bgcolor="blue" style="color:white" size="+1" >
-<b>BIDS</b>
-</td>
-</tr>
-<tr>
-<td ><b>Qty</b></td>
-<td ><b>$</b></td>
-</tr>
-
-<tbody>
 <?php
-foreach ($bidsGroup as $order)
-{
-    $quantity = $order["quantity"];
-    $price = $order["price"];
-    echo("<tr><td >" . number_format($quantity,0,".",",") . "</td><td >" . number_format($price,2,".",",") . "</td></tr>");
-}
-?>
-
-<tr>
-<td><?php echo($bidsTotal);?></td>
-<td>ALL</td>
-</tr>
-
-</tbody>
-</table>
-
-
-
-
-</td>
-<td>
-
-<table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center">
-<tr rowspan="6">
-<td>
-<!--div id="chart_div2" style="overflow:hidden;"></div-->
-<div id="chart_div2" style="width: 900px; height: 500px;">
-</td>
-</tr>
-
-</table>
-
-</td>
-<td>
-
-
-
-<table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center">
-<tr>
-<td colspan="2" bgcolor="red" style="color:white" size="+1" >
-<b>ASKS</b>
-</td>
-</tr>
-<tr>
-<td ><b>$</b></td>
-<td ><b>Qty</b></td>
-</tr>
-
-
-<tbody>
-<?php
-foreach ($asksGroup as $order)
-{
-    $price = $order["price"];
-    $quantity = $order["quantity"];
-    echo("<tr ><td >" . number_format($price,2,".",",") . "</td><td >" . number_format($quantity,0,".",",") . "</td></tr>");
-}
-?>
-
-<tr>
-<td>ALL</td>
-<td><?php echo($asksTotal);?></td>
-</tr>
-
-</tbody>
-
-</table>
-
-
-
-</td>
-</tr></table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table class="table" align="center">
-<!--/////////ORDERS - BIDS//////-->
-<tr><td colspan="7"></td></tr> <!--blank row breaker-->
-<tr>
-<th colspan="7" bgcolor="blue" style="color:white" size="+1" >
-ORDERS - BIDS
-</th>
-</tr>
-
-<tr>
-<td>Order #</td>
-<td>Side</td>
-<!--th>Type</th-->
-<td>Date/Time (Y/M/D)</td>
-<td>Symbol</td>
-<td>Quantity</td>
-<td>Price</td>
-</tr>
-
-<tbody>
-<?php
-foreach ($bids as $row)
-{
-    //if ($row["side"]=="b"){$row["side"]="Bid";}
-    //if ($row["side"]=="a"){$row["side"]="Ask";}
-    echo("<tr>");
-    echo("<td>" . (number_format($row["uid"],0,".",",")) . "</td>");
-    if($row["side"]=='b'){$side='BID';}; if($row["side"]=='a'){$side='ASK ';};
-    echo("<td>" . htmlspecialchars($side) . "</td>");
-    echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
-    echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
-    //echo("<td>" . htmlspecialchars($row["type"]) . "</td>");
-    echo("<td>" . htmlspecialchars($row["quantity"]) . "</td>");
-    echo("<td>" . (number_format($row["price"],2,".",",")) . "</td>");
-    echo("</tr>");
-}
-?>
-</tbody>
-<!--/////////ORDERS - ASKS//////-->
-<tr><td colspan="7"></td></tr> <!--blank row breaker-->
-<tr>
-<th colspan="7" bgcolor="red" style="color:white" size="+1" >
-ORDERS - ASKS
-</th>
-</tr>
-
-<tr>
-<td>Order #</td>
-<td>Side</td>
-<!--th>Type</th-->
-<td>Date/Time (Y/M/D)</td>
-<td>Symbol</td>
-<td>Quantity</td>
-<td>Price</td>
-</tr>
-
-<tbody>
-<?php
-foreach ($asks as $row)
-{
-    //if ($row["side"]=="b"){$row["side"]="Bid";}
-    //if ($row["side"]=="a"){$row["side"]="Ask";}
-    echo("<tr>");
-    echo("<td>" . (number_format($row["uid"],0,".",",")) . "</td>");
-    if($row["side"]=='b'){$side='BID';}; if($row["side"]=='a'){$side='ASK ';};
-    echo("<td>" . htmlspecialchars($side) . "</td>");
-    echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
-    echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
-    //echo("<td>" . htmlspecialchars($row["type"]) . "</td>");
-    echo("<td>" . htmlspecialchars($row["quantity"]) . "</td>");
-    echo("<td>" . (number_format($row["price"],2,".",",")) . "</td>");
-    echo("</tr>");
-
-}
-?>
-</tbody>
-</table>
-
-
-
-
-
-<?php
-
-    //render("test_form.php", ["title" => "Success", "transaction" => $transaction, "symbol" => $symbol, "value" => $tradeTotal, "quantity" => $quantity, "commissiontotal" => $commissionTotal]); // render success form
-
-
-    // render footer
     require("../templates/footer.php");
-
 } //if post
 else{apologize("error unknown post");}
 ?>
