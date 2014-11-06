@@ -375,13 +375,18 @@ function orderbook($symbol) {
                     query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                     apologize("Failure: #21a");
                 }
-                //UPDATE HISTORY BUYER
+                //UPDATE HISTORY BUYER (COMMISSION AND TRADE TOTAL)
                 if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topBidUser, 'BUY', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeTotal) === false) {
                     query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                     apologize("Failure: #21b");
                 }
-                //UPDATE HISTORY SELLER
-                if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topAskUser, 'SELL', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeTotal) === false) {
+                //UPDATE HISTORY SELLER (NO COMMISSION AND TRAD EAMOUNT)
+                if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topAskUser, 'SELL', $symbol, $tradeSize, $tradePrice, 0, $tradeAmount) === false) {
+                    query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                    apologize("Failure: #21c");
+                }
+                //UPDATE HISTORY ADMIN (COMMISSION AND TRADE TOTAL)
+                if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, 'COMMISSION', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeTotal) === false) {
                     query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                     apologize("Failure: #21c");
                 }
