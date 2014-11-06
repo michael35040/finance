@@ -5,25 +5,23 @@
 //TESTING
 ////////////////////////////////////
 /////////////////////////////////////
-//$divisor set in constants
 
 function testNumbers()
-{
-    $i=0;
+{   $i=0;
     while ($i<100){
         $bid = ((mt_rand(0,1) * (40 + $i) ) + 100 + $i + mt_rand(1,50));
         $ask = ((mt_rand(0,1) * (40 + $i) ) + 100 + $i + mt_rand(75,100));
         echo($ask);
         echo($bid);
-
     }
-
 }
 
-function randomOrders($symbol='MSFT', $number=10, $type='limit')
+function randomOrders($symbol='A', $number=10, $type='limit')
 {
-    include("constants.php");//for $divisor
+    //include("constants.php");//for $divisor
+    $divisor=0.25;
     $randomOrders = 0;
+    
     while ($randomOrders < $number) {
         $randomOrders++;
 
@@ -60,9 +58,10 @@ function randomOrders($symbol='MSFT', $number=10, $type='limit')
         }
 
         //NEW METHOD
-        placeOrder($symbol, $type, $side, $quantity, $price, $id)
+        placeOrder($symbol, $type, $side, $quantity, $price, $id);
         //OLD METHOD
         //query("INSERT INTO orderbook (symbol, side, type, price, quantity, id) VALUES (?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $quantity, $id);
+    
     }
     return $randomOrders;
 
