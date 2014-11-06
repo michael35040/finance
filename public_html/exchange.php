@@ -124,7 +124,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
         if (query("INSERT INTO orderbook (symbol, side, type, price, locked, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $lockedUnits, $quantity, $id) === false)
         {   //INSERT INTO ORDERBOOK
             query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
-            apologize(var_dump(get_defined_vars())); //dump all variables if i hit error  
             apologize("Insert Orderbook Failure");
         }
 
@@ -142,5 +141,5 @@ else
     $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC");	  // query user's portfolio
     render("exchange_form.php", ["title" => "Exchange", "stocks" => $stocks, "assets" => $assets]); // render buy form
 }
-//var_dump(get_defined_vars()); //dump all variables if i hit error  
+// apologize(var_dump(get_defined_vars())); //dump all variables if i hit error  
 ?>
