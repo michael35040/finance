@@ -220,8 +220,6 @@ CREATE TABLE IF NOT EXISTS `portfolio` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'unique id',
   `id` int(10) NOT NULL COMMENT 'user id',
   `symbol` varchar(10) NOT NULL,
-  --name now in assets table
-  --`name` varchar(63) NOT NULL COMMENT 'company name',
   `quantity` int(65) NOT NULL,
   `locked` int(65) NOT NULL,
   `price` decimal(65,30) NOT NULL COMMENT 'avg buy price',
