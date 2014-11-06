@@ -4,7 +4,7 @@
 //CANCEL ORDER
 ////////////////////////////////////
 function cancelOrder($uid)
-{   require("constants.php"); //for $commission
+{  
     $order = query("SELECT * FROM orderbook WHERE uid = ? ORDER BY uid ASC LIMIT 0, 1", $uid);
 
     query("SET AUTOCOMMIT=0");
