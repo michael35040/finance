@@ -75,12 +75,19 @@ function clear_all()
     clear_trades();
     clear_portfolio();
     clear_history();
+    clear_assets();
     query("UPDATE `accounts` SET `units`=1000000,`locked`=0,`loan`=0,`rate`=0,`approved`=1 WHERE 1");
 }
 
 function clear_orderbook()
 {
     if (query("TRUNCATE TABLE `orderbook`") === false)
+    {echo("Database orderbook Failure");}
+}
+
+function clear_assets()
+{
+    if (query("TRUNCATE TABLE `assets`") === false)
     {echo("Database orderbook Failure");}
 }
 
