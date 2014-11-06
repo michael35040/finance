@@ -76,6 +76,7 @@ function clear_all()
     clear_trades();
     clear_portfolio();
     clear_history();
+    query("UPDATE `accounts` SET `units`=1000000,`locked`=0,`loan`=0,`rate`=0,`approved`=1 WHERE 1");
 }
 
 function clear_orderbook()
