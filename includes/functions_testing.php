@@ -59,8 +59,10 @@ function randomOrders($symbol='MSFT', $number=10, $type='limit')
             $price = 0;
         }
 
-
-        query("INSERT INTO orderbook (symbol, side, type, price, quantity, id) VALUES (?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $quantity, $id);
+        //NEW METHOD
+        placeOrder($symbol, $type, $side, $quantity, $price, $id)
+        //OLD METHOD
+        //query("INSERT INTO orderbook (symbol, side, type, price, quantity, id) VALUES (?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $quantity, $id);
     }
     return $randomOrders;
 
