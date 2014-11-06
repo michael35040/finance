@@ -293,13 +293,16 @@ function orderbook($symbol) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Update Accounts Failure: #11");
                     }
-                    ///////////////////////
-                    //GIVE UNITS TO ADMIN/OWNER
-                    ////////////////////////
-                    if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commissionAmount, $adminid) === false) //just the commission
-                    { //MOVE CASH TO LOCKED FUNDS
-                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                        apologize("Update Accounts Failure: #11a");
+                    if ($commissionAmount > 0)
+                    {
+                        ///////////////////////
+                        //GIVE UNITS TO ADMIN/OWNER
+                        ////////////////////////
+                        if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commissionAmount, $adminid) === false) //just the commission
+                        { //MOVE CASH TO LOCKED FUNDS
+                            query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                            apologize("Update Accounts Failure: #11a");
+                        }
                     }
                 } //else //if($bidFundsLocked >= $tradeTotal) 
                 
@@ -382,12 +385,6 @@ function orderbook($symbol) {
                     query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                     apologize("Failure: #21c");
                 }
-                //UPDATE HISTORY ADMIN
-                if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", 1, 'COMMISSION', $symbol, $topBidUser, $tradePrice, $commissionAmount, $topAskUser) === false) { //UPDATE HISTORY 
-                    query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                    apologize("Insert History Failure 3");
-                }
-
 
                 query("COMMIT;"); //If no errors, commit changes
                 query("SET AUTOCOMMIT=1");
