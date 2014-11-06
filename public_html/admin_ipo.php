@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $owner = $_POST["owner"]; //owner or chief executive
     $fee = $_POST["fee"]; //fee?
     $issued = $_POST["issued"]; //current amount of shares made public, issued for IPO
-    $dividend = $_POST["dividend"];
     $url = $_POST["url"];
     $type = $_POST["type"]; //share or commodity
     $rating = $_POST["rating"]; //1 - 10
