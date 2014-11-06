@@ -457,7 +457,7 @@ function orderbook($symbol) {
                         }
                     }
                     //if user still has some shares in quantity, order could be one of many from locked or they have some left in qty
-                elseif($tradeSize <= $askLocked && $askQuantity >= 0): //sells less than what they have and it only updates the line
+                elseif(($tradeSize <= $askLocked) && ($askQuantity >= 0)): //sells less than what they have and it only updates the line
                     {
                         if (query("UPDATE portfolio SET locked = (locked - ?), price = (price - ?) WHERE id = ? AND symbol = ?", $tradeSize, $tradeAmount, $topAskUser, $symbol) === false) {
                             query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
@@ -490,8 +490,8 @@ function orderbook($symbol) {
                     }
                 else {
                     query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                    //apologize(var_dump(get_defined_vars()));
-                    //apologize("Failure: #20");
+                    apologize(var_dump(get_defined_vars()));
+                    apologize("Failure: #20");
                 } //apologizes if first two conditions are not meet
 
                 ////////////////
