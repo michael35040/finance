@@ -54,7 +54,7 @@
         </tr>
         <tr>
             <td>Owner Email</td>
-            <td><input type="email" name="owner" maxlength="60" placeholder="ex: owner@abcd.com" required></td>
+            <td><input type="email" name="owner" maxlength="60" placeholder="ex: owner@abcd.com"></td>
         </tr>
         <tr>
             <td>Fee %</td>
@@ -63,7 +63,7 @@
                        onclick="fee_show_value(this.value*100);"
                        oninput="fee_show_value(this.value*100);"
                        onchange="fee_show_value(this.value*100);"
-                       required>
+                       >
                 <br><output name="feeAmount" for="fee">0</output>
                 (<span id="fee_slider_value" style="color:black;">0</span>%)
             </td>
@@ -81,13 +81,13 @@
         </tr>
         <tr>
             <td>Webpage URL</td>
-            <td><input type="url" name="url" maxlength="60" placeholder="ex: abcd.com" required></td>
+            <td><input type="url" name="url" maxlength="60" placeholder="ex: abcd.com" ></td>
         </tr>
         <tr>
             <td>Type</td>
             <td>
-                <input type="radio" name="type" value="stock"> Stock<br>
-                <input type="radio" name="type" value="commodity"> Commodity<br>
+                <input type="radio" name="type" value="stock" required> Stock<br>
+                <input type="radio" name="type" value="commodity" required> Commodity<br>
             </td>
         </tr>
         <tr>
@@ -95,13 +95,13 @@
             <td>
                 <input id="rating_slider" type="range"  name="rating" min="1" value="1" max="10" step="1" style="width:100%"
                        onchange="rating_show_value(this.value);"
-                       required>
+                       >
                 <br><span id="rating_slider_value" style="color:black;">1</span>
             </td>
         </tr>
         <tr>
             <td>Description</td>
-            <td><input type="text" name="description" maxlength="60" placeholder="ex: Makes special gadgets" required></td>
+            <td><input type="text" name="description" maxlength="60" placeholder="ex: Makes special gadgets" ></td>
         </tr>
 
         <tr>
