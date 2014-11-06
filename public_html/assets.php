@@ -9,14 +9,13 @@ $assets = []; //to send to next page
 foreach ($allAssets as $row)		// for each of user's stocks
 {
     $asset = [];
-
     $asset["symbol"] = $row["symbol"]; //set variable from stock info
     $asset["name"] = $row["name"]; //set variable from stock info
     $asset["date"] = $row["date"]; //date listed on exchange
     $asset["owner"] = $row["owner"];
     $asset["fee"] = $row["fee"];
     $asset["issued"] = $row["issued"]; //shares issued
-    $public =	query("SELECT SUM(quantity) AS quantity,  SUM(locked) AS locked FROM portfolio WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
+        $public =	query("SELECT SUM(quantity) AS quantity,  SUM(locked) AS locked FROM portfolio WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
         if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
         if(empty($public[0]["locked"])){$public[0]["locked"]=0;}
         $publicLocked = $public[0]["locked"];
@@ -37,10 +36,13 @@ foreach ($allAssets as $row)		// for each of user's stocks
         if(empty($volume[0]["price"])){$volume[0]["price"]=0;}
     $asset["volume"] = $volume[0]["quantity"];
     $asset["avgprice"] = $volume[0]["price"];
-    $trades =	    query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $asset["symbol"]);	  // query user's portfolio
+        $trades = query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $asset["symbol"]);	  // query user's portfolio
         if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
     $asset["price"] = $trades[0]["price"]; //stock price per share
     $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
+        //$dividend =	query("SELECT SUM(quantity) AS quantity FROM history WHERE type = 'dividend' AND symbol = ?", $asset["symbol"]);	  // query user's portfolio
+        $asset["dividend"]=0; //until we get real ones
+    //$asset["dividend"] = $dividend["dividend"]; //shares actually held public
 
     $assets[] = $asset;
 
