@@ -68,10 +68,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
             if ($side == 'a'){$otherSide='b';}
             elseif ($side=='b')
                 {   $otherSide='a';
-                    //basing it on last trade, might instead base it on asks of orderbook
-                    $trades = query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $symbol);	  // query user's portfolio
-                    //lock an additional amount for market orders to ensure execution.
-                    $lockedAmount = ((2 * $trades[0]["price"] * $quantity) + (1.4 * $commission * $trades[0]["price"] * $quantity)); 
+                    //lock all of the users funds for market orders
+                    $bidFunds = query("SELECT units FROM accounts WHERE id = ?", $id);
+                    $lockedAmount = $bidFunds[0]["units"]; 
                 }
             else{   query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
                     apologize("error");}
