@@ -67,16 +67,14 @@
         if($i == 0)
         {
             echo("<tr><td colspan='7'>You do not have any funds in any accounts</td></tr>");
+                 ?>
+                <tr  class="active">
+                        <td colspan="6"><strong>SUBTOTAL</strong></td>
+                        <td><strong>0</strong></td>
+                </tr>
+
+        <?php
         } ?>
-
-
-
-
-
-
-
-
-
 
 
         <tr><td colspan="7"> </td></tr><!--blank line-->
@@ -84,10 +82,6 @@
     <tr class="success">
         <td colspan="7" style="font-size:20px; text-align: center;">PORTFOLIO</td>
     </tr> <!--blank row breaker-->
-
-
-
-
 
     <tr  class="active">
         <th>Symbol</th>
@@ -135,9 +129,21 @@
     if ($i == 0) {
         echo("<tr><td colspan='7'>You do not have any stocks in your portfolio account</td></tr>");
         $total = 0;  //set to zero for networth calc
-        //$value=0; //not currently used outside of stock value
+        ?>
+        <tr  class="active">
+        <td colspan="4"><strong>SUBTOTAL</strong></td>
+            <td><strong>0</strong></td>
+            <td><strong>0</strong></td>
+            <td><strong>0</strong></td>
+        </tr>
+        <tr>
+            <td colspan="7"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order</i></td>
+        </tr>
+ 
+        <?php
     } else {
         ?>
+
 
         <!-- TOTAL STOCK WORTH -->
         <tr  class="active">
@@ -194,6 +200,10 @@
     <?php
     } //$i==0 else statement
     ?>
+
+
+
+
 
         <tr><td colspan="7"> </td></tr><!--blank line-->
     <tr  class="success">
