@@ -59,32 +59,34 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $date, $owner, $fee, $is
     ////////////////
     $ownerPortfolio = query("SELECT symbol FROM portfolio WHERE (id =? AND symbol =?)", $userid, $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
     $countRows = count($ownerPortfolio);
-    if (count($countRows) == 0)
+    //apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
+    $price = 0;
+    if ($countRows == 0)
     {
-        if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $userid, $symbol, $ownersQuantity, 0) === false) {
+        if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $userid, $symbol, $ownersQuantity, $price) === false) {
             query("ROLLBACK"); //rollback on failure
             query("SET AUTOCOMMIT=1");
-            apologize("Insert to Owners Portfolio Error");
+            apologize("Insert to Owners Portfolio Error 1");
         } //update portfolio
     } //updates if stock already owned
     elseif ($countRows == 1) //else update db
     {
-        if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $ownersQuantity, 0, $userid, $symbol) === false) {
+        if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $ownersQuantity, $price, $userid, $symbol) === false) {
             query("ROLLBACK"); //rollback on failure
             query("SET AUTOCOMMIT=1");
-            apologize("Update to Owners Portfolio Error");
+            apologize("Update to Owners Portfolio Error 2");
         } //update portfolio
     } else {
         query("ROLLBACK"); //rollback on failure
         query("SET AUTOCOMMIT=1");
-        apologize("Owner Portfolio Error");
+        apologize("Owner Portfolio Error 3");
     } //apologizes if first two conditions are not meet
 
 
     ////////////////
     //INSERT TRADE INTO PORTFOLIO OF OWNER MINUS FEE
     ////////////////
-    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $ownersQuantity, 0, $fee, $issued, 'ipo', 0, 0) === false) {
+    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $ownersQuantity, $price, $fee, $issued, 'ipo', 0, 0) === false) {
         query("ROLLBACK"); //rollback on failure
         query("SET AUTOCOMMIT=1");
         apologize("Insert Owner Trade Error");
@@ -96,7 +98,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $date, $owner, $fee, $is
     $countRows = count($ownerPortfolio);
     if (count($countRows) == 0)
     {
-        if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $adminid, $symbol, $feeQuantity, 0) === false) {
+        if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $adminid, $symbol, $feeQuantity, $price) === false) {
             query("ROLLBACK"); //rollback on failure
             query("SET AUTOCOMMIT=1");
             apologize("Insert Fee to Admin Error");
@@ -104,7 +106,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $date, $owner, $fee, $is
     } //updates if stock already owned
     elseif ($countRows == 1) //else update db
     {
-        if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $feeQuantity, 0, $adminid, $symbol) === false) {
+        if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $feeQuantity, $price, $adminid, $symbol) === false) {
             query("ROLLBACK"); //rollback on failure
             query("SET AUTOCOMMIT=1");
             apologize("Update to Owners Portfolio Error");
@@ -118,7 +120,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $date, $owner, $fee, $is
     ////////////////
     //INSERT TRADE SHARES INTO PORTFOLIO OF ADMIN
     ////////////////
-    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $adminid, $userid, $feeQuantity, 0, $fee, $issued, 'ipo', 0, 0) === false) {
+    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $adminid, $userid, $feeQuantity, $price, $fee, $issued, 'ipo', 0, 0) === false) {
         query("ROLLBACK"); //rollback on failure
         query("SET AUTOCOMMIT=1");
         apologize("Insert Admin Trade Error");
