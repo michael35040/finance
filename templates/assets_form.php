@@ -29,8 +29,7 @@
         echo('<div  class="hiddenRow">');
         echo('<tr class="accordian-body collapse" id="demo' . $i . '">');
         echo('<td colspan="1">' . htmlspecialchars($asset["name"]) . '
-            <br>' . htmlspecialchars($asset["url"]) . '
-            <br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '</td>');
+            <br>' . htmlspecialchars($asset["url"]) . '</td>');
         echo('<td >' . $unitsymbol . number_format($asset["bid"], 2, ".", ",") . ' - Bid
             <br>' . $unitsymbol . number_format($asset["ask"], 2, ".", ",") . ' - Ask
             <br>' . $unitsymbol . number_format($asset["avgprice"], 2, ".", ",") . ' - Avg. Price (30d)</td>');
@@ -38,7 +37,8 @@
             <br>' . number_format($asset["issued"], 0, ".", ",") . ' - Issued
             <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
         echo('<td >Dividend: ' . number_format($asset["dividend"], 2, ".", ",") .
-            '<br>Rating: ' . htmlspecialchars($asset["rating"]) . '</td>');
+            '<br>Rating: ' . htmlspecialchars($asset["rating"]) . '
+            <br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '</td>');
         echo('</tr>');
         echo('</div>');
     }
