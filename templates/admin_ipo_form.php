@@ -46,16 +46,13 @@
         </tr>
         <tr>
             <td>Date Issued</td>
-            <td><input type="date" name="date"  required></td>
+            <td><input type="date" name="date" placeholder="12/25/15" required></td>
         </tr>
         <tr>
             <td>Owner User ID #</td>
             <td><input type="number" name="userid"  min="1" max="100000000"  placeholder="ex: 134" required></td>
         </tr>
-        <tr>
-            <td>Owner Email</td>
-            <td><input type="email" name="owner" maxlength="60" placeholder="ex: owner@abcd.com"></td>
-        </tr>
+
         <tr>
             <td>Fee %</td>
             <td>
@@ -79,17 +76,26 @@
                 <br><span id="issued_slider_value" style="color:black;">10,000</span>
             </td>
         </tr>
-        <tr>
-            <td>Webpage URL</td>
-            <td><input type="url" name="url" maxlength="60" placeholder="ex: abcd.com" ></td>
-        </tr>
+        
         <tr>
             <td>Type</td>
             <td>
                 <input type="radio" name="type" value="stock" required> Stock<br>
                 <input type="radio" name="type" value="commodity" required> Commodity<br>
             </td>
+        </tr>        
+        
+
+        <tr>
+            <td>Owner Email</td>
+            <td><input type="email" name="owner" maxlength="60" placeholder="ex: owner@abcd.com"></td>
         </tr>
+        
+        <tr>
+            <td>Webpage URL</td>
+            <td><input type="url" name="url" maxlength="60" placeholder="ex: abcd.com" ></td>
+        </tr>
+
         <tr>
             <td>Rating (1-10)</td>
             <td>
