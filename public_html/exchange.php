@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
                 {   $otherSide='a';
                     //lock all of the users funds for market orders
                     $bidFunds = query("SELECT units FROM accounts WHERE id = ?", $id);
-                    $lockedAmount = $bidFunds[0]["units"]; 
+                    $lockedUnits = $bidFunds[0]["units"]; 
                 }
             else{   query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
                     apologize("error");}
@@ -72,12 +72,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
         if ($side == 'b'):
         {
             $transaction = 'BID';
-            if($type=='limit') { $lockedAmount=$tradeTotal; }
+            if($type=='limit') { $lockedUnits=$tradeTotal; }
             //QUERY CASH & UPDATE
             $units =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
             $units = $units[0]['units'];	//convert array from query to value
             //WILL CONDUCT ANOTHER CHECK AT ORDERBOOK PROCESS TO ENSURE USER UNITS > 0 and ENOUGH IN LOCKED
-            if ($units < $lockedAmount)
+            if ($units < $lockedUnits)
             {
                 query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
                 apologize("You do not have enough for this transaction. You only have: " . $units . ". Attempted to buy: " . $tradeTotal . "." );
