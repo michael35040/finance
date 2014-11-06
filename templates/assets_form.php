@@ -42,6 +42,10 @@
         echo('</tr>');
         echo('</div>');
     }
+    if($i==0)
+    {
+    echo("<tr><td>No public assets</td></tr>");
+    }
     ?>
     </tbody>
 </table>
