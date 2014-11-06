@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
     @$symbol = $_POST["symbol"];	//assign post variables to local variables, not really needed but makes coding easier
     @$quantity = $_POST["quantity"]; //quantity/volume/amount to trade
+    @$quantity = (int)$_POST["quantity"]; //not set on market orders
     @$side = $_POST["side"]; //buy/bid or sell/ask 
     @$price = (float)$_POST["price"]; //not set on market orders
     @$type = $_POST["type"]; //limit or market
@@ -28,7 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     if (preg_match("/^\d+$/", $quantity) == false) { apologize("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
     if (!ctype_alnum($symbol)) {apologize("Symbol must be alphanumeric!");}
     if(!ctype_alpha($type) || !ctype_alpha($side)) { apologize("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
-    if (!ctype_digit($quantity) ) { apologize("Quantity must be numeric!");} //if quantity is numeric
+    if (!is_int($quantity) ) { apologize("Quantity must be numeric!");} //if quantity is numeric
+    if($quantity < 0){apologize("Quantity must be positive!");
     $symbol = strtoupper($symbol); //cast to UpperCase
 
     if($type=='limit'){
@@ -120,7 +122,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
         }
         if (query("INSERT INTO orderbook (symbol, side, type, price, locked, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $lockedAmount, $quantity, $id) === false)
         {   //INSERT INTO ORDERBOOK
-                query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
+            query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
+            apologize(var_dump(get_defined_vars())); //dump all variables if i hit error  
             apologize("Insert Orderbook Failure");
         }
 
