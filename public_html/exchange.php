@@ -80,12 +80,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
                 query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
                 apologize("You do not have enough for this transaction. You only have: " . $units . ". Attempted to buy: " . $tradeTotal . "." );
             }
-            else (query("UPDATE accounts SET units = (units - ?), locked = (locked + ?) WHERE id = ?", $lockedAmount, $lockedAmount, $id) === false) //MOVE CASH TO LOCKED FUNDS
+            else 
             {
-                query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
-                apologize("Updates Accounts Failure");
+                if(query("UPDATE accounts SET units = (units - ?), locked = (locked + ?) WHERE id = ?", $lockedAmount, $lockedAmount, $id) === false) //MOVE CASH TO LOCKED FUNDS
+                {
+                    query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
+                    apologize("Updates Accounts Failure");
+                }
             }
-
 
         } // transaction type for history	//b for bid
         elseif ($side == 'a'):
@@ -99,10 +101,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
                 query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
                 apologize("You do not have enough for this transaction. You only have: " . $userQuantity . ". Attempted to sell: " . $quantity . "." );
             }
-            else (query("UPDATE portfolio SET quantity = (quantity - ?), locked = (locked + ?) WHERE (id = ? AND symbol = ?)", $quantity, $quantity, $id, $symbol) === false) //MOVE CASH TO LOCKED FUNDS
+            else 
             {
-                query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
-                apologize("Updates Accounts Failure");
+                if(query("UPDATE portfolio SET quantity = (quantity - ?), locked = (locked + ?) WHERE (id = ? AND symbol = ?)", $quantity, $quantity, $id, $symbol) === false) //MOVE CASH TO LOCKED FUNDS
+                {
+                    query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
+                    apologize("Updates Accounts Failure");
+                }
             }
         }	// transaction type for history //a for ask
         else: { apologize("Order Side Error."); }
