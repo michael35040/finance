@@ -1,7 +1,6 @@
 
 <?php
 require("../includes/config.php");
-require("../includes/config.php");  // configuration
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
@@ -10,6 +9,7 @@ orderbook($symbol);
 else
 {
    $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC"); // query assets
+    require("../templates/header.php");
   ?>
   
   
@@ -58,6 +58,7 @@ else
   
   
   <?php
+  require("../templates/footer.php");
 } //else !post
 
 ?>
