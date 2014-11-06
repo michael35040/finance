@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $publicLocked = $public[0]["locked"];
         $publicQuantity = $public[0]["quantity"];
     $asset["public"] = $publicLocked+$publicQuantity; //shares actually held public
-    $volume =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY MONTH(date) ORDER BY uid ASC ", $symbol);	  // query user's portfolio
+    $volume =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY MONTH(date) ORDER BY uid ASC LIMIT 0, 500", $symbol);	  // query user's portfolio
         if(empty($volume[0]["quantity"])){$volume[0]["quantity"]=0;}
         if(empty($volume[0]["price"])){$volume[0]["price"]=0;}
     $asset["volume"] = $volume[0]["quantity"];
