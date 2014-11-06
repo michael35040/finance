@@ -10,7 +10,8 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     $divisor = 0.25;  //constants.php
 
     if (empty($symbol) || empty($quantity) ||  empty($type) || empty($side)) { apologize("Please fill all required fields (Symbol, Quantity, Type, Side)."); } //check to see if empty
-
+    if ($type="limit"){ if(empty($price)){apologize("Limit order requires price");}}
+    
     //QUERY TO SEE IF SYMBOL EXISTS
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
     if (count($symbolCheck) != 1) {apologize("Incorrect Symbol. Not listed on the exchange!");} //row count
