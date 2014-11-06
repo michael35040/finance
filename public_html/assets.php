@@ -22,7 +22,6 @@ foreach ($allAssets as $row)		// for each of user's stocks
         $publicLocked = $public[0]["locked"];
         $publicQuantity = $public[0]["quantity"];
     $asset["public"] = $publicLocked+$publicQuantity; //shares actually held public
-    $asset["dividend"] = $row["dividend"]; //shares actually held public
     $asset["url"] = $row["url"]; //webpage
     $asset["type"] = $row["type"]; //type of asset (shares, commodity)
     $asset["rating"] = $row["rating"]; //my rating
