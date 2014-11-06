@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
     @$symbol = $_POST["symbol"];
     @$name = $_POST["name"];
-    @$date = $_POST["date"]; //date issued
+    //@$date = $_POST["date"]; //date issued
     @$userid = $_POST["userid"]; //owner or chief executive
     @$owner = $_POST["owner"]; //owner or chief executive
     @$fee = $_POST["fee"]; //fee?
