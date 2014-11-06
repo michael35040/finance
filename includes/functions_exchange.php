@@ -3,8 +3,12 @@
 ////////////////////////////////////
 //PLACE ORDER
 ////////////////////////////////////
-function placeOrder($symbol, $quantity, $type, $side, $id)
+function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 {
+    //BROKEN!!!
+    //require 'constants.php'; //for $commission
+    $divisor = 0.25;  //constants.php
+
     if (empty($symbol) || empty($quantity) ||  empty($type) || empty($side)) { apologize("Please fill all required fields (Symbol, Quantity, Type, Side)."); } //check to see if empty
 
     //QUERY TO SEE IF SYMBOL EXISTS
@@ -249,6 +253,7 @@ function marketOrderCheck($symbol)
 //EXCHANGE MARKET
 ////////////////////////////////////
 function orderbook($symbol) {
+        //BROKEN!!!
         //require 'constants.php'; //for $commission
         $commission = 0.05;  //constants.php
         $adminid = 1; //constants.php
