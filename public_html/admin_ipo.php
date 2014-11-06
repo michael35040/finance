@@ -8,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
     @$symbol = $_POST["symbol"];
     @$name = $_POST["name"];
-    //@$date = $_POST["date"]; //date issued
     @$userid = $_POST["userid"]; //owner or chief executive
     @$owner = $_POST["owner"]; //owner or chief executive
     @$fee = $_POST["fee"]; //fee?
@@ -21,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
     if (empty($symbol)) { apologize("You must enter symbol."); }
     if (empty($name)) { apologize("You must enter name."); }
-    //if (empty($date)) { apologize("You must enter date."); }
     if (empty($userid)) { apologize("You must enter user id."); } //owners user id
     //if (empty($owner)) { apologize("You must enter owner."); } //owners name
     //if (empty($fee)) { apologize("You must enter fee."); }
@@ -47,8 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     ////////////////
     //INSERT ASSET
     ////////////////
-    if (query("INSERT INTO assets (`symbol`, `name`, `date`, `owner`, `fee`, `issued`, `url`, `type`, `rating`, `description`)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $date, $owner, $fee, $issued, $url, $type, $rating, $description) === false)  //create IPO
+    if (query("INSERT INTO assets (`symbol`, `name`, `owner`, `fee`, `issued`, `url`, `type`, `rating`, `description`)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $owner, $fee, $issued, $url, $type, $rating, $description) === false)  //create IPO
     {
         query("ROLLBACK"); //rollback on failure
         query("SET AUTOCOMMIT=1");
