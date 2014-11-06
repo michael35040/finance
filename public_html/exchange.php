@@ -9,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$quantity = (int)$_POST["quantity"]; //not set on market orders
     @$price = (float)$_POST["price"]; //not set on market orders
 
-     if (empty($symbol) || empty($price) || empty($quantity) || empty($type) || empty($side)) { apologize("Incomplete form!"); } //check to see if empty
     
     list($transaction, $symbol, $tradeTotal, $quantity, $commissionTotal) = placeOrder($symbol, $type, $side, $quantity, $price, $id);
     @$tradeTotal = (float)$tradeTotal; //convert string to float
