@@ -172,12 +172,12 @@ function orderbook($symbol)
             //if commission is NOT set, make it zero
 
             $tradeAmount = ($tradePrice * $tradeSize);
-            round($tradeAmount, 2);
+            $tradeAmount = round($tradeAmount, 2);
             if ($tradeAmount == 0) {apologize("Trade Amount is 0");}
             
             if (!isset($commission)) { $commission = 0;} //set in constants.php
             $commissionAmount = ($commission * $tradeAmount);
-            round($commissionTotal, 2);            
+            $commissionAmount = round($commissionTotal, 2);            
            
             $tradeTotal = ($tradeAmount + $commissionAmount);
 
@@ -341,9 +341,9 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     }
     //NEW VARS FOR DB INSERT
     $tradeAmount = $price * $quantity;        // calculate total value (stock's price * quantity)
-    round($tradeAmount, 2);  
+    $tradeAmount = round($tradeAmount, 2);  
     $commissionTotal = $commission * $tradeAmount; //commission set in finance.php//$commission = 00.0599; //CHANGE THIS VARIABLE TO SET COMMISSION PERCENTAGE //(Ex 00.1525 is 15.25%)
-    round($commissionTotal, 2);  
+    $commissionTotal = round($commissionTotal, 2);  
     $tradeTotal = ($tradeAmount + $commissionTotal);
  
 
