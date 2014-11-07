@@ -16,7 +16,7 @@ function getCommission($total)
     
     //check to ensure it is to the nearest quarter
     $commissionModulus = fmod($commissionAmount, $divisor);
-    if($priceModulus != 0){apologize("Commission Amount Error. $divisor / $commissionAmount");} //checks to see if quarter increment
+    if($commissionModulus != 0){apologize("Commission Amount Error. $divisor / $commissionAmount");} //checks to see if quarter increment
 
     //should need it but just in case.
     $commissionAmount = round($tradeAmount, 2); 
@@ -197,7 +197,7 @@ function orderbook($symbol)
             $tradeAmount = round($tradeAmount, 2);
             if ($tradeAmount == 0) {apologize("Trade Amount is 0");}
             
-            $commissionAmount = getCommission();
+            $commissionAmount = getCommission($tradeAmount);
            
             $tradeTotal = ($tradeAmount + $commissionAmount);
 
