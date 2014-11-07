@@ -389,7 +389,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     }	// transaction type for history //a for ask
     else { apologize("Order Side Error."); }
     //UPDATE HISTORY
-    if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $transaction, $symbol, $quantity, $price, $commissionTotal, $tradeTotal) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Insert History Failure 3"); }
+    if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $transaction, $symbol, $quantity, $price, $commissionAmount, $tradeTotal) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Insert History Failure 3"); }
     //INSERT INTO ORDERBOOK
     if (query("INSERT INTO orderbook (symbol, side, type, price, locked, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $lockedUnits, $quantity, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Insert Orderbook Failure"); }
 
