@@ -131,7 +131,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 ////////////////////////////////////
 function cancelOrder($uid)
 {  
-    $order = query("SELECT * FROM orderbook WHERE uid = ? ORDER BY uid ASC LIMIT 0, 1", $uid);
+    $order = query("SELECT * FROM orderbook WHERE uid = ?", $uid);
 
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
@@ -278,6 +278,10 @@ function orderbook($symbol) {
         @$topBidPrice  = (float)$topBidPrice; //convert string to float
         @$topAskPrice  = (float)$topAskPrice; //convert string to float
 
+        if($asks[0]["quantity"] == 0) {cancelOrder($asks[0]["uid"]);}
+        if($bids[0]["quantity"] == 0) {cancelOrder($bids[0]["uid"]);}
+        if(($bids[0]["quantity"] < 0) || ($asks[0]["quantity"] < 0)) {apologize("Negative Quantity");}
+
         ////////////////////////
         //PROCESS LIMIT ORDERS
         ////////////////////////
@@ -302,10 +306,12 @@ function orderbook($symbol) {
             @$topBidUser = ($bids[0]["id"]);
             //apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
 
+
             $orderProcessed++; //orders processed plus 1
 
             if ($topBidPrice >= $topAskPrice) //TRADES ARE POSSIBLE
             {
+
                 //DETERMINE EXECUTED PRICE (bid or ask) BY EARLIER DATE TIME (using UID instead of DATE)
                 //UID is unique where you can have 2 similar date times.
                 //per market rules, first to orderbook sets trade price if they cross
@@ -336,62 +342,10 @@ function orderbook($symbol) {
                 if (!isset($commission)) { $commission = 0;} //set in constants.php
 
                 //DETERMINE TRADE SIZE
-                if ($topBidSize < $topAskSize) {
-                    $tradeSize = $topBidSize; //BID IS SMALLER SO DELETE AND UPDATE ASK ORDER
-                    //UPDATE ASK ORDER;
-                    if (query("UPDATE orderbook SET quantity = quantity -? WHERE uid = ?", $tradeSize, $topAskUID) === false) {
-                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                        apologize("Size OB Failure: #3");
-                    }
-                    // DELETE BID ORDER
-                    if (query("DELETE FROM orderbook WHERE uid = ?", $topBidUID) === false) {
-                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                        apologize("Delete OB Failure: #4");
-                    }
-                    //WHEN BID ORDER DELETED RETURN LEFT OVER LOCKED FUNDS
-                    $tradeTotal = (($tradePrice * $tradeSize) + ($commission * ($tradePrice * $tradeSize)));
-                    $returnAmount = ($lockedAmount-$tradeTotal);
-                    if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $returnAmount, $topBidUser) === false)
-                    {
-                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                        apologize("Update Accounts Failure: #10");
-                    }
-                } elseif ($topBidSize > $topAskSize) {
-                    $tradeSize = $topAskSize;
-                    //UPDATE BID ORDER
-                    $tradeTotal = (($tradePrice * $tradeSize) + ($commission * ($tradePrice * $tradeSize)));
-                    if (query("UPDATE orderbook SET quantity = quantity - ?, locked = locked - ? WHERE uid = ?", $tradeSize, $tradeTotal, $topBidUID) === false) {
-                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                        apologize("Update OB Failure: #5");
-                    }
-                    // DELETE ASK
-                    if (query("DELETE FROM orderbook WHERE uid = ?", $topAskUID) === false) {
-                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                        apologize("Delete OB Failure: #6");
-                    }
-                } elseif ($topBidSize == $topAskSize) {
-                    $tradeSize = $topAskSize;
-                    //DELETE BOTH ORDERS AFTER TRADE
-                    if (query("DELETE FROM orderbook WHERE uid = ?", $topAskUID) === false) {
-                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                        apologize("Delete OB Failure: #8");
-                    }
-                    if (query("DELETE FROM orderbook WHERE uid = ?", $topBidUID) === false) {
-                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                        apologize("Delete OB Failure: #7");
-                    }
-                    //WHEN BID ORDER DELETED RETURN LEFT OVER LOCKED FUNDS
-                    $tradeTotal = (($tradePrice * $tradeSize) + ($commission * ($tradePrice * $tradeSize)));
-                    $returnAmount = ($lockedAmount-$tradeTotal);
-                    if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $returnAmount, $topBidUser) === false)
-                    {
-                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                        apologize("Update Accounts Failure: #10");
-                    }
-                } else {
-                    query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                    apologize("Size Failure: #9");
-                }
+                if ($topBidSize <= $topAskSize) { $tradeSize = $topBidSize;}  //BID IS SMALLER SO DELETE AND UPDATE ASK ORDER
+                elseif ($topBidSize > $topAskSize) { $tradeSize = $topAskSize;}
+                else {  query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                        apologize("Size Failure: #9"); }
 
                 //if commission is NOT set, make it zero
                 if (!isset($commission)) { $commission = 0;} //set in constants.php
@@ -400,6 +354,16 @@ function orderbook($symbol) {
                 $tradeTotal = ($tradeAmount + $commissionAmount);
                 if ($tradeSize == 0) {apologize("Trade Size is 0"); } //catch if trade size is null or zero
                 if ($tradeAmount == 0) {apologize("Trade Amount is 0");}
+                    //UPDATE ASK ORDER;
+                    if (query("UPDATE orderbook SET quantity = quantity -? WHERE uid = ?", $tradeSize, $topAskUID) === false) {
+                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                        apologize("Size OB Failure: #3");
+                    }
+                    // UPDATE BID ORDER
+                    if (query("UPDATE orderbook SET quantity = quantity - ?, locked = locked - ? WHERE uid = ?", $tradeSize, $tradeTotal, $topBidUID) === false) {
+                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                        apologize("Update OB Failure: #5");
+                    }
 
                 ///////////
                 //BID INFO
@@ -444,24 +408,7 @@ function orderbook($symbol) {
                             apologize("Update Accounts Failure: #11a");
                         }
                     }
-                } //else //if($bidFundsLocked >= $tradeTotal) 
-
-
-
-                /////////////////////
-                //
-                //OLD
-                //
-                /////////////////////
-                $askQuantityRemaining = ($topAskSize - $topBidSize); //ask has larger qty; update their order with new qty after trade if not 0
-                $bidQuantityRemaining = ($topBidSize - $topAskSize); //bid has larger qty; update their order with new qty after trade if not 0
-                $NewLockedAmount = (($bidQuantityRemaining*$topBidPrice)+($bidQuantityRemaining*$topBidPrice*$commission));
-                $returnAmount = ($lockedAmount-$NewLockedAmount);
-
-
-
-
-
+                } //else //if($bidFundsLocked >= $tradeTotal)
                 //////////
                 //ASK INFO            
                 /////////            
