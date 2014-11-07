@@ -1,6 +1,29 @@
 <?php
 //apologize(var_dump(get_defined_vars()));
 
+/////////////////////////////////
+//COMMISSION
+///////////////////////////////////
+function getCommission($total)
+{
+    $divisor = 0.25;
+    $commission = 0.05;
+    $commissionAmount = $total * $commission; //ie 13.6875 = 273.75 * 0.05  //(5qty * $54.75)
+    $commissionAmount = $commissionAmount * 4; //ie 54.75 = 13.6875 * 4
+    //ceil to round up and floor to round down
+    $commissionAmount = ceil ($commissionAmount); //ie 55 = ceil(54.75)
+    $commissionAmount = $commissionAmount/4; //ie 13.75
+    
+    //check to ensure it is to the nearest quarter
+    $commissionModulus = fmod($commissionAmount, $divisor);
+    if($priceModulus != 0){apologize("Commission Amount Error. $divisor / $commissionAmount");} //checks to see if quarter increment
+
+    //should need it but just in case.
+    $commissionAmount = round($tradeAmount, 2); 
+    
+    return($commissionAmount);
+}
+
 ////////////////////////////////////
 //CANCEL ORDER
 ////////////////////////////////////
@@ -110,7 +133,6 @@ function OrderbookTop($symbol)
 ////////////////////////////////////
 function orderbook($symbol) 
 {   require 'constants.php'; //for $commission
-    //$commission = 0.05;  //constants.php
     //$adminid = 1; //constants.php
         
     //PROCESS MARKET ORDERS
@@ -161,8 +183,8 @@ function orderbook($symbol)
             //START TRANSACTION
             query("SET AUTOCOMMIT=0");
             query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
-            if (!isset($commission)) { $commission = 0;} //set in constants.php
-            
+
+
             //DETERMINE TRADE SIZE
             if ($topBidSize <= $topAskSize) { $tradeSize = $topBidSize;}  //BID IS SMALLER SO DELETE AND UPDATE ASK ORDER
             elseif ($topBidSize > $topAskSize) { $tradeSize = $topAskSize;}
@@ -175,9 +197,7 @@ function orderbook($symbol)
             $tradeAmount = round($tradeAmount, 2);
             if ($tradeAmount == 0) {apologize("Trade Amount is 0");}
             
-            if (!isset($commission)) { $commission = 0;} //set in constants.php
-            $commissionAmount = ($commission * $tradeAmount);
-            $commissionAmount = round($commissionAmount, 2);            
+            $commissionAmount = getCommission();
            
             $tradeTotal = ($tradeAmount + $commissionAmount);
 
@@ -315,9 +335,8 @@ function orderbook($symbol)
 //PLACE ORDER
 ////////////////////////////////////
 function placeOrder($symbol, $type, $side, $quantity, $price, $id)
-{   require 'constants.php'; //for $commission
-    //$commission = 0.05;  //constants.php
-    //$divisor = 0.25;  //constants.php
+{   //require 'constants.php'; //for $divisor
+    $divisor = 0.25;
 
     if (empty($symbol) || empty($quantity) ||  empty($type) || empty($side)) { apologize("Please fill all required fields (Symbol, Quantity, Type, Side)."); } //check to see if empty
     if ($type=="limit"){ if(empty($price)){apologize("Limit order requires price");}}
@@ -342,8 +361,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     //NEW VARS FOR DB INSERT
     $tradeAmount = $price * $quantity;        // calculate total value (stock's price * quantity)
     $tradeAmount = round($tradeAmount, 2);  
-    $commissionAmount = $commission * $tradeAmount; //commission set in finance.php//$commission = 00.0599; //CHANGE THIS VARIABLE TO SET COMMISSION PERCENTAGE //(Ex 00.1525 is 15.25%)
-    $commissionAmount = round($commissionAmount, 2);  
+    $commissionAmount = getCommission($tradeAmount); 
     $tradeTotal = ($tradeAmount + $commissionAmount);
  
 
