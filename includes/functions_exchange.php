@@ -170,12 +170,17 @@ function orderbook($symbol)
             if ($tradeSize == 0) {apologize("Trade Size is 0"); } //catch if trade size is null or zero
             
             //if commission is NOT set, make it zero
-            if (!isset($commission)) { $commission = 0;} //set in constants.php
-            $commissionAmount = ($commission * ($tradePrice * $tradeSize));
+
             $tradeAmount = ($tradePrice * $tradeSize);
-            $tradeTotal = ($tradeAmount + $commissionAmount);
+            round($tradeAmount, 2);
             if ($tradeAmount == 0) {apologize("Trade Amount is 0");}
             
+            if (!isset($commission)) { $commission = 0;} //set in constants.php
+            $commissionAmount = ($commission * $tradeAmount);
+            round($commissionTotal, 2);            
+           
+            $tradeTotal = ($tradeAmount + $commissionAmount);
+
             //UPDATE ASK ORDER
             if (query("UPDATE orderbook SET quantity=quantity-? WHERE uid=?", $tradeSize, $topAskUID) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Size OB Failure: #3"); } //rollback on failure
             // UPDATE BID ORDER
@@ -336,8 +341,11 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     }
     //NEW VARS FOR DB INSERT
     $tradeAmount = $price * $quantity;        // calculate total value (stock's price * quantity)
+    round($tradeAmount, 2);  
     $commissionTotal = $commission * $tradeAmount; //commission set in finance.php//$commission = 00.0599; //CHANGE THIS VARIABLE TO SET COMMISSION PERCENTAGE //(Ex 00.1525 is 15.25%)
+    round($commissionTotal, 2);  
     $tradeTotal = ($tradeAmount + $commissionTotal);
+ 
 
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
