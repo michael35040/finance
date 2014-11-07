@@ -167,9 +167,7 @@ function OrderbookTop($symbol)
 //EXCHANGE MARKET
 ////////////////////////////////////
 function orderbook($symbol) 
-{   require 'constants.php'; //for $commission
-    //$adminid = 1; //constants.php
-        
+{
     //PROCESS MARKET ORDERS
     if(empty($symbol)){apologize("No symbol selected!");}
 
@@ -226,16 +224,13 @@ function orderbook($symbol)
             else {  query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Size Failure: #9"); } //rollback on failure
             if ($tradeSize == 0) {apologize("Trade Size is 0"); } //catch if trade size is null or zero
             
-            //if commission is NOT set, make it zero
 
             $tradeAmount = ($tradePrice * $tradeSize);
             $tradeAmount = round($tradeAmount, 2);
             if ($tradeAmount == 0) {apologize("Trade Amount is 0");}
             
             $commissionAmount = getCommission($tradeAmount);
-           
-            $tradeTotal = ($tradeAmount + $commissionAmount);
-            
+
             ////////////
             //ORDERBOOK
             /////////////
@@ -245,7 +240,9 @@ function orderbook($symbol)
             // UPDATE BID ORDER
             if (query("UPDATE orderbook SET quantity=quantity-? WHERE uid=?", $tradeSize, $topBidUID) === false) 
                 {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update OB Failure: #5"); }
- 
+            // UPDATE BID ORDER LOCKED AMOUNT
+            if (query("UPDATE orderbook SET locked=locked-? WHERE uid=?", $tradeAmount, $topBidUID) === false) 
+                {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update OB Failure: #5a"); }            
  
             ///////////
             //ACCOUNTS
@@ -255,14 +252,14 @@ function orderbook($symbol)
             $bidFundsLocked = $bidFunds[0]["locked"];
             $bidFundsUnits = $bidFunds[0]["units"];
             //IF BUYER DOESN'T HAVE ENOUGH FUNDS CANCEL ORDER
-            if ($bidFundsLocked < $tradeTotal || $bidFundsUnits < 0 || $bidFundsLocked < 0) 
+            if ($bidFundsLocked < $tradeAmount || $bidFundsUnits < 0 || $bidFundsLocked < 0) 
                 {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUser, "all"); 
                 apologize("Buyer does not have enough funds. Buyers orders deleted"); }
             //REMOVE LOCKED FUNDS
-            else {  if (query("UPDATE accounts SET locked = (locked - ?) WHERE id = ?", $tradeTotal, $topBidUser) === false)
+            else {  if (query("UPDATE accounts SET locked = (locked - ?) WHERE id = ?", $tradeAmount, $topBidUser) === false)
                         { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update Accounts Failure: #10");}
                     //GIVE UNITS TO ASK USER MINUS COMMISSION
-                    if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $tradeAmount, $topAskUser) === false) 
+                    if (query("UPDATE accounts SET units = (units + ? - ?) WHERE id = ?", $tradeAmount, $commissionAmount, $topAskUser) === false) 
                         { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update Accounts Failure: #11"); }
                     //GIVE COMMISSION TO ADMIN/OWNER
                     if ($commissionAmount > 0) 
@@ -279,6 +276,7 @@ function orderbook($symbol)
             $askQuantityLocked = query("SELECT quantity, locked FROM portfolio WHERE (id = ? AND symbol = ?)", $topAskUser, $symbol); 
             @$askQuantity = (float) $askQuantityLocked[0]["quantity"];
             @$askLocked = (float) $askQuantityLocked[0]["locked"];
+            
             //REMOVE SHARES FROM ASK USER
             //IF SELLER TRYING TO SELL MORE THEN THEY OWN CANCEL ORDER
             if ($tradeSize > $askLocked) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topAskUser, "all"); 
@@ -289,19 +287,20 @@ function orderbook($symbol)
                     query("SET AUTOCOMMIT=1"); apologize("Failure: #14"); } }
             // UPDATE IF ONLY A PARTIAL SALE
             elseif(($tradeSize <= $askLocked) && ($askQuantity >= 0)) 
-            {   if (query("UPDATE portfolio SET locked = (locked - ?), price = (price - ?) WHERE id = ? AND symbol = ?", $tradeSize, $tradeAmount, $topAskUser, $symbol) === false) 
+            {   if (query("UPDATE portfolio SET locked = (locked - ?), price = (price - ? - ?) WHERE id = ? AND symbol = ?", $tradeSize, $tradeAmount, $commissionAmount, $topAskUser, $symbol) === false) 
                     { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #15"); } }
             else { query("ROLLBACK"); query("SET AUTOCOMMIT=1");apologize("Failure: #16"); }
+            
             //GIVE SHARES TO BID USER
             $bidQuantityRows = query("SELECT symbol FROM portfolio WHERE (id = ? AND symbol = ?)", $topBidUser, $symbol); //Checks to see if they already own stock to determine if we should insert or update tables
             $countRows = count($bidQuantityRows);
             //INSERT IF NOT ALREADY OWNED
             if ($countRows == 0) 
-            {   if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $topBidUser, $symbol, $tradeSize, $tradeTotal) === false) {
+            {   if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $topBidUser, $symbol, $tradeSize, $tradeAmount) === false) {
                     query("ROLLBACK"); query("SET AUTOCOMMIT=1"); pologize("Failure: #18, Bid Quantity & Trade Size"); } } 
             //UPDATE IF ALREADY OWNED
             elseif($countRows == 1) 
-            {   if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $tradeSize, $tradeTotal, $topBidUser, $symbol) === false) 
+            {   if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $tradeSize, $tradeAmount, $topBidUser, $symbol) === false) 
                 {   query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #19"); } }
             //ERROR: TO MANY ROWS
             else { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #20"); }  //apologize(var_dump(get_defined_vars()));
@@ -309,18 +308,18 @@ function orderbook($symbol)
             ///////////
             //TRADE
             ///////////  
-            if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $topBidUser, $topAskUser, $tradeSize, $tradePrice, $commissionAmount, $tradeTotal, $tradeType, $topBidUID, $topAskUID) === false)  { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #21a"); }
+            if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $topBidUser, $topAskUser, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount, $tradeType, $topBidUID, $topAskUID) === false)  { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #21a"); }
 
 
             ///////////
             //HISTORY
             ///////////  
             //UPDATE HISTORY BUYER (COMMISSION AND TRADE TOTAL)
-            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topBidUser, 'BUY', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeTotal) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #21b"); }
+            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topBidUser, 'BUY', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #21b"); }
             //UPDATE HISTORY SELLER (NO COMMISSION AND TRAD EAMOUNT)
-            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topAskUser, 'SELL', $symbol, $tradeSize, $tradePrice, 0, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #21c"); }
+            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topAskUser, 'SELL', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #21c"); }
             //UPDATE HISTORY ADMIN (COMMISSION AND TRADE TOTAL)
-            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, 'COMMISSION', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeTotal) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #21c"); }
+            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, 'COMMISSION', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #21c"); }
 
             //ALL THINGS OKAY, COMMIT TRANSACTIONS
             query("COMMIT;"); //If no errors, commit changes
@@ -419,10 +418,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     }
     //NEW VARS FOR DB INSERT
     $tradeAmount = $price * $quantity;        // calculate total value (stock's price * quantity)
-    $tradeAmount = round($tradeAmount, 2);  
-    $commissionAmount = getCommission($tradeAmount); 
-    $tradeTotal = ($tradeAmount + $commissionAmount);
- 
+    $tradeAmount = round($tradeAmount, 2);  //redundant...
 
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
@@ -440,18 +436,19 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
         if (is_null($limitOrders) || $limitOrders == 0){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("No limit orders.");} }
     if ($side == 'b')
     {   $transaction = 'BID';
-        if($type=='limit') { $lockedUnits=$tradeTotal; }
+        if($type=='limit') { $lockedUnits=$tradeAmount; }
         //QUERY CASH & UPDATE
         $units =	query("SELECT units, locked FROM accounts WHERE id = ?", $id); //query db how much cash user has
         $units = (float)$units[0]['units'];	//convert array from query to value
-        $userLocked = (float)$units[0]['locked']; //different then $lockedUnits which is the tradeTotal for limit or all of the units for market order
+        $userLocked = (float)$units[0]['locked']; //different then $lockedUnits which is the tradeAmount for limit or all of the units for market order
         //WILL CONDUCT ANOTHER CHECK AT ORDERBOOK PROCESS TO ENSURE USER UNITS > 0 and ENOUGH IN LOCKED
-        if ($units < $lockedUnits) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You do not have enough for this transaction. You only have: " . $units . ". Attempted to buy: " . $tradeTotal . "." ); }
+        if ($units < $lockedUnits) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You do not have enough for this transaction. You only have: " . $units . ". Attempted to buy: " . $tradeAmount . "." ); }
         if (($units < 0) || ($userLocked < 0)) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You have a negative balance!"); }
         else 
         {   if(query("UPDATE accounts SET units = (units - ?), locked = (locked + ?) WHERE id = ?", $lockedUnits, $lockedUnits, $id) === false) //MOVE CASH TO LOCKED FUNDS
             { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Updates Accounts Failure"); } } 
         } // transaction type for history	//b for bid
+        
     elseif ($side == 'a')
     {   $lockedUnits = 0; //all sell ask orders lock zero units
         $transaction = 'ASK'; //QUERY CASH & UPDATE
@@ -466,7 +463,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     }	// transaction type for history //a for ask
     else { apologize("Order Side Error."); }
     //UPDATE HISTORY
-    if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $transaction, $symbol, $quantity, $price, $commissionAmount, $tradeTotal) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Insert History Failure 3"); }
+    if (query("INSERT INTO history (id, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)", $id, $transaction, $symbol, $quantity, $price, $tradeAmount) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Insert History Failure 3"); }
     //INSERT INTO ORDERBOOK
     if (query("INSERT INTO orderbook (symbol, side, type, price, locked, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $lockedUnits, $quantity, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Insert Orderbook Failure"); }
 
@@ -474,7 +471,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     query("COMMIT;"); //If no errors, commit changes
     query("SET AUTOCOMMIT=1");
     
-    return array($transaction, $symbol, $tradeTotal, $quantity, $commissionAmount);
+    return array($transaction, $symbol, $tradeAmount, $quantity);
 }
 
 
