@@ -53,7 +53,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
                     apologize("error");}
             $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type = 'limit' AND side = ?)", $otherSide);
             $limitOrders = $limitOrdersQ[0]['limitorders'];
-            if (is_null($limitOrders) || $limitOrders == 0 || $limitOrders < $quantity){
+            if (is_null($limitOrders) || $limitOrders == 0){
                 query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
                 apologize("Market Orders require an active Limit Order on the exchange for matching. Not enough or no Limit Orders currently on the exchange.");}
 
@@ -207,6 +207,7 @@ function marketOrderCheck($symbol)
                 @$topAskPrice = ($asks[0]["price"]); //limit price
                 @$topBidPrice = ($asks[0]["price"]);
                 @$lockedAmount = ($marketOrders[0]["locked"]);
+                $isMarketOrder = "bid";
             }
             elseif($marketSide == 'a') 
             {
@@ -222,6 +223,8 @@ function marketOrderCheck($symbol)
                 @$topAskPrice = ($bids[0]["price"]);
                 @$topBidPrice = ($bids[0]["price"]);
                 @$lockedAmount = ($bids[0]["locked"]);
+                $isMarketOrder = "ask";
+
             }
             else 
             {
@@ -241,6 +244,7 @@ function marketOrderCheck($symbol)
             @$topBidPrice = ($bids[0]["price"]);
             $tradeType = 'limit';
             @$lockedAmount = ($bids[0]["locked"]);
+            $isMarketOrder = "no";
 
         }
         else 
@@ -248,7 +252,7 @@ function marketOrderCheck($symbol)
         apologize("Market Order Error!");
         }
 
-    return array($asks, $bids, $topAskPrice, $topBidPrice, $tradeType, $lockedAmount);
+    return array($asks, $bids, $topAskPrice, $topBidPrice, $tradeType, $lockedAmount, $isMarketOrder);
 }
 
 ////////////////////////////////////
@@ -270,7 +274,7 @@ function orderbook($symbol) {
         if (count($symbolCheck) != 1) //row count
             {apologize("Incorrect Symbol. Not listed on the exchange!");}
 
-        list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType, $lockedAmount) = marketOrderCheck($symbol);
+        list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType, $lockedAmount, $isMarketOrder) = marketOrderCheck($symbol);
         @$topBidPrice  = (float)$topBidPrice; //convert string to float
         @$topAskPrice  = (float)$topAskPrice; //convert string to float
 
@@ -333,9 +337,8 @@ function orderbook($symbol) {
                 //DETERMINE TRADE SIZE
                 if ($topBidSize < $topAskSize) {
                     $tradeSize = $topBidSize; //BID IS SMALLER SO DELETE AND UPDATE ASK ORDER
-                    $askQuantityRemaining = ($topAskSize - $topBidSize); //ask has larger qty; update their order with new qty after trade if not 0
                     //UPDATE ASK ORDER;
-                    if (query("UPDATE orderbook SET quantity = ? WHERE uid = ?", $askQuantityRemaining, $topAskUID) === false) {
+                    if (query("UPDATE orderbook SET quantity = quantity -? WHERE uid = ?", $tradeSize, $topAskUID) === false) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Size OB Failure: #3");
                     }
@@ -346,11 +349,8 @@ function orderbook($symbol) {
                     }
                 } elseif ($topBidSize > $topAskSize) {
                     $tradeSize = $topAskSize;
-                    $bidQuantityRemaining = ($topBidSize - $topAskSize); //bid has larger qty; update their order with new qty after trade if not 0
-                    $NewLockedAmount = (($bidQuantityRemaining*$topBidPrice)+($bidQuantityRemaining*$topBidPrice*$commission));
-                    $returnAmount = ($lockedAmount-$NewLockedAmount);
-                    //UPDATE BID ORDER WITH REMAINING BALANCE AFTER THIS TRADE
-                    if (query("UPDATE orderbook SET quantity = ?, locked = ? WHERE uid = ?", $bidQuantityRemaining, $NewLockedAmount, $topBidUID) === false) {
+                    //UPDATE BID ORDER
+                    if (query("UPDATE orderbook SET quantity = quantity - ? WHERE uid = ?", $tradeSize, $topBidUID) === false) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Update OB Failure: #5");
                     }
@@ -358,12 +358,6 @@ function orderbook($symbol) {
                     if (query("DELETE FROM orderbook WHERE uid = ?", $topAskUID) === false) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Delete OB Failure: #6");
-                    }
-                    //ADD UNUSED LOCKED FUNDS, REMOVE REST OF UNLOCKED FUNDS LATER
-                    if (query("UPDATE accounts SET units = (units + ?), locked = (locked - ?) WHERE id = ?", $returnAmount, $returnAmount, $topBidUser) === false)
-                    { //MOVE CASH TO LOCKED FUNDS
-                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                        apologize("Update Accounts Failure: #10");
                     }
                 } elseif ($topBidSize == $topAskSize) {
                     $tradeSize = $topAskSize;
@@ -413,7 +407,12 @@ function orderbook($symbol) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Update Accounts Failure: #10");
                         }
-
+                    //REFUND CASH FROM EXTRA LOCKED FUNDS
+                    if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $returnAmount, $topBidUser) === false)
+                    {
+                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                        apologize("Update Accounts Failure: #10");
+                    }
                     ///////////////////////
                     //GIVE UNITS TO ASK USER
                     //////////////////////
@@ -434,7 +433,23 @@ function orderbook($symbol) {
                         }
                     }
                 } //else //if($bidFundsLocked >= $tradeTotal) 
-                
+
+
+
+                /////////////////////
+                //
+                //OLD
+                //
+                /////////////////////
+                $askQuantityRemaining = ($topAskSize - $topBidSize); //ask has larger qty; update their order with new qty after trade if not 0
+                $bidQuantityRemaining = ($topBidSize - $topAskSize); //bid has larger qty; update their order with new qty after trade if not 0
+                $NewLockedAmount = (($bidQuantityRemaining*$topBidPrice)+($bidQuantityRemaining*$topBidPrice*$commission));
+                $returnAmount = ($lockedAmount-$NewLockedAmount);
+
+
+
+
+
                 //////////
                 //ASK INFO            
                 /////////            
