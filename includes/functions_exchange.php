@@ -186,17 +186,17 @@ function cancelOrder($uid)
 }
 
 
-function marketOrderCheck($symbol) 
+function marketOrderCheck($symbol)
 {
         $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
-        if (!empty($marketOrders)) 
+        if (!empty($marketOrders))
         {
             @$marketSide=$marketOrders[0]["side"];
             $tradeType = 'market';
-            if ($marketSide == 'b') 
+            if ($marketSide == 'b')
             {
                 $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
-                while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'b') && (empty($asks))) 
+                while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'b') && (empty($asks)))
                 {  //cancel all bid market orders since there are no limit ask orders.
                     cancelOrder($marketOrders[0]["uid"]);
                     $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol, 'b');
@@ -209,10 +209,10 @@ function marketOrderCheck($symbol)
                 @$lockedAmount = ($marketOrders[0]["locked"]);
                 $isMarketOrder = "bid";
             }
-            elseif($marketSide == 'a') 
+            elseif($marketSide == 'a')
             {
                 $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
-                while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'a') && (empty($bids))) 
+                while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'a') && (empty($bids)))
                 {
                     cancelOrder($marketOrders[0]["uid"]);
                     $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol, 'a');
@@ -226,7 +226,7 @@ function marketOrderCheck($symbol)
                 $isMarketOrder = "ask";
 
             }
-            else 
+            else
             {
             apologize("Market Side Error!");
             }
@@ -247,7 +247,7 @@ function marketOrderCheck($symbol)
             $isMarketOrder = "no";
 
         }
-        else 
+        else
         {
         apologize("Market Order Error!");
         }
@@ -333,6 +333,7 @@ function orderbook($symbol) {
 
                 query("SET AUTOCOMMIT=0");
                 query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+                if (!isset($commission)) { $commission = 0;} //set in constants.php
 
                 //DETERMINE TRADE SIZE
                 if ($topBidSize < $topAskSize) {
@@ -347,10 +348,19 @@ function orderbook($symbol) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Delete OB Failure: #4");
                     }
+                    //WHEN BID ORDER DELETED RETURN LEFT OVER LOCKED FUNDS
+                    $tradeTotal = (($tradePrice * $tradeSize) + ($commission * ($tradePrice * $tradeSize)));
+                    $returnAmount = ($lockedAmount-$tradeTotal);
+                    if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $returnAmount, $topBidUser) === false)
+                    {
+                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                        apologize("Update Accounts Failure: #10");
+                    }
                 } elseif ($topBidSize > $topAskSize) {
                     $tradeSize = $topAskSize;
                     //UPDATE BID ORDER
-                    if (query("UPDATE orderbook SET quantity = quantity - ? WHERE uid = ?", $tradeSize, $topBidUID) === false) {
+                    $tradeTotal = (($tradePrice * $tradeSize) + ($commission * ($tradePrice * $tradeSize)));
+                    if (query("UPDATE orderbook SET quantity = quantity - ?, locked = locked - ? WHERE uid = ?", $tradeSize, $tradeTotal, $topBidUID) === false) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Update OB Failure: #5");
                     }
@@ -362,13 +372,21 @@ function orderbook($symbol) {
                 } elseif ($topBidSize == $topAskSize) {
                     $tradeSize = $topAskSize;
                     //DELETE BOTH ORDERS AFTER TRADE
+                    if (query("DELETE FROM orderbook WHERE uid = ?", $topAskUID) === false) {
+                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                        apologize("Delete OB Failure: #8");
+                    }
                     if (query("DELETE FROM orderbook WHERE uid = ?", $topBidUID) === false) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Delete OB Failure: #7");
                     }
-                    if (query("DELETE FROM orderbook WHERE uid = ?", $topAskUID) === false) {
+                    //WHEN BID ORDER DELETED RETURN LEFT OVER LOCKED FUNDS
+                    $tradeTotal = (($tradePrice * $tradeSize) + ($commission * ($tradePrice * $tradeSize)));
+                    $returnAmount = ($lockedAmount-$tradeTotal);
+                    if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $returnAmount, $topBidUser) === false)
+                    {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                        apologize("Delete OB Failure: #8");
+                        apologize("Update Accounts Failure: #10");
                     }
                 } else {
                     query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
@@ -407,12 +425,6 @@ function orderbook($symbol) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Update Accounts Failure: #10");
                         }
-                    //REFUND CASH FROM EXTRA LOCKED FUNDS
-                    if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $returnAmount, $topBidUser) === false)
-                    {
-                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                        apologize("Update Accounts Failure: #10");
-                    }
                     ///////////////////////
                     //GIVE UNITS TO ASK USER
                     //////////////////////
