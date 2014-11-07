@@ -40,10 +40,18 @@ function cancelOrder($uid)
 function zeroQuantityCheck($symbol)
 {   $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol);
     while(!empty($emptyOrders))
-    {
-        cancelOrder($emptyOrders[0]["uid"]);
-        $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol);
-    }
+    {   cancelOrder($emptyOrders[0]["uid"]);
+        $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol); }
+}
+
+////////////////////////////////////
+//CHECK FOR NEGATIVE VALUES
+////////////////////////////////////
+function zeroQuantityCheck($symbol)
+{   $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol);
+    while(!empty($emptyOrders))
+    {   cancelOrder($emptyOrders[0]["uid"]);
+        $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol); }
 }
 
 ////////////////////////////////////
@@ -53,12 +61,10 @@ function OrderbookTop($symbol)
 {       //MARKET ORDERS SHOULD BE AT TOP IF THEY EXIST
         $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
         if (!empty($marketOrders))
-        {
-            @$marketSide=$marketOrders[0]["side"];
+        {   @$marketSide=$marketOrders[0]["side"];
             $tradeType = 'market';
             if ($marketSide == 'b')
-            {
-                $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
+            {   $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
                 while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'b') && (empty($asks)))
                 {  //cancel all bid market orders since there are no limit ask orders.
                     cancelOrder($marketOrders[0]["uid"]);
@@ -69,8 +75,6 @@ function OrderbookTop($symbol)
                 //assign top price to the ask since it is a bid market order
                 @$topAskPrice = ($asks[0]["price"]); //limit price
                 @$topBidPrice = ($asks[0]["price"]);
-                @$lockedAmount = ($marketOrders[0]["locked"]);
-                $isMarketOrder = "bid";
             }
             elseif($marketSide == 'a')
             {
@@ -85,14 +89,9 @@ function OrderbookTop($symbol)
                 //assign top price to the bid since it is an ask market order
                 @$topAskPrice = ($bids[0]["price"]);
                 @$topBidPrice = ($bids[0]["price"]);
-                @$lockedAmount = ($bids[0]["locked"]);
-                $isMarketOrder = "ask";
 
             }
-            else
-            {
-            apologize("Market Side Error!");
-            }
+            else { apologize("Market Side Error!"); }
         }
         elseif(empty($marketOrders)) {
             $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
@@ -106,8 +105,6 @@ function OrderbookTop($symbol)
             @$topAskPrice = ($asks[0]["price"]); //limit price
             @$topBidPrice = ($bids[0]["price"]);
             $tradeType = 'limit';
-            @$lockedAmount = ($bids[0]["locked"]);
-            $isMarketOrder = "no";
 
         }
         else
@@ -116,7 +113,7 @@ function OrderbookTop($symbol)
         }
 
 
-    return array($asks, $bids, $topAskPrice, $topBidPrice, $tradeType, $lockedAmount, $isMarketOrder);
+    return array($asks, $bids, $topAskPrice, $topBidPrice, $tradeType);
 }
 //apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
 
@@ -142,7 +139,7 @@ function orderbook($symbol) {
         zeroQuantityCheck($symbol);
 
         //FIND TOP OF ORDERBOOK
-        list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType, $lockedAmount, $isMarketOrder) = OrderbookTop($symbol);
+        list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType) = OrderbookTop($symbol);
         @$topBidPrice  = (float)$topBidPrice; //convert string to float
         @$topAskPrice  = (float)$topAskPrice; //convert string to float
 
@@ -152,7 +149,6 @@ function orderbook($symbol) {
         $orderProcessed = 0; //orders processed
         while ($topBidPrice >= $topAskPrice) {
             //price in above market arg
-            @$lockedAmount = (float)$lockedAmount; //convert string to float
             @$topAskUID = ($asks[0]["uid"]); //order id; unique id
             @$topAskSymbol = ($asks[0]["symbol"]); //symbol of equity
             @$topAskSide = ($asks[0]["side"]); //bid or ask
@@ -168,6 +164,7 @@ function orderbook($symbol) {
             @$topBidType = ($bids[0]["type"]); //limit or market
             @$topBidSize = ($bids[0]["quantity"]);
             @$topBidUser = ($bids[0]["id"]);
+            @$topBidLocked = ($bids[0]["locked"]);
 
 
             $orderProcessed++; //orders processed plus 1
@@ -352,7 +349,7 @@ function orderbook($symbol) {
                 ///////////////
                 //RECALCULATE VALUES FOR DO-WHILE //RECHECK FROM BEGINNING TO SEE IF ANY MORE ORDERS TO PROCESS)
                 //////////////
-                list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType, $lockedAmount) = OrderbookTop($symbol);
+                list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType) = OrderbookTop($symbol);
                 @$topBidPrice  = (float)$topBidPrice; //convert string to float
                 @$topAskPrice  = (float)$topAskPrice; //convert string to float
             }
