@@ -168,6 +168,8 @@ function OrderbookTop($symbol)
 ////////////////////////////////////
 function orderbook($symbol) 
 {
+    $adminid = 1;
+    
     //PROCESS MARKET ORDERS
     if(empty($symbol)){apologize("No symbol selected!");}
 
@@ -229,8 +231,7 @@ function orderbook($symbol)
             $tradeAmount = round($tradeAmount, 2);
             if ($tradeAmount == 0) {apologize("Trade Amount is 0");}
             
-            $commissionAmount = 0;
-            //$commissionAmount = getCommission($tradeAmount);
+            $commissionAmount = getCommission($tradeAmount);
 
             ////////////
             //ORDERBOOK
