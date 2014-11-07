@@ -177,7 +177,7 @@ function orderbook($symbol)
             
             if (!isset($commission)) { $commission = 0;} //set in constants.php
             $commissionAmount = ($commission * $tradeAmount);
-            $commissionAmount = round($commissionTotal, 2);            
+            $commissionAmount = round($commissionAmount, 2);            
            
             $tradeTotal = ($tradeAmount + $commissionAmount);
 
