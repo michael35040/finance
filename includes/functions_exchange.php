@@ -128,27 +128,27 @@ function orderbook($symbol)
 
     //FIND TOP OF ORDERBOOK
     list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType) = OrderbookTop($symbol);
-    @$topBidPrice  = (float)$topBidPrice; //convert string to float
-    @$topAskPrice  = (float)$topAskPrice; //convert string to float
+    $topBidPrice  = (float)$topBidPrice; //convert string to float
+    $topAskPrice  = (float)$topAskPrice; //convert string to float
 
     //PROCESS ORDERS
     $orderProcessed = 0; //orders processed
     while ($topBidPrice >= $topAskPrice) 
-    {   @$topAskUID = ($asks[0]["uid"]); //order id; unique id
-        @$topAskSymbol = ($asks[0]["symbol"]); //symbol of equity
-        @$topAskSide = ($asks[0]["side"]); //bid or ask
-        @$topAskDate = ($asks[0]["date"]);
-        @$topAskType = ($asks[0]["type"]); //limit or market
-        @$topAskSize = ($asks[0]["quantity"]); //size or quantity of trade
-        @$topAskUser = ($asks[0]["id"]); //user id
-        @$topBidUID = ($bids[0]["uid"]); //order id; unique id
-        @$topBidSymbol = ($bids[0]["symbol"]);
-        @$topBidSide = ($bids[0]["side"]); //bid or ask
-        @$topBidDate = ($bids[0]["date"]);
-        @$topBidType = ($bids[0]["type"]); //limit or market
-        @$topBidSize = ($bids[0]["quantity"]);
-        @$topBidUser = ($bids[0]["id"]);
-        @$topBidLocked = ($bids[0]["locked"]);
+    {   $topAskUID = (int)($asks[0]["uid"]); //order id; unique id
+        $topAskSymbol = ($asks[0]["symbol"]); //symbol of equity
+        $topAskSide = ($asks[0]["side"]); //bid or ask
+        $topAskDate = ($asks[0]["date"]);
+        $topAskType = ($asks[0]["type"]); //limit or market
+        $topAskSize = (int)($asks[0]["quantity"]); //size or quantity of trade
+        $topAskUser = (int)($asks[0]["id"]); //user id
+        $topBidUID = (int)($bids[0]["uid"]); //order id; unique id
+        $topBidSymbol = ($bids[0]["symbol"]);
+        $topBidSide = ($bids[0]["side"]); //bid or ask
+        $topBidDate = ($bids[0]["date"]);
+        $topBidType = ($bids[0]["type"]); //limit or market
+        $topBidSize = (int)($bids[0]["quantity"]);
+        $topBidUser = (int)($bids[0]["id"]);
+        $topBidLocked = (float)($bids[0]["locked"]);
 
         $orderProcessed++; //orders processed plus 1
 
@@ -255,11 +255,29 @@ function orderbook($symbol)
         } //IF TRADES ARE POSSIBLE
         elseif($topBidPrice < $topAskPrice) {apologize("No trades possible!");} //TRADES ARE NOT POSSIBLE
         else {apologize("ERROR!");}
-    } //BOTTOM of WHILE STATEMENT
 
+    } //BOTTOM of WHILE STATEMENT
+    
+    $topAskPrice = ($asks[0]["price"]); //limit price
+    $topBidPrice = ($bids[0]["price"]); 
+    $topAskUID = ($asks[0]["uid"]); //order id; unique id
+    $topAskSymbol = ($asks[0]["symbol"]); //symbol of equity
+    $topAskSide = ($asks[0]["side"]); //bid or ask
+    $topAskDate = ($asks[0]["date"]);
+    $topAskType = ($asks[0]["type"]); //limit or market
+    $topAskSize = ($asks[0]["quantity"]); //size or quantity of trade
+    $topAskUser = ($asks[0]["id"]); //user id
+    $topBidUID = ($bids[0]["uid"]); //order id; unique id
+    $topBidSymbol = ($bids[0]["symbol"]);
+    $topBidSide = ($bids[0]["side"]); //bid or ask
+    $topBidDate = ($bids[0]["date"]);
+    $topBidType = ($bids[0]["type"]); //limit or market
+    $topBidSize = ($bids[0]["quantity"]);
+    $topBidUser = ($bids[0]["id"]);
+    $topBidLocked = ($bids[0]["locked"]);
     //LAST TRADE INFO TO RETURN ON FUNCTION
-    if ($topAskType == 'market') { $topAskPrice = 'market'; } //null//$tradePrice;} //since the do while loop gives it the next orders price, not the last traded
-    if ($topBidType == 'market') { $topBidPrice = 'market'; } //null// $tradePrice;} //since the do while loop gives it the next orders price, not the last traded
+    if ($topAskType == 'market') { $topAskPrice = 'market'; } //null//$tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
+    if ($topBidType == 'market') { $topBidPrice = 'market'; } //null// $tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
     $orderbook['topAskPrice'] = $topAskPrice;
     $orderbook['topAskUID'] = $topAskUID; //order id; unique id
     $orderbook['topAskSymbol'] = $topAskSymbol; //symbol of equity
@@ -276,11 +294,14 @@ function orderbook($symbol)
     $orderbook['topBidType'] = $topBidType; //limit or market
     $orderbook['topBidSize'] = $topBidSize;
     $orderbook['topBidUser'] = $topBidUser;
+
+    
+    
+    
     $orderbook['orderProcessed'] = $orderProcessed;
     if (empty($tradePrice)) {$tradePrice = 0;} //if no trades so should be empty
     $orderbook['tradePrice'] = $tradePrice;
     $orderbook['tradeType'] = $tradeType;
-
     return $orderbook;
 } //END OF FUNCTION
 
@@ -337,8 +358,8 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
         if($type=='limit') { $lockedUnits=$tradeTotal; }
         //QUERY CASH & UPDATE
         $units =	query("SELECT units, locked FROM accounts WHERE id = ?", $id); //query db how much cash user has
-        $units = $units[0]['units'];	//convert array from query to value
-        $userLocked = $units[0]['locked']; //different then $lockedUnits which is the tradeTotal for limit or all of the units for market order
+        $units = (float)$units[0]['units'];	//convert array from query to value
+        $userLocked = (float)$units[0]['locked']; //different then $lockedUnits which is the tradeTotal for limit or all of the units for market order
         //WILL CONDUCT ANOTHER CHECK AT ORDERBOOK PROCESS TO ENSURE USER UNITS > 0 and ENOUGH IN LOCKED
         if ($units < $lockedUnits) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You do not have enough for this transaction. You only have: " . $units . ". Attempted to buy: " . $tradeTotal . "." ); }
         if (($units < 0) || ($userLocked < 0)) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You have a negative balance!"); }
