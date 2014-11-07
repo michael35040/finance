@@ -397,7 +397,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     query("COMMIT;"); //If no errors, commit changes
     query("SET AUTOCOMMIT=1");
     
-    return array($transaction, $symbol, $tradeTotal, $quantity, $commissionTotal);
+    return array($transaction, $symbol, $tradeTotal, $quantity, $commissionAmount);
 }
 
 
