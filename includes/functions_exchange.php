@@ -52,10 +52,10 @@ function zeroQuantityCheck($symbol)
 ////////////////////////////////////
 function negativeValues()
 {   $negativeValueOrderbook = query("SELECT quantity, locked, uid FROM orderbook WHERE (quantity < 0 OR locked < 0) LIMIT 0, 1");
-    if(!empty($negativeValueOrderbook)) { apologize("Negative Orderbook Values: " . $negativeValueOrderbook[0]["uid"]);}
+    if(!empty($negativeValueOrderbook)) { apologize(var_dump(get_defined_vars())); apologize("Negative Orderbook Values: " . $negativeValueOrderbook[0]["uid"]);}
         //eventually all users order using id
     $negativeValueAccounts = query("SELECT units, locked, id FROM accounts WHERE (units < 0 OR locked < 0) LIMIT 0, 1");
-    if(!empty($negativeValueAccounts)) { apologize("Negative Accounts Values: " . $negativeValueAccounts[0]["id"]);}
+    if(!empty($negativeValueAccounts)) { apologize(var_dump(get_defined_vars())); apologize("Negative Accounts Values: " . $negativeValueAccounts[0]["id"]);}
         //eventually all users order using id    
 }
 
@@ -342,9 +342,9 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     //NEW VARS FOR DB INSERT
     $tradeAmount = $price * $quantity;        // calculate total value (stock's price * quantity)
     $tradeAmount = round($tradeAmount, 2);  
-    $commissionTotal = $commission * $tradeAmount; //commission set in finance.php//$commission = 00.0599; //CHANGE THIS VARIABLE TO SET COMMISSION PERCENTAGE //(Ex 00.1525 is 15.25%)
-    $commissionTotal = round($commissionTotal, 2);  
-    $tradeTotal = ($tradeAmount + $commissionTotal);
+    $commissionAmount = $commission * $tradeAmount; //commission set in finance.php//$commission = 00.0599; //CHANGE THIS VARIABLE TO SET COMMISSION PERCENTAGE //(Ex 00.1525 is 15.25%)
+    $commissionAmount = round($commissionAmount, 2);  
+    $tradeTotal = ($tradeAmount + $commissionAmount);
  
 
     query("SET AUTOCOMMIT=0");
