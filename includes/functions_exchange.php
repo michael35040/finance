@@ -19,7 +19,7 @@ function getCommission($total)
     if($commissionModulus != 0){apologize("Commission Amount Error. $divisor / $commissionAmount");} //checks to see if quarter increment
 
     //should need it but just in case.
-    $commissionAmount = round($tradeAmount, 2); 
+    $commissionAmount = round($commissionAmount, 2); 
     
     return($commissionAmount);
 }
