@@ -7,7 +7,7 @@
 function getCommission($total)
 {
     $divisor = 0.25;
-    $commission = 0.00;
+    $commission = 0.05;
     $commissionAmount = $total * $commission; //ie 13.6875 = 273.75 * 0.05  //(5qty * $54.75)
     $commissionAmount = $commissionAmount * 4; //ie 54.75 = 13.6875 * 4
     //ceil to round up and floor to round down
