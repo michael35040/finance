@@ -1,4 +1,5 @@
 <?php
+//apologize(var_dump(get_defined_vars()));
 
 ////////////////////////////////////
 //CANCEL ORDER
@@ -34,24 +35,22 @@ function cancelOrder($uid)
 }
 
 ////////////////////////////////////
-//CHECK FOR 0 QTY ORDERS
+//CHECK FOR 0 QTY ORDERS AND REMOVES
 ////////////////////////////////////
 function zeroQuantityCheck($symbol)
-{   $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? quantity = 0) LIMIT 0, 1", $symbol);
+{   $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol);
     while(!empty($emptyOrders))
     {
         cancelOrder($emptyOrders[0]["uid"]);
-        $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? quantity = 0) LIMIT 0, 1", $symbol);
+        $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol);
     }
-
- //apologize(var_dump(get_defined_vars()));
 }
 
 ////////////////////////////////////
-//CHECK FOR MARKET ORDERS
+//CHECK FOR WHICH ORDERS ARE AT TOP OF ORDERBOOK
 ////////////////////////////////////
-function marketOrderCheck($symbol)
-{
+function OrderbookTop($symbol)
+{       //MARKET ORDERS SHOULD BE AT TOP IF THEY EXIST
         $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
         if (!empty($marketOrders))
         {
@@ -119,14 +118,13 @@ function marketOrderCheck($symbol)
 
     return array($asks, $bids, $topAskPrice, $topBidPrice, $tradeType, $lockedAmount, $isMarketOrder);
 }
-
+//apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
 
 
 ////////////////////////////////////
 //EXCHANGE MARKET
 ////////////////////////////////////
 function orderbook($symbol) {
-        //BROKEN!!!
         require 'constants.php'; //for $commission
         //$commission = 0.05;  //constants.php
         //$adminid = 1; //constants.php
@@ -138,18 +136,18 @@ function orderbook($symbol) {
 
         //QUERY TO SEE IF SYMBOL EXISTS
         $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
-        if (count($symbolCheck) != 1) //row count
-            {apologize("Incorrect Symbol. Not listed on the exchange!");}
+        if (count($symbolCheck) != 1) {apologize("Incorrect Symbol. Not listed on the exchange!");} //row count
 
+        //REMOVES ALL EMPTY ORDERS
         zeroQuantityCheck($symbol);
 
-        list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType, $lockedAmount, $isMarketOrder) = marketOrderCheck($symbol);
+        //FIND TOP OF ORDERBOOK
+        list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType, $lockedAmount, $isMarketOrder) = OrderbookTop($symbol);
         @$topBidPrice  = (float)$topBidPrice; //convert string to float
         @$topAskPrice  = (float)$topAskPrice; //convert string to float
 
-
         ////////////////////////
-        //PROCESS LIMIT ORDERS
+        //PROCESS ORDERS
         ////////////////////////
         $orderProcessed = 0; //orders processed
         while ($topBidPrice >= $topAskPrice) {
@@ -170,38 +168,21 @@ function orderbook($symbol) {
             @$topBidType = ($bids[0]["type"]); //limit or market
             @$topBidSize = ($bids[0]["quantity"]);
             @$topBidUser = ($bids[0]["id"]);
-            //apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
 
 
             $orderProcessed++; //orders processed plus 1
 
             if ($topBidPrice >= $topAskPrice) //TRADES ARE POSSIBLE
-            {
-
-                //DETERMINE EXECUTED PRICE (bid or ask) BY EARLIER DATE TIME (using UID instead of DATE)
-                //UID is unique where you can have 2 similar date times.
-                //per market rules, first to orderbook sets trade price if they cross
-                //ie. bid comes in at 40, then ask comes in at  38, it executes at 40
-                //or ask comes in at 38, then bid comes in at 40, it executes at 38
-                if ($topBidDate < $topAskDate) //CHECK TO SEE IF THIS SETS THE LATEST DATE, FIRST TO HIT MARKET AS THE TRADE PRICE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                {
-                    $tradePrice = $topBidPrice;
-                } elseif ($topBidDate > $topAskDate) {
-                    $tradePrice = $topAskPrice;
-                } elseif ($topBidDate == $topAskDate) {
-                    //same time so give cheapest ask/bid as trade price
-                    if ($topBidPrice <= $topAskPrice) {
-                        $tradePrice = $topBidPrice;
-                    } //bid is cheapest so that is trade price
-                    elseif ($topBidPrice > $topAskPrice) {
-                        $tradePrice = $topAskPrice;
-                    } //ask is cheapest
-                    else {
-                        apologize("Date/Price Failure: #1");
-                    }
-                } else {
-                    apologize("Date Failure: #2");
-                }
+            {   /* DETERMINE EXECUTED PRICE (bid or ask) BY EARLIER DATE TIME using UID
+                might start using UID instead of DATE. UID is unique where you can have 2 similar date times. per market rules, first to orderbook sets trade price if they cross. ie. bid comes in at 40, then ask comes in at  38, it executes at 40 or ask comes in at 38, then bid comes in at 40, it executes at 38 */
+                if ($topBidDate < $topAskDate) { $tradePrice = $topBidPrice;} //with dates or uid, the smaller one is older  
+                elseif ($topBidDate > $topAskDate) { $tradePrice = $topAskPrice; } 
+                elseif ($topBidDate == $topAskDate)  //same time so give cheapest ask/bid as trade price
+                {   if ($topBidPrice <= $topAskPrice) {$tradePrice = $topBidPrice;} //bid is cheapest so that is trade price
+                    elseif ($topBidPrice > $topAskPrice) { $tradePrice = $topAskPrice; } //ask is cheapest
+                    else { apologize("Date/Price Failure: #1");}
+                } 
+                else {apologize("Date Failure: #2");}
 
                 query("SET AUTOCOMMIT=0");
                 query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
@@ -363,21 +344,20 @@ function orderbook($symbol) {
                 query("COMMIT;"); //If no errors, commit changes
                 query("SET AUTOCOMMIT=1");
 
+                ///////////////
                 //CANCELS TRADE IF QUANTITY IS 0 TO GIVE LOCKED FUNDS BACK TO USER
+                //////////////
                 zeroQuantityCheck($symbol);
-
+                
+                ///////////////
+                //RECALCULATE VALUES FOR DO-WHILE //RECHECK FROM BEGINNING TO SEE IF ANY MORE ORDERS TO PROCESS)
+                //////////////
+                list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType, $lockedAmount) = OrderbookTop($symbol);
+                @$topBidPrice  = (float)$topBidPrice; //convert string to float
+                @$topAskPrice  = (float)$topAskPrice; //convert string to float
             }
-            elseif($topBidPrice < $topAskPrice) {apologize("NO TRADES POSSIBLE!");} //TRADES ARE NOT POSSIBLE
+            elseif($topBidPrice < $topAskPrice) {apologize("No trades possible!");} //TRADES ARE NOT POSSIBLE
             else {apologize("ERROR!");}
-
-            ///////////////
-            //RECALCULATE VALUES FOR DO-WHILE
-            //RECHECK FROM BEGINNING TO SEE IF ANY MORE ORDERS TO PROCESS)
-            //////////////
-            list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType, $lockedAmount) = marketOrderCheck($symbol);
-            @$topBidPrice  = (float)$topBidPrice; //convert string to float
-            @$topAskPrice  = (float)$topAskPrice; //convert string to float
-
         } //BOTTOM of WHILE STATEMENT
 
 
