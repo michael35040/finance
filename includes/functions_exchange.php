@@ -136,7 +136,7 @@ function cancelOrder($uid)
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
     //Delete market order from orderbook since no limit ask orders exist
-    if (query("DELETE FROM orderbook WHERE (uid = ?)", uid) === false) {
+    if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {
         query("ROLLBACK");
         query("SET AUTOCOMMIT=1");
         apologize("Failure Cancel 1");
@@ -146,7 +146,7 @@ function cancelOrder($uid)
     if($side=='a')
     {
         //unlock locked shares
-        if (query("UPDATE portfolio SET quantity = (quantity + ?), locked = (locked - ?) WHERE (symbol = ? AND id = ?)", $order[0]['size'], $order[0]['size'], $order[0]['symbol'], $order[0]['id']) === false)
+        if (query("UPDATE portfolio SET quantity = (quantity + ?), locked = (locked - ?) WHERE (symbol = ? AND id = ?)", $order[0]['quantity'], $order[0]['quantity'], $order[0]['symbol'], $order[0]['id']) === false)
         {
             query("ROLLBACK");
             query("SET AUTOCOMMIT=1");
@@ -185,7 +185,30 @@ function cancelOrder($uid)
     }
 }
 
+////////////////////////////////////
+//CHECK FOR 0 QTY ORDERS
+////////////////////////////////////
+function zeroQuantityCheck($symbol)
+{
+    $bids = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
+    $asks = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
+    if(!empty($bids) || (!empty($asks))){
+        while(($asks[0]["quantity"] == 0) || ($bids[0]["quantity"] == 0))
+        {
+            //apologize(var_dump(get_defined_vars()));
+            if($asks[0]["quantity"] == 0) {cancelOrder($asks[0]["uid"]);}
+            if($bids[0]["quantity"] == 0) {cancelOrder($bids[0]["uid"]);}
+            $bids = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
+            $asks = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
+        }
+    }
 
+
+}
+
+////////////////////////////////////
+//CHECK FOR MARKET ORDERS
+////////////////////////////////////
 function marketOrderCheck($symbol)
 {
         $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
@@ -252,8 +275,11 @@ function marketOrderCheck($symbol)
         apologize("Market Order Error!");
         }
 
+
     return array($asks, $bids, $topAskPrice, $topBidPrice, $tradeType, $lockedAmount, $isMarketOrder);
 }
+
+
 
 ////////////////////////////////////
 //EXCHANGE MARKET
@@ -274,13 +300,12 @@ function orderbook($symbol) {
         if (count($symbolCheck) != 1) //row count
             {apologize("Incorrect Symbol. Not listed on the exchange!");}
 
+        zeroQuantityCheck($symbol);
+
         list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType, $lockedAmount, $isMarketOrder) = marketOrderCheck($symbol);
         @$topBidPrice  = (float)$topBidPrice; //convert string to float
         @$topAskPrice  = (float)$topAskPrice; //convert string to float
 
-        if($asks[0]["quantity"] == 0) {cancelOrder($asks[0]["uid"]);}
-        if($bids[0]["quantity"] == 0) {cancelOrder($bids[0]["uid"]);}
-        if(($bids[0]["quantity"] < 0) || ($asks[0]["quantity"] < 0)) {apologize("Negative Quantity");}
 
         ////////////////////////
         //PROCESS LIMIT ORDERS
@@ -497,6 +522,8 @@ function orderbook($symbol) {
                 query("COMMIT;"); //If no errors, commit changes
                 query("SET AUTOCOMMIT=1");
 
+                //CANCELS TRADE IF QUANTITY IS 0 TO GIVE LOCKED FUNDS BACK TO USER
+                zeroQuantityCheck($symbol);
 
             }
             elseif($topBidPrice < $topAskPrice) {apologize("NO TRADES POSSIBLE!");} //TRADES ARE NOT POSSIBLE
