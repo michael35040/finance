@@ -142,7 +142,7 @@ function cancelOrder($uid)
         apologize("Failure Cancel 1");
     }
 
-    $side=$order[0]["side"];
+    @$side=$order[0]["side"];
     if($side=='a')
     {
         //unlock locked shares
@@ -191,14 +191,20 @@ function cancelOrder($uid)
 function zeroQuantityCheck($symbol)
 {
     $bids = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
-    $asks = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
-    if(!empty($bids) || (!empty($asks))){
-        while(($asks[0]["quantity"] == 0) || ($bids[0]["quantity"] == 0))
+    if(!empty($bids)){
+        while(($bids[0]["quantity"] == 0))
         {
             //apologize(var_dump(get_defined_vars()));
-            if($asks[0]["quantity"] == 0) {cancelOrder($asks[0]["uid"]);}
-            if($bids[0]["quantity"] == 0) {cancelOrder($bids[0]["uid"]);}
+            if(!empty($bids)) {if($bids[0]["quantity"] == 0) {cancelOrder($bids[0]["uid"]);}}
             $bids = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
+        }
+    }
+    $asks = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
+    if(!empty($asks)){
+        while(($bids[0]["quantity"] == 0))
+        {
+            //apologize(var_dump(get_defined_vars()));
+            if(!empty($asks)) {if($asks[0]["quantity"] == 0) {cancelOrder($asks[0]["uid"]);}}
             $asks = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
         }
     }
