@@ -37,27 +37,14 @@ function cancelOrder($uid)
 //CHECK FOR 0 QTY ORDERS
 ////////////////////////////////////
 function zeroQuantityCheck($symbol)
-{
-    $bids = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
-    if(!empty($bids)){
-        while(($bids[0]["quantity"] == 0))
-        {
-            //apologize(var_dump(get_defined_vars()));
-            if(!empty($bids)) {if($bids[0]["quantity"] == 0) {cancelOrder($bids[0]["uid"]);}}
-            $bids = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
-        }
-    }
-    $asks = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
-    if(!empty($asks)){
-        while(($bids[0]["quantity"] == 0))
-        {
-            //apologize(var_dump(get_defined_vars()));
-            if(!empty($asks)) {if($asks[0]["quantity"] == 0) {cancelOrder($asks[0]["uid"]);}}
-            $asks = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND side = ? AND quantity = 0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
-        }
+{   $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? quantity = 0) LIMIT 0, 1", $symbol);
+    while(!empty($emptyOrders))
+    {
+        cancelOrder($emptyOrders[0]["uid"]);
+        $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? quantity = 0) LIMIT 0, 1", $symbol);
     }
 
-
+ //apologize(var_dump(get_defined_vars()));
 }
 
 ////////////////////////////////////
