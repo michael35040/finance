@@ -183,7 +183,7 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         echo('<tr >');
         echo('<td colspan="1">' . htmlspecialchars($asset["name"]) . '
             <br>' . htmlspecialchars($asset["url"]) . '
-            <br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '</td>');
+            </td>');
         echo('<td >' . $unitsymbol . number_format($bidsPrice, 2, ".", ",") . ' - Bid
             <br>' . $unitsymbol . number_format($asksPrice, 2, ".", ",") . ' - Ask
             <br>' . $unitsymbol . number_format($asset["avgprice"], 2, ".", ",") . ' - Avg. Price (30d)</td>');
@@ -191,7 +191,9 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
             <br>' . number_format($asset["issued"], 0, ".", ",") . ' - Public
             <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
         echo('<td >Dividend: ' . number_format($asset["dividend"], 2, ".", ",") .
-            '<br>Rating: ' . htmlspecialchars($asset["rating"]) . '</td>');
+            '<br>Rating: ' . htmlspecialchars($asset["rating"]) . '
+            <br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '
+            </td>');
         echo('</tr>');
         echo('</div>');
     ?>

@@ -18,56 +18,28 @@ function testNumbers()
 
 function randomOrders($symbol='A', $number=10, $type='limit')
 {
-    //include("constants.php");//for $divisor
-    $divisor=0.25;
+    include("constants.php");//for $divisor
+    //$divisor=0.25;
     $randomOrders = 0;
-    
     while ($randomOrders < $number) {
         $randomOrders++;
-
-        $id = mt_rand(1, 2);
+        $id = mt_rand(2, 3);
         $sideNum = mt_rand(1, 2);
         $quantity = mt_rand(1, 50);
-
-
         if ($sideNum == 1) {
             $side = 'a';
             $price = mt_rand(8, 40)*$divisor;
-            $rows = query("SELECT id FROM portfolio WHERE (id=? AND symbol=?)", $id, $symbol);
-            if (count($rows) == 0) {
-                    query("INSERT INTO portfolio (id, symbol, locked) VALUES (?, ?, ?)", $id, $symbol, $quantity);
-                }
-             else{
-                    query("UPDATE portfolio SET locked = (locked + ?) WHERE (id = ? AND symbol = ?)", $quantity, $id, $symbol);
-                }
-
-
-
-
-        } else //($random == 2)
-        {
+        } else {
             $side = 'b';
             $price = mt_rand(1, 36)*$divisor;
-
-            $total = ($quantity * $price);
-            query("UPDATE accounts SET locked = (locked + ?) WHERE id = ?", $total, $id);
-
         }
         if ($type == 'market') {
             $price = 0;
         }
-
-        //NEW METHOD
         placeOrder($symbol, $type, $side, $quantity, $price, $id);
-        //OLD METHOD
-        //query("INSERT INTO orderbook (symbol, side, type, price, quantity, id) VALUES (?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $quantity, $id);
-    
     }
     return $randomOrders;
-
 }
-?>
-<?php
 
 function clear_all()
 {

@@ -269,7 +269,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     <hr>OTHER INFORMATION<br>
 
     <?php
-    $topAskPrice = $orderbook['topAskPrice'];
+    $topAskPrice = (float)$orderbook['topAskPrice'];
     $topAskUID = $orderbook['topAskUID']; //order id; unique id
     $topAskSymbol = $orderbook['topAskSymbol']; //symbol of equity
     $topAskSide = $orderbook['topAskSide']; //bid or ask
@@ -280,7 +280,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
 
 
-    $topBidPrice = $orderbook['topBidPrice'];
+    $topBidPrice = (float)$orderbook['topBidPrice'];
     $topBidUID = $orderbook['topBidUID']; //order id; unique id
     $topBidSymbol = $orderbook['topBidSymbol'];
     $topBidSide = $orderbook['topBidSide']; //bid or ask

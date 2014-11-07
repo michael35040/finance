@@ -6,11 +6,12 @@
 function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 {
     //BROKEN!!!
-    //require 'constants.php'; //for $commission
-    $divisor = 0.25;  //constants.php
+    require 'constants.php'; //for $commission
+    //$commission = 0.05;  //constants.php
+    //$divisor = 0.25;  //constants.php
 
     if (empty($symbol) || empty($quantity) ||  empty($type) || empty($side)) { apologize("Please fill all required fields (Symbol, Quantity, Type, Side)."); } //check to see if empty
-    if ($type="limit"){ if(empty($price)){apologize("Limit order requires price");}}
+    if ($type=="limit"){ if(empty($price)){apologize("Limit order requires price");}}
     
     //QUERY TO SEE IF SYMBOL EXISTS
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
@@ -52,7 +53,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
                     apologize("error");}
             $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type = 'limit' AND side = ?)", $otherSide);
             $limitOrders = $limitOrdersQ[0]['limitorders'];
-            if (is_null($limitOrders) || $limitOrders == 0 || $limitorder < $quantity){
+            if (is_null($limitOrders) || $limitOrders == 0 || $limitOrders < $quantity){
                 query("ROLLBACK");  query("SET AUTOCOMMIT=1"); //rollback on failure
                 apologize("Market Orders require an active Limit Order on the exchange for matching. Not enough or no Limit Orders currently on the exchange.");}
 
@@ -255,9 +256,9 @@ function marketOrderCheck($symbol)
 ////////////////////////////////////
 function orderbook($symbol) {
         //BROKEN!!!
-        //require 'constants.php'; //for $commission
-        $commission = 0.05;  //constants.php
-        $adminid = 1; //constants.php
+        require 'constants.php'; //for $commission
+        //$commission = 0.05;  //constants.php
+        //$adminid = 1; //constants.php
         
         ////////////////////////
         //PROCESS MARKET ORDERS
@@ -332,9 +333,9 @@ function orderbook($symbol) {
                 //DETERMINE TRADE SIZE
                 if ($topBidSize < $topAskSize) {
                     $tradeSize = $topBidSize; //BID IS SMALLER SO DELETE AND UPDATE ASK ORDER
-                    $quantityRemaining = ($topAskSize - $topBidSize); //ask has larger qty; update their order with new qty after trade if not 0
+                    $askQuantityRemaining = ($topAskSize - $topBidSize); //ask has larger qty; update their order with new qty after trade if not 0
                     //UPDATE ASK ORDER;
-                    if (query("UPDATE orderbook SET quantity = ? WHERE uid = ?", $quantityRemaining, $topAskUID) === false) {
+                    if (query("UPDATE orderbook SET quantity = ? WHERE uid = ?", $askQuantityRemaining, $topAskUID) === false) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Size OB Failure: #3");
                     }
@@ -345,9 +346,11 @@ function orderbook($symbol) {
                     }
                 } elseif ($topBidSize > $topAskSize) {
                     $tradeSize = $topAskSize;
-                    $quantityRemaining = $topBidSize - $topAskSize; //bid has larger qty; update their order with new qty after trade if not 0
-                    //UPDATE BID; DELETE ASK
-                    if (query("UPDATE orderbook SET quantity = ? WHERE uid = ?", $quantityRemaining, $topBidUID) === false) {
+                    $bidQuantityRemaining = ($topBidSize - $topAskSize); //bid has larger qty; update their order with new qty after trade if not 0
+                    $NewLockedAmount = (($bidQuantityRemaining*$topBidPrice)+($bidQuantityRemaining*$topBidPrice*$commission));
+                    $returnAmount = ($lockedAmount-$NewLockedAmount);
+                    //UPDATE BID ORDER WITH REMAINING BALANCE AFTER THIS TRADE
+                    if (query("UPDATE orderbook SET quantity = ?, locked = ? WHERE uid = ?", $bidQuantityRemaining, $NewLockedAmount, $topBidUID) === false) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Update OB Failure: #5");
                     }
@@ -356,9 +359,14 @@ function orderbook($symbol) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Delete OB Failure: #6");
                     }
+                    //ADD UNUSED LOCKED FUNDS, REMOVE REST OF UNLOCKED FUNDS LATER
+                    if (query("UPDATE accounts SET units = (units + ?), locked = (locked - ?) WHERE id = ?", $returnAmount, $returnAmount, $topBidUser) === false)
+                    { //MOVE CASH TO LOCKED FUNDS
+                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
+                        apologize("Update Accounts Failure: #10");
+                    }
                 } elseif ($topBidSize == $topAskSize) {
                     $tradeSize = $topAskSize;
-                    $quantityRemaining = $topBidSize - $topAskSize; //should be 0 since objects are equal
                     //DELETE BOTH ORDERS AFTER TRADE
                     if (query("DELETE FROM orderbook WHERE uid = ?", $topBidUID) === false) {
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
@@ -372,6 +380,7 @@ function orderbook($symbol) {
                     query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                     apologize("Size Failure: #9");
                 }
+
                 //if commission is NOT set, make it zero
                 if (!isset($commission)) { $commission = 0;} //set in constants.php
                 $commissionAmount = ($commission * ($tradePrice * $tradeSize));
@@ -386,32 +395,25 @@ function orderbook($symbol) {
                 $bidFunds = query("SELECT locked, units FROM accounts WHERE id = ?", $topBidUser);
                 $bidFundsLocked = $bidFunds[0]["locked"];
                 $bidFundsUnits = $bidFunds[0]["units"];
-                if ($bidFundsUnits < 0) {
-                    query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
-                    cancelOrder($topBidUID);
-                    apologize("Buyer has negative units. Buyers bid orders deleted");
-                }
-                $returnAmount = ($bidFundsLocked - $tradeTotal); //lockedAmount locked in exchange.php
-                //check funds
-                if ($bidFundsLocked < $tradeTotal)
-                {
-                   //since the buyer does not have enough money, delete the his orders ID
-                    
+                //if user doesn't have enough locked or negative balance
+                if ($bidFundsLocked < $tradeTotal || $bidFundsUnits < 0 || $bidFundsLocked < 0) {
                     query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                     cancelOrder($topBidUID);
                     apologize("Buyer does not have enough funds. Buyers bid orders deleted");
                 }
+
                 //determine what to return to bid user
                 else //if($bidFundsLocked >= $tradeTotal) //buyer has enough money
                 {
                     ///////////////////////
-                    //REMOVE LOCKED FUNDS AND RETURN LEFT OVER UNITS TO BID USER
+                    //REMOVE LOCKED FUNDS
                     ///////////////////////
-                    if (query("UPDATE accounts SET units = (units + ?), locked = (locked - ?) WHERE id = ?", $returnAmount, $tradeTotal, $topBidUser) === false) 
+                    if (query("UPDATE accounts SET locked = (locked - ?) WHERE id = ?", $tradeTotal, $topBidUser) === false)
                         { //MOVE CASH TO LOCKED FUNDS
                         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); //rollback on failure
                         apologize("Update Accounts Failure: #10");
                         }
+
                     ///////////////////////
                     //GIVE UNITS TO ASK USER
                     //////////////////////
