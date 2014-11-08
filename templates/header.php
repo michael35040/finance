@@ -103,7 +103,6 @@
         // query cash for template
         $accounts =	query("SELECT * FROM accounts WHERE id = ?", $_SESSION["id"]);	 //query db
         @$units = $accounts[0]["units"];
-        @$locked = $accounts[0]["locked"];
         @$loan = $accounts[0]["loan"];
         @$rate = $accounts[0]["rate"];
         $rate *= 100; //for display as %

@@ -135,9 +135,25 @@ function OrderbookTop($symbol)
 
 
 ////////////////////////////////////
+//EXCHANGE MARKET ALL
+////////////////////////////////////
+function allOrderbooks()
+{
+    //GET A QUERY OF ALL SYMBOLS FROM ASSETS
+    $symbols =	query("SELECT symbol FROM assets ORDER BY symbol ASC");
+
+    foreach ($symbols as $symbol)
+    {
+        orderbook($symbol);
+    }
+
+    //THEN ORDERBOOK FUNCTION ALL ASSETS FOREACH
+}
+
+////////////////////////////////////
 //EXCHANGE MARKET
 ////////////////////////////////////
-function orderbook($symbol) 
+function orderbook($symbol)
 {
     $adminid = 1;
     
@@ -213,7 +229,7 @@ function orderbook($symbol)
             $orderbookQuantity = (int)$orderbookQuantity[0]["quantity"];
            // apologize(var_dump(get_defined_vars()));
 
-        //REMOVE SHARES FROM ASK USER
+            //REMOVE SHARES FROM ASK USER
             //IF SELLER TRYING TO SELL MORE THEN THEY OWN CANCEL ORDER
             if ($tradeSize > $orderbookQuantity) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topAskUID);
                 apologize("Seller does not have enough quantity. All seller's orders deleted."); }
@@ -251,10 +267,14 @@ function orderbook($symbol)
             $askPortfolio = query("SELECT quantity FROM portfolio WHERE (symbol=? AND id=?)", $symbol, $topBidUser);
             $askPortfolio = $askPortfolio[0]["quantity"];
             // DELETE IF TRADE IS ALL THEY OWN
-            if($askPortfolio == 0) {if (query("DELETE FROM portfolio WHERE (id = ? AND symbol = ?)", $topAskUser, $symbol) === false) { query("ROLLBACK");
-                query("SET AUTOCOMMIT=1"); apologize("Failure: #14"); } }
+            if($askPortfolio == 0) {if (query("DELETE FROM portfolio WHERE (id = ? AND symbol = ?)", $topAskUser, $symbol) === false)
+                 { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #14"); } }
+            // QUANTITY WERE REMOVED WHEN PUT INTO ORDERBOOK BUT NEED TO UPDATE PRICE
+            elseif($askPortfolio ==1) {if (query("UPDATE portfolio SET price = (price - ? - ?) WHERE (id = ? AND symbol = ?)", $tradeAmount, $commissionAmount, $topAskUser, $symbol) === false)
+                 { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #14a"); } }
+            else { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #14b"); }
 
-            //GIVE SHARES TO BID USER
+                //GIVE SHARES TO BID USER
             $bidQuantityRows = query("SELECT symbol FROM portfolio WHERE (id = ? AND symbol = ?)", $topBidUser, $symbol); //Checks to see if they already own stock to determine if we should insert or update tables
             $countRows = count($bidQuantityRows);
             //INSERT IF NOT ALREADY OWNED
@@ -299,7 +319,10 @@ function orderbook($symbol)
             @$topBidPrice  = (float)$topBidPrice; //convert string to float
             @$topAskPrice  = (float)$topAskPrice; //convert string to float
         } //IF TRADES ARE POSSIBLE
-        elseif($topBidPrice < $topAskPrice) {apologize("No trades possible!");} //TRADES ARE NOT POSSIBLE
+        elseif($topBidPrice < $topAskPrice)
+        {
+            return('No Trades Possible');
+        } //{apologize("No trades possible!");} //TRADES ARE NOT POSSIBLE
         else {apologize("ERROR!");}
 
     } //BOTTOM of WHILE STATEMENT

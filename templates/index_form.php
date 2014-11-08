@@ -36,7 +36,7 @@
             </tr>
         <?php
         }
-        if($locked != 0)
+        if($bidLocked != 0)
         {
             ?>
 
@@ -48,7 +48,7 @@
                 </td>
                 <td colspan="4"><?php echo("Locked-Pending Bid Order"); ?></td>
                 <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
-                    <?php echo(number_format($locked, 2, ".", ",")) ?></td>
+                    <?php echo(number_format($bidLocked, 2, ".", ",")) ?></td>
             </tr>
         <?php
         }
@@ -63,7 +63,7 @@
                 <td>
                     <strong>
                         <?php
-                        $accountsTotal = ($units+$loan+$locked);
+                        $accountsTotal = ($units+$loan+$bidLocked);
                         echo(number_format($accountsTotal, 2, ".", ","))
                         ?>
                     </strong>
@@ -90,7 +90,10 @@
     <?php $i = 0;
     foreach ($portfolio as $row) {
         echo("<tr>");
-        echo("<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . htmlspecialchars($row["symbol"]) . "</td>");  //htmlspecialchars
+        echo("<td>&nbsp;&nbsp;&nbsp;" . htmlspecialchars($row["symbol"]) .
+             "&nbsp;&nbsp; (" . (number_format($row["control"], 2, ".", ",")) . "%)" .
+            "</td>");  //htmlspecialchars
+
         echo("<td>" . (number_format($row["quantity"], 0, ".", ",")) . "</td>");
         echo("<td>" . (number_format($row["locked"], 0, ".", ",")) . "</td>");
         echo("<td>" . $unitsymbol . (number_format($row["price"], 2, ".", ",")) . "</td>");
@@ -121,7 +124,7 @@
 
     if ($i == 0) {
         echo("<tr><td colspan='7'>You do not have any stocks in your portfolio account</td></tr>");
-        $total = 0;  //set to zero for networth calc
+        $portfolioTotal = 0;  //set to zero for networth calc
         ?>
         <tr  class="active">
         <td colspan="4"><strong>SUBTOTAL</strong></td>
@@ -156,11 +159,11 @@
                             $sum[$key] += $val;
                         }
                     } //sum all the values in array
-                    $total = $sum['total'];
+                    $portfolioTotal = $sum['total'];
                     $value = $sum['value'];
-                    $change = ($total - $purchaseprice);
+                    $change = ($portfolioTotal - $purchaseprice);
                     if ($value > 0) {
-                        $percent = 100 * (($total / $value) - 1); // total/purchase
+                        $percent = 100 * (($portfolioTotal / $value) - 1); // total/purchase
                     } else {
                         $percent = 0;
                     }
@@ -168,10 +171,10 @@
                     echo($unitsymbol . number_format($change, 2, ".", ",") . " (<i>" . number_format($percent, 2, ".", ",") . "</i>%) "); //display change
 
                     //ARROWS START
-                    if ($value < $total) {
+                    if ($value < $portfolioTotal) {
                         echo("<font color='#00FF00'>&#x25B2;</font>");
                     } //money is up
-                    elseif ($value > $total) {
+                    elseif ($value > $portfolioTotal) {
                         echo("<font color='#FF0000'>&#x25BC;</font>");
                     }  //money is down
                     else {
@@ -182,7 +185,7 @@
             </td>
             <td><strong>
                     <?php
-                    echo($unitsymbol . number_format($total, 2, ".", ",")); //display market value
+                    echo($unitsymbol . number_format($portfolioTotal, 2, ".", ",")); //display market value
                     ?></strong>
             </td>
         </tr>
@@ -210,7 +213,7 @@
             <strong>
                 <?php
                 echo($unitsymbol);
-                $networth = ($total + $units + $loan + $locked);
+                $networth = ($portfolioTotal + $accountsTotal);
                 echo(htmlspecialchars(number_format($networth, 2, ".", ","))); //networth defined previously
                 ?>
             </strong>

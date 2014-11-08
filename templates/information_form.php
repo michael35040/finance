@@ -1,9 +1,9 @@
 <style>
-.symbolForm {
-display: inline-block;
-text-align:center;
-width:25%;
-}
+    .symbolForm {
+        display: inline-block;
+        text-align:center;
+        width:25%;
+    }
 </style>
 
 <head>
@@ -15,10 +15,10 @@ width:25%;
         google.setOnLoadCallback(drawChart);
         function drawChart()
         {
-<?php
-            if($tradesGroupChart != null)
-            {
-                ?>
+            <?php
+                        if($tradesGroupChart != null)
+                        {
+                            ?>
 
 
             /////////////////
@@ -93,14 +93,14 @@ width:25%;
             ////////////
 
 
-<?php }   //tradesgroupchart != null ?>
+            <?php }   //tradesgroupchart != null ?>
 
 
 
-<?php
-if($bidsGroupChart != null)
-{
- ?>
+            <?php
+            if($bidsGroupChart != null)
+            {
+             ?>
             //////////
             //CHART 3
             //ORDERBOOK
@@ -147,7 +147,7 @@ if($bidsGroupChart != null)
             //END CHART 2
             ////////////
 
- <?php }   //$bidsGroupChart != null ?>
+            <?php }   //$bidsGroupChart != null ?>
 //echo(var_dump(get_defined_vars()));
         }
     </script>
@@ -173,27 +173,32 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
     </thead>
     <tbody>
     <?php
-        echo('<tr>');
-        echo('<td> ' . htmlspecialchars($asset["symbol"]) . '</td>');
-        echo('<td >' . $unitsymbol . number_format($tradesPrice, 2, ".", ",") . '</td>');
-        echo('<td >' . number_format($asset["volume"], 0, ".", ",") . '</td>');
-        echo('<td >' . $unitsymbol . number_format($asset["marketcap"], 2, ".", ",") . '</td>');
-        echo('</tr>');
-        echo('<div  class="hiddenRow">');
-        echo('<tr >');
-        echo('<td colspan="1">' . htmlspecialchars($asset["name"]) . '
-            <br>' . htmlspecialchars($asset["url"]) . '
-            <br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '</td>');
-        echo('<td >' . $unitsymbol . number_format($bidsPrice, 2, ".", ",") . ' - Bid
+    echo('<tr>');
+    echo('<td> ' . htmlspecialchars($asset["symbol"]) . '</td>');
+    echo('<td >' . $unitsymbol . number_format($tradesPrice, 2, ".", ",") . '</td>');
+    echo('<td >' . number_format($asset["volume"], 0, ".", ",") . '</td>');
+    echo('<td >' . $unitsymbol . number_format($asset["marketcap"], 2, ".", ",") . '</td>');
+    echo('</tr>');
+    echo('<div  class="hiddenRow">');
+    echo('<tr >');
+
+    echo('<td colspan="1">' . htmlspecialchars($asset["name"]) . '
+            <br>' . htmlspecialchars($asset["url"]) . '</td>');
+
+    echo('<td >' . $unitsymbol . number_format($bidsPrice, 2, ".", ",") . ' - Bid
             <br>' . $unitsymbol . number_format($asksPrice, 2, ".", ",") . ' - Ask
             <br>' . $unitsymbol . number_format($asset["avgprice"], 2, ".", ",") . ' - Avg. Price (30d)</td>');
-        echo('<td >' . number_format($asset["public"], 0, ".", ",") . ' - Issued
+
+    echo('<td >' . number_format($asset["public"], 0, ".", ",") . ' - Issued
             <br>' . number_format($asset["issued"], 0, ".", ",") . ' - Public
             <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
-        echo('<td >Dividend: ' . number_format($asset["dividend"], 2, ".", ",") .
-            '<br>Rating: ' . htmlspecialchars($asset["rating"]) . '</td>');
-        echo('</tr>');
-        echo('</div>');
+
+    echo('<td >Dividend: ' . number_format($asset["dividend"], 2, ".", ",") .
+        '<br>Rating: ' . htmlspecialchars($asset["rating"]) .
+        '<br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) .
+        '</td>');
+    echo('</tr>');
+    echo('</div>');
     ?>
     </tbody>
 </table>
@@ -205,14 +210,14 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
 <?php
 if($tradesGroupChart != null)
 { ?>
-<div id="chart_div" style="overflow:hidden;"></div>
+    <div id="chart_div" style="overflow:hidden;"></div>
 <?php } ?>
 
 
 <?php
 if($tradesChart != null)
 { ?>
-<div id="chart_div1" style="overflow:hidden;"></div>
+    <div id="chart_div1" style="overflow:hidden;"></div>
 <?php } ?>
 
 
@@ -222,42 +227,42 @@ if($tradesChart != null)
 
 
 
-    <table class="table" align="center"> <!--class="bstable"-->
+<table class="table" align="center"> <!--class="bstable"-->
 
-        <!--/////////TRADES//////-->
-        <tr>
-            <td colspan="7"></td>
-        </tr>
-        <!--blank row breaker-->
-        <tr>
-            <th colspan="7" bgcolor="black" style="color:white" size="+1">
-                <?php echo($symbol); ?> - TRADES
-            </th>
-        </tr>
+    <!--/////////TRADES//////-->
+    <tr>
+        <td colspan="7"></td>
+    </tr>
+    <!--blank row breaker-->
+    <tr>
+        <th colspan="7" bgcolor="black" style="color:white" size="+1">
+            <?php echo($symbol); ?> - TRADES
+        </th>
+    </tr>
 
-        <tr>
-            <td>Trade #</td>
-            <td>Buyer/Seller/Type</td>
-            <td>Date/Time (Y/M/D)</td>
-            <td>Symbol</td>
-            <td>Quantity</td>
-            <td>Price</td>
-            <td>Total</td>
-        </tr>
+    <tr>
+        <td>Trade #</td>
+        <td>Buyer/Seller/Type</td>
+        <td>Date/Time (Y/M/D)</td>
+        <td>Symbol</td>
+        <td>Quantity</td>
+        <td>Price</td>
+        <td>Total</td>
+    </tr>
 
-        <?php
+    <?php
 
-        foreach ($trades as $trade) {
-            @$tradeID = $trade["uid"];
-            @$tradeType = $trade["type"];
-            @$buyer = $trade["buyer"];
-            @$seller = $trade["seller"];
-            @$symbol = $trade["symbol"];
-            @$quantity = $trade["quantity"];
-            @$price = $trade["price"];
-            @$total = $trade["total"];
-            @$date = $trade["date"];
-            echo("
+    foreach ($trades as $trade) {
+        @$tradeID = $trade["uid"];
+        @$tradeType = $trade["type"];
+        @$buyer = $trade["buyer"];
+        @$seller = $trade["seller"];
+        @$symbol = $trade["symbol"];
+        @$quantity = $trade["quantity"];
+        @$price = $trade["price"];
+        @$total = $trade["total"];
+        @$date = $trade["date"];
+        echo("
                 <tr>
                 <td>" . number_format($tradeID, 0, ".", ",") . "</td>
                 <td>" . $buyer . "/" . $seller . "/" . strtoupper($tradeType) . "</td>
@@ -267,18 +272,18 @@ if($tradesChart != null)
                 <td>$" . number_format($price, 2, ".", ",") . "</td>
                 <td>$" . number_format($total, 2, ".", ",") . "</td>
                 </tr>");
-        } //foreach
+    } //foreach
 
-        ?>
+    ?>
 
-        <tr>
-            <td colspan="7">
+    <tr>
+        <td colspan="7">
 
 
-            </td>
-        </tr>
-        <!--blank row breaker-->
-    </table>
+        </td>
+    </tr>
+    <!--blank row breaker-->
+</table>
 
 
 
@@ -338,7 +343,7 @@ if($tradesChart != null)
 
     </td>
     <td style="vertical-align: bottom;">
-                            <div id="chart_div2"></div>
+        <div id="chart_div2"></div>
     </td>
     <td style="width:10%">
         <table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center; float:right">

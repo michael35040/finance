@@ -41,7 +41,42 @@ function randomOrders($symbol='A', $number=10, $type='limit')
     return $randomOrders;
 }
 
-function clear_all()
+function createStocks($number)
+{    include("constants.php");//for $divisor
+    $i=0;
+    $symbol = 'A';
+    while ($i < $number) {
+       // echo($symbol . " ");
+
+        $quantity = mt_rand(1,1000)*1000;
+        $issued = $quantity*3;
+        $price = 0; //how much we bought it for in port.
+        //$price = mt_rand(1, 40)*$divisor;
+
+        query("
+  INSERT INTO `assets` (`symbol`, `name`, `issued`, `type`, `fee`, `owner`, `url`, `rating`, `description`)
+  VALUES (?, ?, ?, 'stock', '0.500000000000000000000000000000', '', '', 1, '')", $symbol, $symbol, $issued);
+
+        query("INSERT INTO `portfolio` (`id`, `symbol`, `quantity`, `price`)
+            VALUES  (1, ?, ?, ?),
+                    (2, ?, ?, ?),
+                    (3, ?, ?, ?)", $symbol, $quantity, $price, $symbol, $quantity, $price, $symbol, $quantity, $price);
+
+        $tradePrice = mt_rand(1, 40)*$divisor;
+        $tradeSize = mt_rand(1, 100);
+        $tradeAmount = $tradeSize * $tradePrice;
+        query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, 1, 1, $tradeSize, $tradePrice, 0, $tradeAmount, 'limit', 1234, 4567);
+
+
+        randomOrders($symbol);
+
+        $symbol++;
+        $i++;
+    }
+    allOrderbooks();
+}
+
+function clear_all($number=26)
 {
     clear_orderbook();
     clear_trades();
@@ -49,12 +84,9 @@ function clear_all()
     clear_history();
     clear_assets();
     query("  UPDATE `accounts` SET `units`=1000000,`loan`=0,`rate`=0,`approved`=1 WHERE 1");
-    query("  INSERT INTO `assets` (`symbol`, `name`, `issued`, `type`, `fee`, `owner`, `url`, `rating`, `description`)
-             VALUES ('A', 'aaa', 3000000, 'stock', '0.500000000000000000000000000000', '', '', 1, '')");
-    query("INSERT INTO `portfolio` (`uid`, `id`, `symbol`, `quantity`, `price`)
-            VALUES  (1, 1, 'A', 1000000, '0.000000000000000000000000000000'),
-                    (2, 2, 'A', 1000000, '0.000000000000000000000000000000'),
-                    (3, 3, 'A', 1000000, '0.000000000000000000000000000000')");
+
+    createStocks($number);
+
 }
 
 function clear_orderbook()
