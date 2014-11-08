@@ -107,27 +107,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 } // else render quote_form
 else
 {
-    $stocksQ =	query("SELECT * FROM portfolio WHERE id = ? ORDER BY symbol ASC", $id);	  // query user's portfolio
-    $stocks=[];
-    foreach ($stocksQ as $row)		// for each of user's stocks
+    $allStocks =	query("SELECT symbol, quantity FROM portfolio WHERE id = ? ORDER BY symbol ASC", $id);	  // query user's portfolio
+    $stocks = [];
+    foreach ($allStocks as $row)		// for each of user's stocks
     {
         $stock = [];
-        $stock["uid"] = $row["uid"]; //shares trading
-        $stock["id"] = $row["id"]; //shares trading
-        $stock["symbol"] = $row["symbol"]; //shares trading
-        $stock["quantity"] = $row["quantity"]; //shares trading
-        $stock["price"] = $row["price"]; //shares trading
-            $askQuantity = query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id=? AND symbol =? AND side='a')", $id, $row["symbol"]);      // query user's portfolio
+        $stock["symbol"] = $row["symbol"];
+        $stock["quantity"] = $row["quantity"];
+            $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $row["symbol"]);	  // query user's portfolio
         $stock["locked"] = $askQuantity[0]["quantity"]; //shares trading
 
-        $stocks = $stock;
-        //apologize(var_dump(get_defined_vars()));
 
+        $stocks[] = $stock;
     }
 
     $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC");	  // query user's portfolio
-
+    //$stocks = $infos;
+    //apologize(var_dump(get_defined_vars()));
     render("information_symbol_form.php", ["title" => "Symbol", "stocks" => $stocks, "assets" => $assets]);
 }
+
+
+
+
+
+
 
 ?>

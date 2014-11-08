@@ -5,9 +5,28 @@
     }
 
 </style>
+
+
 <table class="table table-condensed table-striped table-bordered" id="assets" style="border-collapse:collapse;">
     <thead>
-    <tr class="success"><td colspan="4"><font color="black" size="+1">ASSETS</font></td></tr> <!--blank row breaker-->
+    <tr class="success"><td colspan="4" style="font-size:20px; text-align: center;">ASSETS</td>
+    <tr class="danger">
+        <td colspan="4" style="font-size:15px; text-align: center;">
+            <marquee behavior="scroll" direction="left">
+                <?php echo($sitename);?>
+                INDEX:
+                <?php echo($unitsymbol . number_format($marketIndex, 0, ".", ","));
+                foreach ($assets as $asset)
+                {
+                    echo(" (" . $asset["symbol"] .
+                        ":" . $unitsymbol . number_format($asset["price"], 2, ".", ",") .
+                    //" / " . $unitsymbol . number_format($asset["marketcap"], 0, ".", ",") .
+                        ")"
+                );} ?>
+
+
+            </marquee>
+        </td>
     <tr class="active">
         <th width="40%">Symbol</th>
         <th width="20%">Price</th>

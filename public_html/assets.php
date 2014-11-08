@@ -6,6 +6,8 @@ require("../includes/config.php");
 $allAssets =	query("SELECT * FROM assets ORDER BY symbol ASC");
 
 $assets = []; //to send to next page
+
+$marketIndex = 0;
 foreach ($allAssets as $row)		// for each of user's stocks
 {
     $asset = [];
@@ -45,7 +47,7 @@ foreach ($allAssets as $row)		// for each of user's stocks
         //$dividend =	query("SELECT SUM(quantity) AS quantity FROM history WHERE type = 'dividend' AND symbol = ?", $asset["symbol"]);	  // query user's portfolio
         $asset["dividend"]=0; //until we get real ones
     //$asset["dividend"] = $dividend["dividend"]; //shares actually held public
-
+    $marketIndex = $marketIndex+$asset["marketcap"];
     $assets[] = $asset;
 
     //apologize(var_dump(get_defined_vars()));
@@ -53,6 +55,6 @@ foreach ($allAssets as $row)		// for each of user's stocks
 }
 
 // render portfolio (pass in new portfolio table and cash)
-render("assets_form.php", ["title" => "Accounts", "assets" => $assets]);
+render("assets_form.php", ["title" => "Accounts", "assets" => $assets, "marketIndex" => $marketIndex]);
 
 ?>
