@@ -175,29 +175,6 @@ TRUNCATE TABLE `orderbook`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
---
-
-DROP TABLE IF EXISTS `orders`;
-CREATE TABLE IF NOT EXISTS `orders` (
-  `uid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'unique id',
-  `date` varchar(255) NOT NULL,
-  `open` decimal(65,30) NOT NULL,
-  `high` decimal(65,30) NOT NULL,
-  `low` decimal(65,30) NOT NULL,
-  `price` decimal(65,30) NOT NULL COMMENT 'close',
-  `size` int(11) unsigned NOT NULL COMMENT 'volume',
-  PRIMARY KEY (`uid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- Truncate table before insert `orders`
---
-
-TRUNCATE TABLE `orders`;
--- --------------------------------------------------------
-
---
 -- Table structure for table `portfolio`
 --
 
