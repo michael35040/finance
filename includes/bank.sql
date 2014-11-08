@@ -60,7 +60,7 @@ INSERT INTO `accounts` (`id`, `units`, `loan`, `rate`, `approved`) VALUES
 
 DROP TABLE IF EXISTS `assets`;
 CREATE TABLE IF NOT EXISTS `assets` (
-  `uid` int(11) NOT NULL,
+  `uid` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique assets id',
   `symbol` varchar(10) NOT NULL COMMENT 'ticker',
   `name` varchar(63) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'listed on',
@@ -184,7 +184,6 @@ CREATE TABLE IF NOT EXISTS `portfolio` (
   `id` int(10) NOT NULL COMMENT 'user id',
   `symbol` varchar(10) NOT NULL,
   `quantity` int(65) NOT NULL,
-  `locked` int(65) NOT NULL,
   `price` decimal(65,30) NOT NULL COMMENT 'avg buy price',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

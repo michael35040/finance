@@ -17,7 +17,7 @@ $symbol='A';
         $publicTotal = $askQuantity+$publicQuantity;
 
 
-        $moneySupply =	query("SELECT SUM(units) AS units, SUM(locked) FROM accounts");	  // query user's portfolio
+        $moneySupply =	query("SELECT SUM(units) AS units FROM accounts");	  // query user's portfolio
         $moneySupplyUnits = $moneySupply[0]["units"];
 
         $bidTotal =	query("SELECT SUM(total) AS total FROM orderbook WHERE side='b'");	  // query user's portfolio

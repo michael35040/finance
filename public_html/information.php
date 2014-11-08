@@ -17,29 +17,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     //COMPANY INFORMATION
     $asset=[];
     $asset =	query("SELECT * FROM assets WHERE symbol=?", $symbol);
-    $asset = $asset[0];
+    if(!empty($asset))
+    {
+        $asset = $asset[0];
 
         $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
         if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
         $publicQuantity = $public[0]["quantity"]; //shares held
         $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $asset["symbol"]);	  // query user's portfolio
         $askQuantity = $askQuantity[0]["quantity"]; //shares trading
-    $asset["public"] = $askQuantity+$publicQuantity;
+        $asset["public"] = $askQuantity+$publicQuantity;
 
-    $volume =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY MONTH(date) ORDER BY uid ASC LIMIT 0, 500", $symbol);	  // query user's portfolio
+        $volume =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY MONTH(date) ORDER BY uid ASC LIMIT 0, 500", $symbol);	  // query user's portfolio
         if(empty($volume[0]["quantity"])){$volume[0]["quantity"]=0;}
         if(empty($volume[0]["price"])){$volume[0]["price"]=0;}
-    $asset["volume"] = $volume[0]["quantity"];
-    $asset["avgprice"] = $volume[0]["price"];
-    $trades =	    query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $symbol);	  // query user's portfolio
+        $asset["volume"] = $volume[0]["quantity"];
+        $asset["avgprice"] = $volume[0]["price"];
+        $trades =	    query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $symbol);	  // query user's portfolio
         if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
         $asset["price"] = $trades[0]["price"]; //stock price per share
-    $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
+        $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
         //$dividend =	query("SELECT SUM(quantity) AS quantity FROM history WHERE type = 'dividend' AND symbol = ?", $asset["symbol"]);	  // query user's portfolio
         //$asset["dividend"] = $dividend["dividend"]; //shares actually held public
-    $asset["dividend"]=0; //until we get real ones
+        $asset["dividend"]=0; //until we get real ones
+    }
 
-    //apologize(var_dump(get_defined_vars()));
 
     //EXCHANGE TRADES (PROCESSED ORDERS)
         //$trades =       query("SELECT (SUM(quantity)/1000) AS quantity, price, date FROM trades WHERE symbol=? GROUP BY DAY(date) ORDER BY date ASC ", $symbol);
@@ -105,8 +107,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 } // else render quote_form
 else
 {
-    $stocks =	query("SELECT * FROM portfolio WHERE id = ? ORDER BY symbol ASC", $id);	  // query user's portfolio
+    $stocksQ =	query("SELECT * FROM portfolio WHERE id = ? ORDER BY symbol ASC", $id);	  // query user's portfolio
+    $stocks=[];
+    foreach ($stocksQ as $row)		// for each of user's stocks
+    {
+        $stock = [];
+        $stock["uid"] = $row["uid"]; //shares trading
+        $stock["id"] = $row["id"]; //shares trading
+        $stock["symbol"] = $row["symbol"]; //shares trading
+        $stock["quantity"] = $row["quantity"]; //shares trading
+        $stock["price"] = $row["price"]; //shares trading
+            $askQuantity = query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id=? AND symbol =? AND side='a')", $id, $row["symbol"]);      // query user's portfolio
+        $stock["locked"] = $askQuantity[0]["quantity"]; //shares trading
+
+        $stocks = $stock;
+        //apologize(var_dump(get_defined_vars()));
+
+    }
+
     $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC");	  // query user's portfolio
+
     render("information_symbol_form.php", ["title" => "Symbol", "stocks" => $stocks, "assets" => $assets]);
 }
 

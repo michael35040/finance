@@ -3,6 +3,8 @@
 // configuration
 require("../includes/config.php");
 
+$id = $_SESSION["id"]; //get id from session
+
 $purchaseprice = query("SELECT SUM(price) AS purchaseprice FROM portfolio WHERE id = ?", $_SESSION["id"]); //calculate purchase price
 $userPortfolio =	query("SELECT * FROM portfolio WHERE id = ? ORDER BY symbol ASC", $_SESSION["id"]);
 
@@ -12,7 +14,12 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
     $stock = [];
     $stock["symbol"] = $row["symbol"]; //set variable from stock info
     $stock["quantity"] = $row["quantity"];
-    $stock["locked"] = $row["locked"];
+
+    $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id=? AND symbol =? AND side='a')", $id, $stock["symbol"]);	  // query user's portfolio
+    $askQuantity = $askQuantity[0]["quantity"]; //shares trading
+    $stock["locked"] = $askQuantity;
+
+
     $stock["value"] = $row["price"]; //total purchase price, value when bought
 
     $trades =	    query("SELECT * FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $stock["symbol"]);	  // query user's portfolio
