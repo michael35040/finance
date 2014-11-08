@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.8
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 06, 2014 at 12:49 PM
--- Server version: 5.5.36-cll-lve
--- PHP Version: 5.4.23
+-- Host: 127.0.0.1
+-- Generation Time: Nov 08, 2014 at 02:30 AM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -32,7 +32,6 @@ DROP TABLE IF EXISTS `accounts`;
 CREATE TABLE IF NOT EXISTS `accounts` (
   `id` int(11) NOT NULL,
   `units` decimal(65,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
-  `locked` decimal(65,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
   `loan` decimal(65,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
   `rate` decimal(65,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
   `approved` int(11) NOT NULL DEFAULT '0',
@@ -48,10 +47,10 @@ TRUNCATE TABLE `accounts`;
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `units`, `locked`, `loan`, `rate`, `approved`) VALUES
-(1, '1000000.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', 1),
-(2, '1000000.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', 1),
-(3, '1000000.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', 1);
+INSERT INTO `accounts` (`id`, `units`, `loan`, `rate`, `approved`) VALUES
+(1, '1000000.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', 1),
+(2, '1000000.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', 1),
+(3, '1000000.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', 1);
 
 -- --------------------------------------------------------
 
@@ -162,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `orderbook` (
   `side` varchar(1) NOT NULL COMMENT 'a:ask or b:bid',
   `type` varchar(6) NOT NULL COMMENT 'limit or market',
   `price` decimal(65,30) NOT NULL,
-  `locked` decimal(65,30) NOT NULL COMMENT 'if bid order fund amount that is locked',
+  `total` decimal(65,30) NOT NULL COMMENT 'if bid order fund amount that is locked',
   `quantity` int(11) NOT NULL COMMENT 'size quantity of order',
   `id` int(9) NOT NULL COMMENT 'user id',
   PRIMARY KEY (`uid`)
@@ -173,6 +172,29 @@ CREATE TABLE IF NOT EXISTS `orderbook` (
 --
 
 TRUNCATE TABLE `orderbook`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'unique id',
+  `date` varchar(255) NOT NULL,
+  `open` decimal(65,30) NOT NULL,
+  `high` decimal(65,30) NOT NULL,
+  `low` decimal(65,30) NOT NULL,
+  `price` decimal(65,30) NOT NULL COMMENT 'close',
+  `size` int(11) unsigned NOT NULL COMMENT 'volume',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `orders`
+--
+
+TRUNCATE TABLE `orders`;
 -- --------------------------------------------------------
 
 --
