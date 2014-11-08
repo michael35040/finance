@@ -50,7 +50,7 @@ function clear_all()
     clear_assets();
     query("UPDATE `accounts` SET `units`=1000000,`locked`=0,`loan`=0,`rate`=0,`approved`=1 WHERE 1");
     query("INSERT INTO `assets` (`uid`, `date`, `symbol`, `name`, `issued`, `type`, `fee`, `owner`, `url`, `rating`, `description`) VALUES
-(0, '2014-11-07 16:37:41', 'A', 'aaa', 1000000, 'stock', '0.500000000000000000000000000000', '', '', 1, '')");
+(0, '2014-11-07 16:37:41', 'A', 'aaa', 3000000, 'stock', '0.500000000000000000000000000000', '', '', 1, '')");
     query("INSERT INTO `portfolio` (`uid`, `id`, `symbol`, `quantity`, `locked`, `price`) VALUES
 (1, 1, 'A', 1000000, 0, '0.000000000000000000000000000000'),
 (2, 2, 'A', 1000000, 0, '0.000000000000000000000000000000'),

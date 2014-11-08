@@ -18,12 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $asset=[];
     $asset =	query("SELECT * FROM assets WHERE symbol=?", $symbol);
     $asset = $asset[0];
-        $public =	query("SELECT SUM(quantity) AS quantity,  SUM(locked) AS locked FROM portfolio WHERE symbol =?", $symbol);	  // query user's portfolio
+
+        $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
         if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
-        if(empty($public[0]["locked"])){$public[0]["locked"]=0;}
-        $publicLocked = $public[0]["locked"];
-        $publicQuantity = $public[0]["quantity"];
-    $asset["public"] = $publicLocked+$publicQuantity; //shares actually held public
+        $publicQuantity = $public[0]["quantity"]; //shares held
+        $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $asset["symbol"]);	  // query user's portfolio
+        $askQuantity = $askQuantity[0]["quantity"]; //shares trading
+    $asset["public"] = $askQuantity+$publicQuantity;
+
     $volume =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY MONTH(date) ORDER BY uid ASC LIMIT 0, 500", $symbol);	  // query user's portfolio
         if(empty($volume[0]["quantity"])){$volume[0]["quantity"]=0;}
         if(empty($volume[0]["price"])){$volume[0]["price"]=0;}
@@ -33,6 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
         $asset["price"] = $trades[0]["price"]; //stock price per share
     $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
+        //$dividend =	query("SELECT SUM(quantity) AS quantity FROM history WHERE type = 'dividend' AND symbol = ?", $asset["symbol"]);	  // query user's portfolio
+        //$asset["dividend"] = $dividend["dividend"]; //shares actually held public
+    $asset["dividend"]=0; //until we get real ones
 
     //apologize(var_dump(get_defined_vars()));
 

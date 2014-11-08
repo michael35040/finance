@@ -15,12 +15,14 @@ foreach ($allAssets as $row)		// for each of user's stocks
     $asset["owner"] = $row["owner"];
     $asset["fee"] = $row["fee"];
     $asset["issued"] = $row["issued"]; //shares issued
-        $public =	query("SELECT SUM(quantity) AS quantity,  SUM(locked) AS locked FROM portfolio WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
+
+        $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
         if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
-        if(empty($public[0]["locked"])){$public[0]["locked"]=0;}
-        $publicLocked = $public[0]["locked"];
-        $publicQuantity = $public[0]["quantity"];
-    $asset["public"] = $publicLocked+$publicQuantity; //shares actually held public
+        $publicQuantity = $public[0]["quantity"]; //shares held
+        $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $asset["symbol"]);	  // query user's portfolio
+        $askQuantity = $askQuantity[0]["quantity"]; //shares trading
+    $asset["public"] = $askQuantity+$publicQuantity;
+
     $asset["url"] = $row["url"]; //webpage
     $asset["type"] = $row["type"]; //type of asset (shares, commodity)
     $asset["rating"] = $row["rating"]; //my rating

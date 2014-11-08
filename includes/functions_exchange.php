@@ -27,69 +27,39 @@ function getCommission($total)
 ////////////////////////////////////
 //CANCEL ORDER
 ////////////////////////////////////
-function cancelOrder($indentity, $type)
-{   
-    if($type=="all") //delete all of the users orders based on ID/user
-    {
-        $order = query("SELECT * FROM orderbook WHERE id = ? LIMIT 0, 1", $indentity);
-        while(!empty($order))
-        {   query("SET AUTOCOMMIT=0");
-            query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
-            if (query("DELETE FROM orderbook WHERE (uid = ?)", $indentity) === false) 
+function cancelOrder($uid)
+{
+    $order = query("SELECT * FROM orderbook WHERE uid = ?", $uid);
+    if(!empty($order))
+    {   query("SET AUTOCOMMIT=0");
+        query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+        if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false)
+        {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
+            apologize("Failure Cancel 1"); }
+        @$side=$order[0]["side"];
+
+        if($side=='a')
+        {   if (query("UPDATE portfolio SET quantity = (quantity + ?) WHERE (symbol = ? AND id = ?)", $order[0]['quantity'], $order[0]['symbol'], $order[0]['id']) === false)
+        {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
+            apologize("Failure Cancel 2"); }
+            if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'ask') === false)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                apologize("Failure Cancel 1"); }
-            @$side=$order[0]["side"];
-            if($side=='a')
-            
-            {   if (query("UPDATE portfolio SET quantity = (quantity + ?), locked = (locked - ?) WHERE (symbol = ? AND id = ?)", $order[0]['quantity'], $order[0]['quantity'], $order[0]['symbol'], $order[0]['id']) === false)
-                {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                    apologize("Failure Cancel 2"); }
-                if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'ask') === false) 
-                {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                    apologize("Failure Cancel 3"); } }
-            elseif($side=='b')
-            
-            {   if (query("UPDATE accounts SET units = (units + ?), locked = (locked - ?) WHERE id = ?", $order[0]["locked"], $order[0]["locked"], $order[0]["id"]) === false) //MOVE CASH TO LOCKED FUNDS
-                {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                    apologize("Failure Cancel 4");}
-                if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'bid') === false) 
-                {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                    apologize("Failure Cancel 5"); } }
-        $order = query("SELECT * FROM orderbook WHERE id = ? LIMIT 0, 1", $indentity);        
-        }
-    }
-    else //type is single based on UID
-    {
-         $order = query("SELECT * FROM orderbook WHERE uid = ?", $indentity);
-        if(!empty($order))
-        {   query("SET AUTOCOMMIT=0");
-            query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
-            if (query("DELETE FROM orderbook WHERE (uid = ?)", $indentity) === false) 
+                apologize("Failure Cancel 3"); } }
+        elseif($side=='b')
+        {   if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $order[0]["total"], $order[0]["id"]) === false) //MOVE CASH TO units FUNDS
+        {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
+            apologize("Failure Cancel 4");}
+            if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'bid') === false)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                apologize("Failure Cancel 1"); }
-            @$side=$order[0]["side"];
-            if($side=='a')
-            
-            {   if (query("UPDATE portfolio SET quantity = (quantity + ?), locked = (locked - ?) WHERE (symbol = ? AND id = ?)", $order[0]['quantity'], $order[0]['quantity'], $order[0]['symbol'], $order[0]['id']) === false)
-                {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                    apologize("Failure Cancel 2"); }
-                if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'ask') === false) 
-                {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                    apologize("Failure Cancel 3"); } }
-            elseif($side=='b')
-            
-            {   if (query("UPDATE accounts SET units = (units + ?), locked = (locked - ?) WHERE id = ?", $order[0]["locked"], $order[0]["locked"], $order[0]["id"]) === false) //MOVE CASH TO LOCKED FUNDS
-                {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                    apologize("Failure Cancel 4");}
-                if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'bid') === false) 
-                {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                    apologize("Failure Cancel 5"); } }       
-    }
-        //var_dump(get_defined_vars());
-        //apologize("Market orders require limit orders. No ask limit orders for the bid market order. Deleting market order.");
+                apologize("Failure Cancel 5"); } }
+
         query("COMMIT;"); //If no errors, commit changes
         query("SET AUTOCOMMIT=1");
     } //!empty
+
+        //var_dump(get_defined_vars());
+        //apologize("Market orders require limit orders. No ask limit orders for the bid market order. Deleting market order.");
+
 }
 
 ////////////////////////////////////
@@ -100,7 +70,7 @@ function zeroQuantityCheck($symbol)
     $cancelOrders = 0;
     while(!empty($emptyOrders))
     {   $cancelOrders++;
-        cancelOrder($emptyOrders[0]["uid"], "single");
+        cancelOrder($emptyOrders[0]["uid"]);
         $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol); }
     return($cancelOrders);
 }
@@ -109,13 +79,14 @@ function zeroQuantityCheck($symbol)
 //CHECK FOR NEGATIVE VALUES
 ////////////////////////////////////
 function negativeValues()
-{   $negativeValueOrderbook = query("SELECT quantity, locked, uid FROM orderbook WHERE (quantity < 0 OR locked < 0) LIMIT 0, 1");
+{   $negativeValueOrderbook = query("SELECT quantity, total, uid FROM orderbook WHERE (quantity < 0 OR total < 0) LIMIT 0, 1");
     if(!empty($negativeValueOrderbook)) { apologize(var_dump(get_defined_vars())); apologize("Negative Orderbook Values: " . $negativeValueOrderbook[0]["uid"]);}
         //eventually all users order using id
-    $negativeValueAccounts = query("SELECT units, locked, id FROM accounts WHERE (units < 0 OR locked < 0) LIMIT 0, 1");
-    if(!empty($negativeValueAccounts)) { apologize(var_dump(get_defined_vars())); apologize("Negative Accounts Values: " . $negativeValueAccounts[0]["id"]);}
-        //eventually all users order using id    
+    $negativeValueAccounts = query("SELECT units, units, id FROM accounts WHERE (units < 0 OR units < 0) LIMIT 0, 1");
+    if(!empty($negativeValueAccounts)) { apologize("Negative Accounts Values: " . $negativeValueAccounts[0]["id"]);}
+        //eventually all users order using id     apologize(var_dump(get_defined_vars()));
 }
+
 
 ////////////////////////////////////
 //CHECK FOR WHICH ORDERS ARE AT TOP OF ORDERBOOK
@@ -130,7 +101,7 @@ function OrderbookTop($symbol)
             {   $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
                 while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'b') && (empty($asks)))
                 {  //cancel all bid market orders since there are no limit ask orders.
-                    cancelOrder($marketOrders[0]["uid"], "single");
+                    cancelOrder($marketOrders[0]["uid"]);
                     $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol, 'b');
                     $asks = query("SELECT 	* FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a'); }
                 $bids = $marketOrders;
@@ -140,7 +111,7 @@ function OrderbookTop($symbol)
             elseif($marketSide == 'a')
             {   $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
                 while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'a') && (empty($bids)))
-                {   cancelOrder($marketOrders[0]["uid"], "single");
+                {   cancelOrder($marketOrders[0]["uid"]);
                     $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol, 'a');
                     $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b'); }
                 $asks = $marketOrders;
@@ -205,20 +176,20 @@ function orderbook($symbol)
         $topBidType = ($bids[0]["type"]); //limit or market
         $topBidSize = (int)($bids[0]["quantity"]);
         $topBidUser = (int)($bids[0]["id"]);
-        $topBidLocked = (float)($bids[0]["locked"]);
+        $topBidUnits = (float)($bids[0]["total"]);
 
         $orderProcessed++; //orders processed plus 1
 
         if ($topBidPrice >= $topAskPrice) //TRADES ARE POSSIBLE
-        {   //DETERMINE EXECUTED PRICE (bid or ask) BY EARLIER DATE TIME using UID
-            if ($topBidUID < $topAskUID) { $tradePrice = $topBidPrice;} //with dates or uid, the smaller one is older  
-            elseif ($topBidUID > $topAskUID) { $tradePrice = $topAskPrice; } 
-            else {apologize("Date Failure: #2");}
-            
+        {
             //START TRANSACTION
             query("SET AUTOCOMMIT=0");
             query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
+            //DETERMINE EXECUTED PRICE (bid or ask) BY EARLIER DATE TIME using UID
+            if ($topBidUID < $topAskUID) { $tradePrice = $topBidPrice;} //with dates or uid, the smaller one is older  
+            elseif ($topBidUID > $topAskUID) { $tradePrice = $topAskPrice; } 
+            else {  query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Size Failure: #2"); } //rollback on failure
 
             //DETERMINE TRADE SIZE
             if ($topBidSize <= $topAskSize) { $tradeSize = $topBidSize;}  //BID IS SMALLER SO DELETE AND UPDATE ASK ORDER
@@ -226,73 +197,63 @@ function orderbook($symbol)
             else {  query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Size Failure: #9"); } //rollback on failure
             if ($tradeSize == 0) {apologize("Trade Size is 0"); } //catch if trade size is null or zero
             
-
+            //TRADE AMOUNT
             $tradeAmount = ($tradePrice * $tradeSize);
             $tradeAmount = round($tradeAmount, 2);
             if ($tradeAmount == 0) {apologize("Trade Amount is 0");}
-            
+            //COMMISSION AMOUNT
             $commissionAmount = getCommission($tradeAmount);
 
             ////////////
             //ORDERBOOK
             /////////////
-            //UPDATE ASK ORDER
-            if (query("UPDATE orderbook SET quantity=quantity-? WHERE uid=?", $tradeSize, $topAskUID) === false) 
+
+            //ASK INFO
+            $orderbookQuantity = query("SELECT quantity FROM orderbook WHERE (uid = ?)", $topAskUID);
+            $orderbookQuantity = (int)$orderbookQuantity[0]["quantity"];
+           // apologize(var_dump(get_defined_vars()));
+
+        //REMOVE SHARES FROM ASK USER
+            //IF SELLER TRYING TO SELL MORE THEN THEY OWN CANCEL ORDER
+            if ($tradeSize > $orderbookQuantity) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topAskUID);
+                apologize("Seller does not have enough quantity. All seller's orders deleted."); }
+            //UPDATE ASK ORDER //REMOVE QUANTITY
+            if (query("UPDATE orderbook SET quantity=(quantity-?) WHERE uid=?", $tradeSize, $topAskUID) === false)
                 {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Size OB Failure: #3"); } //rollback on failure
-            // UPDATE BID ORDER
-            if (query("UPDATE orderbook SET quantity=quantity-? WHERE uid=?", $tradeSize, $topBidUID) === false) 
+
+
+            // UPDATE BID ORDER //REMOVE units FUNDS
+            $orderbookUnitsQ = query("SELECT total FROM orderbook WHERE uid=?", $topBidUID);
+            $orderbookUnits = (float)$orderbookUnitsQ[0]["total"];
+            //apologize(var_dump(get_defined_vars()));
+
+            //IF BUYER DOESN'T HAVE ENOUGH FUNDS CANCEL ORDER
+            if ($orderbookUnits < $tradeAmount)
+                {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUID); apologize("Buyer does not have enough funds. Buyers orders deleted"); }
+            if (query("UPDATE orderbook SET quantity=(quantity-?), total=(total-?) WHERE uid=?", $tradeSize, $tradeAmount, $topBidUID) === false)
                 {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update OB Failure: #5"); }
-            // UPDATE BID ORDER LOCKED AMOUNT
-            if (query("UPDATE orderbook SET locked=locked-? WHERE uid=?", $tradeAmount, $topBidUID) === false) 
-                {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update OB Failure: #5a"); }            
- 
+
             ///////////
             //ACCOUNTS
-            ///////////           
-            //BID INFO
-            $bidFunds = query("SELECT locked, units FROM accounts WHERE id=?", $topBidUser);
-            $bidFundsLocked = $bidFunds[0]["locked"];
-            $bidFundsUnits = $bidFunds[0]["units"];
-            //IF BUYER DOESN'T HAVE ENOUGH FUNDS CANCEL ORDER
-            if ($bidFundsLocked < $tradeAmount || $bidFundsUnits < 0 || $bidFundsLocked < 0) 
-                {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUser, "all"); 
-                apologize("Buyer does not have enough funds. Buyers orders deleted"); }
-            //REMOVE LOCKED FUNDS
-            else {  if (query("UPDATE accounts SET locked = (locked - ?) WHERE id = ?", $tradeAmount, $topBidUser) === false)
-                        { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update Accounts Failure: #10");}
-                    //GIVE UNITS TO ASK USER MINUS COMMISSION
-                    if (query("UPDATE accounts SET units = (units + ? - ?) WHERE id = ?", $tradeAmount, $commissionAmount, $topAskUser) === false) 
-                        { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update Accounts Failure: #11"); }
-                    //GIVE COMMISSION TO ADMIN/OWNER
-                    if ($commissionAmount > 0) 
-                    {   if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commissionAmount, $adminid) === false) 
-                        { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update Accounts Failure: #11a"); } } 
-            } //ELSE
-            
-            
+            ///////////
+            //GIVE UNITS TO ASK USER MINUS COMMISSION
+            if (query("UPDATE accounts SET units = (units + ? - ?) WHERE id = ?", $tradeAmount, $commissionAmount, $topAskUser) === false)
+            { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update Accounts Failure: #11"); }
+            //GIVE COMMISSION TO ADMIN/OWNER
+            if ($commissionAmount > 0)
+            {   if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commissionAmount, $adminid) === false)
+                    { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update Accounts Failure: #11a"); }
+            }
+
             ///////////
             //PORTFOLIO
-            ///////////  
-            //checks for ownership for insert or update
-            //ASK INFO            
-            $askQuantityLocked = query("SELECT quantity, locked FROM portfolio WHERE (id = ? AND symbol = ?)", $topAskUser, $symbol); 
-            @$askQuantity = (float) $askQuantityLocked[0]["quantity"];
-            @$askLocked = (float) $askQuantityLocked[0]["locked"];
-            
-            //REMOVE SHARES FROM ASK USER
-            //IF SELLER TRYING TO SELL MORE THEN THEY OWN CANCEL ORDER
-            if ($tradeSize > $askLocked) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topAskUser, "all"); 
-                apologize("Seller does not have enough quantity. All seller's orders deleted."); }
-            // DELETE IF TRADE IS ALL THEY OWN 
-            elseif($tradeSize == $askLocked && $askQuantity == 0)  //update portfolio sells what they have, delete the row
-                {if (query("DELETE FROM portfolio WHERE id = ? AND symbol = ?", $topAskUser, $symbol) === false) { query("ROLLBACK"); 
-                    query("SET AUTOCOMMIT=1"); apologize("Failure: #14"); } }
-            // UPDATE IF ONLY A PARTIAL SALE
-            elseif(($tradeSize <= $askLocked) && ($askQuantity >= 0)) 
-            {   if (query("UPDATE portfolio SET locked = (locked - ?), price = (price - ? - ?) WHERE id = ? AND symbol = ?", $tradeSize, $tradeAmount, $commissionAmount, $topAskUser, $symbol) === false) 
-                    { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Failure: #15"); } }
-            else { query("ROLLBACK"); query("SET AUTOCOMMIT=1");apologize("Failure: #16"); }
-            
+            ///////////
+            $askPortfolio = query("SELECT quantity FROM portfolio WHERE (symbol=? AND id=?)", $symbol, $topBidUser);
+            $askPortfolio = $askPortfolio[0]["quantity"];
+            // DELETE IF TRADE IS ALL THEY OWN
+            if($askPortfolio == 0) {if (query("DELETE FROM portfolio WHERE (id = ? AND symbol = ?)", $topAskUser, $symbol) === false) { query("ROLLBACK");
+                query("SET AUTOCOMMIT=1"); apologize("Failure: #14"); } }
+
             //GIVE SHARES TO BID USER
             $bidQuantityRows = query("SELECT symbol FROM portfolio WHERE (id = ? AND symbol = ?)", $topBidUser, $symbol); //Checks to see if they already own stock to determine if we should insert or update tables
             $countRows = count($bidQuantityRows);
@@ -359,7 +320,7 @@ function orderbook($symbol)
     $topBidType = ($bids[0]["type"]); //limit or market
     $topBidSize = ($bids[0]["quantity"]);
     $topBidUser = ($bids[0]["id"]);
-    $topBidLocked = ($bids[0]["locked"]);
+    $topBidUnits = ($bids[0]["total"]);
     //LAST TRADE INFO TO RETURN ON FUNCTION
     if ($topAskType == 'market') { $topAskPrice = 'market'; } //null//$tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
     if ($topBidType == 'market') { $topBidPrice = 'market'; } //null// $tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
@@ -404,7 +365,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     //QUERY TO SEE IF SYMBOL EXISTS
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
     if (count($symbolCheck) != 1) {apologize("Incorrect Symbol. Not listed on the exchange!");} //row count
-
+    //CHECKS INPUT
     if (preg_match("/^\d+$/", $quantity) == false) { apologize("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
     if (!ctype_alnum($symbol)) {apologize("Symbol must be alphanumeric!");}
     if(!ctype_alpha($type) || !ctype_alpha($side)) { apologize("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
@@ -412,62 +373,120 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     if($quantity < 0){apologize("Quantity must be positive!");}
     $symbol = strtoupper($symbol); //cast to UpperCase
 
-    if($type=='limit'){
+    query("SET AUTOCOMMIT=0");
+    query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+
+
+
+    if($type=='limit')
+    {
+        //CHECK PRICE
         if (empty($price)) { apologize("Limit orders require price."); }
         $priceModulus = fmod($price, $divisor); //$divisor set in constants
         if($priceModulus != 0){apologize("Not correct increment. $divisor");} //checks to see if quarter increment
         if (!is_float($price)) { apologize("Price is not a number");} //if quantity is numeric
-    }
-    //NEW VARS FOR DB INSERT
-    $tradeAmount = $price * $quantity;        // calculate total value (stock's price * quantity)
-    $tradeAmount = round($tradeAmount, 2);  //redundant...
 
-    query("SET AUTOCOMMIT=0");
-    query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+        //NEW VARS FOR DB INSERT
+
+        if($side=='a')//limit
+        {   $transaction = 'ASK';
+            $tradeAmount = 0;
+
+            //CHECK TO SEE IF SELLER HAS ENOUGH SHARES
+            $userQuantity = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol);//
+            if(empty($userQuantity)){$userQuantity = 0;}
+            $userQuantity = @(float)$userQuantity[0]["quantity"];
+            //WILL CONDUCT ANOTHER CHECK AT ORDERBOOK PROCESS TO ENSURE USER UNITS > 0 and ENOUGH IN units
+            if ($userQuantity < $quantity)
+            {   query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You only have: " . $userQuantity . ". Attempted to sell: " . $quantity . "." );
+            }
+            else
+            {   if(query("UPDATE portfolio SET quantity = (quantity - ?) WHERE (id = ? AND symbol = ?)", $quantity, $id, $symbol) === false)
+            { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Updates Accounts Failure 1"); } //add it to the orderbook
+            }
+        }
+
+        if($side=='b')//limit
+        {   $transaction = 'BID';
+            $tradeAmount = $price * $quantity;        // calculate total value (stock's price * quantity)
+            $tradeAmount = round($tradeAmount, 2);  //redundant...
+
+            //QUERY CASH & UPDATE
+            $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
+            $userUnits = (float)$unitsQ[0]['units'];	//convert array from query to value
+            //WILL CONDUCT ANOTHER CHECK AT ORDERBOOK PROCESS TO ENSURE USER UNITS > 0 and ENOUGH IN units
+            if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You do not have enough for this transaction. You only have: " . $userUnits . ". Attempted to buy: " . $tradeAmount . "." ); }
+            if ($userUnits < 0) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You have a negative balance!");}
+            else
+            {   if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false)
+            {   query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Updates Accounts Failure 2");
+            }
+            }
+        }
+
+    }
+
     if($type=='market')
-    {   $price=0;//market order
-        if ($side == 'a') {$otherSide='b';}
-        elseif ($side=='b') 
-        {   $otherSide='a';
-            //lock all of the users funds for market orders
+    {
+
+
+        if ($side == 'a')//on market
+        {
+            $transaction = 'ASK';
+            $otherSide='b';
+            $tradeAmount =0;
+
+            //CHECK TO SEE IF SELLER HAS ENOUGH SHARES
+            $userQuantity = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol);//
+            if(empty($userQuantity)){$userQuantity = 0;}
+            $userQuantity = @(float)$userQuantity[0]["quantity"];
+            //WILL CONDUCT ANOTHER CHECK AT ORDERBOOK PROCESS TO ENSURE USER UNITS > 0 and ENOUGH IN units
+            if ($userQuantity < $quantity)
+            {   query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You only have: " . $userQuantity . ". Attempted to sell: " . $quantity . "." );
+            }
+            else
+            {   if(query("UPDATE portfolio SET quantity = (quantity - ?) WHERE (id = ? AND symbol = ?)", $quantity, $id, $symbol) === false)
+            { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Updates Accounts Failure 3"); }
+            }
+        }
+
+        if($side=='b')//on market
+        {
+            $transaction = 'BID';
+            $otherSide='a';
+            //NEW VARS FOR DB INSERT
             $bidFunds = query("SELECT units FROM accounts WHERE id = ?", $id);
-            $lockedUnits = $bidFunds[0]["units"]; }
-        else {  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("error");}
+            $tradeAmount = $bidFunds[0]["units"]; //market orders lock all of the users funds
+            $tradeAmount = round($tradeAmount, 2);  //redundant...
+
+            //QUERY CASH & UPDATE
+            $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
+            $userUnits = (float)$unitsQ[0]['units'];	//convert array from query to value
+            //WILL CONDUCT ANOTHER CHECK AT ORDERBOOK PROCESS TO ENSURE USER UNITS > 0 and ENOUGH IN units
+            if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You do not have enough for this transaction. You only have: " . $userUnits . ". Attempted to buy: " . $tradeAmount . "." ); }
+            if ($userUnits <= 0) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You do not have enough funds!");}
+            else
+            {   if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false)
+            {   query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Updates Accounts Failure 4");
+            }
+            }
+        }
+
+        //CHECK FOR LIMIT ORDERS
         $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type = 'limit' AND side = ?)", $otherSide);
         $limitOrders = $limitOrdersQ[0]['limitorders'];
-        if (is_null($limitOrders) || $limitOrders == 0){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("No limit orders.");} }
-    if ($side == 'b')
-    {   $transaction = 'BID';
-        if($type=='limit') { $lockedUnits=$tradeAmount; }
-        //QUERY CASH & UPDATE
-        $units =	query("SELECT units, locked FROM accounts WHERE id = ?", $id); //query db how much cash user has
-        $units = (float)$units[0]['units'];	//convert array from query to value
-        $userLocked = (float)$units[0]['locked']; //different then $lockedUnits which is the tradeAmount for limit or all of the units for market order
-        //WILL CONDUCT ANOTHER CHECK AT ORDERBOOK PROCESS TO ENSURE USER UNITS > 0 and ENOUGH IN LOCKED
-        if ($units < $lockedUnits) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You do not have enough for this transaction. You only have: " . $units . ". Attempted to buy: " . $tradeAmount . "." ); }
-        if (($units < 0) || ($userLocked < 0)) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You have a negative balance!"); }
-        else 
-        {   if(query("UPDATE accounts SET units = (units - ?), locked = (locked + ?) WHERE id = ?", $lockedUnits, $lockedUnits, $id) === false) //MOVE CASH TO LOCKED FUNDS
-            { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Updates Accounts Failure"); } } 
-        } // transaction type for history	//b for bid
-        
-    elseif ($side == 'a')
-    {   $lockedUnits = 0; //all sell ask orders lock zero units
-        $transaction = 'ASK'; //QUERY CASH & UPDATE
-        $userQuantity = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol);//
-        if(empty($userQuantity)){$userQuantity = 0;}
-        $userQuantity = @(float)$userQuantity[0]["quantity"];
-        //WILL CONDUCT ANOTHER CHECK AT ORDERBOOK PROCESS TO ENSURE USER UNITS > 0 and ENOUGH IN LOCKED
-        if ($userQuantity < $quantity) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("You only have: " . $userQuantity . ". Attempted to sell: " . $quantity . "." ); }
-        else 
-        {   if(query("UPDATE portfolio SET quantity = (quantity - ?), locked = (locked + ?) WHERE (id = ? AND symbol = ?)", $quantity, $quantity, $id, $symbol) === false) //MOVE CASH TO LOCKED FUNDS
-                { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Updates Accounts Failure"); } }
-    }	// transaction type for history //a for ask
-    else { apologize("Order Side Error."); }
+        if (is_null($limitOrders) || $limitOrders == 0) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("No limit orders.");}
+
+        $price=0;//market order
+
+    }
+
+
     //UPDATE HISTORY
     if (query("INSERT INTO history (id, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)", $id, $transaction, $symbol, $quantity, $price, $tradeAmount) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Insert History Failure 3"); }
+
     //INSERT INTO ORDERBOOK
-    if (query("INSERT INTO orderbook (symbol, side, type, price, locked, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $lockedUnits, $quantity, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Insert Orderbook Failure"); }
+    if (query("INSERT INTO orderbook (symbol, side, type, price, total, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $tradeAmount, $quantity, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Insert Orderbook Failure"); }
 
 
     query("COMMIT;"); //If no errors, commit changes
