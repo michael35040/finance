@@ -80,7 +80,7 @@ function zeroQuantityCheck($symbol)
 ////////////////////////////////////
 function negativeValues()
 {   $negativeValueOrderbook = query("SELECT quantity, total, uid FROM orderbook WHERE (quantity < 0 OR total < 0) LIMIT 0, 1");
-    if(!empty($negativeValueOrderbook)) { throw new Exception(var_dump(get_defined_vars())); throw new Exception("Negative Orderbook Values: " . $negativeValueOrderbook[0]["uid"]);}
+    if(!empty($negativeValueOrderbook)) { throw new Exception("Negative Orderbook Values: " . $negativeValueOrderbook[0]["uid"]);}
     //eventually all users order using id
     $negativeValueAccounts = query("SELECT units, units, id FROM accounts WHERE (units < 0 OR units < 0) LIMIT 0, 1");
     if(!empty($negativeValueAccounts)) { throw new Exception("Negative Accounts Values: " . $negativeValueAccounts[0]["id"]);}
@@ -151,8 +151,8 @@ function processOrderbook($symbol=null)
         foreach ($symbols as $symbol)
         {
             try {$orderbook = orderbook($symbol["symbol"]);}
-            catch(Exception $e) {echo '<br>Message: [' . $symbol . "] " . $e->getMessage();}
-            echo('<br>Message: [' . $symbol . '] Processed ' .  $orderbook["orderProcessed"] );
+            catch(Exception $e) {echo('<br>Message: [' . $symbol["symbol"] . "] " . $e->getMessage());}
+            echo('<br>Message: [' . $symbol["symbol"] . '] Processed ' .  $orderbook["orderProcessed"] );
             $totalProcessed = ($totalProcessed +  $orderbook["orderProcessed"]);
         }
     }

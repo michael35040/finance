@@ -1,5 +1,5 @@
 
-<form action="information.php"  class="symbolForm" method="get"   >
+<form action="information.php"  class="symbolForm" method="post"   >
     <fieldset>
 
         <table>
@@ -42,7 +42,6 @@
                         <!--
                         </datalist>
                         -->
-
                         <span class="input-group-btn">
                         <button type="submit" class="btn btn-info">
                             <b> SUBMIT </b>

@@ -14,7 +14,7 @@
 
         <?php
         $i=0;
-        if($units != 0)
+        if($units >= 0)
         {       ?>
             <tr>
                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
