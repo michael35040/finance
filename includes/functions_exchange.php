@@ -93,14 +93,14 @@ function negativeValues()
 function cancelOrderCheck()
 {       //Check to see if anyone canceled any orders
     $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
-    while(!emtpy($cancelOrders))
+    while(!empty($cancelOrders))
     {
         //NEGATIVE VALUE CHECK
         try {cancelOrder($cancelOrders[0]["uid"]);}
             //catch exception
         catch(Exception $e) {echo('Message: ' . $cancelOrders[0]["uid"] .$e->getMessage());}
         //Search again to see if anymore
-        $cancelOrders = query("SELECT side, uid FROM orderbook WHERE (symbol = ? AND type = 'cancel') ORDER BY uid ASC LIMIT 0, 1", $symbol);
+        $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
     }}
 
 
@@ -171,9 +171,12 @@ function processOrderbook($symbol=null)
         {
             try {$orderbook = orderbook($symbol["symbol"]);}
             catch(Exception $e) {echo('<br>Message: [' . $symbol["symbol"] . "] " . $e->getMessage());}
-            echo('<br>Message: [' . $symbol["symbol"] . '] Processed ' .  $orderbook["orderProcessed"] );
-            $totalProcessed = ($totalProcessed +  $orderbook["orderProcessed"]);
-        }
+            if(isset($orderbook)) {
+
+                echo('<br>Message: [' . $symbol["symbol"] . '] Processed ' . $orderbook["orderProcessed"]);
+                $totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
+            }
+            }
     }
     else
     {
@@ -181,8 +184,11 @@ function processOrderbook($symbol=null)
         if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange!");} //row count
         try {$orderbook = orderbook($symbol);}
         catch(Exception $e) {echo '<br>[' . $symbol . "] " . $e->getMessage();}
-        echo('<br>[' . $orderbook["topBidSymbol"] . '] Processed ' .  $orderbook["orderProcessed"] );
-        $totalProcessed = ($totalProcessed +  $orderbook["orderProcessed"]);
+        if(isset($orderbook)){
+            echo('<br>[' . $orderbook["topBidSymbol"] . '] Processed ' .  $orderbook["orderProcessed"] );
+            $totalProcessed = ($totalProcessed +  $orderbook["orderProcessed"]);
+
+        }
     }
     echo("<br>");
     echo(date("Y-m-d H:i:s"));
