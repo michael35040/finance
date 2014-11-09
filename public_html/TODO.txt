@@ -1,3 +1,5 @@
+-List open orders with button to cancel the order. Change type to 'cancel' then search for any cancel and delete in orderbook.
+
 #1. when deleting orders, remove lock from funds/shares (functions_exchange.php)
 2. update desposit
 3. update withdraw

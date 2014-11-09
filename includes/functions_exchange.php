@@ -87,12 +87,31 @@ function negativeValues()
     //eventually all users order using id     throw new Exception(var_dump(get_defined_vars()));
 }
 
+////////////////////////////////////
+//CHECK FOR CANCELED ORDERS VALUES
+////////////////////////////////////
+function cancelOrderCheck()
+{       //Check to see if anyone canceled any orders
+    $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
+    while(!emtpy($cancelOrders))
+    {
+        //NEGATIVE VALUE CHECK
+        try {cancelOrder($cancelOrders[0]["uid"]);}
+            //catch exception
+        catch(Exception $e) {echo('Message: ' . $cancelOrders[0]["uid"] .$e->getMessage());}
+        //Search again to see if anymore
+        $cancelOrders = query("SELECT side, uid FROM orderbook WHERE (symbol = ? AND type = 'cancel') ORDER BY uid ASC LIMIT 0, 1", $symbol);
+    }}
+
 
 ////////////////////////////////////
 //CHECK FOR WHICH ORDERS ARE AT TOP OF ORDERBOOK
 ////////////////////////////////////
 function OrderbookTop($symbol)
-{       //MARKET ORDERS SHOULD BE AT TOP IF THEY EXIST
+{
+
+
+    //MARKET ORDERS SHOULD BE AT TOP IF THEY EXIST
     $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
     if (!empty($marketOrders))
     {   @$marketSide=$marketOrders[0]["side"];
@@ -191,16 +210,18 @@ function orderbook($symbol)
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
     if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange!");} //row count
 
+
     //NEGATIVE VALUE CHECK
     try {negativeValues();}
-        //catch exception
-    catch(Exception $e) {echo('Message: ' .$e->getMessage());}
+    catch(Exception $e) {echo('Message: ' .$e->getMessage());} //catch exception
 
+    //CANCEL ORDER CHECK
+    try {cancelOrderCheck();}
+    catch(Exception $e) {echo('Message: ' .$e->getMessage());}  //catch exception
 
     //REMOVES ALL EMPTY ORDERS
     try {zeroQuantityCheck($symbol);}
-        //catch exception
-    catch(Exception $e) {echo('Message: ' .$e->getMessage());}
+    catch(Exception $e) {echo('Message: ' .$e->getMessage());} //catch exception
 
     //FIND TOP OF ORDERBOOK
     list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType) = OrderbookTop($symbol);
@@ -345,11 +366,18 @@ function orderbook($symbol)
             query("COMMIT;"); //If no errors, commit changes
             query("SET AUTOCOMMIT=1");
 
-            //NEGATIVE VALUE CHECK
-            negativeValues();
 
-            //CHECK TO SEE IF ORDER HAS ZERO QUANTITY
-            zeroQuantityCheck($symbol);
+            //NEGATIVE VALUE CHECK
+            try {negativeValues();}
+            catch(Exception $e) {echo('Message: ' .$e->getMessage());} //catch exception
+
+            //CANCEL ORDER CHECK
+            try {cancelOrderCheck();}
+            catch(Exception $e) {echo('Message: ' .$e->getMessage());}  //catch exception
+
+            //REMOVES ALL EMPTY ORDERS
+            try {zeroQuantityCheck($symbol);}
+            catch(Exception $e) {echo('Message: ' .$e->getMessage());} //catch exception
 
             //RECALCULATE VALUES FOR DO-WHILE //RECHECK FROM BEGINNING TO SEE IF ANY MORE ORDERS TO PROCESS)
             list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType) = OrderbookTop($symbol);

@@ -77,7 +77,7 @@
     </tr> <!--blank row breaker-->
 
     <tr  class="active">
-        <th>Symbol</th>
+        <th>Symbol/Control</th>
         <th>Quantity</th>
         <th>Locked*</th>
         <th>Price</th>
