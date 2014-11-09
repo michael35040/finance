@@ -255,8 +255,8 @@ if($tradesChart != null)
     foreach ($trades as $trade) {
         @$tradeID = $trade["uid"];
         @$tradeType = $trade["type"];
-        @$buyer = $trade["buyer"];
-        @$seller = $trade["seller"];
+        @$buyer = $trade["bidorderuid"];//$trade["buyer"];
+        @$seller = $trade["askorderuid"];
         @$symbol = $trade["symbol"];
         @$quantity = $trade["quantity"];
         @$price = $trade["price"];

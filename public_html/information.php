@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         //$dividend =	query("SELECT SUM(quantity) AS quantity FROM history WHERE type = 'dividend' AND symbol = ?", $asset["symbol"]);	  // query user's portfolio
         //$asset["dividend"] = $dividend["dividend"]; //shares actually held public
         $asset["dividend"]=0; //until we get real ones
-    }
+
 
 
     //EXCHANGE TRADES (PROCESSED ORDERS)
@@ -103,7 +103,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             "asksTotal" => $asksTotal
 
             ]);
-
+    } //!empty
+    else
+    {apologize("Invalid Symbol!");}
 } // else render quote_form
 else
 {

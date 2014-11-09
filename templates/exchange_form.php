@@ -132,7 +132,7 @@ if (!isset($commission)) //set in constants.php
                     <!--subMenuPriceText-->
                     <div id="subMenuPrice" style="opacity:1;">
                         <input class="input-small" type="range" id="price" placeholder="Price" name="price" value=0
-                               min="10" max="50" step=".25" style="width:100%;" required>
+                               min="0.25" max="100" step=".25" style="width:100%;" required>
                         <output name="priceAmount" for="price">0</output>
                     </div>
 

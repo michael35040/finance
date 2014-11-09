@@ -1,4 +1,3 @@
-<?php include '_alphabet.php'; ?>
 
 <style>
     .hiddenRow {
@@ -10,29 +9,6 @@
 
 <table class="table table-condensed table-striped table-bordered" id="assets" style="border-collapse:collapse;">
     <thead>
-    <!--
-    <tr class="info">
-        <td colspan="4" style="font-size:15px; text-align: center;">
-            <marquee behavior="scroll" direction="left">
-                <nobr>
-                    <?php //echo($sitename);
-                    /*
-                    echo("INDEX&nbsp;");
-                    echo($unitsymbol . number_format($indexValue, 0, ".", ","));
-                    //echo($unitsymbol . number_format($indexMarketCap, 0, ".", ","));
-                    foreach ($assets as $asset)
-                    {       echo("&nbsp;&nbsp;|&nbsp;&nbsp;" .
-                        $asset["symbol"] . "&nbsp;" .
-                        $unitsymbol . number_format($asset["price"], 2, ".", ",")
-                        //" " . $unitsymbol . number_format($asset["marketcap"], 0, ".", ",")
-                    );} */
-                    ?>
-                </nobr>
-            </marquee>
-        </td>
-    </tr>
-    -->
-
 
     <tr class="success"><td colspan="4" style="font-size:20px; text-align: center;">ASSETS</td>
 
@@ -51,7 +27,7 @@
         {
             $i++;
             echo('<tr data-toggle="collapse" data-target="#demo' . $i . '" class="accordion-toggle">');
-            echo('<td>' . htmlspecialchars($asset["symbol"]) . '</td>');
+            echo('<td> <span class="caret"></span> ' . htmlspecialchars($asset["symbol"]) . '</td>');
             echo('<td >' . $unitsymbol . number_format($asset["price"], 2, ".", ",") . '</td>');
             echo('<td >' . number_format($asset["volume"], 0, ".", ",") . '</td>');
             echo('<td >' . $unitsymbol . number_format($asset["marketcap"], 2, ".", ",") . '</td>');

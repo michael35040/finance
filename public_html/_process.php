@@ -1,12 +1,30 @@
 
 <?php
+
 require("../includes/config.php");
+
 $id = $_SESSION["id"];
 if ($id != 1) { apologize("Unauthorized!");}
 
+//apologize(var_dump(get_defined_vars()));
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
-orderbook($_POST["symbol"]);
+
+    if($_POST["symbol"] == 'ALL')
+    {
+        try {processOrderbook();}
+        catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
+    }
+    else
+    {
+        try {processOrderbook($_POST["symbol"]);}
+        catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
+    }
+
+
+
 }
 else
 {
@@ -28,7 +46,8 @@ else
                                             if (empty($assets)) {
                                                 echo("<option value=' '>No Assets</option>");
                                             } else {
-                                                echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
+                                                //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
+                                                echo ('    <option value="ALL">-All Assets-</option>');
                                                 foreach ($assets as $asset) {
                                                     $symbol = $asset["symbol"];
                                                     echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");

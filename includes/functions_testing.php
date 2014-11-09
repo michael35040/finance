@@ -6,50 +6,61 @@
 ////////////////////////////////////
 /////////////////////////////////////
 
-function testNumbers()
-{   $i=0;
-    while ($i<100){
-        $bid = ((mt_rand(0,1) * (40 + $i) ) + 100 + $i + mt_rand(1,50));
-        $ask = ((mt_rand(0,1) * (40 + $i) ) + 100 + $i + mt_rand(75,100));
-        echo($ask);
-        echo($bid);
+
+
+function randomOrders($symbol='A', $numberOfOrdersPerSymbol=10, $type='limit')
+{    include("constants.php");//for $divisor
+$ordersCreated = 0;
+    $i=0;
+    while($i < 26)
+    {
+        $randomOrders=0;
+        while ($randomOrders < $numberOfOrdersPerSymbol)
+        {
+            $sideNum = mt_rand(1, 2);
+            if ($sideNum == 1) {
+                $side = 'a';
+                $price = mt_rand(1, 400)*$divisor;
+            } else {
+                $side = 'b';
+                $price = mt_rand(1, 400)*$divisor;
+            }
+            if ($type == 'market') {
+                $price = 0;
+            }
+
+            $quantity = mt_rand(100, 10000);
+            $price = mt_rand(1, 40)*$divisor;
+            $id = mt_rand(2, 3);
+
+
+            try
+            {
+                placeOrder($symbol, $type, $side, $quantity, $price, $id);
+            }
+            //catch exception
+            catch(Exception $e) {echo('Message: [' . $symbol . '] ' . $e->getMessage() . '<br>');}
+
+            $randomOrders++;
+            $ordersCreated++;
+        }
+        $symbol++;
+        $i++;
     }
+    return($ordersCreated); //number of orders processed
 }
 
-function randomOrders($symbol='A', $number=10, $type='limit')
-{
-    include("constants.php");//for $divisor
-    //$divisor=0.25;
-    $randomOrders = 0;
-    while ($randomOrders < $number) {
-        $randomOrders++;
-        $id = mt_rand(2, 3);
-        $sideNum = mt_rand(1, 2);
-        $quantity = mt_rand(1, 50);
-        if ($sideNum == 1) {
-            $side = 'a';
-            $price = mt_rand(8, 40)*$divisor;
-        } else {
-            $side = 'b';
-            $price = mt_rand(1, 36)*$divisor;
-        }
-        if ($type == 'market') {
-            $price = 0;
-        }
-        placeOrder($symbol, $type, $side, $quantity, $price, $id);
-    }
-    return $randomOrders;
-}
 
-function createStocks($number)
+
+
+function createStocks($number=26)
 {    include("constants.php");//for $divisor
     $i=0;
     $symbol = 'A';
     while ($i < $number) {
-       // echo($symbol . " ");
+        // echo($symbol . " ");
 
-        $quantity = mt_rand(1,1000)*1000;
-        $issued = $quantity*3;
+        $issued = mt_rand(1,100)*100000;
         $price = 0; //how much we bought it for in port.
         //$price = mt_rand(1, 40)*$divisor;
 
@@ -57,26 +68,22 @@ function createStocks($number)
   INSERT INTO `assets` (`symbol`, `name`, `issued`, `type`, `fee`, `owner`, `url`, `rating`, `description`)
   VALUES (?, ?, ?, 'stock', '0.500000000000000000000000000000', '', '', 1, '')", $symbol, $symbol, $issued);
 
+        $quantity = mt_rand(1,100)*1000;
         query("INSERT INTO `portfolio` (`id`, `symbol`, `quantity`, `price`)
             VALUES  (1, ?, ?, ?),
                     (2, ?, ?, ?),
                     (3, ?, ?, ?)", $symbol, $quantity, $price, $symbol, $quantity, $price, $symbol, $quantity, $price);
 
-        $tradePrice = mt_rand(1, 40)*$divisor;
-        $tradeSize = mt_rand(1, 100);
-        $tradeAmount = $tradeSize * $tradePrice;
-        query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, 1, 1, $tradeSize, $tradePrice, 0, $tradeAmount, 'limit', 1234, 4567);
-
-
         randomOrders($symbol);
-
         $symbol++;
         $i++;
     }
-    allOrderbooks();
 }
 
-function clear_all($number=26)
+
+
+
+function clear_all()
 {
     clear_orderbook();
     clear_trades();
@@ -85,7 +92,12 @@ function clear_all($number=26)
     clear_assets();
     query("  UPDATE `accounts` SET `units`=1000000,`loan`=0,`rate`=0,`approved`=1 WHERE 1");
 
-    createStocks($number);
+    createStocks();
+
+
+    //try {processOrderbook();}
+    //catch exception
+    //catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 
 }
 
@@ -160,6 +172,15 @@ function randomStocks()
     }
     echo "\n]";
 
+}
+function testNumbers()
+{   $i=0;
+    while ($i<100){
+        $bid = ((mt_rand(0,1) * (40 + $i) ) + 100 + $i + mt_rand(1,50));
+        $ask = ((mt_rand(0,1) * (40 + $i) ) + 100 + $i + mt_rand(75,100));
+        echo($ask);
+        echo($bid);
+    }
 }
 
 

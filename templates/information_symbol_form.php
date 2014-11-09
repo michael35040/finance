@@ -1,5 +1,5 @@
 
-<form action="information.php"  class="symbolForm" method="post"   >
+<form action="information.php"  class="symbolForm" method="get"   >
     <fieldset>
 
         <table>

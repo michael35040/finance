@@ -9,10 +9,17 @@ require("../includes/config.php");
 $symbol='A';
 
     //COMPANY INFORMATION
-        $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $symbol);	  // query user's portfolio
+/*        $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $symbol);	  // query user's portfolio
         if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
         $publicQuantity = $public[0]["quantity"];
         $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $symbol);	  // query user's portfolio
+        $askQuantity = $askQuantity[0]["quantity"];
+        $publicTotal = $askQuantity+$publicQuantity;
+*/
+        $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio");	  // query user's portfolio
+        if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
+        $publicQuantity = $public[0]["quantity"];
+        $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE side='a'");	  // query user's portfolio
         $askQuantity = $askQuantity[0]["quantity"];
         $publicTotal = $askQuantity+$publicQuantity;
 
@@ -42,6 +49,6 @@ echo("<br>Money Total: " . $moneySupplyTotal);
 //{
 //}
 
-echo(var_dump(get_defined_vars()));
+//echo(var_dump(get_defined_vars()));
 
 ?>

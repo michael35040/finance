@@ -101,7 +101,7 @@
             </h4>
         </div><!--panel title-->
         <div id="collapseOne" class="panel-collapse collapse">
-            <div class="panel-body" style="border:0; " >
+            <div class="panel-body" style="border:0; padding-bottom: 0;" >
 
 
 

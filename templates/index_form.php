@@ -46,7 +46,7 @@
                     echo("-" . $i); ?></td>
                 <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>
                 </td>
-                <td colspan="4"><?php echo("Locked-Pending Bid Order"); ?></td>
+                <td colspan="4"><?php echo("Locked-Pending Bid Order(s)"); ?></td>
                 <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
                     <?php echo(number_format($bidLocked, 2, ".", ",")) ?></td>
             </tr>
@@ -133,7 +133,7 @@
             <td><strong>0</strong></td>
         </tr>
         <tr>
-            <td colspan="7" style="font-size:10px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order</i></td>
+            <td colspan="7" style="font-size:10px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order(s)</i></td>
         </tr>
  
         <?php
@@ -190,7 +190,7 @@
             </td>
         </tr>
         <tr>
-            <td colspan="7"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order</i></td>
+            <td colspan="7"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order(s)</i></td>
         </tr>
 
     <?php
