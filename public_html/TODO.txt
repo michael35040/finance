@@ -1,20 +1,11 @@
-
+#1. when deleting orders, remove lock from funds/shares (functions_exchange.php)
 2. update desposit
 3. update withdraw
 4. update transfer
+#5. add total value of all stocks (pular index)
 6. add ownership percentage in information panel.
 7. add icon showing drop down feature in 'assets'
 8. remove <br> in index_form between expanded exchange button
 9. change auth check on admin_ pages from 1 to admin id
-10. fix calc for loss/gain (change negative number on puchase in index.php for to positive.)
-
-
-1. when deleting orders, remove lock from funds/shares (functions_exchange.php)
-5. add total value of all stocks (pular index)
-
-
-
-
-
-
+#10. fix calc for loss/gain (change negative number on puchase in index.php for to positive.)
 

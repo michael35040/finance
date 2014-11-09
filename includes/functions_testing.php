@@ -8,29 +8,27 @@
 
 
 
-function randomOrders($symbol='A', $numberOfOrdersPerSymbol=10, $type='limit')
+function randomOrders()
 {    include("constants.php");//for $divisor
-$ordersCreated = 0;
+    $ordersCreated = 0;
     $i=0;
-    while($i < 26)
-    {
+    $symbol = 'A';
+    $type='limit';
+    while ($i < 26) {
         $randomOrders=0;
-        while ($randomOrders < $numberOfOrdersPerSymbol)
+        while ($randomOrders < 10) //number of orders
         {
             $sideNum = mt_rand(1, 2);
             if ($sideNum == 1) {
                 $side = 'a';
-                $price = mt_rand(1, 400)*$divisor;
+                $price = mt_rand(1, 4000)*$divisor;
             } else {
                 $side = 'b';
-                $price = mt_rand(1, 400)*$divisor;
+                $price = mt_rand(1, 4000)*$divisor;
             }
-            if ($type == 'market') {
-                $price = 0;
-            }
+            if ($type == 'market') {$price = 0;}
 
-            $quantity = mt_rand(100, 10000);
-            $price = mt_rand(1, 40)*$divisor;
+            $quantity = mt_rand(1, 100);
             $id = mt_rand(2, 3);
 
 
@@ -38,14 +36,14 @@ $ordersCreated = 0;
             {
                 placeOrder($symbol, $type, $side, $quantity, $price, $id);
             }
-            //catch exception
+                //catch exception
             catch(Exception $e) {echo('Message: [' . $symbol . '] ' . $e->getMessage() . '<br>');}
 
-            $randomOrders++;
-            $ordersCreated++;
+            $randomOrders++; //should be only 10 per symbol
+            $ordersCreated++; //total created
         }
-        $symbol++;
-        $i++;
+        $symbol++; //up to 26 (Z)
+        $i++; //up to 26
     }
     return($ordersCreated); //number of orders processed
 }
@@ -53,31 +51,23 @@ $ordersCreated = 0;
 
 
 
-function createStocks($number=26)
+function createStocks()
 {    include("constants.php");//for $divisor
     $i=0;
     $symbol = 'A';
-    while ($i < $number) {
-        // echo($symbol . " ");
+    while ($i < 26) {
+        $issued = 2*(mt_rand(1,100)*100000);
+        $price = mt_rand(1, 40)*$divisor*($issued/2);
+        $quantity = $issued/2;
 
-        $issued = mt_rand(1,100)*100000;
-        $price = 0; //how much we bought it for in port.
-        //$price = mt_rand(1, 40)*$divisor;
+         //publicOffering($symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description)
+         publicOffering($symbol, $symbol, 2, $issued, 'limit', '', 0.5, '', 0, '');
+        query("INSERT INTO `portfolio` (`id`, `symbol`, `quantity`, `price`) VALUES (3, ?, ?, ?)", $symbol, $quantity, $price);
 
-        query("
-  INSERT INTO `assets` (`symbol`, `name`, `issued`, `type`, `fee`, `owner`, `url`, `rating`, `description`)
-  VALUES (?, ?, ?, 'stock', '0.500000000000000000000000000000', '', '', 1, '')", $symbol, $symbol, $issued);
-
-        $quantity = mt_rand(1,100)*1000;
-        query("INSERT INTO `portfolio` (`id`, `symbol`, `quantity`, `price`)
-            VALUES  (1, ?, ?, ?),
-                    (2, ?, ?, ?),
-                    (3, ?, ?, ?)", $symbol, $quantity, $price, $symbol, $quantity, $price, $symbol, $quantity, $price);
-
-        randomOrders($symbol);
         $symbol++;
         $i++;
     }
+    return($i);
 }
 
 
