@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `rate` decimal(65,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
   `approved` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
+  UNIQUE KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -119,6 +120,7 @@ CREATE TABLE IF NOT EXISTS `history` (
   `commission` decimal(65,30) NOT NULL COMMENT 'commission',
   `total` decimal(65,30) NOT NULL COMMENT 'history-id-bid/ask or local-id-ask \r\n\r\nor transafer-id',
   PRIMARY KEY (`uid`)
+  UNIQUE KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='id, transaction, symbol, \r\n\r\nshares, \r\n\r\nprice' AUTO_INCREMENT=1 ;
 
 --
@@ -140,6 +142,7 @@ CREATE TABLE IF NOT EXISTS `login` (
   `ip` varchar(15) NOT NULL,
   `success_fail` varchar(1) NOT NULL,
   PRIMARY KEY (`uid`)
+  UNIQUE KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
@@ -165,6 +168,7 @@ CREATE TABLE IF NOT EXISTS `orderbook` (
   `quantity` int(11) NOT NULL COMMENT 'size quantity of order',
   `id` int(9) NOT NULL COMMENT 'user id',
   PRIMARY KEY (`uid`)
+  UNIQUE KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
@@ -186,6 +190,7 @@ CREATE TABLE IF NOT EXISTS `portfolio` (
   `quantity` int(65) NOT NULL,
   `price` decimal(65,30) NOT NULL COMMENT 'avg buy price',
   PRIMARY KEY (`uid`)
+  UNIQUE KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
@@ -214,6 +219,7 @@ CREATE TABLE IF NOT EXISTS `trades` (
   `askorderuid` int(9) NOT NULL,
   `bidorderuid` int(9) NOT NULL,
   PRIMARY KEY (`uid`)
+  UNIQUE KEY `uid` (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --

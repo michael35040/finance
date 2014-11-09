@@ -237,12 +237,12 @@ function orderbook($symbol)
             //DETERMINE EXECUTED PRICE (bid or ask) BY EARLIER DATE TIME using UID
             if ($topBidUID < $topAskUID) { $tradePrice = $topBidPrice;} //with dates or uid, the smaller one is older  
             elseif ($topBidUID > $topAskUID) { $tradePrice = $topAskPrice; } 
-            else {  query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Size Failure: #2"); } //rollback on failure
+            else {  query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Bid and Ask UID same!"); } //rollback on failure
 
             //DETERMINE TRADE SIZE
             if ($topBidSize <= $topAskSize) { $tradeSize = $topBidSize;}  //BID IS SMALLER SO DELETE AND UPDATE ASK ORDER
             elseif ($topBidSize > $topAskSize) { $tradeSize = $topAskSize;}
-            else {  query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Size Failure: #9"); } //rollback on failure
+            else {  query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Bid Size or Ask Size Unknown!"); } //rollback on failure
             if ($tradeSize == 0) {throw new Exception("Trade Size is 0"); } //catch if trade size is null or zero
             
             //TRADE AMOUNT
