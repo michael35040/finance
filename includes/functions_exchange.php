@@ -72,12 +72,14 @@ function cancelOrder($uid)
 ////////////////////////////////////
 function zeroQuantityCheck($symbol)
 {   $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol);
-    $cancelOrders = 0;
+    $removedEmpty = 0;
+    echo("<br>Conducting check for empty orders...");
     while(!empty($emptyOrders))
-    {   $cancelOrders++;
+    {   $removedEmpty++;
         try {cancelOrder($emptyOrders[0]["uid"]);}
         $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol); }
-    return($cancelOrders);
+    echo("<br>[" . $symbol . "] Removed " $removeEmpty . " empty orders.");
+    return($removedEmpty);
 }
 
 ////////////////////////////////////
@@ -92,6 +94,7 @@ function negativeValues()
     if(!empty($negativeValueAccounts)) 
     {  echo("<br>Negative Account Balance Detected! ID:"  .$order[0]["id"] . ", Balance:" . $negativeValueAccounts[0]["units"]);
         if(query("UPDATE orderbook SET type = 'cancel' WHERE id = ?", $id) === false){ apologize("Unable to cancel all orders!"); }
+        try {cancelOrderCheck();}
         throw new Exception("<br>Canceled All Users (ID:" . $negativeValueAccounts[0]["id"] . ") orders due to negative account balance. Current balance: " . $negativeValueAccounts[0]["units"]);}
     //eventually all users order using id     throw new Exception(var_dump(get_defined_vars()));
 }
@@ -103,6 +106,7 @@ function cancelOrderCheck()
 {       //Check to see if anyone canceled any orders
     $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
     $canceledNumber=0;
+    echo("<br>Conducting check for empty orders...");
     while(!empty($cancelOrders))
     {
         //NEGATIVE VALUE CHECK
@@ -112,7 +116,8 @@ function cancelOrderCheck()
         $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
         $canceledNumber++;
     }
-    if($canceledNumber>0){echo("<br><b>Canceled: " . $canceledNumber . " orders.</b>");}
+    //if($canceledNumber>0){   }
+    echo("<br><b>Canceled: " . $canceledNumber . " orders.</b>");
 }
 
 
@@ -208,15 +213,12 @@ function processOrderbook($symbol=null)
     }
     echo("<br>");
     echo(date("Y-m-d H:i:s"));
-    echo("<br>");
     $endDate =  time();
     $totalTime = $endDate-$startDate;
     if($totalTime != 0){$speed=$totalProcessed/$totalTime;}
     else{$speed=0;}
-    echo("Processed " . $totalProcessed . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec");
+    echo("<br>Processed " . $totalProcessed . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec");
     
-    //catch exception
-    catch(Exception $e) {echo('<br>Message: ' . $cancelOrders[0]["uid"] .$e->getMessage());}
     //var_dump(get_defined_vars()); //dump all variables if i hit error
 }
 
