@@ -210,25 +210,7 @@ function processOrderbook($symbol=null)
         if(isset($orderbook)){
             echo('<br>[' . $orderbook["topBidSymbol"] . '] Processed ' .  $orderbook["orderProcessed"] );
             $totalProcessed = ($totalProcessed +  $orderbook["orderProcessed"]);
-                echo("<br><br><b>TOP OF ORDERBOOK:</b>");
-                echo("<br>Trade Price: " . number_format($orderbook['tradePrice'],2,".",","));
-                echo("<br>Trade Type: " . $$orderbook['tradeType']);
-                echo("<br><br>Ask Price: " . number_format($$orderbook['topAskPrice'],2,".",","));
-                echo("<br>Ask UID: " . $orderbook['topAskUID']; //order id; unique id
-                echo("<br>Ask Symbol: " . $orderbook['topAskSymbol']; //symbol of equity
-                echo("<br>Ask Side: " . $orderbook['topAskSide']; //bid or ask
-                echo("<br>Ask Date: " . $orderbook['topAskDate'];
-                echo("<br>Ask Type: " . $orderbook['topAskType'];  //limit or market
-                echo("<br>Ask Size: " . $orderbook['topAskSize']; //size or quantity of trade
-                echo("<br>Ask User: " .  $orderbook['topAskUser']; //user id
-                echo("<br><br>Bid Price: " . number_format($orderbook['topBidPrice'],2,".",",")); //might need to make (float)
-                echo("<br>Bid UID: " .  $orderbook['topBidUID']; //order id; unique id
-                echo("<br>Bid Symbol: " . $orderbook['topBidSymbol'];
-                echo("<br>Bid Side: " . $orderbook['topBidSide']; //bid or ask
-                echo("<br>Bid Date: " . $orderbook['topBidDate'];
-                echo("<br>Bid Type: " . $orderbook['topBidType']; //limit or market
-                echo("<br>Bid Size: " . $orderbook['topBidSize'];
-                echo("<br>Bid User: " . $orderbook['topBidUser'];
+
         }
     }
     echo("<br>");
@@ -414,7 +396,51 @@ function orderbook($symbol)
             query("COMMIT;"); //If no errors, commit changes
             query("SET AUTOCOMMIT=1");
 
-
+            //LAST TRADE INFO TO RETURN ON FUNCTION
+            if ($topAskType == 'market') { $topAskPrice = 'market'; } //null//$tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
+            if ($topBidType == 'market') { $topBidPrice = 'market'; } //null// $tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
+            $orderbook['topAskPrice'] = ($asks[0]["price"]); //limit price
+            $orderbook['topAskUID'] = ($asks[0]["uid"]);  //order id; unique id
+            $orderbook['topAskSymbol'] = ($asks[0]["symbol"]); //symbol of equity
+            $orderbook['topAskSide'] = ($asks[0]["side"]);  //bid or ask
+            $orderbook['topAskDate'] = ($asks[0]["date"]);
+            $orderbook['topAskType'] =  ($asks[0]["type"]);  //limit or market
+            $orderbook['topAskSize'] = ($asks[0]["quantity"]); //size or quantity of trade
+            $orderbook['topAskUser'] = ($asks[0]["id"]); //user id
+            $orderbook['topBidPrice'] = ($bids[0]["price"]);
+            $orderbook['topBidUID'] = ($bids[0]["uid"]);//order id; unique id
+            $orderbook['topBidSymbol'] = ($bids[0]["symbol"]);
+            $orderbook['topBidSide'] = ($bids[0]["side"]);  //bid or ask
+            $orderbook['topBidDate'] = ($bids[0]["date"]);
+            $orderbook['topBidType'] = ($bids[0]["type"]); //limit or market
+            $orderbook['topBidSize'] = ($bids[0]["quantity"]);
+            $orderbook['topBidUnits'] = ($bids[0]["total"]);
+            $orderbook['topBidUser'] = ($bids[0]["id"]);
+            $orderbook['orderProcessed'] = $orderProcessed;
+            if (empty($tradePrice)) {$tradePrice = 0;} //if no trades so should be empty
+            $orderbook['tradePrice'] = $tradePrice;
+            $orderbook['tradeType'] = $tradeType;
+            
+            echo("<br><br><b>TOP OF ORDERBOOK:</b>");
+            echo("<br>Trade Price: " . number_format($orderbook['tradePrice'],2,".",","));
+            echo("<br>Trade Type: " . $$orderbook['tradeType']);
+            echo("<br><br>Ask Price: " . number_format($$orderbook['topAskPrice'],2,".",","));
+            echo("<br>Ask UID: " . $orderbook['topAskUID']; //order id; unique id
+            echo("<br>Ask Symbol: " . $orderbook['topAskSymbol']; //symbol of equity
+            echo("<br>Ask Side: " . $orderbook['topAskSide']; //bid or ask
+            echo("<br>Ask Date: " . $orderbook['topAskDate'];
+            echo("<br>Ask Type: " . $orderbook['topAskType'];  //limit or market
+            echo("<br>Ask Size: " . $orderbook['topAskSize']; //size or quantity of trade
+            echo("<br>Ask User: " .  $orderbook['topAskUser']; //user id
+            echo("<br><br>Bid Price: " . number_format($orderbook['topBidPrice'],2,".",",")); //might need to make (float)
+            echo("<br>Bid UID: " .  $orderbook['topBidUID']; //order id; unique id
+            echo("<br>Bid Symbol: " . $orderbook['topBidSymbol'];
+            echo("<br>Bid Side: " . $orderbook['topBidSide']; //bid or ask
+            echo("<br>Bid Date: " . $orderbook['topBidDate'];
+            echo("<br>Bid Type: " . $orderbook['topBidType']; //limit or market
+            echo("<br>Bid Size: " . $orderbook['topBidSize'];
+            echo("<br>Bid User: " . $orderbook['topBidUser'];
+            
             //NEGATIVE VALUE CHECK
             try {negativeValues();}
             catch(Exception $e) {echo('Message: ' .$e->getMessage());} //catch exception
@@ -431,6 +457,10 @@ function orderbook($symbol)
             list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType) = OrderbookTop($symbol);
             @$topBidPrice  = (float)$topBidPrice; //convert string to float
             @$topAskPrice  = (float)$topAskPrice; //convert string to float
+            
+            
+            
+            
 
 
         } //IF TRADES ARE POSSIBLE
@@ -442,50 +472,6 @@ function orderbook($symbol)
 
     } //BOTTOM of WHILE STATEMENT
 
-    $topAskPrice = ($asks[0]["price"]); //limit price
-    $topBidPrice = ($bids[0]["price"]);
-    $topAskUID = ($asks[0]["uid"]); //order id; unique id
-    $topAskSymbol = ($asks[0]["symbol"]); //symbol of equity
-    $topAskSide = ($asks[0]["side"]); //bid or ask
-    $topAskDate = ($asks[0]["date"]);
-    $topAskType = ($asks[0]["type"]); //limit or market
-    $topAskSize = ($asks[0]["quantity"]); //size or quantity of trade
-    $topAskUser = ($asks[0]["id"]); //user id
-    $topBidUID = ($bids[0]["uid"]); //order id; unique id
-    $topBidSymbol = ($bids[0]["symbol"]);
-    $topBidSide = ($bids[0]["side"]); //bid or ask
-    $topBidDate = ($bids[0]["date"]);
-    $topBidType = ($bids[0]["type"]); //limit or market
-    $topBidSize = ($bids[0]["quantity"]);
-    $topBidUser = ($bids[0]["id"]);
-    $topBidUnits = ($bids[0]["total"]);
-    //LAST TRADE INFO TO RETURN ON FUNCTION
-    if ($topAskType == 'market') { $topAskPrice = 'market'; } //null//$tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
-    if ($topBidType == 'market') { $topBidPrice = 'market'; } //null// $tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
-    $orderbook['topAskPrice'] = $topAskPrice;
-    $orderbook['topAskUID'] = $topAskUID; //order id; unique id
-    $orderbook['topAskSymbol'] = $topAskSymbol; //symbol of equity
-    $orderbook['topAskSide'] = $topAskSide; //bid or ask
-    $orderbook['topAskDate'] = $topAskDate;
-    $orderbook['topAskType'] = $topAskType; //limit or market
-    $orderbook['topAskSize'] = $topAskSize; //size or quantity of trade
-    $orderbook['topAskUser'] = $topAskUser; //user id
-    $orderbook['topBidPrice'] = $topBidPrice;
-    $orderbook['topBidUID'] = $topBidUID; //order id; unique id
-    $orderbook['topBidSymbol'] = $topBidSymbol;
-    $orderbook['topBidSide'] = $topBidSide; //bid or ask
-    $orderbook['topBidDate'] = $topBidDate;
-    $orderbook['topBidType'] = $topBidType; //limit or market
-    $orderbook['topBidSize'] = $topBidSize;
-    $orderbook['topBidUser'] = $topBidUser;
-
-
-
-
-    $orderbook['orderProcessed'] = $orderProcessed;
-    if (empty($tradePrice)) {$tradePrice = 0;} //if no trades so should be empty
-    $orderbook['tradePrice'] = $tradePrice;
-    $orderbook['tradeType'] = $tradeType;
     return($orderbook);
 
 } //END OF FUNCTION
