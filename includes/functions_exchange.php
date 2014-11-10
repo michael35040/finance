@@ -178,27 +178,7 @@ function processOrderbook($symbol=null)
             if(isset($orderbook)) {
                 echo('<br>Message: [' . $symbol["symbol"] . '] Processed ' . $orderbook["orderProcessed"]);
                 $totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
-                echo("<br><br><b>TOP OF ORDERBOOK:</b>");
-                echo("<br>Trade Price: " . number_format($orderbook['tradePrice'],2,".",","));
-                echo("<br>Trade Type: " . $$orderbook['tradeType']);
-                echo("<br><br>Ask Price: " . number_format($$orderbook['topAskPrice'],2,".",","));
-                echo("<br>Ask UID: " . $orderbook['topAskUID']; //order id; unique id
-                echo("<br>Ask Symbol: " . $orderbook['topAskSymbol']; //symbol of equity
-                echo("<br>Ask Side: " . $orderbook['topAskSide']; //bid or ask
-                echo("<br>Ask Date: " . $orderbook['topAskDate'];
-                echo("<br>Ask Type: " . $orderbook['topAskType'];  //limit or market
-                echo("<br>Ask Size: " . $orderbook['topAskSize']; //size or quantity of trade
-                echo("<br>Ask User: " .  $orderbook['topAskUser']; //user id
-                echo("<br><br>Bid Price: " . number_format($orderbook['topBidPrice'],2,".",",")); //might need to make (float)
-                echo("<br>Bid UID: " .  $orderbook['topBidUID']; //order id; unique id
-                echo("<br>Bid Symbol: " . $orderbook['topBidSymbol'];
-                echo("<br>Bid Side: " . $orderbook['topBidSide']; //bid or ask
-                echo("<br>Bid Date: " . $orderbook['topBidDate'];
-                echo("<br>Bid Type: " . $orderbook['topBidType']; //limit or market
-                echo("<br>Bid Size: " . $orderbook['topBidSize'];
-                echo("<br>Bid User: " . $orderbook['topBidUser'];
             }
-
         }
     }
     else
@@ -210,7 +190,6 @@ function processOrderbook($symbol=null)
         if(isset($orderbook)){
             echo('<br>[' . $orderbook["topBidSymbol"] . '] Processed ' .  $orderbook["orderProcessed"] );
             $totalProcessed = ($totalProcessed +  $orderbook["orderProcessed"]);
-
         }
     }
     echo("<br>");
