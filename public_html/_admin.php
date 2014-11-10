@@ -39,13 +39,14 @@ if(isset($_POST['admin']))
     
     if ($_POST['admin'] == 'createstocks')    
     {
-        $createStocks = createStocks();
+        try {createStocks();}
+        catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 
     }
     if ($_POST['admin'] == 'randomorders')
     {   
         try {$randomOrders = randomOrders();}
-        catch(Exception $e) {echo('Message: [' . $symbol . '] ' . $e->getMessage() . '<br>');}         //catch exception
+        catch(Exception $e) {echo('Error: ' . $e->getMessage() . '<br>');}         //catch exception
     }
     if ($_POST['admin'] == 'process')
     {
@@ -53,12 +54,12 @@ if(isset($_POST['admin']))
         if($_POST["symbol"] == 'ALL')
         {
             try {processOrderbook();}
-            catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
+        catch(Exception $e) {echo('Error: ' . $e->getMessage() . '<br>');}         //catch exception
         }
         else
         {
             try {processOrderbook($_POST["symbol"]);}
-            catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
+        catch(Exception $e) {echo('Error: ' . $e->getMessage() . '<br>');}         //catch exception
         }
     }
     require("../templates/footer.php");
