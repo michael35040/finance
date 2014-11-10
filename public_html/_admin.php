@@ -42,7 +42,7 @@ if ($id != 1) { apologize("Unauthorized!");}
 
     </fieldset>
 </form>
-
+<hr>
 
 <?php
 if(isset($_POST['admin']))
