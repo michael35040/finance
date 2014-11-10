@@ -188,7 +188,7 @@ function processOrderbook($symbol=null)
         try {$orderbook = orderbook($symbol);}
         catch(Exception $e) {echo '<br>[' .     $orderbook["symbol"] . "] " . $e->getMessage();}
         if(isset($orderbook)){
-            echo('<br>[' .     $orderbook["symbol"] . '] Processed ' .  $orderbook["orderProcessed"] );
+            echo('<br><div style="color:red; font-weight: bold;">[' .     $orderbook["symbol"] . '] Processed ' .  $orderbook["orderProcessed"] . " orders</div>");
             $totalProcessed = ($totalProcessed +  $orderbook["orderProcessed"]);
         }
     }
@@ -400,7 +400,7 @@ function orderbook($symbol)
             $orderbook['tradePrice'] = $tradePrice;
             $orderbook['tradeType'] = $tradeType;
             
-            echo("Executed: Trade Price: " . number_format($orderbook['tradePrice'],2,".",",") . $orderbook['tradeType'] );
+            echo("<br><b>Executed: Trade Price: " . number_format($orderbook['tradePrice'],2,".",",") . " (" . $orderbook['tradeType'] . ")</b>");
             echo("<br>Ask Price: " . number_format($orderbook['topAskPrice'],2,".",","));
             echo("<br>Ask UID: " . $orderbook['topAskUID']); //order id; unique id
             echo("<br>Ask Symbol: " . $orderbook['topAskSymbol']); //symbol of equity
