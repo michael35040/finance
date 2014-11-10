@@ -39,21 +39,22 @@ function cancelOrder($uid)
         @$side=$order[0]["side"];
 
         if($side=='a')
-        {   if (query("UPDATE portfolio SET quantity = (quantity + ?) WHERE (symbol = ? AND id = ?)", $order[0]['quantity'], $order[0]['symbol'], $order[0]['id']) === false)
-        {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-            throw new Exception("Failure Cancel 2"); }
+        {   
+            if (query("UPDATE portfolio SET quantity = (quantity + ?) WHERE (symbol = ? AND id = ?)", $order[0]['quantity'], $order[0]['symbol'], $order[0]['id']) === false)
+            {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
+                throw new Exception("Failure Cancel 2"); }
             if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'ask') === false)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure Cancel 3"); } 
-        echo("<br>Canceled [ID: " .$order[0]["id"] . ", UID:" . $uid . ", Side:" . $side . ", Quantity:" . $order[0]["quantity"] . "]");
+            echo("<br>Canceled [ID: " .$order[0]["id"] . ", UID:" . $uid . ", Side:" . $side . ", Quantity:" . $order[0]["quantity"] . "]");
         }
         elseif($side=='b')
         {   if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $order[0]["total"], $order[0]["id"]) === false) //MOVE CASH TO units FUNDS
-        {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
+            {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
             throw new Exception("Failure Cancel 4");}
             if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'bid') === false)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
                 throw new Exception("Failure Cancel 5"); } 
-        echo("<br>Canceled [ID: " .$order[0]["id"] . ", UID:" . $uid . ", Side:" . $side . ", Total:" . $order[0]["total"] . "]");
+            echo("<br>Canceled [ID: " .$order[0]["id"] . ", UID:" . $uid . ", Side:" . $side . ", Total:" . $order[0]["total"] . "]");
         }
 
         query("COMMIT;"); //If no errors, commit changes
@@ -74,7 +75,7 @@ function zeroQuantityCheck($symbol)
     $cancelOrders = 0;
     while(!empty($emptyOrders))
     {   $cancelOrders++;
-        cancelOrder($emptyOrders[0]["uid"]);
+        try {cancelOrder($emptyOrders[0]["uid"]);}
         $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol); }
     return($cancelOrders);
 }
@@ -84,10 +85,14 @@ function zeroQuantityCheck($symbol)
 ////////////////////////////////////
 function negativeValues()
 {   $negativeValueOrderbook = query("SELECT quantity, total, uid FROM orderbook WHERE (quantity < 0 OR total < 0) LIMIT 0, 1");
-    if(!empty($negativeValueOrderbook)) { throw new Exception("Negative Orderbook Values: " . $negativeValueOrderbook[0]["uid"]);}
+    if(!empty($negativeValueOrderbook)) { 
+        throw new Exception("<br>Negative Orderbook Values! UID: " . $negativeValueOrderbook[0]["uid"] . ", Quantity: " . $negativeValueOrderbook[0]["quantity"] . ", Total: " . $negativeValueOrderbook[0]["total"]);}
     //eventually all users order using id
-    $negativeValueAccounts = query("SELECT units, units, id FROM accounts WHERE (units < 0 OR units < 0) LIMIT 0, 1");
-    if(!empty($negativeValueAccounts)) { throw new Exception("Negative Accounts Values: " . $negativeValueAccounts[0]["id"]);}
+    $negativeValueAccounts = query("SELECT units, id FROM accounts WHERE (units < 0) LIMIT 0, 1");
+    if(!empty($negativeValueAccounts)) 
+    {  echo("<br>Negative Account Balance Detected! ID:"  .$order[0]["id"] . ", Balance:" . $negativeValueAccounts[0]["units"]);
+        if(query("UPDATE orderbook SET type = 'cancel' WHERE id = ?", $id) === false){ apologize("Unable to cancel all orders!"); }
+        throw new Exception("<br>Canceled All Users (ID:" . $negativeValueAccounts[0]["id"] . ") orders due to negative account balance. Current balance: " . $negativeValueAccounts[0]["units"]);}
     //eventually all users order using id     throw new Exception(var_dump(get_defined_vars()));
 }
 
@@ -102,8 +107,7 @@ function cancelOrderCheck()
     {
         //NEGATIVE VALUE CHECK
         try {cancelOrder($cancelOrders[0]["uid"]);}
-            //catch exception
-        catch(Exception $e) {echo('<br>Message: ' . $cancelOrders[0]["uid"] .$e->getMessage());}
+
         //Search again to see if anymore
         $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
         $canceledNumber++;
@@ -118,7 +122,8 @@ function cancelOrderCheck()
 function OrderbookTop($symbol)
 {
 
-
+    $topOrders=[];
+    
     //MARKET ORDERS SHOULD BE AT TOP IF THEY EXIST
     $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
     if (!empty($marketOrders))
@@ -156,7 +161,12 @@ function OrderbookTop($symbol)
         $tradeType = 'limit'; }
     else {throw new Exception("Market Order Error!");}
 
-    return array($asks, $bids, $topAskPrice, $topBidPrice, $tradeType);
+    $topOrders["asks"]=$asks;
+    $topOrders["bids"]=$bids;
+    $topOrders["topAskPrice"]=$topAskPrice;
+    $topOrders["topBidPrice"]=$topBidPrice;
+    $topOrders["tradeType"]=$tradeType;
+    return($topOrders);
 }
 //throw new Exception(var_dump(get_defined_vars())); //dump all variables if i hit error
 
@@ -204,6 +214,9 @@ function processOrderbook($symbol=null)
     if($totalTime != 0){$speed=$totalProcessed/$totalTime;}
     else{$speed=0;}
     echo("Processed " . $totalProcessed . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec");
+    
+    //catch exception
+    catch(Exception $e) {echo('<br>Message: ' . $cancelOrders[0]["uid"] .$e->getMessage());}
     //var_dump(get_defined_vars()); //dump all variables if i hit error
 }
 
@@ -222,21 +235,21 @@ function orderbook($symbol)
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
     if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange!");} //row count
 
-
     //NEGATIVE VALUE CHECK
     try {negativeValues();}
-    catch(Exception $e) {echo('Message: ' .$e->getMessage());} //catch exception
-
     //CANCEL ORDER CHECK
     try {cancelOrderCheck();}
-    catch(Exception $e) {echo('Message: ' .$e->getMessage());}  //catch exception
-
     //REMOVES ALL EMPTY ORDERS
     try {zeroQuantityCheck($symbol);}
-    catch(Exception $e) {echo('Message: ' .$e->getMessage());} //catch exception
-
+    
     //FIND TOP OF ORDERBOOK
-    list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType) = OrderbookTop($symbol);
+    try { $topOrders = OrderbookTop($symbol);}
+    $asks = $topOrders["asks"]=
+    $bids = $topOrders["bids"];
+    $topAskPrice = $topOrders["topAskPrice"];
+    $topBidPrice = $topOrders["topBidPrice"];
+    $tradeType = $topOrders["tradeType"];
+
     $topBidPrice  = (float)$topBidPrice; //convert string to float
     $topAskPrice  = (float)$topAskPrice; //convert string to float
 
@@ -422,23 +435,21 @@ function orderbook($symbol)
             echo("<br>Bid Size: " . $orderbook['topBidSize']);
             echo("<br>Bid User: " . $orderbook['topBidUser']);
             
-            //NEGATIVE VALUE CHECK
-            try {negativeValues();}
-            catch(Exception $e) {echo('Message: ' .$e->getMessage());} //catch exception
 
-            //CANCEL ORDER CHECK
-            try {cancelOrderCheck();}
-            catch(Exception $e) {echo('Message: ' .$e->getMessage());}  //catch exception
-
-            //REMOVES ALL EMPTY ORDERS
-            try {zeroQuantityCheck($symbol);}
-            catch(Exception $e) {echo('Message: ' .$e->getMessage());} //catch exception
-
-            //RECALCULATE VALUES FOR DO-WHILE //RECHECK FROM BEGINNING TO SEE IF ANY MORE ORDERS TO PROCESS)
-            list($asks,$bids,$topAskPrice,$topBidPrice,$tradeType) = OrderbookTop($symbol);
-            @$topBidPrice  = (float)$topBidPrice; //convert string to float
-            @$topAskPrice  = (float)$topAskPrice; //convert string to float
-            
+    //NEGATIVE VALUE CHECK
+    try {negativeValues();}
+    //CANCEL ORDER CHECK
+    try {cancelOrderCheck();}
+    //REMOVES ALL EMPTY ORDERS
+    try {zeroQuantityCheck($symbol);}
+    
+    //RECALCULATE VALUES FOR DO-WHILE //RECHECK FROM BEGINNING TO SEE IF ANY MORE ORDERS TO PROCESS)
+    try { $topOrders = OrderbookTop($symbol);}
+    $asks = $topOrders["asks"]=
+    $bids = $topOrders["bids"];
+    $topAskPrice = $topOrders["topAskPrice"];
+    $topBidPrice = $topOrders["topBidPrice"];
+    $tradeType = $topOrders["tradeType"];          
             
             
             
@@ -455,6 +466,8 @@ function orderbook($symbol)
 
     $orderbook['orderProcessed'] = $orderProcessed;
     return($orderbook);
+
+//catch(Exception $e) {echo('<br>Message: [' . $symbol . "] " . $e->getMessage());}
 
 } //END OF FUNCTION
 
