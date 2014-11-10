@@ -53,8 +53,10 @@ function randomOrders()
 
 function createStocks()
 {    include("constants.php");//for $divisor
+$lastSymbol =	query("SELECT symbol FROM assets ORDER BY symbol DESC");
+if(empty($lastSymbol)){$lastSymbol='A';}
     $i=0;
-    $symbol = 'A';
+    $symbol = $lastSymbol;
     while ($i < 26) {
         $issued = 2*(mt_rand(1,100)*100000);
         $price = mt_rand(1, 40)*$divisor*($issued/2);
@@ -63,7 +65,6 @@ function createStocks()
          //publicOffering($symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description)
          publicOffering($symbol, $symbol, 2, $issued, 'limit', '', 0.5, '', 0, '');
         query("INSERT INTO `portfolio` (`id`, `symbol`, `quantity`, `price`) VALUES (3, ?, ?, ?)", $symbol, $quantity, $price);
-
         $symbol++;
         $i++;
     }
