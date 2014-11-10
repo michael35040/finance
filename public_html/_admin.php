@@ -102,7 +102,7 @@ else
   ?>
 <form action="_admin.php"  class="symbolForm" method="post"   >
     <fieldset>
-    <table>
+<table class="table table-condensed table-striped table-bordered" id="admin" style="border-collapse:collapse;">
     <tr><td><input type="radio" name="admin" value="all"></td>          <td>Clear All</td></tr>
     <tr><td><input type="radio" name="admin" value="orderbook"></td>    <td>Clear Orderbook</td></tr>
     <tr><td><input type="radio" name="admin" value="trades"></td>       <td>Clear Trades</td></tr>
