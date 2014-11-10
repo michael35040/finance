@@ -27,7 +27,7 @@
         {
             $i++;
             echo('<tr data-toggle="collapse" data-target="#demo' . $i . '" class="accordion-toggle">');
-            echo('<td> <span class="glyphicon glyphicon-download"></span> ' . htmlspecialchars($asset["symbol"]) . '</td>');
+            echo('<td> <span class="glyphicon glyphicon-search"></span> ' . htmlspecialchars($asset["symbol"]) . '</td>');
             echo('<td >' . $unitsymbol . number_format($asset["price"], 2, ".", ",") . '</td>');
             echo('<td >' . number_format($asset["volume"], 0, ".", ",") . '</td>');
             echo('<td >' . $unitsymbol . number_format($asset["marketcap"], 2, ".", ",") . '</td>');
