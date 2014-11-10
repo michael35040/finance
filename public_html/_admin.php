@@ -79,7 +79,8 @@ else
     <tr><td><input type="radio" name="admin" value="orderbook"></td>    <td>Clear Orderbook</td></tr>
     <tr><td><input type="radio" name="admin" value="trades"></td>       <td>Clear Trades</td></tr>
     <tr><td><input type="radio" name="admin" value="info"></td>         <td>Monetary Info</td></tr> 
-    <tr><td><input type="radio" name="admin" value="test"></td>         <td>Test</td></tr>
+    <tr><td><input type="radio" name="admin" value="createstocks"></td> <td>Create Stocks</td></tr>
+    <tr><td><input type="radio" name="admin" value="randomorders"></td> <td>Random Orders</td></tr>
     <tr><td><input type="radio" name="admin" value="process"></td>      <td>Process Orders 
         <select name="symbol"  class="form-control" >
         <?php
