@@ -11,9 +11,9 @@ function randomOrders()
     $i=0;
     $symbol = 'A';
     $type='limit';
+    $ordersCreated=0; //total created
     while ($i < 26) {
         $randomOrders=0;
-        $ordersCreated=0; //total created
         echo("<br><b>[" . $symbol . "] Placing Orders...</b>");
         while ($randomOrders < 10) //number of orders
         {
