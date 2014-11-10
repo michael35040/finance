@@ -1,21 +1,20 @@
 <?php
-
-////////////////////////////////////
 ////////////////////////////////////
 //TESTING
 ////////////////////////////////////
-/////////////////////////////////////
-
-
 
 function randomOrders()
 {    include("constants.php");//for $divisor
+    echo date("Y-m-d H:i:s");
+    $startDate =  time();
     $ordersCreated = 0;
     $i=0;
     $symbol = 'A';
     $type='limit';
     while ($i < 26) {
         $randomOrders=0;
+        $ordersCreated=0; //total created
+
         while ($randomOrders < 10) //number of orders
         {
             $sideNum = mt_rand(1, 2);
@@ -39,13 +38,31 @@ function randomOrders()
                 //catch exception
             catch(Exception $e) {echo('Message: [' . $symbol . '] ' . $e->getMessage() . '<br>');}
 
+        echo("Order-[Symbol:" . $symbol . ", Type:" .  $type . ", Side:" .  $side . ", Quantity:" .  $quantity . ", Price:" .  $price . ", User:" .  $id);
+        echo("[" . $symbol . "] created " . $randomOrders . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
             $randomOrders++; //should be only 10 per symbol
             $ordersCreated++; //total created
         }
         $symbol++; //up to 26 (Z)
         $i++; //up to 26
     }
+        $endDate =  time();
+        echo("<br>");
+        echo date("Y-m-d H:i:s");
+        echo("<br>");
+        $endDate =  time();
+        $totalTime = $endDate-$startDate;
+        $speed=$randomOrders/$totalTime;
+        echo("Created " . $ordersCreated . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
+
     return($ordersCreated); //number of orders processed
+    
+    
+    
+
+        //$randomOrders = createStocks();
+        try {$randomOrders = randomOrders();}
+        catch(Exception $e) {echo('Message: [' . $symbol . '] ' . $e->getMessage() . '<br>');}         //catch exception
 }
 
 
@@ -53,22 +70,34 @@ function randomOrders()
 
 function createStocks()
 {    include("constants.php");//for $divisor
+$fee=0.45;
 $lastSymbol =	query("SELECT symbol FROM assets ORDER BY symbol DESC");
+echo date("Y-m-d H:i:s");
+$startDate =  time();
 if(empty($lastSymbol)){$lastSymbol='A';}
-    $i=0;
-    $symbol = $lastSymbol;
-    while ($i < 26) {
+$i=0;
+$symbol = $lastSymbol;
+while ($i < 26) {
         $issued = 2*(mt_rand(1,100)*100000);
         $price = mt_rand(1, 40)*$divisor*($issued/2);
         $quantity = $issued/2;
 
          //publicOffering($symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description)
-         publicOffering($symbol, $symbol, 2, $issued, 'limit', '', 0.5, '', 0, '');
+        publicOffering($symbol, $symbol, 2, $issued, 'limit', '', $fee, '', 0, '');
         query("INSERT INTO `portfolio` (`id`, `symbol`, `quantity`, `price`) VALUES (3, ?, ?, ?)", $symbol, $quantity, $price);
+        echo("Issued-[Symbol:" . $symbol . ", Quantity:" .  $quantity . ", Fee:" .  $fee);
         $symbol++;
         $i++;
     }
-    return($i);
+        $endDate =  time();
+        echo("<br>");
+        echo date("Y-m-d H:i:s");
+        echo("<br>");
+        $endDate =  time();
+        $totalTime = $endDate-$startDate;
+        $speed=$createStocks/$totalTime;
+        echo("Issued " . $createStocks . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
+        return($i);
 }
 
 
