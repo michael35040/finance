@@ -68,8 +68,9 @@ $lastSymbol =	query("SELECT symbol FROM assets ORDER BY symbol DESC");
 echo date("Y-m-d H:i:s");
 $startDate =  time();
 if(empty($lastSymbol)){$lastSymbol='A';}
+else{$symbol = $lastSymbol[0]["symbol"];}
 $i=0;
-$symbol = $lastSymbol;
+
 while ($i < 26) {
         $issued = 2*(mt_rand(1,100)*100000);
         $price = mt_rand(1, 40)*$divisor*($issued/2);
