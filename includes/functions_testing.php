@@ -36,9 +36,12 @@ function randomOrders()
                 placeOrder($symbol, $type, $side, $quantity, $price, $id);
             }
                 //catch exception
-            catch(Exception $e) {echo('<br>Error: [' . $symbol . '] ' . $e->getMessage());}
-        $total=$quantity*$price;
-        echo("<br>[ID:" .  $id . ", " . $symbol . ", " .  $type . ", " .  $side . ", $" .  $price . ", x" .  $quantity . ", Total: $" . $total . "]");
+            catch(Exception $e) 
+            {
+                echo('<br>Error: [' . $symbol . '] ' . $e->getMessage());
+            }
+            $total=$quantity*$price;
+            echo("<br>[ID:" .  $id . ", " . $symbol . ", " .  $type . ", " .  $side . ", $" .  $price . ", x" .  $quantity . ", Total: $" . $total . "]");
             $randomOrders++; //should be only 10 per symbol
             $ordersCreated++; //total created
         }
@@ -51,7 +54,8 @@ function randomOrders()
         echo("<br>");
         $endDate =  time();
         $totalTime = $endDate-$startDate;
-        $speed=$randomOrders/$totalTime;
+        if($totalTime==0){$speed=$ordersCreated;} //so we don't divid by 0.
+        else{$speed=$ordersCreated/$totalTime;}
         echo("<br>Created " . $ordersCreated . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br>");
 
     return($ordersCreated); //number of orders processed
