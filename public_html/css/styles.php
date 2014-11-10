@@ -4,8 +4,8 @@ header("Content-type: text/css; charset: UTF-8");
 date_default_timezone_set("America/New_York");
 $now = date('G');
 //0700-2000 or 7am to 7pm EST
-if ($now > 7 && $now < 20) { $img = 'day'; } 
-else { $img = 'night'; }
+if ($now > 7 && $now < 20) { $img = '2'; }  //day
+else { $img = '1'; } //night
 ?>
 
 a:link {color:black;}      /* unvisited link */
