@@ -174,9 +174,9 @@ function processOrderbook($symbol=null)
         foreach ($symbols as $symbol)
         {
             try {$orderbook = orderbook($symbol["symbol"]);}
-            catch(Exception $e) {echo('<br>Message: [' . $symbol["symbol"] . "] " . $e->getMessage());}
+            catch(Exception $e) {echo('<br>Message: [' . $orderbook["symbol"] . "] " . $e->getMessage());}
             if(isset($orderbook)) {
-                echo('<br>Message: [' . $symbol["symbol"] . '] Processed ' . $orderbook["orderProcessed"]);
+                echo('<br>Message: [' . $orderbook["symbol"] . '] Processed ' . $orderbook["orderProcessed"]);
                 $totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
             }
         }
@@ -184,11 +184,11 @@ function processOrderbook($symbol=null)
     else
     {
         $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
-        if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange!");} //row count
+        if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol . "] Incorrect Symbol. Not listed on the exchange!");} //row count
         try {$orderbook = orderbook($symbol);}
-        catch(Exception $e) {echo '<br>[' . $symbol . "] " . $e->getMessage();}
+        catch(Exception $e) {echo '<br>[' .     $orderbook["symbol"] . "] " . $e->getMessage();}
         if(isset($orderbook)){
-            echo('<br>[' . $orderbook["topBidSymbol"] . '] Processed ' .  $orderbook["orderProcessed"] );
+            echo('<br>[' .     $orderbook["symbol"] . '] Processed ' .  $orderbook["orderProcessed"] );
             $totalProcessed = ($totalProcessed +  $orderbook["orderProcessed"]);
         }
     }
@@ -239,6 +239,7 @@ function orderbook($symbol)
     //PROCESS ORDERS
     $orderProcessed = 0; //orders processed
     $orderbook=[];
+    $orderbook["symbol"]=$symbol;
     while ($topBidPrice >= $topAskPrice)
     {   @$topAskUID = (int)($asks[0]["uid"]); //order id; unique id
         @$topAskSymbol = ($asks[0]["symbol"]); //symbol of equity
