@@ -14,7 +14,7 @@ function randomOrders()
     while ($i < 26) {
         $randomOrders=0;
         $ordersCreated=0; //total created
-        echo($symbol . " - Placing Orders...");
+        echo("<br>" . $symbol . " - Placing Orders...");
         while ($randomOrders < 10) //number of orders
         {
             $sideNum = mt_rand(1, 2);
