@@ -36,46 +36,16 @@ if(isset($_POST['admin']))
         echo("<br>Money Supply (Open Bids): " . $MoneySupplyBids);
         echo("<br>Total Money Supply: " . $moneySupplyTotal);
     }
-    if ($_POST['admin'] == 'test')
-    {   echo date("Y-m-d H:i:s");
-        $startDate =  time();
-        $createStocks = createStocks();
-        $endDate =  time();
-        echo("<br>");
-        echo date("Y-m-d H:i:s");
-        echo("<br>");
-        $endDate =  time();
-        $totalTime = $endDate-$startDate;
-        $speed=$createStocks/$totalTime;
-        echo("Created " . $createStocks . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
     
-        echo date("Y-m-d H:i:s");
-        $startDate =  time();
-        //$randomOrders = createStocks();
+    if ($_POST['admin'] == 'createstocks')    
+    {
+        $createStocks = createStocks();
+
+    }
+    if ($_POST['admin'] == 'randomorders')
+    {   
         try {$randomOrders = randomOrders();}
         catch(Exception $e) {echo('Message: [' . $symbol . '] ' . $e->getMessage() . '<br>');}         //catch exception
-        $endDate =  time();
-        echo("<br>");
-        echo date("Y-m-d H:i:s");
-        echo("<br>");
-        $endDate =  time();
-        $totalTime = $endDate-$startDate;
-        $speed=$randomOrders/$totalTime;
-        echo("Created " . $randomOrders . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
-    
-        echo date("Y-m-d H:i:s");
-        $startDate =  time();
-        //$randomOrders = createStocks();
-        try {$processOrderbook = processOrderbook();}
-        catch(Exception $e) {echo('Message: [' . $symbol . '] ' . $e->getMessage() . '<br>');}         //catch exception
-        $endDate =  time();
-        echo("<br>");
-        echo date("Y-m-d H:i:s");
-        echo("<br>");
-        $endDate =  time();
-        $totalTime = $endDate-$startDate;
-        $speed=$processOrderbook/$totalTime;
-        echo("Created " . $processOrderbook . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
     }
     if ($_POST['admin'] == 'process')
     {
