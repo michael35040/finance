@@ -155,7 +155,7 @@
                 <div class="btn-group">
                     <div class="input-group">
                         <button id="adminButton" type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-star">
+                            <span class="glyphicon glyphicon-star"></span>
                             Admin
                             <span class="caret"></span>
                         </button>
