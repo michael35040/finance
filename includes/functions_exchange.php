@@ -3,7 +3,7 @@
 
 /////////////////////////////////
 //COMMISSION
-///////////////////////////////////
+/////////////////////////////////
 function getCommission($total)
 {
     $divisor = 0.25;
@@ -238,6 +238,7 @@ function orderbook($symbol)
 
     //PROCESS ORDERS
     $orderProcessed = 0; //orders processed
+    $orderbook=[];
     while ($topBidPrice >= $topAskPrice)
     {   @$topAskUID = (int)($asks[0]["uid"]); //order id; unique id
         @$topAskSymbol = ($asks[0]["symbol"]); //symbol of equity
@@ -399,10 +400,8 @@ function orderbook($symbol)
             $orderbook['tradePrice'] = $tradePrice;
             $orderbook['tradeType'] = $tradeType;
             
-            echo("<br><br><b>TOP OF ORDERBOOK:</b>");
-            echo("<br>Trade Price: " . number_format($orderbook['tradePrice'],2,".",","));
-            echo("<br>Trade Type: " . $orderbook['tradeType']);
-            echo("<br><br>Ask Price: " . number_format($orderbook['topAskPrice'],2,".",","));
+            echo("Executed: Trade Price: " . number_format($orderbook['tradePrice'],2,".",",") . $orderbook['tradeType'] );
+            echo("<br>Ask Price: " . number_format($orderbook['topAskPrice'],2,".",","));
             echo("<br>Ask UID: " . $orderbook['topAskUID']); //order id; unique id
             echo("<br>Ask Symbol: " . $orderbook['topAskSymbol']); //symbol of equity
             echo("<br>Ask Side: " . $orderbook['topAskSide']); //bid or ask
@@ -410,8 +409,8 @@ function orderbook($symbol)
             echo("<br>Ask Type: " . $orderbook['topAskType']);  //limit or market
             echo("<br>Ask Size: " . $orderbook['topAskSize']); //size or quantity of trade
             echo("<br>Ask User: " .  $orderbook['topAskUser']); //user id
-            echo("<br><br>Bid Price: " . number_format($orderbook['topBidPrice'],2,".",",")); //might need to make (float)
-            echo("<br>Bid UID: " .  $orderbook['topBidUID']); //order id; unique id
+            echo("<br>Bid Price: " . number_format($orderbook['topBidPrice'],2,".",",")); //might need to make (float)
+            echo("<br>Bid UID: " . $orderbook['topBidUID']); //order id; unique id
             echo("<br>Bid Symbol: " . $orderbook['topBidSymbol']);
             echo("<br>Bid Side: " . $orderbook['topBidSide']); //bid or ask
             echo("<br>Bid Date: " . $orderbook['topBidDate']);
