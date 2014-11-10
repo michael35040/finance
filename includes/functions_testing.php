@@ -20,10 +20,10 @@ function randomOrders()
             $sideNum = mt_rand(1, 2);
             if ($sideNum == 1) {
                 $side = 'a';
-                $price = mt_rand(1, 4000)*$divisor;
+                $price = mt_rand(1, 400)*$divisor;
             } else {
                 $side = 'b';
-                $price = mt_rand(1, 4000)*$divisor;
+                $price = mt_rand(1, 400)*$divisor;
             }
             if ($type == 'market') {$price = 0;}
 
