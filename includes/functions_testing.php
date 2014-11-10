@@ -36,9 +36,9 @@ function randomOrders()
                 placeOrder($symbol, $type, $side, $quantity, $price, $id);
             }
                 //catch exception
-            catch(Exception $e) {echo('Error: [' . $symbol . '] ' . $e->getMessage() . '<br>');}
+            catch(Exception $e) {echo('<br>Error: [' . $symbol . '] ' . $e->getMessage() . '<br>');}
 
-        echo("Order-[Symbol:" . $symbol . ", Type:" .  $type . ", Side:" .  $side . ", Quantity:" .  $quantity . ", Price:" .  $price . ", User:" .  $id);
+        echo("<br>Order-[Symbol:" . $symbol . ", Type:" .  $type . ", Side:" .  $side . ", Quantity:" .  $quantity . ", Price:" .  $price . ", User:" .  $id);
             $randomOrders++; //should be only 10 per symbol
             $ordersCreated++; //total created
         }
@@ -52,7 +52,7 @@ function randomOrders()
         $endDate =  time();
         $totalTime = $endDate-$startDate;
         $speed=$randomOrders/$totalTime;
-        echo("Created " . $ordersCreated . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
+        echo("<br>Created " . $ordersCreated . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br>");
 
     return($ordersCreated); //number of orders processed
 }
