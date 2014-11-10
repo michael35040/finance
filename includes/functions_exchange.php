@@ -93,15 +93,19 @@ function negativeValues()
 function cancelOrderCheck()
 {       //Check to see if anyone canceled any orders
     $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
+    $canceledNumber=0;
     while(!empty($cancelOrders))
     {
         //NEGATIVE VALUE CHECK
         try {cancelOrder($cancelOrders[0]["uid"]);}
             //catch exception
-        catch(Exception $e) {echo('Message: ' . $cancelOrders[0]["uid"] .$e->getMessage());}
+        catch(Exception $e) {echo('<br>Message: ' . $cancelOrders[0]["uid"] .$e->getMessage());}
         //Search again to see if anymore
         $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
-    }}
+        $canceledNumber++;
+    }
+    echo("<br>Message: Canceled: " . $canceledNumber);
+}
 
 
 ////////////////////////////////////
@@ -172,7 +176,6 @@ function processOrderbook($symbol=null)
             try {$orderbook = orderbook($symbol["symbol"]);}
             catch(Exception $e) {echo('<br>Message: [' . $symbol["symbol"] . "] " . $e->getMessage());}
             if(isset($orderbook)) {
-
                 echo('<br>Message: [' . $symbol["symbol"] . '] Processed ' . $orderbook["orderProcessed"]);
                 $totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
             }

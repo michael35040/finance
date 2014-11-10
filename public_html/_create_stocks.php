@@ -7,10 +7,9 @@ $id = $_SESSION["id"];
 if ($id != 1) { apologize("Unauthorized!");}
 
 //apologize(var_dump(get_defined_vars()));
+//function testExchange(){}
 
 
-function testExchange()
-{}
     echo date("Y-m-d H:i:s");
     $startDate =  time();
     $createStocks = createStocks();

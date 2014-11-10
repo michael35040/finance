@@ -8,7 +8,7 @@ $id = $_SESSION["id"]; //get id from session
 // if form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    if (empty($_POST["symbol"])) { apologize("Please fill all required fields (Symbol)."); } //check to see if empty
+    if (empty($_POST["symbol"])) { apologize("Please select a symbol!"); } //check to see if empty
     $symbol = $_POST["symbol"];
     if (!ctype_alnum($symbol)) {apologize("Invalid Symbol");}
     $symbol = strtoupper($symbol); //cast to UpperCase

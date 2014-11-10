@@ -18,9 +18,15 @@
     </tr>
 
     <?php
-    foreach ($orders as $row) {
+    $OrderNumber=0;
+    $OrderQuantity=0;
+    $OrderPrice=0;
+    $OrderTotal=0;
+
+    foreach ($orders as $row)
+    {
         echo("<tr>");
-        echo('<td><form><button type="submit" class="btn btn-danger" formmethod="post" formaction="orders.php" name="uid" value="' . $row["uid"] . '"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>');
+        echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="uid" value="' . $row["uid"] . '"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>');
         echo("<td>" . htmlspecialchars($row["uid"]) . "</td>");
         echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s', strtotime($row["date"]))) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
@@ -30,6 +36,24 @@
         echo("<td>" . $unitsymbol . htmlspecialchars(number_format($row["price"], 2, ".", ",")) . "</td>");
         echo("<td>" . $unitsymbol . htmlspecialchars(number_format($row["total"], 2, ".", ",")) . "</td>");
         echo("</tr>");
+        $OrderNumber++;
+        $OrderQuantity=$OrderQuantity+$row["quantity"];
+        $OrderPrice=$OrderPrice+$row["price"];
+        $OrderTotal=$OrderTotal+$row["total"];
+    }
+    if($OrderNumber==0)
+    {
+        echo("<tr><td colspan='9'>No open orders</td></tr>");
+    }
+    else
+    {
+        echo('<tr  class="active" style="font-weight: bold;">');
+        echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="uid" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>');
+        echo("<td colspan='8'>" . htmlspecialchars(number_format($OrderNumber, 0, ".", ",")) . " open orders</td>");
+        //echo("<td>" . htmlspecialchars(number_format($OrderQuantity, 0, ".", ",")) . "</td>");
+        //echo("<td>" . $unitsymbol . htmlspecialchars(number_format($OrderPrice, 2, ".", ",")) . "</td>");
+        //echo("<td>" . $unitsymbol . htmlspecialchars(number_format($OrderTotal, 2, ".", ",")) . "</td>");
+        echo('</tr>');
     }
     ?>
 

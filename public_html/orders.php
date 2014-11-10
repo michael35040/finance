@@ -6,12 +6,21 @@ $title = "Open Orders";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
+    if(empty($_POST["uid"])){apologize("No order selected!");}
     $uid = (int)$_POST["uid"];
 
-    if (query("UPDATE orderbook SET type = 'cancel' WHERE uid = ?", $uid) === false)
-    { throw new Exception("Update Order Error!"); }
+    if($uid=='all')
+    { //CANCEL ALL USERS ORDERS
+        if(query("UPDATE orderbook SET type = 'cancel' WHERE id = ?", $id) === false)
+        { apologize("Unable to cancel order!"); }
+    }
+    else
+    { //CANCEL ONLY 1 ORDER
+        if(query("UPDATE orderbook SET type = 'cancel' WHERE uid = ?", $uid) === false)
+        { apologize("Unable to cancel order!"); }
+    }
 
-    redirect('orders.php');
+redirect('orders.php');
 }
 
 else {
@@ -25,5 +34,5 @@ else {
         ]);
 
 } //else !post
-    ?>
+?>
 

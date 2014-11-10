@@ -13,10 +13,10 @@
     <tr class="success"><td colspan="4" style="font-size:20px; text-align: center;">ASSETS</td>
 
     <tr class="active">
-        <th width="40%">Symbol</th>
-        <th width="20%">Price</th>
-        <th width="20%">Volume</th>
-        <th width="20%">Market Cap</th>
+        <th width="25%">Symbol</th>
+        <th width="25%">Price</th>
+        <th width="25%">Volume</th>
+        <th width="25%">Market Cap</th>
     </tr>
     </thead>
     <tbody>

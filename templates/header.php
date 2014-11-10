@@ -92,7 +92,7 @@
     <!-- Menu in style.css -->
     <?php
     //SHOW ON LOG IN ARGUMENT FOR MENU AND INFORMATION
-    if (!isset($_SESSION["id"])) { logout(); } //if not set due to error, logout,
+    //if (!isset($_SESSION["id"])) { logout(); } //if not set due to error, logout,
     if (!empty($_SESSION["id"]))
     {
     $users =	query("SELECT * FROM users WHERE id = ?", $_SESSION["id"]);
@@ -160,11 +160,12 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="test.php">Create Orders</a></li>
+                            <li><a href="_create_stocks.php">Create Stocks</a></li>
+                            <li><a href="test.php">Test</a></li>
+                            <li><a href="_userinfo.php">All Info</a></li>
                             <li><a href="_process.php">Process Orderbook</a></li>
                             <li><a href="_clear_all.php">Clear All</a></li>
                             <li><a href="_clear_orderbook.php">Clear Orders</a></li>
-                            <li><a href="_randomOrders.php">Random Orders</a></li>
                             <li><a href="_clear_trades.php">Clear Trades</a></li>
 
                         </ul>
@@ -297,7 +298,7 @@ foreach ($SBallAssets as $SBrow)		// for each of user's stocks
             white-space:nowrap;
         }
         .stockbox {
-            margin:0 10px;
+            margin:0 20px; /*top, right, bottom, left */
         }
         .stockbox a {
             color: #ccc;
@@ -361,8 +362,8 @@ foreach ($SBallAssets as $SBrow)		// for each of user's stocks
                 echo($unitsymbol . number_format($SBasset["price"], 2, ".", ","));
                 $change=(mt_rand(1,200)/100);
                 $posneg=(mt_rand(1,2));
-                if($posneg==1)  {echo('<span style="color: #009900;"> &#x25B2;' . $change . '</span></span>');} //up
-                else            {echo('<span style="color: #ff0000;"> &#x25BC;' . $change . '</span></span>');}//down
+                if($posneg==1)  {echo('<span style="color: #009900;"> &#x25B2; ' . $change . '</span></span>');} //up
+                else            {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}//down
                 //&#x25C4; &#x25BA; //<> even
 
                 //echo('<span style="color: #ff0000;">&darr;0.08</span></span>');
