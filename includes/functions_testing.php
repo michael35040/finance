@@ -38,7 +38,7 @@ function randomOrders()
                 //catch exception
             catch(Exception $e) {echo('<br>Error: [' . $symbol . '] ' . $e->getMessage());}
         $total=$quantity*$price;
-        echo("<br>Order-[ID:" .  $id . ", " . $symbol . ", " .  $type . ", " .  $side . ", $" .  $price . ", x" .  $quantity . ", Total: $" . $total);
+        echo("<br>[ID:" .  $id . ", " . $symbol . ", " .  $type . ", " .  $side . ", $" .  $price . ", x" .  $quantity . ", Total: $" . $total . "]");
             $randomOrders++; //should be only 10 per symbol
             $ordersCreated++; //total created
         }
