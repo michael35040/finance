@@ -160,13 +160,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="_create_stocks.php">Create Stocks</a></li>
-                            <li><a href="test.php">Test</a></li>
-                            <li><a href="_userinfo.php">All Info</a></li>
-                            <li><a href="_process.php">Process Orderbook</a></li>
-                            <li><a href="_clear_all.php">Clear All</a></li>
-                            <li><a href="_clear_orderbook.php">Clear Orders</a></li>
-                            <li><a href="_clear_trades.php">Clear Trades</a></li>
+                            <li><a href="_admin.php">TEST</a></li>
 
                         </ul>
                     </div>
