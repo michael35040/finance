@@ -43,8 +43,8 @@ if ($id != 1) { apologize("Unauthorized!");}
     </fieldset>
 </form>
 
-<iframe>
-<script>$('iframe').get()[0].contentWindow.document.write("<h1>Injected from parent frame</h1><br><?php
+
+<?php
 if(isset($_POST['admin']))
 {
     if ($_POST['admin'] == 'all'){clear_all();}
@@ -102,8 +102,7 @@ if(isset($_POST['admin']))
         }
     }
 //redirect("admin.php");
-} ?>")
-</iframe>
+} ?>
 
   <?php
   require("../templates/footer.php");
