@@ -14,7 +14,7 @@ function randomOrders()
     while ($i < 26) {
         $randomOrders=0;
         $ordersCreated=0; //total created
-
+        echo($symbol . " - Placing Orders...")
         while ($randomOrders < 10) //number of orders
         {
             $sideNum = mt_rand(1, 2);
@@ -38,7 +38,7 @@ function randomOrders()
                 //catch exception
             catch(Exception $e) {echo('<br>Error: [' . $symbol . '] ' . $e->getMessage());}
 
-        echo("<br>Order-[Symbol:" . $symbol . ", Type:" .  $type . ", Side:" .  $side . ", Quantity:" .  $quantity . ", Price:" .  $price . ", User:" .  $id);
+        echo("<br>Order-[" . $symbol . ", " .  $type . ", " .  $side . ", x" .  $quantity . ", $" .  $price . ", ID:" .  $id . "]");
             $randomOrders++; //should be only 10 per symbol
             $ordersCreated++; //total created
         }
