@@ -43,9 +43,8 @@ function cancelOrder($uid)
         {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
             throw new Exception("Failure Cancel 2"); }
             if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'ask') === false)
-            {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                throw new Exception("Failure Cancel 3"); } 
-        echo("<br>Canceled [ID: " .$order[0]["id"] . ", UID:" . $uid . ", Side:" . $side . ", Quantity:" . $order[0]["quantity"] . "]");}
+            {   query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure Cancel 3"); } 
+        echo("<br>Canceled [ID: " .$order[0]["id"] . ", UID:" . $uid . ", Side:" . $side . ", Quantity:" . $order[0]["quantity"] . "]");
         }
         elseif($side=='b')
         {   if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $order[0]["total"], $order[0]["id"]) === false) //MOVE CASH TO units FUNDS
@@ -54,7 +53,7 @@ function cancelOrder($uid)
             if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'bid') === false)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
                 throw new Exception("Failure Cancel 5"); } 
-        echo("<br>Canceled [ID: " .$order[0]["id"] . ", UID:" . $uid . ", Side:" . $side . ", Total:" . $order[0]["total"] . "]");}
+        echo("<br>Canceled [ID: " .$order[0]["id"] . ", UID:" . $uid . ", Side:" . $side . ", Total:" . $order[0]["total"] . "]");
         }
 
         query("COMMIT;"); //If no errors, commit changes
