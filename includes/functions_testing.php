@@ -36,7 +36,7 @@ function randomOrders()
                 placeOrder($symbol, $type, $side, $quantity, $price, $id);
             }
                 //catch exception
-            catch(Exception $e) {echo('Message: [' . $symbol . '] ' . $e->getMessage() . '<br>');}
+            catch(Exception $e) {echo('Error: [' . $symbol . '] ' . $e->getMessage() . '<br>');}
 
         echo("Order-[Symbol:" . $symbol . ", Type:" .  $type . ", Side:" .  $side . ", Quantity:" .  $quantity . ", Price:" .  $price . ", User:" .  $id);
         echo("[" . $symbol . "] created " . $randomOrders . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
@@ -56,13 +56,6 @@ function randomOrders()
         echo("Created " . $ordersCreated . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
 
     return($ordersCreated); //number of orders processed
-    
-    
-    
-
-        //$randomOrders = createStocks();
-        try {$randomOrders = randomOrders();}
-        catch(Exception $e) {echo('Message: [' . $symbol . '] ' . $e->getMessage() . '<br>');}         //catch exception
 }
 
 
