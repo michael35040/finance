@@ -163,14 +163,10 @@ function OrderbookTop($symbol)
         $tradeType = 'limit'; }
     else {throw new Exception("Market Order Error!");}
 
-    if ($$bids["price"] >= $$asks["price"]) //TRADES ARE POSSIBLE
-    {
         $topOrders["askUID"]=$asks["uid"];
         $topOrders["bidUID"]=$bids["uid"];
         $topOrders["askPrice"]=$asks["price"];
         $topOrders["bidPrice"]=$bids["price"];
-    }
-    else {$topOrders = null;}
 
     return($topOrders);
 }
@@ -187,13 +183,21 @@ function processOrderbook($symbol=null)
     $totalProcessed=0;
     echo(date("Y-m-d H:i:s"));
 
-    
-        //NEGATIVE VALUE CHECK
+    //NEGATIVE VALUE CHECK
     try {negativeValues();} catch(Exception $e) {echo('<br>Error on Negative Value Check ' . $e->getMessage()); exit;}
     //CANCEL ORDER CHECK
     try {cancelOrderCheck();} catch(Exception $e) {echo('<br>Error on Cancel Order Check ' . $e->getMessage()); exit;}
     //REMOVES ALL EMPTY ORDERS
     try {zeroQuantityCheck($symbol);} catch(Exception $e) {echo('<br>Error on Zero Quantity Check ' . $e->getMessage()); exit;}
+    //FIND TOP OF ORDERBOOK FOR SYMBOL
+    try {$OrderbookTop = OrderbookTop($symbol["symbol"]);} catch(Exception $e) {echo('<br>Message: [' . $symbol["symbol"] . "] " . $e->getMessage());}
+
+    if ($topOrders["bidPrice"] >= $topOrders["askPrice"]) //TRADES ARE POSSIBLE
+    {
+       try {$OrderbookTop = processOrders($topOrders["askUID"], $topOrders["bidUID"]);} catch(Exception $e) {echo('<br>Process Order Error: ' . $e->getMessage());}
+    }
+
+    
     
     if(empty($symbol))
     {
@@ -243,7 +247,7 @@ function processOrderbook($symbol=null)
 ////////////////////////////////////
 //EXCHANGE MARKET
 ////////////////////////////////////
-function orderbook($askUID, $bidUID)
+function processOrders($askUID, $bidUID)
 {    $adminid = 1;
         
     //PROCESS MARKET ORDERS
