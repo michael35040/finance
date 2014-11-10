@@ -155,7 +155,7 @@
                 <div class="btn-group">
                     <div class="input-group">
                         <button id="adminButton" type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-cog"></span>
                             Admin
                             <span class="caret"></span>
                         </button>
@@ -164,7 +164,7 @@
                             <li><a href="admin_withdraw.php">Withdraw </a></li>
                             <li><a href="admin_users.php">Users </a></li>
                             <li><a href="admin_ipo.php">IPO </a></li>
-                            <li><a href="_admin.php"><span class="glyphicon glyphicon-cog"></span>Test</a></li>
+                            <li><a href="_admin.php">Test</a></li>
                             
                         </ul>
                     </div>
