@@ -44,17 +44,22 @@ function cancelOrder($uid)
             throw new Exception("Failure Cancel 2"); }
             if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'ask') === false)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                throw new Exception("Failure Cancel 3"); } }
+                throw new Exception("Failure Cancel 3"); } 
+        echo("<br>Canceled [ID: " .$order[0]["id"] . ", UID:" . $uid . ", Side:" . $side . ", Quantity:" . $order[0]["quantity"] . "]");}
+        }
         elseif($side=='b')
         {   if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $order[0]["total"], $order[0]["id"]) === false) //MOVE CASH TO units FUNDS
         {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
             throw new Exception("Failure Cancel 4");}
             if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'bid') === false)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                throw new Exception("Failure Cancel 5"); } }
+                throw new Exception("Failure Cancel 5"); } 
+        echo("<br>Canceled [ID: " .$order[0]["id"] . ", UID:" . $uid . ", Side:" . $side . ", Total:" . $order[0]["total"] . "]");}
+        }
 
         query("COMMIT;"); //If no errors, commit changes
         query("SET AUTOCOMMIT=1");
+
     } //!empty
 
     //var_dump(get_defined_vars());
@@ -104,7 +109,7 @@ function cancelOrderCheck()
         $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
         $canceledNumber++;
     }
-    echo("<br>Message: Canceled: " . $canceledNumber);
+    if($canceledNumber>0){echo("<br><b>Canceled: " . $canceledNumber . " orders.</b>");}
 }
 
 
@@ -400,7 +405,7 @@ function orderbook($symbol)
             $orderbook['tradePrice'] = $tradePrice;
             $orderbook['tradeType'] = $tradeType;
             
-            echo("<br><b>Executed: Trade Price: " . number_format($orderbook['tradePrice'],2,".",",") . " (" . $orderbook['tradeType'] . ")</b>");
+            echo("<br><br><b>Executed: Trade Price: " . number_format($orderbook['tradePrice'],2,".",",") . " (" . $orderbook['tradeType'] . ")</b>");
             echo("<br>Ask Price: " . number_format($orderbook['topAskPrice'],2,".",","));
             echo("<br>Ask UID: " . $orderbook['topAskUID']); //order id; unique id
             echo("<br>Ask Symbol: " . $orderbook['topAskSymbol']); //symbol of equity
