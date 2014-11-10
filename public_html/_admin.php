@@ -96,6 +96,16 @@ else
     <fieldset>
     <table>
     <tr>
+        <td>
+            <input type="radio" name="admin" value="all">all<br>
+            <input type="radio" name="admin" value="orderbook">orderbook<br>
+            <input type="radio" name="admin" value="trades">trades<br>
+            <input type="radio" name="admin" value="info">info<br>    
+            <input type="radio" name="admin" value="test">test<br>
+            <input type="radio" name="admin" value="process">process<br>  
+        </td>
+    </tr>
+    <tr>
        <td>
             <div class="input-group" >
             <select name="symbol"  class="form-control" >
