@@ -6,28 +6,35 @@ if ($id != 1) { apologize("Unauthorized!");}
 //if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 if(isset($_POST['admin']))
 {
+    require("../templates/header.php");
+
     if ($_POST['admin'] == 'all'){clear_all();}
     if ($_POST['admin'] == 'orderbook'){clear_orderbook();}
     if ($_POST['admin'] == 'trades'){clear_trades();}
     if ($_POST['admin'] == 'info')
-    {   $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio");	  // query user's portfolio
-        if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
-        $publicQuantity = $public[0]["quantity"];
-        $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE side='a'");	  // query user's portfolio
-        $askQuantity = $askQuantity[0]["quantity"];
-        $publicTotal = $askQuantity+$publicQuantity;
-        $moneySupply =	query("SELECT SUM(units) AS units FROM accounts");	  // query user's portfolio
-        $moneySupplyUnits = $moneySupply[0]["units"];
-        $bidTotal =	query("SELECT SUM(total) AS total FROM orderbook WHERE side='b'");	  // query user's portfolio
-        $bidTotal = $bidTotal[0]["total"];
-        $moneySupplyTotal = $bidTotal+$moneySupplyUnits;
-        echo("<br>Public Quantity: " . $publicQuantity);
-        echo("<br>Ask Quantity: " . $askQuantity);
-        echo("<br>Public Total: " . $publicTotal);
+    {       $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio");	  // query user's portfolio
+            if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
+        $StockSupply = $public[0]["quantity"];
+            $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE side='a'");	  // query user's portfolio
+            if(empty($askQuantity[0]["quantity"])){$askQuantity[0]["quantity"]=0;}
+        $StockSupplyAsk = $askQuantity[0]["quantity"];
+        $StockTotal = $StockSupplyAsk+$StockSupply;
+        
+            $moneySupply =	query("SELECT SUM(units) AS units FROM accounts");	  // query user's portfolio
+            if(empty($moneySupply[0]["units"])){$moneySupply[0]["units"]=0;}
+        $MoneySupply = $moneySupply[0]["units"];
+            $bidTotal =	query("SELECT SUM(total) AS total FROM orderbook WHERE side='b'");	  // query user's portfolio
+            if(empty($bidTotal[0]["total"])){$bidTotal[0]["total"]=0;}
+        $MoneySupplyBids = $bidTotal[0]["total"];
+        $moneySupplyTotal = $MoneySupply+$MoneySupplyBids;
+        
+        echo("<br>Stock Supply: " . $StockSupply);
+        echo("<br>Stock Supply (Open Asks): " . $StockSupplyAsk);
+        echo("<br>Total Stock Supply: " . $StockTotal);
         echo("<br>");
-        echo("<br>Money Units: " . $moneySupplyUnits);
-        echo("<br>Bid Total: " . $bidTotal);
-        echo("<br>Money Total: " . $moneySupplyTotal);
+        echo("<br>Money Supply: " . $MoneySupply);
+        echo("<br>Money Supply (Open Bids): " . $MoneySupplyBids);
+        echo("<br>Total Money Supply: " . $moneySupplyTotal);
     }
     if ($_POST['admin'] == 'test')
     {   echo date("Y-m-d H:i:s");
@@ -83,8 +90,8 @@ if(isset($_POST['admin']))
             catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
         }
     }
-
-redirect("admin.php");
+    require("../templates/footer.php");
+//redirect("admin.php");
 }
 else
 {
