@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     if($uid=='all')
     { //CANCEL ALL USERS ORDERS
         if(query("UPDATE orderbook SET type = 'cancel' WHERE id = ?", $id) === false)
-        { apologize("Unable to cancel order!"); }
+        { apologize("Unable to cancel all orders!"); }
     }
     else
     { //CANCEL ONLY 1 ORDER
