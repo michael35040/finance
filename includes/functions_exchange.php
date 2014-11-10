@@ -396,7 +396,6 @@ function orderbook($symbol)
             $orderbook['topBidSize'] = ($bids[0]["quantity"]);
             $orderbook['topBidUnits'] = ($bids[0]["total"]);
             $orderbook['topBidUser'] = ($bids[0]["id"]);
-            $orderbook['orderProcessed'] = $orderProcessed;
             if (empty($tradePrice)) {$tradePrice = 0;} //if no trades so should be empty
             $orderbook['tradePrice'] = $tradePrice;
             $orderbook['tradeType'] = $tradeType;
@@ -450,6 +449,7 @@ function orderbook($symbol)
 
     } //BOTTOM of WHILE STATEMENT
 
+    $orderbook['orderProcessed'] = $orderProcessed;
     return($orderbook);
 
 } //END OF FUNCTION
