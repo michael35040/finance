@@ -13,7 +13,7 @@
         font-family:Arial, Helvetica, sans-serif;
         font-size:large;
         padding-top:10px;
-        text-shadow: 1px 1px 5px #000;
+        text-shadow: 0px 0px 2px #000;
     }
     .navigationBar .btn-default
     {
