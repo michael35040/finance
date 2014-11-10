@@ -1,4 +1,12 @@
-<?php header("Content-type: text/css; charset: UTF-8"); ?>
+<?php 
+header("Content-type: text/css; charset: UTF-8"); 
+
+date_default_timezone_set("America/New_York");
+$now = date('G');
+//0700-2000 or 7am to 7pm EST
+if ($now > 7 && $now < 20) { $img = 'day'; } 
+else { $img = 'night'; }
+?>
 
 a:link {color:black;}      /* unvisited link */
 a:visited {color:black;}  /* visited link */
@@ -23,7 +31,7 @@ body {
 margin: 0 0 50px; /* bottom = footer height */
 
 background-size: cover;
-background-image: url('../img/bg/1.jpg');
+background-image: url('../img/bg/<?php echo($img) ?>.jpg');
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-position: center;
@@ -67,24 +75,5 @@ color: white;
 }
 
 
-<?php
 
-//random image 
-//$random = rand(1,2);
-//$img = $random;
-
-//$location = ''; // 'ny' or 'fl' or ''
-/*
-//based off time of day for server
-date_default_timezone_set("America/New_York");
-$now = date('G');
-
-if ($now > 7 && $now < 20) { //0700-2000 or 7am to 7pm EST
-    $img = '2';  //2 day
-} else {
-    $img = '1';  //1 night
-}
-
-*/
-?>
 
