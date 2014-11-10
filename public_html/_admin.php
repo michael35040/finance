@@ -79,6 +79,7 @@ if(isset($_POST['admin']))
     }
     if ($_POST['admin'] == 'process')
     {
+        if(!isset($_POST['symbol'])){apologize("Please select a symbol!");}
         if($_POST["symbol"] == 'ALL')
         {
             try {processOrderbook();}
