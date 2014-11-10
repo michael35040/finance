@@ -4,10 +4,49 @@ $id = $_SESSION["id"];
 if ($id != 1) { apologize("Unauthorized!");}
 
 //if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
+
+   $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC"); // query assets
+   $title = "Process Orderbook";
+    require("../templates/header.php");
+  ?>
+<form action="_admin.php"  class="symbolForm" method="post"   >
+    <fieldset>
+<table class="table table-condensed table-striped table-bordered" id="admin" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+    <tr><th colspan=2>ADMIN TESTING</th></tr>
+    <tr><td><input type="radio" name="admin" value="all"></td>          <td>Clear All</td></tr>
+    <tr><td><input type="radio" name="admin" value="orderbook"></td>    <td>Clear Orderbook</td></tr>
+    <tr><td><input type="radio" name="admin" value="trades"></td>       <td>Clear Trades</td></tr>
+    <tr><td><input type="radio" name="admin" value="info"></td>         <td>Monetary Info</td></tr> 
+    <tr><td><input type="radio" name="admin" value="createstocks"></td> <td>Create Stocks</td></tr>
+    <tr><td><input type="radio" name="admin" value="randomorders"></td> <td>Random Orders</td></tr>
+    <tr><td><input type="radio" name="admin" value="process"></td>      <td>Process Orders 
+        <select name="symbol"  class="form-control" >
+        <?php
+        if (empty($assets)) {
+        echo("<option value=' '>No Assets</option>");
+        } else {
+        //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
+        echo ('    <option value="ALL">-All Assets-</option>');
+        foreach ($assets as $asset) {
+            $symbol = $asset["symbol"];
+            echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
+            }
+        }
+        ?>
+        </select>
+    </td></tr>
+    <tr><td colspan='2'>
+        <button type="submit" class="btn btn-info"><b> SUBMIT </b></button></span>
+    </td></td>
+</table>
+
+    </fieldset>
+</form>
+
+<iframe>
+<script>$('iframe').get()[0].contentWindow.document.write("<h1>Injected from parent frame</h1><br><?php
 if(isset($_POST['admin']))
 {
-    require("../templates/header.php");
-
     if ($_POST['admin'] == 'all'){clear_all();}
     if ($_POST['admin'] == 'orderbook'){clear_orderbook();}
     if ($_POST['admin'] == 'trades'){clear_trades();}
@@ -62,51 +101,12 @@ if(isset($_POST['admin']))
         catch(Exception $e) {echo('Error: ' . $e->getMessage() . '<br>');}         //catch exception
         }
     }
-    require("../templates/footer.php");
 //redirect("admin.php");
-}
-else
-{
-   $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC"); // query assets
-   $title = "Process Orderbook";
-    require("../templates/header.php");
-  ?>
-<form action="_admin.php"  class="symbolForm" method="post"   >
-    <fieldset>
-<table class="table table-condensed table-striped table-bordered" id="admin" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
-    <tr><th colspan=2>ADMIN TESTING</th></tr>
-    <tr><td><input type="radio" name="admin" value="all"></td>          <td>Clear All</td></tr>
-    <tr><td><input type="radio" name="admin" value="orderbook"></td>    <td>Clear Orderbook</td></tr>
-    <tr><td><input type="radio" name="admin" value="trades"></td>       <td>Clear Trades</td></tr>
-    <tr><td><input type="radio" name="admin" value="info"></td>         <td>Monetary Info</td></tr> 
-    <tr><td><input type="radio" name="admin" value="createstocks"></td> <td>Create Stocks</td></tr>
-    <tr><td><input type="radio" name="admin" value="randomorders"></td> <td>Random Orders</td></tr>
-    <tr><td><input type="radio" name="admin" value="process"></td>      <td>Process Orders 
-        <select name="symbol"  class="form-control" >
-        <?php
-        if (empty($assets)) {
-        echo("<option value=' '>No Assets</option>");
-        } else {
-        //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
-        echo ('    <option value="ALL">-All Assets-</option>');
-        foreach ($assets as $asset) {
-            $symbol = $asset["symbol"];
-            echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
-            }
-        }
-        ?>
-        </select>
-    </td></tr>
-    <tr><td colspan='2'>
-        <button type="submit" class="btn btn-info"><b> SUBMIT </b></button></span>
-    </td></td>
-</table>
-
-    </fieldset>
-</form>
+} ?>")
+</iframe>
 
   <?php
   require("../templates/footer.php");
-} //else !post
+
 
 
