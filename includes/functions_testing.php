@@ -36,7 +36,7 @@ function randomOrders()
                 placeOrder($symbol, $type, $side, $quantity, $price, $id);
             }
                 //catch exception
-            catch(Exception $e) {echo('<br>Error: [' . $symbol . '] ' . $e->getMessage() . '<br>');}
+            catch(Exception $e) {echo('<br>Error: [' . $symbol . '] ' . $e->getMessage());}
 
         echo("<br>Order-[Symbol:" . $symbol . ", Type:" .  $type . ", Side:" .  $side . ", Quantity:" .  $quantity . ", Price:" .  $price . ", User:" .  $id);
             $randomOrders++; //should be only 10 per symbol
