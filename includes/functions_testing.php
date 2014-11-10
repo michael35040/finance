@@ -39,7 +39,6 @@ function randomOrders()
             catch(Exception $e) {echo('Error: [' . $symbol . '] ' . $e->getMessage() . '<br>');}
 
         echo("Order-[Symbol:" . $symbol . ", Type:" .  $type . ", Side:" .  $side . ", Quantity:" .  $quantity . ", Price:" .  $price . ", User:" .  $id);
-        echo("[" . $symbol . "] created " . $randomOrders . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
             $randomOrders++; //should be only 10 per symbol
             $ordersCreated++; //total created
         }
