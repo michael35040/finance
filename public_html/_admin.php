@@ -103,42 +103,31 @@ else
 <form action="_admin.php"  class="symbolForm" method="post"   >
     <fieldset>
     <table>
-    <tr>
-        <td>
-            <input type="radio" name="admin" value="all">all<br>
-            <input type="radio" name="admin" value="orderbook">orderbook<br>
-            <input type="radio" name="admin" value="trades">trades<br>
-            <input type="radio" name="admin" value="info">info<br>    
-            <input type="radio" name="admin" value="test">test<br>
-            <input type="radio" name="admin" value="process">process<br>  
-        </td>
-    </tr>
-    <tr>
-       <td>
-            <div class="input-group" >
-            <select name="symbol"  class="form-control" >
-            <?php
-            if (empty($assets)) {
-                echo("<option value=' '>No Assets</option>");
-            } else {
-                //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
-                echo ('    <option value="ALL">-All Assets-</option>');
-                foreach ($assets as $asset) {
-                    $symbol = $asset["symbol"];
-                    echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
-                }
+    <tr><td><input type="radio" name="admin" value="all"></td>          <td>Clear All</td></tr>
+    <tr><td><input type="radio" name="admin" value="orderbook"></td>    <td>Clear Orderbook</td></tr>
+    <tr><td><input type="radio" name="admin" value="trades"></td>       <td>Clear Trades</td></tr>
+    <tr><td><input type="radio" name="admin" value="info"></td>         <td>Monetary Info</td></tr> 
+    <tr><td><input type="radio" name="admin" value="test"></td>         <td>Test</td></tr>
+    <tr><td><input type="radio" name="admin" value="process"></td>      <td>Process Orders</td></tr>
+    <tr><td>
+        <select name="symbol"  class="form-control" >
+        <?php
+        if (empty($assets)) {
+        echo("<option value=' '>No Assets</option>");
+        } else {
+        //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
+        echo ('    <option value="ALL">-All Assets-</option>');
+        foreach ($assets as $asset) {
+            $symbol = $asset["symbol"];
+            echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
             }
-            ?>
-                                        </select>
-                        <span class="input-group-btn">
-                        <button type="submit" class="btn btn-info">
-                            <b> SUBMIT </b>
-                        </button>
-                        </span>
-                                    </div><!-- /input-group -->
-
-        </td>
-    </tr>
+        }
+        ?>
+        </select>
+    </td></tr>
+    <tr><td colspan='2'>
+        <button type="submit" class="btn btn-info"><b> SUBMIT </b></button></span>
+    </td></td>
 </table>
 
     </fieldset>
