@@ -44,8 +44,6 @@ if (!isset($commission)) //set in constants.php
           commissionAmount.value=commify(commissionAmount.value);
           subtotal.value=commify(subtotal.value);
           total.value=commify(total.value);
-        
-        //percentageAmount.value=percentage.value;
           ">
 
     <fieldset>
@@ -153,20 +151,6 @@ if (!isset($commission)) //set in constants.php
                 </TD>
             </TR>
 
-<!-- 
-PERCENTAGE FOR ASK ORDER: 100% = WHAT THEY OWN
-PERCENTAGE FOR BID ORDER: 100% = PERCENTAGE OF COMPANY < WON'T WORK!
-Eventually add the ability select either quantity or a percentage of owned; ie. owns 4,000 shares so 75% would be 3,000 shares)
-            <TR>
-                <TD ROWSPAN="1">Percentage</TD>
-                <TD>
-                    <input class="input-small" type="range" id="percentage" placeholder="Percentage" name="percentage" value=1
-                           min="1" max="100" step="1" style="width:100%;">
-                    <output name="percentageAmount" for="percentage">1</output>%
-                </TD>
-            </TR>
--->            
-            
             </TR>
             <TR>
                 <TD ROWSPAN="1">Subtotal</TD>
