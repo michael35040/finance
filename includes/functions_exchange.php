@@ -71,14 +71,14 @@ function cancelOrder($uid)
 //CHECK FOR 0 QTY ORDERS AND REMOVES
 ////////////////////////////////////
 function zeroQuantityCheck($symbol)
-{   $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol);
+{    echo("<br>[" . $symbol . "] Conducting check for empty orders...");
+    $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol);
     $removedEmpty = 0;
-    echo("<br>Conducting check for empty orders...");
     while(!empty($emptyOrders))
     {   $removedEmpty++;
         cancelOrder($emptyOrders[0]["uid"]); //try catch
         $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol); }
-    echo("<br>[" . $symbol . "] Removed " . $removedEmpty . " empty orders.");
+    if($removedEmpty>0){ echo("<br>[" . $symbol . "] Removed: " . $removedEmpty . " empty orders.");  }
     return($removedEmpty);
 }
 
@@ -86,7 +86,8 @@ function zeroQuantityCheck($symbol)
 //CHECK FOR NEGATIVE VALUES
 ////////////////////////////////////
 function negativeValues()
-{   $negativeValueOrderbook = query("SELECT quantity, total, uid FROM orderbook WHERE (quantity < 0 OR total < 0) LIMIT 0, 1");
+{    echo("<br>Conducting check for negative values...");
+    $negativeValueOrderbook = query("SELECT quantity, total, uid FROM orderbook WHERE (quantity < 0 OR total < 0) LIMIT 0, 1");
     if(!empty($negativeValueOrderbook)) {
         throw new Exception("<br>Negative Orderbook Values! UID: " . $negativeValueOrderbook[0]["uid"] . ", Quantity: " . $negativeValueOrderbook[0]["quantity"] . ", Total: " . $negativeValueOrderbook[0]["total"]);}
     //eventually all users order using id
@@ -103,10 +104,10 @@ function negativeValues()
 //CHECK FOR CANCELED ORDERS VALUES
 ////////////////////////////////////
 function cancelOrderCheck()
-{       //Check to see if anyone canceled any orders
+{     echo("<br>Conducting check for canceled orders...");
+      //Check to see if anyone canceled any orders
     $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
     $canceledNumber=0;
-    echo("<br>Conducting check for empty orders...");
     while(!empty($cancelOrders))
     {
         //NEGATIVE VALUE CHECK
@@ -116,8 +117,8 @@ function cancelOrderCheck()
         $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
         $canceledNumber++;
     }
-    //if($canceledNumber>0){   }
-    echo("<br><b>Canceled: " . $canceledNumber . " orders.</b>");
+    if($canceledNumber>0){ echo("<br>Canceled: " . $canceledNumber . " orders.");  }
+
 }
 
 
@@ -125,7 +126,7 @@ function cancelOrderCheck()
 //CHECK FOR WHICH ORDERS ARE AT TOP OF ORDERBOOK
 ////////////////////////////////////
 function OrderbookTop($symbol)
-{
+{    echo("<br>[" . $symbol . "] Conducting check for top of orderbook...");
 
     $topOrders=[];
 
@@ -174,8 +175,9 @@ function OrderbookTop($symbol)
 
 ////////////////////////////////////
 //EXCHANGE MARKET ALL
-////////////////////////////////////
-//echo(var_dump(get_defined_vars()));
+////////////////////////////////////            apologize(var_dump(get_defined_vars()));
+
+//apologize(var_dump(get_defined_vars()));
 function processOrderbook($symbol=null)
 {
     $startDate = time();
@@ -187,24 +189,26 @@ function processOrderbook($symbol=null)
         $symbols =	query("SELECT symbol FROM assets ORDER BY symbol ASC");
 
         foreach ($symbols as $symbol)
-        {
-            try {$orderbook = orderbook($symbol["symbol"]);}
-            catch(Exception $e) {echo('<br>Message: [' . $symbol["symbol"] . "] " . $e->getMessage());}
-            if(isset($orderbook)) {
-                echo('<br>Message: [' . $orderbook["symbol"] . '] Processed ' . $orderbook["orderProcessed"]);
-                $totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
+        {   echo("<br><br>[" . $symbol["symbol"] . "] Processing orderbook...");
+            try {$orderbook = orderbook($symbol["symbol"]);
+                echo('<br>[' . $orderbook["symbol"] . '] Processed ' . $orderbook["orderProcessed"] . ' orders.');
+
             }
+            catch(Exception $e) {echo('<br><div style="color:red;">Error: [' . $symbol["symbol"] . "] " . $e->getMessage() . '</div>');}
+            //if($orderbook['orderProcessed']>0) {
+                //$totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
+           // }
         }
     }
     else
-    {
+    {   echo("<br>[" . $symbol . "] Processing orderbook...");
         $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
         if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol . "] Incorrect Symbol. Not listed on the exchange!");} //row count
         try {$orderbook = orderbook($symbol);
-        if(isset($orderbook)){
-            echo('<br><div style="color:red; font-weight: bold;">[' . $symbol . '] Processed ' .  $orderbook["orderProcessed"] . " orders</div>");
-            $totalProcessed = ($totalProcessed +  $orderbook["orderProcessed"]);
-        }
+            if(isset($orderbook)){
+                echo('<br><div style="color:red; font-weight: bold;">[' . $symbol . '] Processed ' .  $orderbook["orderProcessed"] . " orders</div>");
+                $totalProcessed = ($totalProcessed +  $orderbook["orderProcessed"]);
+            }
         }catch(Exception $e) {echo '<br>[' .  $symbol . "] " . $e->getMessage();}
 
     }
@@ -225,7 +229,7 @@ function processOrderbook($symbol=null)
 ////////////////////////////////////
 function orderbook($symbol)
 { //   apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
-
+    echo("<br>[" . $symbol . "] Computing orderbook...");
     $adminid = 1;
 
     //PROCESS MARKET ORDERS
@@ -274,7 +278,7 @@ function orderbook($symbol)
         $orderProcessed++; //orders processed plus 1
 
         if ($topBidPrice >= $topAskPrice) //TRADES ARE POSSIBLE
-        {
+        { echo("<br>[" . $symbol . "] Trade possible...");
             //START TRANSACTION
             query("SET AUTOCOMMIT=0");
             query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
@@ -433,28 +437,28 @@ function orderbook($symbol)
             echo("<br>Bid User: " . $orderbook['topBidUser']);
 
 
-    //NEGATIVE VALUE CHECK
-    negativeValues();
-    //CANCEL ORDER CHECK
-    cancelOrderCheck();
-    //REMOVES ALL EMPTY ORDERS
-    zeroQuantityCheck($symbol);
 
-    //RECALCULATE VALUES FOR DO-WHILE //RECHECK FROM BEGINNING TO SEE IF ANY MORE ORDERS TO PROCESS)
-    $topOrders = OrderbookTop($symbol);
-    $asks = $topOrders["asks"]=
-    $bids = $topOrders["bids"];
-    $topAskPrice = $topOrders["topAskPrice"];
-    $topBidPrice = $topOrders["topBidPrice"];
-    $tradeType = $topOrders["tradeType"];
+            //NEGATIVE VALUE CHECK
+            negativeValues();
+            //CANCEL ORDER CHECK
+            cancelOrderCheck();
+            //REMOVES ALL EMPTY ORDERS
+            zeroQuantityCheck($symbol);
 
+            //FIND TOP OF ORDERBOOK
+            $topOrders = OrderbookTop($symbol); //try catch
+            $asks = $topOrders["asks"];
+            $bids = $topOrders["bids"];
+            $topAskPrice = (float)$asks[0]["price"];
+            $topBidPrice = (float)$bids[0]["price"];
+            $tradeType = $topOrders["tradeType"];
 
 
 
 
         } //IF TRADES ARE POSSIBLE
         elseif($topBidPrice < $topAskPrice)
-        {
+        { echo("<br>[" . $symbol . "] No Trades possible...");
             return('No Trades Possible');
         } //{throw new Exception("No trades possible!");} //TRADES ARE NOT POSSIBLE
         else {throw new Exception("ERROR!");}

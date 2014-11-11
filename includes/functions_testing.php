@@ -9,10 +9,14 @@ function randomOrders()
     $startDate =  time();
     $ordersCreated = 0;
     $i=0;
-    $symbol = 'A';
     $type='limit';
     $ordersCreated=0; //total created
-    while ($i < 26) {
+
+    $symbols =	query("SELECT symbol FROM assets ORDER BY symbol ASC");
+    foreach ($symbols as $symbol) { $symbol=$symbol['symbol'];
+       //apologize(var_dump(get_defined_vars()));
+
+        //while ($i < 26) {
         $randomOrders=0;
         echo("<br><b>[" . $symbol . "] Placing Orders...</b>");
         while ($randomOrders < 10) //number of orders
@@ -34,16 +38,17 @@ function randomOrders()
             try
             {
                 placeOrder($symbol, $type, $side, $quantity, $price, $id);
+                $total=$quantity*$price;
+                echo("<br>[ID:" .  $id . ", " . $symbol . ", " .  $type . ", " .  $side . ", $" .  $price . ", x" .  $quantity . ", Total: $" . $total . "]");
+                $randomOrders++; //should be only 10 per symbol
+                $ordersCreated++; //total created
             }
                 //catch exception
             catch(Exception $e) 
             {
                 echo('<br>Error: [' . $symbol . '] ' . $e->getMessage());
             }
-            $total=$quantity*$price;
-            echo("<br>[ID:" .  $id . ", " . $symbol . ", " .  $type . ", " .  $side . ", $" .  $price . ", x" .  $quantity . ", Total: $" . $total . "]");
-            $randomOrders++; //should be only 10 per symbol
-            $ordersCreated++; //total created
+
         }
         $symbol++; //up to 26 (Z)
         $i++; //up to 26
@@ -67,7 +72,7 @@ function randomOrders()
 function createStocks()
 {    include("constants.php");//for $divisor
 $fee=0.45;
-$lastSymbol =	query("SELECT symbol FROM assets ORDER BY symbol ASC LIMIT 0, 1");
+$lastSymbol =	query("SELECT symbol FROM assets ORDER BY symbol DESC LIMIT 0, 1");
 echo date("Y-m-d H:i:s");
 $startDate =  time();
 if(empty($lastSymbol)){$symbol='A';}
