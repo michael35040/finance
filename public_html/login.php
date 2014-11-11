@@ -104,9 +104,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 } //POST
 
 
+    $symbol =	query("SELECT symbol FROM assets ORDER BY symbol ASC LIMIT 0,1");
+    $symbol = $symbol[0]["symbol"];
 
-    $bidGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` WHERE side='b' GROUP BY `price` ORDER BY `price` DESC LIMIT 5");	  // query user's portfolio
-    $askGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` WHERE side='a' GROUP BY `price` ORDER BY `price` ASC LIMIT 5");	  // query user's portfolio
+    $bidGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` WHERE (side='b' AND symbol=?) GROUP BY `price` ORDER BY `price` DESC LIMIT 5", $symbol);	  // query user's portfolio
+    $askGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` WHERE (side='a' AND symbol=?) GROUP BY `price` ORDER BY `price` ASC LIMIT 5", $symbol);	  // query user's portfolio
 
 // else render form
     render("login_form.php", ["title" => "Log In", "bidGroup" => $bidGroup, "askGroup" => $askGroup]);
