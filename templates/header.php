@@ -129,17 +129,6 @@
                         <li><a href="loanpay.php">Pay Loan</a></li>
                         <?php } ?>
                         <li><a href="change.php">Edit Account</a></li>
-                        
-                        <?php
-                        /* Pulling from jc
-                        <li><a href="activity.php">Activity</a></li><!--IP, Login, Failed Login, Account/username changes, etc. -->
-                        <li><a href="transactions.php">Transactions</a></li><!--Deposits, Withdraws, Transfers, etc. -->
-                        <li><a href="banks.php">Bank Accounts</a></li><!--Deposits, Withdraws, Transfers, etc. -->
-                        <li><a href="trades.php">Trade Reports</a></li><!--Generate a trade and balance report etc. -->
-                        <li><a href="voucher.php">Voucher</a></li><!--Redeem a voucher. -->
-                        */
-                        ?>
-                        
                     </ul>
                 </div>
             </div>
