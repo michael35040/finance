@@ -1,6 +1,4 @@
 
-<!--Add "Past Orders" from history -->
-
 <table class="table table-condensed  table-bordered">
     <tr class="success">
         <td colspan="9" style="font-size:20px; text-align: center;">Active Orders</td>
