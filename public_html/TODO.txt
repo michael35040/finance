@@ -8,6 +8,7 @@ COMPLETED
 # add ownership percentage in information panel.
 
 TO DO LIST
+- figure out logo (indian, horse, bear, bull, wolf...)
 - update desposit
 - update withdraw
 - update transfer
