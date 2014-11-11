@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `assets` (
   `issued` int(11) NOT NULL COMMENT 'shares issued ie 20k',
   `type` varchar(63) NOT NULL COMMENT 'shares or commodity',
   `fee` decimal(65,30) DEFAULT NULL COMMENT 'listing fee of exchange',
-  `owner` varchar(63) DEFAULT NULL,
+  `userid` int(10) DEFAULT NULL COMMENT 'user id',
   `url` varchar(63) DEFAULT NULL COMMENT 'webpage',
   `rating` int(11) DEFAULT NULL COMMENT '4 stars or white',
   `description` varchar(999) DEFAULT NULL,
