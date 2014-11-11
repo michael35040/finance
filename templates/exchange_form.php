@@ -45,7 +45,7 @@ if (!isset($commission)) //set in constants.php
           subtotal.value=commify(subtotal.value);
           total.value=commify(total.value);
         
-        percentageAmount.value=percentage.value;
+        //percentageAmount.value=percentage.value;
           ">
 
     <fieldset>
