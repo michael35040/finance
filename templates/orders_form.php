@@ -1,7 +1,9 @@
 
+<!--Add "Past Orders" from history -->
+
 <table class="table table-condensed  table-bordered">
     <tr class="success">
-        <td colspan="9" style="font-size:20px; text-align: center;">Open Orders</td>
+        <td colspan="9" style="font-size:20px; text-align: center;">Active Orders</td>
     </tr>
     <!--blank row breaker-->
     <tr class="active">
@@ -43,11 +45,11 @@
     }
     if($OrderNumber==0)
     {
-        echo("<tr><td colspan='9'>No open orders</td></tr>");
+        echo("<tr><td colspan='9'>No active orders</td></tr>");
     }
     else
     {
-        echo('<tr  class="active" style="font-weight: bold;">');
+        echo('<tr  class="danger" style="font-weight: bold;">'); //class="active"
         echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="uid" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>');
         echo("<td colspan='8'>" . htmlspecialchars(number_format($OrderNumber, 0, ".", ",")) . " open orders</td>");
         //echo("<td>" . htmlspecialchars(number_format($OrderQuantity, 0, ".", ",")) . "</td>");
