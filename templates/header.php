@@ -117,13 +117,12 @@
                 <div class="input-group">
                     <button id="bankButton" type="button" class="btn btn-default  btn-sm   dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-home"></span>
-                        Bank
+                        Home
                         <span class="caret"></span>
                     </button>
 
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="index.php">Accounts</a></li>
-                        <li><a href="history.php">History</a></li>
                         <li><a href="transfer.php">Transfer </a></li><!--<i class="icon-gift"></i>-->
                         <li><a href="loan.php">Loan</a>
                             <?php if ($loan < 0) { //-0.00000001 ?>
@@ -145,6 +144,7 @@
                         <li><a href="assets.php">Assets</a></li>
                         <li><a href="exchange.php">Place Order</a></li>
                         <li><a href="orders.php">Open Orders</a></li>
+                        <li><a href="history.php">History</a></li>
                         <li><a href="information.php">Information</a></li>
 
                     </ul>
