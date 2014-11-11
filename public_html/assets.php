@@ -15,7 +15,7 @@ foreach ($allAssets as $row)		// for each of user's stocks
     $asset["symbol"] = $row["symbol"]; //set variable from stock info
     $asset["name"] = $row["name"]; //set variable from stock info
     $asset["date"] = $row["date"]; //date listed on exchange
-    $asset["owner"] = $row["owner"];
+    $asset["userid"] = $row["userid"];
     $asset["fee"] = $row["fee"];
     $asset["issued"] = $row["issued"]; //shares issued
 
