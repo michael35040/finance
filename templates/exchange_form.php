@@ -31,7 +31,6 @@ if (!isset($commission)) //set in constants.php
           commissionAmount.value=commify(commissionAmount.value);
           subtotal.value=commify(subtotal.value);
           total.value=commify(total.value);
-
           "
       onclick="
           priceAmount.value=price.value;
@@ -44,6 +43,7 @@ if (!isset($commission)) //set in constants.php
           commissionAmount.value=commify(commissionAmount.value);
           subtotal.value=commify(subtotal.value);
           total.value=commify(total.value);
+
           ">
 
     <fieldset>
@@ -150,6 +150,7 @@ if (!isset($commission)) //set in constants.php
                     <output name="quantityAmount" for="quantity">1</output>
                 </TD>
             </TR>
+
 
             </TR>
             <TR>
