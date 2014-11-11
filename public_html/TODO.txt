@@ -1,13 +1,58 @@
--List open orders with button to cancel the order. Change type to 'cancel' then search for any cancel and delete in orderbook.
+COMPLETED
+# fix calc for loss/gain (change negative number on puchase in index.php for to positive.)
+# when deleting orders, remove lock from funds/shares (functions_exchange.php)
+# remove <br> in index_form between expanded exchange button
+# List open orders with button to cancel the order. Change type to 'cancel' then search for any cancel and delete in orderbook.
+# add total value of all stocks (pular index)
+# add icon showing drop down feature in 'assets'
+# add ownership percentage in information panel.
 
-#1. when deleting orders, remove lock from funds/shares (functions_exchange.php)
-2. update desposit
-3. update withdraw
-4. update transfer
-#5. add total value of all stocks (pular index)
-6. add ownership percentage in information panel.
-7. add icon showing drop down feature in 'assets'
-8. remove <br> in index_form between expanded exchange button
-9. change auth check on admin_ pages from 1 to admin id
-#10. fix calc for loss/gain (change negative number on puchase in index.php for to positive.)
+TO DO LIST
+- update desposit
+- update withdraw
+- update transfer
+- change auth check on admin_ pages from 1 to admin id
+- MAKE SURE EVERYTHING IS ADDED TO HISTORY (TRANSACTIONS, LOGINS, FAILED, IP, BIDS, ORDERS, ETC)
+
+
+
+WORKING
+
+- Add feature to exchange page to sell percentage instead of indvidual.
+
+exchange.php
+   /* 
+   //For when I give the option for individual or percentage of company 
+    //check to see if quantity or percentage is selected
+        @$quantityType = $_POST["quantityType"]; //percent or individual
+    //if percentage, grab post value
+        if($quantityType=="percentage")
+        {   $percentage = $_POST["percentage"];
+    //see how many owned
+            $stocksPercentageOwned = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol=? ORDER BY symbol ASC", $id, $symbol);	  // query user's portfolio
+    //calculate the percentage for trade
+            $quantity = $stocksPercentageOwned*$percentage;
+        }
+        else{$quantity=$_POST["quantity"]:}
+    */
+
+
+
+exchange_form.php
+<script>
+        //percentageAmount.value=percentage.value;
+<!-- 
+PERCENTAGE FOR ASK ORDER: 100% = WHAT THEY OWN
+PERCENTAGE FOR BID ORDER: 100% = PERCENTAGE OF COMPANY < WON'T WORK!
+Eventually add the ability select either quantity or a percentage of owned; ie. owns 4,000 shares so 75% would be 3,000 shares)
+            <TR>
+                <TD ROWSPAN="1">Percentage</TD>
+                <TD>
+                    <input class="input-small" type="range" id="percentage" placeholder="Percentage" name="percentage" value=1
+                           min="1" max="100" step="1" style="width:100%;">
+                    <output name="percentageAmount" for="percentage">1</output>%
+                </TD>
+            </TR>
+-->      
+
 
