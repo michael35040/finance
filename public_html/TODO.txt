@@ -13,6 +13,18 @@ TO DO LIST
 - update transfer
 - change auth check on admin_ pages from 1 to admin id
 - MAKE SURE EVERYTHING IS ADDED TO HISTORY (TRANSACTIONS, LOGINS, FAILED, IP, BIDS, ORDERS, ETC)
+-Add "Past Orders" from history to orders.php
+-Update header.php menu
+                        
+                        <?php
+                        /* Pulling from jc
+                        <li><a href="activity.php">Activity</a></li><!--IP, Login, Failed Login, Account/username changes, etc. -->
+                        <li><a href="transactions.php">Transactions</a></li><!--Deposits, Withdraws, Transfers, etc. -->
+                        <li><a href="banks.php">Bank Accounts</a></li><!--Deposits, Withdraws, Transfers, etc. -->
+                        <li><a href="trades.php">Trade Reports</a></li><!--Generate a trade and balance report etc. -->
+                        <li><a href="voucher.php">Voucher</a></li><!--Redeem a voucher. -->
+                        */
+                        ?>
 
 
 
