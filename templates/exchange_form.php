@@ -153,7 +153,10 @@ if (!isset($commission)) //set in constants.php
                 </TD>
             </TR>
 
-<!-- Eventually add the ability select either quantity or a percentage of owned; ie. owns 4,000 shares so 75% would be 3,000 shares)
+<!-- 
+PERCENTAGE FOR ASK ORDER: 100% = WHAT THEY OWN
+PERCENTAGE FOR BID ORDER: 100% = PERCENTAGE OF COMPANY < WON'T WORK!
+Eventually add the ability select either quantity or a percentage of owned; ie. owns 4,000 shares so 75% would be 3,000 shares)
             <TR>
                 <TD ROWSPAN="1">Percentage</TD>
                 <TD>
