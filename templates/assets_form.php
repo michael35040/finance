@@ -35,18 +35,17 @@
             echo('<div  class="hiddenRow">');
             echo('<tr class="accordian-body collapse" id="demo' . $i . '">');
             echo('<td colspan="1">' . htmlspecialchars($asset["name"]) . '
-            <br>' . htmlspecialchars($asset["url"]) . '
-            <br><form><button type="submit" class="btn btn-primary btn-xs" formmethod="post" formaction="information.php" name="symbol" value="' . $asset["symbol"] . '"><span class="glyphicon glyphicon glyphicon-info-sign"> Information</span></button></form>
-            </td>');
+                <br>' . htmlspecialchars($asset["url"]) . '
+                <br><form><button type="submit" class="btn btn-primary btn-xs" formmethod="post" formaction="information.php" name="symbol" value="' . $asset["symbol"] . '"><span class="glyphicon glyphicon glyphicon-info-sign"> Information</span></button></form></td>');
             echo('<td >' . $unitsymbol . number_format($asset["bid"], 2, ".", ",") . ' - Bid
-            <br>' . $unitsymbol . number_format($asset["ask"], 2, ".", ",") . ' - Ask
-            <br>' . $unitsymbol . number_format($asset["avgprice"], 2, ".", ",") . ' - Avg. Price (30d)</td>');
+                <br>' . $unitsymbol . number_format($asset["ask"], 2, ".", ",") . ' - Ask
+                <br>' . $unitsymbol . number_format($asset["avgprice"], 2, ".", ",") . ' - Avg. Price (30d)</td>');
             echo('<td >' . number_format($asset["public"], 0, ".", ",") . ' - Publicly Held
-            <br>' . number_format($asset["issued"], 0, ".", ",") . ' - Issued
-            <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
-            echo('<td >Dividend: ' . number_format($asset["dividend"], 2, ".", ",") .
-                '<br>Rating: ' . htmlspecialchars($asset["rating"]) . '
-            <br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '</td>');
+                <br>' . number_format($asset["issued"], 0, ".", ",") . ' - Issued (' $userid . ')
+                <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
+            echo('<td >Dividend: ' . number_format($asset["dividend"], 2, ".", ",") . '
+                <br>Rating: ' . htmlspecialchars($asset["rating"]) . '
+                <br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '</td>');
             echo('</tr>');
         }
         echo("<tr><td colspan='3'><strong>Market Value</strong></td><td><strong>" . $unitsymbol . number_format($indexMarketCap, 2, ".", ",") . "</strong></td></tr>");
