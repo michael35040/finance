@@ -58,7 +58,7 @@ foreach ($allAssets as $row)		// for each of user's stocks
 
 // render portfolio (pass in new portfolio table and cash)
 render("assets_form.php",
-    [   "title" => "Accounts",
+    [   "title" => "Assets",
         "assets" => $assets,
         "indexMarketCap" => $indexMarketCap,
         "indexValue" => $indexValue]);

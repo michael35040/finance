@@ -77,7 +77,7 @@
     </tr> <!--blank row breaker-->
 
     <tr  class="active">
-        <th>Symbol/Control</th>
+        <th><div style='float:left;width:50%;'>Symbol&nbsp;&nbsp;&nbsp;/</div><div style='float:right;width:50%;'>Control</div></th>
         <th>Quantity</th>
         <th>Locked*</th>
         <th>Price</th>
@@ -90,8 +90,8 @@
     <?php $i = 0;
     foreach ($portfolio as $row) {
         echo("<tr>");
-        echo("<td>&nbsp;&nbsp;&nbsp;" . htmlspecialchars($row["symbol"]) .
-             "&nbsp;&nbsp; (" . (number_format($row["control"], 2, ".", ",")) . "%)" .
+        echo("<td><div style='float:left;width:50%;'>&nbsp;&nbsp;&nbsp;" . htmlspecialchars($row["symbol"]) .
+             "&nbsp;&nbsp; </div><div style='float:right;width:50%;'>(" . (number_format($row["control"], 2, ".", ",")) . "%)</div>" .
             "</td>");  //htmlspecialchars
 
         echo("<td>" . (number_format($row["quantity"], 0, ".", ",")) . "</td>");

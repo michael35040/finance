@@ -7,12 +7,12 @@
 </style>
 
 
-<table class="table table-condensed table-striped table-bordered" id="assets" style="border-collapse:collapse;">
+<table class="table table-condensed table-striped table-bordered table-hover" id="assets" style="border-collapse:collapse;">
     <thead>
 
     <tr class="success"><td colspan="4" style="font-size:20px; text-align: center;">ASSETS</td>
 
-    <tr class="active">
+    <tr class="active"><!-- active warning danger info success -->
         <th width="25%">Symbol</th>
         <th width="25%">Price</th>
         <th width="25%">Volume</th>
@@ -26,8 +26,8 @@
         foreach ($assets as $asset)
         {
             $i++;
-            echo('<tr data-toggle="collapse" data-target="#demo' . $i . '" class="accordion-toggle">');
-            echo('<td>' . htmlspecialchars($asset["symbol"]) . '&nbsp; &nbsp;  <span class="glyphicon glyphicon-search"></span> </td>');
+            echo('<tr data-toggle="collapse" data-target="#demo' . $i . '" class="accordion-toggle" >');
+            echo('<td><span class="glyphicon glyphicon-chevron-down"></span>&nbsp;&nbsp;&nbsp;&nbsp;' . htmlspecialchars($asset["symbol"]) . ' </td>');
             echo('<td >' . $unitsymbol . number_format($asset["price"], 2, ".", ",") . '</td>');
             echo('<td >' . number_format($asset["volume"], 0, ".", ",") . '</td>');
             echo('<td >' . $unitsymbol . number_format($asset["marketcap"], 2, ".", ",") . '</td>');
@@ -35,7 +35,9 @@
             echo('<div  class="hiddenRow">');
             echo('<tr class="accordian-body collapse" id="demo' . $i . '">');
             echo('<td colspan="1">' . htmlspecialchars($asset["name"]) . '
-            <br>' . htmlspecialchars($asset["url"]) . '</td>');
+            <br>' . htmlspecialchars($asset["url"]) . '
+            <br><form><button type="submit" class="btn btn-primary btn-xs" formmethod="post" formaction="information.php" name="symbol" value="' . $asset["symbol"] . '"><span class="glyphicon glyphicon glyphicon-info-sign"> Information</span></button></form>
+            </td>');
             echo('<td >' . $unitsymbol . number_format($asset["bid"], 2, ".", ",") . ' - Bid
             <br>' . $unitsymbol . number_format($asset["ask"], 2, ".", ",") . ' - Ask
             <br>' . $unitsymbol . number_format($asset["avgprice"], 2, ".", ",") . ' - Avg. Price (30d)</td>');
