@@ -144,8 +144,53 @@
 
             chart2.draw(data2, options2);
             //////////
-            //END CHART 2
+            //END CHART
             ////////////
+
+
+
+            /////////////////
+            //CHART PIE
+            //OWNERSHIP
+            ////////////////
+
+            var data3 = google.visualization.arrayToDataTable([
+                ['User', 'Shares'],
+               <?php
+               foreach ($ownership as $owners)	// for each of user's stocks
+                { $percentage = $asset["public"]/$quantity;
+                    $quantity = number_format(($owners["quantity"]), 0, '.', '');
+                    $id = number_format(($owners["id"]), 0, '.', '');
+                    echo("['User: " . $id . "', " . $quantity . "],");
+                } ?>
+             //   ['Work',     11],
+             //   ['Eat',      2],
+             //   ['Commute',  2],
+             //   ['Watch TV', 2],
+             //   ['Sleep',    7]
+            ]);
+
+
+
+
+            var options3 = {
+                title: 'Ownership Control',
+                is3D: true,
+                legend: 'none',
+                pieSliceText: 'label',
+
+            };
+
+            var chart3 = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart3.draw(data3, options3);
+
+
+
+            /////////////////
+            //END CHART
+            ////////////////
+
 
             <?php }   //$bidsGroupChart != null ?>
 //echo(var_dump(get_defined_vars()));
@@ -379,7 +424,9 @@ if($tradesChart != null)
 
 
     </td>
-    </tr></table>
+    </tr>
+
+</table>
 
 
 
@@ -465,9 +512,14 @@ if($tradesChart != null)
 
     }
     ?>
+
+    <tr><td colspan="7"></td></tr> <!--blank row breaker-->
+    <tr>
+        <th colspan="7" bgcolor="black" style="color:white" size="+1" >
+            OWNERSHIP
+        </th>
+    </tr>
+
+
 </table>
-
-
-
-
-
+<div id="piechart" style="width: 900px; height: 500px;"></div>

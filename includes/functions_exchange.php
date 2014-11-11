@@ -547,7 +547,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $userid, $fee, $issued, $ur
     {
         query("ROLLBACK"); //rollback on failure
         query("SET AUTOCOMMIT=1");
-        throw new Exception("Public Offering Error: Too many symbol rows in assets. " . $symbol . "\" . $userid);
+        throw new Exception("Public Offering Error: Too many symbol rows in assets. $symbol / $userid");
     } //apologizes if first two conditions are not meet
 
 
