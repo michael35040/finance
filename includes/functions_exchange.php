@@ -502,7 +502,7 @@ function publicOffering($symbol, $name, $userid, $issued, $type, $owner, $fee, $
     if (empty($issued)) { throw new Exception("You must enter issued."); }
     if (empty($type)) { throw new Exception("You must enter type."); }
 
-    if (empty($owner)) { $owner="Anonymous"; } //owners name
+    //if (empty($owner)) { $owner="Anonymous"; } //owners name
     if (empty($fee)) { $fee=0; }
     if (empty($url)) { $url="Anonymous"; }
     if (empty($rating)) { $rating=0; }
@@ -516,8 +516,8 @@ function publicOffering($symbol, $name, $userid, $issued, $type, $owner, $fee, $
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
 //INSERT ASSET
-    if (query("INSERT INTO assets (`symbol`, `name`, `owner`, `fee`, `issued`, `url`, `type`, `rating`, `description`)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $owner, $fee, $issued, $url, $type, $rating, $description) === false)  //create IPO
+    if (query("INSERT INTO assets (`symbol`, `name`, `userid`, `fee`, `issued`, `url`, `type`, `rating`, `description`)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $userid, $fee, $issued, $url, $type, $rating, $description) === false)  //create IPO
     {
         query("ROLLBACK"); //rollback on failure
         query("SET AUTOCOMMIT=1");
@@ -547,7 +547,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $owner, $fee, $issued, $url
     {
         query("ROLLBACK"); //rollback on failure
         query("SET AUTOCOMMIT=1");
-        throw new Exception("Owner Portfolio Error");
+        throw new Exception("Public Offering Error: Too many symbol rows in assets. " . $symbol . "\" . $userid);
     } //apologizes if first two conditions are not meet
 
 
