@@ -31,31 +31,39 @@ function cancelOrder($uid)
 {
     $order = query("SELECT * FROM orderbook WHERE uid = ?", $uid);
     if(!empty($order))
-    {   query("SET AUTOCOMMIT=0");
+    {   @$side=$order[0]["side"];
+        @$quantity=$order[0]["quantity"];
+        @$uid=$order[0]["uid"];
+        @$symbol=$order[0]["symbol"];
+        @$type=$order[0]["type"];
+        @$price=$order[0]["price"];
+        @$id=$order[0]["id"];
+        @$total=$order[0]["total"];
+
+        query("SET AUTOCOMMIT=0");
         query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
         if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false)
         {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
             throw new Exception("Failure Cancel 1"); }
-        @$side=$order[0]["side"];
 
         if($side=='a')
         {
-            if (query("UPDATE portfolio SET quantity = (quantity + ?) WHERE (symbol = ? AND id = ?)", $order[0]['quantity'], $order[0]['symbol'], $order[0]['id']) === false)
+            if (query("UPDATE portfolio SET quantity = (quantity + ?) WHERE (symbol = ? AND id = ?)", $quantity, $symbol, $id) === false)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
                 throw new Exception("Failure Cancel 2"); }
             if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'ask') === false)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure Cancel 3"); }
-            echo("<br>Canceled [ID: " .$order[0]["id"] . ", UID:" . $uid . ", Side:" . $side . ", Quantity:" . $order[0]["quantity"] . "]");
         }
         elseif($side=='b')
-        {   if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $order[0]["total"], $order[0]["id"]) === false) //MOVE CASH TO units FUNDS
+        {   if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $total, $id) === false) //MOVE CASH TO units FUNDS
         {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
             throw new Exception("Failure Cancel 4");}
             if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'bid') === false)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
                 throw new Exception("Failure Cancel 5"); }
-            echo("<br>Canceled [ID: " .$order[0]["id"] . ", UID:" . $uid . ", Side:" . $side . ", Total:" . $order[0]["total"] . "]");
         }
+        echo("<br>Canceled [ID: " . $id . ", UID:" . $uid . ", Side:" . $side . ", Type:" . $type . ", Total:" . $total . ", Quantity:" . $quantity . ", Symbol:" . $symbol . "]");
+
 
         query("COMMIT;"); //If no errors, commit changes
         query("SET AUTOCOMMIT=1");
@@ -192,11 +200,11 @@ function processOrderbook($symbol=null)
         {   echo("<br><br>[" . $symbol["symbol"] . "] Processing orderbook...");
             try {$orderbook = orderbook($symbol["symbol"]);
                 echo('<br>[' . $orderbook["symbol"] . '] Processed ' . $orderbook["orderProcessed"] . ' orders.');
+                $totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
 
             }
             catch(Exception $e) {echo('<br><div style="color:red;">Error: [' . $symbol["symbol"] . "] " . $e->getMessage() . '</div>');}
             //if($orderbook['orderProcessed']>0) {
-                //$totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
            // }
         }
     }
@@ -218,7 +226,7 @@ function processOrderbook($symbol=null)
     $totalTime = $endDate-$startDate;
     if($totalTime != 0){$speed=$totalProcessed/$totalTime;}
     else{$speed=0;}
-    echo("<br>Processed " . $totalProcessed . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec");
+    echo("<br><br><b>Processed " . $totalProcessed . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec</b>");
 
     //var_dump(get_defined_vars()); //dump all variables if i hit error
 }
@@ -351,7 +359,7 @@ function orderbook($symbol)
             if ($askPortfolioRows > 1){ query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("$topAskUser has too many $symbol Portfolios! #20a"); }
             //CHECK THE QUANTITY FOR INSERT OR DELETE
             $askPortfolio = query("SELECT quantity FROM portfolio WHERE (symbol=? AND id=?)", $symbol, $topBidUser);
-            $askPortfolio = $askPortfolio[0]["quantity"];
+            @$askPortfolio = $askPortfolio[0]["quantity"];
             // DELETE IF TRADE IS ALL THEY OWN//WOULD BE 0 SINCE THE REST WOULD BE IN ORDERBOOK
             if($askPortfolio == 0) {if (query("DELETE FROM portfolio WHERE (id = ? AND symbol = ?)", $topAskUser, $symbol) === false)
             { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #14"); } }
@@ -457,10 +465,8 @@ function orderbook($symbol)
 
 
         } //IF TRADES ARE POSSIBLE
-        elseif($topBidPrice < $topAskPrice)
-        { echo("<br>[" . $symbol . "] No Trades possible...");
-            return('No Trades Possible');
-        } //{throw new Exception("No trades possible!");} //TRADES ARE NOT POSSIBLE
+        elseif($topBidPrice < $topAskPrice){throw new Exception("No trades possible!");}
+        //{throw new Exception("No trades possible!");} //TRADES ARE NOT POSSIBLE
         else {throw new Exception("ERROR!");}
 
     } //BOTTOM of WHILE STATEMENT
