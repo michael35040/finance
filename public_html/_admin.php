@@ -92,19 +92,17 @@ if(isset($_POST['admin']))
         if(!isset($_POST['symbol'])){apologize("Please select a symbol!");}
         if($_POST["symbol"] == 'ALL')
         {
-            try {processOrderbook();}
+            try {$processOrderbook = processOrderbook();}
         catch(Exception $e) {echo('Error: ' . $e->getMessage() . '<br>');}         //catch exception
         }
         else
         {
-            try {processOrderbook($_POST["symbol"]);}
+            try {$processOrderbook = processOrderbook($_POST["symbol"]);}
         catch(Exception $e) {echo('Error: ' . $e->getMessage() . '<br>');}         //catch exception
         }
     }
 //redirect("admin.php");
-} ?>
-
-  <?php
+}
   require("../templates/footer.php");
 
 

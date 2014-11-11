@@ -67,34 +67,39 @@ function randomOrders()
 function createStocks()
 {    include("constants.php");//for $divisor
 $fee=0.45;
-$lastSymbol =	query("SELECT symbol FROM assets ORDER BY symbol DESC");
+$lastSymbol =	query("SELECT symbol FROM assets ORDER BY symbol ASC LIMIT 0, 1");
 echo date("Y-m-d H:i:s");
 $startDate =  time();
-if(empty($lastSymbol)){$lastSymbol='A';}
-else{$symbol = $lastSymbol[0]["symbol"];}
+if(empty($lastSymbol)){$symbol='A';}
+else{$symbol = $lastSymbol[0]["symbol"]; $symbol++;}
 $i=0;
-
+echo("<br>Symbol: " . $symbol);
 while ($i < 26) {
-        $issued = 2*(mt_rand(1,100)*100000);
-        $price = mt_rand(1, 40)*$divisor*($issued/2);
-        $quantity = $issued/2;
+    $issued = 2 * (mt_rand(1, 100) * 100000);
+    $price = mt_rand(1, 40) * $divisor * ($issued / 2);
+    $quantity = $issued / 2;
 
-         //publicOffering($symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description)
-        publicOffering($symbol, $symbol, 2, $issued, 'limit', '', $fee, '', 0, '');
+    //publicOffering($symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description)
+    try { $publicOffering = publicOffering($symbol, $symbol, 2, $issued, 'limit', '', $fee, '', 0, '');
+
         query("INSERT INTO `portfolio` (`id`, `symbol`, `quantity`, `price`) VALUES (3, ?, ?, ?)", $symbol, $quantity, $price);
-        echo("Issued-[Symbol:" . $symbol . ", Quantity:" .  $quantity . ", Fee:" .  $fee);
+        echo("<br>Issued-[Symbol:" . $symbol . ", Quantity:" . $quantity . ", Fee:" . $fee);
         $symbol++;
         $i++;
     }
-        $endDate =  time();
+    catch(Exception $e) {echo('<br>Error on Public Stock Offering: ' . $symbol . $e->getMessage());}
+
+}
+        $endDate = time();
         echo("<br>");
         echo date("Y-m-d H:i:s");
         echo("<br>");
-        $endDate =  time();
-        $totalTime = $endDate-$startDate;
-        $speed=$createStocks/$totalTime;
-        echo("Issued " . $createStocks . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
-        return($i);
+        $endDate = time();
+        $totalTime = $endDate - $startDate;
+        $speed = $i / $totalTime;
+        echo("<br>Issued " . $i . " stocks offerings in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
+        return ($i);
+
 }
 
 
@@ -127,26 +132,26 @@ function clear_orderbook()
 function clear_assets()
 {
     if (query("TRUNCATE TABLE `assets`") === false)
-    {echo("Database orderbook Failure");}
+    {echo("<br>Database orderbook Failure");}
 }
 
 function clear_trades()
 {
     if (query("TRUNCATE TABLE `trades`") === false)
         if (query("TRUNCATE TABLE `trades`") === false)
-        {echo("Database trades Failure");}
+        {echo("<br>Database trades Failure");}
 }
 
 function clear_portfolio()
 {
     if (query("TRUNCATE TABLE `portfolio`") === false)
-    {echo("Database portfolio Failure");}
+    {echo("<br>Database portfolio Failure");}
 }
 
 function clear_history()
 {
     if (query("TRUNCATE TABLE `history`") === false)
-    {echo("Database history Failure");}
+    {echo("<br>Database history Failure");}
 }
 
 function billionaire() //everyone is a billionaire! $$$ //for testing only
