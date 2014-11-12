@@ -165,7 +165,9 @@
                     //$percentage = $quantity/$asset["public"];
                     //echo("['User: " . number_format(($id), 0, '.', '') . " (" . number_format(($percentage), 2, '.', '') . ")', " . number_format(($quantity), 0, '.', '') . "],");
                     echo("['User: " . number_format(($id), 0, '.', '') . "', " . number_format(($quantity), 0, '.', '') . "],");
-                } ?>
+                }
+                echo("['Orderbook', " . number_format($ownershipOnBook[0]["quantity"], 0, '.', '') . "],")
+                ?>
              //   ['Work',     11],
              //   ['Eat',      2],
              //   ['Commute',  2],
@@ -525,13 +527,13 @@ if($tradesChart != null)
     <tr><td colspan="3"></td></tr> <!--blank row breaker-->
     <tr>
         <th colspan="3" bgcolor="black" style="color:white" size="+1" >
-            OWNERSHIP
+            Top Owners & Orderbook
         </th>
     </tr>
 
 
     <tr>
-        <td>User</td>
+        <td>Owner's ID</td>
         <td>Quantity</td>
         <td>Percentage</td>
     </tr>
@@ -545,9 +547,13 @@ if($tradesChart != null)
         echo("<td>" . (number_format($percentage,2,".",",")) . "%</td>");
         echo("</tr>");
     }
+    $percentage=($ownershipOnBook[0]["quantity"]/$asset["public"])*100;
+    echo("<tr><td>Orderbook</td><td>");
+    echo(number_format($ownershipOnBook[0]["quantity"], 0, '.', ''));
+    echo("</td><td>" . (number_format($percentage,2,".",",")) . "%</td></tr>");
     ?>
 
 
 
 </table>
-<div id="piechart" style="height: 500px;"></div>
+<div id="piechart"></div>

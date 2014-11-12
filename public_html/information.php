@@ -77,7 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         if ($asksTotal == 0){$asksTotal = "No Orders";}
 
 
-        $ownership =	    query("SELECT SUM(`quantity`) AS quantity, id FROM `portfolio` WHERE (symbol = ?) GROUP BY `id` ORDER BY `quantity` DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
+        $ownership =	    query("SELECT SUM(`quantity`) AS quantity, id FROM `portfolio` WHERE (symbol = ?) GROUP BY `id` ORDER BY `quantity` DESC LIMIT 0, 10", $symbol);	  // query user's portfolio
+        $ownershipOnBook =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $symbol);	  // query user's portfolio
 
 
         //WORKING SQL QUERY FOR CHARTING DAILY TRADES
@@ -85,6 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             "title" => "Information",
 
             "ownership" => $ownership,
+            "ownershipOnBook" => $ownershipOnBook,
 
             "asset" => $asset,
 
