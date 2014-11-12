@@ -25,12 +25,14 @@ redirect('orders.php');
 
 else {
     $orders = query("SELECT * FROM orderbook WHERE (id = ?) ORDER BY uid ASC", $id);
+    $history = query("SELECT * FROM history WHERE (id = ? AND TRANSACTION='ask' OR TRANSACTION='bid' OR TRANSACTION='cancel') ORDER BY uid DESC LIMIT 0,10", $id);
 
     render(
         "orders_form.php",
         [
             "title" => $title,
-            "orders" => $orders
+            "orders" => $orders,
+            "history" => $history
         ]);
 
 } //else !post

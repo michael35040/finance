@@ -143,7 +143,8 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="assets.php">Assets</a></li>
                         <li><a href="exchange.php">Place Order</a></li>
-                        <li><a href="orders.php">Open Orders</a></li>
+                        <li><a href="orders.php">Orders</a></li>
+                        <li><a href="trades.php">Trades</a></li>
                         <li><a href="history.php">History</a></li>
                         <li><a href="information.php">Information</a></li>
 

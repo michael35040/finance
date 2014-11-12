@@ -30,38 +30,54 @@ function getCommission($total)
 function cancelOrder($uid)
 {
     $order = query("SELECT * FROM orderbook WHERE uid = ?", $uid);
-    if(!empty($order))
-    {   @$side=$order[0]["side"];
-        @$quantity=$order[0]["quantity"];
-        @$uid=$order[0]["uid"];
-        @$symbol=$order[0]["symbol"];
-        @$type=$order[0]["type"];
-        @$price=$order[0]["price"];
-        @$id=$order[0]["id"];
-        @$total=$order[0]["total"];
+    if(!empty($order)) {
+        @$side = $order[0]["side"];
+        @$quantity = $order[0]["quantity"];
+        @$uid = $order[0]["uid"];
+        @$symbol = $order[0]["symbol"];
+        @$type = $order[0]["type"];
+        @$price = $order[0]["price"];
+        @$id = $order[0]["id"];
+        @$total = $order[0]["total"];
 
         query("SET AUTOCOMMIT=0");
         query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
-        if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false)
-        {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-            throw new Exception("Failure Cancel 1"); }
+        if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {
+            query("ROLLBACK");
+            query("SET AUTOCOMMIT=1");
+            throw new Exception("Failure Cancel 1");
+        }
 
-        if($side=='a')
-        {
-            if (query("UPDATE portfolio SET quantity = (quantity + ?) WHERE (symbol = ? AND id = ?)", $quantity, $symbol, $id) === false)
-            {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                throw new Exception("Failure Cancel 2"); }
-            if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'ask') === false)
-            {   query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure Cancel 3"); }
+        if ($side == 'a') {
+            if (query("UPDATE portfolio SET quantity = (quantity + ?) WHERE (symbol = ? AND id = ?)", $quantity, $symbol, $id) === false) {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Failure Cancel 2");
+            }
+            if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'ask') === false) {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Failure Cancel 3");
+            }
+        } elseif ($side == 'b') {
+            if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $total, $id) === false) //MOVE CASH TO units FUNDS
+            {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Failure Cancel 4");
+            }
+            if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'bid') === false) {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Failure Cancel 5");
+            }
         }
-        elseif($side=='b')
-        {   if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $total, $id) === false) //MOVE CASH TO units FUNDS
-        {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-            throw new Exception("Failure Cancel 4");}
-            if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'bid') === false)
-            {   query("ROLLBACK"); query("SET AUTOCOMMIT=1");
-                throw new Exception("Failure Cancel 5"); }
+        //UPDATE HISTORY
+        if ($quantity > 0) //to prevent spamming history with cleanup of orderbook of empty orders.
+        { $total=0; //set total to 0 for history purposes.
+            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)", $id, 'CANCEL', $symbol, $quantity, $price, $total) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3c"); }
         }
+
         echo("<br>Canceled [ID: " . $id . ", UID:" . $uid . ", Side:" . $side . ", Type:" . $type . ", Total:" . $total . ", Quantity:" . $quantity . ", Symbol:" . $symbol . "]");
 
 
@@ -389,14 +405,14 @@ function orderbook($symbol)
 
 
             ///////////
-            //HISTORY
+            //HISTORY-NOT NEEDED AS UPDATED IN TRADES
             ///////////
             //UPDATE HISTORY BUYER (COMMISSION AND TRADE TOTAL)
-            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topBidUser, 'BUY', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21b"); }
+            //if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topBidUser, 'BUY', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21b"); }
             //UPDATE HISTORY SELLER (NO COMMISSION AND TRAD EAMOUNT)
-            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topAskUser, 'SELL', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21c"); }
+            //if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topAskUser, 'SELL', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21c"); }
             //UPDATE HISTORY ADMIN (COMMISSION AND TRADE TOTAL)
-            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, 'COMMISSION', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21d"); }
+            //if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, 'COMMISSION', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21d"); }
 
             //ALL THINGS OKAY, COMMIT TRANSACTIONS
             query("COMMIT;"); //If no errors, commit changes

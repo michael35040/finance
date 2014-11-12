@@ -169,9 +169,6 @@
                 echo("['Orderbook', " . number_format($ownershipOnBook[0]["quantity"], 0, '.', '') . "],")
                 ?>
              //   ['Work',     11],
-             //   ['Eat',      2],
-             //   ['Commute',  2],
-             //   ['Watch TV', 2],
              //   ['Sleep',    7]
             ]);
 
