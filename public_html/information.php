@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 
         $ownershipOnBook =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $symbol);	  // query user's portfolio
-        $ownership =	    query("SELECT SUM(`quantity`) AS quantity, id FROM `portfolio` WHERE (symbol = ?) GROUP BY `id` ORDER BY `quantity` DESC LIMIT 0, 10", $symbol);	  // query user's portfolio
+        $ownership =	    query("SELECT SUM(`quantity`) AS quantity, id FROM `portfolio` WHERE (symbol = ?) GROUP BY `id` ORDER BY `quantity` DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
        // $ownershipAll =	    query("SELECT SUM(portfolio.quantity) AS quantity, id FROM portfolio, orderbook WHERE portfolio.id=orderbook.id AND symbol='AC';", $symbol);
        //                     query("SELECT portfolio.id, SUM(orderbook.quantity) AS orderbookquantity, SUM(portfolio.quantity) AS portfolioquantity FROM portfolio, orderbook WHERE portfolio.id=orderbook.id AND orderbook.symbol='AC' AND portfolio.symbol='AC' AND orderbook.side='a' GROUP BY portfolio.id", $symbol);	  // query user's portfolio
 

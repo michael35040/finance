@@ -158,15 +158,21 @@
             var data3 = google.visualization.arrayToDataTable([
                 ['User', 'Shares'],
                <?php
+               $owned=0;
                foreach ($ownership as $owners)	// for each of user's stocks
                 {
                     $quantity = number_format(($owners["quantity"]), 0, '.', '');
                     $id = number_format(($owners["id"]), 0, '.', '');
-                    //$percentage = $quantity/$asset["public"];
-                    //echo("['User: " . number_format(($id), 0, '.', '') . " (" . number_format(($percentage), 2, '.', '') . ")', " . number_format(($quantity), 0, '.', '') . "],");
                     echo("['User: " . number_format(($id), 0, '.', '') . "', " . number_format(($quantity), 0, '.', '') . "],");
+                    $owned=$owned+$quantity;
                 }
-                echo("['Orderbook', " . number_format($ownershipOnBook[0]["quantity"], 0, '.', '') . "],")
+
+            $ownershipOnBook=number_format(($ownershipOnBook[0]["quantity"]), 0, '.', '');
+            $issued=$asset["public"]; //or $asset["public"] or $asset["issued"]
+            $leftOver=$issued-$owned-$ownershipOnBook; //takes the amount issued and subtracts the listed owned to figure out how many shares are left from top listed users for pie chart
+            if($leftOver>0){echo("['Other Users', " . number_format($leftOver, 0, '.', '') . "],");}
+
+            if($ownershipOnBook>0){echo("['Orderbook', " . $ownershipOnBook . "],");}
                 ?>
              //   ['Work',     11],
              //   ['Sleep',    7]
@@ -235,8 +241,8 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
             <br>' . $unitsymbol . number_format($asksPrice, 2, ".", ",") . ' - Ask
             <br>' . $unitsymbol . number_format($asset["avgprice"], 2, ".", ",") . ' - Avg. Price (30d)</td>');
 
-    echo('<td >' . number_format($asset["public"], 0, ".", ",") . ' - Issued
-            <br>' . number_format($asset["issued"], 0, ".", ",") . ' - Public
+    echo('<td >' . number_format($asset["issued"], 0, ".", ",") . ' - Issued
+            <br>' . number_format($asset["public"], 0, ".", ",") . ' - Public
             <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
 
     echo('<td >Dividend: ' . number_format($asset["dividend"], 2, ".", ",") .
@@ -544,13 +550,30 @@ if($tradesChart != null)
         echo("<td>" . (number_format($percentage,2,".",",")) . "%</td>");
         echo("</tr>");
     }
-    $percentage=($ownershipOnBook[0]["quantity"]/$asset["public"])*100;
-    echo("<tr><td>Orderbook</td><td>");
-    echo(number_format($ownershipOnBook[0]["quantity"], 0, '.', ''));
-    echo("</td><td>" . (number_format($percentage,2,".",",")) . "%</td></tr>");
+
+   // if($leftOver>0)
+   // {
+        $percentage=($leftOver/$asset["public"])*100;
+        echo("<tr><td>Other Users</td><td>" . number_format($leftOver, 0, '.', '') . "</td><td>" . (number_format($percentage,2,".",",")) . "%</td>");
+   // }
+
+    if($ownershipOnBook>0)
+    {
+        $percentage=($ownershipOnBook/$asset["public"])*100;
+        echo("<tr><td>Orderbook</td><td>");
+        echo($ownershipOnBook);
+        echo("</td><td>" . (number_format($percentage,2,".",",")) . "%</td></tr>");
+    }
+
+
+
+
+
+
     ?>
 
 
 
 </table>
 <div id="piechart"></div>
+

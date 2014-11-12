@@ -54,11 +54,6 @@ function cancelOrder($uid)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Failure Cancel 2");
             }
-            if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'ask') === false) {
-                query("ROLLBACK");
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Failure Cancel 3");
-            }
         } elseif ($side == 'b') {
             if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $total, $id) === false) //MOVE CASH TO units FUNDS
             {
@@ -66,16 +61,15 @@ function cancelOrder($uid)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Failure Cancel 4");
             }
-            if (query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", 0, 'deleting order', 'bid') === false) {
-                query("ROLLBACK");
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Failure Cancel 5");
-            }
         }
         //UPDATE HISTORY
         if ($quantity > 0) //to prevent spamming history with cleanup of orderbook of empty orders.
         { $total=($total*-1); //set to negative for calculations on order form total.
             if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $uid, 'CANCEL', $symbol, $quantity, $price, $total) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3c"); }
+        }
+        else //($quantity <=0)
+        { $price=0; $total=0;//order was executed and the price listed was not the actual amount and the total was what was left over.
+            if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $uid, 'EXECUTED', $symbol, $quantity, $price, $total) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3c"); }
         }
 
         echo("<br>Canceled [ID: " . $id . ", UID:" . $uid . ", Side:" . $side . ", Type:" . $type . ", Total:" . $total . ", Quantity:" . $quantity . ", Symbol:" . $symbol . "]");
@@ -566,6 +560,9 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $userid, $fee, $issued, $ur
         throw new Exception("Public Offering Error: Too many symbol rows in assets. $symbol / $userid");
     } //apologizes if first two conditions are not meet
 
+
+//INSERT INTO HISTORY
+    if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, $userid, 'IPO', $symbol, $issued, $fee, 0) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3ipo"); }
 
 
 //INSERT TRADE INTO PORTFOLIO OF OWNER MINUS FEE

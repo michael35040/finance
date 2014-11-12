@@ -1,7 +1,7 @@
 
 <table class="table table-condensed  table-bordered" >
 
-    <tr   class="success" ><td colspan="8"  style="font-size:20px; text-align: center;"><?php echo(strtoupper($title)); ?> &nbsp;
+    <tr   class="success" ><td colspan="10"  style="font-size:20px; text-align: center;"><?php echo(strtoupper($title)); ?> &nbsp;
             <?php
             //	Display link to all history as long as your not already there
             if (isset($title))
@@ -39,7 +39,9 @@
         </td></tr> <!--blank row breaker-->
     <tr   class="active" >
         <td ><b><u>Buyer</u></b></td>
+        <td ><b><u>Bid Order#</u></b></td>
         <td ><b><u>Seller</u></b></td>
+        <td ><b><u>Ask Order#</u></b></td>
         <td ><b><u>Date</u></b></td>
         <td ><b><u>Type</u></b></td>
         <td ><b><u>Symbol</u></b></td>
@@ -52,7 +54,9 @@
     {
 
         $buyer = $trade["buyer"];
+        $bidorderuid = $trade["bidorderuid"];
         $seller = $trade["seller"];
+        $askorderuid = $trade["askorderuid"];
         $date = $trade["date"];
         $type = $trade["type"];
         $symbol = $trade["symbol"];
@@ -63,7 +67,9 @@
 
                 <tr>
                 <td>" . number_format($buyer,0,".",",") . "</td>
+                <td>" . number_format($bidorderuid,0,".","") . "</td>
                 <td>" . number_format($seller,0,".",",") . "</td>
+                <td>" . number_format($askorderuid,0,".","") . "</td>
                 <td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($date))) . "</td>
                 <td>" . strtoupper(htmlspecialchars("$type")) . "</td>
                 <td>" . htmlspecialchars("$symbol") . "</td>
@@ -74,7 +80,7 @@
     }
     ?>
     <tr >
-        <td colspan="7"><strong>Sum of Listed Transactions</strong></td>
+        <td colspan="9"><strong>Sum of Listed Transactions</strong></td>
         <td><?php
             //calculate gains/losses
             $acc = array_shift($trades);

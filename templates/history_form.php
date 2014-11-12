@@ -1,6 +1,6 @@
 
 <table class="table table-condensed  table-bordered" >
-    <tr   class="success" ><td colspan="8"  style="font-size:20px; text-align: center;"><?php echo(strtoupper($title)); ?> &nbsp;
+    <tr   class="success" ><td colspan="7"  style="font-size:20px; text-align: center;">HISTORY (<?php echo(strtoupper($tabletitle)); ?>) &nbsp;
             <?php
             //	Display link to all history as long as your not already there
             if (isset($title))
@@ -11,7 +11,7 @@
 <form>
 <span class="input-group-btn">
     <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="history.php" name="history" value="all">
-        <span class="glyphicon glyphicon-calendar"></span> ALL
+        <span class="glyphicon glyphicon-plus-sign"></span> Show All
     </button>
 </span>
 </form>
@@ -23,7 +23,7 @@
 <form>
 <span class="input-group-btn">
     <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="history.php" name="history" value="limit">
-        <span class="glyphicon glyphicon-calendar"></span> LAST 10
+        <span class="glyphicon glyphicon-minus-sign"></span> Last 10
     </button>
 </span>
 </form>
@@ -59,23 +59,31 @@
             echo("<td>" . $unitsymbol . htmlspecialchars(number_format($row["total"],2,".",",")) . "</td>");
             echo("</tr>");
         }
+    if($history==null){echo('<td colspan="7">None</td>');}
     ?>
-        <tr >
-            <td colspan="6"><strong>Sum of Listed Transactions</strong></td>
-            <td><?php
-                    //calculate gains/losses
-                    $acc = array_shift($history);
-                    foreach ($history as $val) {
-                        foreach ($val as $key => $val) {
-                        $acc[$key] += $val;
-                        }
-                    }
-                    $gainlosses = $acc['total'];
-                    echo("<strong>" . $unitsymbol . htmlspecialchars(number_format($gainlosses,2,".",",")) . "</strong>");
-                ?></td>
-        </tr>
 
+
+
+
+
+    <tr   class="active" >
+        <th>History #</th>
+        <th>Type</th>
+        <th>Date/Time (Y/M/D)</th>
+        <th colspan="4">Description</th>
+    </tr>
+
+    <?php
+    foreach ($error as $row)
+    {
+        echo("<tr>");
+        echo("<td>" . htmlspecialchars($row["uid"]) . "</td>");
+        echo("<td>" . htmlspecialchars(strtoupper($row["type"])) . "</td>");
+        echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
+        echo("<td colspan='4'>" . htmlspecialchars($row["description"]) . "</td>");
+        echo("</tr>");
+    }
+    if($error==null){echo('<td colspan="7">None</td>');}
+
+    ?>
 </table>
-
- <br />  <br />
-

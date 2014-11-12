@@ -14,14 +14,25 @@ if(isset($_POST['trades']))
         $title = "All Trades";
     } //for unlimited option
 }
-//TRADES
-$trades =	query("SELECT * FROM trades WHERE (buyer = ? OR seller = ?) ORDER BY uid DESC $limit", $id, $id);	  // query user's portfolio
 
-render(
-    "trades_form.php",
-    [
-        "title" => $title,
-        "trades" => $trades
-    ]);
+
+if(isset($_POST['uid']))
+{
+    $trades =	query("SELECT * FROM trades WHERE (askorderuid = ? OR bidorderuid = ?) ORDER BY uid DESC $limit", $_POST['uid'], $_POST['uid']);	  // query user's portfolio
+    render("trades_form.php", ["title" => $title, "trades" => $trades]);
+}
+else
+{
+    //TRADES
+    $trades =	query("SELECT * FROM trades WHERE (buyer = ? OR seller = ?) ORDER BY uid DESC $limit", $id, $id);	  // query user's portfolio
+
+    render(
+        "trades_form.php",
+        [
+            "title" => $title,
+            "trades" => $trades
+        ]);
+}
+
 
 ?>

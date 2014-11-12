@@ -83,23 +83,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $_SESSION["username"] = $row["username"];
 
             //update users last login
+            if(query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", $id, 'Login Success', $ipaddress) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure Login Query");}
             if (query("UPDATE users SET last_login = now(), fails = 0, ip = ? WHERE id = ?", $ipaddress, $id) === false){ apologize("Database Failure #L1."); 		}
             query("INSERT INTO login (id, ip, success_fail) VALUES (?, ?, ?)", $id, $ipaddress, 's');//update login success
             redirect("index.php");		// redirect to portfolio
         } //password
         else
-        {   query("UPDATE users SET fails=(fails+1) WHERE (id = ?)", $id);//update failed attempts with 1 additional failed attempt
+        {
+            if(query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", $id, 'Login Failure', $ipaddress) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure Login Query");}
+            query("UPDATE users SET fails=(fails+1) WHERE (id = ?)", $id);//update failed attempts with 1 additional failed attempt
             query("INSERT INTO login (id, ip, success_fail) VALUES (?, ?, ?)", $id, $ipaddress, 'f');//update login history to track ips
             apologize("Invalid username and/or password. Only " . $attemptsLeft . " attempts left!" );
         }
 
     } //ROW COUNT
     elseif (count($rows) == 0) {
+        if(query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", $id, 'Login Failure', $ipaddress) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure Login Query");}
         query("INSERT INTO login (id, ip, success_fail) VALUES (?, ?, ?)", 0, $ipaddress, 'f');//update login history to track ips
         apologize("Invalid username and/or password."); }
-    else {
+
+    else
+    {
+        if(query("INSERT INTO error (id, type, description) VALUES (?, ?, ?)", $id, 'Login Failure', $ipaddress) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure Login Query");}
         query("INSERT INTO login (id, ip, success_fail) VALUES (?, ?, ?)", 0, $ipaddress, 'f');//update login history to track ips
-        apologize("Invalid username and/or password."); }
+        apologize("Invalid username and/or password.");
+    }
 
 } //POST
 
