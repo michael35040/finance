@@ -113,7 +113,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 
     $symbol =	query("SELECT symbol FROM assets ORDER BY symbol ASC LIMIT 0,1");
-    $symbol = $symbol[0]["symbol"];
+
+    @$symbol = $symbol[0]["symbol"]; //will be empty if there are no stocks. if(!empty($symbol)) {)
+
 
     $bidGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` WHERE (side='b' AND symbol=?) GROUP BY `price` ORDER BY `price` DESC LIMIT 5", $symbol);	  // query user's portfolio
     $askGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` WHERE (side='a' AND symbol=?) GROUP BY `price` ORDER BY `price` ASC LIMIT 5", $symbol);	  // query user's portfolio
