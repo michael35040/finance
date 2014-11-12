@@ -77,7 +77,7 @@
     {
         echo("<tr>");
         echo("<td> </td>");
-        echo("<td>" . htmlspecialchars($row["uid"]) . "</td>");
+        echo("<td>" . htmlspecialchars($row["ouid"]) . "</td>");
         echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
         echo("<td>" . htmlspecialchars($row["transaction"]) . "</td>");

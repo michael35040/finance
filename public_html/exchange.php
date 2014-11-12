@@ -14,8 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$tradeTotal = (float)$tradeTotal; //convert string to float
     @$commissionTotal = (float)$commissionTotal; //convert string to float
     @$quantity = (int)$quantity; //convert string to float
-    
-    render("success_form.php", ["title" => "Success", "transaction" => $transaction, "symbol" => $symbol, "value" => $tradeTotal, "quantity" => $quantity, "commissiontotal" => $commissionTotal]); // render success form
+
+    redirect("orders.php");
+   // render("success_form.php", ["title" => "Success", "transaction" => $transaction, "symbol" => $symbol, "value" => $tradeTotal, "quantity" => $quantity, "commissiontotal" => $commissionTotal]); // render success form
     } //if post
 else
 {

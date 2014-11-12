@@ -111,6 +111,7 @@ DROP TABLE IF EXISTS `history`;
 CREATE TABLE IF NOT EXISTS `history` (
   `uid` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique transaction id',
   `id` int(10) unsigned NOT NULL COMMENT 'user id',
+  `ouid` int(10) unsigned NOT NULL COMMENT 'original uid from other tables',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `transaction` varchar(10) NOT NULL COMMENT 'buy sell transfer',
   `symbol` varchar(10) NOT NULL,

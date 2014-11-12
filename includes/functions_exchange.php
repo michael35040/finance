@@ -74,8 +74,8 @@ function cancelOrder($uid)
         }
         //UPDATE HISTORY
         if ($quantity > 0) //to prevent spamming history with cleanup of orderbook of empty orders.
-        { $total=0; //set total to 0 for history purposes.
-            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)", $id, 'CANCEL', $symbol, $quantity, $price, $total) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3c"); }
+        { $total=($total*-1); //set to negative for calculations on order form total.
+            if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $uid, 'CANCEL', $symbol, $quantity, $price, $total) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3c"); }
         }
 
         echo("<br>Canceled [ID: " . $id . ", UID:" . $uid . ", Side:" . $side . ", Type:" . $type . ", Total:" . $total . ", Quantity:" . $quantity . ", Symbol:" . $symbol . "]");
@@ -759,12 +759,13 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     }
 
 
-    //UPDATE HISTORY
-    if (query("INSERT INTO history (id, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)", $id, $transaction, $symbol, $quantity, $price, $tradeAmount) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3"); }
 
     //INSERT INTO ORDERBOOK
     if (query("INSERT INTO orderbook (symbol, side, type, price, total, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $tradeAmount, $quantity, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert Orderbook Failure"); }
-
+    //UPDATE HISTORY
+    $rows = query("SELECT LAST_INSERT_ID() AS uid"); //this takes the id to the next page
+    $ouid = $rows[0]["uid"]; //sets sql query to var
+    if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $ouid, $transaction, $symbol, $quantity, $price, $tradeAmount) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3"); }
 
     query("COMMIT;"); //If no errors, commit changes
     query("SET AUTOCOMMIT=1");
