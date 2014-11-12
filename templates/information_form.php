@@ -146,6 +146,7 @@
             //////////
             //END CHART
             ////////////
+            <?php }   //$bidsGroupChart != null ?>
 
 
 
@@ -158,10 +159,12 @@
                 ['User', 'Shares'],
                <?php
                foreach ($ownership as $owners)	// for each of user's stocks
-                { $percentage = $asset["public"]/$quantity;
+                {
                     $quantity = number_format(($owners["quantity"]), 0, '.', '');
                     $id = number_format(($owners["id"]), 0, '.', '');
-                    echo("['User: " . $id . "', " . $quantity . "],");
+                    //$percentage = $quantity/$asset["public"];
+                    //echo("['User: " . number_format(($id), 0, '.', '') . " (" . number_format(($percentage), 2, '.', '') . ")', " . number_format(($quantity), 0, '.', '') . "],");
+                    echo("['User: " . number_format(($id), 0, '.', '') . "', " . number_format(($quantity), 0, '.', '') . "],");
                 } ?>
              //   ['Work',     11],
              //   ['Eat',      2],
@@ -174,10 +177,10 @@
 
 
             var options3 = {
-                title: 'Ownership Control',
+                //title: 'Ownership Control',
                 is3D: true,
-                legend: 'none',
-                pieSliceText: 'label',
+                //legend: 'none',
+                pieSliceText: 'percentage' //'label', 'percentage', 'value', 'none'
 
             };
 
@@ -192,7 +195,6 @@
             ////////////////
 
 
-            <?php }   //$bidsGroupChart != null ?>
 //echo(var_dump(get_defined_vars()));
         }
     </script>
@@ -513,13 +515,39 @@ if($tradesChart != null)
     }
     ?>
 
-    <tr><td colspan="7"></td></tr> <!--blank row breaker-->
+
+
+</table>
+
+
+
+<table class="table" align="center">
+    <tr><td colspan="3"></td></tr> <!--blank row breaker-->
     <tr>
-        <th colspan="7" bgcolor="black" style="color:white" size="+1" >
+        <th colspan="3" bgcolor="black" style="color:white" size="+1" >
             OWNERSHIP
         </th>
     </tr>
 
 
+    <tr>
+        <td>User</td>
+        <td>Quantity</td>
+        <td>Percentage</td>
+    </tr>
+
+    <?php
+    foreach ($ownership as $row)
+    { $percentage=($row["quantity"]/$asset["public"])*100;
+        echo("<tr>");
+        echo("<td>" . (number_format($row["id"],0,".",",")) . "</td>");
+        echo("<td>" . (number_format($row["quantity"],0,".",",")) . "</td>");
+        echo("<td>" . (number_format($percentage,2,".",",")) . "%</td>");
+        echo("</tr>");
+    }
+    ?>
+
+
+
 </table>
-<div id="piechart" style="width: 900px; height: 500px;"></div>
+<div id="piechart" style="height: 500px;"></div>
