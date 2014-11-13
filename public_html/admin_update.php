@@ -30,7 +30,7 @@ $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC"); // query user'
 //         apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
 
 ?>
-<form action="admin_update.php" class="symbolForm" method="post" >
+<form action="admin_update_form.php" class="symbolForm" method="post" >
 <fieldset>
 <table>
 <tr>
