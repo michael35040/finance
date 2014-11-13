@@ -38,8 +38,8 @@
         <tr>
             <td>Public Offering</td>
             <td>
-                <input type="radio" name="po" value="initial" required> Initial<br><br>
-                <input type="radio" name="po" value="followon" required> Update or Follow-On (dilutive)<br>
+                <input type="radio" name="po" value="initial" required> <b>Initial</b><br><br>
+                <input type="radio" name="po" value="followon" required> <b>Update</b> or <b>Follow-On</b> (dilutive)<br>
             </td>        
         </tr>
         <tr>
