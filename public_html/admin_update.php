@@ -5,7 +5,7 @@ require("../includes/config.php");  // configuration
 $id = $_SESSION["id"];
 if ($id != 1) { apologize("Unauthorized!");}
 
-if (($_SERVER["REQUEST_METHOD"] == "POST") && (!empty($_POST["symbol"])))// if form is submitted
+if( isset($_POST['symbol']) )
 {
     @$symbol = $_POST["symbol"];
     @$newSymbol = $_POST["newSymbol"];
