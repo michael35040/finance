@@ -39,13 +39,13 @@
             <td>Public Offering</td>
             <td>
                 <input type="radio" name="po" value="initial" required> Initial<br><br>
-                <input type="radio" name="po" value="followon" required> Follow-On (dillutive)<br>
-                <<input type="text" name="symbolConfirmation" maxlength="8" placeholder="Confirm Symbol"><br>
+                <input type="radio" name="po" value="followon" required> Follow-On (dilutive)<br>
             </td>        
         </tr>
         <tr>
             <td style="width:20%">Symbol</td>
             <td style="width:80%"><input type="text" name="symbol" maxlength="8" placeholder="ex: ABCD" required></td>
+            <input type="text" name="symbolConfirmation" maxlength="8" placeholder="Confirm Symbol"><br>
         </tr>
         <tr>
             <td>Name</td>
