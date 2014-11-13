@@ -28,6 +28,6 @@ redirect("assets.php", ["title" => $message]); // render success form
 }
 else
 {
-render("admin_us_form.php", ["title" => "Update Symbol"]); // render buy form //***/to remove C/***/
+render("admin_update_form.php", ["title" => "Update Form"]); // render buy form //***/to remove C/***/
 }
 //         apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
