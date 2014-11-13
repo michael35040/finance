@@ -522,6 +522,7 @@ function publicOffering($symbol, $name, $userid, $issued, $type, $owner, $fee, $
     $feeQuantity = ($issued * $fee);
     $ownersQuantity = ($issued - $feeQuantity);
     $transaction='PO';
+    $price = 0; //since a public offering, cost is 0.
 
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
@@ -534,7 +535,6 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $userid, $fee, $issued, $ur
         query("SET AUTOCOMMIT=1");
         throw new Exception("Failure to insert into assets");
     }
-    $price = 0; //since a public offering, cost is 0.
 //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
     $ownerPortfolio = query("SELECT symbol FROM portfolio WHERE (id =? AND symbol =?)", $userid, $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
     $countOwnersRows = count($ownerPortfolio);
@@ -600,7 +600,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $userid, $fee, $issued, $ur
 
 
 //INSERT TRADE SHARES INTO PORTFOLIO OF ADMIN
-    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $adminid, $userid, $feeQuantity, $price, $fee, $issued, $transaction, 0, 0) === false) {
+    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $adminid, $userid, $feeQuantity, $price, $fee, 0, $transaction, 0, 0) === false) {
         query("ROLLBACK"); //rollback on failure
         query("SET AUTOCOMMIT=1");
         throw new Exception("Insert Admin Trade Error");
