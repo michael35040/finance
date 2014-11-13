@@ -156,7 +156,7 @@
             ////////////////
 
             var data3 = google.visualization.arrayToDataTable([
-                ['User', 'Shares'],
+                ['User', 'Quantity'],
                <?php
                $owned=0;
                foreach ($ownership as $owners)	// for each of user's stocks
@@ -171,15 +171,12 @@
             $issued=$asset["public"]; //or $asset["public"] or $asset["issued"]
             $leftOver=$issued-$owned-$ownershipOnBook; //takes the amount issued and subtracts the listed owned to figure out how many shares are left from top listed users for pie chart
              $leftOver=number_format(($leftOver), 0, '.', '');
-            //if($leftOver>0){
                 echo("['Other Users', " . $leftOver . "],");
-            //}
-            //if($ownershipOnBook>0){
-                echo("['Orderbook', " . $ownershipOnBook . "]");
-            //}
-                ?>
+                echo("['Orderbook', " . $ownershipOnBook . "]");             
+            //if($leftOver>0){} //if($ownershipOnBook>0){}
              //   ['Work',     11],
              //   ['Sleep',    7]
+                ?>
             ]);
 
 
@@ -187,9 +184,9 @@
 
             var options3 = {
                 //title: 'Ownership Control',
-                is3D: true,
+                //is3D: true,
                 //legend: 'none',
-                pieSliceText: 'percentage' //'label', 'percentage', 'value', 'none'
+                //pieSliceText: 'percentage' //'label', 'percentage', 'value', 'none'
 
             };
 
