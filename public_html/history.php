@@ -17,7 +17,7 @@ if(isset($_POST['history']))
 } 
 
 //HISTORY
-$history = query("SELECT * FROM history WHERE (id = ? AND TRANSACTION='IPO' OR TRANSACTION='TRANSFER' OR TRANSACTION='DEPOSIT' OR TRANSACTION='WITHDRAW') ORDER BY uid DESC $limit", $id);
+$history = query("SELECT * FROM history WHERE (id = ? AND TRANSACTION='PO' OR TRANSACTION='TRANSFER' OR TRANSACTION='DEPOSIT' OR TRANSACTION='WITHDRAW') ORDER BY uid DESC $limit", $id);
 $error = query("SELECT * FROM error WHERE (id = ?) ORDER BY uid DESC $limit", $id);
 
 render(
