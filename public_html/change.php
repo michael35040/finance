@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	else {apologize("Sorry, user information incorrect.");}//to many rows
 }  //post
 else{
-	$userinfo = query("SELECT username, email, phone FROM USERS WHERE id = ( ? )", $_SESSION["id"]);
+	$userinfo = query("SELECT username, email, phone FROM users WHERE id = ( ? )", $_SESSION["id"]);
 	render("change_form.php", ["title" => "Change User Account", "userinfo" => $userinfo]);}// else render form
 
 ?>
