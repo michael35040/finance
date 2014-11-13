@@ -26,10 +26,10 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
         $askQuantity = $askQuantity[0]["quantity"]; //shares trading
     $stock["locked"] = $askQuantity;
     
-        $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $stock["symbol"]); // query user's portfolio
-        if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
-        $publicQuantity = $public[0]["quantity"]; //shares held
-    $stock["public"] = $askQuantity;
+        $publicQuantity =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $stock["symbol"]); // query user's portfolio
+        if(empty($publicQuantity[0]["quantity"])){$publicQuantity[0]["quantity"]=0;}
+        $publicQuantity = $publicQuantity[0]["quantity"]; //shares held
+    $stock["public"] = $publicQuantity;
     $issued =	query("SELECT issued FROM assets WHERE symbol =?", $stock["symbol"]);	  // query user's portfolio
         if(empty($issued[0]["issued"])){$issued[0]["issued"]=0;}
         $issued = $issued[0]["issued"]; //shares held
