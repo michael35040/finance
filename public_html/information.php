@@ -21,9 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $asset = $asset[0];
 
-        $publicQuantity =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
-        if(empty($publicQuantity[0]["quantity"])){$publicQuantity[0]["quantity"]=0;}
-        $publicQuantity = $publicQuantity[0]["quantity"]; //shares held
+        $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
+        if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
+        $publicQuantity = $public[0]["quantity"]; //shares held
         $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $asset["symbol"]);	  // query user's portfolio
         $askQuantity = $askQuantity[0]["quantity"]; //shares trading
         $asset["public"] = $askQuantity+$publicQuantity;
@@ -44,8 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 
     //EXCHANGE TRADES (PROCESSED ORDERS)
+        //$trades =       query("SELECT (SUM(quantity)/1000) AS quantity, price, date FROM trades WHERE symbol=? GROUP BY DAY(date) ORDER BY date ASC ", $symbol);
+        //$tradesGroup =	    query("SELECT * FROM trades WHERE symbol = ? GROUP BY DAY(date) ORDER BY uid DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
         //if (count($trades) < 1){apologize("Incorrect symbol!");} //check to see if exists in db
-        //ONLY SHOW LIMIT OR MARKET AND NOT PO.
         $trades =  query("SELECT * FROM trades WHERE (symbol=? AND type='limit' OR type='market') ORDER BY uid DESC LIMIT 0, 5", $symbol);
         $tradesGroupChart =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE (symbol=? AND type='limit' OR type='market')  GROUP BY DAY(date) ORDER BY uid ASC ", $symbol);	  // query user's portfolio
         $tradesChart =  query("SELECT quantity, price, date FROM trades WHERE (symbol=? AND type='limit' OR type='market')  ORDER BY uid ASC", $symbol);
@@ -125,7 +126,7 @@ else
         $stock = [];
         $stock["symbol"] = $row["symbol"];
         $stock["quantity"] = $row["quantity"];
-            $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id=? AND symbol=? AND side='a'", $id, $stock['symbol']);	  // query user's portfolio
+            $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $row["symbol"]);	  // query user's portfolio
         $stock["locked"] = $askQuantity[0]["quantity"]; //shares trading
 
 
