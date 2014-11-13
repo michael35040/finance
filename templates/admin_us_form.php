@@ -1,39 +1,5 @@
+<form action="admin_us.php"  method="post"
 
-
-<script>
-    function commify(x) {
-        var parts = x.toString().split(".");
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        return parts.join(".");
-    }
-    function fee_show_value(x)
-    {
-        x=x.toFixed(0);
-        document.getElementById("fee_slider_value").innerHTML=x;
-    }
-    function issued_show_value(x)
-    {
-        x=commify(x);
-        document.getElementById("issued_slider_value").innerHTML=x;
-    }
-    function rating_show_value(x)
-    {
-        document.getElementById("rating_slider_value").innerHTML=x;
-    }
-    function dividend_show_value(x)
-    {
-        x=x.toFixed(2);
-        document.getElementById("dividend_slider_value").innerHTML=x;
-    }
-</script>
-<form action="admin_po.php"  method="post"
-      oninput="
-          feeAmount.value=commify(parseFloat(parseFloat(issued.value)*parseFloat(fee.value)).toFixed(0));
-          "
-      onclick="
-            feeAmount.value=commify(parseFloat(parseFloat(issued.value)*parseFloat(fee.value)).toFixed(0));
-          "
-    >
     <table class="table table-condensed table-striped table-bordered" id="assets" style="border-collapse:collapse; width:100%;">
         <tr>
             <td style="width:20%">Symbol</td>
@@ -41,49 +7,27 @@
             <input type="text" name="symbol" maxlength="8" placeholder="ex: ABCD" required></td>
         </tr>
         <tr>
+            <td style="width:20%">New Symbol (only if changing)</td>
+            <td style="width:80%">
+            <input type="text" name="newSymbol" maxlength="8" placeholder="New Symbol" ></td>
+        </tr>        
+        <tr>
             <td>Name</td>
-            <td><input type="text" name="name"  maxlength="60"  placeholder="ex: Acme Inc." required></td>
+            <td><input type="text" name="name"  maxlength="60"  placeholder="ex: Acme Inc." ></td>
         </tr>
 
         <tr>
             <td>Owner User ID #</td>
-            <td><input type="number" name="userid"  min="1" max="100000000"  placeholder="ex: 134" required></td>
+            <td><input type="number" name="userid"  min="1" max="100000000"  placeholder="ex: 134" ></td>
         </tr>
         
         <tr>
             <td>Type</td>
             <td>
-                <input type="radio" name="type" value="stock" required> Stock<br>
-                <input type="radio" name="type" value="commodity" required> Commodity<br>
+                <input type="radio" name="type" value="stock" > Stock<br>
+                <input type="radio" name="type" value="commodity" > Commodity<br>
             </td>
         </tr>            
-
-
-        <tr>
-            <td>Issued</td>
-            <td>
-                <input id="issued" type="range" name="issued" min="10000" value="10000" max="1000000"  step="1000" style="width:100%"
-                       onclick="issued_show_value(this.value);"
-                       oninput="issued_show_value(this.value);"
-                       onchange="issued_show_value(this.value);"
-                       required>
-                <br><span id="issued_slider_value" style="color:black;">10,000</span>
-            </td>
-        </tr>
-        
-    
-        <tr>
-            <td>Fee %</td>
-            <td>
-                <input id="fee" type="range" name="fee" min="0" value="0" max=".5"  step=".01" style="width:100%"
-                       onclick="fee_show_value(this.value*100);"
-                       oninput="fee_show_value(this.value*100);"
-                       onchange="fee_show_value(this.value*100);"
-                       >
-                <br><output name="feeAmount" for="fee">0</output>
-                (<span id="fee_slider_value" style="color:black;">0</span>%)
-            </td>
-        </tr>        
 
         <tr>
             <td>Owner Email</td>
@@ -116,7 +60,7 @@
         
             <td colspan="2">    <br>
                 <button type="submit" class="btn btn-info">
-                    <b> ISSUE </b>
+                    <b> UPDATE </b>
                 </button></td>
         </tr>
     </table>
