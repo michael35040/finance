@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$rating = $_POST["rating"]; //1 - 10
     @$description = $_POST["description"];
 
-try {processOrderbook($symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description);}
+try {publicOffering($symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description);}
 catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 
 redirect("assets.php", ["title" => "Success"]); // render success form
