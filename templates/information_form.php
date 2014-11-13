@@ -172,7 +172,7 @@
             $leftOver=$issued-$owned-$ownershipOnBook; //takes the amount issued and subtracts the listed owned to figure out how many shares are left from top listed users for pie chart
             if($leftOver>0){echo("['Other Users', " . number_format($leftOver, 0, '.', '') . "],");}
 
-            if($ownershipOnBook>0){echo("['Orderbook', " . $ownershipOnBook . "],");}
+            if($ownershipOnBook>0){echo("['Orderbook', " . $ownershipOnBook . "]");}
                 ?>
              //   ['Work',     11],
              //   ['Sleep',    7]
