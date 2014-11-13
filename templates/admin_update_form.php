@@ -1,4 +1,4 @@
-<form action="admin_us.php"  method="post"
+<form action="admin_update.php"  method="post"
 
     <table class="table table-condensed table-striped table-bordered" id="assets" style="border-collapse:collapse; width:100%;">
         <tr>
