@@ -10,6 +10,12 @@
     }
 </style>
 
+<?php
+$username = $userinfo[0]["username"];
+$email = $userinfo[0]["email"];
+$phone = $userinfo[0]["phone"];
+?>
+
 <form action="change.php"  class="changeForm" name="change_form" method="post">
     <fieldset>
 
@@ -19,21 +25,21 @@
                 <span class="input-group-addon">
                     <INPUT TYPE="radio" NAME="change" VALUE="username" id="usernameRadio" required>
                     <span class="glyphicon glyphicon-user"></span> New Username</span>
-                <input class="form-control" id="usernameInput" name="username" placeholder="Username" type="text" maxlength="31"  autofocus   />
+                <input class="form-control" id="usernameInput" name="username" placeholder="<?php echo("$username"); ?>" type="text" maxlength="31"  autofocus   />
             </div><!--usernameMenu-->
 
             <div id="emailMenu" style="opacity:1;">
                 <span class="input-group-addon">
                     <INPUT TYPE="radio" NAME="change" VALUE="email" id="emailRadio" required/>
                     <span class="glyphicon glyphicon-envelope"></span> New Email</span>
-                <input class="form-control" id="emailInput" name="email" placeholder="Email" type="email" maxlength="31" />
+                <input class="form-control" id="emailInput" name="email" placeholder="<?php echo("$email"); ?>" type="email" maxlength="31" />
             </div><!--menuEmail-->
 
             <div id="phoneMenu" style="opacity:1;">
                 <span class="input-group-addon">
                     <INPUT TYPE="radio" NAME="change" VALUE="phone" id="phoneRadio" required/>
                     <span class="glyphicon glyphicon-earphone"></span> New Phone</span>
-                <input class="form-control" id="phoneInput" name="phone" placeholder="Phone" type="tel" maxlength="20" />
+                <input class="form-control" id="phoneInput" name="phone" placeholder="<?php echo("$phone"); ?>" type="tel" maxlength="20" />
             </div><!--menuPhone-->
 
             <div id="newpasswordMenu" style="opacity:1;">
