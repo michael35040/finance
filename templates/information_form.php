@@ -163,16 +163,20 @@
                 {
                     $quantity = number_format(($owners["quantity"]), 0, '.', '');
                     $id = number_format(($owners["id"]), 0, '.', '');
-                    echo("['User: " . number_format(($id), 0, '.', '') . "', " . number_format(($quantity), 0, '.', '') . "],");
+                    echo("['User: " . $id . "', " . $quantity . "],");
                     $owned=$owned+$quantity;
                 }
 
             $ownershipOnBook=number_format(($ownershipOnBook[0]["quantity"]), 0, '.', '');
             $issued=$asset["public"]; //or $asset["public"] or $asset["issued"]
             $leftOver=$issued-$owned-$ownershipOnBook; //takes the amount issued and subtracts the listed owned to figure out how many shares are left from top listed users for pie chart
-            if($leftOver>0){echo("['Other Users', " . number_format($leftOver, 0, '.', '') . "],");}
-
-            if($ownershipOnBook>0){echo("['Orderbook', " . $ownershipOnBook . "]");}
+             $leftOver=number_format(($leftOver), 0, '.', '');
+            //if($leftOver>0){
+                echo("['Other Users', " . $leftOver . "],");
+            //}
+            //if($ownershipOnBook>0){
+                echo("['Orderbook', " . $ownershipOnBook . "]");
+            //}
                 ?>
              //   ['Work',     11],
              //   ['Sleep',    7]
