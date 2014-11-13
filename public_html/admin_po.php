@@ -6,7 +6,6 @@ if ($id != 1) { apologize("Unauthorized!");}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
-    @$po=$_POST["po"]; //initial or followon
     @$symbol = $_POST["symbol"];
     @$symbolConfirmation = $_POST["symbolConfirmation"];
     @$name = $_POST["name"];
@@ -19,10 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$rating = $_POST["rating"]; //1 - 10
     @$description = $_POST["description"];
     
-    if($po=="initial")
-    {if($symbol!=$symbolConfirmation){apologize("Symbol and Symbol Confirmation must match!");}}
-    
-try {$message = publicOffering($po, $symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description, $symbolConfirmation);}
+try {$message = publicOffering($po, $symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description);}
 catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 
 //redirect("assets.php", ["title" => "Success"]); // render success form
