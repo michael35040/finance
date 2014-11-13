@@ -502,7 +502,7 @@ function orderbook($symbol)
 ////////////////////////////////////
 //PUBLIC OFFERING
 ////////////////////////////////////
-function publicOffering($po, $symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description)
+function publicOffering($po, $symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description, $symbolConfirmation)
 {
     $adminid = 1;
     
@@ -522,7 +522,7 @@ if($po=='followon')
         $countOwnersRows = count($symbolCheck);
         if ($countOwnersRows != 1)  {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Symbol does not exsist."); }
     
-    if($symbol!=$symbolConfirmation){if (query("UPDATE assets  SET symbol = ? WHERE symbol = ?", $symbolConfirmation, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
+    if (!empty($symbolConfirmation)){if (query("UPDATE assets SET symbol=? WHERE symbol=?", $symbolConfirmation, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
     if (!empty($name)) { if (query("UPDATE assets  SET name = ? WHERE symbol = ?", $name, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
     if (!empty($userid)) { if (query("UPDATE assets  SET userid = ? WHERE symbol = ?", $userid, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
     if (!empty($fee)) { if (query("UPDATE assets  SET fee = ? WHERE symbol = ?", $fee, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
