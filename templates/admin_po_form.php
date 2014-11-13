@@ -45,8 +45,10 @@
         <tr>
             <td style="width:20%">Symbol</td>
             <td style="width:80%">
-            <input type="text" name="symbol" maxlength="8" placeholder="ex: ABCD" required><br>
-            <input type="text" name="symbolConfirmation" maxlength="8" placeholder="Confirm Symbol" required> Must be same for initial. For follow-on/update, you can use this to change symbol.
+            <input type="text" name="symbol" maxlength="8" placeholder="ex: ABCD" required><br><br>
+            <input type="text" name="symbolConfirmation" maxlength="8" placeholder="Confirm Symbol" required><br> 
+            Must be same for initial. For follow-on/update, <br>
+            you can use this to change symbol.
             </td>
         </tr>
         <tr>
