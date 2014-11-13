@@ -26,7 +26,7 @@
         document.getElementById("dividend_slider_value").innerHTML=x;
     }
 </script>
-<form action="admin_po.php"  method="post"
+<form action="admin_offering.php"  method="post"
       oninput="
           feeAmount.value=commify(parseFloat(parseFloat(issued.value)*parseFloat(fee.value)).toFixed(0));
           "
@@ -35,6 +35,16 @@
           "
     >
     <table class="table table-condensed table-striped table-bordered" id="assets" style="border-collapse:collapse; width:100%;">
+        
+        
+        <tr>
+            <td>Offering</td>
+            <td>
+                <input type="radio" name="offering" value="initial" required> Initial<br>
+                <input type="radio" name="offering" value="followon" required> Follow-on<br>
+            </td>
+        </tr>            
+        
         <tr>
             <td style="width:20%">Symbol</td>
             <td style="width:80%">
