@@ -46,8 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     //EXCHANGE TRADES (PROCESSED ORDERS)
         //$trades =       query("SELECT (SUM(quantity)/1000) AS quantity, price, date FROM trades WHERE symbol=? GROUP BY DAY(date) ORDER BY date ASC ", $symbol);
         //$tradesGroup =	    query("SELECT * FROM trades WHERE symbol = ? GROUP BY DAY(date) ORDER BY uid DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
-        $trades =  query("SELECT * FROM trades WHERE symbol=? ORDER BY uid DESC LIMIT 0, 5", $symbol);
-    //if (count($trades) < 1){apologize("Incorrect symbol!");} //check to see if exists in db
+        //if (count($trades) < 1){apologize("Incorrect symbol!");} //check to see if exists in db
+        $trades =  query("SELECT * FROM trades WHERE (symbol=? AND type='limit' OR type='market') ORDER BY uid DESC LIMIT 0, 5", $symbol);
+        $tradesGroupChart =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE (symbol=? AND type='limit' OR type='market')  GROUP BY DAY(date) ORDER BY uid ASC ", $symbol);	  // query user's portfolio
+        $tradesChart =  query("SELECT quantity, price, date FROM trades WHERE (symbol=? AND type='limit' OR type='market')  ORDER BY uid ASC", $symbol);
 
         //EXCHANGE ORDERS
         $bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 5", $symbol, 'b');
@@ -55,8 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         //EXCHANGE ORDERS (COMBINED PRICE)
 
 
-        $tradesGroupChart =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY DAY(date) ORDER BY uid ASC ", $symbol);	  // query user's portfolio
-        $tradesChart =  query("SELECT quantity, price, date FROM trades WHERE symbol=? ORDER BY uid ASC", $symbol);
 
 
         $asksGroupChart =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='a') GROUP BY `price` ORDER BY `price` ASC  LIMIT 0, 5", $symbol);	  // query user's portfolio
