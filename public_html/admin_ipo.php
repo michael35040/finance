@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
     @$po=$_POST["po"]; //initial or followon
     @$symbol = $_POST["symbol"];
+    @$symbolConfirmation = $_POST["symbolConfirmation"];
     @$name = $_POST["name"];
     @$userid = $_POST["userid"]; //owner or chief executive
     @$owner = $_POST["owner"]; //owner or chief executive
@@ -17,6 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$type = $_POST["type"]; //share or commodity
     @$rating = $_POST["rating"]; //1 - 10
     @$description = $_POST["description"];
+    
+    if($symbol!=$symbolConfirmation){apologize("Symbol and Symbol Confirmation must match!");}
 
 try {publicOffering($po, $symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description);}
 catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
