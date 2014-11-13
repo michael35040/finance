@@ -90,9 +90,12 @@
     <?php $i = 0;
     foreach ($portfolio as $row) {
         echo("<tr>");
-        echo("<td><div style='float:left;width:50%;'>&nbsp;&nbsp;&nbsp;" . htmlspecialchars($row["symbol"]) .
+        echo("<td><div style='float:left;width:50%;'>&nbsp;&nbsp;&nbsp;" 
+           . "<br><form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'>" . $row['symbol'] . "</button></form>" . 
+        // . htmlspecialchars($row["symbol"]) .
              "&nbsp;&nbsp; </div><div style='float:right;width:50%;'>(" . (number_format($row["control"], 2, ".", ",")) . "%)</div>" .
             "</td>");  //htmlspecialchars
+
 
         echo("<td>" . (number_format($row["quantity"], 0, ".", ",")) . "</td>");
         echo("<td>" . (number_format($row["locked"], 0, ".", ",")) . "</td>");
