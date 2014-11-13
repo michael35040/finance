@@ -21,15 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     
     if($symbol!=$symbolConfirmation){apologize("Symbol and Symbol Confirmation must match!");}
 
-try {publicOffering($po, $symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description);}
+try {$message = publicOffering($po, $symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description);}
 catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 
-redirect("assets.php", ["title" => "Success"]); // render success form
+//redirect("assets.php", ["title" => "Success"]); // render success form
+redirect("assets.php", ["title" => $message]); // render success form
   
 }
 else
 {
-render("admin_ipo_form.php", ["title" => "IPO"]); // render buy form //***/to remove C/***/
+render("admin_po_form.php", ["title" => "Public Offering"]); // render buy form //***/to remove C/***/
 }
 //         apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
 ?>
