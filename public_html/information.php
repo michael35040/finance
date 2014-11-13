@@ -21,9 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $asset = $asset[0];
 
-        $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
-        if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
-        $publicQuantity = $public[0]["quantity"]; //shares held
+        $publicQuantity =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
+        if(empty($publicQuantity[0]["quantity"])){$publicQuantity[0]["quantity"]=0;}
+        $publicQuantity = $publicQuantity[0]["quantity"]; //shares held
         $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $asset["symbol"]);	  // query user's portfolio
         $askQuantity = $askQuantity[0]["quantity"]; //shares trading
         $asset["public"] = $askQuantity+$publicQuantity;
@@ -125,7 +125,7 @@ else
         $stock = [];
         $stock["symbol"] = $row["symbol"];
         $stock["quantity"] = $row["quantity"];
-            $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id = ? AND symbol =? AND side='a'"), $id, $row["symbol"]);	  // query user's portfolio
+            $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id=? AND symbol=? AND side='a'", $id, $stock['symbol']);	  // query user's portfolio
         $stock["locked"] = $askQuantity[0]["quantity"]; //shares trading
 
 
