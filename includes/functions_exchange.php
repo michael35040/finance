@@ -522,14 +522,14 @@ if($po=='followon')
         $countOwnersRows = count($symbolCheck);
         if ($countOwnersRows != 1)  {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Symbol does not exsist."); }
     
-    if (!empty($name)) { if (query("UPDATE assets  SET name = ? WHERE symbol = ?", $name, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
-    if (!empty($userid)) { if (query("UPDATE assets  SET userid = ? WHERE symbol = ?", $userid, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
-    if (!empty($fee)) { if (query("UPDATE assets  SET fee = ? WHERE symbol = ?", $fee, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
-    if (!empty($type)) { if (query("UPDATE assets  SET type = ? WHERE symbol = ?", $type, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
-    if (!empty($owner)) { if (query("UPDATE assets  SET owner = ? WHERE symbol = ?", $owner, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
-    if (!empty($url)) { if (query("UPDATE assets  SET url = ? WHERE symbol = ?", $url, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
-    if (!empty($rating)) { if (query("UPDATE assets  SET rating = ? WHERE symbol = ?", $rating, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
-    if (!empty($description)) { if (query("UPDATE assets  SET description = ? WHERE symbol = ?", $description, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
+    if (!empty($name)) { if (query("UPDATE assets  SET name = ? WHERE symbol = ?", $name, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
+    if (!empty($userid)) { if (query("UPDATE assets  SET userid = ? WHERE symbol = ?", $userid, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
+    if (!empty($fee)) { if (query("UPDATE assets  SET fee = ? WHERE symbol = ?", $fee, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
+    if (!empty($type)) { if (query("UPDATE assets  SET type = ? WHERE symbol = ?", $type, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
+    if (!empty($owner)) { if (query("UPDATE assets  SET owner = ? WHERE symbol = ?", $owner, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
+    if (!empty($url)) { if (query("UPDATE assets  SET url = ? WHERE symbol = ?", $url, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
+    if (!empty($rating)) { if (query("UPDATE assets  SET rating = ? WHERE symbol = ?", $rating, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
+    if (!empty($description)) { if (query("UPDATE assets  SET description = ? WHERE symbol = ?", $description, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
 
 
 
