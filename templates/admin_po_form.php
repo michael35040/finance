@@ -26,7 +26,7 @@
         document.getElementById("dividend_slider_value").innerHTML=x;
     }
 </script>
-<form action="admin_ipo.php"  method="post"
+<form action="admin_po.php"  method="post"
       oninput="
           feeAmount.value=commify(parseFloat(parseFloat(issued.value)*parseFloat(fee.value)).toFixed(0));
           "
