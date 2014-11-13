@@ -514,13 +514,14 @@ function publicOffering($symbol, $name, $userid, $issued, $type, $owner, $fee, $
 
     //if (empty($owner)) { $owner="Anonymous"; } //owners name
     if (empty($fee)) { $fee=0; }
-    if (empty($url)) { $url="Anonymous"; }
+    if (empty($url)) { $url="http://"; }
     if (empty($rating)) { $rating=0; }
     if (empty($description)) { $description=""; }
 
     $symbol = strtoupper($symbol); //cast to UpperCase
     $feeQuantity = ($issued * $fee);
     $ownersQuantity = ($issued - $feeQuantity);
+    $transaction='PO';
 
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
@@ -562,11 +563,11 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $userid, $fee, $issued, $ur
 
 
 //INSERT INTO HISTORY
-    if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, $userid, 'IPO', $symbol, $issued, $fee, 0) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3ipo"); }
+    if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, $userid, $transaction, $symbol, $issued, $fee, 0) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3ipo"); }
 
 
 //INSERT TRADE INTO PORTFOLIO OF OWNER MINUS FEE
-    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $ownersQuantity, $price, $fee, $issued, 'ipo', 0, 0) === false) {
+    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $ownersQuantity, $price, $fee, $issued, $transaction, 0, 0) === false) {
         query("ROLLBACK"); //rollback on failure
         query("SET AUTOCOMMIT=1");
         throw new Exception("Insert Owner Trade Error");
@@ -599,7 +600,7 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $userid, $fee, $issued, $ur
 
 
 //INSERT TRADE SHARES INTO PORTFOLIO OF ADMIN
-    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $adminid, $userid, $feeQuantity, $price, $fee, $issued, 'ipo', 0, 0) === false) {
+    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $adminid, $userid, $feeQuantity, $price, $fee, $issued, $transaction, 0, 0) === false) {
         query("ROLLBACK"); //rollback on failure
         query("SET AUTOCOMMIT=1");
         throw new Exception("Insert Admin Trade Error");
