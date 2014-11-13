@@ -12,7 +12,7 @@
 <form>
 <span class="input-group-btn">
     <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="trades.php" name="trades" value="all">
-        <span class="glyphicon glyphicon-calendar"></span> ALL
+        <span class="glyphicon glyphicon-plus-sign"></span> Show All
     </button>
 </span>
 </form>
@@ -24,7 +24,7 @@
 <form>
 <span class="input-group-btn">
     <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="trades.php" name="trades" value="limit">
-        <span class="glyphicon glyphicon-calendar"></span> LAST 10
+        <span class="glyphicon glyphicon-minus-sign"></span> Show Last 10
     </button>
 </span>
 </form>
