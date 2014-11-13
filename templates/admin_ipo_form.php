@@ -35,7 +35,13 @@
           "
     >
     <table class="table table-condensed table-striped table-bordered" id="assets" style="border-collapse:collapse; width:100%;">
-
+        <tr>
+            <td>Public Offering</td>
+            <td>
+                <input type="radio" name="po" value="initial" required> Initial<br>
+                <input type="radio" name="po" value="followon" required> Follow-On (dillutive)<br>
+            </td>        
+        </tr>
         <tr>
             <td style="width:20%">Symbol</td>
             <td style="width:80%"><input type="text" name="symbol" maxlength="8" placeholder="ex: ABCD" required></td>
