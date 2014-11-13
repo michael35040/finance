@@ -44,8 +44,10 @@
         </tr>
         <tr>
             <td style="width:20%">Symbol</td>
-            <td style="width:80%"><input type="text" name="symbol" maxlength="8" placeholder="ex: ABCD" required></td>
-            <input type="text" name="symbolConfirmation" maxlength="8" placeholder="Confirm Symbol"><br>
+            <td style="width:80%">
+            <input type="text" name="symbol" maxlength="8" placeholder="ex: ABCD" required><br>
+            <input type="text" name="symbolConfirmation" maxlength="8" placeholder="Confirm Symbol" required>
+            </td>
         </tr>
         <tr>
             <td>Name</td>
