@@ -36,34 +36,15 @@
     >
     <table class="table table-condensed table-striped table-bordered" id="assets" style="border-collapse:collapse; width:100%;">
         <tr>
-            <td>Public Offering</td>
-            <td>
-                <input type="radio" name="po" value="initial" required> <b>Initial</b><br><br>
-                <input type="radio" name="po" value="followon" required> <b>Update</b> or <br><b>Follow-On</b> (dilutive)<br>
-            </td>        
-        </tr>
-        <tr>
             <td style="width:20%">Symbol</td>
             <td style="width:80%">
-            <input type="text" name="symbol" maxlength="8" placeholder="ex: ABCD" required><br><br>
-            <input type="text" name="symbolConfirmation" maxlength="8" placeholder="Confirm Symbol" required>*<br> 
-            *Must be same for <b>initial</b>.  <br>
-            For <b>follow-on/update</b>, you <br>
-            can use this to change symbol.
-            </td>
+            <input type="text" name="symbol" maxlength="8" placeholder="ex: ABCD" required></td>
         </tr>
         <tr>
             <td>Name</td>
             <td><input type="text" name="name"  maxlength="60"  placeholder="ex: Acme Inc." required></td>
         </tr>
-        
-        <!-- Current timestamp instead
-        <tr>
-            <td>Date Issued</td>
-            <td><input type="date" name="date" placeholder="12/25/15" required></td>
-        </tr>
-        -->
-        
+
         <tr>
             <td>Owner User ID #</td>
             <td><input type="number" name="userid"  min="1" max="100000000"  placeholder="ex: 134" required></td>
