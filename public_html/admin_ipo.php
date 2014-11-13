@@ -6,6 +6,7 @@ if ($id != 1) { apologize("Unauthorized!");}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
+    @$po=$_POST["po"]; //initial or followon
     @$symbol = $_POST["symbol"];
     @$name = $_POST["name"];
     @$userid = $_POST["userid"]; //owner or chief executive
