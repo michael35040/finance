@@ -20,10 +20,12 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
     $stock = [];
     $stock["symbol"] = $row["symbol"]; //set variable from stock info
     $stock["quantity"] = $row["quantity"];
+    
         $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id=? AND symbol =? AND side='a')", $id, $stock["symbol"]);	  // query user's portfolio
         if(empty($askQuantity[0]["quantity"])){$askQuantity[0]["quantity"]=0;}
         $askQuantity = $askQuantity[0]["quantity"]; //shares trading
     $stock["locked"] = $askQuantity;
+    
         $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $stock["symbol"]); // query user's portfolio
         if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
         $publicQuantity = $public[0]["quantity"]; //shares held
@@ -33,7 +35,7 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
         $issued = $issued[0]["issued"]; //shares held
     $stock["issued"]=$issued;
        // $stock["control"] = (($stock["quantity"]+$stock["locked"])/$issued[0]["issued"])*100; //based on issued
-    $stock["control"] = (($stock["quantity"]+$stock["locked"])/$issued[0]["public"])*100; //based on public
+    $stock["control"] = (($stock["quantity"]+$stock["locked"])/$stock["public"])*100; //based on public
     
     $stock["value"] = $row["price"]; //total purchase price, value when bought
     $trades =	    query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $stock["symbol"]);	  // query user's portfolio
