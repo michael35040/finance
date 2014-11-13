@@ -242,9 +242,9 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
             <br>' . $unitsymbol . number_format($asksPrice, 2, ".", ",") . ' - Ask
             <br>' . $unitsymbol . number_format($asset["avgprice"], 2, ".", ",") . ' - Avg. Price (30d)</td>');
 
-    echo('<td >' . number_format($asset["issued"], 0, ".", ",") . ' - Issued
-            <br>' . number_format($asset["public"], 0, ".", ",") . ' - Public
-            <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
+    echo('<td >' . number_format($asset["public"], 0, ".", ",") . ' - Publicly Held
+        <br>' . number_format($asset["issued"], 0, ".", ",") . ' - Issued (' . number_format($asset["userid"], 0, ".", ",") . ')
+        <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
 
     echo('<td >Dividend: ' . number_format($asset["dividend"], 2, ".", ",") .
         '<br>Rating: ' . htmlspecialchars($asset["rating"]) .
