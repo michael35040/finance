@@ -6,6 +6,7 @@ if ($id != 1) { apologize("Unauthorized!");}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
+    @$po= $_POST["po"];
     @$symbol = $_POST["symbol"];
     @$symbolConfirmation = $_POST["symbolConfirmation"];
     @$name = $_POST["name"];
