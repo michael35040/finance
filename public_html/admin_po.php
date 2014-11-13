@@ -19,9 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$rating = $_POST["rating"]; //1 - 10
     @$description = $_POST["description"];
     
-    if($symbol!=$symbolConfirmation){apologize("Symbol and Symbol Confirmation must match!");}
-
-try {$message = publicOffering($po, $symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description);}
+    if($po=="initial")
+    {if($symbol!=$symbolConfirmation){apologize("Symbol and Symbol Confirmation must match!");}}
+    
+try {$message = publicOffering($po, $symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description, $symbolConfirmation);}
 catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 
 //redirect("assets.php", ["title" => "Success"]); // render success form
