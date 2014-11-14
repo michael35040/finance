@@ -249,21 +249,17 @@ function orderbook($symbol)
 { //   apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
     echo("<br>[" . $symbol . "] Computing orderbook...");
     $adminid = 1;
-
     //PROCESS MARKET ORDERS
     if(empty($symbol)){throw new Exception("No symbol selected!");}
-
     //QUERY TO SEE IF SYMBOL EXISTS
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
     if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange!");} //row count
-
     //NEGATIVE VALUE CHECK
     negativeValues();
     //CANCEL ORDER CHECK
     cancelOrderCheck();
     //REMOVES ALL EMPTY ORDERS
     zeroQuantityCheck($symbol);
-
     //FIND TOP OF ORDERBOOK
     $topOrders = OrderbookTop($symbol); //try catch
     $asks = $topOrders["asks"];
@@ -271,7 +267,6 @@ function orderbook($symbol)
     $topAskPrice = (float)$asks[0]["price"];
     $topBidPrice = (float)$bids[0]["price"];
     $tradeType = $topOrders["tradeType"];
-
     //PROCESS ORDERS
     $orderProcessed = 0; //orders processed
     $orderbook=[];
@@ -292,42 +287,34 @@ function orderbook($symbol)
         @$topBidSize = (int)($bids[0]["quantity"]);
         @$topBidUser = (int)($bids[0]["id"]);
         @$topBidUnits = (float)($bids[0]["total"]);
-
         $orderProcessed++; //orders processed plus 1
-
         if ($topBidPrice >= $topAskPrice) //TRADES ARE POSSIBLE
         { echo("<br>[" . $symbol . "] Trade possible...");
             //START TRANSACTION
             query("SET AUTOCOMMIT=0");
             query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
-
             //DETERMINE EXECUTED PRICE (bid or ask) BY EARLIER DATE TIME using UID
             if ($topBidUID < $topAskUID) { $tradePrice = $topBidPrice;} //with dates or uid, the smaller one is older
             elseif ($topBidUID > $topAskUID) { $tradePrice = $topAskPrice; }
             else {  query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("$topBidUID / $topAskUID Bid and Ask UID same!"); } //rollback on failure
-
             //DETERMINE TRADE SIZE
             if ($topBidSize <= $topAskSize) { $tradeSize = $topBidSize;}  //BID IS SMALLER SO DELETE AND UPDATE ASK ORDER
             elseif ($topBidSize > $topAskSize) { $tradeSize = $topAskSize;}
             else {  query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Bid Size or Ask Size Unknown!"); } //rollback on failure
             if ($tradeSize == 0) {throw new Exception("Trade Size is 0"); } //catch if trade size is null or zero
-
             //TRADE AMOUNT
             $tradeAmount = ($tradePrice * $tradeSize);
             $tradeAmount = round($tradeAmount, 2);
             if ($tradeAmount == 0) {throw new Exception("Trade Amount is 0");}
             //COMMISSION AMOUNT
             $commissionAmount = getCommission($tradeAmount);
-
             ////////////
             //ORDERBOOK
             /////////////
-
             //ASK INFO
             $orderbookQuantity = query("SELECT quantity FROM orderbook WHERE (uid = ?)", $topAskUID);
             $orderbookQuantity = (int)$orderbookQuantity[0]["quantity"];
             // throw new Exception(var_dump(get_defined_vars()));
-
             //REMOVE SHARES FROM ASK USER
             //IF SELLER TRYING TO SELL MORE THEN THEY OWN CANCEL ORDER
             if ($tradeSize > $orderbookQuantity) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topAskUID);
@@ -335,19 +322,15 @@ function orderbook($symbol)
             //UPDATE ASK ORDER //REMOVE QUANTITY
             if (query("UPDATE orderbook SET quantity=(quantity-?) WHERE uid=?", $tradeSize, $topAskUID) === false)
             {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Size OB Failure: #3"); } //rollback on failure
-
-
             // UPDATE BID ORDER //REMOVE units FUNDS
             $orderbookUnitsQ = query("SELECT total FROM orderbook WHERE uid=?", $topBidUID);
             $orderbookUnits = (float)$orderbookUnitsQ[0]["total"];
             //throw new Exception(var_dump(get_defined_vars()));
-
             //IF BUYER DOESN'T HAVE ENOUGH FUNDS CANCEL ORDER
             if ($orderbookUnits < $tradeAmount)
             {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUID); throw new Exception("Buyer does not have enough funds. Buyers orders deleted"); }
             if (query("UPDATE orderbook SET quantity=(quantity-?), total=(total-?) WHERE uid=?", $tradeSize, $tradeAmount, $topBidUID) === false)
             {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update OB Failure: #5"); }
-
             ///////////
             //ACCOUNTS
             ///////////
@@ -359,7 +342,6 @@ function orderbook($symbol)
             {   if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commissionAmount, $adminid) === false)
             { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update Accounts Failure: #11a"); }
             }
-
             ///////////
             //PORTFOLIO
             ///////////
@@ -377,7 +359,6 @@ function orderbook($symbol)
             elseif($askPortfolio > 0) {if (query("UPDATE portfolio SET price = (price - ? - ?) WHERE (id = ? AND symbol = ?)", $tradeAmount, $commissionAmount, $topAskUser, $symbol) === false)
             { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #14a"); } }
             else { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #14b. Seller has no portfolio." . $topAskUser); }
-
             //GIVE SHARES TO BID USER
             $bidQuantityRows = query("SELECT symbol FROM portfolio WHERE (id = ? AND symbol = ?)", $topBidUser, $symbol); //Checks to see if they already own stock to determine if we should insert or update tables
             $countRows = count($bidQuantityRows);
@@ -391,27 +372,22 @@ function orderbook($symbol)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #19"); } }
             //ERROR: TO MANY ROWS
             else { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("$topBidUser has too many $symbol Portfolios! #20b"); }  //throw new Exception(var_dump(get_defined_vars()));
-
             ///////////
             //TRADE
             ///////////
             if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $topBidUser, $topAskUser, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount, $tradeType, $topBidUID, $topAskUID) === false)  { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21a"); }
-
-
             ///////////
-            //HISTORY-NOT NEEDED AS UPDATED IN TRADES
+            //HISTORY
             ///////////
             //UPDATE HISTORY BUYER (COMMISSION AND TRADE TOTAL)
-            //if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topBidUser, 'BUY', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21b"); }
+            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topBidUser, 'BUY', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21b"); }
             //UPDATE HISTORY SELLER (NO COMMISSION AND TRAD EAMOUNT)
-            //if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topAskUser, 'SELL', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21c"); }
+            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topAskUser, 'SELL', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21c"); }
             //UPDATE HISTORY ADMIN (COMMISSION AND TRADE TOTAL)
-            //if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, 'COMMISSION', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21d"); }
-
+            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, 'COMMISSION', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21d"); }
             //ALL THINGS OKAY, COMMIT TRANSACTIONS
             query("COMMIT;"); //If no errors, commit changes
             query("SET AUTOCOMMIT=1");
-
             //LAST TRADE INFO TO RETURN ON FUNCTION
             if ($topAskType == 'market') { $topAskPrice = 'market'; } //null//$tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
             if ($topBidType == 'market') { $topBidPrice = 'market'; } //null// $tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
@@ -435,7 +411,6 @@ function orderbook($symbol)
             if (empty($tradePrice)) {$tradePrice = 0;} //if no trades so should be empty
             $orderbook['tradePrice'] = $tradePrice;
             $orderbook['tradeType'] = $tradeType;
-
             echo("<br><br><b>Executed: Trade Price: " . number_format($orderbook['tradePrice'],2,".",",") . " (" . $orderbook['tradeType'] . ")</b>");
             echo("<br>Ask Price: " . number_format($orderbook['topAskPrice'],2,".",","));
             echo("<br>Ask UID: " . $orderbook['topAskUID']); //order id; unique id
@@ -453,16 +428,12 @@ function orderbook($symbol)
             echo("<br>Bid Type: " . $orderbook['topBidType']); //limit or market
             echo("<br>Bid Size: " . $orderbook['topBidSize']);
             echo("<br>Bid User: " . $orderbook['topBidUser']);
-
-
-
             //NEGATIVE VALUE CHECK
             negativeValues();
             //CANCEL ORDER CHECK
             cancelOrderCheck();
             //REMOVES ALL EMPTY ORDERS
             zeroQuantityCheck($symbol);
-
             //FIND TOP OF ORDERBOOK
             $topOrders = OrderbookTop($symbol); //try catch
             $asks = $topOrders["asks"];
@@ -470,23 +441,16 @@ function orderbook($symbol)
             $topAskPrice = (float)$asks[0]["price"];
             $topBidPrice = (float)$bids[0]["price"];
             $tradeType = $topOrders["tradeType"];
-
-
-
-
         } //IF TRADES ARE POSSIBLE
         elseif($topBidPrice < $topAskPrice){throw new Exception("No trades possible!");}
         //{throw new Exception("No trades possible!");} //TRADES ARE NOT POSSIBLE
         else {throw new Exception("ERROR!");}
-
     } //BOTTOM of WHILE STATEMENT
-
     $orderbook['orderProcessed'] = $orderProcessed;
     return($orderbook);
-
 //catch(Exception $e) {echo('<br>Message: [' . $symbol . "] " . $e->getMessage());}
-
 } //END OF FUNCTION
+
 
 
 
