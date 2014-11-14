@@ -696,7 +696,7 @@ function publicOffering2($symbol, $userid, $issued, $fee)
     if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, $userid, $transaction, $symbol, $issued, $fee, 0) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Insert History Failure 3ipo"); }
 
 //INSERT TRADE INTO PORTFOLIO OF OWNER MINUS FEE
-    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $ownersQuantity, $price, $fee, $issued, $transaction, 0, 0) === false)
+    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $ownersQuantity, $price, $fee, 0, $transaction, 0, 0) === false)
     {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Insert Owner Trade Error");}
 
 //INSERT FEE SHARES INTO PORTFOLIO OF ADMIN
