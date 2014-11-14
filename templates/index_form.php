@@ -3,10 +3,10 @@
 <table class="table table-condensed  table-bordered" >
 
         <tr  class="success">
-            <td colspan="7" style="font-size:20px; text-align: center;">ACCOUNTS</td>
+            <td colspan="8" style="font-size:20px; text-align: center;">ACCOUNTS</td>
         </tr>
         <tr   class="active">
-            <th>Account #</th>
+            <th colspan="2">Account #</th>
             <th>Type</th>
             <th colspan="4">Description</th>
             <th>Amount</th>
@@ -17,7 +17,7 @@
         if($units >= 0)
         {       ?>
             <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
                 <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td></td>
                 <td colspan="4"><?php echo($unitdescription); ?></td>
                 <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
@@ -28,7 +28,7 @@
         if($loan <=-0.00000001)
         {   ?>
             <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
                 <td><?php echo(strtoupper("LOAN")) //set in finance.php ?></td></td>
                 <td colspan="4">APR: <?php echo(htmlspecialchars(number_format($rate,2)));?>%</td>
                 <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
@@ -41,7 +41,7 @@
             ?>
 
             <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid);
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid);
                     $i++;
                     echo("-" . $i); ?></td>
                 <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>
@@ -54,12 +54,12 @@
         }
         if($i == 0)
         {
-            echo("<tr><td colspan='7'>You do not have any funds in any accounts</td></tr>");
+            echo("<tr><td colspan='8'>You do not have any funds in any accounts</td></tr>");
 
         } ?>
 
             <tr  class="active">
-                <td colspan="6"><strong>SUBTOTAL</strong></td>
+                <td colspan="7"><strong>SUBTOTAL</strong></td>
                 <td>
                     <strong>
                         <?php
@@ -70,14 +70,17 @@
                 </td>
             </tr>
 
-        <tr><td colspan="7"> </td></tr><!--blank line-->
+        <tr><td colspan="8"> </td></tr><!--blank line-->
     <!-- HEADER ROW -->
+    
+
     <tr class="success">
-        <td colspan="7" style="font-size:20px; text-align: center;">PORTFOLIO</td>
+        <td colspan="8" style="font-size:20px; text-align: center;">PORTFOLIO</td>
     </tr> <!--blank row breaker-->
 
     <tr  class="active">
-        <th><div style='float:left;width:50%;'>Symbol&nbsp;&nbsp;&nbsp;/</div><div style='float:right;width:50%;'>Control</div></th>
+        <th>Symbol</th>
+        <th>Control</th>
         <th>Quantity</th>
         <th>Locked*</th>
         <th>Price</th>
@@ -91,13 +94,10 @@
     foreach ($portfolio as $row) {
            $totalOwned=($row["quantity"]+$row["locked"]);
         echo("<tr>");
-        echo("<td><div style='float:left;width:50%;'>&nbsp;&nbsp;&nbsp;" 
-           . "<form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp; " . $row['symbol'] . " &nbsp;</b></button></form>" . 
+        echo("<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp; " . $row['symbol']
+           . " &nbsp;</b></button></form></td>");
         // . htmlspecialchars($row["symbol"]) .
-             "&nbsp;&nbsp; </div><div style='float:right;width:50%;'> " . (number_format($totalOwned, 0, ".", ",")) . " (" . (number_format($row["control"], 2, ".", ",")) . "%)</div>" .
-            "</td>");  //htmlspecialchars
-
-
+        echo("<td>" . (number_format($totalOwned, 0, ".", ",")) . " (" . (number_format($row["control"], 2, ".", ",")) . "%)</td>");  //htmlspecialchars
         echo("<td>" . (number_format($row["quantity"], 0, ".", ",")) . "</td>");
         echo("<td>" . (number_format($row["locked"], 0, ".", ",")) . "</td>");
         echo("<td>" . $unitsymbol . (number_format($row["price"], 2, ".", ",")) . "</td>");
@@ -127,7 +127,7 @@
 
 
     if ($i == 0) {
-        echo("<tr><td colspan='7'>You do not have any stocks in your portfolio account</td></tr>");
+        echo("<tr><td colspan='8'>You do not have any stocks in your portfolio account</td></tr>");
         $portfolioTotal = 0;  //set to zero for networth calc
         ?>
         <tr  class="active">
@@ -137,7 +137,7 @@
             <td><strong>0</strong></td>
         </tr>
         <tr>
-            <td colspan="7" style="font-size:10px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order(s)</i></td>
+            <td colspan="8" style="font-size:10px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order(s)</i></td>
         </tr>
  
         <?php
@@ -147,7 +147,7 @@
 
         <!-- TOTAL STOCK WORTH -->
         <tr  class="active">
-            <td colspan="4"><strong>SUBTOTAL</strong></td>
+            <td colspan="5"><strong>SUBTOTAL</strong></td>
             <td><strong>
                     <?php //calculate value of purchase price
                     $purchaseprice = $purchaseprice[0]["purchaseprice"]; //convert array to number
@@ -205,14 +205,14 @@
 
 
 
-        <tr><td colspan="7"> </td></tr><!--blank line-->
+        <tr><td colspan="8"> </td></tr><!--blank line-->
     <tr  class="success">
-        <td colspan="7" style="font-size:20px; text-align: center;">NETWORTH</td>
+        <td colspan="8" style="font-size:20px; text-align: center;">NETWORTH</td>
     </tr>
 
           <!-- NETWORTH ROW -->
     <tr class="active">
-        <td colspan="6"><strong>TOTAL</strong></td>
+        <td colspan="7"><strong>TOTAL</strong></td>
         <td>
             <strong>
                 <?php
