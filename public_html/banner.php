@@ -1,3 +1,4 @@
+<?php
 // configuration
 //require("../includes/config.php");
 //apologize(var_dump(get_defined_vars()));
