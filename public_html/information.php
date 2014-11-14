@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $totalPortfolio = $public[0]["quantity"]; //shares held
         
         //USERS OWNERSHIP
-        $usersPortfolio =query("SELECT SUM(`quantity`) AS quantity FROM `portfolio` WHERE (symbol = ?)", $symbol);	  // query user's portfolio
+        $usersPortfolio =query("SELECT SUM(`quantity`) AS quantity FROM `portfolio` WHERE (symbol=? AND id=?)", $symbol, $id);	  // query user's portfolio
         $asset["quantity"]=$usersPortfolio[0]["quantity"];
         
         //ALL OWNERSHIP FOR PIECHART 
