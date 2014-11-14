@@ -208,11 +208,7 @@
 </table>
 <?php
 
-//} //bracket for the show on log in argument //
-
 //var_dump(get_defined_vars()); //dump all variables anywhere (displays in header)
 include("banner.php");
-
-
-<?php } //bracket for the show on log in argument
+ } //bracket for the show on log in argument
 ?>
