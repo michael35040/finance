@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         
         //USERS OWNERSHIP
         $usersPortfolio =query("SELECT SUM(`quantity`) AS quantity FROM `portfolio` WHERE (symbol = ?)", $symbol);	  // query user's portfolio
-        $asset["quantity"]=$usersPortfolio["quantity"];
+        $asset["quantity"]=$usersPortfolio[0]["quantity"];
         
         //ALL OWNERSHIP FOR PIECHART 
         $ownership =query("SELECT SUM(`quantity`) AS quantity, id FROM `portfolio` WHERE (symbol = ?) GROUP BY `id` ORDER BY `quantity` DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
