@@ -67,7 +67,7 @@
                 echo("['Date', 'Price', 'Volume'],"); // ['Year', 'Sales', 'Expenses'],
                 //SQL QUERY FOR ALL TRADES
 
-                foreach ($tradesChart as $trade)	// for each of user's stocks
+                foreach ($trades as $trade)	// for each of user's stocks
                 {
                     $dbDate = $trade["date"];
                     $date = strtotime($dbDate);
@@ -120,7 +120,7 @@
                     echo("['" . $price . "', " . $quantity .  ", " . $date . "],");
                 }
 
-                foreach ($asksGroupChart as $trade)	// for each of user's stocks
+                foreach ($asksGroup as $trade)	// for each of user's stocks
                 {
                     $date = 0;
                     $price = number_format(($trade["price"]), 2, '.', '');
@@ -269,7 +269,7 @@ if($tradesGroupChart != null)
 
 
 <?php
-if($tradesChart != null)
+if($trades != null)
 { ?>
     <div id="chart_div1" style="overflow:hidden;"></div>
 <?php } ?>
@@ -305,7 +305,7 @@ if($tradesChart != null)
     </tr>
 
     <?php
-
+    $i=0;
     foreach ($trades as $trade) {
         @$tradeID = $trade["uid"];
         @$tradeType = $trade["type"];
@@ -326,6 +326,8 @@ if($tradesChart != null)
                 <td>$" . number_format($price, 2, ".", ",") . "</td>
                 <td>$" . number_format($total, 2, ".", ",") . "</td>
                 </tr>");
+        $i++;
+        if($i==5){break;}
     } //foreach
 
     ?>
