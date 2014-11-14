@@ -114,7 +114,7 @@
 
         <tr id="urlTR">
             <td>Webpage URL</td>
-            <td><input type="url" id="url" name="url" maxlength="60" placeholder="ex: abcd.com" ></td>
+            <td><input type="url" id="url" name="url" maxlength="60" placeholder="http://abcd.com" value="http://"></td>
         </tr>
 
 
