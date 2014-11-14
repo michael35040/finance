@@ -58,7 +58,7 @@
     </title>
 
     <?php //$ranimg = rand(1,5); ?>
-    <link rel="shortcut icon" href="..includes/<?php //echo($ranimg); ?>1.ico" />
+    <link rel="shortcut icon" href="../includes/<?php //echo($ranimg); ?>1.ico" />
 
 
 

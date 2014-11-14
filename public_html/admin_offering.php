@@ -46,7 +46,8 @@ redirect("assets.php", ["title" => $message]); // render success form
 }
 else
 {
-render("admin_offering_form.php", ["title" => "Public Offering"]); // render buy form //***/to remove C/***/
+    $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC"); // query user's portfolio
+    render("admin_offering_form.php", ["title" => "Public Offering", "assets" => $assets]); // render buy form //***/to remove C/***/
 }
 //         apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
 ?>

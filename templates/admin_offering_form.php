@@ -49,7 +49,21 @@
         <tr>
             <td style="width:20%">Symbol</td>
             <td style="width:80%">
-            <input type="text" name="symbol" maxlength="8" placeholder="ex: ABCD" required></td>
+            <input type="text" name="symbol2" id="symbol2" list="symbol2" maxlength="8" placeholder="ex: ABCD" required><br>
+            <input list="symbol">
+                <datalist id="symbol">
+                    <?php
+                        foreach ($assets as $asset) {
+                            $symbol = $asset["symbol"];
+                            echo("<option value='" . $symbol . "'> " . $symbol . "</option>");
+                        }
+
+                    ?>
+                </datalist>
+
+
+
+            </td>
         </tr>
 
         <tr>
