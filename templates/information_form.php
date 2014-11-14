@@ -66,8 +66,8 @@
 
                 echo("['Date', 'Price', 'Volume'],"); // ['Year', 'Sales', 'Expenses'],
                 //SQL QUERY FOR ALL TRADES
-
-                foreach ($trades as $trade)	// for each of user's stocks
+                $tradesChart = array_reverse($trades); //so it will be in correct ASC order for chart
+                foreach ($tradesChart as $trade)	// for each of user's stocks
                 {
                     $dbDate = $trade["date"];
                     $date = strtotime($dbDate);
@@ -111,7 +111,7 @@
                 echo("['Date', 'Bids', 'Asks'],"); // ['Year', 'Sales', 'Expenses'],
                 //SQL QUERY FOR ALL TRADES
 
-
+                $bidsGroupChart = array_reverse($bidsGroup); //so it will be in correct ASC order for chart
                 foreach ($bidsGroupChart as $trade)	// for each of user's stocks
                 {
                     $date = 0;
