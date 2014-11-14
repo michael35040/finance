@@ -45,7 +45,7 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
     $stock["issued"]=$issued;
     
     //USERS CONTROL
-    if($stock["public"]==0){$stock["control"]=0;}
+    if($stock["public"]==0){$stock["control"]=0;} //can also use 'issued' for this and the one below as they should in theory be the same
     else{$stock["control"] = (($stock["quantity"]+$stock["locked"])/$stock["public"])*100; } //based on public
 
     $stock["value"] = $row["price"]; //total purchase price, value when bought
