@@ -33,7 +33,14 @@ if($i>0)
 </td>
 <td>ALL</td></tr>
 </table>
-<?php } ?>
+<?php }
+else
+{ ?>
+  <td colspan="2">No inactive users</td>
+<?php  
+}
+
+?>
 
 
 
@@ -56,8 +63,8 @@ foreach ($activeUsers as $user)
    <tr>
      <td>
       <form><span class="input-group-btn">
-      <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="admin_activate.php" name="deactivate" value="' . $user["id"] . '">
-      <span class="glyphicon glyphicon-plus-sign"></span> Activate</button></span></form>
+      <button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="admin_activate.php" name="deactivate" value="' . $user["id"] . '">
+      <span class="glyphicon glyphicon-minus-sign"></span> Deativate</button></span></form>
     </td>
     <td>' . $user["id"] . '</td></tr>');
 }
@@ -66,9 +73,16 @@ if($i>0)
 ?>
 <tr><td>
       <form><span class="input-group-btn">
-      <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="admin_activate.php" name="deactivate" value="ALL">
-      <span class="glyphicon glyphicon-plus-sign"></span> Activate</button></span></form>
+      <button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="admin_activate.php" name="deactivate" value="ALL">
+      <span class="glyphicon glyphicon-minus-sign"></span> Deativate</button></span></form>
 </td>
 <td>ALL</td></tr>
 </table>
-<?php } ?>
+<?php } 
+else
+{ ?>
+  <td colspan="2">No active users</td>
+<?php  
+}
+
+?>
