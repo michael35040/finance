@@ -45,8 +45,9 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
     $stock["issued"]=$issued;
     
     //USERS CONTROL
-    $stock["control"] = (($stock["quantity"]+$stock["locked"])/$stock["public"])*100; //based on public
-    
+    if($stock["public"]==0){$stock["control"]=0;}
+    else{$stock["control"] = (($stock["quantity"]+$stock["locked"])/$stock["public"])*100; } //based on public
+
     $stock["value"] = $row["price"]; //total purchase price, value when bought
     $trades =	    query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $stock["symbol"]);	  // query user's portfolio
         @$stock["price"] = $trades[0]["price"]; //stock price per share
