@@ -60,7 +60,10 @@
 
     <tr>
         <td>Description</td>
-        <td><input type="text" name="description" maxlength="500" placeholder="ex: Makes special gadgets"  value="<?php echo($description); ?>"></td>
+        <td>
+      <!--  <input type="text" name="description" maxlength="500" placeholder="ex: Makes special gadgets"  value="<?php //echo($description); ?>"> -->
+        <textarea rows="4" cols="50" name="description" maxlength="500" ><?php echo($description); ?></textarea>
+        </td>
     </tr>
 
     <tr>
