@@ -89,11 +89,12 @@
     <!-- STOCKS ROW -->
     <?php $i = 0;
     foreach ($portfolio as $row) {
+           $totalOwned=($row["quantity"]+$row["locked"]);
         echo("<tr>");
         echo("<td><div style='float:left;width:50%;'>&nbsp;&nbsp;&nbsp;" 
            . "<form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp; " . $row['symbol'] . " &nbsp;</b></button></form>" . 
         // . htmlspecialchars($row["symbol"]) .
-             "&nbsp;&nbsp; </div><div style='float:right;width:50%;'>(" . (number_format($row["control"], 2, ".", ",")) . "%)</div>" .
+             "&nbsp;&nbsp; </div><div style='float:right;width:50%;'> " . (number_format($totalOwned, 0, ".", ",")) . " (" . (number_format($row["control"], 2, ".", ",")) . "%)</div>" .
             "</td>");  //htmlspecialchars
 
 
