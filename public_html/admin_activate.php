@@ -30,6 +30,7 @@ else
 $limit = "LIMIT 0, 10";
 $inactiveUsers = query("SELECT id, username, registered FROM users WHERE active=0 ORDER BY id ASC");
 $activeUsers = query("SELECT id, username, registered FROM users WHERE active=1 ORDER BY id ASC");
+
 //render("admin_activate.php", ["title" => $title, "inactiveUsers" => $inactiveUsers, "activeUsers" => $activeUsers]);
 } //else !post
 ?>
@@ -39,7 +40,7 @@ $activeUsers = query("SELECT id, username, registered FROM users WHERE active=1 
 
 
 
-table class="table table-condensed table-bordered">
+<table class="table table-condensed table-bordered">
 <tr class="success">
   <td colspan="9" style="font-size:20px; text-align: center;">INACTIVE USERS</td>
 </tr>
@@ -50,8 +51,9 @@ table class="table table-condensed table-bordered">
 </tr>
 <?php
 //list users
+$i=0;
 foreach ($inactiveUsers as $user)
-{
+{ $i++;
    echo('
    <tr>
      <td>
@@ -61,6 +63,8 @@ foreach ($inactiveUsers as $user)
     </td>
     <td>' . $user["id"] . '</td></tr>');
 }
+if($i>0)
+{
 ?>
 <tr><td>
       <form><span class="input-group-btn">
@@ -69,12 +73,12 @@ foreach ($inactiveUsers as $user)
 </td>
 <td>ALL</td></tr>
 </table>
+<?php } ?>
 
 
 
 
-
-table class="table table-condensed table-bordered">
+<table class="table table-condensed table-bordered">
 <tr class="success">
   <td colspan="9" style="font-size:20px; text-align: center;">ACTIVE USERS</td>
 </tr>
@@ -85,8 +89,9 @@ table class="table table-condensed table-bordered">
 </tr>
 <?php
 //list users
+$i=0;
 foreach ($activeUsers as $user)
-{
+{ $i++;
    echo('
    <tr>
      <td>
@@ -96,6 +101,8 @@ foreach ($activeUsers as $user)
     </td>
     <td>' . $user["id"] . '</td></tr>');
 }
+if($i>0)
+{
 ?>
 <tr><td>
       <form><span class="input-group-btn">
@@ -104,3 +111,4 @@ foreach ($activeUsers as $user)
 </td>
 <td>ALL</td></tr>
 </table>
+<?php } ?>
