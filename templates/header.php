@@ -329,30 +329,28 @@ foreach ($SBallAssets as $SBrow)		// for each of user's stocks
 
 
             <?php //echo($sitename);
+            //MARKET INDEX
             echo('<span class="stockbox">');
+            //echo("INDEX MARKET CAP.&nbsp;");echo($unitsymbol . number_format($SBindexMarketCap, 2, ".", ",")); 
             echo("INDEX&nbsp;");
-            echo($unitsymbol . number_format($SBindexValue, 2, ".", ","));
-            $change=(mt_rand(1,200)/100);
-            $posneg=(mt_rand(1,2));
-            if($posneg==1)  {echo('<span style="color: #009900;"> &#x25B2; ' . $change . '</span></span>');}
-            else            {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}
+            echo($unitsymbol . number_format($SBindexValue, 2, ".", ",")); // number_format($SBindexMarketCap, 0, ".", ","));
+            //CHANGE AND ARROWS
+            //$change=(mt_rand(1,200)/100);
+            //$posneg=(mt_rand(1,2));
+            //if($posneg==1)  {echo('<span style="color: #009900;"> &#x25B2; ' . $change . '</span></span>');}
+            //else            {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}
 
-
-            //echo('<span style="color: #009900;">&uarr;0.15</span></span>');
-            //echo($unitsymbol . number_format($SBindexMarketCap, 0, ".", ","));
+            //EACH SHARE
             foreach ($SBassets as $SBasset)
             {
                 echo('<span class="stockbox">');
                 echo($SBasset["symbol"] . "&nbsp;");
-                echo($unitsymbol . number_format($SBasset["price"], 2, ".", ","));
-                $change=(mt_rand(1,200)/100);
-                $posneg=(mt_rand(1,2));
-                if($posneg==1)  {echo('<span style="color: #009900;"> &#x25B2; ' . $change . '</span></span>');} //up
-                else            {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}//down
-                //&#x25C4; &#x25BA; //<> even
-
-                //echo('<span style="color: #ff0000;">&darr;0.08</span></span>');
-                //" " . $unitsymbol . number_format($asset["SBmarketcap"], 0, ".", ",")
+                echo($unitsymbol . number_format($SBasset["price"], 2, ".", ",")); 
+                //CHANGE AND ARROWS
+                //$change=(mt_rand(1,200)/100);
+                //$posneg=(mt_rand(1,2));
+                //if($posneg==1)  {echo('<span style="color: #009900;"> &#x25B2; ' . $change . '</span></span>');} //up
+                //else            {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}//down
             }
             ?>
 
