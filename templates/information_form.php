@@ -251,10 +251,11 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         '<br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) .
         '</td>');
     echo('</tr>');
-    echo('<tr class="default"><td colspan="4">Portfolio: ' . number_format($asset["quantity"], 0, ".", ",") . '</td></tr>');
-    echo('<tr class="default"><td colspan="4">Orderbook: ' . number_format($asset["locked"], 0, ".", ",") . '</td></tr>');
-    echo('<tr class="active"><td colspan="4">Total: ' . number_format(($asset["locked"]+$asset["quantity"]), 0, ".", ",") . '</td></tr>');
-    echo('<tr class="active"><td colspan="4">Control: ' . number_format($asset["control"], 0, ".","") . '%</td></tr>');
+    echo('<tr class="default">
+        <td colspan="1">Portfolio: ' . number_format($asset["quantity"], 0, ".", ",") . '</td>
+        <td colspan="1">Orderbook: ' . number_format($asset["locked"], 0, ".", ",") . '</td>
+        <td colspan="1">Total: ' . number_format(($asset["locked"]+$asset["quantity"]), 0, ".", ",") . '</td>
+        <td colspan="1">Control: ' . number_format($asset["control"], 0, ".","") . '%</td></tr>');
     echo('<tr><td colspan="4">Description: ' . htmlspecialchars(ucfirst($asset["description"])) . '</td></tr>');
     echo('</div>'); 
     ?>
