@@ -252,6 +252,10 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         '</td>');
     echo('</tr>');
     echo('<tr><td colspan="4">Description: ' . htmlspecialchars(ucfirst($asset["description"])) . '</td></tr>');
+    echo('<tr><td colspan="4">Portfolio: ' . htmlspecialchars($asset["quantity"]) . '</td></tr>');
+    echo('<tr><td colspan="4">Orderbook: ' . htmlspecialchars($asset["locked"]) . '</td></tr>');
+    echo('<tr><td colspan="4">Total: ' . htmlspecialchars($asset["locked"]+$asset["quantity"]) . '</td></tr>');
+    echo('<tr><td colspan="4">Control: ' . htmlspecialchars($asset["control"]) . '</td></tr>');
     echo('</div>');
     ?>
     </tbody>
