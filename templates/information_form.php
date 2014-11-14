@@ -252,7 +252,7 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         '</td>');
     echo('</tr>');
     echo('<tr class="active"><td colspan="4">Description: ' . htmlspecialchars(ucfirst($asset["description"])) . '</td></tr>');
-    echo("<tr class='info'><td colspan='4' style='text-align: center'>YOUR ACCOUNT</td></tr>");
+    echo("<tr class='info'><td colspan='4' style='text-align: center; font-weight: bold;'>YOUR ACCOUNT</td></tr>");
     echo('<tr>
         <td colspan="1">Portfolio</td>
         <td colspan="1">Orderbook</td>
