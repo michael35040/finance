@@ -120,7 +120,10 @@
 
         <tr id="descriptionTR">
             <td>Description</td>
-            <td><input type="text" id="description" name="description" maxlength="500" placeholder="ex: Makes special gadgets" ></td>
+            <td>
+           <!-- <input type="text" id="description" name="description" maxlength="500" placeholder="ex: Makes special gadgets" > -->
+            <textarea rows="4" cols="50" type="text" id="description" name="description" maxlength="500" placeholder="ex: Makes special gadgets"></textarea>
+            </td>
         </tr>
 
         <tr>
