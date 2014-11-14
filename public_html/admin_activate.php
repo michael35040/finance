@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     else { if (query("UPDATE users SET type=0 WHERE id=?", $id) === false) {apologize("Unable to deactivate user!");}}
     redirect('admin_activate.php');
   }
-  else{redirect('admin_activate.php';)}
+  else{redirect('admin_activate.php');}
 }
 else
 {
