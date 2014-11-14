@@ -57,6 +57,6 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
 }
 
 // render portfolio (pass in new portfolio table and cash)
-render("index_form.php", ["title" => "Accounts", "portfolio" => $portfolio, "purchaseprice" => $purchaseprice, "bidLocked" => $bidLocked]);
+render("portfolio_form.php", ["title" => "Portfolio", "portfolio" => $portfolio, "purchaseprice" => $purchaseprice, "bidLocked" => $bidLocked]);
 
 ?>
