@@ -13,6 +13,5 @@ $bidLocked = $bidLocked[0]["total"]; //shares trading
 
 
 // render portfolio (pass in new portfolio table and cash)
-render("index_form.php", ["title" => "Accounts"]);
-render("portfolio_form.php", ["title" => "Accounts", "purchaseprice" => $purchaseprice, "bidLocked" => $bidLocked]);
+render("index_form.php", ["title" => "Accounts", "purchaseprice" => $purchaseprice, "bidLocked" => $bidLocked]);
 ?>
