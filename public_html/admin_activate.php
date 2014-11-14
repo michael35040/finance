@@ -9,18 +9,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
   {
     $id = $_POST["activate"];
     //CANCEL ALL USERS ORDERS
-    if ($id == 'ALL') { if (query("UPDATE users SET activate=1", $id) === false) {apologize("Unable to activate all users!");}} 
+    if ($id == 'ALL') { if (query("UPDATE users SET active=1", $id) === false) {apologize("Unable to activate all users!");}} 
     //CANCEL ONLY 1 ORDER
-    else { if (query("UPDATE users SET type=1 WHERE id=?", $id) === false) {apologize("Unable to activate user!");}}
+    else { if (query("UPDATE users SET active=1 WHERE id=?", $id) === false) {apologize("Unable to activate user!");}}
     redirect('admin_activate.php');
   }
   elseif (isset($_POST["deactivate"]))
   {
     $id = $_POST["deactivate"];
     //CANCEL ALL USERS ORDERS
-    if ($id == 'ALL') { if (query("UPDATE users SET activate=0", $id) === false) {apologize("Unable to deactivate all users!");}} 
+    if ($id == 'ALL') { if (query("UPDATE users SET active=0", $id) === false) {apologize("Unable to deactivate all users!");}} 
     //CANCEL ONLY 1 ORDER
-    else { if (query("UPDATE users SET type=0 WHERE id=?", $id) === false) {apologize("Unable to deactivate user!");}}
+    else { if (query("UPDATE users SET active=0 WHERE id=?", $id) === false) {apologize("Unable to deactivate user!");}}
     redirect('admin_activate.php');
   }
   else{redirect('admin_activate.php');}
