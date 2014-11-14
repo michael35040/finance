@@ -251,6 +251,7 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         '<br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) .
         '</td>');
     echo('</tr>');
+    echo('<tr><td colspan="4">Description: ' . htmlspecialchars(ucfirst($asset["description"])) . '</td></tr>');
     echo('</div>');
     ?>
     </tbody>

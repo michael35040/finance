@@ -86,7 +86,7 @@ while ($i < 26) {
     $quantity = $issued / 2;
 
     //publicOffering($symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description)
-    try { $publicOffering = publicOffering($po, $symbol, $symbol, 2, $issued, 'limit', '', $fee, '', 0, '');
+    try { $publicOffering = publicOffering($po, $symbol, $symbol, 2, $issued, 'stocks', '', $fee, '', 0, '');
 
         query("INSERT INTO `portfolio` (`id`, `symbol`, `quantity`, `price`) VALUES (3, ?, ?, ?)", $symbol, $quantity, $price);
         echo("<br>Issued-[Symbol:" . $symbol . ", Quantity:" . $quantity . ", Fee:" . $fee);

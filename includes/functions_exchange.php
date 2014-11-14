@@ -505,22 +505,29 @@ function orderbook($symbol)
 ////////////////////////////////////
 //Update Stock
 ////////////////////////////////////
-function updateSymbol($symbol, $newSymbol, $userid, $name, $type, $owner, $url, $rating, $description)
+function updateSymbol($symbol, $newSymbol, $userid, $name, $type, $url, $rating, $description)
 {   
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
     //CHECK TO SEE IF SYMBOL EXISTS
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
     $countOwnersRows = count($symbolCheck);
-    if ($countOwnersRows != 1) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Symbol does not exsist."); }
-    if (!empty($newSymbol)) { if (query("UPDATE assets SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
+    if ($countOwnersRows != 1) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Symbol does not exist."); }
+
     if (!empty($userid)) { if (query("UPDATE assets SET userid = ? WHERE symbol = ?", $userid, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
     if (!empty($name)) { if (query("UPDATE assets SET name = ? WHERE symbol = ?", $name, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
-    if (!empty($type)) { if (query("UPDATE assets SET type = ? WHERE symbol = ?", $type, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
-    if (!empty($owner)) { if (query("UPDATE assets SET owner = ? WHERE symbol = ?", $owner, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
+    if (!empty($type)) { if (query("UPDATE assets SET type=? WHERE symbol = ?", $type, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
     if (!empty($url)) { if (query("UPDATE assets SET url = ? WHERE symbol = ?", $url, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
     if (!empty($rating)) { if (query("UPDATE assets SET rating = ? WHERE symbol = ?", $rating, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
     if (!empty($description)) { if (query("UPDATE assets SET description = ? WHERE symbol = ?", $description, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
+    if (!empty($newSymbol)) {
+        if (query("UPDATE assets SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
+        if (query("UPDATE history SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
+        if (query("UPDATE orderbook SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
+        if (query("UPDATE trades SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
+        if (query("UPDATE portfolio SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
+    }
+
     query("COMMIT;"); //If no errors, commit changes
     query("SET AUTOCOMMIT=1");
     return("$symbol Update successful!");
@@ -544,7 +551,7 @@ function updateSymbol($symbol, $newSymbol, $userid, $name, $type, $owner, $url, 
 ////////////////////////////////////
 //Public Offering
 ////////////////////////////////////
-function publicOffering($offering, $symbol, $name, $userid, $issued, $type, $owner, $fee, $url, $rating, $description)
+function publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description)
 {   $adminid = 1;
 $transaction='PO'; //public offering
 if (empty($symbol)) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("You must enter symbol."); }
@@ -553,8 +560,7 @@ $symbol = strtoupper($symbol); //cast to UpperCase
 query("SET AUTOCOMMIT=0");
 query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
-if($offering=='initial')
-{
+
     if (empty($fee)) { $fee=0; }
     if (empty($userid)) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("You must enter owner user # when conducting a follow on public offering ."); }
     $feeQuantity = ($issued * $fee);
@@ -569,28 +575,7 @@ if($offering=='initial')
     //INSERT ASSET
     if (query("INSERT INTO assets (`symbol`, `name`, `userid`, `fee`, `issued`, `url`, `type`, `rating`, `description`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $userid, $fee, $issued, $url, $type, $rating, $description) === false)  //create IPO
     { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure to insert into assets"); }
-} //if initial
-elseif($offering=='followon')
-{
-    if (!empty($userid)) { if (query("UPDATE assets SET userid = ? WHERE symbol = ?", $userid, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
-    if (!empty($fee)) { if (query("UPDATE assets SET fee = ? WHERE symbol = ?", $fee, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");} }
-    if (!empty($issued))
-    
-    //CHECK TO SEE IF SYMBOL EXISTS
-    $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
-    $countOwnersRows = count($symbolCheck);
-    if ($countOwnersRows != 1) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Symbol does not exsist."); }
-    
-    if (empty($fee)) { $fee=0; }
-    if (empty($userid)) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("You must enter owner user # when conducting a follow on public offering ."); }
-    $feeQuantity = ($issued * $fee);
-    $ownersQuantity = ($issued - $feeQuantity);
-    $price = 0; //since a public offering, cost is 0.
-    if (query("UPDATE assets SET issued = issued+? WHERE symbol = ?", $issued, $symbol) === false)
-    {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update assets"); }
-}//if !empty issued
 
-} //if $offering initial
 //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
 $ownerPortfolio = query("SELECT symbol FROM portfolio WHERE (id =? AND symbol =?)", $userid, $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
 $countOwnersRows = count($ownerPortfolio);
@@ -648,9 +633,103 @@ if ($adminPortfolio == 0)
 
 query("COMMIT;"); //If no errors, commit changes
 query("SET AUTOCOMMIT=1");
+
 return("$symbol Public offering successful!");
 } //function
 
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////
+//Public Offering
+////////////////////////////////////
+function publicOffering2($symbol, $userid, $issued, $fee)
+{   $adminid = 1;
+    $transaction='PO'; //public offering
+    query("SET AUTOCOMMIT=0");
+    query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+    $symbol = strtoupper($symbol); //cast to UpperCase
+
+    //CHECK TO SEE IF SYMBOL EXISTS
+    $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
+    $countOwnersRows = count($symbolCheck);
+    if ($countOwnersRows != 1) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Symbol does not exsist."); }
+
+    $feeQuantity = ($issued * $fee);
+    $ownersQuantity = ($issued - $feeQuantity);
+    $price = 0; //since a public offering, cost is 0.
+    if (query("UPDATE assets SET issued=(issued+?) WHERE symbol = ?", $issued, $symbol) === false)
+    {query("ROLLBACK"); query("SET AUTOCOMMIT=1");apologize("Failure to update assets"); }
+
+//INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
+    $ownerPortfolio = query("SELECT symbol FROM portfolio WHERE (id =? AND symbol =?)", $userid, $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
+    $countOwnersRows = count($ownerPortfolio);
+    if ($countOwnersRows == 0)
+    {
+        if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $userid, $symbol, $ownersQuantity, $price) === false)
+        {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Insert to Owners Portfolio Error1");} //update portfolio
+    } //updates if stock already owned
+    elseif ($countOwnersRows == 1) //else update db
+    {   if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $ownersQuantity, $price, $userid, $symbol) === false)
+    {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update to Owners Portfolio Error2");} //update portfolio
+    }
+    else
+    {
+        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Public Offering Error: Too many symbol rows in assets. $symbol / $userid");
+    } //apologizes if first two conditions are not meet
+
+//INSERT INTO HISTORY
+    if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, $userid, $transaction, $symbol, $issued, $fee, 0) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Insert History Failure 3ipo"); }
+
+//INSERT TRADE INTO PORTFOLIO OF OWNER MINUS FEE
+    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $ownersQuantity, $price, $fee, $issued, $transaction, 0, 0) === false)
+    {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Insert Owner Trade Error");}
+
+//INSERT FEE SHARES INTO PORTFOLIO OF ADMIN
+    $adminPortfolio = query("SELECT symbol FROM portfolio WHERE (id = ? AND symbol = ?)", $adminid, $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
+    $adminPortfolio = count($adminPortfolio);
+    if ($adminPortfolio == 0)
+    { if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $adminid, $symbol, $feeQuantity, $price) === false) {
+        query("ROLLBACK"); //rollback on failure
+        query("SET AUTOCOMMIT=1");            apologize("Insert Fee to Admin Error");} //update portfolio
+    } //updates if stock already owned
+    elseif ($adminPortfolio == 1) //else update db
+    {
+        if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $feeQuantity, $price, $adminid, $symbol) === false) {
+            query("ROLLBACK"); //rollback on failure
+            query("SET AUTOCOMMIT=1");
+            apologize("Update to Admin Portfolio Error");
+        } //update portfolio
+    } else {
+        query("ROLLBACK"); //rollback on failure
+        query("SET AUTOCOMMIT=1");
+        //apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
+        apologize("Admin Portfolio Error");
+    } //apologizes if first two conditions are not meet
+
+
+    //INSERT TRADE SHARES INTO PORTFOLIO OF ADMIN
+    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $adminid, $userid, $feeQuantity, $price, $fee, 0, $transaction, 0, 0) === false) {
+        query("ROLLBACK"); //rollback on failure
+        query("SET AUTOCOMMIT=1");
+        apologize("Insert Admin Trade Error");
+    }
+
+
+    query("COMMIT;"); //If no errors, commit changes
+    query("SET AUTOCOMMIT=1");
+
+    return("$symbol Public offering successful!");
+} //function
 
 
 

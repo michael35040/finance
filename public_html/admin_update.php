@@ -1,65 +1,47 @@
 <?php
 
 require("../includes/config.php");  // configuration  
-
+//         apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
 $id = $_SESSION["id"];
 if ($id != 1) { apologize("Unauthorized!");}
 
-if( isset($_POST['symbol']) )
+elseif(isset($_POST['update']))
 {
+    @$symbol=$_POST["symbol"];
+    $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
+    $countOwnersRows = count($symbolCheck);
+    if ($countOwnersRows != 1) {apologize("Symbol does not exist."); }
+
     @$symbol = $_POST["symbol"];
     @$newSymbol = $_POST["newSymbol"];
     @$name = $_POST["name"];
     @$userid = $_POST["userid"]; //owner or chief executive
-    @$owner = $_POST["owner"]; //email of owner or chief executive
     @$url = $_POST["url"];
     @$type = $_POST["type"]; //share or commodity
     @$rating = $_POST["rating"]; //1 - 10
     @$description = $_POST["description"];
- 
-    try {$message = updateSymbol($symbol, $newSymbol, $userid, $name, $type, $owner, $url, $rating, $description);}
+
+    try {$message = updateSymbol($symbol, $newSymbol, $userid, $name, $type, $url, $rating, $description);}
     catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 
     redirect("assets.php", ["title" => $message]); // render success form
 
 }
+
+elseif(isset($_POST['symbol']))
+{
+    $symbol=$_POST['symbol'];
+    $assetinfo = query("SELECT * FROM assets WHERE symbol=?", $symbol);
+    render("admin_update_form.php", ["title" => "Update Form", "assetinfo" => $assetinfo]); // render buy form //***/to remove C/***/
+}
+
+
+
 else
 {
-$assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC"); // query user's portfolio
-//render("admin_update_form.php", ["title" => "Update Form", "assets" => $assets]); // render buy form //***/to remove C/***/
-//         apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
+    $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC"); // query user's portfolio
+    render("admin_symbol_form.php", ["title" => "Update Form", "assets" => $assets]); // render buy form //***/to remove C/***/
+}
+
 
 ?>
-<form action="admin_update_form.php" class="symbolForm" method="post" >
-<fieldset>
-<table>
-<tr>
-<td>
-<div class="input-group" >
-<select name="symbol" class="form-control" required>
-<?php
-if (empty($assets)) {
-echo("<option value=' '>No Assets</option>");
-} else {
-echo (' <option class="select-dash" disabled="disabled">-All Assets-</option>');
-foreach ($assets as $asset) {
-$symbol = $asset["symbol"];
-echo("<option value='" . $symbol . "'> " . $symbol . "</option>");
-}
-}
-?>
-</select>
-
-<span class="input-group-btn">
-<button type="submit" class="btn btn-info">
-<b> SUBMIT </b>
-</button>
-</span>
-</div><!-- /input-group -->
-</td>
-</tr>
-</table>
-</fieldset>
-</form>
-<br> <br>
-<?php } //else !post ?>
