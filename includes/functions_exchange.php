@@ -42,11 +42,7 @@ function cancelOrder($uid)
 
         query("SET AUTOCOMMIT=0");
         query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
-        if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {
-            query("ROLLBACK");
-            query("SET AUTOCOMMIT=1");
-            throw new Exception("Failure Cancel 1");
-        }
+
 
         if ($side == 'a') {
             if (query("UPDATE portfolio SET quantity = (quantity + ?) WHERE (symbol = ? AND id = ?)", $quantity, $symbol, $id) === false) {
@@ -62,6 +58,14 @@ function cancelOrder($uid)
                 throw new Exception("Failure Cancel 4");
             }
         }
+        
+        //DELETE ORDER
+        if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {
+            query("ROLLBACK");
+            query("SET AUTOCOMMIT=1");
+            throw new Exception("Failure Cancel 1");
+        }
+        
         //UPDATE HISTORY
         if ($quantity > 0) //to prevent spamming history with cleanup of orderbook of empty orders.
         { $total=($total*-1); //set to negative for calculations on order form total.
@@ -71,6 +75,7 @@ function cancelOrder($uid)
         { $price=0; $total=0;//order was executed and the price listed was not the actual amount and the total was what was left over.
             if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $uid, 'EXECUTED', $symbol, $quantity, $price, $total) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3c"); }
         }
+
 
         echo("<br>Canceled [ID: " . $id . ", UID:" . $uid . ", Side:" . $side . ", Type:" . $type . ", Total:" . $total . ", Quantity:" . $quantity . ", Symbol:" . $symbol . "]");
 
@@ -331,7 +336,7 @@ function orderbook($symbol)
             //REMOVE SHARES FROM ASK USER
             //IF SELLER TRYING TO SELL MORE THEN THEY OWN CANCEL ORDER
             if ($tradeSize > $orderbookQuantity) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topAskUID);
-                throw new Exception("$topAskUser Seller does not have enough quantity. All seller's orders deleted."); }
+                throw new Exception("$topAskUser Seller does not have enough quantity. Seller's order deleted."); }
             //UPDATE ASK ORDER //REMOVE QUANTITY
             if (query("UPDATE orderbook SET quantity=(quantity-?) WHERE uid=?", $tradeSize, $topAskUID) === false)
             {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Size OB Failure: #3"); } //rollback on failure
@@ -364,11 +369,11 @@ function orderbook($symbol)
             //PORTFOLIO
             ///////////
             //QUICK ERROR CHECK
-            $askPortfolioRows = query("SELECT symbol FROM portfolio WHERE (id =? AND symbol =?)", $topAskUser, $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
-            $askPortfolioRows = count($askPortfolioRows);
-            if ($askPortfolioRows > 1){ query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("$topAskUser has too many $symbol Portfolios! #20a"); }
             //CHECK THE QUANTITY FOR INSERT OR DELETE
-            $askPortfolio = query("SELECT quantity FROM portfolio WHERE (symbol=? AND id=?)", $symbol, $topBidUser);
+            $askPortfolio = query("SELECT quantity, symbol FROM portfolio WHERE (symbol=? AND id=?)", $symbol, $topAskUser);
+            $askPortfolioRows = count($askPortfolio);
+            if ($askPortfolioRows > 1){ query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("$topAskUser has too many $symbol Portfolios! #20a"); }
+
             @$askPortfolio = $askPortfolio[0]["quantity"];
             // DELETE IF TRADE IS ALL THEY OWN//WOULD BE 0 SINCE THE REST WOULD BE IN ORDERBOOK
             if($askPortfolio == 0) {if (query("DELETE FROM portfolio WHERE (id = ? AND symbol = ?)", $topAskUser, $symbol) === false)
