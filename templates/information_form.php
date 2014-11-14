@@ -232,7 +232,6 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
     echo('<td >' . number_format($asset["volume"], 0, ".", ",") . '</td>');
     echo('<td >' . $unitsymbol . number_format($asset["marketcap"], 2, ".", ",") . '</td>');
     echo('</tr>');
-    echo('<div  class="hiddenRow">');
     echo('<tr >');
 
     echo('<td colspan="1">' . htmlspecialchars($asset["name"]) . '
@@ -252,38 +251,34 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         '</td>');
     echo('</tr>');
     echo('<tr class="active"><td colspan="4">Description: ' . htmlspecialchars(ucfirst($asset["description"])) . '</td></tr>');
-    echo("<tr class='info'><td colspan='4' style='text-align: center; font-weight: bold;'>YOUR ACCOUNT</td></tr>");
-    echo('<tr>
+?>
+    </tbody>
+</table>
+
+<table class="table" align="center"> <!--class="bstable"-->
+    <tr>
+        <th colspan="7" bgcolor="black" style="color:white" size="+1">
+                <b>YOUR ACCOUNT</b>
+        </th>
+    </tr>
+    <tr class="active">
         <td colspan="1">Portfolio</td>
         <td colspan="1">Orderbook</td>
         <td colspan="1">Total</td>
-        <td colspan="1">Controlling Interest</td></tr>');
+        <td colspan="1">Controlling Interest</td></tr>
+<?php
     echo('<tr>
         <td colspan="1">' . number_format($asset["quantity"], 0, ".", ",") . '</td>
-        <td colspan="1">Orderbook: ' . number_format($asset["locked"], 0, ".", ",") . '</td>
-        <td colspan="1">Total: ' . number_format(($asset["locked"]+$asset["quantity"]), 0, ".", ",") . '</td>
-        <td colspan="1">Control: ' . number_format($asset["control"], 0, ".","") . '%</td></tr>');
-    echo('</div>'); 
+        <td colspan="1">' . number_format($asset["locked"], 0, ".", ",") . '</td>
+        <td colspan="1">' . number_format(($asset["locked"]+$asset["quantity"]), 0, ".", ",") . '</td>
+        <td colspan="1">' . number_format($asset["control"], 0, ".","") . '%</td></tr>');
     ?>
-    </tbody>
+
 </table>
 
 
 
 
-<!--div id="chart_div" style="width: 900px; height: 500px;"></div-->
-<?php
-if($tradesGroupChart != null)
-{ ?>
-    <div id="chart_div" style="overflow:hidden;"></div>
-<?php } ?>
-
-
-<?php
-if($trades != null)
-{ ?>
-    <div id="chart_div1" style="overflow:hidden;"></div>
-<?php } ?>
 
 
 
@@ -305,7 +300,21 @@ if($trades != null)
         </th>
     </tr>
 
-    <tr>
+<!--div id="chart_div" style="width: 900px; height: 500px;"></div-->
+<?php
+if($tradesGroupChart != null)
+{ ?>
+    <tr><td colspan="7"><div id="chart_div" style="overflow:hidden;"></div></td></tr>
+<?php } ?>
+
+
+<?php
+if($trades != null)
+{ ?>
+    <tr><td colspan="7"><div id="chart_div1" style="overflow:hidden;"></div></td></tr>
+<?php } ?>
+
+    <tr class='active'>
         <td>Trade #</td>
         <td>Buyer/Seller/Type</td>
         <td>Date/Time (Y/M/D)</td>
