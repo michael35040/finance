@@ -21,13 +21,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
         $asset = $asset[0];
 
+        //USERS PORTFOLIO
+        $asset["quantity"] = $asset["quantity"];
+    
+        //TOTAL SHARES PUBLIC MINUS ORDERBOOK
         $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
         if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
         $publicQuantity = $public[0]["quantity"]; //shares held
+        //TOTAL SHARES ON ORDERBOOK
         $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $asset["symbol"]);	  // query user's portfolio
         if(empty($askQuantity[0]["quantity"])){$askQuantity[0]["quantity"]=0;}
         $askQuantity = $askQuantity[0]["quantity"]; //shares trading
+        //TOTAL SHARES PUBLIC
         $asset["public"] = $askQuantity+$publicQuantity;
+        
+        //USERS ORDERBOOK
+        $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id=? AND symbol =? AND side='a')", $id, $stock["symbol"]);	  // query user's portfolio
+        if(empty($askQuantity[0]["quantity"])){$askQuantity[0]["quantity"]=0;}
+        $askQuantity = $askQuantity[0]["quantity"]; //shares trading
+        $asset["locked"] = $askQuantity;
+        
+        //FOR PIECHART 
+        $ownership =	    query("SELECT SUM(`quantity`) AS quantity, id FROM `portfolio` WHERE (symbol = ?) GROUP BY `id` ORDER BY `quantity` DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
+
+
+         //USERS CONTROL
+        if($asset["public"]==0){$asset["control"]=0;} //can also use 'issued' for this and the one below as they should in theory be the same
+        else{$asset["control"] = (($asset["quantity"]+$asset["locked"])/$asset["public"])*100; } //based on public
+       
 
         $volume =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY MONTH(date) ORDER BY uid ASC LIMIT 0, 500", $symbol);	  // query user's portfolio
         if(empty($volume[0]["quantity"])){$volume[0]["quantity"]=0;}
@@ -44,28 +65,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
-    //EXCHANGE TRADES (PROCESSED ORDERS)
-        //$trades =       query("SELECT (SUM(quantity)/1000) AS quantity, price, date FROM trades WHERE symbol=? GROUP BY DAY(date) ORDER BY date ASC ", $symbol);
-        //$tradesGroup =	    query("SELECT * FROM trades WHERE symbol = ? GROUP BY DAY(date) ORDER BY uid DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
-        //if (count($trades) < 1){apologize("Incorrect symbol!");} //check to see if exists in db
+
+    //TRADES (PROCESSED ORDERS)
         $trades =  query("SELECT * FROM trades WHERE (symbol=? AND type='limit' OR type='market') ORDER BY uid DESC LIMIT 0, 5", $symbol);
         $tradesGroupChart =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE (symbol=? AND type='limit' OR type='market')  GROUP BY DAY(date) ORDER BY uid ASC ", $symbol);	  // query user's portfolio
         $tradesChart =  query("SELECT quantity, price, date FROM trades WHERE (symbol=? AND type='limit' OR type='market')  ORDER BY uid ASC", $symbol);
 
-        //EXCHANGE ORDERS
+    //ORDERS
         $bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 5", $symbol, 'b');
         $asks =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 5", $symbol, 'a');
-        //EXCHANGE ORDERS (COMBINED PRICE)
-
-
-
-
+    
+    //ORDERS (COMBINED PRICE)
+        $bidsGroup =	    query("SELECT price, SUM(`quantity`) AS quantity FROM `orderbook` WHERE (symbol = ? AND side ='b') GROUP BY `price` ORDER BY `price` DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
+        $asksGroup =	    query("SELECT price, SUM(`quantity`) AS quantity FROM `orderbook` WHERE (symbol = ? AND side ='a') GROUP BY `price` ORDER BY `price` ASC LIMIT 0, 5", $symbol);	  // query user's portfolio
+    //ORDERS FOR CHARTS (COMBINED PRICE)
         $asksGroupChart =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='a') GROUP BY `price` ORDER BY `price` ASC  LIMIT 0, 5", $symbol);	  // query user's portfolio
         $bidsGroupChart =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='b') GROUP BY `price` ORDER BY `price` DESC  LIMIT 0, 5", $symbol);	  // query user's portfolio
         $bidsGroupChart = array_reverse($bidsGroupChart); //so it will be in correct ASC order for chart
-
-        $bidsGroup =	    query("SELECT price, SUM(`quantity`) AS quantity FROM `orderbook` WHERE (symbol = ? AND side ='b') GROUP BY `price` ORDER BY `price` DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
-        $asksGroup =	    query("SELECT price, SUM(`quantity`) AS quantity FROM `orderbook` WHERE (symbol = ? AND side ='a') GROUP BY `price` ORDER BY `price` ASC LIMIT 0, 5", $symbol);	  // query user's portfolio
 
         //$asksGroup = query("select concat(1*floor(price/1), '-', 1*floor(price/1) + 1) as `price`,     sum(`quantity`) as `quantity` from orderbook WHERE (symbol = ? AND side ='a') group by 1 order by `price`", $symbol);
 
@@ -78,18 +94,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         if ($asksTotal == 0){$asksTotal = "No Orders";}
 
 
-        $ownershipOnBook =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $symbol);	  // query user's portfolio
-        $ownership =	    query("SELECT SUM(`quantity`) AS quantity, id FROM `portfolio` WHERE (symbol = ?) GROUP BY `id` ORDER BY `quantity` DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
-       // $ownershipAll =	    query("SELECT SUM(portfolio.quantity) AS quantity, id FROM portfolio, orderbook WHERE portfolio.id=orderbook.id AND symbol='AC';", $symbol);
-       //                     query("SELECT portfolio.id, SUM(orderbook.quantity) AS orderbookquantity, SUM(portfolio.quantity) AS portfolioquantity FROM portfolio, orderbook WHERE portfolio.id=orderbook.id AND orderbook.symbol='AC' AND portfolio.symbol='AC' AND orderbook.side='a' GROUP BY portfolio.id", $symbol);	  // query user's portfolio
-
 
         //WORKING SQL QUERY FOR CHARTING DAILY TRADES
         render("information_form.php", [
             "title" => "Information",
 
             "ownership" => $ownership,
-            "ownershipOnBook" => $ownershipOnBook,
+            "askQuantity" => $askQuantity,
 
             "asset" => $asset,
 
