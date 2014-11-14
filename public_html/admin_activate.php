@@ -1,66 +1,106 @@
 <?php
 require("../includes/config.php");
 $id = $_SESSION["id"];
-$title = "Activate Users";
+$title = "Users";
 $limit = "LIMIT 0, 50";
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
-if (isset($_POST["activate"]))
-{
-  $id = $_POST["activate"];
-  if ($id == 'ALL') { //CANCEL ALL USERS ORDERS
-  if (query("UPDATE users SET activate=1 WHERE id = ?", $id) === false) {
-  apologize("Unable to activate all users!");
-}
-} else { //CANCEL ONLY 1 ORDER
-  if (query("UPDATE orderbook SET type = 'activate' WHERE uid = ?", $uid) === false) {
-  apologize("Unable to activate user!");
-}
-}
-redirect('orders.php');
-}
-if (isset($_POST["history"])) {
-$history = $_POST["history"];
-if ($history == "all") {
-$limit = "";
-$tabletitle = "All";
-$orders = query("SELECT * FROM orderbook WHERE (id = ?) ORDER BY uid DESC", $id);
-$history = query("SELECT * FROM history WHERE id = ? ORDER BY uid DESC $limit", $id);
-render("orders_form.php", ["title" => $title, "tabletitle" => $tabletitle, "orders" => $orders, "history" => $history]);
-}
-if ($history == "limit") {
-$limit = "LIMIT 0, 10";
-$tabletitle = "Last 10";
-$orders = query("SELECT * FROM orderbook WHERE (id = ?) ORDER BY uid DESC", $id);
-$history = query("SELECT * FROM history WHERE id = ? ORDER BY uid DESC $limit", $id);
-render("orders_form.php", ["title" => $title, "tabletitle" => $tabletitle, "orders" => $orders, "history" => $history]);
-}
-}
+  if (isset($_POST["activate"]))
+  {
+    $id = $_POST["activate"];
+    //CANCEL ALL USERS ORDERS
+    if ($id == 'ALL') { if (query("UPDATE users SET activate=1", $id) === false) {apologize("Unable to activate all users!");}} 
+    //CANCEL ONLY 1 ORDER
+    else { if (query("UPDATE users SET type=1 WHERE id=?", $id) === false) {apologize("Unable to activate user!");}}
+    redirect('admin_activate.php');
+  }
+  elseif (isset($_POST["deactivate"]))
+  {
+    $id = $_POST["deactivate"];
+    //CANCEL ALL USERS ORDERS
+    if ($id == 'ALL') { if (query("UPDATE users SET activate=0", $id) === false) {apologize("Unable to deactivate all users!");}} 
+    //CANCEL ONLY 1 ORDER
+    else { if (query("UPDATE users SET type=0 WHERE id=?", $id) === false) {apologize("Unable to deactivate user!");}}
+    redirect('admin_activate.php');
+  }
+  else{redirect('admin_activate.php';)}
 }
 else
 {
 $limit = "LIMIT 0, 10";
-$tabletitle = "Last 10";
-$orders = query("SELECT * FROM orderbook WHERE (id = ?) ORDER BY uid DESC", $id);
-$history = query("SELECT * FROM history WHERE id = ? ORDER BY uid DESC $limit", $id);
-render("orders_form.php", ["title" => $title, "tabletitle" => $tabletitle, "orders" => $orders, "history" => $history]);
+$inactiveUsers = query("SELECT id, username, registered FROM users WHERE active=0 ORDER BY id ASC");
+$activeUsers = query("SELECT id, username, registered FROM users WHERE active=1 ORDER BY id ASC");
+//render("admin_activate.php", ["title" => $title, "inactiveUsers" => $inactiveUsers, "activeUsers" => $activeUsers]);
 } //else !post
-
-
-//activate users 
-
-//query users that are inactive 
-$inactiveUsers = query("select id from users where active=0;")
-
-
-//list users
-for each $inactiveUsers as $user
-{
-echo("
-//form button to update
-query("update users set active=1 where id=?", $userid;)
-
-
-//list active users to deactivate
-
 ?>
+
+
+
+
+
+
+table class="table table-condensed table-bordered">
+<tr class="success">
+  <td colspan="9" style="font-size:20px; text-align: center;">INACTIVE USERS</td>
+</tr>
+<!--blank row breaker-->
+<tr class="active">
+  <th>Action</th>
+  <th>User</th>
+</tr>
+<?php
+//list users
+foreach ($inactiveUsers as $user)
+{
+   echo('
+   <tr>
+     <td>
+      <form><span class="input-group-btn">
+      <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="admin_activate.php" name="activate" value="' . $user["id"] . '">
+      <span class="glyphicon glyphicon-plus-sign"></span> Activate</button></span></form>
+    </td>
+    <td>' . $user["id"] . '</td></tr>');
+}
+?>
+<tr><td>
+      <form><span class="input-group-btn">
+      <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="admin_activate.php" name="activate" value="ALL">
+      <span class="glyphicon glyphicon-plus-sign"></span> Activate</button></span></form>
+</td>
+<td>ALL</td></tr>
+</table>
+
+
+
+
+
+table class="table table-condensed table-bordered">
+<tr class="success">
+  <td colspan="9" style="font-size:20px; text-align: center;">ACTIVE USERS</td>
+</tr>
+<!--blank row breaker-->
+<tr class="active">
+  <th>Action</th>
+  <th>User</th>
+</tr>
+<?php
+//list users
+foreach ($activeUsers as $user)
+{
+   echo('
+   <tr>
+     <td>
+      <form><span class="input-group-btn">
+      <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="admin_activate.php" name="deactivate" value="' . $user["id"] . '">
+      <span class="glyphicon glyphicon-plus-sign"></span> Activate</button></span></form>
+    </td>
+    <td>' . $user["id"] . '</td></tr>');
+}
+?>
+<tr><td>
+      <form><span class="input-group-btn">
+      <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="admin_activate.php" name="deactivate" value="ALL">
+      <span class="glyphicon glyphicon-plus-sign"></span> Activate</button></span></form>
+</td>
+<td>ALL</td></tr>
+</table>
