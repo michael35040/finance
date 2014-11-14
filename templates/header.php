@@ -141,6 +141,7 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
+                        <li><a href="portfolio.php">Portfolio</a></li>
                         <li><a href="exchange.php">Place Order</a></li>
                         <li><a href="orders.php">Orders</a></li>
                         <li><a href="trades.php">Trades</a></li>
