@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         //ORDERS COMBINED FOR TABLE AND FOR CHARTS (COMBINED PRICE)
         $asksGroup =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='a') GROUP BY `price` ORDER BY `price` ASC  LIMIT 0, 5", $symbol);	  // query user's portfolio
         $bidsGroup =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='b') GROUP BY `price` ORDER BY `price` DESC  LIMIT 0, 5", $symbol);	  // query user's portfolio
-        $bidsGroupChart = array_reverse($bidsGroupChart); //so it will be in correct ASC order for chart
+        $bidsGroupChart = array_reverse($bidsGroup); //so it will be in correct ASC order for chart
 
         //$asksGroup = query("select concat(1*floor(price/1), '-', 1*floor(price/1) + 1) as `price`,     sum(`quantity`) as `quantity` from orderbook WHERE (symbol = ? AND side ='a') group by 1 order by `price`", $symbol);
 
