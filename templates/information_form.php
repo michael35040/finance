@@ -5,7 +5,7 @@
         width:25%;
     }
 </style>
-
+<?pop //need To ensure the vars sugh as bids group arefed. ?>
 <head>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <!--script type="text/javascript" src="../public_html/js/jsapi"></script-->
