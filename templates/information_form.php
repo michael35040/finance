@@ -167,12 +167,12 @@
                     $owned=$owned+$quantity;
                 }
 
-            $askQuantity=number_format(($askQuantity), 0, '.', '');
+            $asksTotal=number_format(($asksTotal), 0, '.', '');
             $issued=$asset["public"]; //or $asset["public"] or $asset["issued"]
-            $leftOver=$issued-$owned-$askQuantity; //takes the amount issued and subtracts the listed owned to figure out how many shares are left from top listed users for pie chart
+            $leftOver=$issued-$owned-$asksTotal; //takes the amount issued and subtracts the listed owned to figure out how many shares are left from top listed users for pie chart
              $leftOver=number_format(($leftOver), 0, '.', '');
                 echo("['Other Users', " . $leftOver . "],");
-                echo("['Orderbook', " . $askQuantity . "]");             
+                echo("['Orderbook', " . $asksTotal . "]");             
             //if($leftOver>0){} //if($askQuantity>0){}
              //   ['Work',     11],
              //   ['Sleep',    7]
@@ -581,11 +581,11 @@ if($trades != null)
         echo("<tr><td>Other Users</td><td>" . number_format($leftOver, 0, '.', '') . "</td><td>" . (number_format($percentage,2,".",",")) . "%</td>");
    // }
 
-    if($askQuantity>0)
+    if($asksTotal>0)
     {
-        $percentage=($askQuantity/$asset["public"])*100;
+        $percentage=($asksTotal/$asset["public"])*100;
         echo("<tr><td>Orderbook</td><td>");
-        echo($askQuantity);
+        echo($asksTotal);
         echo("</td><td>" . (number_format($percentage,2,".",",")) . "%</td></tr>");
     }
 
