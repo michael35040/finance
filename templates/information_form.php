@@ -31,7 +31,7 @@
                 echo("['Date', 'Price', 'Volume(k)'],"); // ['Year', 'Sales', 'Expenses'],
                 //SQL QUERY FOR ALL TRADES
 
-                foreach ($tradesGroupChart as $trade)	// for each of user's stocks
+                foreach ($tradesGroup as $trade)	// for each of user's stocks
                 {
                     $dbDate = $trade["date"];
                     $date = strtotime($dbDate);
@@ -66,8 +66,8 @@
 
                 echo("['Date', 'Price', 'Volume'],"); // ['Year', 'Sales', 'Expenses'],
                 //SQL QUERY FOR ALL TRADES
-                $tradesChart = array_reverse($trades); //so it will be in correct ASC order for chart
-                foreach ($tradesChart as $trade)	// for each of user's stocks
+                //$tradesChart = array_reverse($trades); //so it will be in correct ASC order for chart
+                foreach ($trades as $trade)	// for each of user's stocks
                 {
                     $dbDate = $trade["date"];
                     $date = strtotime($dbDate);
@@ -111,21 +111,21 @@
                 echo("['Date', 'Bids', 'Asks'],"); // ['Year', 'Sales', 'Expenses'],
                 //SQL QUERY FOR ALL TRADES
 
-                $bidsGroupChart = array_reverse($bidsGroup); //so it will be in correct ASC order for chart
-                foreach ($bidsGroupChart as $trade)	// for each of user's stocks
+                //$bidsGroupChart = array_reverse($bidsGroup); //so it will be in correct ASC order for chart
+                foreach ($bidsGroup as $order)	// for each of user's stocks
                 {
                     $date = 0;
-                    $price = number_format(($trade["price"]), 2, '.', '');
-                    $quantity = number_format(($trade["quantity"]), 2, '.', '');
+                    $price = number_format(($order["price"]), 2, '.', '');
+                    $quantity = number_format(($order["quantity"]), 2, '.', '');
                     echo("['" . $price . "', " . $quantity .  ", " . $date . "],");
                 }
 
-                foreach ($asksGroup as $trade)	// for each of user's stocks
+                foreach ($asksGroup as $order)	// for each of user's stocks
                 {
                     $date = 0;
-                    $price = number_format(($trade["price"]), 2, '.', '');
-                    $quantity = number_format(($trade["quantity"]), 2, '.', '');
-                    echo("['" . $price . "', " . $date .  ", " . $quantity . "],");
+                    $price = number_format(($order["price"]), 2, '.', '');
+                    $quantity = number_format(($order["quantity"]), 2, '.', '');
+                    echo("['" . $price . "', " . $order .  ", " . $quantity . "],");
                 }
 
 
@@ -170,9 +170,9 @@
             $asksTotal=number_format(($asksTotal), 0, '.', '');
             $issued=$asset["public"]; //or $asset["public"] or $asset["issued"]
             $leftOver=$issued-$owned-$asksTotal; //takes the amount issued and subtracts the listed owned to figure out how many shares are left from top listed users for pie chart
-             $leftOver=number_format(($leftOver), 0, '.', '');
-                echo("['Other Users', " . $leftOver . "],");
-                echo("['Orderbook', " . $asksTotal . "]");             
+            $leftOver=number_format(($leftOver), 0, '.', '');
+            echo("['Other Users', " . $leftOver . "],");
+            echo("['Orderbook', " . $asksTotal . "]");             
             //if($leftOver>0){} //if($askQuantity>0){}
              //   ['Work',     11],
              //   ['Sleep',    7]
