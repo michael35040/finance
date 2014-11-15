@@ -31,7 +31,7 @@
                 echo("['Date', 'Price', 'Volume(k)'],"); // ['Year', 'Sales', 'Expenses'],
                 //SQL QUERY FOR ALL TRADES
 
-                foreach ($tradesGroup as $trade)	// for each of user's stocks
+                foreach ($tradesGroupChart as $trade)	// for each of user's stocks
                 {
                     $dbDate = $trade["date"];
                     $date = strtotime($dbDate);
