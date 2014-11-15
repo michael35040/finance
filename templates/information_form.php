@@ -98,7 +98,7 @@
 
 
             <?php
-            if($bidsGroupChart != null)
+            if($bidsGroup != null)
             {
              ?>
             //////////
@@ -265,13 +265,17 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         <td colspan="1">Portfolio</td>
         <td colspan="1">Orderbook</td>
         <td colspan="1">Total</td>
-        <td colspan="1">Controlling Interest</td></tr>
+        <td colspan="1">Controlling Interest</td>
+        <td colspan="1">Value</td>
+    </tr>
 <?php
     echo('<tr>
         <td colspan="1">' . number_format($asset["quantity"], 0, ".", ",") . '</td>
         <td colspan="1">' . number_format($asset["locked"], 0, ".", ",") . '</td>
         <td colspan="1">' . number_format(($asset["locked"]+$asset["quantity"]), 0, ".", ",") . '</td>
-        <td colspan="1">' . number_format($asset["control"], 0, ".","") . '%</td></tr>');
+        <td colspan="1">' . number_format($asset["control"], 0, ".","") . '%</td> .
+        <td colspan="1">' . $unitsymbol . number_format((($asset["locked"]+$asset["quantity"])*$asset["price"]), 0, ".", ",") . '</td>
+        </tr>');
     ?>
 
 </table>
