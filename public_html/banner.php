@@ -106,7 +106,7 @@ foreach ($SBallAssets as $SBrow)		// for each of user's stocks
                 echo($SBasset["symbol"] . "&nbsp;");
                 echo($unitsymbol . number_format($SBasset["price"], 2, ".", ",")); 
                 //CHANGE AND ARROWS
-                $change=$SBasset["price"]/mt_rand(4,150);
+                $change=$SBasset["price"]/mt_rand(3,100);
                 $change=number_format($change,2,".",",");
                 if($SBasset["price"]==0){$change=0;}
                 else{;}
@@ -116,7 +116,7 @@ foreach ($SBallAssets as $SBrow)		// for each of user's stocks
                 elseif($posneg<4)
                     {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}//down
                 else
-                    {echo('<span style="color: #000000;"> &#x25C4; &#x25BA; ' . $change . '</span></span>');}//even
+                    {$change=0; echo('<span style="color: #000000;"> &#x25C4; &#x25BA; ' . $change . '</span></span>');}//even
 
             }
             ?>

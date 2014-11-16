@@ -66,8 +66,8 @@
 
                 echo("['Date', 'Price', 'Volume'],"); // ['Year', 'Sales', 'Expenses'],
                 //SQL QUERY FOR ALL TRADES
-                //$tradesChart = array_reverse($trades); //so it will be in correct ASC order for chart
-                foreach ($trades as $trade)	// for each of user's stocks
+                $tradesChart = array_reverse($trades); //so it will be in correct ASC order for chart
+                foreach ($tradesChart as $trade)	// for each of user's stocks
                 {
                     $dbDate = $trade["date"];
                     $date = strtotime($dbDate);
@@ -310,7 +310,7 @@ if($trades != null)
 
     <tr class='active'>
         <td>Trade #</td>
-        <td>Buyer/Seller/Type</td>
+        <td>Buyer-Bid/Seller-Ask/Type</td>
         <td>Date/Time (Y/M/D)</td>
         <td>Symbol</td>
         <td>Quantity</td>
@@ -323,8 +323,10 @@ if($trades != null)
     foreach ($trades as $trade) {
         @$tradeID = $trade["uid"];
         @$tradeType = $trade["type"];
-        @$buyer = $trade["bidorderuid"];//$trade["buyer"];
-        @$seller = $trade["askorderuid"];
+        @$biduid = $trade["bidorderuid"];//$trade["buyer"];
+        @$askuid = $trade["askorderuid"];
+        @$buyer = $trade["buyer"];//$trade["buyer"];
+        @$seller = $trade["seller"];
         @$symbol = $trade["symbol"];
         @$quantity = $trade["quantity"];
         @$price = $trade["price"];
@@ -333,7 +335,7 @@ if($trades != null)
         echo("
                 <tr>
                 <td>" . number_format($tradeID, 0, ".", ",") . "</td>
-                <td>" . $buyer . "/" . $seller . "/" . strtoupper($tradeType) . "</td>
+                <td>" . $buyer . "-" . $biduid . "/" . $seller . "-" . $askuid . "/" . strtoupper($tradeType) . "</td>
                 <td>" . htmlspecialchars(date('Y-m-d H:i:s', strtotime($date))) . "</td>
                 <td>" . htmlspecialchars("$symbol") . "</td>
                 <td>" . number_format($quantity, 0, ".", ",") . "</td>
