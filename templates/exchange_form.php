@@ -6,7 +6,7 @@ if (!isset($commission)) //set in constants.php
 <style>
     .exchangeTable td
     {
-        width:50%;
+        /*width:75%;*/
         padding:10px;
     }
 </style>
@@ -48,8 +48,14 @@ if (!isset($commission)) //set in constants.php
 
     <fieldset>
 
-        <TABLE BORDER="3" cellspacing="0" cellpadding="5" align="center"">
-
+        <table class="table table-condensed  table-bordered" >
+        <thead>
+            <tr>
+                <th style="width:25%">Title</th>
+                <th style="width:75%">Value</th>
+            </tr>
+        </thead>
+        <tbody>
         <TR>
             <TD ROWSPAN="1">Symbol</TD>
             <TD>
@@ -131,11 +137,19 @@ if (!isset($commission)) //set in constants.php
                     </div>
                     <!--subMenuPriceText-->
                     <div id="subMenuPrice" style="opacity:1;">
+
                         <input class="input-small" type="range" id="price" placeholder="Price" name="price" value=0
                                min="0.25" max="100" step=".25" style="width:100%;" required>
                         <output name="priceAmount" for="price">0</output>
-                    </div>
 
+<!--
+                        <input class="input-small" type="number" id="price" placeholder="Price" name="price" value=0
+                               min="1" max="10000" style="width:65%;" required>
+                        .
+                        <input class="input-small" type="number" id="cents" placeholder="00" name="cents" value=0
+                               min="1" max="99" style="width:20%;" required>
+-->
+                    </div>
 
 
                 </TD>
@@ -152,7 +166,6 @@ if (!isset($commission)) //set in constants.php
             </TR>
 
 
-            </TR>
             <TR>
                 <TD ROWSPAN="1">Subtotal</TD>
                 <TD>
@@ -187,7 +200,7 @@ if (!isset($commission)) //set in constants.php
 
                 <br></td></tr>
 
-
+        </tbody>
 
 </TABLE>
 

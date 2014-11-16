@@ -7,9 +7,9 @@
 </style>
 <?php //need To ensure the vars sugh as bids group arefed. ?>
 <head>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <!--script type="text/javascript" src="../public_html/js/jsapi"></script-->
-    <!--script type="text/javascript" src="https://www.google.com/jsapi"></script-->
+   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <!--  <script type="text/javascript" src="js/jsapi"></script> -->
+     <!--script type="text/javascript" src="https://www.google.com/jsapi"></script-->
     <script type="text/javascript">
         google.load("visualization", "1", {packages:["corechart"]});
         google.setOnLoadCallback(drawChart);

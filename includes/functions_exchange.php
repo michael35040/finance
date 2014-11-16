@@ -29,7 +29,7 @@ function getCommission($total)
 ////////////////////////////////////
 function cancelOrder($uid)
 {
-    $order = query("SELECT * FROM orderbook WHERE uid = ?", $uid);
+    $order = query("SELECT side, quantity, uid, symbol, type, price, id, total FROM orderbook WHERE uid = ?", $uid);
     if(!empty($order)) {
         @$side = $order[0]["side"];
         @$quantity = $order[0]["quantity"];
@@ -93,15 +93,15 @@ function cancelOrder($uid)
 ////////////////////////////////////
 //CHECK FOR 0 QTY ORDERS AND REMOVES
 ////////////////////////////////////
-function zeroQuantityCheck($symbol)
-{    echo("<br>[" . $symbol . "] Conducting check for empty orders...");
-    $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol);
+function zeroQuantityCheck()
+{    echo("<br>Conducting check for empty orders...");
+    $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (quantity = 0) LIMIT 0, 1");
     $removedEmpty = 0;
     while(!empty($emptyOrders))
     {   $removedEmpty++;
         cancelOrder($emptyOrders[0]["uid"]); //try catch
-        $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (symbol = ? AND quantity = 0) LIMIT 0, 1", $symbol); }
-    if($removedEmpty>0){ echo("<br>[" . $symbol . "] Removed: " . $removedEmpty . " empty orders.");  }
+        $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (quantity = 0) LIMIT 0, 1"); }
+    if($removedEmpty>0){ echo("<br>Removed: " . $removedEmpty . " empty orders.");  }
     return($removedEmpty);
 }
 
@@ -154,34 +154,34 @@ function OrderbookTop($symbol)
     $topOrders=[];
 
     //MARKET ORDERS SHOULD BE AT TOP IF THEY EXIST
-    $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol);
+    $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market' AND quantity>0) ORDER BY uid ASC LIMIT 0, 1", $symbol);
     if(!empty($marketOrders))
     {   @$marketSide=$marketOrders[0]["side"];
         $tradeType = 'market';
         if($marketSide == 'b') {
-            $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
+            $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
             while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'b') && (empty($asks))) {  //cancel all bid market orders since there are no limit ask orders.
                 cancelOrder($marketOrders[0]["uid"]);
-                $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol, 'b');
-                $asks = query("SELECT 	* FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
+                $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market' AND quantity>0) ORDER BY uid ASC LIMIT 0, 1", $symbol, 'b');
+                $asks = query("SELECT 	* FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
             }
             $bids = $marketOrders;
         }    //assign top price to the ask since it is a bid market order
         elseif($marketSide == 'a')
         {
-            $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
+            $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
             while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'a') && (empty($bids))) {
                 cancelOrder($marketOrders[0]["uid"]);
-                $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market') ORDER BY uid ASC LIMIT 0, 1", $symbol, 'a');
-                $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
+                $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market' AND quantity>0) ORDER BY uid ASC LIMIT 0, 1", $symbol, 'a');
+                $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
             }
             $asks = $marketOrders;
         }   //assign top price to the bid since it is an ask market order
         else { throw new Exception("Market Side Error!"); }
     }
     elseif(empty($marketOrders))
-    {   $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
-        $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
+    {   $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
+        $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
         $tradeType = 'limit'; }
     else {throw new Exception("Market Order Error!");}
 
@@ -206,6 +206,12 @@ function processOrderbook($symbol=null)
     $startDate = time();
     $totalProcessed=0;
     echo(date("Y-m-d H:i:s"));
+
+    //NEGATIVE VALUE CHECK
+    negativeValues();
+    //CANCEL ORDER CHECK
+    cancelOrderCheck();
+
     if(empty($symbol))
     {
         //GET A QUERY OF ALL SYMBOLS FROM ASSETS
@@ -236,6 +242,11 @@ function processOrderbook($symbol=null)
 
     }
     echo("<br>");
+
+
+    //REMOVES ALL EMPTY ORDERS
+    zeroQuantityCheck();
+
     echo(date("Y-m-d H:i:s"));
     $endDate =  time();
     $totalTime = $endDate-$startDate;
@@ -261,13 +272,6 @@ function orderbook($symbol)
     //QUERY TO SEE IF SYMBOL EXISTS
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
     if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange!");} //row count
-
-    //NEGATIVE VALUE CHECK
-    negativeValues();
-    //CANCEL ORDER CHECK
-    cancelOrderCheck();
-    //REMOVES ALL EMPTY ORDERS
-    zeroQuantityCheck($symbol);
 
     //FIND TOP OF ORDERBOOK
     $topOrders = OrderbookTop($symbol); //try catch
@@ -459,14 +463,6 @@ function orderbook($symbol)
             echo("<br>Bid Size: " . $orderbook['topBidSize']);
             echo("<br>Bid User: " . $orderbook['topBidUser']);
 
-
-
-            //NEGATIVE VALUE CHECK
-            negativeValues();
-            //CANCEL ORDER CHECK
-            cancelOrderCheck();
-            //REMOVES ALL EMPTY ORDERS
-            zeroQuantityCheck($symbol);
 
             //FIND TOP OF ORDERBOOK
             $topOrders = OrderbookTop($symbol); //try catch

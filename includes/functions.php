@@ -8,6 +8,12 @@
     /**
      * Apologizes to user with message.
      */
+function sanatize($var)
+{
+
+}
+
+
 function apologize($message)
     {
         render("apology.php", ["message" => $message, "title" => "Sorry!"]);

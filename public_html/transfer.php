@@ -25,16 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	if (!ctype_digit($userid)) 	
 		{ apologize("User ID must be numeric!");}
 	
-	if (preg_match("/^\d+$/", $userid) == false)
-		{apologize("You entered a negative number for user ID! A User ID should be a positve integer.");}
-	if (preg_match("/^([0-9.]+)$/", $quantity) == false)
-		{apologize("You submitted an invalid quantity. Please enter a positive number to transfer.");}
-	if (is_numeric($quantity) == false) 
-		{ apologize("Invalid number"); }
-	//if (!ctype_digit($quantity)) 	
-	//	{ apologize("User ID must be numeric!");} //gives error since quantity can be decimal
-	
-	//check to see if valid id
+	if (preg_match("/^\d+$/", $userid) == false) {apologize("You entered a negative number for user ID! A User ID should be a positve integer.");}
+	if (preg_match("/^([0-9.]+)$/", $quantity) == false) {apologize("You submitted an invalid quantity. Please enter a positive number to transfer.");}
+	if (!is_numeric($quantity)) { apologize("Invalid number"); }
+	//if (!ctype_digit($quantity)){ apologize("User ID must be numeric!");} //gives error since quantity can be decimal
+    if (($quantity<0) || ($userid<0)) { apologize("Quantity must be positive!");} //if quantity is numeric
+
+
+    //check to see if valid id
 	$num_user = query("SELECT count(*) AS num_user FROM users WHERE id = ?", $userid);
 	$count = $num_user[0]['num_user'];
 	if ($count == 0) {apologize("User ID not found.");}
@@ -50,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		{apologize("You tried to transfer " . number_format($quantity,2,".",",") . " but you only have " . number_format($total,2,".",",") . "!");}
 				
 		// transaction information
-		$transaction = 'TRANSFER';      
+		$transaction = 'TRANSFER';
+        if(!isset($commission)){$commission=0;}
 		$commission = ($quantity * $commission);
 		$price = ($quantity - $commission);
 
@@ -73,29 +72,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 			apologize("Database Failure."); 
 			}
 		// transfer the cash to admin
-		if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commission, $adminid)) 
+        if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commission, $adminid))
 			{ 
 			query("ROLLBACK"); //rollback on failure
 			query("SET AUTOCOMMIT=1");
 			apologize("Database Failure."); 
-			}	
+			}
+
 			
 		//update transaction history for transferer
-		if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, 'TRANSFER', 'OUTGOING', $userid, $price, $commission, $quantity))
+		if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, 'TRANSFER', 'OUTGOING', $id, $price, $commission, $quantity) === false)
 			{ 
 			query("ROLLBACK"); //rollback on failure
 			query("SET AUTOCOMMIT=1");
 			apologize("Database Failure."); 
 			}
 		//update transaction history for transferee
-		if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, 'TRANSFER', 'RECEIVING', $id, $price, $commission, $quantity))
+		if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, 'TRANSFER', 'RECEIVING', $userid, $price, $commission, $quantity) === false)
 			{ 
 			query("ROLLBACK"); //rollback on failure
 			query("SET AUTOCOMMIT=1");
 			apologize("Database Failure."); 
 			}
-		$symbol = 'RECEIVING';
-        $value = $quantity;
+        if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, 'TRANSFER', 'TRANSFER', $id, $price, $commission, $quantity) === false)
+        {   //UPDATE HISTORY
+            query("ROLLBACK"); //rollback on failure
+            query("SET AUTOCOMMIT=1");
+            apologize("Insert History Failure");
+        }
 
 		query("COMMIT;"); //If no errors, commit changes
 		query("SET AUTOCOMMIT=1");
@@ -103,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		render("success_form.php", ["title" => "Success", 
 		"transaction" => $transaction, 
 		"symbol" => $symbol, 
-		"value" => $value, 
+		"price" => $price,
 		"quantity" => $quantity,
 		"commissiontotal" => $commission
 		//"variable_on_success_form" => $local_var_on_this_form.
@@ -112,12 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		// render success form
 	}//if count==1
 
-       if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, $transaction, $symbol, $quantity, $price, $commissionTotal, $id) === false)
-        {   //UPDATE HISTORY 
-            query("ROLLBACK"); //rollback on failure
-            query("SET AUTOCOMMIT=1");
-            apologize("Insert History Failure");
-        }    
+
 
 
 	
