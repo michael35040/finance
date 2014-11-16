@@ -1,6 +1,6 @@
 
 <table class="table table-condensed  table-bordered" >
-
+<thead>
     <tr   class="success" ><td colspan="10"  style="font-size:20px; text-align: center;"><?php echo(strtoupper($title)); ?> &nbsp;
             <?php
             //	Display link to all history as long as your not already there
@@ -33,22 +33,24 @@
             }
 
             ?>
-
-
-
-        </td></tr> <!--blank row breaker-->
+        </td></tr>
     <tr   class="active" >
-        <td ><b><u>Buyer</u></b></td>
-        <td ><b><u>Bid Order#</u></b></td>
-        <td ><b><u>Seller</u></b></td>
-        <td ><b><u>Ask Order#</u></b></td>
-        <td ><b><u>Date</u></b></td>
-        <td ><b><u>Type</u></b></td>
-        <td ><b><u>Symbol</u></b></td>
-        <td ><b><u>Quantity</u></b></td>
-        <td ><b><u>Price</u></b></td>
-        <td ><b><u>Total</u></b></td>
+        <td ><b>Buyer</b></td>
+        <td ><b>Bid Order#</b></td>
+        <td ><b>Seller</b></td>
+        <td ><b>Ask Order#</b></td>
+        <td ><b>Date</b></td>
+        <td ><b>Type</b></td>
+        <td ><b>Symbol</b></td>
+        <td ><b>Quantity</b></td>
+        <td ><b>Price</b></td>
+        <td ><b>Total</b></td>
     </tr>
+
+</thead>
+    <tbody>
+
+
     <?php
     foreach ($trades as $trade)
     {
@@ -66,16 +68,16 @@
         echo("
 
                 <tr>
-                <td>" . number_format($buyer,0,".",",") . "</td>
-                <td>" . number_format($bidorderuid,0,".","") . "</td>
-                <td>" . number_format($seller,0,".",",") . "</td>
-                <td>" . number_format($askorderuid,0,".","") . "</td>
-                <td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($date))) . "</td>
-                <td>" . strtoupper(htmlspecialchars("$type")) . "</td>
-                <td>" . htmlspecialchars("$symbol") . "</td>
-                <td>" . number_format($quantity,0,".",",") . "</td>
-                <td>" . number_format($price,2,".",",") . "</td>
-                <td>" . number_format($total,2,".",",") . "</td>
+                    <td>" . number_format($buyer,0,".",",") . "</td>
+                    <td>" . number_format($bidorderuid,0,".","") . "</td>
+                    <td>" . number_format($seller,0,".",",") . "</td>
+                    <td>" . number_format($askorderuid,0,".","") . "</td>
+                    <td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($date))) . "</td>
+                    <td>" . strtoupper(htmlspecialchars("$type")) . "</td>
+                    <td>" . htmlspecialchars("$symbol") . "</td>
+                    <td>" . number_format($quantity,0,".",",") . "</td>
+                    <td>" . number_format($price,2,".",",") . "</td>
+                    <td>" . number_format($total,2,".",",") . "</td>
                 </tr>");
     }
     ?>
@@ -93,6 +95,8 @@
             echo("<strong>" . $unitsymbol . htmlspecialchars(number_format($gainlosses,2,".",",")) . "</strong>");
             ?></td>
     </tr>
+
+    </tbody>
 </table>
 
 

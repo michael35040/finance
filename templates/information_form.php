@@ -5,7 +5,7 @@
         width:25%;
     }
 </style>
-<?pop //need To ensure the vars sugh as bids group arefed. ?>
+<?php //need To ensure the vars sugh as bids group arefed. ?>
 <head>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <!--script type="text/javascript" src="../public_html/js/jsapi"></script-->
@@ -15,10 +15,10 @@
         google.setOnLoadCallback(drawChart);
         function drawChart()
         {
-            <?php
-                        if($tradesGroupChart != null)
-                        {
-                            ?>
+        <?php
+            if($tradesGroup != null)
+            {
+            ?>
 
 
             /////////////////
@@ -31,7 +31,7 @@
                 echo("['Date', 'Price', 'Volume(k)'],"); // ['Year', 'Sales', 'Expenses'],
                 //SQL QUERY FOR ALL TRADES
 
-                foreach ($tradesGroupChart as $trade)	// for each of user's stocks
+                foreach ($tradesGroup as $trade)	// for each of user's stocks
                 {
                     $dbDate = $trade["date"];
                     $date = strtotime($dbDate);
@@ -93,7 +93,7 @@
             ////////////
 
 
-            <?php }   //tradesgroupchart != null ?>
+            <?php }   //tradesgroup != null ?>
 
 
 
@@ -111,8 +111,8 @@
                 echo("['Date', 'Bids', 'Asks'],"); // ['Year', 'Sales', 'Expenses'],
                 //SQL QUERY FOR ALL TRADES
 
-                //$bidsGroupChart = array_reverse($bidsGroup); //so it will be in correct ASC order for chart
-                foreach ($bidsGroup as $order)	// for each of user's stocks
+                $bidsGroupChart = array_reverse($bidsGroup); //so it will be in correct ASC order for chart
+                foreach ($bidsGroupChart as $order)	// for each of user's stocks
                 {
                     $date = 0;
                     $price = number_format(($order["price"]), 2, '.', '');
@@ -125,7 +125,7 @@
                     $date = 0;
                     $price = number_format(($order["price"]), 2, '.', '');
                     $quantity = number_format(($order["quantity"]), 2, '.', '');
-                    echo("['" . $price . "', " . $order .  ", " . $quantity . "],");
+                    echo("['" . $price . "', " . $date .  ", " . $quantity . "],");
                 }
 
 
@@ -167,12 +167,11 @@
                     $owned=$owned+$quantity;
                 }
 
-            $asksTotal=number_format(($asksTotal), 0, '.', '');
-            $issued=$asset["public"]; //or $asset["public"] or $asset["issued"]
-            $leftOver=$issued-$owned-$asksTotal; //takes the amount issued and subtracts the listed owned to figure out how many shares are left from top listed users for pie chart
+            $asset["askstotal"]=number_format(($asset["askstotal"]), 0, '.', '');
+            $leftOver=($asset["public"]-$owned-$asset["askstotal"]); //takes the amount issued and subtracts the listed owned to figure out how many shares are left from top listed users for pie chart
             $leftOver=number_format(($leftOver), 0, '.', '');
             echo("['Other Users', " . $leftOver . "],");
-            echo("['Orderbook', " . $asksTotal . "]");             
+            echo("['Orderbook', " . $asset["askstotal"] . "],");
             //if($leftOver>0){} //if($askQuantity>0){}
              //   ['Work',     11],
              //   ['Sleep',    7]
@@ -225,37 +224,31 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
     </tr>
     </thead>
     <tbody>
-    <?php
-    echo('<tr>');
-    echo('<td> ' . htmlspecialchars($asset["symbol"]) . '</td>');
-    echo('<td >' . $unitsymbol . number_format($tradesPrice, 2, ".", ",") . '</td>');
-    echo('<td >' . number_format($asset["volume"], 0, ".", ",") . '</td>');
-    echo('<td >' . $unitsymbol . number_format($asset["marketcap"], 2, ".", ",") . '</td>');
-    echo('</tr>');
-    echo('<tr >');
-
-    echo('<td colspan="1">' . htmlspecialchars($asset["name"]) . '
-            <br>' . htmlspecialchars($asset["url"]) . '</td>');
-
-    echo('<td >' . $unitsymbol . number_format($bidsPrice, 2, ".", ",") . ' - Bid
-            <br>' . $unitsymbol . number_format($asksPrice, 2, ".", ",") . ' - Ask
-            <br>' . $unitsymbol . number_format($asset["avgprice"], 2, ".", ",") . ' - Avg. Price (30d)</td>');
-
-    echo('<td >' . number_format($asset["public"], 0, ".", ",") . ' - Publicly Held
-        <br>' . number_format($asset["issued"], 0, ".", ",") . ' - Issued (' . number_format($asset["userid"], 0, ".", ",") . ')
-        <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
-
-    echo('<td >Dividend: ' . number_format($asset["dividend"], 2, ".", ",") .
-        '<br>Rating: ' . htmlspecialchars($asset["rating"]) .
-        '<br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) .
-        '</td>');
-    echo('</tr>');
-    echo('<tr class="active"><td colspan="4">Description: ' . htmlspecialchars(ucfirst($asset["description"])) . '</td></tr>');
-?>
+    <tr>
+        <td><?php echo(htmlspecialchars($asset["symbol"])) ?></td>
+        <td ><?php echo($unitsymbol . number_format($tradesPrice, 2, ".", ",")) ?></td>
+        <td ><?php echo(number_format($asset["volume"], 0, ".", ",")) ?></td>
+        <td ><?php echo($unitsymbol . number_format($asset["marketcap"], 2, ".", ",")) ?></td>
+    </tr>
+    <tr >
+        <td colspan="1"><?php echo(htmlspecialchars($asset["name"])) ?><br><?php echo(htmlspecialchars($asset["url"])) ?></td>
+        <td ><?php echo($unitsymbol . number_format($bidsPrice, 2, ".", ",")) ?> - Bid
+                <br><?php echo($unitsymbol . number_format($asksPrice, 2, ".", ",")) ?> - Ask
+                <br><?php echo($unitsymbol . number_format($asset["avgprice"], 2, ".", ",")) ?> - Avg. Price (30d)</td>
+        <td ><?php echo(number_format($asset["public"], 0, ".", ",")) ?> - Publicly Held
+            <br><?php echo(number_format($asset["issued"], 0, ".", ",")) ?> - Issued (<?php echo(number_format($asset["userid"], 0, ".", ",")) ?>
+            <br><?php echo(htmlspecialchars($asset["date"])) ?> - Listed</td>
+        <td >Dividend: <?php echo(number_format($asset["dividend"], 2, ".", ",")) ?>
+            <br>Rating: <?php echo(htmlspecialchars($asset["rating"])) ?>
+            <br>Type: <?php echo(htmlspecialchars(ucfirst($asset["type"]))) ?></td>
+    </tr>
+    <tr class="active">
+        <td colspan="4">Description: <?php echo(htmlspecialchars(ucfirst($asset["description"]))) ?></td>
+    </tr>
     </tbody>
 </table>
 
-<table class="table" align="center"> <!--class="bstable"-->
+<table class="table table-condensed table-striped table-bordered" > <!--class="bstable"-->
     <tr>
         <th colspan="7" bgcolor="black" style="color:white" size="+1">
                 <b>YOUR ACCOUNT</b>
@@ -268,16 +261,13 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         <td colspan="1">Controlling Interest</td>
         <td colspan="1">Value</td>
     </tr>
-<?php
-    echo('<tr>
-        <td colspan="1">' . number_format($asset["quantity"], 0, ".", ",") . '</td>
-        <td colspan="1">' . number_format($asset["locked"], 0, ".", ",") . '</td>
-        <td colspan="1">' . number_format(($asset["locked"]+$asset["quantity"]), 0, ".", ",") . '</td>
-        <td colspan="1">' . number_format($asset["control"], 0, ".","") . '%</td> .
-        <td colspan="1">' . $unitsymbol . number_format((($asset["locked"]+$asset["quantity"])*$asset["price"]), 0, ".", ",") . '</td>
-        </tr>');
-    ?>
-
+    <tr>
+        <td colspan="1"><?php echo(number_format($asset["userportfolio"], 0, ".", ",")) ?></td>
+        <td colspan="1"><?php echo(number_format($asset["userlocked"], 0, ".", ",")) ?></td>
+        <td colspan="1"><?php echo(number_format(($asset["userlocked"]+$asset["userportfolio"]), 0, ".", ",")) ?></td>
+        <td colspan="1"><?php echo(number_format($asset["control"], 0, ".","")) ?>%</td>
+        <td colspan="1"><?php echo($unitsymbol . number_format((($asset["userlocked"]+$asset["userportfolio"])*$asset["price"]), 0, ".", ",")) ?></td>
+    </tr>
 </table>
 
 
@@ -306,7 +296,7 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
 
 <!--div id="chart_div" style="width: 900px; height: 500px;"></div-->
 <?php
-if($tradesGroupChart != null)
+if($tradesGroup != null)
 { ?>
     <tr><td colspan="7"><div id="chart_div" style="overflow:hidden;"></div></td></tr>
 <?php } ?>
@@ -385,7 +375,7 @@ if($trades != null)
             <?php echo($symbol); ?> - ORDERBOOK
         </th>
     </tr>
-
+    <tr>
     <td style="width:10%">
 
 
@@ -412,7 +402,7 @@ if($trades != null)
             ?>
 
             <tr>
-                <td><b><?php echo($bidsTotal);?></b></td>
+                <td><b><?php echo($asset["bidstotal"]);?></b></td>
                 <td><b>ALL</b></td>
             </tr>
 
@@ -450,7 +440,7 @@ if($trades != null)
 
             <tr>
                 <td><b>ALL</b></td>
-                <td><b><?php echo($asksTotal);?></b></td>
+                <td><b><?php echo($asset["askstotal"]);?></b></td>
             </tr>
 
 
@@ -484,7 +474,7 @@ if($trades != null)
         </th>
     </tr>
 
-    <tr>
+    <tr class="active">
         <td>Order #</td>
         <td>Side</td>
         <!--th>Type</th-->
@@ -519,7 +509,7 @@ if($trades != null)
         </th>
     </tr>
 
-    <tr>
+    <tr class="active">
         <td>Order #</td>
         <td>Side</td>
         <!--th>Type</th-->
@@ -555,15 +545,16 @@ if($trades != null)
 
 
 <table class="table" align="center">
+    <thead>
     <tr><td colspan="3"></td></tr> <!--blank row breaker-->
     <tr>
         <th colspan="3" bgcolor="black" style="color:white" size="+1" >
             Top Owners & Orderbook
         </th>
     </tr>
-
-
-    <tr>
+    </thead>
+    <tbody>
+    <tr class="active">
         <td>Owner's ID</td>
         <td>Quantity</td>
         <td>Percentage</td>
@@ -573,7 +564,7 @@ if($trades != null)
     foreach ($ownership as $row)
     { $percentage=($row["quantity"]/$asset["public"])*100;
         echo("<tr>");
-        echo("<td>" . (number_format($row["id"],0,".",",")) . "</td>");
+        echo("<td>User: <b>" . (number_format($row["id"],0,".",",")) . "</b> (Portfolio Only)</td>");
         echo("<td>" . (number_format($row["quantity"],0,".",",")) . "</td>");
         echo("<td>" . (number_format($percentage,2,".",",")) . "%</td>");
         echo("</tr>");
@@ -585,23 +576,14 @@ if($trades != null)
         echo("<tr><td>Other Users</td><td>" . number_format($leftOver, 0, '.', '') . "</td><td>" . (number_format($percentage,2,".",",")) . "%</td>");
    // }
 
-    if($asksTotal>0)
-    {
-        $percentage=($asksTotal/$asset["public"])*100;
+    //if($asset["askstotal"]>0)
+    //{
+        $percentage=($asset["askstotal"]/$asset["public"])*100;
         echo("<tr><td>Orderbook</td><td>");
-        echo($asksTotal);
+        echo($asset["askstotal"]);
         echo("</td><td>" . (number_format($percentage,2,".",",")) . "%</td></tr>");
-    }
-
-
-
-
-
-
-    ?>
-
-
-
+    //}
+    ?><tr><td colspan="3"></td></tr></tbody>
 </table>
-<div id="piechart"></div>
+<div id="piechart" style="height:350px"></div>
 
