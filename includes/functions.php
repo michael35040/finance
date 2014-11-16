@@ -52,14 +52,14 @@ function query(/* $sql [, ... ] */)
 	{
 		try
 		{
-		$handle = new PDO("mysql:dbname=" . DATABASE . ";host=" . SERVER, USERNAME, PASSWORD); // connect to database
-		$handle->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);  // ensure that PDO::prepare returns false when passed invalid SQL
+            $handle = new PDO("mysql:dbname=" . DATABASE . ";host=" . SERVER, USERNAME, PASSWORD); // connect to database
+            $handle->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);  // ensure that PDO::prepare returns false when passed invalid SQL
 		}
-	catch (Exception $e)
-	{
-	trigger_error($e->getMessage(), E_USER_ERROR);  // trigger (big, orange) error
-	exit;
-    }
+	    catch (Exception $e)
+        {
+            trigger_error($e->getMessage(), E_USER_ERROR);  // trigger (big, orange) error
+            exit;
+        }
 	}
 	$statement = $handle->prepare($sql);  // prepare SQL statement
 	if ($statement === false)

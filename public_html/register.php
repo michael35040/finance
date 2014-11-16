@@ -23,6 +23,8 @@ if ($password != $confirmation) { apologize("Password missmatch."); }
 $phone = str_replace("-", '', $phone); //replace these symbols that are commonly typed with phone numbers.
 $phone = str_replace(".", '', $phone);
 $phone = str_replace(" ", '', $phone);
+$phone = str_replace("(", '', $phone);
+$phone = str_replace(")", '', $phone);
 
     // Sanitize and validate the data passed in
 if (!ctype_alnum($username)) { apologize("Usernames must only contain alphanumeric (A-Z and/or 0-9) characters!");}
@@ -30,8 +32,8 @@ if (!ctype_alnum($username)) { apologize("Usernames must only contain alphanumer
 
 //commenting out due to pain of providing valid email when testing
 //    $email = filter_input(INPUT_POST, $email, FILTER_SANITIZE_EMAIL);
-//    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
-//    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { apologize("The email address you entered is not valid."); }   // Not a valid email
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { apologize("The email address you entered is not valid."); }   // Not a valid email
 
 
 if (!ctype_digit($phone)) { apologize("Phone must be numeric!");} //if quantity is numeric	

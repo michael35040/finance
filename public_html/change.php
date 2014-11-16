@@ -18,13 +18,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 						{
 					        // validate submission
 							if (empty($_POST["email"]) || empty($_POST["confirmation"])){apologize("You must provide a email.");}
-							if ($_POST["email"] != $_POST["confirmation"]){apologize("Missmatch. The new email does not match its confirmation.");}       
-					        $email = $_POST["email"];
-							//$email = filter_input(INPUT_POST, $email, FILTER_SANITIZE_EMAIL);
-							//$email = filter_var($email, FILTER_VALIDATE_EMAIL);
-							//if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { apologize("The email address you entered is not valid."); }   // Not a valid email
-							if (query("UPDATE users SET email = ( ? ) WHERE id = ( ? )", ($_POST["email"]), $_SESSION["id"]) === false){apologize("Sorry, some internal error ocured.");}
-							redirect("index.php");
+							if ($_POST["email"] != $_POST["confirmation"]){apologize("Missmatch. The new email does not match its confirmation.");}
+                                $email = $_POST["email"];
+                                //$email = filter_input(INPUT_POST, $email, FILTER_SANITIZE_EMAIL);
+                                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { apologize("The email address you entered is not valid."); }   // Not a valid email
+                                if (query("UPDATE users SET email = ( ? ) WHERE id = ( ? )", ($_POST["email"]), $_SESSION["id"]) === false) {
+                                    apologize("Sorry, some internal error ocured.");
+                                }
+                                redirect("index.php");
+
 						}//email
 						if ($change == 'phone')
 						{	
@@ -32,9 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 							if (empty($_POST["phone"]) || empty($_POST["confirmation"])){apologize("You must provide a phone.");}
 							if ($_POST["phone"] != $_POST["confirmation"]){ apologize("Missmatch. The new phone does not match its confirmation."); }       
 							$phone = $_POST["phone"];
-							$phone = str_replace("-", '', $phone); //replace these symbols that are commonly typed with phone numbers.
-							$phone = str_replace(".", '', $phone);
-							$phone = str_replace(" ", '', $phone);
+                            $phone = str_replace("-", '', $phone); //replace these symbols that are commonly typed with phone numbers.
+                            $phone = str_replace(".", '', $phone);
+                            $phone = str_replace(" ", '', $phone);
+                            $phone = str_replace("(", '', $phone);
+                            $phone = str_replace(")", '', $phone);
 							if (!ctype_digit($phone)) { apologize("Phone must be numeric!");} //if quantity is numeric	
 					        if(query("UPDATE users SET phone = ( ? ) WHERE id = ( ? )", $phone, $_SESSION["id"]) === false){ apologize("Sorry, username already taken."); }
 							redirect("index.php");

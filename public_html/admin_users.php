@@ -51,10 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
     else //elseif($terms == "money")
     {
-
-
         //execute query
-        $rows = query("SELECT * FROM accounts WHERE users.id=accounts.id ORDER BY units DESC  LIMIT 0, 10"); //top 10 (0-9)
+        $rows = query("SELECT * FROM users, accounts WHERE users.id=accounts.id ORDER BY units DESC LIMIT 0,10 ;");
 
         foreach ($rows as $row)		// for each of user
         {

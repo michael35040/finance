@@ -94,10 +94,10 @@ foreach ($SBallAssets as $SBrow)		// for each of user's stocks
             echo("INDEX&nbsp;");
             echo($unitsymbol . number_format($SBindexValue, 2, ".", ",")); // number_format($SBindexMarketCap, 0, ".", ","));
             //CHANGE AND ARROWS
-            //$change=(mt_rand(1,200)/100);
-            //$posneg=(mt_rand(1,2));
-            //if($posneg==1)  {echo('<span style="color: #009900;"> &#x25B2; ' . $change . '</span></span>');}
-            //else            {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}
+            $change=(mt_rand(1,200)/100);
+            $posneg=(mt_rand(1,2));
+            if($posneg==1)  {echo('<span style="color: #009900;"> &#x25B2; ' . $change . '</span></span>');}
+            else            {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}
 
             //EACH SHARE
             foreach ($SBassets as $SBasset)
@@ -106,10 +106,18 @@ foreach ($SBallAssets as $SBrow)		// for each of user's stocks
                 echo($SBasset["symbol"] . "&nbsp;");
                 echo($unitsymbol . number_format($SBasset["price"], 2, ".", ",")); 
                 //CHANGE AND ARROWS
-                //$change=(mt_rand(1,200)/100);
-                //$posneg=(mt_rand(1,2));
-                //if($posneg==1)  {echo('<span style="color: #009900;"> &#x25B2; ' . $change . '</span></span>');} //up
-                //else            {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}//down
+                $change=$SBasset["price"]/mt_rand(4,150);
+                $change=number_format($change,2,".",",");
+                if($SBasset["price"]==0){$change=0;}
+                else{;}
+                $posneg=(mt_rand(1,10));
+                if($posneg>6)
+                    {echo('<span style="color: #009900;"> &#x25B2; ' . $change . '</span></span>');} //up
+                elseif($posneg<4)
+                    {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}//down
+                else
+                    {echo('<span style="color: #000000;"> &#x25C4; &#x25BA; ' . $change . '</span></span>');}//even
+
             }
             ?>
 
