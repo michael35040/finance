@@ -10,9 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     if (empty($_POST["symbol"])) { apologize("Please select a symbol!"); } //check to see if empty
     $symbol = $_POST["symbol"];
-    if (!ctype_alnum($symbol)) {apologize("Invalid Symbol");}
-$symbol = strtoupper($symbol); //cast to UpperCase
-
+    $symbol = function sanatize("symbol", $symbol);
 
     //COMPANY INFORMATION
     $asset=[];
