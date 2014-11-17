@@ -1,3 +1,40 @@
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+<?php 
+
+echo("['Symbol', 'Quantity'],");
+foreach ($portfolio as $asset) // for each of user's stocks
+{
+        $quantity = number_format(($asset["quantity"]), 0, '.', '');
+        $symbol = htmlspecialchars($asset["symbol"]);
+        echo("['" . $symbol . "', " . $quantity . "],");
+} ?>  
+
+        ]);
+
+        var options = {
+         title: 'Portfolio'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+
+
+
+
+
+<div id="piechart" style="height:350px"></div>
+<?php //} ?>
+
 
 
 <table class="table table-condensed  table-bordered" >
@@ -94,8 +131,8 @@
     foreach ($portfolio as $row) {
            $totalOwned=($row["quantity"]+$row["locked"]);
         echo("<tr>");
-        echo("<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp; " . $row['symbol']
-           . " &nbsp;</b></button></form></td>");
+        echo("<td><form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp;" . $row['symbol']
+           . "&nbsp;</b></button></form></td>");
         // . htmlspecialchars($row["symbol"]) .
         echo("<td>" . (number_format($totalOwned, 0, ".", ",")) . " (" . (number_format($row["control"], 2, ".", ",")) . "%)</td>");  //htmlspecialchars
         echo("<td>" . (number_format($row["quantity"], 0, ".", ",")) . "</td>");
@@ -147,7 +184,7 @@
 
         <!-- TOTAL STOCK WORTH -->
         <tr  class="active">
-            <td colspan="5"><strong>SUBTOTAL (<?php echo($i); ?> Stocks)</strong></td>
+            <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Stocks)</td>
             <td><strong>
                     <?php //calculate value of purchase price
                     $purchaseprice = $purchaseprice[0]["purchaseprice"]; //convert array to number
