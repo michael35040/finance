@@ -7,9 +7,10 @@ $limit = "LIMIT 0, 10";
 $tabletitle = "Last 10";
 //history post submit button was press
 if(isset($_POST['history']))
-{
+{ $history = $_POST['history'];
+  $history = sanatize("alphabet", $history);
     if ($_POST['history'] == 'all')
-    {
+    {   
         $limit = "";
         $title = "All History";
         $tabletitle = "All";
