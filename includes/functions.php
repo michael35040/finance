@@ -6,22 +6,39 @@
      **********************************************************************/
      
 
-function sanatize($var)
+function sanatize($type, $var)
 {
-                            $var = str_replace("-", '', $var); //replace these symbols that are commonly typed with phone numbers.
-                            $var = str_replace(".", '', $var);
-                            $var = str_replace(",", '', $var);
-                            $var = str_replace(" ", '', $var);
-                            $var = str_replace("(", '', $var);
-                            $var = str_replace(")", '', $var);
-                            $var = str_replace("&", '', $var);
-                            //$var = str_replace("/", '', $var);
-                            //$var = str_replace("\\", '', $var);
-                            //$var = str_replace("|", '', $var);
-                            //$var = str_replace("'"), "", $var);
-                            //$var = str_replace('"'), '', $var);
-
-                            return($var);
+	if($type=='phone')
+	{
+	        $var = str_replace("-", '', $var); //replace these symbols that are commonly typed with phone numbers.
+	        $var = str_replace(".", '', $var);
+	        $var = str_replace(",", '', $var);
+	        $var = str_replace(" ", '', $var);
+	        $var = str_replace("(", '', $var);
+	        $var = str_replace(")", '', $var);
+	        $var = str_replace("&", '', $var);
+	        //$var = str_replace("/", '', $var);
+	        //$var = str_replace("\\", '', $var);
+	        //$var = str_replace("|", '', $var);
+	        //$var = str_replace("'"), "", $var);
+	        //$var = str_replace('"'), '', $var);
+	}
+	if($type=='quantity')
+	{
+		if ($var<0){ apologize("Quantity must be positive!");} //if quantity is numeric
+    		if (preg_match("/^\d+$/", $var) == false) { apologize("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
+    		if (!is_numeric ($var)) { apologize("Quantity must be numeric!");} //if quantity is numeric
+	}
+	if($type=='price')
+	{
+		if ($var<0){ apologize("Price must be positive!");} //if quantity is numeric
+	    	if (!is_numeric ($var)) { apologize("Price must be numeric!");} //if quantity is numeric
+	}
+	if($type=='alphabet') //side, type, etc.
+	{
+    		if (!ctype_alpha($var)) { apologize("Must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
+	}
+       return($var);
 }
 
 
