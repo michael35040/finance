@@ -15,6 +15,7 @@ $bidLocked = $bidLocked[0]["total"]; //shares trading
 $userPortfolio =	query("SELECT symbol, quantity, price FROM portfolio WHERE id = ? ORDER BY symbol ASC", $_SESSION["id"]);
 
 $portfolioTotal=0; //total market value of portfolio
+$portfolioValue=0; //total purchase value of portfolio
 $portfolio = []; //to send to next page
 foreach ($userPortfolio as $row)		// for each of user's stocks
 {
@@ -55,11 +56,12 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
     $stock["total"] = (($stock["quantity"]+$stock["locked"]) * $stock["price"]); //current market price pulled from function.php
 
     $portfolio[] = $stock;
-    $portfolioTotal = $portfolioTotal + $stock["total"];
+    $portfolioTotal = $portfolioTotal + $stock["total"]; //total market value of portfolio
+    $portfolioValue = $portfolioValue + $stock["value"]; //total purchase price of portfolio
 }
 
 // render portfolio (pass in new portfolio table and cash)
-render("portfolio_form.php", ["title" => "Portfolio", "portfolio" => $portfolio, "portfolioTotal" => $portfolioTotal, "purchaseprice" => $purchaseprice, "bidLocked" => $bidLocked]);
+render("portfolio_form.php", ["title" => "Portfolio", "portfolio" => $portfolio, "portfolioTotal" => $portfolioTotal, "portfolioValue" => $portfolioValue, "purchaseprice" => $purchaseprice, "bidLocked" => $bidLocked]);
 
 
                     /* //DONE ON PORTFOLIO.php
