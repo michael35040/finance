@@ -5,7 +5,8 @@ require("../includes/config.php");  // configuration
 
 $id = $_SESSION["id"]; //get id from session
 
-
+apologize("Disabled!");
+/*
 
 
 //update in case they changed
@@ -207,8 +208,10 @@ render("success_form.php", ["title" => "Success", "transaction" => $transaction,
 }
 else
 {
-render("loan_form.php", ["title" => "Loan", "approved" => $approved]); // render buy form //***/to remove C/***/
+render("loan_form.php", ["title" => "Loan", "approved" => $approved]); // render buy form
 }
   
 //         echo(var_dump(get_defined_vars()));       //dump all variables if i hit error    
 ?>
+
+*/
