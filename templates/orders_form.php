@@ -41,20 +41,24 @@
         echo("<td>" . $unitsymbol . htmlspecialchars(number_format($row["total"], 2, ".", ",")) . "</td>");
         echo("</tr>");
         $OrderNumber++;
+        /*
         $OrderQuantity=$OrderQuantity+$row["quantity"];
         $OrderPrice=$OrderPrice+$row["price"];
         $OrderTotal=$OrderTotal+$row["total"];
+        */
     }
     if($OrderNumber==0)
     {
         echo("<tr><td colspan='9'>No active orders</td></tr>");
     }
     else
-    {
-        echo('<tr  class="danger" style="font-weight: bold;">'); //class="active"
-        echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form>&nbsp; ALL</td>');
-        echo("<td colspan='8'>" . htmlspecialchars(number_format($OrderNumber, 0, ".", ",")) . " open orders</td>");
-        echo('</tr>');
+    { ?>
+        <tr  class="danger" style="font-weight: bold;">
+        <td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form>&nbsp; ALL</td>
+        <td colspan='7'><?php echo(htmlspecialchars(number_format($OrderNumber, 0, ".", ","))) ?> open orders</td>
+        <td><?php echo($unitsymbol . htmlspecialchars(number_format($ordertotal[0]["sumtotal"], 2, ".", ","))) ?></td>
+        </tr>
+        <?php
     }
     ?>
     </tbody>
