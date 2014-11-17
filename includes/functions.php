@@ -22,7 +22,7 @@ function sanatize($type, $var)
 	        //$var = str_replace("|", '', $var);
 	        //$var = str_replace("'"), "", $var);
 	        //$var = str_replace('"'), '', $var);
-	        if (!is_numeric($phone)) { apologize("Phone must be numeric!");} //if quantity is numeric	
+	        if (!is_numeric($var)) { apologize("Phone must be numeric!");} //if quantity is numeric	
 
 	}
 	if($type=='quantity')
