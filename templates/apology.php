@@ -10,26 +10,13 @@ background-color: white;
 	font-weight:bold;
 	color:red;
 	font-size:large;
-/*	bottom: 0; 
-	height: 0; 
-	left: 0;
-	right: 0;
-	margin: auto; 
-	width: 500px;
-	
-	position: relative;
-	top: 50%;
-	transform: translate(-50%); */
-	
 
 }
 </style>
 
 <p>
 <br />
-<!--<p class="lead text-error">-->
-    <?php //echo(htmlspecialchars($message)) ?>
-    <?php echo(($message)) ?>
+    <?php echo(htmlspecialchars ($message)) ?>
 <br /><br />
 <a href="javascript:history.go(-1);" class="btn btn-danger btn-medium">Back</a>
 <br />  <br />  
