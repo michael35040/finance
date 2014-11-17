@@ -17,8 +17,9 @@ if(isset($_POST['trades']))
 
 
 if(isset($_POST['uid']))
-{
-    $trades =	query("SELECT * FROM trades WHERE (askorderuid = ? OR bidorderuid = ?) ORDER BY uid DESC $limit", $_POST['uid'], $_POST['uid']);	  // query user's portfolio
+{   $uid=$_POST['uid'];
+    if (!ctype_digit($uid)) { apologize("Invalid input!");} 	
+    $trades =	query("SELECT * FROM trades WHERE (askorderuid = ? OR bidorderuid = ?) ORDER BY uid DESC $limit", $uid, $uid);	  // query user's portfolio
     render("trades_form.php", ["title" => $title, "trades" => $trades]);
 }
 else
