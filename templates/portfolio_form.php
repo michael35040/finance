@@ -7,12 +7,12 @@
         var data = google.visualization.arrayToDataTable([
 <?php 
 
-echo("['Symbol', 'Quantity'],");
+echo("['Asset', 'Value'],");
 foreach ($portfolio as $asset) // for each of user's stocks
 {
-        $quantity = number_format(($asset["quantity"]), 0, '.', '');
+        $value = number_format(($asset["total"]), 0, '.', '');
         $asset = htmlspecialchars($asset["symbol"]);
-        echo("['" . $asset . "', " . $quantity . "],");
+        echo("['" . $asset . "', " . $value . "],");
 } ?>  
 
         ]);
