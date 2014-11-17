@@ -36,6 +36,7 @@
         var options2 = {
         title: 'Networth by Asset Value',
         pieSliceText: 'label',
+        legend.position: {position: 'none'},
        // width: 500,
         height: 500,
         //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
