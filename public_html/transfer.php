@@ -5,7 +5,9 @@
 	//require("../includes/constants.php"); //global finance constants
 
     $id = $_SESSION["id"];
-	    
+
+apologize("Disabled!");
+/*
     // if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -127,6 +129,10 @@ render("transfer_form.php", ["title" => "Transfer"]); // render sell form
 } 
 
 //var_dump(get_defined_vars());
+
+
+*/
+
 ?>
 
 

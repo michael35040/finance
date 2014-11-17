@@ -7,6 +7,7 @@ $id = $_SESSION["id"]; //get id from session
 
 $bidLocked =	query("SELECT SUM(total) AS total FROM orderbook WHERE (id=? AND side='b')", $id);	  // query user's portfolio
 $bidLocked = $bidLocked[0]["total"]; //shares trading
+if($bidLocked==null){$bidLocked=0;}
 
 $userPortfolio =	query("SELECT symbol, quantity, price FROM portfolio WHERE id = ? ORDER BY symbol ASC", $_SESSION["id"]);
 

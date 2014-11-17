@@ -87,37 +87,47 @@ foreach ($SBallAssets as $SBrow)		// for each of user's stocks
         <div id="marqueecontent">
 
 
+
+
             <?php //echo($sitename);
+function banner($price)
+{
+    if($price!=0)
+    {
+        $change=$price/mt_rand(3,100);
+        $change=number_format($change,2,".",",");
+        $posneg=(mt_rand(1,10));
+    }
+    else //($SBasset["price"]==0)
+    {
+        $posneg=5;
+    }
+    if($posneg>6)
+    {echo('<span style="color: #009900;"> &#x25B2; ' . $change . '</span></span>');} //up
+    elseif($posneg<5)
+    {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}//down
+    else
+    {$change=0; echo('<span style="color: #000000;"> &#x25C4; &#x25BA; ' . $change . '</span></span>');}//even
+}
+
+
+
+
             //MARKET INDEX
             echo('<span class="stockbox">');
             //echo("INDEX MARKET CAP.&nbsp;");echo($unitsymbol . number_format($SBindexMarketCap, 2, ".", ",")); 
             echo("INDEX&nbsp;");
             echo($unitsymbol . number_format($SBindexValue, 2, ".", ",")); // number_format($SBindexMarketCap, 0, ".", ","));
-            //CHANGE AND ARROWS
-            $change=(mt_rand(1,200)/100);
-            $posneg=(mt_rand(1,2));
-            if($posneg==1)  {echo('<span style="color: #009900;"> &#x25B2; ' . $change . '</span></span>');}
-            else            {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}
+            banner($SBindexValue);//CHANGE AND ARROWS
+
 
             //EACH SHARE
             foreach ($SBassets as $SBasset)
             {
                 echo('<span class="stockbox">');
                 echo($SBasset["symbol"] . "&nbsp;");
-                echo($unitsymbol . number_format($SBasset["price"], 2, ".", ",")); 
-                //CHANGE AND ARROWS
-                $change=$SBasset["price"]/mt_rand(3,100);
-                $change=number_format($change,2,".",",");
-                if($SBasset["price"]==0){$change=0;}
-                else{;}
-                $posneg=(mt_rand(1,10));
-                if($posneg>6)
-                    {echo('<span style="color: #009900;"> &#x25B2; ' . $change . '</span></span>');} //up
-                elseif($posneg<4)
-                    {echo('<span style="color: #ff0000;"> &#x25BC; ' . $change . '</span></span>');}//down
-                else
-                    {$change=0; echo('<span style="color: #000000;"> &#x25C4; &#x25BA; ' . $change . '</span></span>');}//even
-
+                echo($unitsymbol . number_format($SBasset["price"], 2, ".", ","));
+                banner($SBasset["price"]);//CHANGE AND ARROWS
             }
             ?>
 

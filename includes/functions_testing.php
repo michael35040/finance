@@ -80,7 +80,7 @@ function createStocks()
 
     echo("<br>Symbol: " . $symbol);
     $i=0;
-    while ($i < 26) {
+    while ($i < 7) {
         $name=('The ' . $symbol . ' Co.');
         $userid=mt_rand(1,3);
         $issued = 2 * (mt_rand(1, 100) * 100000);
@@ -94,7 +94,7 @@ function createStocks()
             $quantity = $issued / 2;
             $price = mt_rand(1, 40) * $divisor * ($issued / 2);
             //query("INSERT INTO `portfolio` (`id`, `symbol`, `quantity`, `price`) VALUES (3, ?, ?, ?)", $symbol, $quantity, $price);
-            echo("<br>Issued-[Symbol:" . $symbol . ", Quantity:" . $quantity . ", Fee:" . $fee);
+            echo("<br>Issued-[Symbol:" . $symbol . ", Quantity:" . $quantity . ", Fee:" . $fee . "]<br>");
             echo($publicOffering);
             $symbol++;
             $i++;
@@ -117,6 +117,22 @@ function createStocks()
 
 
 function clear_all()
+{
+    clear_orderbook();
+    clear_trades();
+    clear_portfolio();
+    clear_history();
+    clear_assets();
+    query("  UPDATE `accounts` SET `units`=0,`loan`=0,`rate`=0,`approved`=1 WHERE 1");
+
+
+    //try {processOrderbook();}
+    //catch exception
+    //catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
+
+}
+
+function test()
 {
     clear_orderbook();
     clear_trades();

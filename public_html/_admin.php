@@ -14,6 +14,7 @@ if ($id != 1) { apologize("Unauthorized!");}
 <table class="table table-condensed table-striped table-bordered" id="admin" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
     <tr><th colspan=2>ADMIN TESTING</th></tr>
     <tr><td><input type="radio" name="admin" value="all"></td>          <td>Clear All</td></tr>
+    <tr><td><input type="radio" name="admin" value="test"></td>          <td>New Environment</td></tr>
     <tr><td><input type="radio" name="admin" value="orderbook"></td>    <td>Clear Orderbook</td></tr>
     <tr><td><input type="radio" name="admin" value="trades"></td>       <td>Clear Trades</td></tr>
     <tr><td><input type="radio" name="admin" value="info"></td>         <td>Monetary Info</td></tr> 
@@ -48,6 +49,7 @@ if ($id != 1) { apologize("Unauthorized!");}
 if(isset($_POST['admin']))
 {
     if ($_POST['admin'] == 'all'){clear_all();}
+    if ($_POST['admin'] == 'test'){test();}
     if ($_POST['admin'] == 'orderbook'){clear_orderbook();}
     if ($_POST['admin'] == 'trades'){clear_trades();}
     if ($_POST['admin'] == 'info')

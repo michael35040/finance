@@ -186,7 +186,7 @@
         $portfolioTotal = 0;  //set to zero for networth calc
         ?>
         <tr  class="active">
-        <td colspan="4"><strong>SUBTOTAL</strong></td>
+        <td colspan="5"><strong>SUBTOTAL</strong></td>
             <td><strong>0</strong></td>
             <td><strong>0</strong></td>
             <td><strong>0</strong></td>
@@ -282,15 +282,18 @@
         </td>
     </tr>
 
+    <?php if($i!=0){ ?>
     <tr>
         <td colspan="4"><div id="piechart" style=""></div></td>
         <td colspan="4"><div id="piechart2" style=""></div></td>
     </tr>
-    
+    <?php } ?>
+
+
 
 
 
     </table>
 
 
-
+<?php   // echo(var_dump(get_defined_vars())); ?>

@@ -105,8 +105,8 @@
     @$username = $users[0]["username"];
     // query cash for template
     $accounts =	query("SELECT * FROM accounts WHERE id = ?", $_SESSION["id"]);	 //query db
-    @$units = $accounts[0]["units"];
-    @$loan = $accounts[0]["loan"];
+    @$units = (float)$accounts[0]["units"];
+    @$loan = (float)$accounts[0]["loan"];
     @$rate = $accounts[0]["rate"];
     $rate *= 100; //for display as %
     @$approved = $accounts[0]['approved'];	//convert array from query to value
@@ -127,9 +127,10 @@
 
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="index.php">Accounts</a></li>
-                        <li><a href="transfer.php">Transfer </a></li><!--<i class="icon-gift"></i>-->
-                        <!-- <li><a href="loan.php">Loan</a></li> --><?php //if ($loan < 0) { //-0.00000001 ?><!-- <li><a href="loanpay.php">Pay Loan</a></li> --><?php //} ?>
+                        <li><a href="portfolio.php">Portfolio</a></li>
+                        <li><a href="history.php">History</a></li>
                         <li><a href="change.php">Edit Account</a></li>
+                        <!--<li><a href="transfer.php">Transfer </a></li><li><a href="loan.php">Loan</a></li><?php //if ($loan < 0) { //-0.00000001 ?><li><a href="loanpay.php">Pay Loan</a></li> --><?php //} ?>
                     </ul>
                 </div>
             </div>
@@ -142,11 +143,9 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="portfolio.php">Portfolio</a></li>
                         <li><a href="exchange.php">Place Order</a></li>
                         <li><a href="orders.php">Orders</a></li>
                         <li><a href="trades.php">Trades</a></li>
-                        <li><a href="history.php">History</a></li>
                         <li><a href="assets.php">Assets</a></li>
                         <li><a href="information.php">Information</a></li>
 
