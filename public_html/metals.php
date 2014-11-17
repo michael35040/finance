@@ -1,13 +1,10 @@
 <?php
+include '../includes/config.php'; 
 //https://svc.cloudhost365.com/SharedServices/api/market/spotprices/USD/ag/
 
-$url = 'https://svc.cloudhost365.com/SharedServices/api/market/spotprices/USD/au/';
+$data = file_get_contents('https://svc.cloudhost365.com/SharedServices/api/market/spotprices/USD/ag/');
+$xml = simplexml_load_file('https://svc.cloudhost365.com/SharedServices/api/market/spotprices/USD/ag/');
+echo(var_dump(get_defined_vars()));
 
-$xml = new SimpleXMLElement(file_get_contents($url));
-
-// pre tags to format nicely
-echo '<pre>';
-print_r($xml);
-echo '</pre>';
 
 ?>
