@@ -229,8 +229,9 @@ foreach ($portfolio as $asset) // for each of user's stocks
             </td>
         </tr>
         <tr>
-            <td colspan="7"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order(s)</i></td>
+            <td colspan="8"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order(s)</i></td>
         </tr>
+        <tr><td colspan="8"><div id="piechart" style="height:350px"></div></td></tr>
 
     <?php
     } //$i==0 else statement
@@ -265,5 +266,4 @@ foreach ($portfolio as $asset) // for each of user's stocks
     </table>
 
 
-<div id="piechart" style="height:350px"></div>
 
