@@ -3,7 +3,8 @@ require("../includes/config.php");
 
 $id = $_SESSION["id"];
 if ($id != 1) { apologize("Unauthorized!");}
-
+if ($id == 1) { 
+  
 $title = "Users";
 $limit = "LIMIT 0, 50";
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
@@ -36,6 +37,7 @@ $activeUsers = query("SELECT id, username, registered FROM users WHERE active=1 
 
 render("admin_activate_form.php", ["title" => $title, "inactiveUsers" => $inactiveUsers, "activeUsers" => $activeUsers]);
 } //else !post
+}//$id
 ?>
 
 
