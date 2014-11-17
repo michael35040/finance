@@ -40,8 +40,8 @@ background-position: center;
 #page {
 align: center;
 width: auto;
-padding: 0px 1% 0px 1%; /*top, right, bottom, left */
-margin: 0px 1% 0px 1%;
+padding: 0px 0% 0px 0%; /*top, right, bottom, left */
+margin: 0px 0% 0px 0%;
 border:0 solid red;
 /*background-color: yellow;*/
 }
