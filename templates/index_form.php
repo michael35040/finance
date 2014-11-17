@@ -59,7 +59,7 @@
         } ?>
 
             <tr  class="active">
-                <td colspan="7"><strong>SUBTOTAL</strong></td>
+                <td colspan="7"><strong>TOTAL</strong></td>
                 <td>
                     <strong>
                         <?php
@@ -69,11 +69,6 @@
                     </strong>
                 </td>
             </tr>
-
-        <tr><td colspan="8"> </td></tr><!--blank line-->
     <!-- HEADER ROW -->
     
-
-
-
     </table>
