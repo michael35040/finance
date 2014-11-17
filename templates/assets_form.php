@@ -78,7 +78,7 @@ foreach ($assets as $asset) // for each of user's stocks
             echo('</tr>');
         }
         echo("<tr><td colspan='3'><strong>Market Value</strong></td><td><strong>" . $unitsymbol . htmlspecialchars(number_format($indexMarketCap, 2, ".", ",")) . "</strong></td></tr>");
-        echo('<tr><td colspan="8"><div id="piechart" style="height:350px"></div></td></tr>');
+        echo('<tr><td colspan="4"><div id="piechart" style="height:350px"></div></td></tr>');
     }
     if($i==0)
     {
