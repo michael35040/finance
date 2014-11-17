@@ -76,8 +76,11 @@ if (!isset($commission)) //set in constants.php
                         echo ('<option class="select-dash" disabled="disabled">-Assets (Owned/Locked)-</option>');
                         foreach ($stocks as $stock) {
                             $symbol = $stock["symbol"];
+                            $symbol = htmlspecialchars($symbol);
                             $quantity = $stock["quantity"];
+                            $quantity = htmlspecialchars($quantity);
                             $lockedStock = $stock["locked"];
+                            $lockedStock = htmlspecialchars($lockedStock);
                             echo("<option value='" . $symbol . "'>  " . $symbol . " (" . $quantity . "/" . $lockedStock . ")</option>");
                         }
                     }
@@ -87,6 +90,7 @@ if (!isset($commission)) //set in constants.php
                         echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
                         foreach ($assets as $asset) {
                             $symbol = $asset["symbol"];
+                            $symbol = htmlspecialchars($symbol);
                             echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
                         }
                     }
