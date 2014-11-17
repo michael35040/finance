@@ -4,7 +4,8 @@ require("../includes/config.php");  // configuration
 //         apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
 $id = $_SESSION["id"];
 if ($id != 1) { apologize("Unauthorized!");}
-
+if ($id == 1) { 
+    
 elseif(isset($_POST['update']))
 {
     @$symbol=$_POST["symbol"];
@@ -43,5 +44,5 @@ else
     render("admin_symbol_form.php", ["title" => "Update Form", "assets" => $assets]); // render buy form //***/to remove C/***/
 }
 
-
+} //$id
 ?>
