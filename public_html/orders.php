@@ -11,11 +11,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     if (isset($_POST["cancel"]))
     {
         $uid = $_POST["cancel"];
-        if ($uid == 'ALL') { //CANCEL ALL USERS ORDERS
-            if (query("UPDATE orderbook SET type = 'cancel' WHERE id = ?", $id) === false) {apologize("Unable to cancel all orders!");}} 
-        else { //CANCEL ONLY 1 ORDER
-            if (!is_numeric($uid)){apologize("Invalid order #");}
-            if (query("UPDATE orderbook SET type = 'cancel' WHERE uid = ?", $uid) === false) {apologize("Unable to cancel order!");}}
+        if ($uid == 'ALL') 
+        { //CANCEL ALL USERS ORDERS
+            if (query("UPDATE orderbook SET type = 'cancel' WHERE id = ?", $id) === false) {apologize("Unable to cancel all orders!");}
+            
+        } 
+        else 
+        { //CANCEL ONLY 1 ORDER
+            if (!ctype_digit($uid)){apologize("Invalid order #");}
+            if (query("UPDATE orderbook SET type = 'cancel' WHERE uid = ?", $uid) === false) {apologize("Unable to cancel order!");}
+            
+        }
     }
     if (isset($_POST["history"])) 
     {
