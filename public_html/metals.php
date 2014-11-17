@@ -1,7 +1,13 @@
 <?php
-$url = "https://svc.cloudhost365.com/SharedServices/api/market/spotprices/USD/au/";
 //https://svc.cloudhost365.com/SharedServices/api/market/spotprices/USD/ag/
 
-$xml=simplexml_load_string(file_get_contents($url)) or die("Error: Cannot create object");
+$url = 'https://svc.cloudhost365.com/SharedServices/api/market/spotprices/USD/au/';
+
+$xml = new SimpleXMLElement(file_get_contents($url));
+
+// pre tags to format nicely
+echo '<pre>';
 print_r($xml);
+echo '</pre>';
+
 ?>
