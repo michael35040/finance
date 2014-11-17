@@ -21,9 +21,14 @@ require("functions_testing.php"); //functions for testing
      * Configures pages.
      **********************************************************************/
 
-    // display errors, warnings, and notices
-    ini_set("display_errors", true);
-    error_reporting(E_ALL);
+//FOR TESTING ENVIRONMENT
+	// display errors, warnings, and notices
+	ini_set("display_errors", 1);
+	error_reporting(E_ALL); //when testing site
+//FOR LIVE ENVIRONMENT
+	// show nothing
+	error_reporting(0); 
+	//@ini_set("display_errors", 0);//won't display or even put in log file
 
 
     // require authentication for most pages
