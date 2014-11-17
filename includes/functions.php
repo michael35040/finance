@@ -5,15 +5,29 @@
      * Helper functions.
      **********************************************************************/
      
-    /**
-     * Apologizes to user with message.
-     */
+
 function sanatize($var)
 {
+                            $var = str_replace("-", '', $var); //replace these symbols that are commonly typed with phone numbers.
+                            $var = str_replace(".", '', $var);
+                            $var = str_replace(",", '', $var);
+                            $var = str_replace(" ", '', $var);
+                            $var = str_replace("(", '', $var);
+                            $var = str_replace(")", '', $var);
+                            $var = str_replace("&", '', $var);
+                            //$var = str_replace("/", '', $var);
+                            //$var = str_replace("\\", '', $var);
+                            //$var = str_replace("|", '', $var);
+                            //$var = str_replace("'"), "", $var);
+                            //$var = str_replace('"'), '', $var);
 
+                            return($var);
 }
 
 
+    /**
+     * Apologizes to user with message.
+     */
 function apologize($message)
     {
         render("apology.php", ["message" => $message, "title" => "Sorry!"]);
