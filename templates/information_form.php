@@ -48,7 +48,9 @@
             {
                 title: '<?php echo($symbol); ?> - TRADES/DAY',
                 hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-                vAxis: {title: 'Price(avg) & Volume(k)', minValue: 0}
+                vAxis: {title: 'Price(avg) & Volume(k)', minValue: 0},
+                //height: 500,
+                
             };
             var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
             chart.draw(data, options);
@@ -84,7 +86,9 @@
             {
                 title: '<?php echo($symbol); ?> - TRADES',
                 hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-                vAxis: {title: 'Price & Quantity', minValue: 0}
+                vAxis: {title: 'Price & Quantity', minValue: 0},
+                //height: 500,
+
             };
             var chart1 = new google.visualization.AreaChart(document.getElementById('chart_div1'));
             chart1.draw(data1, options1);
@@ -137,7 +141,9 @@
             {
                 title: '<?php echo($symbol); ?> - ORDERBOOK',
                 hAxis: {title: 'Price',  titleTextStyle: {color: '#333'}},
-                vAxis: {title: 'Quantity', minValue: 0, isStacked: true}
+                vAxis: {title: 'Quantity', minValue: 0, isStacked: true},
+               // height: 500,
+
             };
             //var chart2 = new google.visualization.AreaChart(document.getElementById('chart_div2'));
             var chart2 = new google.visualization.SteppedAreaChart(document.getElementById('chart_div2'));
@@ -186,6 +192,9 @@
                 //is3D: true,
                 //legend: 'none',
                 //pieSliceText: 'percentage' //'label', 'percentage', 'value', 'none'
+                //width: 400,
+                height: 500,
+                //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
 
             };
 
@@ -587,5 +596,5 @@ if($trades != null)
     //}
     ?><tr><td colspan="3"></td></tr></tbody>
 </table>
-<div id="piechart" style="height:350px"></div>
+<div id="piechart" style=""></div>
 
