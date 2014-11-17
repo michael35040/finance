@@ -5,17 +5,14 @@ require("../includes/config.php");
 
 $id = $_SESSION["id"]; //get id from session
 
-$purchaseprice = query("SELECT SUM(price) AS purchaseprice FROM portfolio WHERE id = ?", $_SESSION["id"]); //calculate purchase price
-
 $bidLocked =	query("SELECT SUM(total) AS total FROM orderbook WHERE (id=? AND side='b')", $id);	  // query user's portfolio
 $bidLocked = $bidLocked[0]["total"]; //shares trading
 
-
-
 $userPortfolio =	query("SELECT symbol, quantity, price FROM portfolio WHERE id = ? ORDER BY symbol ASC", $_SESSION["id"]);
 
+$purchaseprice = query("SELECT SUM(price) AS purchaseprice FROM portfolio WHERE id = ?", $_SESSION["id"]); //calculate purchase price
 $portfolioTotal=0; //total market value of portfolio
-$portfolioValue=0; //total purchase value of portfolio
+
 $portfolio = []; //to send to next page
 foreach ($userPortfolio as $row)		// for each of user's stocks
 {
@@ -57,9 +54,8 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
 
     $portfolio[] = $stock;
     $portfolioTotal = $portfolioTotal + $stock["total"]; //total market value of portfolio
-    $portfolioValue = $portfolioValue + $stock["value"]; //total purchase price of portfolio
 }
 
 // render portfolio (pass in new portfolio table and cash)
-render("portfolio_form.php", ["title" => "Portfolio", "portfolio" => $portfolio, "portfolioTotal" => $portfolioTotal, "portfolioValue" => $portfolioValue, "purchaseprice" => $purchaseprice, "bidLocked" => $bidLocked]);
+render("portfolio_form.php", ["title" => "Portfolio", "portfolio" => $portfolio, "portfolioTotal" => $portfolioTotal, "purchaseprice" => $purchaseprice, "bidLocked" => $bidLocked]);
 ?>                    
