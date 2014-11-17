@@ -27,7 +27,7 @@ function sanatize($type, $var)
 	{
 		if ($var<0){ apologize("Quantity must be positive!");} //if quantity is numeric
     		if (preg_match("/^\d+$/", $var) == false) { apologize("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
-    		if (!is_numeric ($var)) { apologize("Quantity must be numeric!");} //if quantity is numeric
+    		if (!ctype_digit($var)) { apologize("Quantity must be numeric!");} //ctype_digit will return false on negative and decimals
 	}
 	if($type=='price')
 	{
