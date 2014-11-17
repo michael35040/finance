@@ -2,7 +2,9 @@
 require("../includes/config.php");  // configuration  
 
 $id = $_SESSION["id"];
+
 if ($id != 1) { apologize("Unauthorized!");}
+if ($id == 1) { 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
@@ -50,4 +52,5 @@ else
     render("admin_offering_form.php", ["title" => "Public Offering", "assets" => $assets]); // render buy form //***/to remove C/***/
 }
 //         apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
+} //$id ==1
 ?>
