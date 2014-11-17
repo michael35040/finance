@@ -4,33 +4,47 @@
       google.setOnLoadCallback(drawChart);
       function drawChart() {
 
+//CHART 1
         var data = google.visualization.arrayToDataTable([
-<?php 
-
-echo("['Asset', 'Value'],");
-foreach ($portfolio as $asset) // for each of user's stocks
-{
-        $value = number_format(($asset["total"]), 0, '.', '');
-        $asset = htmlspecialchars($asset["symbol"]);
-        echo("['" . $asset . "', " . $value . "],");
-} ?>  
-
+        <?php 
+        echo("['Asset', 'Value'],");
+        foreach ($portfolio as $asset) // for each of user's stocks
+        {       $value = number_format(($asset["total"]), 0, '.', '');
+                $asset = htmlspecialchars($asset["symbol"]);
+                echo("['" . $asset . "', " . $value . "],");
+        } ?>  
         ]);
-
         var options = {
-         title: 'Portfolio Assets by Value'
+        title: 'Portfolio Assets by Value',
+        //width: 400,
+        height: 500,
+        //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+        //is3D: true,
         };
-
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
         chart.draw(data, options);
+        
+        
+//CHART 2     
+        var data2 = google.visualization.arrayToDataTable([
+            ['Accounts', 'Value'],
+            ['<?php echo($unitdescription); ?>', <?php echo(number_format($units, 0, ".", "")) ?>],
+            ['Locked', <?php echo(number_format($bidLocked, 0, ".", "")) ?>],
+            ['Portfolio', <?php echo(number_format($portfolioTotal, 0, ".", "")) ?>]
+        ]);
+        var options2 = {
+        title: 'Networth by Asset Value',
+        //width: 400,
+        height: 500,
+        //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+        //is3D: true,
+        };
+        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
+        chart2.draw(data2, options2);
+
+        
       }
     </script>
-
-
-
-
-
 
 
 
@@ -191,6 +205,8 @@ foreach ($portfolio as $asset) // for each of user's stocks
             </td>
             <td><strong>
                     <?php
+                    
+                    /* //DONE ON PORTFOLIO.php
                     //calculate value of current price
                     $sum = array_shift($portfolio);
                     foreach ($portfolio as $val) {
@@ -200,12 +216,14 @@ foreach ($portfolio as $asset) // for each of user's stocks
                     } //sum all the values in array
                     $portfolioTotal = $sum['total'];
                     $value = $sum['value'];
+                     */
                     $change = ($portfolioTotal - $purchaseprice);
                     if ($value > 0) {
-                        $percent = 100 * (($portfolioTotal / $value) - 1); // total/purchase
+                        $percent = 100 * (($portfolioTotal / $purchaseprice) - 1); // total/purchase
                     } else {
                         $percent = 0;
                     }
+                   
 
                     echo($unitsymbol . number_format($change, 2, ".", ",") . " (<i>" . number_format($percent, 2, ".", ",") . "</i>%) "); //display change
 
@@ -231,8 +249,6 @@ foreach ($portfolio as $asset) // for each of user's stocks
         <tr>
             <td colspan="8"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order(s)</i></td>
         </tr>
-        <tr><td colspan="8"><div id="piechart" style="height:350px"></div></td></tr>
-
     <?php
     } //$i==0 else statement
     ?>
@@ -260,6 +276,9 @@ foreach ($portfolio as $asset) // for each of user's stocks
         </td>
     </tr>
 
+    <tr><td colspan="8"><div id="piechart" style=""></div></td></tr>
+    <tr><td colspan="8"><div id="piechart2" style=""></div></td></tr>
+    
 
 
 
