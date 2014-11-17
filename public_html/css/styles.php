@@ -13,6 +13,10 @@ a:visited {color:black;}  /* visited link */
 a:hover {color:black;}  /* mouse over link */
 a:active {color:black;}  /* selected link */
 
+td 
+{
+ background-color:#ffffff; /*fix zooming issue*/
+}
 form {
 display: inline-block;
 text-align: center;
@@ -40,10 +44,10 @@ background-position: center;
 #page {
 align: center;
 width: auto;
-padding: 0px 0% 0px 0%; /*top, right, bottom, left */
-margin: 0px 0% 0px 0%;
-border:0 solid red;
-/*background-color: yellow;*/
+padding: 0px 2% 0px 2%; /*top, right, bottom, left */
+/*margin: 0px 0% 0px 0%;*/
+border:0 solid black;
+/*background-color: white;*/
 }
 
 #top {
