@@ -18,7 +18,7 @@ foreach ($portfolio as $asset) // for each of user's stocks
         ]);
 
         var options = {
-         //title: 'Assets'
+         title: 'Portfolio Assets by Value'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
