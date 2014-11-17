@@ -19,6 +19,7 @@
         //width: 500,
         height: 500,
         pieSliceText: 'label',
+        legend: {position: 'none'},
         //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
         //is3D: true,
         };
@@ -36,7 +37,7 @@
         var options2 = {
         title: 'Networth by Asset Value',
         pieSliceText: 'label',
-        legend.position: {position: 'none'},
+        legend: {position: 'none'},
        // width: 500,
         height: 500,
         //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
