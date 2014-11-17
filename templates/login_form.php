@@ -41,9 +41,7 @@
 
     .bstable
     {
-        display: inline-table;
-        float:left;
-        align:center;
+        display: inline-table;float:left;align:center;
     }
 
     .row
@@ -96,7 +94,7 @@
         <div class="panel-heading" style="padding:0; background-color: transparent; " >
             <h4 class="panel-title"  />
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-warning btn-sm" >
-                    <span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;EXCHANGE</a><!--10 chars-->
+                    <span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;INFORMATION</a><!--10 chars-->
 
             </h4>
         </div><!--panel title-->
@@ -119,9 +117,9 @@
                             <td style="width:20%;" ><span class="glyphicon glyphicon-random" style="font-size:40px"></span></td>
                             <td style="width:20%;"  rowspan="2">
 
-                                <table class="bstable" border="1" cellspacing="0" cellpadding="0"  style="width:50%; text-align:center;" />
+                                <table class="table table-condensed table-striped table-bordered" style="border:1px solid black; width:50%; text-align:center;display: inline-table;float:left;align:center;" />
                                     <tr>
-                                        <td colspan="2" bgcolor="#CCCCCC" style="width:100%;" >
+                                        <td colspan="2" bgcolor="#CCCCCC" style="width:100%;padding: 2px;" >
                                             <font color="black" size="+1"><b>Bid</b></font><!--Bid are Buyers when you are Selling, ie your sell price-->
                                         </td>
                                     </tr>
@@ -136,15 +134,14 @@
                                     {
                                         $quantity = $order["quantity"];
                                         $price = $order["price"];
-                                        echo("<tr><td>" . number_format($quantity,0,".",",") . "</td><td>" . number_format($price,2,".",",") . "</td></tr>");
+                                        echo("<tr><td>" . number_format($quantity,0,".",",") . "</td><td><b>" . number_format($price,2,".",",") . "</b></td></tr>");
                                     }
                                     ?>
                                 </table>
-
-                                <table class="bstable" style="width:50%;" border="1" cellspacing="0" cellpadding="0" align="center" >
-
+                                
+                                <table class="table table-condensed table-striped table-bordered" style="border:1px solid black; width:50%; text-align:center;display: inline-table;float:left;align:center;" />
                                     <tr>
-                                        <td colspan="2" bgcolor="#000000" style="width:100%;" >
+                                        <td colspan="2" bgcolor="#000000" style="width:100%;padding: 2px;" >
                                             <font color="white" size="+1"><b>Ask</b></font>
                                         </td>
                                     </tr>
@@ -159,7 +156,7 @@
                                     {
                                         $price = $order["price"];
                                         $quantity = $order["quantity"];
-                                        echo("<tr><td>" . number_format($price,2,".",",") . "</td><td>" . number_format($quantity,0,".",",") . "</td></tr>");
+                                        echo("<tr><td><b>" . number_format($price,2,".",",") . "</b></td><td>" . number_format($quantity,0,".",",") . "</td></tr>");
                                     }
                                     ?>
                                 </table>
