@@ -22,16 +22,13 @@ if ($password != $confirmation) { apologize("Password missmatch."); }
 
 
 // USERNAME
-if (!ctype_alnum($username)) { apologize("Usernames must only contain alphanumeric (A-Z and/or 0-9) characters!");}
-      //already handled by ctype// $username = filter_input(INPUT_POST, $username, FILTER_SANITIZE_STRING);
+$username = sanatize("username", $username);
 
 //EMAIL
-$email = filter_input(INPUT_POST, $email, FILTER_SANITIZE_EMAIL);
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { apologize("The email address you entered is not valid."); } // Not a valid email
+$email = sanatize("email", $email);
 
 //PHONE
-$phone=sanatize($phone);
-if (!ctype_digit($phone)) { apologize("Phone must be numeric!");} //if quantity is numeric	
+$phone = sanatize("phone", $phone);
 
      
 //NEW METHOD
