@@ -27,16 +27,16 @@
 
     <tr>
         <td>Symbol</td>
-        <td><select  name="symbol" required><option value="<?php echo($symbol); ?>" selected><?php echo($symbol); ?></option></select></td>
-    </tr>
-    <tr>
-        <td>New Symbol (only if changing)</td>
         <td>
-            <input type="text" name="newSymbol" maxlength="8" placeholder="New Symbol" ></td>
+            <select  name="symbol" required><option value="<?php echo($symbol); ?>" selected><?php echo($symbol); ?></option></select>
+            <input type="text" name="newSymbol" maxlength="8" placeholder="Symbol (If Changing)" >
+        </td>
     </tr>
+
+
     <tr>
         <td>Name</td>
-        <td><input type="text" name="name"  maxlength="60"  value="<?php echo($name); ?>"  placeholder="ex: Acme Inc." ></td>
+        <td><input type="text" name="name"  maxlength="60"  value="<?php echo($name); ?>" size="30" placeholder="ex: Acme Inc." ></td>
     </tr>
 
     <tr>
@@ -54,7 +54,7 @@
 
     <tr>
         <td>Webpage URL</td>
-        <td><input type="url" name="url" maxlength="60" placeholder="ex: abcd.com"  value="<?php echo($url); ?>" ></td>
+        <td><input type="url" name="url" maxlength="60" placeholder="ex: abcd.com"  size="30" value="<?php echo($url); ?>" ></td>
     </tr>
 
 
@@ -62,7 +62,7 @@
         <td>Description</td>
         <td>
       <!--  <input type="text" name="description" maxlength="500" placeholder="ex: Makes special gadgets"  value="<?php //echo($description); ?>"> -->
-        <textarea rows="4" cols="50" name="description" maxlength="500" ><?php echo($description); ?></textarea>
+        <textarea rows="4" cols="27" name="description" maxlength="500" ><?php echo($description); ?></textarea>
         </td>
     </tr>
 
