@@ -39,7 +39,7 @@
                 <br><form><button type="submit" class="btn btn-primary btn-xs" formmethod="post" formaction="information.php" name="symbol" value="' . $asset["symbol"] . '"><span class="glyphicon glyphicon glyphicon-info-sign"> Information</span></button></form></td>');
             echo('<td >' . $unitsymbol . htmlspecialchars(number_format($asset["bid"], 2, ".", ",")) . ' - Bid
                 <br>' . $unitsymbol . htmlspecialchars(number_format($asset["ask"], 2, ".", ",")) . ' - Ask
-                <br>' . $unitsymbol . htmlspecialchars(($asset["avgprice"], 2, ".", ",")) . ' - Avg. Price (30d)</td>');
+                <br>' . $unitsymbol . htmlspecialchars($asset["avgprice"], 2, ".", ",") . ' - Avg. Price (30d)</td>');
             echo('<td >' . htmlspecialchars(number_format($asset["public"], 0, ".", ",")) . ' - Publicly Held
                 <br>' . htmlspecialchars(number_format($asset["issued"], 0, ".", ",")) . ' - Issued (' . htmlspecialchars(number_format($asset["userid"], 0, ".", ",")) . ')
                 <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
