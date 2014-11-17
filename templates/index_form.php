@@ -26,7 +26,7 @@
         <?php
         }
         /*
-        if($loan <=-0.00000001)
+        if($loan <0)
         {   ?>
             <tr>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
