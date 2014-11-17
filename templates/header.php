@@ -21,6 +21,10 @@
         background-color: #d1d1d1;
         border-color: #f8f8f8;
     }
+    .sitelogo td
+    {
+        background-color:transparent; 
+    }
 
     .table {margin-bottom:0;} /*set to 20 in bootstrap*/
 
@@ -65,7 +69,7 @@
 
 
 
-    <table align="center" width="">
+    <table class="sitelogo" align="center" width="">
         <tr>
             <td align="">
                 <img src="img/logo/<?php //echo($ranimg); ?>1.png" width="60"/> &nbsp;
