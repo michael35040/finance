@@ -4,7 +4,8 @@
 
 $id = $_SESSION["id"];    
 if ($id != 1) { apologize("Unauthorized!");}
-
+if ($id == 1) { 
+	
     // if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -81,7 +82,7 @@ render("admin_withdraw_form.php", ["title" => "Withdraw"]);
 
 //var_dump(get_defined_vars());
 
-	
+} //$id	
 ?>
 
 
