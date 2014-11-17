@@ -20,20 +20,12 @@ if(isset($_POST['uid']))
 {   $uid=$_POST['uid'];
     if (!ctype_digit($uid)) { apologize("Invalid order #");} 	
     $trades =	query("SELECT * FROM trades WHERE (askorderuid = ? OR bidorderuid = ?) ORDER BY uid DESC $limit", $uid, $uid);	  // query user's portfolio
-    render("trades_form.php", ["title" => $title, "trades" => $trades]);
 }
 else
 {
-    //TRADES
     $trades =	query("SELECT * FROM trades WHERE (buyer = ? OR seller = ?) ORDER BY uid DESC $limit", $id, $id);	  // query user's portfolio
-
-    render(
-        "trades_form.php",
-        [
-            "title" => $title,
-            "trades" => $trades
-        ]);
 }
+render("trades_form.php", ["title" => $title, "trades" => $trades]);
 
 
 ?>
