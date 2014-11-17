@@ -6,7 +6,7 @@ require("../includes/config.php");
 
 $id = $_SESSION["id"];
 if ($id != 1) { apologize("Unauthorized!");}
-
+if ($id == 1) { 
 
 // if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST")
@@ -61,7 +61,7 @@ else // if form hasn't been submitted
     // render sell form
     render("admin_deposit_form.php", ["title" => "Deposit"]);
 }
-
+} //$id
 
 ?>
 
