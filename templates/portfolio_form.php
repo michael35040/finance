@@ -78,6 +78,7 @@
             </tr>
         <?php
         }
+        /*
         if($loan <0)
         {   ?>
             <tr>
@@ -89,6 +90,7 @@
             </tr>
         <?php
         }
+        */
         if($bidLocked != 0)
         {
             ?>
