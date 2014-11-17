@@ -1,4 +1,33 @@
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
 
+        var data = google.visualization.arrayToDataTable([
+<?php 
+
+echo("['Asset', 'Value'],");
+foreach ($assets as $asset) // for each of user's stocks
+{
+        $value = number_format(($asset["marketcap"]), 0, '.', '');
+        $asset = htmlspecialchars($asset["symbol"]);
+        echo("['" . $asset . "', " . $value . "],");
+} ?>  
+
+        ]);
+
+        var options = {
+         title: 'Assets by Value'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    
+    
 <style>
     .hiddenRow {
         padding: 0 !important;
@@ -49,6 +78,7 @@
             echo('</tr>');
         }
         echo("<tr><td colspan='3'><strong>Market Value</strong></td><td><strong>" . $unitsymbol . htmlspecialchars(number_format($indexMarketCap, 2, ".", ",")) . "</strong></td></tr>");
+        echo('<tr><td colspan="8"><div id="piechart" style="height:350px"></div></td></tr>');
     }
     if($i==0)
     {
