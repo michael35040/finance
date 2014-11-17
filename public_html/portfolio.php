@@ -62,23 +62,4 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
 
 // render portfolio (pass in new portfolio table and cash)
 render("portfolio_form.php", ["title" => "Portfolio", "portfolio" => $portfolio, "portfolioTotal" => $portfolioTotal, "portfolioValue" => $portfolioValue, "purchaseprice" => $purchaseprice, "bidLocked" => $bidLocked]);
-
-
-                    /* //DONE ON PORTFOLIO.php
-                    //calculate value of current price
-                    $sum = array_shift($portfolio);
-                    foreach ($portfolio as $val) {
-                        foreach ($val as $key => $val) {
-                            $sum[$key] += $val;
-                        }
-                    } //sum all the values in array
-                    $portfolioTotal = $sum['total'];
-                    $value = $sum['value'];
-                    $change = ($portfolioTotal - $purchaseprice);
-                    if ($value > 0) {
-                        $percent = 100 * (($portfolioTotal / $value) - 1); // total/purchase
-                    } else {
-                        $percent = 0;
-                    }
-                    */
 ?>                    
