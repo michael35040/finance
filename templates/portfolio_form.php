@@ -32,8 +32,6 @@ foreach ($portfolio as $asset) // for each of user's stocks
 
 
 
-<div id="piechart" style="height:350px"></div>
-<?php //} ?>
 
 
 
@@ -265,3 +263,7 @@ foreach ($portfolio as $asset) // for each of user's stocks
 
 
     </table>
+
+
+<div id="piechart" style="height:350px"></div>
+
