@@ -276,8 +276,10 @@
         </td>
     </tr>
 
-    <tr><td colspan="8"><div id="piechart" style=""></div></td></tr>
-    <tr><td colspan="8"><div id="piechart2" style=""></div></td></tr>
+    <tr>
+        <td colspan="4"><div id="piechart2" style=""></div></td>
+        <td colspan="4"><div id="piechart" style=""></div></td>
+    </tr>
     
 
 
