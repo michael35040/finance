@@ -5,7 +5,8 @@ require("../includes/config.php");
 
 $id = $_SESSION["id"];
 if ($id != 1) { apologize("Unauthorized!");}
-
+if ($id == 1) { 
+    
 // if form was submitted  -- validate and insert int database
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -89,4 +90,6 @@ else
 {
     render("admin_users_search_form.php",  ["title" => "Search Users"]);  // else render for inputs
 }
+
+} //$id
 ?>
