@@ -12,13 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     //CHECKS
     if (empty($symbol) || empty($type) || empty($side) || empty($quantity) || empty($price)) { apologize("Please fill all required fields."); } //check to see if empty
     //FORMATS AND SCRUBS VARIABLES
-    if (!ctype_alpha($symbol) || !ctype_alpha($type) || !ctype_alpha($side)) { apologize("Symbol, Type, and Side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
-    if (!is_numeric ($quantity) || !is_numeric ($price)) { apologize("Price and Quantity must be numeric!");} //if quantity is numeric
-    if (($quantity<0) || ($price<0)) { apologize("Price and Quantity must be positive!");} //if quantity is numeric
-    if (preg_match("/^\d+$/", $quantity) == false) { apologize("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
-
+    $price = sanatize("price", $price);
+    $quantity = sanatize("quantity", $quantity);
+    $symbol = sanatize("alphabet", $symbol);
+    $type = sanatize("alphabet", $type);
+    $side = sanatize("alphabet", $side);
     $symbol = strtoupper($symbol); //cast to UpperCase
-
 
     list($transaction, $symbol, $tradeTotal, $quantity, $commissionTotal) = placeOrder($symbol, $type, $side, $quantity, $price, $id);
 
