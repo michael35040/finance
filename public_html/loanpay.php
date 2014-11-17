@@ -4,6 +4,9 @@
     require("../includes/config.php");   
     $id = $_SESSION["id"];
 	    
+apologize("Disabled!");
+/*	    
+	    
     // if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -138,6 +141,6 @@ render("loanpay_form.php", ["title" => "Pay Loan"]);
 
 
 
-
+*/
 
 
