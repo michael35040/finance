@@ -20,22 +20,17 @@ if (empty($password) || empty($confirmation)) { apologize("You must provide a pa
 if (empty($phone)) { apologize("You must provide a phone number."); } 
 if ($password != $confirmation) { apologize("Password missmatch."); }
 
-$phone = str_replace("-", '', $phone); //replace these symbols that are commonly typed with phone numbers.
-$phone = str_replace(".", '', $phone);
-$phone = str_replace(" ", '', $phone);
-$phone = str_replace("(", '', $phone);
-$phone = str_replace(")", '', $phone);
 
-    // Sanitize and validate the data passed in
+// USERNAME
 if (!ctype_alnum($username)) { apologize("Usernames must only contain alphanumeric (A-Z and/or 0-9) characters!");}
       //already handled by ctype// $username = filter_input(INPUT_POST, $username, FILTER_SANITIZE_STRING);
 
-//commenting out due to pain of providing valid email when testing
-//    $email = filter_input(INPUT_POST, $email, FILTER_SANITIZE_EMAIL);
+//EMAIL
+$email = filter_input(INPUT_POST, $email, FILTER_SANITIZE_EMAIL);
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { apologize("The email address you entered is not valid."); } // Not a valid email
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { apologize("The email address you entered is not valid."); }   // Not a valid email
-
-
+//PHONE
+$phone=sanatize($phone);
 if (!ctype_digit($phone)) { apologize("Phone must be numeric!");} //if quantity is numeric	
 
      
@@ -49,25 +44,16 @@ if (!ctype_digit($phone)) { apologize("Phone must be numeric!");} //if quantity 
 $password = generate_hash($password); //generate blowfish hash from functions.php
 if (strlen($password) != 60) { apologize("Invalid password configuration."); }  // The hashed pwd should be 60 characters long. If it's not, something really odd has happened
 
-
-
-
 query("SET AUTOCOMMIT=0");
 query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
-
-
-
-		//INSERTS INTO HISTORY for user
+/INSERTS INTO HISTORY for user
 $quantity = 1; //admins id, will appear on the inital deposit as counterparty id.
 		//$initialunits set in finance.php
 $neginitialunits = ($initialunits * -1); //initial deposit
 $transaction = 'LOAN'; //for listing on history
-
 			      
 $now = time(); //get current time in unix seconds
-
-
 			//UPDATE USERS FOR USER
 if (query("INSERT INTO users (username, email, password, phone, last_login, registered, fails) VALUES(?, ?, ?, ?, ?, ?, 0)", $username, $email, $password, $phone, $now, $now) === false) 
 { 
@@ -81,7 +67,6 @@ $id = $rows[0]["id"]; //sets sql query to var
 $_SESSION["id"] = $rows[0]["id"]; //generate session id
 $_SESSION["email"] = $email;
 $_SESSION["username"] = $username;
-
 
 if (query("INSERT INTO accounts (id, units, loan, rate) VALUES(?, ?, ?, ?)", $id, $initialunits, $neginitialunits, $loanrate) === false) 
 { 
