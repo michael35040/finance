@@ -128,10 +128,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="index.php">Accounts</a></li>
                         <li><a href="transfer.php">Transfer </a></li><!--<i class="icon-gift"></i>-->
-                        <li><a href="loan.php">Loan</a></li>
-                        <?php if ($loan < 0) { //-0.00000001 ?>
-                        <li><a href="loanpay.php">Pay Loan</a></li>
-                        <?php } ?>
+                        <!-- <li><a href="loan.php">Loan</a></li> --><?php //if ($loan < 0) { //-0.00000001 ?><!-- <li><a href="loanpay.php">Pay Loan</a></li> --><?php //} ?>
                         <li><a href="change.php">Edit Account</a></li>
                     </ul>
                 </div>
