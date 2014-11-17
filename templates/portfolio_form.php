@@ -25,7 +25,7 @@
             </tr>
         <?php
         }
-        if($loan <=-0.00000001)
+        if($loan <0)
         {   ?>
             <tr>
                 <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
@@ -147,7 +147,7 @@
 
         <!-- TOTAL STOCK WORTH -->
         <tr  class="active">
-            <td colspan="5"><strong>SUBTOTAL</strong></td>
+            <td colspan="5"><strong>SUBTOTAL (<?php echo($i); ?> Stocks)</strong></td>
             <td><strong>
                     <?php //calculate value of purchase price
                     $purchaseprice = $purchaseprice[0]["purchaseprice"]; //convert array to number
