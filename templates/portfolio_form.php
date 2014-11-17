@@ -16,8 +16,9 @@
         ]);
         var options = {
         title: 'Portfolio Assets by Value',
-        //width: 400,
+        //width: 500,
         height: 500,
+        pieSliceText: 'label',
         //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
         //is3D: true,
         };
@@ -34,7 +35,8 @@
         ]);
         var options2 = {
         title: 'Networth by Asset Value',
-        //width: 400,
+        pieSliceText: 'label',
+       // width: 500,
         height: 500,
         //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
         //is3D: true,
@@ -277,8 +279,8 @@
     </tr>
 
     <tr>
-        <td colspan="4"><div id="piechart2" style=""></div></td>
         <td colspan="4"><div id="piechart" style=""></div></td>
+        <td colspan="4"><div id="piechart2" style=""></div></td>
     </tr>
     
 
