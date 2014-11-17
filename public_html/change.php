@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 				if (empty($_POST["phone"]) || empty($_POST["confirmation"])){apologize("You must provide a phone.");}
 				if ($_POST["phone"] != $_POST["confirmation"]){ apologize("Missmatch. The new phone does not match its confirmation."); }       
 				$phone = $_POST["phone"];
-				$phone=sanatize($phone);
+				$phone=sanatize("phone", $phone); //functions.php
 				if (!ctype_digit($phone)) { apologize("Phone must be numeric!");} //if quantity is numeric	
 				if(query("UPDATE users SET phone = ( ? ) WHERE id = ( ? )", $phone, $_SESSION["id"]) === false){ apologize("Sorry, username already taken."); }
 			}//phone
