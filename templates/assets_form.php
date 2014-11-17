@@ -18,7 +18,11 @@ foreach ($assets as $asset) // for each of user's stocks
         ]);
 
         var options = {
-         title: 'Assets by Value'
+        title: 'Assets by Value',
+        //width: 400,
+        height: 500,
+        //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+        //is3D: true,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -78,7 +82,7 @@ foreach ($assets as $asset) // for each of user's stocks
             echo('</tr>');
         }
         echo("<tr><td colspan='3'><strong>Market Value</strong></td><td><strong>" . $unitsymbol . htmlspecialchars(number_format($indexMarketCap, 2, ".", ",")) . "</strong></td></tr>");
-        echo('<tr><td colspan="4"><div id="piechart" style="height:350px"></div></td></tr>');
+        echo('<tr><td colspan="4"><div id="piechart" style=""></div></td></tr>');
     }
     if($i==0)
     {
