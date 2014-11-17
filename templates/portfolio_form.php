@@ -11,14 +11,14 @@ echo("['Symbol', 'Quantity'],");
 foreach ($portfolio as $asset) // for each of user's stocks
 {
         $quantity = number_format(($asset["quantity"]), 0, '.', '');
-        $symbol = htmlspecialchars($asset["symbol"]);
-        echo("['" . $symbol . "', " . $quantity . "],");
+        $asset = htmlspecialchars($asset["symbol"]);
+        echo("['" . $asset . "', " . $quantity . "],");
 } ?>  
 
         ]);
 
         var options = {
-         title: 'Portfolio'
+         //title: 'Assets'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -114,7 +114,7 @@ foreach ($portfolio as $asset) // for each of user's stocks
     </tr> <!--blank row breaker-->
 
     <tr  class="active">
-        <th>Symbol</th>
+        <th>Asset</th>
         <th>Control</th>
         <th>Quantity</th>
         <th>Locked*</th>
