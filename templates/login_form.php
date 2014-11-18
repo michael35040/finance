@@ -168,8 +168,8 @@
 
                         <tr>
                             <td>Our platform is powered by an exchange engine deployed by some of Wall Street's most respected trading institutions.</td>
-                            <td>Our state-of-the-art exchange orderbook matching engine orders based on price/time priority allowing for transparent markets.</td>
-                            <td>Our system has critical information stored on remote terminals and multi-tiered firewall architecture for safe transactions</td>
+                            <td>Our exchange orderbook matching engine crosses orders on price/time priority allowing for transparent markets.</td>
+                            <td>Our system has critical information stored on secured terminals and multi-tiered firewall architecture for safe transactions</td>
                             <td>Our proprietary multiple asset trading system has one of the fastest trade to execution times in the financial industry.</td>
                         </tr>
                         <tr><td colspan="5"><br> </td></tr>
