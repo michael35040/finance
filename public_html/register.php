@@ -44,12 +44,14 @@ if (strlen($password) != 60) { apologize("Invalid password configuration."); }  
 query("SET AUTOCOMMIT=0");
 query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
+
+
 //INSERTS INTO HISTORY for user
 $quantity = 1; //admins id, will appear on the inital deposit as counterparty id.
 		//$initialunits set in finance.php
 $neginitialunits = ($initialunits * -1); //initial deposit
 $transaction = 'LOAN'; //for listing on history
-			      
+
 $now = time(); //get current time in unix seconds
 			//UPDATE USERS FOR USER
 if (query("INSERT INTO users (username, email, password, phone, last_login, registered, fails) VALUES(?, ?, ?, ?, ?, ?, 0)", $username, $email, $password, $phone, $now, $now) === false) 
@@ -73,7 +75,7 @@ if (query("INSERT INTO accounts (id, units, loan, rate) VALUES(?, ?, ?, ?)", $id
 } 
 
 
-if ($initialunits <= 0)
+if ($initialunits != 0)
 {								       
 	//UPDATE HISTORY FOR USER
 	if (query("INSERT INTO history (id, transaction, symbol, quantity, price) VALUES (?, ?, ?, ?, ?)", $id, 'LOAN', $unittype, $quantity, $neginitialunits) === false) 
