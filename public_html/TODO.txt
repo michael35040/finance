@@ -7,6 +7,9 @@ COMPLETED
 # add icon showing drop down feature in 'assets'
 # add ownership percentage in information panel.
 
+http://templated.co/ion
+http://almsaeedstudio.com/preview
+
 TO DO LIST
 - figure out logo (indian, horse, bear, bull, wolf...)
 - update desposit
