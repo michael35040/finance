@@ -17,7 +17,7 @@ if (!isset($commission)) //set in constants.php
         return parts.join(".");
     }
 </script>
-<hr>
+<br>
 <div class="exchangeTable">
 <form action="exchange.php" method="post"
       oninput="
@@ -51,8 +51,8 @@ if (!isset($commission)) //set in constants.php
         <table class="table table-condensed  table-bordered" >
         <thead>
             <tr>
-                <th style="width:25%">Title</th>
-                <th style="width:75%">Value</th>
+                <th style="width:25%">Exchange</th>
+                <th style="width:75%"></th>
             </tr>
         </thead>
         <tbody>
