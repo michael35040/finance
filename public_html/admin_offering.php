@@ -8,24 +8,25 @@ if ($id == 1) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
-    @$symbol = $_POST["symbol"];
-        //CHECK TO SEE IF SYMBOL EXISTS
-        $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
-        $countOwnersRows = count($symbolCheck);
-        if ($countOwnersRows != 1) {apologize("Symbol does not exist."); }
+
     @$userid = $_POST["userid"]; //owner or chief executive
     @$issued = $_POST["issued"]; //current amount of shares made public, issued for IPO
     @$fee = $_POST["fee"]; //fee?
 
+    @$symbol = $_POST["symbol"];
     @$offering = $_POST["offering"];
 
     if(empty($symbol)){apologize("Please fill out symbol");}
     if(empty($userid)){apologize("Please fill out userid");}
     if(empty($issued)){apologize("Please fill out issued");}
-    if(empty($fee)){apologize("Please fill out fee");}
+    if(empty($fee)){$fee=0;}
    // apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
 if($offering=='followon')
 {
+    //CHECK TO SEE IF SYMBOL EXISTS
+    $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
+    $countOwnersRows = count($symbolCheck);
+    if ($countOwnersRows != 1) {apologize("Symbol does not exist."); }
     try {$message = publicOffering2($symbol, $userid, $issued, $fee);}
     catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 }
@@ -36,9 +37,8 @@ elseif($offering=='initial')
     @$url = $_POST["url"];
     @$rating = $_POST["rating"]; //1 - 10
     @$description = $_POST["description"];
-    
-try {$message = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description);}
-catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
+    try {$message = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description);}
+    catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 }
 else{apologize("Unknown offering type.");}
 

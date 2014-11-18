@@ -49,7 +49,7 @@
         <tr>
             <td style="width:20%">Symbol</td>
             <td style="width:80%">
-            <input name="symbol" list="symbol" required>
+            <input type="text" name="symbol"  list="symbol" required>
                 <datalist id="symbol">
                     <?php
                         foreach ($assets as $asset) {

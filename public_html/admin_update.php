@@ -6,7 +6,7 @@ $id = $_SESSION["id"];
 if ($id != 1) { apologize("Unauthorized!");}
 if ($id == 1) { 
     
-elseif(isset($_POST['update']))
+if(isset($_POST['update']))
 {
     @$symbol=$_POST["symbol"];
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);

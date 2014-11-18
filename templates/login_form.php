@@ -118,13 +118,13 @@
                             <td style="width:20%;"  rowspan="2">
 
                                 <table class="table table-condensed table-striped table-bordered" style="border:1px solid black; width:50%; text-align:center;display: inline-table;float:left;align:center;" />
-                                    <tr>
-                                        <td colspan="2" bgcolor="#CCCCCC" style="width:100%;padding: 2px;" >
-                                            <font color="black" size="+1"><b>Bid</b></font><!--Bid are Buyers when you are Selling, ie your sell price-->
+                                    <tr class="info">
+                                        <td colspan="2" style="color:white;background-color:#000000;width:100%;padding: 2px;font-size: 150%;" >
+                                            <b>BID</b><!--Bid are Buyers when you are Selling, ie your sell price-->
                                         </td>
                                     </tr>
 
-                                    <tr>
+                                    <tr class="active">
                                         <td ><b><u>Qty</u></b></td>
                                         <td ><b><u>Price</u></b></td>
                                     </tr>
@@ -140,13 +140,13 @@
                                 </table>
                                 
                                 <table class="table table-condensed table-striped table-bordered" style="border:1px solid black; width:50%; text-align:center;display: inline-table;float:left;align:center;" />
-                                    <tr>
-                                        <td colspan="2" bgcolor="#000000" style="width:100%;padding: 2px;" >
-                                            <font color="white" size="+1"><b>Ask</b></font>
+                                    <tr class="danger">
+                                        <td colspan="2" style="color:white;background-color:#404040;width:100%;padding: 2px;font-size: 150%;" >
+                                            <b>ASK</b>
                                         </td>
                                     </tr>
 
-                                    <tr>
+                                    <tr class="active">
                                         <td ><b><u>Price</u></b></td>
                                         <td ><b><u>Qty</u></b></td>
                                     </tr>
