@@ -291,12 +291,6 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
 
 
 <table class="table" align="center"> <!--class="bstable"-->
-
-    <!--/////////TRADES//////-->
-    <tr>
-        <td colspan="7"></td>
-    </tr>
-    <!--blank row breaker-->
     <tr>
         <th colspan="7" bgcolor="black" style="color:white" size="+1">
             <?php echo($symbol); ?> - TRADES
@@ -357,13 +351,6 @@ if($trades != null)
 
     ?>
 
-    <tr>
-        <td colspan="7">
-
-
-        </td>
-    </tr>
-    <!--blank row breaker-->
 </table>
 
 
@@ -394,7 +381,7 @@ if($trades != null)
 
             <!--/////////ORDERS - COMBINED//////-->
             <tr>
-                <td colspan="2" bgcolor="blue" style="color:white" size="+1" >
+                <td colspan="2" style="color:white;background-color:blue;width:100%;padding: 2px;font-size: 150%;" >
                     <b>BIDS</b>
                 </td>
             </tr>
@@ -429,7 +416,7 @@ if($trades != null)
     <td style="width:10%">
         <table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center; float:right">
             <tr>
-                <td colspan="2" bgcolor="red" style="color:white" size="+1" >
+                <td colspan="2" style="color:white;background-color:red;width:100%;padding: 2px;font-size: 150%;" >
                     <b>ASKS</b>
                 </td>
             </tr>

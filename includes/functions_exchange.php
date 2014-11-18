@@ -24,71 +24,6 @@ function getCommission($total)
     return($commissionAmount);
 }
 
-////////////////////////////////////
-//CANCEL ORDER
-////////////////////////////////////
-function cancelOrder($uid)
-{
-    $order = query("SELECT side, quantity, uid, symbol, type, price, id, total FROM orderbook WHERE uid = ?", $uid);
-    if(!empty($order)) {
-        @$side = $order[0]["side"];
-        @$quantity = $order[0]["quantity"];
-        @$uid = $order[0]["uid"];
-        @$symbol = $order[0]["symbol"];
-        @$type = $order[0]["type"];
-        @$price = $order[0]["price"];
-        @$id = $order[0]["id"];
-        @$total = $order[0]["total"];
-
-        query("SET AUTOCOMMIT=0");
-        query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
-
-
-        if ($side == 'a') {
-            if (query("UPDATE portfolio SET quantity = (quantity + ?) WHERE (symbol = ? AND id = ?)", $quantity, $symbol, $id) === false) {
-                query("ROLLBACK");
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Failure Cancel 2");
-            }
-        } elseif ($side == 'b') {
-            if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $total, $id) === false) //MOVE CASH TO units FUNDS
-            {
-                query("ROLLBACK");
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Failure Cancel 4");
-            }
-        }
-        
-        //DELETE ORDER
-        if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {
-            query("ROLLBACK");
-            query("SET AUTOCOMMIT=1");
-            throw new Exception("Failure Cancel 1");
-        }
-        
-        //UPDATE HISTORY
-        if ($quantity > 0) //to prevent spamming history with cleanup of orderbook of empty orders.
-        { $total=($total*-1); //set to negative for calculations on order form total.
-            if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $uid, 'CANCEL', $symbol, $quantity, $price, $total) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3c"); }
-        }
-        else //($quantity <=0)
-        { $price=0; $total=0;//order was executed and the price listed was not the actual amount and the total was what was left over.
-            if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $uid, 'EXECUTED', $symbol, $quantity, $price, $total) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3c"); }
-        }
-
-
-        echo("<br>Canceled [ID: " . $id . ", UID:" . $uid . ", Side:" . $side . ", Type:" . $type . ", Total:" . $total . ", Quantity:" . $quantity . ", Symbol:" . $symbol . "]");
-
-
-        query("COMMIT;"); //If no errors, commit changes
-        query("SET AUTOCOMMIT=1");
-
-    } //!empty
-
-    //var_dump(get_defined_vars());
-    //throw new Exception("Market orders require limit orders. No ask limit orders for the bid market order. Deleting market order.");
-
-}
 
 ////////////////////////////////////
 //CHECK FOR 0 QTY ORDERS AND REMOVES
@@ -143,6 +78,74 @@ function cancelOrderCheck()
     if($canceledNumber>0){ echo("<br>Canceled: " . $canceledNumber . " orders.");  }
 
 }
+
+
+////////////////////////////////////
+//CANCEL ORDER
+////////////////////////////////////
+function cancelOrder($uid)
+{
+    $order = query("SELECT side, quantity, uid, symbol, type, price, id, total FROM orderbook WHERE uid = ?", $uid);
+    if(!empty($order)) {
+        @$side = $order[0]["side"];
+        @$quantity = $order[0]["quantity"];
+        @$uid = $order[0]["uid"];
+        @$symbol = $order[0]["symbol"];
+        @$type = $order[0]["type"];
+        @$price = $order[0]["price"];
+        @$id = $order[0]["id"];
+        query("SET AUTOCOMMIT=0");
+        query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+
+        @$total = $order[0]["total"];
+
+
+        if ($side == 'a') {
+            if (query("UPDATE portfolio SET quantity = (quantity + ?) WHERE (symbol = ? AND id = ?)", $quantity, $symbol, $id) === false) {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Failure Cancel 2");
+            }
+        } elseif ($side == 'b') {
+            if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $total, $id) === false) //MOVE CASH TO units FUNDS
+            {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Failure Cancel 4");
+            }
+        }
+
+        //DELETE ORDER
+        if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {
+            query("ROLLBACK");
+            query("SET AUTOCOMMIT=1");
+            throw new Exception("Failure Cancel 1");
+        }
+
+        //UPDATE HISTORY
+        if ($quantity > 0) //to prevent spamming history with cleanup of orderbook of empty orders.
+        { $total=($total*-1); //set to negative for calculations on order form total.
+            if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $uid, 'CANCEL', $symbol, $quantity, $price, $total) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3c"); }
+        }
+        else //($quantity <=0)
+        { $price=0; $total=0;//order was executed and the price listed was not the actual amount and the total was what was left over.
+            if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $uid, 'EXECUTED', $symbol, $quantity, $price, $total) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3c"); }
+        }
+
+
+        echo("<br>Canceled [ID: " . $id . ", UID:" . $uid . ", Side:" . $side . ", Type:" . $type . ", Total:" . $total . ", Quantity:" . $quantity . ", Symbol:" . $symbol . "]");
+
+
+        query("COMMIT;"); //If no errors, commit changes
+        query("SET AUTOCOMMIT=1");
+
+    } //!empty
+
+    //var_dump(get_defined_vars());
+    //throw new Exception("Market orders require limit orders. No ask limit orders for the bid market order. Deleting market order.");
+
+}
+
 
 
 ////////////////////////////////////
@@ -877,6 +880,32 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 
     return array($transaction, $symbol, $tradeAmount, $quantity);
 }
+
+
+
+
+
+
+
+
+////////////////////////////////////
+//REMOVE ASSET
+////////////////////////////////////
+function removeAsset($symbol)
+{
+//cancel all orders on orderbook
+if(query("UPDATE orderbook SET type = ('cancel') WHERE (symbol = ?)", $symbol) === false){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("RA1"); }
+
+    //delete from assets
+if (query("DELETE FROM assets WHERE (symbol = ?)", $symbol) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #RA2"); }
+
+    //delete from portfolio
+if (query("DELETE FROM portfolio WHERE (symbol = ?)", $symbol) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #RA3"); }
+
+if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", 1, 0, 'REMOVE ASSET', $symbol, 0, 0, 0) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #RA4"); }
+
+}
+
 
 
 ?>

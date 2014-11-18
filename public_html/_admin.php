@@ -20,25 +20,27 @@ if ($id != 1) { apologize("Unauthorized!");}
     <tr><td><input type="radio" name="admin" value="info"></td>         <td>Monetary Info</td></tr> 
     <tr><td><input type="radio" name="admin" value="createstocks"></td> <td>Create Stocks</td></tr>
     <tr><td><input type="radio" name="admin" value="randomorders"></td> <td>Random Orders</td></tr>
-    <tr><td><input type="radio" name="admin" value="process"></td>      <td>Process Orders 
-        <select name="symbol"  class="form-control" >
-        <?php
-        if (empty($assets)) {
-        echo("<option value=' '>No Assets</option>");
-        } else {
-        //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
-        echo ('    <option value="ALL">-All Assets-</option>');
-        foreach ($assets as $asset) {
-            $symbol = $asset["symbol"];
-            echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
-            }
-        }
-        ?>
-        </select>
-    </td></tr>
+    <tr><td><input type="radio" name="admin" value="process"></td>      <td>Process Orders*</td></tr>
+    <tr><td><input type="radio" name="admin" value="delete"></td>      <td>Delete Stocks*</td></tr>
+
+    <tr><td colspan="2">        <select name="symbol"  class="form-control" >
+                <?php
+                if (empty($assets)) {
+                    echo("<option value=' '>No Assets</option>");
+                } else {
+                    //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
+                    echo ('    <option value="ALL">-All Assets-</option>');
+                    foreach ($assets as $asset) {
+                        $symbol = $asset["symbol"];
+                        echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
+                    }
+                }
+                ?>
+            </select></td></tr>
+
     <tr><td colspan='2'>
-        <button type="submit" class="btn btn-info"><b> SUBMIT </b></button></span>
-    </td></td>
+            <button type="submit" class="btn btn-info"><b> SUBMIT </b></button></span>
+        </td></tr>
 </table>
 
     </fieldset>
@@ -48,6 +50,7 @@ if ($id != 1) { apologize("Unauthorized!");}
 <?php
 if(isset($_POST['admin']))
 {
+    if ($_POST['admin'] == 'delete'){removeAsset($_POST['symbol']);}
     if ($_POST['admin'] == 'all'){clear_all();}
     if ($_POST['admin'] == 'test'){test();}
     if ($_POST['admin'] == 'orderbook'){clear_orderbook();}
