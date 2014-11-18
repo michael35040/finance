@@ -44,7 +44,7 @@ if (strlen($password) != 60) { apologize("Invalid password configuration."); }  
 query("SET AUTOCOMMIT=0");
 query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
-/INSERTS INTO HISTORY for user
+//INSERTS INTO HISTORY for user
 $quantity = 1; //admins id, will appear on the inital deposit as counterparty id.
 		//$initialunits set in finance.php
 $neginitialunits = ($initialunits * -1); //initial deposit
