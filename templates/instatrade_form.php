@@ -18,9 +18,10 @@
 
 <?php 
 
+    $id = $_SESSION["id"]; //get id from session
+    
     $trades = query("SELECT * FROM trades WHERE ((symbol='SILVER' OR symbol='GOLD') AND (buyer=? OR seller=?)) ORDER BY uid DESC", $id, $id);
 
-    $id = $_SESSION["id"]; //get id from session 
     $goldAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol='GOLD' ORDER BY symbol ASC", $_SESSION["id"]);
     $goldAmount=$goldAmount[0]["quantity"];
     $silverAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol='SILVER' ORDER BY symbol ASC", $_SESSION["id"]);
