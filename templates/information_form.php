@@ -547,7 +547,7 @@ if($trades != null)
     <tr><td colspan="3"></td></tr> <!--blank row breaker-->
     <tr>
         <th colspan="3" bgcolor="black" style="color:white" size="+1" >
-            Top Owners & Orderbook
+            Ownership
         </th>
     </tr>
     </thead>
