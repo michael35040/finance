@@ -799,8 +799,8 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
             $userUnits = (float)$unitsQ[0]['units'];	//convert array from query to value
             //WILL CONDUCT ANOTHER CHECK AT ORDERBOOK PROCESS TO ENSURE USER UNITS > 0 and ENOUGH IN units
-            if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Bid order failed. " . $id . " has $" . $userUnits . ", order $" . $tradeAmount . "." ); }
-            if ($userUnits < 0) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Bid order failed. " . $id . " has negative balance: " . $userUnits);}
+            if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Bid order failed. Not enough funds. User (" . $id . ") has $" . $userUnits . ", order $" . $tradeAmount . "." ); }
+            if ($userUnits < 0) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Bid order failed. User (" . $id . ") has negative balance: " . $userUnits);}
             else
             {   if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false)
             {   query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 2");
