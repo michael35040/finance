@@ -860,7 +860,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
         }
 
         //CHECK FOR LIMIT ORDERS
-        $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type = 'limit' AND side = ?)", $otherSide);
+        $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
         $limitOrders = $limitOrdersQ[0]['limitorders'];
         if (is_null($limitOrders) || $limitOrders == 0) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
 
