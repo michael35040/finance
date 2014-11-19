@@ -13,10 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     @$quantity = (int)$_POST["quantity"]; //not set on market orders
 
     @$metalTransaction = $_POST["metalTransaction"];// buyGold, buySilver, sellGold, sellSilver
-        if($metalTransaction=='buyGold'){$symbol='GOLD';$side='bid';}
-        elseif($metalTransaction=='buySilver'){$symbol='SILVER';$side='bid';}
-        elseif($metalTransaction=='sellGold'){$symbol='GOLD';$side='ask';}
-        elseif($metalTransaction=='sellSilver'){$symbol='SILVER';$side='ask';}
+        if($metalTransaction=='buyGold'){$symbol='GOLD';$side='b';}
+        elseif($metalTransaction=='buySilver'){$symbol='SILVER';$side='b';}
+        elseif($metalTransaction=='sellGold'){$symbol='GOLD';$side='a';}
+        elseif($metalTransaction=='sellSilver'){$symbol='SILVER';$side='a';}
         else{apologize('Unknown action!');}// //dump all variables if i hit error
         //apologize(var_dump(get_defined_vars()));
     
