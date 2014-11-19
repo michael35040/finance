@@ -16,6 +16,8 @@
 
 </style>
 
+<?php $id = $_SESSION["id"]; //get id from session 
+?>
 
 <table class="table table-condensed table-striped table-bordered" style="text-align:center;background-color:#FC0;">
     <thead>
@@ -161,7 +163,7 @@ min="1" step="1" ><span class="input-group-addon">ozt</span></div>
 
 
 <?php
-$trades = query("SELECT * FROM trades WHERE (type='market' AND (symbol='SILVER' OR symbol='GOLD') AND (buyer=? OR seller=?) ORDER BY uid DESC", $id, $id);
+$trades = query("SELECT * FROM trades WHERE ((symbol='SILVER' OR symbol='GOLD') AND (buyer=? OR seller=?)) ORDER BY uid DESC", $id, $id);
 ?>
 
 <br>
@@ -174,7 +176,7 @@ $trades = query("SELECT * FROM trades WHERE (type='market' AND (symbol='SILVER' 
     <tbody>
 <?php
 foreach ($trades as $trade) {
-    if(trade["buyer"]==$id)
+    if($trade["buyer"]==$id)
     {   $color="06C";
         $trans="Buy";
     }
