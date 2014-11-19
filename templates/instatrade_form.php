@@ -72,9 +72,9 @@
 <form action="instatrade.php" method="post"
 oninput="
 priceAmount.value=price.value;
-priceAmount=<?php echo($goldAsk); ?>;
+priceAmount=<?php echo($gold["ask"]); ?>;
 quantityAmount.value=quantity.value;
-commissionAmount.value=parseFloat(parseInt(quantity.value)*parseInt(price.value)*<?php echo($premium) ?>).toFixed(2);
+commissionAmount.value=parseFloat(parseInt(quantity.value)*parseInt(price.value)*<?php echo($gold["premium"]) ?>).toFixed(2);
 subtotal.value=parseFloat(parseFloat(quantity.value)*parseFloat(price.value)).toFixed(2);
 total.value=parseFloat(parseFloat(quantity.value)*parseFloat(price.value)+parseFloat(commissionAmount.value)).toFixed(2);
 
@@ -84,8 +84,14 @@ commissionAmount.value=commify(commissionAmount.value);
 subtotal.value=commify(subtotal.value);
 total.value=commify(total.value);
 "
-
-
+<?php
+/*    
+    $gold["ask"]=1100;
+    $gold["bid"]=1000;
+    $gold["premium"]=3;
+    $gold["discount"]=2;
+*/ 
+?>    
     <table id="buyGold">
         <thead>
         </thead>
@@ -95,12 +101,14 @@ total.value=commify(total.value);
                     Spot Price<br />
                     <div style="font-size:200%">
                         $1,291.40
-                        <?php echo($unitsymbol . number_format($goldAsk, 2, ".", ",")) ?>
+                        <?php echo($unitsymbol . number_format($gold["ask"], 2, ".", ",")) ?>
                     </div>
                 </td>
                 <td style="border-bottom: 1px solid black;width:50%;background-color:#FC0;">
-                    <b>Premium</b>: $3.00<br />
-                    <b>Price</b>: $1,294.40/ozt <?php //$goldAsk+premium ?>
+                    <b>Premium</b>: $3.00
+                    <?php echo($unitsymbol . number_format($gold["premium"], 2, ".", ",")) ?>
+                    <br />
+                    <b>Price</b>: $1,294.40/ozt <?php $unitPrice=$gold["ask"]+$gold["premium"]; echo($unitPrice); ?>
                 </td>
             </tr>
             <tr>
