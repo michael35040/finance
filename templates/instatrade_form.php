@@ -160,8 +160,9 @@ min="1" step="1" ><span class="input-group-addon">ozt</span></div>
 
 
 
-
-
+<?php
+$trades = query("SELECT * FROM trades WHERE (type='market' AND (symbol='SILVER' OR symbol='GOLD') AND (buyer=? OR seller=?) ORDER BY uid DESC", $id, $id);
+?>
 
 <br>
 <table style="text-align:center;border-collapse:collapse;width:100%;color:white;">
@@ -171,20 +172,26 @@ min="1" step="1" ><span class="input-group-addon">ozt</span></div>
     </tr>
     </thead>
     <tbody>
-
+<?php
+foreach ($trades as $trade) {
+    if(trade["buyer"]==$id)
+    {   $color="06C";
+        $trans="Buy";
+    }
+    else
+    {    $color="0C9";
+        $trans="Sell";        
+    }
+    ?>
     <tr>
-        <td style="background-color:#06C;">Buy Silver Confirmation</td>
-        <td style="background-color:#06C;">Unit Price: $19.23</td>
-        <td style="background-color:#06C;">Total Weight: 53.45</td>
-        <td style="background-color:#06C;">Total Price: $1,027.84</td>
-    </tr>
-
-    <tr>
-        <td style="background-color:#0C9;">Sell Silver Confirmation</td>
-        <td style="background-color:#0C9;">Unit Price: $19.23</td>
-        <td style="background-color:#0C9;">Total Weight: 53.45</td>
-        <td style="background-color:#0C9;">Total Price: $1,027.84</td>
-    </tr>
+        <td style="background-color:#<?php echo($color); ?>;"><?php echo($trans);?> <?php echo($trade["symbol"]); ?> Confirmation</td>
+        <td style="background-color:#<?php echo($color); ?>;">Date: <?php echo(htmlspecialchars(date('Y-m-d H:i:s', strtotime($trade["date"])))); ?> </td>
+        <td style="background-color:#<?php echo($color); ?>;">Unit Price: $<?php echo(number_format($trade["price"], 2, ".", ",")); ?></td>
+        <td style="background-color:#<?php echo($color); ?>;">Total Weight: <?php echo(number_format($trade["quantity"], 0, ".", ",")); ?></td>
+        <td style="background-color:#<?php echo($color); ?>;">Total Price: $<?php echo(number_format($trade["total"], 2, ".", ",")); ?></td>
+    </tr>        
+  <?php  
+} ?>
 
     </tbody>
 </table>
@@ -192,5 +199,6 @@ min="1" step="1" ><span class="input-group-addon">ozt</span></div>
 
 
 
-
-
+   
+   
+ 
