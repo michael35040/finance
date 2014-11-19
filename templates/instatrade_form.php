@@ -85,7 +85,13 @@
 <form action="instatrade.php" method="post"
 oninput="
 quantityAmount.value=quantity.value;
-totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($gold["buy"]) ?>)).toFixed(2);">
+totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($gold["buy"]) ?>)).toFixed(2);"
+onclick="
+quantityAmount.value=quantity.value;
+totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($gold["buy"]) ?>)).toFixed(2);"
+
+
+>
 <table>
         <thead>
         </thead>
