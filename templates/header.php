@@ -142,6 +142,7 @@
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="exchange.php">Place Order</a></li>
+                        <li><a href="instatrade.php">Instant Trade</a></li>
                         <li><a href="orders.php">Orders</a></li>
                         <li><a href="trades.php">Trades</a></li>
                         <li><a href="assets.php">Assets</a></li>
@@ -168,6 +169,9 @@
                             <li><a href="admin_offering.php">Offering </a></li>
                             <li><a href="admin_update.php">Update </a></li>
                             <li><a href="_admin.php">Test</a></li>
+                            <li><a href="ion/index.html">Ion</a></li>
+                            <li><a href="admin/index.html">Admin Dash</a></li>
+
                             
                         </ul>
                     </div>
