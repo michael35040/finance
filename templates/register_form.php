@@ -49,7 +49,7 @@
         <input class="form-control" name="password" placeholder="Password" type="password" maxlength="31" required/>
 
         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> Confirmation</span>
-        <input class="form-control" name="confirmation" placeholder="Confirmation" type="password" maxlength="31" required/>
+        <input class="form-control" name="confirmation" placeholder="Password Confirmation" type="password" maxlength="31" required/>
 
 <br>
                 <span class="input-group-btn">
