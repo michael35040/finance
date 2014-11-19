@@ -88,7 +88,7 @@ $phone = $userinfo[0]["phone"];
         document.getElementById("usernameInput").disabled = true;
         document.getElementById('usernameInput').value='';
 
-        document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-envelope"></span> Email';
+        document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-envelope"></span> Re-type New Email';
     }, false);
 
     //PHONE    
@@ -108,7 +108,7 @@ $phone = $userinfo[0]["phone"];
         document.getElementById("usernameInput").disabled = true;
         document.getElementById('usernameInput').value='';
 
-        document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-earphone"></span> Re-type Phone';
+        document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-earphone"></span> Re-type New Phone';
     }, false);
 
     //PASSWORD    
