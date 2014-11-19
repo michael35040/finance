@@ -164,7 +164,7 @@ if (!isset($commission)) //set in constants.php
                 <TD ROWSPAN="1">Quantity</TD>
                 <TD>
                     <input class="input-small" type="range" id="quantity" placeholder="Quantity" name="quantity" value=1
-                           min="1" max="100" step="1" style="width:100%;" required>
+                           min="1" max="10000" step="1" style="width:100%;" required>
                     <output name="quantityAmount" for="quantity">1</output>
                 </TD>
             </TR>
