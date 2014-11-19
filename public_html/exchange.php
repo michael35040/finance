@@ -10,7 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$price = (float)$_POST["price"]; //not set on market orders
 
     //CHECKS
-    if (empty($symbol) || empty($type) || empty($side) || empty($quantity) || empty($price)) { apologize("Please fill all required fields."); } //check to see if empty
+    if (empty($symbol) || empty($type) || empty($side) || empty($quantity)) { apologize("Please fill all required fields."); } //check to see if empty
+    if($type=='limit' && empty($price)){apologize("Limit Orders require price!");}
     //FORMATS AND SCRUBS VARIABLES
     $price = sanatize("price", $price);
     $quantity = sanatize("quantity", $quantity);
