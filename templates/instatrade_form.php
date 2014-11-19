@@ -17,6 +17,9 @@
 </style>
 
 <?php 
+
+    $trades = query("SELECT * FROM trades WHERE ((symbol='SILVER' OR symbol='GOLD') AND (buyer=? OR seller=?)) ORDER BY uid DESC", $id, $id);
+
     $id = $_SESSION["id"]; //get id from session 
     $goldAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol='GOLD' ORDER BY symbol ASC", $_SESSION["id"]);
     $goldAmount=$goldAmount[0]["quantity"];
@@ -31,6 +34,10 @@
     $gold["bid"]=1291.10;
     $gold["discount"]=2;
     $gold["sell"]=($gold["bid"]-$gold["discount"]);
+    
+    
+    //TO DO!
+    //-Post: Price, Quantity, Side.
 
 ?> 
 
@@ -95,7 +102,7 @@ totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($g
                 <td style="background-color:#FC0;">
                     <div class="input-group"><input type="number" class="form-control" id="quantity" name="quantity" placeholder="# of ounces" value=1
 min="1" step="1" ><span class="input-group-addon">ozt</span></div>
-                    <button type="submit" style="width:100%;background:#404040;color:white;">BUY GOLD</button>
+                    <button type="submit" name="metalTransaction" value="buyGold" style="width:100%;background:#404040;color:white;">BUY GOLD</button>
                 </td>
                 <td style="background-color:#FC0;">
                     Buy <output name="quantityAmount" for="quantity" style="display:inline;">0</output> ozt for $<output name="totalAmount" for="price quantity" style="display:inline;">0</output>
@@ -161,9 +168,7 @@ min="1" step="1" ><span class="input-group-addon">ozt</span></div>
 
 
 
-<?php
-$trades = query("SELECT * FROM trades WHERE ((symbol='SILVER' OR symbol='GOLD') AND (buyer=? OR seller=?)) ORDER BY uid DESC", $id, $id);
-?>
+
 
 <br>
 <table style="text-align:center;border-collapse:collapse;width:100%;color:white;">
