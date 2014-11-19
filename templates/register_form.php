@@ -63,7 +63,7 @@
 
 
         <hr>
-        or
+        Already a member?
         <br>
         <a href="login.php" class="btn btn-info btn-sm">
             <span class="glyphicon glyphicon-off"></span>
