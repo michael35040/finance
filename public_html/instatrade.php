@@ -10,6 +10,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     @$side = $_POST["side"]; //buy/bid or sell/ask
     @$quantity = (int)$_POST["quantity"]; //not set on market orders
     @$price = (float)$_POST["price"]; //not set on market orders
+
+    @$metalTransaction = $_POST["metalTransaction"];// buyGold, buySilver, sellGold, sellSilver
+    
+    apologize(var_dump(get_defined_vars()));
+    
+        if($metalTransaction=='buyGold'){$symbol='GOLD';$side='bid';}
+        elseif($metalTransaction=='buySilver'){$symbol='SILVER';$side='bid';}
+        elseif($metalTransaction=='sellGold'){$symbol='GOLD';$side='ask';}
+        elseif($metalTransaction=='sellSilver'){$symbol='SILVER';$side='ask';}
+        else{apologize(var_dump(get_defined_vars()));}// //dump all variables if i hit error
     //FORMATS AND SCRUBS VARIABLES
     $price = sanatize("price", $price);
     $quantity = sanatize("quantity", $quantity);
