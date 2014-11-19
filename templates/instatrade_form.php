@@ -20,7 +20,7 @@
 <table class="table table-condensed table-striped table-bordered" style="text-align:center;background-color:#FC0;">
     <thead>
     <tr>
-        <td colspan="4"  style="font-weight:bold;font-size:20px;text-align:center;background-color:#606060;color:white;width:100%;" >AVAILABLE BALANCES</td>
+        <td colspan="3"  style="font-weight:bold;font-size:20px;text-align:center;background-color:#606060;color:white;width:100%;" >AVAILABLE BALANCES</td>
     </tr>
     </thead>
     <tbody>
@@ -36,11 +36,7 @@
             <b><?php echo($unittype) ?></b><br />
             <?php echo($unitsymbol . number_format($units, 2, ".", ",")) ?>
         </td>
-        <td>
-            <h3><span class="label label-info">BTC</span></h3>
-            <b>BITCOIN</b><br />
-            16.55045862 btc
-        </td>
+
 
         <td>
             <h3><span class="label label-default">Ag</span></h3>
