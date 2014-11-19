@@ -56,7 +56,7 @@
 
                 <button type="submit" class="btn btn-success btn-sm">
                     <span class="glyphicon glyphicon-pencil"></span>
-                    <b> &nbsp;  REGISTER </b>
+                    &nbsp;  REGISTER 
                 </button>
                 </span>
 
@@ -67,7 +67,7 @@
         <br>
         <a href="login.php" class="btn btn-info btn-sm">
             <span class="glyphicon glyphicon-off"></span>
-            <b> &nbsp;  LOG IN </b>
+             &nbsp;  LOG IN 
         </a>
         <br />   <br />
     </fieldset>
