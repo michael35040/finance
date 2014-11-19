@@ -16,8 +16,23 @@
 
 </style>
 
-<?php $id = $_SESSION["id"]; //get id from session 
-?>
+<?php 
+    $id = $_SESSION["id"]; //get id from session 
+    $goldAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol='GOLD' ORDER BY symbol ASC", $_SESSION["id"]);
+    $goldAmount=$goldAmount[0]["quantity"];
+    $silverAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol='SILVER' ORDER BY symbol ASC", $_SESSION["id"]);
+    $silverAmount=$silverAmount[0]["quantity"];
+
+
+    $gold["ask"]=1291.40;
+    $gold["premium"]=3;   
+    $gold["buy"]=($gold["ask"]+$gold["premium"]);
+    
+    $gold["bid"]=1291.10;
+    $gold["discount"]=2;
+    $gold["sell"]=($gold["bid"]-$gold["discount"]);
+
+?> 
 
 <table class="table table-condensed table-striped table-bordered" style="text-align:center;background-color:#FC0;">
     <thead>
@@ -30,22 +45,16 @@
     <tr>
         <td>
             <h3><span class="label label-warning">Au</span></h3>
-            <b>GOLD</b><br />
-            9.250 ozt
+            <b>GOLD</b><br /><?php echo(number_format($goldAmount, 0, ".", ",")) ?> ozt
         </td>
         <td>
             <h3><span class="label label-success"> &nbsp; $ &nbsp; </span></h3>
-            <b><?php echo($unittype) ?></b><br />
-            <?php echo($unitsymbol . number_format($units, 2, ".", ",")) ?>
+            <b><?php echo($unittype) ?></b><br /><?php echo($unitsymbol . number_format($units, 2, ".", ",")) ?>
         </td>
-
-
         <td>
             <h3><span class="label label-default">Ag</span></h3>
-            <b>Silver</b><br />
-            946.550 ozt
+            <b>Silver</b><br /><?php echo(number_format($silverAmount, 0, ".", ",")) ?> ozt
         </td>
-        
     </tr>
     </tbody>
     </table>
@@ -58,17 +67,7 @@
 
 <div class="container">
 
-<?php
 
-    $gold["ask"]=1291.40;
-    $gold["premium"]=3;   
-    $gold["buy"]=($gold["ask"]+$gold["premium"]);
-    
-    $gold["bid"]=1291.10;
-    $gold["discount"]=2;
-    $gold["sell"]=($gold["bid"]-$gold["discount"]);
-
-?> 
 
 
 
