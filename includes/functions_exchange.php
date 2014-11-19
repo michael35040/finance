@@ -168,6 +168,7 @@ function OrderbookTop($symbol)
                 $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market' AND quantity>0) ORDER BY uid ASC LIMIT 0, 1", $symbol, 'b');
                 $asks = query("SELECT 	* FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
             }
+            $marketOrders[0]["price"]=$asks[0]["price"]; //give it the same price so they execute
             $bids = $marketOrders;
         }    //assign top price to the ask since it is a bid market order
         elseif($marketSide == 'a')
@@ -178,6 +179,7 @@ function OrderbookTop($symbol)
                 $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market' AND quantity>0) ORDER BY uid ASC LIMIT 0, 1", $symbol, 'a');
                 $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
             }
+            $marketOrders[0]["price"]=$bids[0]["price"]; //give it the same price so they execute
             $asks = $marketOrders;
         }   //assign top price to the bid since it is an ask market order
         else { throw new Exception("Market Side Error!"); }
