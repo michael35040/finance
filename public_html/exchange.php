@@ -17,7 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $side = sanatize("alphabet", $side);
     $symbol = strtoupper($symbol); //cast to UpperCase
 
-    list($transaction, $symbol, $tradeTotal, $quantity, $commissionTotal) = placeOrder($symbol, $type, $side, $quantity, $price, $id);
+    try {
+        list($transaction, $symbol, $tradeTotal, $quantity, $commissionTotal) = placeOrder($symbol, $type, $side, $quantity, $price, $id);
+    }
+    catch(Exception $e) {apologize($e->getMessage());}
+
 
     redirect("orders.php");
 
