@@ -101,7 +101,7 @@ totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($g
             </tr>
             <tr>
                 <td style="background-color:#FC0;">
-                    <div class="input-group"><input type="number" class="form-control" id="quantity" name="quantity" placeholder="# of ounces" value=1
+                    <div class="input-group"><input type="number" class="form-control" id="quantity" name="quantity" placeholder="# of ounces" value=0
 min="1" step="1" ><span class="input-group-addon">ozt</span></div>
                     <button type="submit" name="metalTransaction" value="buyGold" style="width:100%;background:#404040;color:white;">BUY GOLD</button>
                 </td>
@@ -136,7 +136,7 @@ totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($g
             </tr>
             <tr>
                 <td style="background-color:#FC0;">
-                    <div class="input-group"><input type="number" class="form-control" id="quantity" name="quantity" placeholder="# of ounces" value=1
+                    <div class="input-group"><input type="number" class="form-control" id="quantity" name="quantity" placeholder="# of ounces" value=0
 min="1" step="1" ><span class="input-group-addon">ozt</span></div>
                     <button type="submit" name="metalTransaction" value="sellGold" style="width:100%;background:#404040;color:white;">SELL GOLD</button>
                 </td>
