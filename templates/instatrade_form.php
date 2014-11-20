@@ -46,7 +46,7 @@
     </tbody>
     </table>
 
-Trades are instant and irrevocable. Prices can change prior to order being executed.
+Trades are instant and irrevocable. Prices are subject to change.
 
 
 
