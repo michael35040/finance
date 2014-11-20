@@ -239,7 +239,7 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
             <?php echo($unitsymbol . number_format($tradesPrice, 2, ".", ",")) ?> - Price<br>
             <?php echo($unitsymbol . number_format($bidsPrice, 2, ".", ",")) ?> - Bid<br>
             <?php echo($unitsymbol . number_format($asksPrice, 2, ".", ",")) ?> - Ask<br>
-            <?php echo($unitsymbol . number_format($asset["avgprice"], 2, ".", ",")) ?> - Avg. Price (30d)
+            <?php echo($unitsymbol . number_format($asset["avgprice"], 2, ".", ",")) ?> - Avg. (30d)
         </td>
         <td >
             <?php echo(number_format($asset["volume"], 0, ".", ",")) ?> - Volume (30d)<br>
