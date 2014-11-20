@@ -230,12 +230,6 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
     <thead>
     </thead>
     <tbody>
-    <tr>
-        <td>Symbol: <?php echo(htmlspecialchars($asset["symbol"])) ?></td>
-        <td ><?php echo($unitsymbol . number_format($tradesPrice, 2, ".", ",")) ?></td>
-        <td ><?php echo(number_format($asset["volume"], 0, ".", ",")) ?></td>
-        <td ><?php echo($unitsymbol . number_format($asset["marketcap"], 2, ".", ",")) ?></td>
-    </tr>
     <tr >
         <td>
             Symbol: <?php echo(htmlspecialchars($asset["symbol"])) ?><br>
