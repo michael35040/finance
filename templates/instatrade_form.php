@@ -21,7 +21,7 @@
 ?>
 
 
-<table class="table table-condensed table-striped table-bordered" style="text-align:center;background-color:#FC0;">
+<table class="table table-condensed table-striped table-bordered" style="text-align:center;background-color:#FC0;margin-bottom:0px;">
     <thead>
     <tr>
         <td colspan="3"  style="font-weight:bold;font-size:20px;text-align:center;background-color:#606060;color:white;width:100%;" >AVAILABLE BALANCES</td>
@@ -46,6 +46,7 @@
     </tbody>
     </table>
 
+Trades are instant and irrevocable. Listed market prices are subject to change prior to order being executed.
 
 
 
@@ -97,7 +98,6 @@ min="1" step="1" ><span class="input-group-addon">ozt</span></div>
         </tbody>
     </table>
 </form>
-
 
 
 
