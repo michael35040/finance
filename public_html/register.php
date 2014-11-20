@@ -131,7 +131,7 @@ query("COMMIT;"); //If no errors, commit changes
 query("SET AUTOCOMMIT=1");
 
 
-redirect("index.php");
+render("login_form.php", ["title" => "Log In", "info" => "Successfully Registered!"]);
 //apologize("You have successfully registered. Now your account needs to be activated.");
      
      
