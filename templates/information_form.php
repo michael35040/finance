@@ -244,7 +244,7 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         <td >
             <?php echo(number_format($asset["volume"], 0, ".", ",")) ?> - Volume (30d)<br>
             <?php echo(number_format($asset["public"], 0, ".", ",")) ?> - Publicly Held<br>
-            <?php echo(number_format($asset["issued"], 0, ".", ",")) ?> - Issued (<?php echo(number_format($asset["userid"], 0, ".", ",")) ?><br>
+            <?php echo(number_format($asset["issued"], 0, ".", ",")) ?> - Issued (<?php echo(number_format($asset["userid"], 0, ".", ",")) ?>)<br>
             <?php echo(htmlspecialchars($asset["date"])) ?> - Listed
         </td>
         <td >
