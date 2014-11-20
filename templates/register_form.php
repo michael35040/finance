@@ -60,7 +60,8 @@
                 </span>
 
         <br>
-        <a href="login.php" class="btn btn-info btn-sm">
+        <br>
+        <a href="login.php" class="btn btn-primary btn-sm">
             <span class="glyphicon glyphicon-off"></span>
              &nbsp;  Already a member?
         </a>
