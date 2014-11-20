@@ -223,7 +223,7 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
 
     
     
-    <div class="panel panel-success">
+    <div class="panel panel-success"> <!--success info primary danger warning -->
     <!-- Default panel contents -->
     <div class="panel-heading">INFORMATION</div>
 <table class="table">
@@ -266,7 +266,7 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
 
 
 
-    <div class="panel panel-primary">
+    <div class="panel panel-primary"> <!--success info primary danger warning -->
     <!-- Default panel contents -->
     <div class="panel-heading">YOUR ACCOUNT</div>
 <table class="table">
@@ -526,7 +526,7 @@ if($trades != null)
 
 
 
-    <div class="panel panel-success">
+    <div class="panel panel-primary"> <!--success info primary danger warning -->
     <!-- Default panel contents -->
     <div class="panel-heading">OWNERSHIP - MAJOR HOLDERS</div>
     <table class="table">
