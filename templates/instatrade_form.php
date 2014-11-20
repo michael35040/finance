@@ -262,7 +262,7 @@ foreach ($trades as $trade) {
     if($trade["buyer"]==$id)
     {   $color="06C";
         $trans="Buy";
-        $trade["total"]=$trade["total"]+$trade["commission"];
+        //buying has no commission //$trade["total"]=$trade["total"]+$trade["commission"];
 
     }
     elseif($trade["seller"]==$id)
