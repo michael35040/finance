@@ -130,7 +130,7 @@ if (query("INSERT INTO login (id, ip, success_fail) VALUES (?, ?, ?)", $id, $ipa
 query("COMMIT;"); //If no errors, commit changes
 query("SET AUTOCOMMIT=1");
 
-redirect("index.php")
+redirect("index.php");
 //apologize("You have successfully registered. Now your account needs to be activated.");
      
      
