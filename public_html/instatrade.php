@@ -46,7 +46,7 @@ else{
     $goldbids =	query("SELECT price FROM orderbook WHERE (symbol='GOLD' AND side='b' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1");
     $goldasks =	query("SELECT price FROM orderbook WHERE (symbol='GOLD' AND side='a' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1");
     $gold["ask"]=(float)$goldasks[0]["price"];
-    $gold["premium"]=($gold["ask"]*$commission); 
+    $gold["premium"]=0; //buying has no commission //($gold["ask"]*$commission); 
     $gold["buy"]=($gold["ask"]+$gold["premium"]);
     $gold["bid"]=(float)$goldbids[0]["price"];
     $gold["discount"]=($gold["bid"]*$commission); 
@@ -56,7 +56,7 @@ else{
     $silverbids =	query("SELECT price FROM orderbook WHERE (symbol='SILVER' AND side='b' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1");
     $silverasks =	query("SELECT price FROM orderbook WHERE (symbol='SILVER' AND side='a' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1");
     $silver["ask"]=(float)$silverasks[0]["price"];
-    $silver["premium"]=($silver["ask"]*$commission);
+    $silver["premium"]=0; //buying has no commission //($silver["ask"]*$commission);
     $silver["buy"]=($silver["ask"]+$silver["premium"]);
     $silver["bid"]=(float)$silverbids[0]["price"];
     $silver["discount"]=($silver["bid"]*$commission);
