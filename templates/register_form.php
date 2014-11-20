@@ -35,10 +35,6 @@
 
 <form id="reg" action="register.php" method="post">
     <fieldset>
-
-        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> Username</span>
-        <input class="form-control" name="username" placeholder="Username" type="text" maxlength="31"  autofocus required  />
-
         <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> Email</span>
         <input class="form-control" name="email" placeholder="Email" type="email" maxlength="31" required/>
 
@@ -51,10 +47,9 @@
         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> Confirmation</span>
         <input class="form-control" name="confirmation" placeholder="Password Confirmation" type="password" maxlength="31" required/>
 
-<br>
                 <span class="input-group-btn">
 
-                <button type="submit" class="btn btn-success btn-sm">
+                <button type="submit" class="btn btn-lg btn-success btn-block">
                     <span class="glyphicon glyphicon-pencil"></span>
                     &nbsp;  REGISTER 
                 </button>
@@ -63,11 +58,11 @@
 
 
         <hr>
-        Already a member?
+        
         <br>
         <a href="login.php" class="btn btn-info btn-sm">
             <span class="glyphicon glyphicon-off"></span>
-             &nbsp;  LOG IN 
+             &nbsp;  Already a member?
         </a>
         <br />   <br />
     </fieldset>
