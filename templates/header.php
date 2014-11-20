@@ -202,10 +202,9 @@
 
 <table class="table table-condensed" style="margin-bottom:0; text-align: left;">
     <tr>
-        <td> </td>
-        <td><strong>ID:  </strong><?php echo($userid) ?></td>
-        <td><strong>Email: </strong><?php echo($email) ?></td>
-        <td><strong>Time: </strong><?php echo date("Y-m-d H:i:s"); ?></td>
+        <td><strong></strong><?php echo($email) ?></td>
+        <td><strong>ID#:  </strong><?php echo($userid) ?></td>
+        <td><?php echo date("Y-m-d H:i:s"); ?></td>
     </tr>
 </table>
 <?php
