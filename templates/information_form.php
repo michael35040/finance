@@ -228,12 +228,6 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
     <div class="panel-heading">INFORMATION</div>
 <table class="table">
     <thead>
-    <tr class="active">
-        <th width=>Symbol</th>
-        <th width=>Price</th>
-        <th width=>Volume (30d)</th>
-        <th width=>Market Cap</th>
-    </tr>
     </thead>
     <tbody>
     <tr>
