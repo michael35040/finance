@@ -16,31 +16,10 @@
 
 </style>
 
-<?php 
+<?php
+//apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
+?>
 
-    $id = $_SESSION["id"]; //get id from session
-    
-    $trades = query("SELECT * FROM trades WHERE ((symbol='SILVER' OR symbol='GOLD') AND (buyer=? OR seller=?)) ORDER BY uid DESC", $id, $id);
-
-    $goldAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol='GOLD' ORDER BY symbol ASC", $_SESSION["id"]);
-    $goldAmount=$goldAmount[0]["quantity"];
-    $silverAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol='SILVER' ORDER BY symbol ASC", $_SESSION["id"]);
-    $silverAmount=$silverAmount[0]["quantity"];
-
-
-    $gold["ask"]=1291.40;
-    $gold["premium"]=3;   
-    $gold["buy"]=($gold["ask"]+$gold["premium"]);
-    
-    $gold["bid"]=1291.10;
-    $gold["discount"]=2;
-    $gold["sell"]=($gold["bid"]-$gold["discount"]);
-    
-    // apologize(var_dump(get_defined_vars())); //dump all variables if i hit error    
- //TO DO!
- //-Post: Price, Quantity, Side.
-
-?> 
 
 <table class="table table-condensed table-striped table-bordered" style="text-align:center;background-color:#FC0;">
     <thead>
@@ -82,7 +61,7 @@
 
 
 
-<form action="instatrade.php" method="post"
+<form action="instatrade.php" method="post" name="buyGold"
 oninput="
 quantityAmount.value=quantity.value;
 totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($gold["buy"]) ?>)).toFixed(2);"
@@ -98,7 +77,7 @@ totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($g
         <tbody>
             <tr>
                 <td style="width:50%;background-color:#FC0;">
-                    Spot Price<br /><div style="font-size:200%"><?php echo($unitsymbol . number_format($gold["ask"], 2, ".", ",")) ?></div>
+                    Gold Ask Price<br /><div style="font-size:200%"><?php echo($unitsymbol . number_format($gold["ask"], 2, ".", ",")) ?></div>
                 </td>
                 <td style="border-bottom: 1px solid black;width:50%;background-color:#FC0;">
                     <b>Premium</b>: <?php echo($unitsymbol . number_format($gold["premium"], 2, ".", ",")) ?><br />
@@ -109,7 +88,7 @@ totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($g
                 <td style="background-color:#FC0;">
                     <div class="input-group"><input type="number" class="form-control" id="quantity" name="quantity" placeholder="# of ounces" value=1
 min="1" step="1" ><span class="input-group-addon">ozt</span></div>
-                    <button type="submit" name="metalTransaction" value="buyGold" style="width:100%;background:#404040;color:white;">BUY GOLD</button>
+                    <button type="submit" name="metalTransaction" value="buyGold" style="width:100%;background:green;color:white;">BUY GOLD</button>
                 </td>
                 <td style="background-color:#FC0;">
                     Buy <output name="quantityAmount" for="quantity" style="display:inline;">0</output> ozt for $<output name="totalAmount" for="price quantity" style="display:inline;">0</output>
@@ -123,17 +102,23 @@ min="1" step="1" ><span class="input-group-addon">ozt</span></div>
 
 
 
-<form action="instatrade.php" method="post"
-oninput="
+    <form action="instatrade.php" method="post" name="sellGold"
+          oninput="
 quantityAmount.value=quantity.value;
-totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($gold["sell"]) ?>)).toFixed(2);">
+totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($gold["sell"]) ?>)).toFixed(2);"
+          onclick="
+              quantityAmount.value=quantity.value;
+              totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($gold["sell"]) ?>)).toFixed(2);"
+
+
+        >
 <table>
         <thead>
         </thead>
         <tbody>
             <tr>
                 <td style="width:50%;background-color:#FC0;">
-                    Spot Price<br /><div style="font-size:200%"><?php echo($unitsymbol . number_format($gold["bid"], 2, ".", ",")) ?></div>
+                    Gold Bid Price<br /><div style="font-size:200%"><?php echo($unitsymbol . number_format($gold["bid"], 2, ".", ",")) ?></div>
                 </td>
                 <td style="border-bottom: 1px solid black;width:50%;background-color:#FC0;">
                     <b>Discount</b>: (<?php echo($unitsymbol . number_format($gold["discount"], 2, ".", ",")) ?>)<br />
@@ -144,9 +129,93 @@ totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($g
                 <td style="background-color:#FC0;">
                     <div class="input-group"><input type="number" class="form-control" id="quantity" name="quantity" placeholder="# of ounces" value=1
 min="1" step="1" ><span class="input-group-addon">ozt</span></div>
-                    <button type="submit" name="metalTransaction" value="sellGold" style="width:100%;background:#404040;color:white;">SELL GOLD</button>
+                    <button type="submit" name="metalTransaction" value="sellGold" style="width:100%;background:red;color:white;">SELL GOLD</button>
                 </td>
                 <td style="background-color:#FC0;">
+                    Sell <output name="quantityAmount" for="quantity" style="display:inline;">0</output> ozt for $<output name="totalAmount" for="price quantity" style="display:inline;">0</output>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+
+
+
+
+
+
+<form action="instatrade.php" method="post" name="buySilver"
+      oninput="
+quantityAmount.value=quantity.value;
+totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($silver["buy"]) ?>)).toFixed(2);"
+onclick="
+quantityAmount.value=quantity.value;
+totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($silver["buy"]) ?>)).toFixed(2);"
+
+
+>
+<table>
+        <thead>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="width:50%;background-color:#888;">
+                    Silver Ask Price<br /><div style="font-size:200%"><?php echo($unitsymbol . number_format($silver["ask"], 2, ".", ",")) ?></div>
+                </td>
+                <td style="border-bottom: 1px solid black;width:50%;background-color:#888;">
+                    <b>Premium</b>: <?php echo($unitsymbol . number_format($silver["premium"], 2, ".", ",")) ?><br />
+                    <b>Price</b>: <?php echo(number_format($silver["buy"], 2, ".", ",")); ?>/ozt
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#888;">
+                    <div class="input-group"><input type="number" class="form-control" id="quantity" name="quantity" placeholder="# of ounces" value=1
+min="1" step="1" ><span class="input-group-addon">ozt</span></div>
+                    <button type="submit" name="metalTransaction" value="buySilver" style="width:100%;background:green;color:white;">BUY SILVER</button>
+                </td>
+                <td style="background-color:#888;">
+                    Buy <output name="quantityAmount" for="quantity" style="display:inline;">0</output> ozt for $<output name="totalAmount" for="price quantity" style="display:inline;">0</output>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+
+
+
+
+    <form action="instatrade.php" method="post" name="sellSilver"
+          oninput="
+quantityAmount.value=quantity.value;
+totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($silver["sell"]) ?>)).toFixed(2);"
+          onclick="
+              quantityAmount.value=quantity.value;
+              totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($silver["sell"]) ?>)).toFixed(2);"
+
+
+        >
+<table>
+        <thead>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="width:50%;background-color:#888;">
+                    Silver Bid Price<br /><div style="font-size:200%"><?php echo($unitsymbol . number_format($silver["bid"], 2, ".", ",")) ?></div>
+                </td>
+                <td style="border-bottom: 1px solid black;width:50%;background-color:#888;">
+                    <b>Discount</b>: (<?php echo($unitsymbol . number_format($silver["discount"], 2, ".", ",")) ?>)<br />
+                    <b>Price</b>: <?php echo(number_format($silver["sell"], 2, ".", ",")); ?>/ozt
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#888;">
+                    <div class="input-group"><input type="number" class="form-control" id="quantity" name="quantity" placeholder="# of ounces" value=1
+min="1" step="1" ><span class="input-group-addon">ozt</span></div>
+                    <button type="submit" name="metalTransaction" value="sellSilver" style="width:100%;background:red;color:white;">SELL SILVER</button>
+                </td>
+                <td style="background-color:#888;">
                     Sell <output name="quantityAmount" for="quantity" style="display:inline;">0</output> ozt for $<output name="totalAmount" for="price quantity" style="display:inline;">0</output>
                 </td>
             </tr>
@@ -186,15 +255,20 @@ min="1" step="1" ><span class="input-group-addon">ozt</span></div>
     </thead>
     <tbody>
 <?php
+//    apologize(var_dump(get_defined_vars()));      apologize(var_dump($trade));
+$id=$_SESSION["id"];
 foreach ($trades as $trade) {
+
     if($trade["buyer"]==$id)
     {   $color="06C";
         $trans="Buy";
     }
-    else
+    elseif($trade["seller"]==$id)
     {    $color="0C9";
         $trans="Sell";        
     }
+    else{$color="000";
+        $trans="UNK";}
     ?>
     <tr>
         <td style="background-color:#<?php echo($color); ?>;"><?php echo($trans);?> <?php echo($trade["symbol"]); ?> Confirmation</td>

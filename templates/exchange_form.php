@@ -9,6 +9,10 @@ if (!isset($commission)) //set in constants.php
         /*width:75%;*/
         padding:10px;
     }
+    .exchangeTable tr
+    {
+        border:3px solid black;
+    }
 </style>
 <script>
     function commify(x) {
@@ -51,7 +55,7 @@ if (!isset($commission)) //set in constants.php
         <table class="table table-condensed  table-bordered" >
         <thead>
             <tr>
-                <th style="width:25%">Exchange</th>
+                <th style="width:25%; font-size:120%;">EXCHANGE</th>
                 <th style="width:75%"></th>
             </tr>
         </thead>
@@ -105,41 +109,32 @@ if (!isset($commission)) //set in constants.php
         </TR>
 
             <TR>
-                <TD ROWSPAN="2">Side</TD>
-                <TD><INPUT TYPE="radio" NAME="side" VALUE="b" required> Buy / Bid Order</TD>
-            </TR>
-            <TR>
-                <TD><INPUT TYPE="radio" NAME="side" VALUE="a" required> Sell / Ask Order</TD>
-            </TR>
-
-
-
-            <TR>
-                <TD ROWSPAN="2">Type</TD>
-
-                <TD>
-
-                    <div id="subMenuType" style="opacity:1; display:inline">
-                        <INPUT TYPE="radio" NAME="type" VALUE="limit" id='limitSub' required>
-                    </div>
-                    <!--subMenuType-->
-                    <div id="subMenuTypeText" style="display:inline">
-                        Limit
-                    </div>
+                <TD >Side</TD>
+                <TD >
+                    <INPUT TYPE="radio" NAME="side" VALUE="b" required> Buy / Bid Order <br>
+                    <INPUT TYPE="radio" NAME="side" VALUE="a" required> Sell / Ask Order
                 </TD>
             </TR>
+
+
+
+
             <TR>
-                <TD><INPUT TYPE="radio" NAME="type" VALUE="market" id='marketSub' required> Market</TD>
+                <TD>Type</TD>
+
+                <TD>
+                    <INPUT TYPE="radio" NAME="type" VALUE="limit" id='limitSub' required>Limit<br>
+                    <INPUT TYPE="radio" NAME="type" VALUE="market" id='marketSub' required> Market
+                </TD>
             </TR>
+
 
 
             <TR>
                 <TD ROWSPAN="1">Price</TD>
                 <TD>
-                    <!--subMenuPrice-->
                     <div id="subMenuPriceText" style="opacity:1;">
                     </div>
-                    <!--subMenuPriceText-->
                     <div id="subMenuPrice" style="opacity:1;">
 
                         <input class="input-small" type="range" id="price" placeholder="Price" name="price" value=0
@@ -200,7 +195,9 @@ if (!isset($commission)) //set in constants.php
             </TR>
 
         <tr><td colspan="2"> <br>
-                <button type="submit" class="btn btn-primary">SUBMIT</button><br>
+               <center>
+                   <button type="submit" class="btn btn-primary">SUBMIT</button>
+               </center>
 
                 <br></td></tr>
 
