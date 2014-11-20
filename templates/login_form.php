@@ -51,43 +51,44 @@
     }
 </style>
 
-<form action="login.php" name="login_form" method="post">
-    <fieldset>
 
-        <div class="row">
 
-            <div class="col-lg-6" style="width:100%;">
-                <div class="input-group input-group-sm">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                    <input class="form-control" name="username" placeholder="Username" type="text" autofocus required  />
+    <div class="container">
+      <form class="form-signin" role="form" action="login.php" name="login_form" method="post">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password"  required>
 
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                    <input class="form-control" name="password" placeholder="Password" type="password" required/>
+        <span class="input-group-btn">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                <span class="glyphicon glyphicon-off"></span>
+                 Sign in 
+            </button>
+        </span>
+                
 
-                <span class="input-group-btn">
-                <button type="submit" class="btn btn-info btn-sm">
-                    <span class="glyphicon glyphicon-off"></span>
-                    <b> LOG IN </b>
-                </button>
-                </span>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
 
-                </div>
-            </div><!-- /.col-lg-6 -->
-        </div><!-- /.row -->
+      </form>
+    </div> <!-- /container -->
 
-    </fieldset>
-</form>
-<br>
-<br>
+
+
 
 
 <a href="register.php" class="btn btn-success btn-sm">
-    <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;REGISTER&nbsp;&nbsp;</a><!--10 chars-->
+<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;Not a member?&nbsp;&nbsp;</a><!--10 chars-->
 
-<br /><br />
 <!--btn-primary/-info/-warning/-danger/-success/default/ -->
 <!--btn-sm/-btn-medium-->
-
+<br>
+<br>
 
 <div class="panel-group" id="accordion">
     <div class="panel panel-default" id="panel1" style="padding:0; background-color: transparent; border:0; " >
@@ -181,10 +182,4 @@
         </div><!--panel heading-->
     </div><!--panel default-->
 </div><!--panel group-->
-
-
-<a href="mailto:pulwargroup@gmail.com" class="btn btn-danger btn-sm">
-    <span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;&nbsp;CONTACT&nbsp;&nbsp;&nbsp;<!--10 chars-->
-</a>
-
 
