@@ -7,22 +7,18 @@ require("../includes/config.php");
 // if form was submitted  -- validate and insert int database
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-$username = $_POST["username"];	
-$password = $_POST["password"];
-$confirmation = $_POST["confirmation"];
 $email = $_POST["email"];
 $phone = $_POST["phone"];	
+$password = $_POST["password"];
+$confirmation = $_POST["confirmation"];
 	
         // validate submission
-if (empty($username)) { apologize("You must provide a username."); }
 if (empty($email)) { apologize("You must provide an email."); } 
 if (empty($password) || empty($confirmation)) { apologize("You must provide a password and re-type it in the confirmation box."); }
 if (empty($phone)) { apologize("You must provide a phone number."); } 
 if ($password != $confirmation) { apologize("Password missmatch."); }
 
 
-// USERNAME
-$username = sanatize("username", $username);
 
 //EMAIL
 $email = sanatize("email", $email);
@@ -54,24 +50,23 @@ $transaction = 'LOAN'; //for listing on history
 
 $now = time(); //get current time in unix seconds
 			//UPDATE USERS FOR USER
-if (query("INSERT INTO users (username, email, password, phone, last_login, registered, fails) VALUES(?, ?, ?, ?, ?, ?, 0)", $username, $email, $password, $phone, $now, $now) === false) 
+if (query("INSERT INTO users (email, password, phone, last_login, registered, fails) VALUES(?, ?, ?, ?, ?, 0)", $email, $password, $phone, $now, $now) === false) 
 { 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");
-		apologize("Username already taken."); 
+		apologize("Email already in use."); 
 } 
        
 $rows = query("SELECT LAST_INSERT_ID() AS id"); //this takes the id to the next page
 $id = $rows[0]["id"]; //sets sql query to var
 $_SESSION["id"] = $rows[0]["id"]; //generate session id
 $_SESSION["email"] = $email;
-$_SESSION["username"] = $username;
 
 if (query("INSERT INTO accounts (id, units, loan, rate) VALUES(?, ?, ?, ?)", $id, $initialunits, $neginitialunits, $loanrate) === false) 
 { 
 	query("ROLLBACK"); //rollback on failure
 	query("SET AUTOCOMMIT=1");
-	apologize("Username already taken."); 
+	apologize("Email already in use."); 
 } 
 
 
