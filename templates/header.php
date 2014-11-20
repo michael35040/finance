@@ -101,7 +101,7 @@
     @$userid = $users[0]["id"];
     @$email = $users[0]["email"];
     @$active = $row["active"];
-    if ($active != 1) { apologize("Your account has not been activated. An administrator will review it soon."); }
+    if($active != 1) { redirect("login.php"); }
 
     // query cash for template
     $accounts =	query("SELECT units, loan, rate, approved FROM accounts WHERE id = ?", $userid);	 //query db
