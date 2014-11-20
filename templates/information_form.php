@@ -220,12 +220,15 @@ if(isset($bids[0]["price"])) {$bidsPrice=$bids[0]["price"];}else{$bidsPrice=0;}
 if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPrice=0;}
 ?>
 
-<table class="table table-condensed table-striped table-bordered" id="assets" style="border-collapse:collapse;">
+
+    
+    
+    <div class="panel panel-success">
+    <!-- Default panel contents -->
+    <div class="panel-heading">INFORMATION</div>
+<table class="table">
     <thead>
-    <tr class="success">
-        <td colspan="7" style="font-size:20px; text-align: center;">INFORMATION</td>
-    </tr> <!--blank row breaker-->
-    <tr class="active">
+    <tr>
         <th width="40%">Symbol</th>
         <th width="20%">Price</th>
         <th width="20%">Volume (30d)</th>
@@ -240,7 +243,7 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         <td ><?php echo($unitsymbol . number_format($asset["marketcap"], 2, ".", ",")) ?></td>
     </tr>
     <tr >
-        <td colspan="1"><?php echo(htmlspecialchars($asset["name"])) ?><br><?php echo(htmlspecialchars($asset["url"])) ?></td>
+        <td colspan="1">Name: <?php echo(htmlspecialchars($asset["name"])) ?><br>URL: <?php echo(htmlspecialchars($asset["url"])) ?></td>
         <td ><?php echo($unitsymbol . number_format($bidsPrice, 2, ".", ",")) ?> - Bid
                 <br><?php echo($unitsymbol . number_format($asksPrice, 2, ".", ",")) ?> - Ask
                 <br><?php echo($unitsymbol . number_format($asset["avgprice"], 2, ".", ",")) ?> - Avg. Price (30d)</td>
@@ -251,24 +254,25 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
             <br>Rating: <?php echo(htmlspecialchars($asset["rating"])) ?>
             <br>Type: <?php echo(htmlspecialchars(ucfirst($asset["type"]))) ?></td>
     </tr>
-    <tr class="active">
+    <tr>
         <td colspan="4">Description: <?php echo(htmlspecialchars(ucfirst($asset["description"]))) ?></td>
     </tr>
     </tbody>
 </table>
+    </div><!--panel-primary-->
 
-<table class="table table-condensed table-striped table-bordered" > <!--class="bstable"-->
-    <tr>
-        <th colspan="7" bgcolor="black" style="color:white" size="+1">
-                <b>YOUR ACCOUNT</b>
-        </th>
-    </tr>
+
+
+    <div class="panel panel-primary">
+    <!-- Default panel contents -->
+    <div class="panel-heading">YOUR ACCOUNT</div>
+<table class="table">
     <tr class="active">
-        <td colspan="1">Portfolio</td>
-        <td colspan="1">Orderbook</td>
-        <td colspan="1">Total</td>
-        <td colspan="1">Controlling Interest</td>
-        <td colspan="1">Value</td>
+        <th colspan="1">Portfolio</th>
+        <th colspan="1">Orderbook</th>
+        <th colspan="1">Total</th>
+        <th colspan="1">Controlling Interest</th>
+        <th colspan="1">Value</th>
     </tr>
     <tr>
         <td colspan="1"><?php echo(number_format($asset["userportfolio"], 0, ".", ",")) ?></td>
@@ -278,26 +282,13 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         <td colspan="1"><?php echo($unitsymbol . number_format((($asset["userlocked"]+$asset["userportfolio"])*$asset["price"]), 0, ".", ",")) ?></td>
     </tr>
 </table>
+    </div><!--panel-primary your account-->
 
 
-
-
-
-
-
-
-
-
-
-
-<table class="table" align="center"> <!--class="bstable"-->
-    <tr>
-        <th colspan="7" bgcolor="black" style="color:white" size="+1">
-            <?php echo($symbol); ?> - TRADES
-        </th>
-    </tr>
-
-<!--div id="chart_div" style="width: 900px; height: 500px;"></div-->
+    <div class="panel panel-primary">
+    <!-- Default panel contents -->
+    <div class="panel-heading">TRADES</div>
+<table class="table">
 <?php
 if($tradesGroup != null)
 { ?>
@@ -352,6 +343,7 @@ if($trades != null)
     ?>
 
 </table>
+    </div><!--panel-primary trades-->
 
 
 
@@ -363,28 +355,16 @@ if($trades != null)
 
 
 
-
-<table class="table" align="center" border="0" style="width: 100%; display: inline-table; text-align:center"> <!--class="bstable"-->
-
-    <!--/////////TRADES//////-->
-    <tr><td colspan="3"></td></tr> <!--blank row breaker-->
-    <tr>
-        <th colspan="3" bgcolor="black" style="color:white" size="+1" >
-            <?php echo($symbol); ?> - ORDERBOOK
-        </th>
-    </tr>
-    <tr>
+<div class="panel panel-primary">
+<!-- Default panel contents -->
+<div class="panel-heading">ORDERBOOK</div>
+<table class="table">
+<tr>
     <td style="width:10%">
-
-
-        <table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center; float:left">
-
-            <!--/////////ORDERS - COMBINED//////-->
-            <tr>
-                <td colspan="2" style="color:white;background-color:blue;width:100%;padding: 2px;font-size: 150%;" >
-                    <b>BIDS</b>
-                </td>
-            </tr>
+    <div class="panel panel-info">
+    <!-- Default panel contents -->
+    <div class="panel-heading">BIDS</div>
+        <table class="table" style="display: inline-table;text-align:center;">
             <tr>
                 <td ><b>Qty</b></td>
                 <td ><b>$</b></td>
@@ -405,21 +385,19 @@ if($trades != null)
             </tr>
 
         </table>
-
-
-
+    </div><!--panel bids-->
 
     </td>
     <td style="vertical-align: bottom;">
         <div id="chart_div2"></div>
     </td>
     <td style="width:10%">
-        <table class="bstable" cellspacing="0" cellpadding="0"  border="1" style="display: inline-table; text-align:center; float:right">
-            <tr>
-                <td colspan="2" style="color:white;background-color:red;width:100%;padding: 2px;font-size: 150%;" >
-                    <b>ASKS</b>
-                </td>
-            </tr>
+    
+    <div class="panel panel-danger">
+    <!-- Default panel contents -->
+    <div class="panel-heading">ASKS</div>
+
+        <table class="table" style="display: inline-table;text-align:center;">
             <tr>
                 <td ><b>$</b></td>
                 <td ><b>Qty</b></td>
@@ -442,36 +420,19 @@ if($trades != null)
             </tr>
 
 
+
         </table>
-
-
-
+    </div><!--panel danger asks-->
     </td>
-    </tr>
-
-</table>
-
-
+</tr><!--orderbook chart row-->
+<tr><!--bids-->
+<td colspan="3">
 
 
-
-
-
-
-
-
-
-
-
-<table class="table" align="center">
-    <!--/////////ORDERS - BIDS//////-->
-    <tr><td colspan="7"></td></tr> <!--blank row breaker-->
-    <tr>
-        <th colspan="7" bgcolor="blue" style="color:white" size="+1" >
-            ORDERS - BIDS
-        </th>
-    </tr>
-
+    <div class="panel panel-info">
+    <!-- Default panel contents -->
+    <div class="panel-heading">BIDS</div>
+    <table class="table" align="center">
     <tr class="active">
         <td>Order #</td>
         <td>Side</td>
@@ -481,7 +442,6 @@ if($trades != null)
         <td>Quantity</td>
         <td>Price</td>
     </tr>
-
     <?php
     foreach ($bids as $row)
     {
@@ -499,14 +459,21 @@ if($trades != null)
         echo("</tr>");
     }
     ?>
-    <!--/////////ORDERS - ASKS//////-->
-    <tr><td colspan="7"></td></tr> <!--blank row breaker-->
-    <tr>
-        <th colspan="7" bgcolor="red" style="color:white" size="+1" >
-            ORDERS - ASKS
-        </th>
-    </tr>
+    </table>
+    </div><!--panel order bids-->
 
+
+</td>    
+</tr><!--orderbook bids row-->
+<tr><!--orderbook asks row-->
+<td colspan="3">
+    
+    
+    
+    <div class="panel panel-danger">
+    <!-- Default panel contents -->
+    <div class="panel-heading">ASKS</div>
+    <table class="table" align="center">
     <tr class="active">
         <td>Order #</td>
         <td>Side</td>
@@ -536,9 +503,14 @@ if($trades != null)
     }
     ?>
 
+    </table>
+    </div><!--panel order asks-->
 
+</td>
+</tr><!--orderbook asks row-->
+</table><!--orderbook table-->
+</div><!--panel-primary orderbook-->
 
-</table>
 
 
 
@@ -547,13 +519,13 @@ if($trades != null)
     <tr><td colspan="3"></td></tr> <!--blank row breaker-->
     <tr>
         <th colspan="3" bgcolor="black" style="color:white" size="+1" >
-            Ownership
+            OWNERSHIP - MAJOR HOLDERS
         </th>
     </tr>
     </thead>
     <tbody>
     <tr class="active">
-        <td>Owner's ID</td>
+        <td>Holder</td>
         <td>Quantity</td>
         <td>Percentage</td>
     </tr>
@@ -562,7 +534,7 @@ if($trades != null)
     foreach ($ownership as $row)
     { $percentage=($row["quantity"]/$asset["public"])*100;
         echo("<tr>");
-        echo("<td>User: <b>" . (number_format($row["id"],0,".",",")) . "</b> (Portfolio Only)</td>");
+        echo("<td>User: <b>" . (number_format($row["id"],0,".",",")) . "</b></td>");
         echo("<td>" . (number_format($row["quantity"],0,".",",")) . "</td>");
         echo("<td>" . (number_format($percentage,2,".",",")) . "%</td>");
         echo("</tr>");
