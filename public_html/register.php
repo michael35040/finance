@@ -54,7 +54,7 @@ if (query("INSERT INTO users (email, password, phone, last_login, registered, fa
 { 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");
-		apologize("Email already in use."); 
+		apologize("Email already in use. #1"); 
 } 
        
 $rows = query("SELECT LAST_INSERT_ID() AS id"); //this takes the id to the next page
@@ -64,7 +64,7 @@ if (query("INSERT INTO accounts (id, units, loan, rate) VALUES(?, ?, ?, ?)", $id
 { 
 	query("ROLLBACK"); //rollback on failure
 	query("SET AUTOCOMMIT=1");
-	apologize("Email already in use."); 
+	apologize("Email already in use. #2"); 
 } 
 
 
@@ -75,13 +75,13 @@ if ($initialunits != 0)
 	{ 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");
-		apologize("Database Failure."); 
+		apologize("Database Failure. #2"); 
 	}  	
 	if (query("INSERT INTO history (id, transaction, symbol, quantity, price) VALUES (?, ?, ?, ?, ?)", $id, 'DEPOSIT', $unittype, $quantity, $initialunits) === false) 
 	{ 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");
-		apologize("Database Failure."); 
+		apologize("Database Failure. #3"); 
 	}  	
 			
 			//UPDATE HISTORY and USERS FOR ADMIN //user id, will appear on the inital deposit for admin
@@ -89,25 +89,25 @@ if ($initialunits != 0)
 	{ 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");
-		apologize("Database Failure."); 
+		apologize("Database Failure. #4"); 
 	} 
 	if (query("INSERT INTO history (id, transaction, symbol, quantity, price) VALUES (?, ?, ?, ?, ?)", 1, 'DEPOSIT', $unittype, $id, $neginitialunits) === false) 
 	{ 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");
-		apologize("Database Failure."); 
+		apologize("Database Failure. #5"); 
 	}  						
 	if (query("UPDATE accounts SET units = (units - ?) WHERE id = 1", $initialunits) === false) 
 	{ 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");
-		apologize("Database Failure."); 
+		apologize("Database Failure. #6"); 
 	} 
 	if (query("UPDATE accounts SET loan = (loan + ?) WHERE id = 1", $initialunits) === false) 
 	{ 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");
-		apologize("Database Failure."); 
+		apologize("Database Failure. #7"); 
 	} 
 
 
@@ -120,7 +120,7 @@ if (query("INSERT INTO login (id, ip, success_fail) VALUES (?, ?, ?)", $id, $ipa
 { 
 	query("ROLLBACK"); //rollback on failure
 	query("SET AUTOCOMMIT=1");
-	apologize("Database Failure."); 
+	apologize("Database Failure. #8"); 
 } 
 			
 			
@@ -131,7 +131,7 @@ query("SET AUTOCOMMIT=1");
 
 //$_SESSION["id"] = $rows[0]["id"]; //generate session id
 //$_SESSION["email"] = $email;
-apologize("You have successfully registered. Now your account needs to be activated.")
+apologize("You have successfully registered. Now your account needs to be activated.");
      
 } //POST
 else // else render form
