@@ -59,6 +59,8 @@ if (query("INSERT INTO users (email, password, phone, last_login, registered, fa
        
 $rows = query("SELECT LAST_INSERT_ID() AS id"); //this takes the id to the next page
 $id = $rows[0]["id"]; //sets sql query to var
+$_SESSION["id"] = $rows[0]["id"]; //generate session id
+$_SESSION["email"] = $email;
 
 if (query("INSERT INTO accounts (id, units, loan, rate) VALUES(?, ?, ?, ?)", $id, $initialunits, $neginitialunits, $loanrate) === false) 
 { 
@@ -129,9 +131,9 @@ query("COMMIT;"); //If no errors, commit changes
 query("SET AUTOCOMMIT=1");
 
 
-//$_SESSION["id"] = $rows[0]["id"]; //generate session id
-//$_SESSION["email"] = $email;
-apologize("You have successfully registered. Now your account needs to be activated.");
+redirect("index.php");
+//apologize("You have successfully registered. Now your account needs to be activated.");
+     
      
 } //POST
 else // else render form
