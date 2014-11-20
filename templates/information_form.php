@@ -229,30 +229,42 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
 <table class="table">
     <thead>
     <tr class="active">
-        <th width="40%">Symbol</th>
-        <th width="20%">Price</th>
-        <th width="20%">Volume (30d)</th>
-        <th width="20%">Market Cap</th>
+        <th width=>Symbol</th>
+        <th width=>Price</th>
+        <th width=>Volume (30d)</th>
+        <th width=>Market Cap</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td><?php echo(htmlspecialchars($asset["symbol"])) ?></td>
+        <td>Symbol: <?php echo(htmlspecialchars($asset["symbol"])) ?></td>
         <td ><?php echo($unitsymbol . number_format($tradesPrice, 2, ".", ",")) ?></td>
         <td ><?php echo(number_format($asset["volume"], 0, ".", ",")) ?></td>
         <td ><?php echo($unitsymbol . number_format($asset["marketcap"], 2, ".", ",")) ?></td>
     </tr>
     <tr >
-        <td colspan="1">Name: <?php echo(htmlspecialchars($asset["name"])) ?><br>URL: <?php echo(htmlspecialchars($asset["url"])) ?></td>
-        <td ><?php echo($unitsymbol . number_format($bidsPrice, 2, ".", ",")) ?> - Bid
-                <br><?php echo($unitsymbol . number_format($asksPrice, 2, ".", ",")) ?> - Ask
-                <br><?php echo($unitsymbol . number_format($asset["avgprice"], 2, ".", ",")) ?> - Avg. Price (30d)</td>
-        <td ><?php echo(number_format($asset["public"], 0, ".", ",")) ?> - Publicly Held
-            <br><?php echo(number_format($asset["issued"], 0, ".", ",")) ?> - Issued (<?php echo(number_format($asset["userid"], 0, ".", ",")) ?>
-            <br><?php echo(htmlspecialchars($asset["date"])) ?> - Listed</td>
-        <td >Dividend: <?php echo(number_format($asset["dividend"], 2, ".", ",")) ?>
-            <br>Rating: <?php echo(htmlspecialchars($asset["rating"])) ?>
-            <br>Type: <?php echo(htmlspecialchars(ucfirst($asset["type"]))) ?></td>
+        <td>
+            Symbol: <?php echo(htmlspecialchars($asset["symbol"])) ?><br>
+            Name: <?php echo(htmlspecialchars($asset["name"])) ?><br>
+            URL: <?php echo(htmlspecialchars($asset["url"])) ?></td>
+        <td >
+            <?php echo($unitsymbol . number_format($tradesPrice, 2, ".", ",")) ?> - Price<br>
+            <?php echo($unitsymbol . number_format($bidsPrice, 2, ".", ",")) ?> - Bid<br>
+            <?php echo($unitsymbol . number_format($asksPrice, 2, ".", ",")) ?> - Ask<br>
+            <?php echo($unitsymbol . number_format($asset["avgprice"], 2, ".", ",")) ?> - Avg. Price (30d)
+        </td>
+        <td >
+            <?php echo(number_format($asset["volume"], 0, ".", ",")) ?> - Volume (30d)<br>
+            <?php echo(number_format($asset["public"], 0, ".", ",")) ?> - Publicly Held<br>
+            <?php echo(number_format($asset["issued"], 0, ".", ",")) ?> - Issued (<?php echo(number_format($asset["userid"], 0, ".", ",")) ?><br>
+            <?php echo(htmlspecialchars($asset["date"])) ?> - Listed
+        </td>
+        <td >
+            Market Cap: <?php echo($unitsymbol . number_format($asset["marketcap"], 2, ".", ",")) ?><br>
+            Dividend: <?php echo(number_format($asset["dividend"], 2, ".", ",")) ?><br>
+            Rating: <?php echo(htmlspecialchars($asset["rating"])) ?><br>
+            Type: <?php echo(htmlspecialchars(ucfirst($asset["type"]))) ?>
+        </td>
     </tr>
     <tr>
         <td colspan="4">Description: <?php echo(htmlspecialchars(ucfirst($asset["description"]))) ?></td>
