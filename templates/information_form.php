@@ -546,7 +546,7 @@ if($trades != null)
     foreach ($ownership as $row)
     { $percentage=($row["quantity"]/$asset["public"])*100;
         echo("<tr>");
-        echo("<td>User: <b>" . (number_format($row["id"],0,".",",")) . "</b></td>");
+        echo("<td>User: <b>" . (number_format($row["id"],0,".",",")) . "</b> (sans orderbook)</td>");
         echo("<td>" . (number_format($row["quantity"],0,".",",")) . "</td>");
         echo("<td>" . (number_format($percentage,2,".",",")) . "%</td>");
         echo("</tr>");
