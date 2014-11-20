@@ -247,10 +247,10 @@ min="1" step="1" ><span class="input-group-addon">ozt</span></div>
 
 
 <br>
-<table style="text-align:center;border-collapse:collapse;width:100%;color:white;">
+<table class="table table-condensed table-striped table-bordered" style="text-align:center;background-color:#FC0;margin-bottom:0px;border-collapse:collapse;width:100%;color:white;">
     <thead>
     <tr>
-        <td colspan="5"  style="font-weight:bold;font-size:20px;text-align:center;background-color:#606060;color:white;width:100%;" >RECENT TRANSACTIONS</td>
+        <td colspan="5"  style="font-weight:bold;font-size:20px;text-align:center;background-color:#606060;color:white;width:100%;" >AVAILABLE BALANCES</td>
     </tr>
     </thead>
     <tbody>
