@@ -263,17 +263,24 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
 
 
 
+
+
+
     <div class="panel panel-primary">
     <!-- Default panel contents -->
     <div class="panel-heading">YOUR ACCOUNT</div>
 <table class="table">
-    <tr class="active">
+
+        <thead>
+    <tr class="active">            
         <th colspan="1">Portfolio</th>
         <th colspan="1">Orderbook</th>
         <th colspan="1">Total</th>
         <th colspan="1">Controlling Interest</th>
         <th colspan="1">Value</th>
-    </tr>
+    </tr>            
+        </thead>
+<tbody>
     <tr>
         <td colspan="1"><?php echo(number_format($asset["userportfolio"], 0, ".", ",")) ?></td>
         <td colspan="1"><?php echo(number_format($asset["userlocked"], 0, ".", ",")) ?></td>
@@ -281,8 +288,13 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         <td colspan="1"><?php echo(number_format($asset["control"], 0, ".","")) ?>%</td>
         <td colspan="1"><?php echo($unitsymbol . number_format((($asset["userlocked"]+$asset["userportfolio"])*$asset["price"]), 0, ".", ",")) ?></td>
     </tr>
+</tbody>
 </table>
     </div><!--panel-primary your account-->
+
+
+
+
 
 
     <div class="panel panel-primary">
@@ -514,21 +526,19 @@ if($trades != null)
 
 
 
-<table class="table" align="center">
+    <div class="panel panel-success">
+    <!-- Default panel contents -->
+    <div class="panel-heading">OWNERSHIP - MAJOR HOLDERS</div>
+    <table class="table">
     <thead>
-    <tr><td colspan="3"></td></tr> <!--blank row breaker-->
-    <tr>
-        <th colspan="3" bgcolor="black" style="color:white" size="+1" >
-            OWNERSHIP - MAJOR HOLDERS
-        </th>
+    <tr class="active">
+        <th>Holder</th>
+        <th>Quantity</th>
+        <th>Percentage</th>
     </tr>
     </thead>
     <tbody>
-    <tr class="active">
-        <td>Holder</td>
-        <td>Quantity</td>
-        <td>Percentage</td>
-    </tr>
+
 
     <?php
     foreach ($ownership as $row)
@@ -553,7 +563,17 @@ if($trades != null)
         echo($asset["askstotal"]);
         echo("</td><td>" . (number_format($percentage,2,".",",")) . "%</td></tr>");
     //}
-    ?><tr><td colspan="3"></td></tr></tbody>
+    ?>
+    <tr>
+        <td colspan="3">
+  <div id="piechart" style=""></div>
+          
+        </td>
+    </tr>
+    </tbody>
+
+
 </table>
-<div id="piechart" style=""></div>
+
+</div><!--panel-primary orderbook-->
 
