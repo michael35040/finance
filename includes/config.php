@@ -42,7 +42,7 @@ require("functions_testing.php"); //functions for testing
         {
 	        $users = query("SELECT active FROM users WHERE id = ?", $_SESSION["id"]);
 	    	@$active = $users[0]["active"];
-	    	if($active != 1){ redirect("login.php"); }
+	    	if($active != 1){ apologize("Account requires activation!"); }
         }
     }
 
