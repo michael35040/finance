@@ -95,13 +95,14 @@
     <?php
     //SHOW ON LOG IN ARGUMENT FOR MENU AND INFORMATION
     //if (!isset($_SESSION["id"])) { logout(); } //if not set due to error, logout,
-    if (!empty($_SESSION["id"]))
+
+    if (isset($_SESSION["id"]))
     {
     $users =	query("SELECT userid, email, active FROM users WHERE id = ?", $_SESSION["id"]);
     @$userid = $users[0]["id"];
     @$email = $users[0]["email"];
-    @$active = $row["active"];
-    if($active != 1) { redirect("login.php"); }
+    @$active = $users[0]["active"];
+    if($active != 1) { apologize("Your account is not yet activated!"); }
 
     // query cash for template
     $accounts =	query("SELECT units, loan, rate, approved FROM accounts WHERE id = ?", $userid);	 //query db
