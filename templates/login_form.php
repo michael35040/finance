@@ -51,7 +51,7 @@
     }
 </style>
 
-
+<?php if(!empty($info)){echo("<p>" . $info . "</p>");}?>
 
     <div class="container">
       <form class="form-signin" role="form" action="login.php" name="login_form" method="post">
