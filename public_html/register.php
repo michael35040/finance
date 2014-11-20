@@ -59,8 +59,6 @@ if (query("INSERT INTO users (email, password, phone, last_login, registered, fa
        
 $rows = query("SELECT LAST_INSERT_ID() AS id"); //this takes the id to the next page
 $id = $rows[0]["id"]; //sets sql query to var
-$_SESSION["id"] = $rows[0]["id"]; //generate session id
-$_SESSION["email"] = $email;
 
 if (query("INSERT INTO accounts (id, units, loan, rate) VALUES(?, ?, ?, ?)", $id, $initialunits, $neginitialunits, $loanrate) === false) 
 { 
@@ -118,7 +116,7 @@ if ($initialunits != 0)
 $ipaddress = $_SERVER["REMOTE_ADDR"];
 
 //insert into login history table
-if (query("INSERT INTO login (id, ip, success_fail) VALUES (?, ?, ?)", $_SESSION["id"], $ipaddress, 's') === false) 
+if (query("INSERT INTO login (id, ip, success_fail) VALUES (?, ?, ?)", $id, $ipaddress, 's') === false) 
 { 
 	query("ROLLBACK"); //rollback on failure
 	query("SET AUTOCOMMIT=1");
@@ -131,8 +129,9 @@ query("COMMIT;"); //If no errors, commit changes
 query("SET AUTOCOMMIT=1");
 
 
-			
-redirect("index.php");
+//$_SESSION["id"] = $rows[0]["id"]; //generate session id
+//$_SESSION["email"] = $email;
+apologize("You have successfully registered. Now your account needs to be activated.")
      
 } //POST
 else // else render form
