@@ -80,7 +80,7 @@ totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($g
                     Gold Ask Price<br /><div style="font-size:200%"><?php echo($unitsymbol . number_format($gold["ask"], 2, ".", ",")) ?></div>
                 </td>
                 <td style="border-bottom: 1px solid black;width:50%;background-color:#FC0;">
-                    <b>Premium</b>: <?php echo($unitsymbol . number_format($gold["premium"], 2, ".", ",")) ?><br />
+                    <b>Commission</b>: <?php echo($unitsymbol . number_format($gold["premium"], 2, ".", ",")) ?><br />
                     <b>Price</b>: <?php echo(number_format($gold["buy"], 2, ".", ",")); ?>/ozt
                 </td>
             </tr>
@@ -164,7 +164,7 @@ totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($s
                     Silver Ask Price<br /><div style="font-size:200%"><?php echo($unitsymbol . number_format($silver["ask"], 2, ".", ",")) ?></div>
                 </td>
                 <td style="border-bottom: 1px solid black;width:50%;background-color:#888;">
-                    <b>Premium</b>: <?php echo($unitsymbol . number_format($silver["premium"], 2, ".", ",")) ?><br />
+                    <b>Commission</b>: <?php echo($unitsymbol . number_format($silver["premium"], 2, ".", ",")) ?><br />
                     <b>Price</b>: <?php echo(number_format($silver["buy"], 2, ".", ",")); ?>/ozt
                 </td>
             </tr>
