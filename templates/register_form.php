@@ -19,15 +19,19 @@
         height: auto;
         padding-bottom: 0px; /* must be same height as the footer */
         margin-bottom: 10px;
-        background-color: white;
+        
         opacity:.96;
         filter:alpha(opacity=96); /* For IE8 and earlier */
-        /*	font-weight:bold; */
+        /*	font-weight:bold; 
+        
+        background-color: transparent;
+        */
+        width: 50%;
         color:black;
         left: 0;
         right: 0;
         position: relative;
-        width: 500px;
+        
         font: bold normal 1em/2em Arial, Helvetica, sans-serif;
         text-shadow: 0px 0px 0px black; /* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
     }
@@ -55,10 +59,6 @@
                 </button>
                 </span>
 
-
-
-        <hr>
-        
         <br>
         <a href="login.php" class="btn btn-info btn-sm">
             <span class="glyphicon glyphicon-off"></span>
