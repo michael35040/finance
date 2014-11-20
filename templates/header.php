@@ -94,11 +94,9 @@
     <!-- Menu in style.css -->
     <?php
     //SHOW ON LOG IN ARGUMENT FOR MENU AND INFORMATION
-    //if (!isset($_SESSION["id"])) { logout(); } //if not set due to error, logout,
-
-    if (isset($_SESSION["id"]))
+    if (!empty($_SESSION["id"]))
     {
-    $users =	query("SELECT userid, email FROM users WHERE id = ?", $_SESSION["id"]);
+    $users =query("SELECT id, email FROM users WHERE id = ?", $_SESSION["id"]);
     @$userid = $users[0]["id"];
     @$email = $users[0]["email"];
 
