@@ -97,12 +97,14 @@
     //if (!isset($_SESSION["id"])) { logout(); } //if not set due to error, logout,
     if (!empty($_SESSION["id"]))
     {
-    $users =	query("SELECT * FROM users WHERE id = ?", $_SESSION["id"]);
+    $users =	query("SELECT userid, email, active FROM users WHERE id = ?", $_SESSION["id"]);
     @$userid = $users[0]["id"];
     @$email = $users[0]["email"];
-    @$username = $users[0]["username"];
+    @$active = $row["active"];
+    if ($active != 1) { apologize("Your account has not been activated. An administrator will review it soon."); }
+
     // query cash for template
-    $accounts =	query("SELECT * FROM accounts WHERE id = ?", $_SESSION["id"]);	 //query db
+    $accounts =	query("SELECT units, loan, rate, approved FROM accounts WHERE id = ?", $userid);	 //query db
     @$units = (float)$accounts[0]["units"];
     @$loan = (float)$accounts[0]["loan"];
     @$rate = $accounts[0]["rate"];
