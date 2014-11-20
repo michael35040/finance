@@ -34,9 +34,15 @@ require("functions_testing.php"); //functions for testing
     // require authentication for most pages
     if (!preg_match("{(?:login|logout|register)\.php$}", $_SERVER["PHP_SELF"]))
     {
-        if (empty($_SESSION["id"]))
+        if (!isset($_SESSION["id"]))
         {
             redirect("login.php");
+        }
+        else
+        {
+	        $users = query("SELECT active FROM users WHERE id = ?", $_SESSION["id"]);
+	    	@$active = $users[0]["active"];
+	    	if($active != 1){ apologize("Your account is not yet activated!"); }
         }
     }
 
