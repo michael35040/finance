@@ -234,7 +234,10 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         <td>
             Symbol: <?php echo(htmlspecialchars($asset["symbol"])) ?><br>
             Name: <?php echo(htmlspecialchars($asset["name"])) ?><br>
-            URL: <?php echo(htmlspecialchars($asset["url"])) ?></td>
+            URL: <?php echo(htmlspecialchars($asset["url"])) ?><br>
+            Market Cap: <?php echo($unitsymbol . number_format($asset["marketcap"], 2, ".", ",")) ?>
+
+        </td>
         <td >
             <?php echo($unitsymbol . number_format($tradesPrice, 2, ".", ",")) ?> - Price<br>
             <?php echo($unitsymbol . number_format($bidsPrice, 2, ".", ",")) ?> - Bid<br>
@@ -248,7 +251,6 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
             <?php echo(htmlspecialchars($asset["date"])) ?> - Listed
         </td>
         <td >
-            Market Cap: <?php echo($unitsymbol . number_format($asset["marketcap"], 2, ".", ",")) ?><br>
             Dividend: <?php echo(number_format($asset["dividend"], 2, ".", ",")) ?><br>
             Rating: <?php echo(htmlspecialchars($asset["rating"])) ?><br>
             Type: <?php echo(htmlspecialchars(ucfirst($asset["type"]))) ?>
