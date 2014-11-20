@@ -14,22 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $quantity = sanatize("quantity", $quantity);
 
     @$metalTransaction = $_POST["metalTransaction"];// buyGold, buySilver, sellGold, sellSilver
-        if($metalTransaction=='buyGold')
-        {   $symbol='GOLD';
-            $side='b';
-        }
-        elseif($metalTransaction=='buySilver')
-        {   $symbol='SILVER';
-            $side='b';
-        }
-        elseif($metalTransaction=='sellGold')
-        {   $symbol='GOLD';
-            $side='a';
-        }
-        elseif($metalTransaction=='sellSilver')
-        {   $symbol='SILVER';
-            $side='a';
-        }
+        if($metalTransaction=='buyGold') {$symbol='GOLD'; $side='b'; }
+        elseif($metalTransaction=='buySilver') { $symbol='SILVER'; $side='b';}
+        elseif($metalTransaction=='sellGold') { $symbol='GOLD'; $side='a'; }
+        elseif($metalTransaction=='sellSilver') {$symbol='SILVER'; $side='a'; }
         else{apologize('Unknown action!');}// //dump all variables if i hit error
         //apologize(var_dump(get_defined_vars()));
     
@@ -58,21 +46,20 @@ else{
     $goldbids =	query("SELECT price FROM orderbook WHERE (symbol='GOLD' AND side='b' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1");
     $goldasks =	query("SELECT price FROM orderbook WHERE (symbol='GOLD' AND side='a' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1");
     $gold["ask"]=(float)$goldasks[0]["price"];
-    $gold["premium"]=($gold["ask"]*0.03);
+    $gold["premium"]=($gold["ask"]*$commission); 
     $gold["buy"]=($gold["ask"]+$gold["premium"]);
     $gold["bid"]=(float)$goldbids[0]["price"];
-    $gold["discount"]=($gold["bid"]*0.03);
+    $gold["discount"]=($gold["bid"]*$commission); 
     $gold["sell"]=($gold["bid"]-$gold["discount"]);
-
     $silverAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol='SILVER'", $id);
     $silverAmount=$silverAmount[0]["quantity"];
     $silverbids =	query("SELECT price FROM orderbook WHERE (symbol='SILVER' AND side='b' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1");
     $silverasks =	query("SELECT price FROM orderbook WHERE (symbol='SILVER' AND side='a' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1");
     $silver["ask"]=(float)$silverasks[0]["price"];
-    $silver["premium"]=($silver["ask"]*0.03);
+    $silver["premium"]=($silver["ask"]*$commission);
     $silver["buy"]=($silver["ask"]+$silver["premium"]);
     $silver["bid"]=(float)$silverbids[0]["price"];
-    $silver["discount"]=($silver["bid"]*0.03);
+    $silver["discount"]=($silver["bid"]*$commission);
     $silver["sell"]=($silver["bid"]-$silver["discount"]);
 
 
