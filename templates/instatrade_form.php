@@ -262,10 +262,13 @@ foreach ($trades as $trade) {
     if($trade["buyer"]==$id)
     {   $color="06C";
         $trans="Buy";
+        $trade["total"]=$trade["total"]+$trade["commission"];
+
     }
     elseif($trade["seller"]==$id)
     {    $color="0C9";
-        $trans="Sell";        
+        $trans="Sell";   
+        $trade["total"]=$trade["total"]-$trade["commission"];
     }
     else{$color="000";
         $trans="UNK";}
