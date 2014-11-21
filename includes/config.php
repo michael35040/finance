@@ -41,7 +41,11 @@ require("functions_testing.php"); //functions for testing
         if (!isset($_SESSION["id"]))
         {
             redirect("login.php");
-            exit();
+	    //below should not execute unless user bypasses redirect.
+	    header('WWW-Authenticate: Basic realm="Authentication System"');
+	    header('HTTP/1.0 401 Unauthorized');
+	    echo 'Unauthorized! Please sign in.'; //Text to send if user hits Cancel button
+	    exit;
         }
         else
         {
