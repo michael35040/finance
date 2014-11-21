@@ -21,7 +21,7 @@ require("functions_testing.php"); //functions for testing
      * Configures pages.
      **********************************************************************/
 
-$environment='live'; //or 'test'
+$environment='test'; // 'live' or 'test'
 if($environment=='test')
 {
 //FOR LIVE ENVIRONMENT
