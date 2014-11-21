@@ -47,7 +47,7 @@ else
         {
 	        $users = query("SELECT active FROM users WHERE id = ?", $_SESSION["id"]);
 	    	@$active = $users[0]["active"];
-	    	if($active != 1){ apologize("Account requires activation!"); exit();}
+	    	if($active!=1){session_destroy(); apologize("Account requires activation."); exit();}
         }
     }
 
