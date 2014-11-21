@@ -5,9 +5,12 @@
     <head>
         <title>dump</title>
     </head>
-
+     
     <body>
-        <pre><?php print_r($variable); ?></pre>
+        <pre><?php 
+        echo(var_dump(get_defined_vars())); //dump all variables if i hit error
+        print_r($variable); 
+        ?></pre>
     </body>
 
 </html>
