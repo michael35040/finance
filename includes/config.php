@@ -1,7 +1,7 @@
 <?php
 
 //attempting to stop header errors
-ob_start();
+//ob_start(); //dirty hack to fix 'headers already sent... need to fix the issue.
 
 
 // enable sessions
