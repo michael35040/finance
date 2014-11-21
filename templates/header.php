@@ -3,17 +3,19 @@
 
 <style>
     .sitenamefont {
-        font-family:Arial;
-        font-family:Georgia, "Times New Roman", Times, serif;
+        font-family: Roboto, Helvetica, sans-serif;
         font-size:xx-large;
-        padding-top:10px;
         text-shadow: 1px 1px 5px #000;
+        /*
+        font-family:Georgia, "Times New Roman", Times, serif;
+        font-size: 15px;
+        */
+
     }
     .titlefont {
-        font-family:Arial, Helvetica, sans-serif;
-        font-size:large;
-        padding-top:10px;
-        text-shadow: 0px 0px 2px #000;
+        font-family: Roboto, Helvetica, sans-serif;
+        font-size:xx-large;
+        text-shadow: 1px 1px 5px #000;
     }
     .navigationBar .btn-default
     {
@@ -23,7 +25,11 @@
     }
     .sitelogo td
     {
-        background-color:transparent; 
+        background-color:transparent;
+        padding-top:10px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align:center;
     }
 
     .table {margin-bottom:0;} /*set to 20 in bootstrap*/
@@ -31,7 +37,7 @@
 
 </style>
 <head>
-    <?php //require("../includes/constants.php"); //global finance constants  ?>
+    <?php require("../includes/constants.php"); //global finance constants  ?>
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
@@ -67,22 +73,24 @@
 
 
 
-    <table class="sitelogo" align="center" width="">
+    <table class="sitelogo" >
         <tr>
-            <td align="">
-                <img src="img/logo/<?php //echo($ranimg); ?>1.png" width="42"/> &nbsp;
-
-            </td>
             <td>
                 <div class="sitenamefont">
                     <?php echo(htmlspecialchars($sitename)); ?>
                 </div><!--sitenamefont-->
+            </td>
+            <td>
+                &nbsp;&nbsp;&nbsp;<img src="img/logo/<?php //echo($ranimg); ?>1.png" width="27" style="vertical-align:bottom;" />&nbsp;
+
+            </td>
+            <td>
                 <div class="titlefont">
-                    <!--color="#49afcd"--><?php if (isset($title))
+                    <?php if (isset($title))
                     { echo("" . htmlspecialchars($title) . "");
                     } ?>
                 </div><!--titlefont-->
-                <br />
+
             </td>
         </tr>
     </table>
@@ -94,7 +102,7 @@
     <!-- Menu in style.css -->
     <?php
     //SHOW ON LOG IN ARGUMENT FOR MENU AND INFORMATION
-    if (!isset($_SESSION["id"]))
+    if (isset($_SESSION["id"]))
     {
     $users =query("SELECT id, email, active FROM users WHERE id = ?", $_SESSION["id"]);
     @$userid = $users[0]["id"];

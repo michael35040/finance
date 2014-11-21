@@ -1,12 +1,14 @@
 <?php
+require("../includes/config.php");
 
 
+render("activation_form.php", ["title" => "Activation"]);
 
 
 ?>
-[x] Registered. You have succesfully registered.
-[ ] Activated. Now you must wait for your account to be activated.
-[ ] Funded. Please get ready to fund your account.
+
+
+
 
 
 

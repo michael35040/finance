@@ -117,15 +117,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $id = $row["id"];
 
 
-        // else apologize
-
-
+        // config already sends to activation.php
+        //if ($active != 1) { apologize("Your account has not been activated. An administrator will review it soon."); }
 
         //checks attempts for the id before trying password to ensure not bruteforce
         $maxAttempts = 5;
         $attemptsLeft = ($maxAttempts-$fails);
 
-        if ($active != 1) { apologize("Your account has not been activated. An administrator will review it soon."); }
+
         if ($fails > $maxAttempts) { apologize("Too many incorrect login attempts. Please contact us to unlock your account."); }
 
         // compare password of user's input against password that's in database

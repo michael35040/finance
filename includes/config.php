@@ -41,17 +41,18 @@ require("functions_testing.php"); //functions for testing
         if (!isset($_SESSION["id"]))
         {
             redirect("login.php");
-	    //below should not execute unless user bypasses redirect.
-	    header('WWW-Authenticate: Basic realm="Authentication System"');
-	    header('HTTP/1.0 401 Unauthorized');
-	    echo 'Unauthorized! Please sign in.'; //Text to send if user hits Cancel button
-	    exit;
+	        //below should not execute unless user bypasses redirect.
+	        header('WWW-Authenticate: Basic realm="Authentication System"');
+	        header('HTTP/1.0 401 Unauthorized');
+	        echo 'Unauthorized! Please sign in.'; //Text to send if user hits Cancel button
+	        exit;
         }
         else
         {
 	        $users = query("SELECT active FROM users WHERE id = ?", $_SESSION["id"]);
 	    	@$active = $users[0]["active"];
-	    	if($active!=1){redirect("activation.php"); exit();} //session_destroy(); 
+            if (!preg_match("{(?:activation)\.php$}", $_SERVER["PHP_SELF"]))
+            {if($active!=1){redirect("activation.php"); exit();} }//session_destroy();
         }
     }
 
