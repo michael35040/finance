@@ -37,6 +37,7 @@ require("functions_testing.php"); //functions for testing
         if (!isset($_SESSION["id"]))
         {
             redirect("login.php");
+            exit();
         }
         else
         {
