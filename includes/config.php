@@ -43,20 +43,17 @@ require("functions_testing.php"); //functions for testing
         {
 	        $users = query("SELECT active FROM users WHERE id = ?", $_SESSION["id"]);
 	    	@$active = $users[0]["active"];
-	    	if($active != 1){ apologize("Account requires activation!"); }
+	    	if($active != 1){ apologize("Account requires activation!"); exit();}
         }
     }
 
     // require admin authentication; user id 1  /^def/
     if (preg_match("{(?:withdraw|deposit|users|ipo:?)\.php$}", $_SERVER["PHP_SELF"]))
     {
-        if (isset($_SESSION["id"])) 
-		{
-			if ($_SESSION["id"] !== $adminid) //admin ID
-		       		{
-    	//	        redirect("index.php");
-		            apologize("Unauthorized Access!");
-   	    			}
-		}
+        if ((isset($_SESSION["id"])) && ($_SESSION["id"] !== $adminid)) 
+	{ //redirect("index.php");
+		apologize("Unauthorized Access!");
+		exit();
+	}
     }
 ?>
