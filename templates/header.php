@@ -2,6 +2,22 @@
 <html lang="en">
 
 <style>
+    .table {margin-bottom:0;} /*set to 20 in bootstrap*/
+    .sitelogo
+    {
+       width:100%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align:center;
+        padding-top:10px;
+        padding-bottom:2px;
+        
+    }
+    .sitelogo td
+    {
+        background-color:white;
+
+    }
     .sitenamefont {
         font-family: Roboto, Helvetica, sans-serif;
         font-size:xx-large;
@@ -23,16 +39,6 @@
         background-color: #d1d1d1;
         border-color: #f8f8f8;
     }
-    .sitelogo td
-    {
-        background-color:transparent;
-        padding-top:10px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align:center;
-    }
-
-    .table {margin-bottom:0;} /*set to 20 in bootstrap*/
 
 
 </style>
@@ -86,9 +92,7 @@
             </td>
             <td>
                 <div class="titlefont">
-                    <?php if (isset($title))
-                    { echo("" . htmlspecialchars($title) . "");
-                    } ?>
+                    <?php if (isset($title)){ echo("" . htmlspecialchars($title) . "");} ?>
                 </div><!--titlefont-->
 
             </td>
