@@ -100,17 +100,18 @@
     @$userid = $users[0]["id"];
     @$email = $users[0]["email"];
     @$active = $users[0]["active"];
-    if($active!=1){session_destroy(); apologize("Account requires activation."); exit();}
-    // query cash for template
-    $accounts =	query("SELECT units, loan, rate, approved FROM accounts WHERE id = ?", $userid);	 //query db
-    @$units = (float)$accounts[0]["units"];
-    @$loan = (float)$accounts[0]["loan"];
-    @$rate = $accounts[0]["rate"];
-    $rate *= 100; //for display as %
-    @$approved = $accounts[0]['approved'];	//convert array from query to value
-    //0 approved
-    //1 unapproved
-    //2 pending - not yet implemented
+    if($active==1)
+    {
+         // query cash for template
+        $accounts =	query("SELECT units, loan, rate, approved FROM accounts WHERE id = ?", $userid);	 //query db
+        @$units = (float)$accounts[0]["units"];
+        @$loan = (float)$accounts[0]["loan"];
+        @$rate = $accounts[0]["rate"];
+        $rate *= 100; //for display as %
+        @$approved = $accounts[0]['approved'];	//convert array from query to value
+        //0 approved
+        //1 unapproved
+        //2 pending - not yet implemented
     ?>
     <div class="navigationBar">
         <div class="btn-group">
@@ -193,6 +194,9 @@
 
 
 
+       <?php
+    } //if active==1
+    ?>
 
 
 </div> <!--top-->
