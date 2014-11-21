@@ -2,62 +2,35 @@
 <html lang="en">
 
 <style>
-    .table {margin-bottom:0;
-                        padding-bottom:11px;
-
-    } /*set to 20 in bootstrap*/
-    .sitelogo 
-    {        float: left; vertical-align: baseline; line-height: 32.6667px;
-        padding-bottom:10px;
-
-
-    /*  
-        margin-left: auto;
-        margin-right: auto; 
-        text-align:center;
-        padding-top:20px;
-        padding-bottom:2px;*/
-    /**/    
-    }
-    .sitelogo td
-    {
-        background-color:transparent;
-                        padding-bottom:11px;
-
-    }
-    .sitenamefont { 
-    vertical-align: baseline; 
+    .sitenamefont {
         font-family: Roboto, Helvetica, sans-serif;
         font-size:xx-large;
         text-shadow: 1px 1px 5px #000;
-        display: inline;
-                                padding-bottom:11px;
-
         /*
         font-family:Georgia, "Times New Roman", Times, serif;
         font-size: 15px;
         */
-
     }
     .titlefont {
-    vertical-align: baseline; 
         font-family: Roboto, Helvetica, sans-serif;
         font-size:xx-large;
         text-shadow: 1px 1px 5px #000;
-        display: inline;
-         float: right;
-                                         padding-bottom:11px;
-
     }
     .navigationBar .btn-default
-    { float: right; vertical-align: baseline;
-
+    {
         color: #444;
-        background-color: #fff;
+        background-color: #d1d1d1;
         border-color: #f8f8f8;
     }
-
-
+    .sitelogo td
+    {
+        background-color:transparent;
+        padding-top:10px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align:center;
+    }
+    .table {margin-bottom:0;} /*set to 20 in bootstrap*/
 </style>
 <head>
     <?php require("../includes/constants.php"); //global finance constants  ?>
@@ -86,7 +59,6 @@
             echo(htmlspecialchars($sitename));
             echo(" ");
             echo(htmlspecialchars($title));
-
         }  ?>
     </title>
 
@@ -101,12 +73,19 @@
             <td>
                 <div class="sitenamefont">
                     <?php echo(htmlspecialchars($sitename)); ?>
-               
-                &nbsp;&nbsp;<img src="img/logo/<?php //echo($ranimg); ?>1.png" width="18" style="vertical-align: baseline; " />&nbsp;&nbsp;
-                </div><!--   sitenamefont  -->
+                </div><!--sitenamefont-->
+            </td>
+            <td>
+                &nbsp;&nbsp;&nbsp;<img src="img/logo/<?php //echo($ranimg); ?>1.png" width="27" style="vertical-align:bottom;" />&nbsp;
+
+            </td>
+            <td>
                 <div class="titlefont">
-                    <?php if (isset($title)){ echo(htmlspecialchars($title));} ?>
+                    <?php if (isset($title))
+                    { echo("" . htmlspecialchars($title) . "");
+                    } ?>
                 </div><!--titlefont-->
+
             </td>
         </tr>
     </table>
@@ -236,7 +215,6 @@
     </tr>
 </table>
 <?php
-
 //var_dump(get_defined_vars()); //dump all variables anywhere (displays in header)
 //include("banner.php");
  } //bracket for the show on log in argument
