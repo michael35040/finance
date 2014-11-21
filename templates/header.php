@@ -94,12 +94,13 @@
     <!-- Menu in style.css -->
     <?php
     //SHOW ON LOG IN ARGUMENT FOR MENU AND INFORMATION
-    if (!empty($_SESSION["id"]))
+    if (!isset($_SESSION["id"]))
     {
-    $users =query("SELECT id, email FROM users WHERE id = ?", $_SESSION["id"]);
+    $users =query("SELECT id, email, active FROM users WHERE id = ?", $_SESSION["id"]);
     @$userid = $users[0]["id"];
     @$email = $users[0]["email"];
-
+    @$active = $users[0]["active"];
+    if($active!=1){session_destroy(); apologize("Account requires activation."); exit();}
     // query cash for template
     $accounts =	query("SELECT units, loan, rate, approved FROM accounts WHERE id = ?", $userid);	 //query db
     @$units = (float)$accounts[0]["units"];
