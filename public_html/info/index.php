@@ -107,7 +107,7 @@
 							<section>
 								<h2>PULWAR GROUP</h2>
 								<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-								<p>The Pulwar Group, Inc. is a leading global investment banking, securities and investment management firm that provides a wide range of financial services to a substantial and diversified client base that includes corporations, financial institutions, governments and high-net-worth individuals.</p>
+								<p>The Pulwar Group, Inc. is a leading global investment banking, securities and investment management firm.</p>
 							</section>
 						</div>
 						<div class="4u">
