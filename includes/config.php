@@ -21,19 +21,19 @@ require("functions_testing.php"); //functions for testing
      * Configures pages.
      **********************************************************************/
 
-$environment='test'; // 'live' or 'test'
-if($environment=='test')
-{
-//FOR LIVE ENVIRONMENT
+	$environment='test'; // 'live' or 'test'
+	if($environment=='test')
+	{
+	//FOR LIVE ENVIRONMENT
 	error_reporting(0); // show nothing
 	@ini_set("display_errors", 0);//won't display or even put in log file
-}
-else
-{
-//FOR TESTING ENVIRONMENT
+	}
+	else
+	{
+	//FOR TESTING ENVIRONMENT
 	ini_set("display_errors", 1);// display errors, warnings, and notices
 	error_reporting(E_ALL); //when testing site
-}
+	}
 
     // require authentication for most pages
     if (!preg_match("{(?:login|logout|register)\.php$}", $_SERVER["PHP_SELF"]))
@@ -47,7 +47,7 @@ else
         {
 	        $users = query("SELECT active FROM users WHERE id = ?", $_SESSION["id"]);
 	    	@$active = $users[0]["active"];
-	    	if($active!=1){session_destroy(); apologize("Account requires activation."); exit();}
+	    	if($active!=1){redirect("activation.php"); exit();} //session_destroy(); 
         }
     }
 
