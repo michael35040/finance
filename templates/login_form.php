@@ -51,15 +51,24 @@
     }
 </style>
 
-<?php if(!empty($info)){echo("<p>" . $info . "</p>");}?>
+
+
 
     <div class="container">
       <form class="form-signin" role="form" action="login.php" name="login_form" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password"  required>
+        <h2 class="form-signin-heading" style="text-shadow: 1px 1px 5px #000;">Please sign in</h2>
+
+          <div class="input-group">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
+          </div>
+
+          <div class="input-group">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password"  required>
+          </div>
 
         <span class="input-group-btn">
             <button class="btn btn-lg btn-primary btn-block" type="submit">
@@ -83,8 +92,11 @@
 
 
 <a href="register.php" class="btn btn-success btn-sm">
-<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;Not a member?&nbsp;&nbsp;</a><!--10 chars-->
-
+<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;Not a member?&nbsp;&nbsp;</a>
+<br>
+<br>
+<a href="info/index.php" class="btn btn-warning btn-sm">
+<span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;More information</a>
 <!--btn-primary/-info/-warning/-danger/-success/default/ -->
 <!--btn-sm/-btn-medium-->
 <br>
@@ -92,13 +104,15 @@
 
 <div class="panel-group" id="accordion">
     <div class="panel panel-default" id="panel1" style="padding:0; background-color: transparent; border:0; " >
+
+        <!--
         <div class="panel-heading" style="padding:0; background-color: transparent; " >
             <h4 class="panel-title"  />
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-warning btn-sm" >
-                    <span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;INFORMATION</a><!--10 chars-->
-
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-warning btn-sm" >
+                   <span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;INFORMATION</a>
             </h4>
-        </div><!--panel title-->
+        </div>
+        -->
         <div id="collapseOne" class="panel-collapse collapse">
             <div class="panel-body" style="border:0; padding-bottom: 0;" >
 
@@ -108,7 +122,7 @@
                         <tr>
                             <th style="font-size:25px">Proven</th>
                             <th style="font-size:25px">Fair</th>
-                            <th style="font-size:25px">Markets</th>
+                            <th style="font-size:25px">Learn More</th>
                             <th style="font-size:25px">Secure</th>
                             <th style="font-size:25px">Fast</th>
                         </tr>
@@ -116,60 +130,15 @@
                         <tr>
                             <td style="width:20%;" ><span class="glyphicon glyphicon-globe" style="font-size:40px"></span></td>
                             <td style="width:20%;" ><span class="glyphicon glyphicon-random" style="font-size:40px"></span></td>
-                            <td style="width:20%;"  rowspan="2">
-
-                                <table class="table table-condensed table-striped table-bordered" style="border:1px solid black; width:50%; text-align:center;display: inline-table;float:left;align:center;" />
-                                    <tr class="info">
-                                        <td colspan="2" style="color:white;background-color:#000000;width:100%;padding: 2px;font-size: 150%;" >
-                                            <b>BID</b><!--Bid are Buyers when you are Selling, ie your sell price-->
-                                        </td>
-                                    </tr>
-
-                                    <tr class="active">
-                                        <td ><b><u>Qty</u></b></td>
-                                        <td ><b><u>Price</u></b></td>
-                                    </tr>
-
-                                    <?php
-                                    foreach ($bidGroup as $order)
-                                    {
-                                        $quantity = $order["quantity"];
-                                        $price = $order["price"];
-                                        echo("<tr><td>" . number_format($quantity,0,".",",") . "</td><td><b>" . number_format($price,2,".",",") . "</b></td></tr>");
-                                    }
-                                    ?>
-                                </table>
-                                
-                                <table class="table table-condensed table-striped table-bordered" style="border:1px solid black; width:50%; text-align:center;display: inline-table;float:left;align:center;" />
-                                    <tr class="danger">
-                                        <td colspan="2" style="color:white;background-color:#404040;width:100%;padding: 2px;font-size: 150%;" >
-                                            <b>ASK</b>
-                                        </td>
-                                    </tr>
-
-                                    <tr class="active">
-                                        <td ><b><u>Price</u></b></td>
-                                        <td ><b><u>Qty</u></b></td>
-                                    </tr>
-
-                                    <?php
-                                    foreach ($askGroup as $order)
-                                    {
-                                        $price = $order["price"];
-                                        $quantity = $order["quantity"];
-                                        echo("<tr><td><b>" . number_format($price,2,".",",") . "</b></td><td>" . number_format($quantity,0,".",",") . "</td></tr>");
-                                    }
-                                    ?>
-                                </table>
-
-                            </td>
-                            <td width="20%"><span class="glyphicon glyphicon-lock" style="font-size:40px"></span></td>
-                            <td width="20%"><span class="glyphicon glyphicon-flash" style="font-size:40px"></span></td>
+                            <td style="width:20%;" > </td>
+                            <td style="width:20%;" ><span class="glyphicon glyphicon-lock" style="font-size:40px"></span></td>
+                            <td style="width:20%;" ><span class="glyphicon glyphicon-flash" style="font-size:40px"></span></td>
                         </tr>
 
                         <tr>
                             <td>Our platform is powered by an exchange engine deployed by some of Wall Street's most respected trading institutions.</td>
                             <td>Our exchange orderbook matching engine crosses orders on price/time priority allowing for transparent markets.</td>
+                            <td>   </td>
                             <td>Our system has critical information stored on secured terminals and multi-tiered firewall architecture for safe transactions</td>
                             <td>Our proprietary multiple asset trading system has one of the fastest trade to execution times in the financial industry.</td>
                         </tr>

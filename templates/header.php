@@ -70,7 +70,7 @@
     <table class="sitelogo" align="center" width="">
         <tr>
             <td align="">
-                <img src="img/logo/<?php //echo($ranimg); ?>1.png" width="60"/> &nbsp;
+                <img src="img/logo/<?php //echo($ranimg); ?>1.png" width="42"/> &nbsp;
 
             </td>
             <td>
@@ -123,7 +123,7 @@
                     </button>
 
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="index.php">Accounts</a></li>
+                        <li><a href="accounts.php">Accounts</a></li>
                         <li><a href="portfolio.php">Portfolio</a></li>
                         <li><a href="history.php">History</a></li>
                         <li><a href="change.php">Edit Account</a></li>
@@ -140,8 +140,8 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
+                        <li><a href="instatrade.php">Trade</a></li>
                         <li><a href="exchange.php">Place Order</a></li>
-                        <li><a href="instatrade.php">Instant Trade</a></li>
                         <li><a href="orders.php">Orders</a></li>
                         <li><a href="trades.php">Trades</a></li>
                         <li><a href="assets.php">Assets</a></li>
@@ -209,6 +209,6 @@
 <?php
 
 //var_dump(get_defined_vars()); //dump all variables anywhere (displays in header)
-include("banner.php");
+//include("banner.php");
  } //bracket for the show on log in argument
 ?>
