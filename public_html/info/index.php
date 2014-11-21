@@ -26,7 +26,7 @@
 			<section id="banner">
 				<div class="inner">
 					<h2>Pulwar Group</h2>
-					<p>Your financial solution.</p>
+					<p>Financial Excellence</p>
 					<ul class="actions">
 						<li><a href="../register.php" class="button big special">Register</a></li>
 						<li><a href="../login.php" class="button big alt">SIGN IN</a></li>
@@ -37,8 +37,8 @@
 		<!-- One -->
 			<section id="one" class="wrapper style1">
 				<header class="major">
-					<h2>We offer a unique set of capabilities</h2>
-					<p>A one stop solution for your financial issues</p>
+					<h2>Your financial solution.</h2>
+					<p>We offer a unique set of capabilities for your financial issues</p>
 				</header>
 				<div class="container">
 					<div class="row">
