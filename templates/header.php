@@ -31,7 +31,7 @@
 
 </style>
 <head>
-    <?php require("../includes/constants.php"); //global finance constants  ?>
+    <?php //require("../includes/constants.php"); //global finance constants  ?>
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
