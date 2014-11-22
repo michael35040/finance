@@ -34,6 +34,9 @@ $silverColor="#CCC;";
     .fundstable td
     {
         background-color:transparent;
+        padding-left:20px;
+        padding-right:20px;
+        padding-bottom:20px;
     }
     #middle
     {

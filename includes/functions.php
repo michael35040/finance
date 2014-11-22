@@ -25,6 +25,12 @@ function sanatize($type, $var)
 	        if (!is_numeric($var)) { apologize("Phone must be numeric!");} //if quantity is numeric	
 
 	}
+    if($type=='wholenumber')
+    {
+        if ($var<0){ apologize("$var must be positive!");} //if quantity is numeric
+        if (preg_match("/^\d+$/", $var) == false) { apologize("The $var must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
+        if (!is_int($var)){ apologize("$var must be numeric!");} //ctype_digit will return false on negative and decimals
+    }
 	if($type=='quantity')
 	{
 		if ($var<0){ apologize("Quantity must be positive!");} //if quantity is numeric
@@ -34,7 +40,7 @@ function sanatize($type, $var)
 	if($type=='price')
 	{
 		if ($var<0){ apologize("Price must be positive!");} //if quantity is numeric
-	    	if (!is_float($var)) { apologize("Price must be numeric!");} //if quantity is numeric
+	    	if (!is_float($var) && !is_int($var)) { apologize("Price must be numeric!");} //if quantity is numeric
 	}
 	if($type=='alphabet') //side, type, etc.
 	{

@@ -770,7 +770,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
         if (empty($price)) { throw new Exception("Limit orders require price."); }
         $priceModulus = fmod($price, $divisor); //$divisor set in constants
         if($priceModulus != 0){throw new Exception("Not correct increment. $divisor");} //checks to see if quarter increment
-        if (!is_float($price)) { throw new Exception("Price is not a number");} //if quantity is numeric
+        if (!is_float($price) && !is_int($price)) { throw new Exception("Price is not a number");} //if quantity is numeric
 
         //NEW VARS FOR DB INSERT
 

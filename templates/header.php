@@ -78,7 +78,7 @@
             <td>
                 <div class="sitenamefont" align="left">
                     <?php echo(htmlspecialchars($sitename)); ?>
-                <img src="img/logo/<?php //echo($ranimg); ?>1.png" width="24" style="vertical-align:middle;" />&nbsp;
+                <img src="img/logo/<?php //echo($ranimg); ?>1.png" width="36" style="vertical-align:middle;" />&nbsp;
                 </div><!--sitenamefont-->
             </td>
        <!-- </tr>

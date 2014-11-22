@@ -7,7 +7,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$type = $_POST["type"]; //limit or market
     @$side = $_POST["side"]; //buy/bid or sell/ask 
     @$quantity = (int)$_POST["quantity"]; //not set on market orders
-    @$price = (float)$_POST["price"]; //not set on market orders
+    @$dollar = (int)$_POST["dollar"]; //not set on market orders
+    @$cents = (int)$_POST["cents"]; //not set on market orders
+
+    $dollar = sanatize("wholenumber", $dollar);
+    $cents = sanatize("wholenumber", $cents);
+    $cents=$cents/100;
+    $price=$dollar+$cents;
 
     //FORMATS AND SCRUBS VARIABLES
     $price = sanatize("price", $price);
