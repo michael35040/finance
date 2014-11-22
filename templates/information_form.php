@@ -394,7 +394,7 @@ if($trades != null)
             ?>
 
             <tr>
-                <td><b><?php echo($asset["bidstotal"]);?></b></td>
+                <td><b><?php echo(number_format($asset["bidstotal"],0,".",","));?></b></td>
                 <td><b>ALL</b></td>
             </tr>
 
@@ -430,7 +430,7 @@ if($trades != null)
 
             <tr>
                 <td><b>ALL</b></td>
-                <td><b><?php echo($asset["askstotal"]);?></b></td>
+                <td><b><?php echo(number_format($asset["askstotal"],0,".",","));?></b></td>
             </tr>
 
 
@@ -468,7 +468,7 @@ if($trades != null)
         echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
         //echo("<td>" . htmlspecialchars($row["type"]) . "</td>");
-        echo("<td>" . htmlspecialchars($row["quantity"]) . "</td>");
+        echo("<td>" . number_format($row["quantity"],0,".",",") . "</td>");
         echo("<td>" . (number_format($row["price"],2,".",",")) . "</td>");
         echo("</tr>");
     }
@@ -510,7 +510,7 @@ if($trades != null)
         echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
         //echo("<td>" . htmlspecialchars($row["type"]) . "</td>");
-        echo("<td>" . htmlspecialchars($row["quantity"]) . "</td>");
+        echo("<td>" . number_format($row["quantity"],0,".",",") . "</td>");
         echo("<td>" . (number_format($row["price"],2,".",",")) . "</td>");
         echo("</tr>");
 
@@ -562,7 +562,7 @@ if($trades != null)
     //{
         $percentage=($asset["askstotal"]/$asset["public"])*100;
         echo("<tr><td>Orderbook</td><td>");
-        echo($asset["askstotal"]);
+        echo((number_format($asset["askstotal"],2,".",",")));
         echo("</td><td>" . (number_format($percentage,2,".",",")) . "%</td></tr>");
     //}
     ?>

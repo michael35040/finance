@@ -1,3 +1,14 @@
+<style>
+    #middle
+    {
+        background-color:transparent;
+        border:0;
+    }
+    .symbolForm
+    {
+        margin-top:25px;
+    }
+    </style>
 
 <form action="information.php"  class="symbolForm" method="post"   >
     <fieldset>

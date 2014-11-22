@@ -47,8 +47,7 @@
                     $i++;
                     echo("-" . $i); ?></td>
                 <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>
-                </td>
-                <td colspan="4"><?php echo("Locked-Pending Bid Order(s)"); ?></td>
+                <td colspan="4"><?php echo("Pending Bid Orders (Locked)"); ?></td>
                 <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
                     <?php echo(number_format($bidLocked, 2, ".", ",")) ?></td>
             </tr>
