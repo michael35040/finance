@@ -20,7 +20,7 @@
 
 <!-- Header -->
 <header id="header" class="skel-layers-fixed">
-    <h1><a href="#">PULWAR</a> <img src="images/logo.png" alt="logo" height="33" width="27"></h1>
+    <h1><a href="#">PULWAR</a> <img src="images/logo.png" style="vertical-align: middle;" alt="logo" height="33" width="27"></h1>
     <nav id="nav">
         <ul>
             <li><a href="index.php">HOME</a></li>

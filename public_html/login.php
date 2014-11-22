@@ -51,8 +51,8 @@ function isValidEmail($email, $checkDNS = false)
             );
 
     if( $valid )
-    {
-        if( $checkDNS && ($domain = end(explode('@',$email, 2))) )
+    {   $tmp = explode('@',$email, 2); //passed to tmp variable to get around 'Only variables should be passed by reference in...'
+        if( $checkDNS && ($domain = end($tmp)) )
         {
             /*
             Note:

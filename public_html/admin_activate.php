@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 else
 {
 $limit = "LIMIT 0, 10";
-$inactiveUsers = query("SELECT id, username, registered FROM users WHERE active=0 ORDER BY id ASC");
-$activeUsers = query("SELECT id, username, registered FROM users WHERE active=1 ORDER BY id ASC");
+$inactiveUsers = query("SELECT id, registered FROM users WHERE active=0 ORDER BY id ASC");
+$activeUsers = query("SELECT id, registered FROM users WHERE active=1 ORDER BY id ASC");
 
 render("admin_activate_form.php", ["title" => $title, "inactiveUsers" => $inactiveUsers, "activeUsers" => $activeUsers]);
 } //else !post

@@ -5,7 +5,7 @@
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner">
-					<h2>Pulwar Group</h2>
+					<h2>Pulwar</h2>
 					<p>Financial Excellence</p>
 					<ul class="actions">
 						<li><a href="../register.php" class="button big special">Register</a></li>
@@ -114,7 +114,3 @@
 			
 		<!-- Footer -->
         <?php include 'footer.php'; ?>
-
-
-	</body>
-</html>

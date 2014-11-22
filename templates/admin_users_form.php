@@ -6,7 +6,6 @@
     <thead>
         <tr bgcolor="#CCCCCC">
             <th>ID</th>
-            <th>Username</th>
             <th>Email</th>
 			<!--th>Password</th--> 
             <th>Phone</th>
@@ -29,7 +28,6 @@
         {   
             echo("<tr>");
             echo("<td>" . number_format($row["id"],0,".",",") . "</td>");
-            echo("<td>" . htmlspecialchars($row["username"]) . "</td>");  //htmlspecialchars
             echo("<td>" . htmlspecialchars($row["email"]) . "</td>");
           //  echo("<td>" . htmlspecialchars($row["password"]) . "</td>"); 
             echo("<td>" . htmlspecialchars($row["phone"]) . "</td>");

@@ -27,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         foreach ($rows as $row)		// for each of user
         {
             $info["id"] = $row["id"];
-            $info["username"] = $row["username"];
             $info["email"] = $row["email"];
             $info["password"] = $row["password"];
             $info["phone"] = $row["phone"];
@@ -58,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         foreach ($rows as $row)		// for each of user
         {
             $info["id"] = $row["id"];
-            $info["username"] = $row["username"];
             $info["email"] = $row["email"];
             $info["password"] = $row["password"];
             $info["phone"] = $row["phone"];

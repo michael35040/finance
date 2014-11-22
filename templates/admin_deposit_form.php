@@ -6,4 +6,4 @@
 <br /><button type="submit" class="btn btn-success"><b>DEPOSIT</b></button>
 </fieldset>
 </form>
-<br />
+<br /><br />

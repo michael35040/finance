@@ -22,7 +22,7 @@ require("functions_testing.php"); //functions for testing
      **********************************************************************/
 
 	$environment='test'; // 'live' or 'test'
-	if($environment=='test')
+	if($environment=='live')
 	{
 	//FOR LIVE ENVIRONMENT
 	error_reporting(0); // show nothing

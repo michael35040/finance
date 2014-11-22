@@ -6,8 +6,8 @@
 
     $id = $_SESSION["id"];
 
-apologize("Disabled!");
-/*
+//apologize("Disabled!");
+
     // if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -17,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	
 	if (empty($userid))
 		{apologize("You must enter the User ID of who you want to transfer funds to!");}
-	// if symbol or quantity empty
 	if (empty($quantity)) //empty or a value of zero 0.
 		{apologize("You did not enter the amount to transfer!");}   
 	//if (empty($userid) || empty($quantity)) //redundant check of either but already accomplished in the previous two args. not needed.
@@ -29,7 +28,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	
 	if (preg_match("/^\d+$/", $userid) == false) {apologize("You entered a negative number for user ID! A User ID should be a positve integer.");}
 	if (preg_match("/^([0-9.]+)$/", $quantity) == false) {apologize("You submitted an invalid quantity. Please enter a positive number to transfer.");}
-	if (!is_numeric($quantity)) { apologize("Invalid number"); }
+	if($quantity<0 || $userid<0){apologize("You entered a negative number!");}
+    if (!is_numeric($quantity)) { apologize("Invalid number"); }
 	//if (!ctype_digit($quantity)){ apologize("User ID must be numeric!");} //gives error since quantity can be decimal
     if (($quantity<0) || ($userid<0)) { apologize("Quantity must be positive!");} //if quantity is numeric
 
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         if(!isset($commission)){$commission=0;}
 		$commission = ($quantity * $commission);
 		$price = ($quantity - $commission);
-
+        $symbol=$unittype;
 	
 		query("SET AUTOCOMMIT=0");
 		query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
@@ -131,7 +131,7 @@ render("transfer_form.php", ["title" => "Transfer"]); // render sell form
 //var_dump(get_defined_vars());
 
 
-*/
+
 
 ?>
 

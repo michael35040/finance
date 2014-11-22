@@ -126,6 +126,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="accounts.php">Accounts</a></li>
                         <li><a href="portfolio.php">Portfolio</a></li>
+                        <li><a href="transfer.php">Transfer</a></li>
                         <li><a href="history.php">History</a></li>
                         <li><a href="change.php">Edit Account</a></li>
                         <!--<li><a href="transfer.php">Transfer </a></li><li><a href="loan.php">Loan</a></li><?php //if ($loan < 0) { //-0.00000001 ?><li><a href="loanpay.php">Pay Loan</a></li> --><?php //} ?>
@@ -169,10 +170,6 @@
                             <li><a href="admin_offering.php">Offering </a></li>
                             <li><a href="admin_update.php">Update </a></li>
                             <li><a href="_admin.php">Test</a></li>
-                            <li><a href="ion/index.html">Ion</a></li>
-                            <li><a href="admin/index.html">Admin Dash</a></li>
-
-                            
                         </ul>
                     </div>
                 </div>

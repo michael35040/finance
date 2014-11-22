@@ -2,6 +2,8 @@
 <?php include 'header.php'; ?>
 
 
+
+
 		<!-- Main -->
 			<section id="main" class="wrapper style1">
 				<header class="major">
@@ -41,9 +43,9 @@
 				</div>
 			</section>
 
+
+
+
 		<!-- Footer -->
         <?php include 'footer.php'; ?>
 
-
-	</body>
-</html>

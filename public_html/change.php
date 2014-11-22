@@ -30,15 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 				$phone=sanatize("phone", $phone); //functions.php
 				if(query("UPDATE users SET phone = ( ? ) WHERE id = ( ? )", $phone, $_SESSION["id"]) === false){ apologize("Sorry, username already taken."); }
 			}//phone
-			if ($change == 'username')
-			{	
-				if (empty($_POST["username"])){apologize("You must provide a username.");}
-				if (empty($_POST["confirmation"])){apologize("You must re-type your username.");}
-				if ($_POST["username"] != $_POST["confirmation"]){apologize("Missmatch. The new username does not match its confirmation.");}       
-				$username = $_POST["username"];
-				$username = sanatize("username", $username);
-				if(query("UPDATE users SET username = ( ? ) WHERE id = ( ? )", ($username), $_SESSION["id"]) === false){apologize("Sorry, username already taken.");}
-			}//username
 			if ($change == 'password')
 			{	
 				if (empty($_POST["password"]))  // validate submission{apologize("You must provide your old password.");}
@@ -54,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	else {apologize("Sorry, user information incorrect.");}//to many rows
 }  //post
 else{
-	$userinfo = query("SELECT username, email, phone FROM users WHERE id = ( ? )", $_SESSION["id"]);
-	render("change_form.php", ["title" => "Change User Account", "userinfo" => $userinfo]);}// else render form
+	$userinfo = query("SELECT email, phone FROM users WHERE id = ( ? )", $_SESSION["id"]);
+	render("change_form.php", ["title" => "Change", "userinfo" => $userinfo]);}// else render form
 
 ?>
