@@ -26,7 +26,7 @@ if($offering=='followon')
     //CHECK TO SEE IF SYMBOL EXISTS
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
     $countOwnersRows = count($symbolCheck);
-    if ($countOwnersRows != 1) {apologize("Symbol does not exist."); }
+    if ($countOwnersRows != 1) {apologize("Symbol does not exist!"); }
     try {$message = publicOffering2($symbol, $userid, $issued, $fee);}
     catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 }
@@ -37,6 +37,12 @@ elseif($offering=='initial')
     @$url = $_POST["url"];
     @$rating = $_POST["rating"]; //1 - 10
     @$description = $_POST["description"];
+
+    //CHECK TO SEE IF SYMBOL EXISTS
+    $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
+    $countOwnersRows = count($symbolCheck);
+    if ($countOwnersRows != 0) {apologize("Symbol already exists!"); }
+
     try {$message = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description);}
     catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 }

@@ -28,40 +28,22 @@ if (!isset($commission)) //set in constants.php
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         return parts.join(".");
     }
-
-    function ordercheck(priceAmount.value,quantityAmount.value) {
-//retrives variables "from" (original checkbox/element) and "to" (target checkbox) you declare when you call the function on the HTML.
-
-        if(document.getElementById('buyOrder').checked==true)
-        //checks status of "from" element. change to whatever validation you prefer.
-        {
-            commissionAmount.value=parseFloat(0)*<?php echo($commission) ?>).toFixed(2);
-        }
-        else
-        {
-            commissionAmount.value=parseFloat(parseInt(quantityAmount.value)*parseFloat(priceAmount.value)*<?php echo($commission) ?>).toFixed(2);
-        }
-    }
 </script>
 <div class="exchangeTable">
 <form action="exchange.php" method="post"
       oninput="
-          priceAmount.value=(dollar.value+(cents.value/100));
-          quantityAmount.value=quantity.value;
-          if(document.getElementById('sellOrder').checked==true){commissionAmount.value=parseFloat(parseInt(quantityAmount.value)*parseFloat(priceAmount.value)*<?php echo($commission) ?>).toFixed(2);}
-          if(document.getElementById('buyOrder').checked==true){commissionAmount.value=parseFloat(parseInt(quantityAmount.value)*parseFloat(priceAmount.value)*0).toFixed(2);}
-          subtotal.value=parseFloat(parseFloat(quantityAmount.value)*parseFloat(priceAmount.value)).toFixed(2);
-          total.value=parseFloat(parseFloat(quantityAmount.value)*parseFloat(priceAmount.value)-parseFloat(commissionAmount.value)).toFixed(2);
-          priceAmount.value=commify(priceAmount.value);
-          quantityAmount.value=commify(quantityAmount.value);
-          commissionAmount.value=commify(commissionAmount.value);
-          subtotal.value=commify(subtotal.value);
-          total.value=commify(total.value);
           "
       onclick="
-          priceAmount.value=(dollar.value+(cents.value/100));
+          priceAmount.value=parseFloat(parseFloat(dollar.value)+parseFloat(cents.value/100)).toFixed(2);
           quantityAmount.value=quantity.value;
-          if(document.getElementById('sellOrder').checked==true){commissionAmount.value=parseFloat(parseInt(quantityAmount.value)*parseFloat(priceAmount.value)*<?php echo($commission) ?>).toFixed(2);}
+          if(document.getElementById('marketSub').checked==true){priceAmount.value=(parseFloat(priceAmount.value)*0).toFixed(2);}
+          if(document.getElementById('sellOrder').checked==true)
+          {
+          commissionAmount.value=parseFloat(parseInt(quantityAmount.value)*parseFloat(priceAmount.value)*<?php echo($commission) ?>).toFixed(2);
+          commissionAmount.value=(parseFloat(commissionAmount.value)*4).toFixed(2);
+          commissionAmount.value=Math.floor(commissionAmount.value);
+          commissionAmount.value=(parseFloat(commissionAmount.value)/4).toFixed(2);
+          }
           if(document.getElementById('buyOrder').checked==true){commissionAmount.value=parseFloat(parseInt(quantityAmount.value)*parseFloat(priceAmount.value)*0).toFixed(2);}
           subtotal.value=parseFloat(parseFloat(quantityAmount.value)*parseFloat(priceAmount.value)).toFixed(2);
           total.value=parseFloat(parseFloat(quantityAmount.value)*parseFloat(priceAmount.value)-parseFloat(commissionAmount.value)).toFixed(2);
@@ -165,10 +147,12 @@ if (!isset($commission)) //set in constants.php
 
                         <?php echo($unitsymbol) ?> <input type="number" id="dollar" placeholder="dollar" name="dollar" value="0" min="0" max="999999" size="6"
                         required />
-
-                        . <input type="number" id="cents" placeholder="cents" name="cents" value="0"
-                        min="0" max="99" size="2" required />
-
+                        . <select id="cents" name="cents">
+                            <option value="0">00</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                        </select>
                     </div>
 
 
@@ -191,17 +175,17 @@ if (!isset($commission)) //set in constants.php
             <TR>
                 <TD ROWSPAN="1">Subtotal</TD>
                 <TD>
-                    Price: <output name="priceAmount" for="price" style="display:inline">0</output><br>
+                    Price: <?php echo($unitsymbol) ?> <output name="priceAmount" for="price" style="display:inline">0</output><br>
                     Quantity: <output name="quantityAmount" for="quantity" style="display:inline">1</output><br>
-                    Subtotal: <output name="subtotal" for="price quantity" style="display:inline">0</output><br>
+                    Subtotal: <?php echo($unitsymbol) ?> <output name="subtotal" for="price quantity" style="display:inline">0</output><br>
                     <?php
 
 
                     if ($commission != 0) {
                         $commission *= 100;
-                        echo('Commission: -<output name="commissionAmount" for="commission" style="display:inline">0</output>');
+                        echo('Commission: ' . $unitsymbol. ' -<output name="commissionAmount" for="commission" style="display:inline">0</output>');
                     } else {
-                        echo("No Commission! $0 (0%)");
+                        echo("No Commission!" . $unitsymbol . "0 (0%)");
                     }
                     ?>
                     <div id="commissionText" style="opacity:1;color:red;">
@@ -211,7 +195,7 @@ if (!isset($commission)) //set in constants.php
             <TR>
                 <TD ROWSPAN="1">Total</TD>
                 <TD>
-                    <output name="total" for="price quantity commission">0</output>
+                    <?php echo($unitsymbol . ' <output name="total" for="price quantity commission"  style="display:inline">0</output>'); ?>
                 </TD>
             </TR>
 
@@ -240,7 +224,7 @@ if (!isset($commission)) //set in constants.php
 
     //SELL ORDER
     document.getElementById("sellOrder").addEventListener("click", function () {
-        document.getElementById('commissionText').innerHTML = 'Commission subtracted from total.';
+        document.getElementById('commissionText').innerHTML = 'Commission subtracted from subtotal.<br>Rounded to nearest .25';
     }, false);
     //BUY ORDER
     document.getElementById("buyOrder").addEventListener("click", function () {

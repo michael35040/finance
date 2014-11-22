@@ -105,6 +105,7 @@ if(isset($_POST['admin']))
             try {$processOrderbook = processOrderbook($_POST["symbol"]);}
         catch(Exception $e) {echo('Error: ' . $e->getMessage() . '<br>');}         //catch exception
         }
+        echo($processOrderbook . " orders processed.");
     }
 //redirect("admin.php");
 }

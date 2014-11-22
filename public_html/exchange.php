@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$cents = (int)$_POST["cents"]; //not set on market orders
 
     $dollar = sanatize("wholenumber", $dollar);
-    $cents = sanatize("wholenumber", $cents);
+    if($cents!=0 && $cents!=25 && $cents!=50 && $cents!=75){apologize("Incorrect decimal!");}
     $cents=$cents/100;
     $price=$dollar+$cents;
 
@@ -23,9 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $side = sanatize("alphabet", $side);
     $symbol = strtoupper($symbol); //cast to UpperCase
 
-    try {
-        list($transaction, $symbol, $tradeTotal, $quantity, $commissionTotal) = placeOrder($symbol, $type, $side, $quantity, $price, $id);
-    }
+    try {placeOrder($symbol, $type, $side, $quantity, $price, $id);}
     catch(Exception $e) {apologize($e->getMessage());}
 
 
