@@ -11,7 +11,6 @@
 </style>
 
 <?php
-$username = $userinfo[0]["username"];
 $email = $userinfo[0]["email"];
 $phone = $userinfo[0]["phone"];
 ?>
@@ -20,13 +19,6 @@ $phone = $userinfo[0]["phone"];
     <fieldset>
 
         <div class="control-group">
-
-            <div id="usernameMenu" style="opacity:1;">
-                <span class="input-group-addon">
-                    <INPUT TYPE="radio" NAME="change" VALUE="username" id="usernameRadio" required>
-                    <span class="glyphicon glyphicon-user"></span> New Username</span>
-                <input class="form-control" id="usernameInput" name="username" value="<?php echo(htmlspecialchars($username)); ?>" type="text" maxlength="31"  autofocus   />
-            </div><!--usernameMenu-->
 
             <div id="emailMenu" style="opacity:1;">
                 <span class="input-group-addon">
@@ -83,11 +75,6 @@ $phone = $userinfo[0]["phone"];
         document.getElementById("newpasswordInput").disabled = true;
         document.getElementById('newpasswordInput').value='';
 
-        document.getElementById("usernameMenu").style.opacity = 1;
-        document.getElementById("usernameRadio").disabled = true;
-        document.getElementById("usernameInput").disabled = true;
-        document.getElementById('usernameInput').value='';
-
         document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-envelope"></span> Re-type New Email';
     }, false);
 
@@ -102,11 +89,6 @@ $phone = $userinfo[0]["phone"];
         document.getElementById("newpasswordRadio").disabled = true;
         document.getElementById("newpasswordInput").disabled = true;
         document.getElementById('newpasswordInput').value='';
-
-        document.getElementById("usernameMenu").style.opacity = 1;
-        document.getElementById("usernameRadio").disabled = true;
-        document.getElementById("usernameInput").disabled = true;
-        document.getElementById('usernameInput').value='';
 
         document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-earphone"></span> Re-type New Phone';
     }, false);
@@ -123,33 +105,9 @@ $phone = $userinfo[0]["phone"];
         document.getElementById("emailInput").disabled = true;
         document.getElementById('emailInput').value='';
 
-        document.getElementById("usernameMenu").style.opacity = 1;
-        document.getElementById("usernameRadio").disabled = true;
-        document.getElementById("usernameInput").disabled = true;
-        document.getElementById('usernameInput').value='';
-
         document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-lock"></span> Re-type New Password';
     }, false);
 
-    //USERNAME    
-    document.getElementById("usernameRadio").addEventListener("click", function () {
-        document.getElementById("phoneMenu").style.opacity = 1;
-        document.getElementById("phoneRadio").disabled = true;
-        document.getElementById("phoneInput").disabled = true;
-        document.getElementById('phoneInput').value='';
-
-        document.getElementById("newpasswordMenu").style.opacity = 1;
-        document.getElementById("newpasswordRadio").disabled = true;
-        document.getElementById("newpasswordInput").disabled = true;
-        document.getElementById('newpasswordInput').value='';
-
-        document.getElementById("emailMenu").style.opacity = 1;
-        document.getElementById("emailRadio").disabled = true;
-        document.getElementById("emailInput").disabled = true;
-        document.getElementById('emailInput').value='';
-
-        document.getElementById('confirmationText').innerHTML = '<span class="glyphicon glyphicon-user"></span> Re-type New Username';
-    }, false);
 
     //CLEAR    
     document.getElementById("clear").addEventListener("click", function () {
@@ -167,11 +125,6 @@ $phone = $userinfo[0]["phone"];
         document.getElementById("emailRadio").disabled = false;
         document.getElementById("emailInput").disabled = false;
         document.getElementById('emailInput').value='';
-
-        document.getElementById("usernameMenu").style.opacity = 1; //reset to 1
-        document.getElementById("usernameRadio").disabled = false;
-        document.getElementById("usernameInput").disabled = false;
-        document.getElementById('usernameInput').value='';
 
         document.getElementById("phoneRadio").checked = false;
         document.getElementById("newpasswordRadio").checked = false;

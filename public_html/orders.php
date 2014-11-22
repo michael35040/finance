@@ -2,7 +2,7 @@
 require("../includes/config.php");
 
 $id =  $_SESSION["id"];
-$title = "Open Orders";
+$title = "Orders";
 $limit = "LIMIT 0, 10";
 $tabletitle = "Last 10";
 

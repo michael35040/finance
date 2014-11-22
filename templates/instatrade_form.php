@@ -19,6 +19,25 @@ $silverColor="#CCC;";
         background-color:transparent;
         padding:2px 2px 2px 2px;
     }
+    .fundstable
+    {
+        width:100%;
+        text-align:center;
+        margin-bottom:0px;
+        color:white;
+        text-shadow: 0px 0px 5px #000;
+    }
+    .fundstable table {
+        float:left;
+        text-align:center;
+        border-collapse:collapse;
+        border:0px solid black;
+    }
+    .fundstable td
+    {
+        background-color:transparent;
+        padding:2px 2px 2px 2px;
+    }
     #middle
     {
         background-color:transparent;
@@ -43,37 +62,43 @@ $silverColor="#CCC;";
 ?>
 
 
-<table class="table table-condensed table-striped table-bordered" id="balance" style="background-color:transparent;text-align:center;margin-bottom:0px;color:white;text-shadow: 0px 0px 5px #000;">
-    <thead>
-    <tr>
-        <td colspan="3"  style="font-weight:bold;font-size:20px;text-align:center;background-color:#333333;color:white;width:100%;" >AVAILABLE BALANCES</td>
-    </tr>
-    </thead>
-    <tbody>
-
-    <tr style="background-color:transparent">
-        <td style="background-color:transparent">
-            <h3><span class="label label-warning">Au</span></h3>
-            <b>GOLD</b><br /><?php echo(number_format($goldAmount, 0, ".", ",")) ?> ozt
-        </td>
-        <td style="background-color:transparent">
-            <h3><span class="label label-success"> &nbsp; $ &nbsp; </span></h3>
-            <b><?php echo($unittype) ?></b><br /><?php echo($unitsymbol . number_format($units, 2, ".", ",")) ?>
-        </td>
-        <td style="background-color:transparent">
-            <h3><span class="label label-default">Ag</span></h3>
-            <b>Silver</b><br /><?php echo(number_format($silverAmount, 0, ".", ",")) ?> ozt
-        </td>
-    </tr>
-    </tbody>
-    </table>
-
 <div style="color:white;text-shadow: 1px 1px 5px #000;">
     Trades are instant and irrevocable. Prices subject to change.
 
 </div>
 
 
+
+
+
+<div class="fundstable">
+
+    <table>
+    <tr>
+        <td style="background-color:transparent">
+            <h3><span class="label label-warning">Au</span></h3>
+            <b>GOLD</b><br /><?php echo(number_format($goldAmount, 0, ".", ",")) ?> ozt
+        </td>
+    </tr>
+    </table>
+    <table>
+    <tr>
+        <td style="background-color:transparent">
+            <h3><span class="label label-success"> &nbsp; $ &nbsp; </span></h3>
+            <b><?php echo($unittype) ?></b><br /><?php echo($unitsymbol . number_format($units, 2, ".", ",")) ?>
+        </td>
+    </tr>
+    </table>
+<table>
+    <tr>
+    <td style="background-color:transparent">
+            <h3><span class="label label-default">Ag</span></h3>
+            <b>Silver</b><br /><?php echo(number_format($silverAmount, 0, ".", ",")) ?> ozt
+        </td>
+    </tr>
+    </table>
+
+</div><!--fundsTable-->
 
 
 <div class="container">
@@ -116,7 +141,7 @@ $buySilver = [
 $sellSilver = [
     "type" => "SELL",
     "asset" => "SILVER",
-    "var" => $silver["silver"],
+    "var" => $silver["sell"],
     "color" => $silverColor,
     "name" => "sellSilver",
     "premium" => $silver["discount"],

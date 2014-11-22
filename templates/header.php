@@ -2,6 +2,20 @@
 <html lang="en">
 
 <style>
+
+    .sitelogo
+    {
+        margin-top:10px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align:center;
+        width:100%;
+    }
+    .sitelogo td
+    {
+        background-color:transparent;
+        width:33%;
+    }
     .sitenamefont {
         font-family: Roboto, Helvetica, sans-serif;
         font-size:xx-large;
@@ -15,20 +29,13 @@
         font-family: Roboto, Helvetica, sans-serif;
         font-size:xx-large;
         text-shadow: 1px 1px 5px #000;
+        text-align:right;
     }
     .navigationBar .btn-default
     {
         color: #444;
-        background-color: #d1d1d1;
+        background-color: #ffffff; /*#d1d1d1;*/
         border-color: #f8f8f8;
-    }
-    .sitelogo td
-    {
-        background-color:transparent;
-        padding-top:10px;
-        margin-left: auto;
-        margin-right: auto;
-        text-align:center;
     }
     .table {margin-bottom:0;} /*set to 20 in bootstrap*/
 </style>
@@ -48,8 +55,8 @@
 </head>
 <body>
 
-<div id="page" style="text-align:center">
-<div id="top" style="text-align:center">
+<div id="page" style="text-align:center; ">
+<div id="top" style="text-align:center; ">
 
 
     <title>
@@ -68,31 +75,20 @@
 
 
 
-    <table class="sitelogo" >
+    <table class="sitelogo">
         <tr>
             <td>
-                <div class="sitenamefont">
+                <div class="sitenamefont" align="left">
                     <?php echo(htmlspecialchars($sitename)); ?>
+                <img src="img/logo/<?php //echo($ranimg); ?>1.png" width="24" style="vertical-align:middle;" />&nbsp;
                 </div><!--sitenamefont-->
             </td>
+       <!-- </tr>
+        <tr>  -->
+
+       <!-- </tr> <tr>-->
             <td>
-                &nbsp;&nbsp;&nbsp;<img src="img/logo/<?php //echo($ranimg); ?>1.png" width="27" style="vertical-align:bottom;" />&nbsp;
-
-            </td>
-            <td>
-                <div class="titlefont">
-                    <?php if (isset($title))
-                    { echo("" . htmlspecialchars($title) . "");
-                    } ?>
-                </div><!--titlefont-->
-
-            </td>
-        </tr>
-    </table>
-
-
-
-
+                <div align="right">
 
     <!-- Menu in style.css -->
     <?php
@@ -116,7 +112,7 @@
         //1 unapproved
         //2 pending - not yet implemented
     ?>
-    <div class="navigationBar">
+    <div class="navigationBar" align="center">
         <div class="btn-group">
 
             <div class="btn-group">
@@ -191,6 +187,8 @@
             </div>
 
 
+
+
         </div><!--btn-group-->
     </div><!--navigationBar-->
 
@@ -202,20 +200,38 @@
     ?>
 
 
+
+
+
+
+
 </div> <!--top-->
-<div id="middle" style="text-align:center"> <!--placing it here it only shows up when logged on so no box on login screen-->
 
 
 
-
-<table class="table table-condensed" style="margin-bottom:0; text-align: left;">
-    <tr>
-        <td><strong></strong><?php echo($email) ?> (# <?php echo($userid) ?>)
-        <!--<td><?php //echo date("Y-m-d H:i:s"); ?></td> -->
-    </tr>
-</table>
 <?php
 //var_dump(get_defined_vars()); //dump all variables anywhere (displays in header)
 //include("banner.php");
  } //bracket for the show on log in argument
+?>
+
+        </div>
+    </td>
+    <td>
+        <div class="titlefont">
+            <?php if (isset($title))
+            { echo("" . htmlspecialchars($title) . "");
+            } ?>
+        </div><!--titlefont-->
+    </td>
+    </tr>
+    </table>
+
+    <?php
+    if (isset($_SESSION["id"]))
+    {
+?>
+
+    <div id="middle" style="text-align:center"> <!--placing it here it only shows up when logged on so no box on login screen-->
+<?php  } //bracket for the show on log in argument
 ?>
