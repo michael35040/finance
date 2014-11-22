@@ -12,6 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	//get variables
 	$quantity = $_POST["quantity"];
 	$userid = $_POST["userid"];
+    $symbol=$unittype;
+    $transaction = 'WITHDRAW';
+
 
     // if symbol or quantity empty
 	if (empty($quantity)) //empty or a value of zero 0.
@@ -35,8 +38,7 @@ query("SET AUTOCOMMIT=0");
 query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
 // transaction information
-$transaction = 'WITHDRAW';
-// update cash after transaction for user          
+// update cash after transaction for user
     if (query("UPDATE accounts SET units = (units - $quantity) WHERE id = ?", $userid) === false)
     {
     query("ROLLBACK"); //rollback on failure
@@ -58,7 +60,7 @@ $transaction = 'WITHDRAW';
     apologize("Database Failure.2");
     }
 //update transaction history for admin
-    if (query("INSERT INTO history (id, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)", 1, $transaction, $symbol, $userid, $quantity, $quantity, $quantity) === false)
+    if (query("INSERT INTO history (id, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)", 1, $transaction, $symbol, $userid, $quantity, $quantity) === false)
     {
     query("ROLLBACK"); //rollback on failure
     query("SET AUTOCOMMIT=1");
@@ -70,6 +72,10 @@ query("SET AUTOCOMMIT=1");
 
     $commissionTotal=0;
 // render success form
+
+    redirect("history.php");
+
+    //GIVE ERROR ON RENDER SINCE IT MODIFIES HEADER
     render("success_form.php", ["title" => "Success", "transaction" => $transaction, "symbol" => $symbol, "value" => $quantity, "quantity" => $quantity, "commissiontotal" => $commissionTotal]); // render success form
 
 }

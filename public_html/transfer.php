@@ -47,76 +47,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		
 		// checks to see if they are transfer more than they have.
 		if ($total < $quantity)  //it might do this in query() > function.php
-		{apologize("You tried to transfer " . number_format($quantity,2,".",",") . " but you only have " . number_format($total,2,".",",") . "!");}
+		{apologize("Transfer amount (" . number_format($quantity,2,".",",") . ") exceeds available funds (" . number_format($total,2,".",",") . ")!");}
 				
 		// transaction information
 		$transaction = 'TRANSFER';
-        if(!isset($commission)){$commission=0;}
-		$commission = ($quantity * $commission);
-		$price = ($quantity - $commission);
         $symbol=$unittype;
 	
 		query("SET AUTOCOMMIT=0");
 		query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 		
 		// update cash after transaction             
-		if (query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $price, $id))  
-			{ 
-			query("ROLLBACK"); //rollback on failure
-			query("SET AUTOCOMMIT=1");
-			apologize("Database Failure."); 
-			}
+		if (query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $quantity, $id))
+        {query("ROLLBACK");query("SET AUTOCOMMIT=1");apologize("Database Failure.");}
+
 		// transfer the cash to other user
-		if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $price, $userid)) 
-			{ 
-			query("ROLLBACK"); //rollback on failure
-			query("SET AUTOCOMMIT=1");
-			apologize("Database Failure."); 
-			}
-		// transfer the cash to admin
-        if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commission, $adminid))
-			{ 
-			query("ROLLBACK"); //rollback on failure
-			query("SET AUTOCOMMIT=1");
-			apologize("Database Failure."); 
-			}
+		if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $quantity, $userid))
+        {query("ROLLBACK");query("SET AUTOCOMMIT=1");apologize("Database Failure.");}
 
 			
 		//update transaction history for transferer
-		if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, 'TRANSFER', 'OUTGOING', $id, $price, $commission, $quantity) === false)
-			{ 
-			query("ROLLBACK"); //rollback on failure
-			query("SET AUTOCOMMIT=1");
-			apologize("Database Failure."); 
-			}
+		if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, 'TRANSFER', 'OUTGOING', $userid, $quantity, 0, $quantity) === false)
+        {query("ROLLBACK");query("SET AUTOCOMMIT=1");apologize("Database Failure.");}
+
 		//update transaction history for transferee
-		if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, 'TRANSFER', 'RECEIVING', $userid, $price, $commission, $quantity) === false)
-			{ 
-			query("ROLLBACK"); //rollback on failure
-			query("SET AUTOCOMMIT=1");
-			apologize("Database Failure."); 
-			}
-        if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, 'TRANSFER', 'TRANSFER', $id, $price, $commission, $quantity) === false)
-        {   //UPDATE HISTORY
-            query("ROLLBACK"); //rollback on failure
-            query("SET AUTOCOMMIT=1");
-            apologize("Insert History Failure");
-        }
+		if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, 'TRANSFER', 'RECEIVING', $id, $quantity, 0, $quantity) === false)
+        {query("ROLLBACK");query("SET AUTOCOMMIT=1");apologize("Database Failure.");}
+
 
 		query("COMMIT;"); //If no errors, commit changes
 		query("SET AUTOCOMMIT=1");
-		
-		render("success_form.php", ["title" => "Success", 
-		"transaction" => $transaction, 
-		"symbol" => $symbol, 
-		"price" => $price,
-		"quantity" => $quantity,
-		"commissiontotal" => $commission
-		//"variable_on_success_form" => $local_var_on_this_form.
-		]); 
-		
-		// render success form
-	}//if count==1
+
+        redirect("history.php");
+}//if count==1
 
 
 
@@ -125,7 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 }
 else // if form hasn't been submitted
 {
-render("transfer_form.php", ["title" => "Transfer"]); // render sell form
+
+    render("transfer_form.php", ["title" => "Transfer"]); // render sell form
 } 
 
 //var_dump(get_defined_vars());

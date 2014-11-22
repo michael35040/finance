@@ -63,7 +63,7 @@ else{
     $silver["sell"]=($silver["bid"]-$silver["discount"]);
 
 
-    render("instatrade_form.php", ["title" => "Instant Trade", "trades" => $trades, "goldAmount" => $goldAmount, "gold" => $gold, "silverAmount" => $silverAmount, "silver" => $silver]);
+    render("instatrade_form.php", ["title" => "Trade", "trades" => $trades, "goldAmount" => $goldAmount, "gold" => $gold, "silverAmount" => $silverAmount, "silver" => $silver]);
 }// else render form
 
 ?>

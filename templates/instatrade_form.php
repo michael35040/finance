@@ -6,10 +6,10 @@ $silverColor="#CCC;";
 <style>
     .container
     {
-        width:100%;
     }
     .container table {
-        float:left;
+        width:237px;
+        display:inline-block;
         text-align:center;
         border-collapse:collapse;
         border:3px solid black;
@@ -17,18 +17,16 @@ $silverColor="#CCC;";
     .container td
     {
         background-color:transparent;
-        padding:2px 2px 2px 2px;
     }
     .fundstable
     {
         width:100%;
         text-align:center;
-        margin-bottom:0px;
         color:white;
         text-shadow: 0px 0px 5px #000;
     }
     .fundstable table {
-        float:left;
+        display:inline-block;
         text-align:center;
         border-collapse:collapse;
         border:0px solid black;
@@ -36,7 +34,6 @@ $silverColor="#CCC;";
     .fundstable td
     {
         background-color:transparent;
-        padding:2px 2px 2px 2px;
     }
     #middle
     {
@@ -176,8 +173,8 @@ t                   otalAmount.value=parseFloat(parseFloat(quantity.value)*parse
                     <?php echo($type["asset"] . " " . $type["trans"]); ?> Price<br /><div style="font-size:200%"><?php echo($unitsymbol . number_format($type["side"], 2, ".", ",")) ?></div>
                 </td>
                 <td style="border-bottom: 1px solid black;width:50%;background-color:<?php echo($type["color"]); ?>">
-                    <b>Commission</b>: <?php echo($unitsymbol . number_format($type["premium"], 2, ".", ",")) ?><br />
-                    <b>Price</b>: <?php echo(number_format($type["var"], 2, ".", ",")); ?>/ozt
+                    <b>Fee</b>: <?php echo($unitsymbol . number_format($type["premium"], 2, ".", ",")) ?><br />
+                    <b>Price</b>: <?php echo(number_format($type["var"], 2, ".", ",")); ?>
                 </td>
             </tr>
             <tr>

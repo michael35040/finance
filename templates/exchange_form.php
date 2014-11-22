@@ -4,10 +4,18 @@ if (!isset($commission)) //set in constants.php
 ?>
 
 <style>
-    .exchangeTable td
+    #middle
     {
-        /*width:75%;*/
-        padding:10px;
+        background-color:transparent;
+        border:0;
+    }
+    .exchangeTable
+    {
+        margin-top:5px;
+    }
+    .exchangeTable td, .exchangeTable th
+    {
+        background-color:white;
     }
     .exchangeTable tr
     {
@@ -21,7 +29,6 @@ if (!isset($commission)) //set in constants.php
         return parts.join(".");
     }
 </script>
-<br>
 <div class="exchangeTable">
 <form action="exchange.php" method="post"
       oninput="

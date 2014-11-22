@@ -14,7 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     //get variables
     $quantity = $_POST["quantity"];
     $userid = $_POST["userid"];
+    $symbol=$unittype;
     $transaction = 'DEPOSIT';
+
 
     if ( empty($quantity) ||  empty($userid)) { apologize("Please fill all required fields."); } //check to see if empty
 
@@ -51,7 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 //
 // render success form
-    render("success_form.php", ["title" => "Success", "transaction" => $transaction, "value" => $userid, "quantity" => $quantity]);
+    redirect("history.php");
+
+    //GIVE ERROR ON RENDER SINCE IT MODIFIES HEADER
+    //render("success_form.php", ["title" => "Success", "transaction" => $transaction, "value" => $userid, "quantity" => $quantity]);
 
 
 }

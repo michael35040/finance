@@ -165,6 +165,8 @@ function render($template, $values = [])
             // extract variables into local scope
             extract($values);
 
+            require("constants.php");
+
             // render header
             require("../templates/header.php");
 

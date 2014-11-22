@@ -6,6 +6,8 @@
      *
      * Global finance constants.
      **********************************************************************/
+//headers.php & config.php
+$adminid = 1;
 
 //header & footer
 $sitename = 'PULWAR'; //leave a space afterwards
@@ -36,8 +38,7 @@ $deplimit = 10000000000 ; //deposit limit, only let deposits if user has less th
 //REGISTER.php
 $initialunits = 0; //initial deposit for LOAN
 
-//headers.php & config.php
-$adminid = 1;
+
 
 
 ?>

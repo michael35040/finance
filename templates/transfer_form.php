@@ -9,9 +9,23 @@
     }
     // -->
 </script>
+<style>
+    #middle
+    {
+        background-color:transparent;
+        border:0;
+    }
+    .formtable
+    {
+        /*width:75%;*/
+        padding:10px;
+        background-color:white;
+        border:2px solid black;
+        margin-top:5px;
+    }
+    </style>
 
-
-<form action="transfer.php" method="post">
+<form action="transfer.php" method="post" class="formtable">
     <fieldset>
         <h3>Transfer:</h3>
         <br /><input class="input-small" name="userid" placeholder="User ID" type="number" min="0" max="any" required />
