@@ -562,7 +562,7 @@ if($trades != null)
     //{
         $percentage=($asset["askstotal"]/$asset["public"])*100;
         echo("<tr><td>Orderbook</td><td>");
-        echo((number_format($asset["askstotal"],2,".",",")));
+        echo((number_format($asset["askstotal"],0,".",",")));
         echo("</td><td>" . (number_format($percentage,2,".",",")) . "%</td></tr>");
     //}
     ?>
