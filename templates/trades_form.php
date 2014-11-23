@@ -1,7 +1,7 @@
 
 <table class="table table-condensed  table-bordered" >
 <thead>
-    <tr   class="success" ><td colspan="11"  style="font-size:20px; text-align: center;"><?php echo(strtoupper($title)); ?> &nbsp;
+    <tr   class="success" ><td colspan="12"  style="font-size:20px; text-align: center;"><?php echo(strtoupper($title)); ?> &nbsp;
             <?php
             //	Display link to all history as long as your not already there
             if (isset($title))
@@ -35,6 +35,7 @@
             ?>
         </td></tr>
     <tr   class="active" >
+        <td ><b>Trade #</b></td>
         <td ><b>Buyer</b></td>
         <td ><b>Bid Order#</b></td>
         <td ><b>Seller</b></td>
@@ -54,9 +55,11 @@
 
     <?php
     $i=0;
+    $sumcommission=0;
+    $sumtotal=0;
     foreach ($trades as $trade)
     {$i++;
-
+        $uid = $trade["uid"];
         $buyer = $trade["buyer"];
         $bidorderuid = $trade["bidorderuid"];
         $seller = $trade["seller"];
@@ -67,10 +70,15 @@
         $quantity = $trade["quantity"];
         $price = $trade["price"];
         $commission = $trade["commission"];
+        if($seller!=$_SESSION["id"] || $type=='PO'){$commission=0;} //only seller pays commission
+        $sumcommission = $sumcommission + $commission;
         $total = $trade["total"];
+        $total = $total - $commission;
+        $sumtotal = $sumtotal + $total;
         echo("
 
                 <tr>
+                    <td>" . number_format($uid,0,".",",") . "</td>
                     <td>" . number_format($buyer,0,".",",") . "</td>
                     <td>" . number_format($bidorderuid,0,".","") . "</td>
                     <td>" . number_format($seller,0,".",",") . "</td>
@@ -84,13 +92,14 @@
                     <td>" . number_format($total,2,".",",") . "</td>
                 </tr>");
     }
-    if($i==0){echo("<tr><td colspan='11'>No trades</td></tr>");}
+    if($i==0){echo("<tr><td colspan='12'>No trades</td></tr>");}
     elseif($i>0)
     {
     ?>
     <tr >
         <td colspan="10"><strong>Sum of <?php echo($i) ?> listed transactions</strong></td>
-        <td><?php
+        <?php
+        /*
             //calculate gains/losses
             $acc = array_shift($trades);
             foreach ($trades as $val) {
@@ -98,18 +107,22 @@
                     $acc[$key] += $val;
                 }
             }
-            $gainlosses = $acc['total'];
-            echo("<strong>" . $unitsymbol . htmlspecialchars(number_format($gainlosses,2,".",",")) . "</strong>");
-            ?></td>
+        $sumtotal = $acc['total'];
+        $sumcommission = $acc['commission'];
+        */
+        ?>
+        <td>
+            <strong> <?php echo($unitsymbol . htmlspecialchars(number_format($sumcommission,2,".",","))); ?>
+        </td>
+        <td>
+            <strong> <?php echo($unitsymbol . htmlspecialchars(number_format($sumtotal,2,".",","))); ?>
+        </td>
     </tr>
     <?php } //$i>0
 ?>
 
     </tbody>
 </table>
-
-Only seller pays commission from total.
-
 
  <br />  <br />
 

@@ -4,6 +4,15 @@
         text-align:center;
         width:25%;
     }
+    .panel-success .panel-heading
+    {
+        /*color: #3c763d;*/
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+        font-size: 20px;
+        color: black;
+        padding: 5px 5px 5px 5px;
+    }
 </style>
 <?php //need To ensure the vars sugh as bids group arefed. ?>
 <head>
@@ -445,7 +454,7 @@ if($trades != null)
 
     <div class="panel panel-info">
     <!-- Default panel contents -->
-    <div class="panel-heading">BIDS</div>
+    <div class="panel-heading">TOP BIDS</div>
     <table class="table" align="center">
     <tr class="active">
         <td>Order #</td>
@@ -486,7 +495,7 @@ if($trades != null)
     
     <div class="panel panel-danger">
     <!-- Default panel contents -->
-    <div class="panel-heading">ASKS</div>
+    <div class="panel-heading">TOP ASKS</div>
     <table class="table" align="center">
     <tr class="active">
         <td>Order #</td>

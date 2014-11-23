@@ -5,11 +5,11 @@
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner">
-					<h2>Pulwar</h2>
+					<h2>Pulwar Group</h2>
 					<p>Financial Excellence</p>
 					<ul class="actions">
-						<li><a href="../login.php" class="button big alt" >LOG IN</a></li>
-                        <li><a href="../register.php" class="button big special">REGISTER</a></li>
+						<li><a href="../register.php" class="button big alt" >REGISTER</a></li>
+                        <li><a href="../login.php" class="button big special">LOG IN</a></li>
 					</ul>
 				</div>
 			</section>

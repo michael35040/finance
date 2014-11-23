@@ -27,8 +27,8 @@
             <li><a href="left-sidebar.php"></a></li>
             <li><a href="right-sidebar.php"></a></li>
             <li><a href="no-sidebar.php"></a></li>-->
-            <li><a href="../login.php">LOG IN</a></li>
-            <li><a href="../register.php" class="button special">REGISTER</a></li>
+            <li><a href="../register.php">REGISTER</a></li>
+            <li><a href="../login.php" class="button special">LOG IN</a></li>
         </ul>
     </nav>
 </header>

@@ -51,8 +51,8 @@ require("functions_testing.php"); //functions for testing
         {
 	        $users = query("SELECT active FROM users WHERE id = ?", $_SESSION["id"]);
 	    	@$active = $users[0]["active"];
-            if (!preg_match("{(?:activation)\.php$}", $_SERVER["PHP_SELF"]))
-            {if($active!=1){redirect("activation.php"); exit();} }//session_destroy();
+            if (!preg_match("{(?:status)\.php$}", $_SERVER["PHP_SELF"]))
+            {if($active!=1){redirect("status.php"); exit();} }//session_destroy();
         }
     }
 

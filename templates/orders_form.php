@@ -54,7 +54,8 @@
     else
     { ?>
         <tr  class="danger" style="font-weight: bold;">
-        <td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form>&nbsp; ALL</td>
+        <td>
+            <form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>
         <td colspan='7'><?php echo(htmlspecialchars(number_format($OrderNumber, 0, ".", ","))) ?> open orders</td>
         <td><?php echo($unitsymbol . htmlspecialchars(number_format($ordertotal[0]["sumtotal"], 2, ".", ","))) ?></td>
         </tr>
