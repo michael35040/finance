@@ -8,8 +8,8 @@
 					<h2>Pulwar</h2>
 					<p>Financial Excellence</p>
 					<ul class="actions">
-						<li><a href="../register.php" class="button big special">Register</a></li>
-						<li><a href="../login.php" class="button big alt">SIGN IN</a></li>
+						<li><a href="../login.php" class="button big alt" >LOG IN</a></li>
+                        <li><a href="../register.php" class="button big special">REGISTER</a></li>
 					</ul>
 				</div>
 			</section>

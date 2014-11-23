@@ -15,7 +15,9 @@ $email = $userinfo[0]["email"];
 $phone = $userinfo[0]["phone"];
 ?>
 
-<form action="change.php"  class="changeForm" name="change_form" method="post">
+<h3>Update Account Information</h3>
+
+<form action="update.php"  class="changeForm" name="change_form" method="post">
     <fieldset>
 
         <div class="control-group">

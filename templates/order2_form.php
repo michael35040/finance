@@ -159,7 +159,7 @@ foreach ($types as $type) {
     //apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
 
     ?>
-    <form action="instatrade.php" method="post" name="<?php echo($type["name"]); ?>"
+    <form action="order2.php" method="post" name="<?php echo($type["name"]); ?>"
           oninput="
                     quantityAmount.value=quantity.value;
 t                   otalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($type["var"]); ?>)).toFixed(2);"

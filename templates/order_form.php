@@ -30,8 +30,26 @@ if (!isset($commission)) //set in constants.php
     }
 </script>
 <div class="exchangeTable">
-<form action="exchange.php" method="post"
+<form action="order.php" method="post"
       oninput="
+                priceAmount.value=parseFloat(parseFloat(dollar.value)+parseFloat(cents.value/100)).toFixed(2);
+          quantityAmount.value=quantity.value;
+          if(document.getElementById('marketSub').checked==true){priceAmount.value=(parseFloat(priceAmount.value)*0).toFixed(2);}
+          if(document.getElementById('sellOrder').checked==true)
+          {
+          commissionAmount.value=parseFloat(parseInt(quantityAmount.value)*parseFloat(priceAmount.value)*<?php echo($commission) ?>).toFixed(2);
+          commissionAmount.value=(parseFloat(commissionAmount.value)*4).toFixed(2);
+          commissionAmount.value=Math.floor(commissionAmount.value);
+          commissionAmount.value=(parseFloat(commissionAmount.value)/4).toFixed(2);
+          }
+          if(document.getElementById('buyOrder').checked==true){commissionAmount.value=parseFloat(parseInt(quantityAmount.value)*parseFloat(priceAmount.value)*0).toFixed(2);}
+          subtotal.value=parseFloat(parseFloat(quantityAmount.value)*parseFloat(priceAmount.value)).toFixed(2);
+          total.value=parseFloat(parseFloat(quantityAmount.value)*parseFloat(priceAmount.value)-parseFloat(commissionAmount.value)).toFixed(2);
+          priceAmount.value=commify(priceAmount.value);
+          quantityAmount.value=commify(quantityAmount.value);
+          commissionAmount.value=commify(commissionAmount.value);
+          subtotal.value=commify(subtotal.value);
+          total.value=commify(total.value);
           "
       onclick="
           priceAmount.value=parseFloat(parseFloat(dollar.value)+parseFloat(cents.value/100)).toFixed(2);

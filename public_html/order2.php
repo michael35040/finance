@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     try {processOrderbook($symbol);}
     catch(Exception $e) {apologize($e->getMessage());} 
 
-    redirect("instatrade.php");
+    redirect("order2.php");
 }
 else{
 
@@ -63,7 +63,7 @@ else{
     $silver["sell"]=($silver["bid"]-$silver["discount"]);
 
 
-    render("instatrade_form.php", ["title" => "Trade", "trades" => $trades, "goldAmount" => $goldAmount, "gold" => $gold, "silverAmount" => $silverAmount, "silver" => $silver]);
+    render("order2_form.php", ["title" => "Order (Quick)", "trades" => $trades, "goldAmount" => $goldAmount, "gold" => $gold, "silverAmount" => $silverAmount, "silver" => $silver]);
 }// else render form
 
 ?>

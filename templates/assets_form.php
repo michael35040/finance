@@ -37,10 +37,15 @@ foreach ($assets as $asset) // for each of user's stocks
         padding: 0 !important;
     }
 
+    .accordian-body td
+    {
+        background-color: #eeeeee;
+    }
+
 </style>
 
 
-<table class="table table-condensed table-striped table-bordered table-hover" id="assets" style="border-collapse:collapse;">
+<table class="table table-condensed table-bordered table-hover" id="assets" style="border-collapse:collapse;">
     <thead>
 
     <tr class="success"><td colspan="4" style="font-size:20px; text-align: center;">ASSETS</td>
@@ -59,17 +64,17 @@ foreach ($assets as $asset) // for each of user's stocks
         foreach ($assets as $asset)
         {
             $i++;
-            echo('<tr data-toggle="collapse" data-target="#demo' . $i . '" class="accordion-toggle" >');
+            echo('<tr data-toggle="collapse" data-target="#demo' . $i . '" class="accordion-toggle">');
             echo('<td><span class="glyphicon glyphicon-chevron-down"></span>&nbsp;&nbsp;&nbsp;&nbsp;' . htmlspecialchars($asset["symbol"]) . ' </td>');
             echo('<td >' . $unitsymbol . htmlspecialchars(number_format($asset["price"], 2, ".", ",")) . '</td>');
             echo('<td >' . (number_format($asset["volume"], 0, ".", ",")) . '</td>');
             echo('<td >' . $unitsymbol . htmlspecialchars(number_format($asset["marketcap"], 2, ".", ",")) . '</td>');
             echo('</tr>');
             echo('<div  class="hiddenRow">');
-            echo('<tr class="accordian-body collapse" id="demo' . $i . '">');
-            echo('<td colspan="1">' . htmlspecialchars($asset["name"]) . '
-                <br>' . htmlspecialchars($asset["url"]) . '
-                <br><form><button type="submit" class="btn btn-primary btn-xs" formmethod="post" formaction="information.php" name="symbol" value="' . $asset["symbol"] . '"><span class="glyphicon glyphicon glyphicon-info-sign"> Information</span></button></form></td>');
+            echo('<tr class="accordian-body collapse" id="demo' . $i . '"   >');
+            echo('<td colspan="1">&nbsp;&nbsp;' . htmlspecialchars($asset["name"]) . '
+                <br>&nbsp;&nbsp;' . htmlspecialchars($asset["url"]) . '
+                <br>&nbsp;&nbsp;<form><button type="submit" class="btn btn-primary btn-xs" formmethod="post" formaction="information.php" name="symbol" value="' . $asset["symbol"] . '"><span class="glyphicon glyphicon glyphicon-info-sign"> Information</span></button></form></td>');
             echo('<td >' . $unitsymbol . (number_format($asset["bid"], 2, ".", ",")) . ' - Bid
                 <br>' . $unitsymbol . (number_format($asset["ask"], 2, ".", ",")) . ' - Ask
                 <br>' . $unitsymbol . (number_format($asset["avgprice"], 2, ".", ",")) . ' - Avg. Price (30d)</td>');

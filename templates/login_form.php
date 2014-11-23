@@ -73,7 +73,7 @@
         <span class="input-group-btn">
             <button class="btn btn-lg btn-primary btn-block" type="submit">
                 <span class="glyphicon glyphicon-off"></span>
-                 Sign in 
+                 LOG IN
             </button>
         </span>
                 

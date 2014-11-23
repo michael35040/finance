@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 				if ($_POST["newpassword"] != $_POST["confirmation"]){apologize("Missmatch. The new password does not match its Confirmation.");}
 				if(query("UPDATE users SET password = ? WHERE id = ? ", generate_hash($_POST["newpassword"]), $_SESSION["id"]) === false) {apologize("Sorry, some internal error ocured.");}
 			}//password
-			redirect("change.php");
+			redirect("update.php");
 		} //password check is correct
 		else // (crypt($_POST["password"], $row["password"]) != $row["password"])
 			{apologize("Sorry, the 'Current Password' was not correct.");}// compare password of user's input against password that's in database
@@ -46,6 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 }  //post
 else{
 	$userinfo = query("SELECT email, phone FROM users WHERE id = ( ? )", $_SESSION["id"]);
-	render("change_form.php", ["title" => "Change", "userinfo" => $userinfo]);}// else render form
+	render("update_form.php", ["title" => "Update", "userinfo" => $userinfo]);}// else render form
 
 ?>
