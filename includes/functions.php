@@ -25,6 +25,10 @@ function sanatize($type, $var)
 	        if (!is_numeric($var)) { apologize("Phone must be numeric!");} //if quantity is numeric	
 
 	}
+	if($type=='address')
+	{ //only alpha numeric, space, period, and comma allowed.
+		$var = preg_replace("/[^0-9a-zA-Z .,#-]/", "", $var); //keep - at end or it will be interpreted as range.
+	}
     if($type=='wholenumber')
     {
         if ($var<0){ apologize("$var must be positive!");} //if quantity is numeric
@@ -32,7 +36,7 @@ function sanatize($type, $var)
         if (!is_int($var)){ apologize("$var must be numeric!");} //ctype_digit will return false on negative and decimals
     }
 	if($type=='quantity')
-	{
+	{	$var = preg_replace("/[^0-9]/", "", $var);
 		if ($var<0){ apologize("Quantity must be positive!");} //if quantity is numeric
     		if (preg_match("/^\d+$/", $var) == false) { apologize("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
     		if (!is_int($var)){ apologize("Quantity must be numeric!");} //ctype_digit will return false on negative and decimals
@@ -43,8 +47,12 @@ function sanatize($type, $var)
 	    	if (!is_float($var) && !is_int($var)) { apologize("Price must be numeric!");} //if quantity is numeric
 	}
 	if($type=='alphabet') //side, type, etc.
-	{
+	{	$var = preg_replace("/[^a-zA-Z]/", "", $var);
     		if (!ctype_alpha($var)) { apologize("Must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
+	}
+	if($type=='alnum') //side, type, etc.
+	{	$var = preg_replace("/[^0-9a-zA-Z]/", "", $var);
+    		if (!ctype_alpha($var)) { apologize("Must be alphabetic or numeric!");} //if symbol is alpha (alnum for alphanumeric)
 	}
        return($var);
 }
