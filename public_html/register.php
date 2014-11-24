@@ -14,28 +14,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     // else($code===$captcha){echo("Correct captcha!"); exit(); }
 
     $fname = $_POST["fname"];
+    $fname = sanatize("alphabet", $fname);
+
     $lname = $_POST["lname"];
+    $lname = sanatize("alphabet", $lname);
+
     $email = $_POST["email"];
+    $email = sanatize("email", $email)
+    
     $address1 = $_POST["address1"];
+    $address1 = sanatize("address", $address1);
+
     $address2 = $_POST["address2"];
-    $region = $_POST["region"];
+    $address2 = sanatize("address", $address2);
+    
+    $region = $_POST["region"]; //state
+    $region = sanatize("alphabet", $region);
+    
     $zip = $_POST["zip"];
+    $zip = sanatize("wholenumber", $zip);
+
     $phone = $_POST["phone"];
-    $question = $_POST["question"];
+    $phone = sanatize("phone", $phone);
+
     $answer = $_POST["answer"];
+    
+
+    $question = $_POST["question"];
     $password = $_POST["password"];
     $confirmation = $_POST["confirmation"];
 
-        // validate submission
-    if (empty($email)) { apologize("You must provide an email."); }
-    if (empty($password) || empty($confirmation)) { apologize("You must provide a password and re-type it in the confirmation box."); }
-    if (empty($phone)) { apologize("You must provide a phone number."); }
-    if ($password != $confirmation) { apologize("Password missmatch."); }
 
-//EMAIL
-$email = sanatize("email", $email);
-//PHONE
-$phone = sanatize("phone", $phone);
+        // validate submission
+    if (empty($password) || empty($confirmation)) { apologize("You must provide a password and re-type it in the confirmation box."); }
+    if ($password != $confirmation) { apologize("Password missmatch."); }
+    if (empty($fname)) { apologize("You must provide a First Name."); }
+    if (empty($lname)) { apologize("You must provide a Last Name."); }
+    if (empty($email)) { apologize("You must provide an Email."); }
+    if (empty($address1)) { apologize("You must provide an Address (#1)."); }
+    //if (empty($address2)) { apologize("You must provide a phone number."); } //not mandatory
+    if (empty($region)) { apologize("You must provide a State/Region."); }
+    if (empty($zip)) { apologize("You must provide a Postal Code."); }
+    if (empty($phone)) { apologize("You must provide a Phone Number."); }
+    if (empty($question)) { apologize("You must provide a Security Question."); }
+    if (empty($answer)) { apologize("You must provide a Security Answer."); }
+    if (empty($password)) { apologize("You must provide a Password."); }
+    if (empty($confirmation)) { apologize("You must provide a Password Confirmation."); }
+
 
      
 //NEW METHOD
