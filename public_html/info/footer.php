@@ -25,7 +25,10 @@
             </div>
             <div class="6u">
                 <h2>WHO WE ARE</h2>
-                <p> Pulwar brings people, capital and ideas together to help our clients and the communities we serve. Learn more about our firm.</p>
+                <p> 
+                <?php echo($sitename) ?>, Inc. is a leading global investment banking, securities and investment management firm. 
+                We provide a wide range of financial services to a substantial and diversified client base that includes corporations, financial institutions, governments and high-net-worth individuals.
+                <?php echo($sitename) ?> brings people, capital and ideas together to help our clients and the communities we serve. Learn more about our firm.</p>
                 <ul class="icons">
                     <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
                     <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
@@ -36,8 +39,8 @@
             </div>
         </div>
         <ul class="copyright">
-            <li>&copy; Pulwar. All rights reserved.</li>
-            <li>Financial Excellence</li>
+            <li>&copy; <?php echo($sitename) ?>. All rights reserved.</li>
+            <li><?php echo($logo) ?></li>
             <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
         </ul>
     </div>
