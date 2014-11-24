@@ -67,7 +67,7 @@ $asset["public"] = $asset["askstotal"]+$asset["totalportfolio"];
 $asset["volume"] = $volume[0]["quantity"];
 $asset["avgprice"] = $volume[0]["price"];
         //TRADES (PROCESSED ORDERS)
-$trades =  query("SELECT * FROM trades WHERE (symbol=? AND type='limit' OR type='market') ORDER BY uid DESC", $symbol);
+$trades =  query("SELECT * FROM trades WHERE (symbol=? AND (type='limit' OR type='market')) ORDER BY uid DESC", $symbol);
         if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
 $asset["price"] = $trades[0]["price"]; //stock price per share
 $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
@@ -76,7 +76,7 @@ $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
 $asset["dividend"]=0; //until we get real ones
         
         //DAILY TRADES CHART
-$tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE (symbol=? AND type='limit' OR type='market')  GROUP BY DAY(date) ORDER BY uid ASC ", $symbol);	  // query user's portfolio
+$tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE (symbol=? AND (type='limit' OR type='market'))  GROUP BY DAY(date) ORDER BY uid ASC ", $symbol);	  // query user's portfolio
         //ALL TRADES CHART
 
         
