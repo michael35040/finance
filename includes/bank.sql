@@ -230,13 +230,13 @@ TRUNCATE TABLE `trades`;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'user id',
-  `email` varchar(40) NOT NULL,
-  `fname` varchar(40) NOT NULL,
-  `lname` varchar(40) NOT NULL,
-  `address1` varchar(40) NOT NULL,
-  `address2` varchar(40) NULL,
-  `region` varchar(40) NOT NULL,
+  `id` int(15) unsigned NOT NULL AUTO_INCREMENT COMMENT 'user id',
+  `email` varchar(63) NOT NULL,
+  `fname` varchar(63) NOT NULL,
+  `lname` varchar(63) NOT NULL,
+  `address1` varchar(63) NOT NULL,
+  `address2` varchar(63) NULL,
+  `region` varchar(63) NOT NULL,
   `zip` int(20) NOT NULL,
   `phone` int(20) NOT NULL,
   `question` varchar(63) NOT NULL,
