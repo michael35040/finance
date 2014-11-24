@@ -6,7 +6,6 @@
                 <div class="input-group">
                     <button id="bankButton" type="button" class="btn btn-default  btn-sm   dropdown-toggle" data-toggle="dropdown">
                         BANKING
-                        <span class="caret"></span>
                     </button>
 
                     <ul class="dropdown-menu" role="menu">
@@ -28,7 +27,6 @@
                 <div class="input-group">
                     <button id="exchangeButton" type="button" class="btn btn-default  btn-sm dropdown-toggle" data-toggle="dropdown">
                         EXCHANGE
-                        <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="order.php">Order</a></li>

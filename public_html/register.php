@@ -6,23 +6,34 @@ require("../includes/config.php");
 
 // if form was submitted  -- validate and insert int database
 if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
-$email = $_POST["email"];
-$phone = $_POST["phone"];	
-$password = $_POST["password"];
-$confirmation = $_POST["confirmation"];
-	
+{ //        var_dump(get_defined_vars()); //dump all variables anywhere (displays in header)
+    if(!ctype_digit($_POST["captcha"])){apologize("Incorrect captcha input!");}
+    $code=$_SESSION["code"];
+    $captcha=(int)$_POST["captcha"];
+    if($code!=$captcha){echo("Incorrect captcha!"); exit(); }
+    // else($code===$captcha){echo("Correct captcha!"); exit(); }
+
+    $fname = $_POST["fname"];
+    $lname = $_POST["lname"];
+    $email = $_POST["email"];
+    $address1 = $_POST["address1"];
+    $address2 = $_POST["address2"];
+    $region = $_POST["region"];
+    $zip = $_POST["zip"];
+    $phone = $_POST["phone"];
+    $question = $_POST["question"];
+    $answer = $_POST["answer"];
+    $password = $_POST["password"];
+    $confirmation = $_POST["confirmation"];
+
         // validate submission
-if (empty($email)) { apologize("You must provide an email."); } 
-if (empty($password) || empty($confirmation)) { apologize("You must provide a password and re-type it in the confirmation box."); }
-if (empty($phone)) { apologize("You must provide a phone number."); } 
-if ($password != $confirmation) { apologize("Password missmatch."); }
-
-
+    if (empty($email)) { apologize("You must provide an email."); }
+    if (empty($password) || empty($confirmation)) { apologize("You must provide a password and re-type it in the confirmation box."); }
+    if (empty($phone)) { apologize("You must provide a phone number."); }
+    if ($password != $confirmation) { apologize("Password missmatch."); }
 
 //EMAIL
 $email = sanatize("email", $email);
-
 //PHONE
 $phone = sanatize("phone", $phone);
 

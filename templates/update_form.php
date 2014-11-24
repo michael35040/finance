@@ -1,5 +1,12 @@
 <style>
+    #middle
+    {
+        background-color:transparent;
+        border:0;
+        text-shadow: 2px 2px 5px #fff;
+    }
     .changeForm {
+        text-shadow: 2px 2px 5px #fff;
         display: inline-block;
         text-align: center;
         width:25%;
@@ -15,10 +22,10 @@ $email = $userinfo[0]["email"];
 $phone = $userinfo[0]["phone"];
 ?>
 
-<h3>Update Account Information</h3>
 
 <form action="update.php"  class="changeForm" name="change_form" method="post">
     <fieldset>
+        <h3>Update Account Information</h3>
 
         <div class="control-group">
 

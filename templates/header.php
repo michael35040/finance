@@ -54,7 +54,8 @@
     {
         color: #444;
         background-color: #ffffff; /*#d1d1d1;*/
-        border-color: #f8f8f8;
+        /*border-color: #f8f8f8;*/
+        border-color: #E8F9FA;
     }
     .table {margin-bottom:0;} /*set to 20 in bootstrap*/
 </style>
