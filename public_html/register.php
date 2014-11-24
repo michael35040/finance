@@ -25,8 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $address1 = $_POST["address1"];
     $address1 = sanatize("address", $address1);
 
-    $address2 = $_POST["address2"];
-    $address2 = sanatize("address", $address2);
+    @$address2 = $_POST["address2"]; //can be null
+    @$address2 = sanatize("address", $address2); //can be null
     
     $region = $_POST["region"]; //state
     $region = sanatize("alphabet", $region);
@@ -86,7 +86,7 @@ $transaction = 'LOAN'; //for listing on history
 
 $now = time(); //get current time in unix seconds
 			//UPDATE USERS FOR USER
-if (query("INSERT INTO users (email, password, phone, last_login, registered, fails) VALUES(?, ?, ?, ?, ?, 0)", $email, $password, $phone, $now, $now) === false) 
+if (query("INSERT INTO users (email, fname, lname, address1, address2, region, zip, phone, question, answer, password, last_login, registered, fails) VALUES(?, ?, ?, ?, ?, 0)", $email, $fname, $lname, $address1, $address2, $region, $zip, $phone, $question, $answer, $password, $now, $now) === false) 
 { 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");
