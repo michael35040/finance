@@ -22,11 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $email = $_POST["email"];
     $email = sanatize("email", $email);
     
-    $address1 = $_POST["address1"];
-    $address1 = sanatize("address", $address1);
+    $address = $_POST["address"];
+    $address = sanatize("address", $address);
 
-    @$address2 = $_POST["address2"]; //can be null
-    @$address2 = sanatize("address", $address2); //can be null
+    $city = $_POST["city"];
+    $city = sanatize("alphabet", $city); 
     
     $region = $_POST["region"]; //state
     $region = sanatize("alphabet", $region);
@@ -51,8 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if (empty($fname)) { apologize("You must provide a First Name."); }
     if (empty($lname)) { apologize("You must provide a Last Name."); }
     if (empty($email)) { apologize("You must provide an Email."); }
-    if (empty($address1)) { apologize("You must provide an Address (#1)."); }
-    //if (empty($address2)) { apologize("You must provide a phone number."); } //not mandatory
+    if (empty($address)) { apologize("You must provide an Address."); }
+    if (empty($city)) { apologize("You must provide a City."); } //not mandatory
     if (empty($region)) { apologize("You must provide a State/Region."); }
     if (empty($zip)) { apologize("You must provide a Postal Code."); }
     if (empty($phone)) { apologize("You must provide a Phone Number."); }
@@ -86,7 +86,7 @@ $transaction = 'LOAN'; //for listing on history
 
 $now = time(); //get current time in unix seconds
 			//UPDATE USERS FOR USER
-if (query("INSERT INTO users (email, fname, lname, address1, address2, region, zip, phone, question, answer, password, last_login, registered, fails) VALUES(?, ?, ?, ?, ?, 0)", $email, $fname, $lname, $address1, $address2, $region, $zip, $phone, $question, $answer, $password, $now, $now) === false) 
+if (query("INSERT INTO users (email, fname, lname, address, city, region, zip, phone, question, answer, password, last_login, registered, fails) VALUES(?, ?, ?, ?, ?, 0)", $email, $fname, $lname, $address, $city, $region, $zip, $phone, $question, $answer, $password, $now, $now) === false) 
 { 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");
