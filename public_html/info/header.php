@@ -1,7 +1,11 @@
+<?php
+$sitename="Pulwar";
+$logo="Financial Excellence";
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Pulwar</title>
+		<title><?php echo($sitename) ?></title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -20,7 +24,7 @@
 
 <!-- Header -->
 <header id="header" class="skel-layers-fixed">
-    <h1><a href="#">PULWAR</a> <img src="images/logo.png" style="vertical-align: middle;" alt="logo" height="33" width="27"></h1>
+    <h1><a href="#"><?php echo($sitename) ?></a> <img src="images/logo.png" style="vertical-align: middle;" alt="logo" height="33" width="27"></h1>
     <nav id="nav">
         <ul>
             <!--<li><a href="index.php"></a></li>
