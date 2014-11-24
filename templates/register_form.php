@@ -146,7 +146,7 @@
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-        <input class="form-control" name="zip" placeholder="Postal Code" type="number" maxlength="10" required/>
+        <input class="form-control" name="zip" placeholder="Postal Code" type="number" maxlength="10" max="9999999999" required/>
         </div>
 
         <div class="input-group">
@@ -184,7 +184,7 @@
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></span>
-        <input class="form-control" name="captcha" placeholder="Captcha # Below" type="number" maxlength="4" required/>
+        <input class="form-control" name="captcha" placeholder="Captcha # (Below)" type="text" maxlength="4" required/>
         </div>
 
                 <span class="input-group-btn">
