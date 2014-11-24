@@ -31,14 +31,14 @@
     {
         echo("<tr>");
         echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="' . $row["uid"] . '"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>');
-        echo("<td>" . htmlspecialchars($row["uid"]) . "</td>");
+        echo("<td>" . number_format($row["uid"], 0, ".", "") . "</td>");
         echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s', strtotime($row["date"]))) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["side"])) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["type"])) . "</td>");
-        echo("<td>" . htmlspecialchars(number_format($row["quantity"], 0, ".", ",")) . "</td>");
-        echo("<td>" . $unitsymbol . htmlspecialchars(number_format($row["price"], 2, ".", ",")) . "</td>");
-        echo("<td>" . $unitsymbol . htmlspecialchars(number_format($row["total"], 2, ".", ",")) . "</td>");
+        echo("<td>" . number_format($row["quantity"], 0, ".", ",") . "</td>");
+        echo("<td>" . $unitsymbol . number_format($row["price"], 2, ".", ",") . "</td>");
+        echo("<td>" . $unitsymbol . number_format($row["total"], 2, ".", ",") . "</td>");
         echo("</tr>");
         $OrderNumber++;
         /*
@@ -56,8 +56,8 @@
         <tr  class="danger" style="font-weight: bold;">
         <td>
             <form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>
-        <td colspan='7'><?php echo(htmlspecialchars(number_format($OrderNumber, 0, ".", ","))) ?> open orders</td>
-        <td><?php echo($unitsymbol . htmlspecialchars(number_format($ordertotal[0]["sumtotal"], 2, ".", ","))) ?></td>
+        <td colspan='7'><?php echo(number_format($OrderNumber, 0, ".", ",")) ?> open orders</td>
+        <td><?php echo($unitsymbol . number_format($ordertotal[0]["sumtotal"], 2, ".", ",")) ?></td>
         </tr>
         <?php
     }
