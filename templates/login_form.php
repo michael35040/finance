@@ -77,12 +77,13 @@
             </button>
         </span>
                 
-
+<!--
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
+-->
 
       </form>
     </div> <!-- /container -->
