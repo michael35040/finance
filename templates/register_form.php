@@ -43,27 +43,27 @@
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-        <input class="form-control" name="fname" placeholder="First Name" type="text" maxlength="31" required/>
+        <input class="form-control" name="fname" placeholder="First Name" type="text" maxlength="60" required/>
         </div>
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-        <input class="form-control" name="lname" placeholder="Last Name" type="text" maxlength="31" required/>
+        <input class="form-control" name="lname" placeholder="Last Name" type="text" maxlength="60" required/>
         </div>
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-        <input class="form-control" name="email" placeholder="Email" type="email" maxlength="31" required/>
+        <input class="form-control" name="email" placeholder="Email" type="email" maxlength="60" required/>
         </div>
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-        <input class="form-control" name="address1" placeholder="Address 1" type="text" maxlength="31" required/>
+        <input class="form-control" name="address1" placeholder="Address 1" type="text" maxlength="60" required/>
         </div>
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-        <input class="form-control" name="address2" placeholder="Address 2" type="text" maxlength="31" />
+        <input class="form-control" name="address2" placeholder="Address 2" type="text" maxlength="60" />
         </div>
 
         <div class="input-group">
@@ -146,12 +146,12 @@
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-        <input class="form-control" name="zip" placeholder="Postal Code" type="number" maxlength="10" max="9999999999" required/>
+        <input class="form-control" name="zip" placeholder="Postal Code" type="number" maxlength="10" max="999999999" required/>
         </div>
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-earphone"></span></span>
-        <input class="form-control" name="phone" placeholder="Phone" type="tel" maxlength="20" required/>
+        <input class="form-control" name="phone" placeholder="Phone" type="tel" maxlength="15" required/>
         </div>
 
         <div class="input-group">
@@ -169,7 +169,7 @@
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-star-empty"></span></span>
-        <input class="form-control" name="answer" placeholder="Security Answer" type="text" maxlength="31" required/>
+        <input class="form-control" name="answer" placeholder="Security Answer" type="text" maxlength="60" required/>
         </div>
 
         <div class="input-group">
