@@ -78,10 +78,10 @@
         echo("
 
                 <tr>
-                    <td>" . number_format($uid,0,".",",") . "</td>
-                    <td>" . number_format($buyer,0,".",",") . "</td>
+                    <td>" . number_format($uid,0,".","") . "</td>
+                    <td>" . number_format($buyer,0,".","") . "</td>
                     <td>" . number_format($bidorderuid,0,".","") . "</td>
-                    <td>" . number_format($seller,0,".",",") . "</td>
+                    <td>" . number_format($seller,0,".","") . "</td>
                     <td>" . number_format($askorderuid,0,".","") . "</td>
                     <td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($date))) . "</td>
                     <td>" . strtoupper(htmlspecialchars("$type")) . "</td>
