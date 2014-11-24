@@ -68,7 +68,7 @@
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-            <select class="form-control" name="region"><option value="">Select a state</option>
+            <select class="form-control" name="region"><option value="">State/Region</option>
                 <option value="AL"> Alabama</option>
                 <option value="AK"> Alaska</option>
                 <option value="AZ"> Arizona</option>
