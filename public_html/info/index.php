@@ -95,29 +95,34 @@ include 'header.php';
 								<h2>EXCHANGE</h2>
 								<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
 								<p>
-									Our local exchange provides the ability to trade equities and commodities. 
-									At the moment there are two types of orders: LIMIT and MARKET orders. 
-									Both can be used to enter or exit the market. 
-									LIMIT orders are only traded once the trade price matches or exceeds the order price. 
-									MARKET orders are executed immediately and assigned to the best BID or the best ASK. T
-									he order entry ticket is simple yet versatile. 
-									Open orders can be canceled if they have not yet been matched and a trade executed.
-								</p>
-							</section>
-						</div>
-						<div class="4u">
-							<section>
-								<h3>FUND AN ACCOUNT</h3>
-								<p>
 Before you begin buying and selling on the exchange you will need to fund your account. 
 Please be sure to read and understand the specifics of each account funding option before making the choice that works best for you. 
 Certain methods of funding your account require longer processing times. 
 We have three methods available for depositing funds: Wire Transfer, ACH Transfer, and Check. 
 Due to the non-immediate nature of debit and credit account transfers, as well as the commissions attached to debit and credit of transactions, we only offer trades to accounts funded by the methods listed.
 Here are the full details on how to add funds to your account, and our customer service team is available to help if you have any questions.<br>	
+<ul><li>
 <b>Wire Transfer</b> is the fastest method for funding your account. Wire transfers generally execute the same day, but may take up to one additional business day to post to your account. Your bank may charge a wire fee.<br>
+</li><li>
 <b>ACH (Automated Clearing House) Transfer</b> generally take two to three business days to post to your account. However, the fees to send this type of transfer are normally more affordable than wire fees.<br>
+</li><li>
 <b>Check</b> is the slowest method of funding your account, but also the least expensive. A bank check takes up to 14 business days to post to your account after it is received and processed.<br>
+</li></ul>
+
+								</p>
+							</section>
+						</div>
+						<div class="4u">
+							<section>
+								<h3>ORDERS</h3>
+								<p>
+Our local exchange provides the ability to trade equities and commodities. 
+At the moment there are two types of orders: LIMIT and MARKET orders. 
+Both can be used to enter or exit the market. 
+LIMIT orders are only traded once the trade price matches or exceeds the order price. 
+MARKET orders are executed immediately and assigned to the best BID or the best ASK. 
+The order entry ticket is simple yet versatile. 
+Open orders can be canceled if they have not yet been matched and a trade executed.
 
 								</p>
 								<ul class="actions">
