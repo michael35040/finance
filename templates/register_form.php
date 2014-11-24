@@ -63,7 +63,7 @@
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-        <input class="form-control" name="address2" placeholder="Address 2" type="text" maxlength="31" required/>
+        <input class="form-control" name="address2" placeholder="Address 2" type="text" maxlength="31" />
         </div>
 
         <div class="input-group">
@@ -76,6 +76,7 @@
                 <option value="CA"> California</option>
                 <option value="CO"> Colorado</option>
                 <option value="CT"> Connecticut</option>
+                <option value="DC"> District of Columbia</option>
                 <option value="DE"> Delaware</option>
                 <option value="FL"> Florida</option>
                 <option value="GA"> Georgia</option>
@@ -120,7 +121,6 @@
                 <option value="WI"> Wisconsin</option>
                 <option value="WY"> Wyoming</option>
                 <option value="AS"> American Samoa</option>
-                <option value="DC"> District of Columbia</option>
                 <option value="FM"> Federated States of Micronesia</option>
                 <option value="MH"> Marshall Islands</option>
                 <option value="MP"> Northern Mariana Islands</option>
@@ -128,19 +128,19 @@
                 <option value="PR"> Puerto Rico</option>
                 <option value="VI"> Virgin Islands</option>
                 <option value="GU"> Guam</option>
-                <option value="AB">Alberta</option>
-                <option value="BC">British Columbia</option>
-                <option value="MB">Manitoba</option>
-                <option value="NB">New Brunswick</option>
-                <option value="NL">Newfoundland and Labrador</option>
-                <option value="NS">Nova Scotia</option>
-                <option value="ON">Ontario</option>
-                <option value="PE">Prince Edward Island</option>
-                <option value="QC">Quebec</option>
-                <option value="SK">Saskatchewan</option>
-                <option value="NT">Northwest Territories</option>
-                <option value="NU">Nunavut</option>
-                <option value="YT">Yukon</option>
+                <option value="AB"> Alberta</option>
+                <option value="BC"> British Columbia</option>
+                <option value="MB"> Manitoba</option>
+                <option value="NB"> New Brunswick</option>
+                <option value="NL"> Newfoundland and Labrador</option>
+                <option value="NS"> Nova Scotia</option>
+                <option value="ON"> Ontario</option>
+                <option value="PE"> Prince Edward Island</option>
+                <option value="QC"> Quebec</option>
+                <option value="SK"> Saskatchewan</option>
+                <option value="NT"> Northwest Territories</option>
+                <option value="NU"> Nunavut</option>
+                <option value="YT"> Yukon</option>
             </select>
         </div>
 
@@ -184,7 +184,7 @@
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></span>
-        <input class="form-control" name="captcha" placeholder="Captcha # Below" type="text" maxlength="31" required/>
+        <input class="form-control" name="captcha" placeholder="Captcha # Below" type="number" maxlength="4" required/>
         </div>
 
                 <span class="input-group-btn">
