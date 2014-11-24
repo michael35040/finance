@@ -1,5 +1,10 @@
 <!-- Header -->
-<?php include 'header.php'; 
+<?php 
+
+$sitename="Pulwar";
+$logo="Financial Excellence";
+
+include 'header.php'; 
 
 ?>
 
@@ -102,9 +107,18 @@
 						</div>
 						<div class="4u">
 							<section>
-								<h3>WHAT WE DO</h3>
+								<h3>FUND AN ACCOUNT</h3>
 								<p>
-									
+Before you begin buying and selling on the exchange you will need to fund your account. 
+Please be sure to read and understand the specifics of each account funding option before making the choice that works best for you. 
+Certain methods of funding your account require longer processing times. 
+We have three methods available for depositing funds: Wire Transfer, ACH Transfer, and Check. 
+Due to the non-immediate nature of debit and credit account transfers, as well as the commissions attached to debit and credit of transactions, we only offer trades to accounts funded by the methods listed.
+Here are the full details on how to add funds to your account, and our customer service team is available to help if you have any questions.<br>	
+<b>Wire Transfer</b> is the fastest method for funding your account. Wire transfers generally execute the same day, but may take up to one additional business day to post to your account. Your bank may charge a wire fee.<br>
+<b>ACH (Automated Clearing House) Transfer</b> generally take two to three business days to post to your account. However, the fees to send this type of transfer are normally more affordable than wire fees.<br>
+<b>Check</b> is the slowest method of funding your account, but also the least expensive. A bank check takes up to 14 business days to post to your account after it is received and processed.<br>
+
 								</p>
 								<ul class="actions">
 									<li><a href="../register.php" class="button alt">Learn More</a></li>
@@ -115,8 +129,8 @@
 								<h3>INFORMATION</h3>
 								<ul class="alt">
 									<li><a href="#">Register</a></li>
-									<li><a href="#">Fund an account</a></li>
-									<li><a href="#">Exchange Engine</a></li>
+									<li><a href="#">Funding</a></li>
+									<li><a href="#">Exchange</a></li>
 								</ul>
 							</section>
 						</div>
