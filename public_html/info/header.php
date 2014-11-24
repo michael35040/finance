@@ -1,7 +1,3 @@
-<?php
-$sitename="Pulwar";
-$logo="Financial Excellence";
-?>
 <!DOCTYPE HTML>
 <html>
 	<head>
