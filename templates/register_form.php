@@ -156,7 +156,7 @@
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
-            <select class="form-control" name="question"><option value="">Select a security question</option>
+            <select class="form-control" name="question"><option value="">Security Question</option>
                 <option value="What is your maternal grandmother&#39;s maiden name?">What is your maternal grandmother&#39;s maiden name?</option>
                 <option value="What was the last name of your favorite teacher?">What was the last name of your favorite teacher?</option>
                 <option value="In what city did you meet your spouse/significant other?">In what city did you meet your spouse/significant other?</option>
