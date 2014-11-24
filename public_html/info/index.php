@@ -1,12 +1,14 @@
 <!-- Header -->
-<?php include 'header.php'; ?>
+<?php include 'header.php'; 
+
+?>
 
 
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner">
-					<h2>Pulwar Group</h2>
-					<p>Financial Excellence</p>
+					<h2><?php echo($sitename) ?></h2>
+					<p><?php echo($logo) ?></p>
 					<ul class="actions">
 						<li><a href="../register.php" class="button big alt" >REGISTER</a></li>
                         <li><a href="../login.php" class="button big special">LOG IN</a></li>
@@ -85,15 +87,25 @@
 					<div class="row">
 						<div class="8u">
 							<section>
-								<h2>PULWAR GROUP</h2>
+								<h2>EXCHANGE</h2>
 								<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-								<p>The Pulwar Group, Inc. is a leading global investment banking, securities and investment management firm.</p>
+								<p>
+									Our local exchange provides the ability to trade equities and commodities. 
+									At the moment there are two types of orders: LIMIT and MARKET orders. 
+									Both can be used to enter or exit the market. 
+									LIMIT orders are only traded once the trade price matches or exceeds the order price. 
+									MARKET orders are executed immediately and assigned to the best BID or the best ASK. T
+									he order entry ticket is simple yet versatile. 
+									Open orders can be canceled if they have not yet been matched and a trade executed.
+								</p>
 							</section>
 						</div>
 						<div class="4u">
 							<section>
 								<h3>WHAT WE DO</h3>
-								<p>We provide a wide range of financial services to a substantial and diversified client base that includes corporations, financial institutions, governments and high-net-worth individuals.</p>
+								<p>
+									
+								</p>
 								<ul class="actions">
 									<li><a href="../register.php" class="button alt">Learn More</a></li>
 								</ul>
