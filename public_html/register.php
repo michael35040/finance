@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $lname = sanatize("alphabet", $lname);
 
     $email = $_POST["email"];
-    $email = sanatize("email", $email)
+    $email = sanatize("email", $email);
     
     $address1 = $_POST["address1"];
     $address1 = sanatize("address", $address1);
