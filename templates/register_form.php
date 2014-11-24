@@ -58,7 +58,7 @@
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-        <input class="form-control" name="address" placeholder="Address" type="text" maxlength="60" required/>
+        <input class="form-control" name="address" placeholder="Street Address" type="text" maxlength="60" required/>
         </div>
 
         <div class="input-group">
