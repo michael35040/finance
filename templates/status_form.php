@@ -77,10 +77,10 @@
 <form action="">
     <table class="status">
         <tr>
-            <td colspan="2"><strong><?php echo($_SESSION['email'] . " (" . $_SESSION['id'] . ")"); ?></strong></td>
+            <td colspan="3"><strong><?php echo($_SESSION['email'] . " (" . $_SESSION['id'] . ")"); ?></strong></td>
         </tr>
         <tr>
-            <td><input type="checkbox" name="register" value="true" disabled checked>&nbsp;&nbsp;&nbsp;<b>Register</b></td>
+            <td><input type="checkbox" name="register" value="true" disabled checked></td><td><b>Register</b></td>
             <td>
                 <div class="container" style="text-align:left;background-color:white;width:500px;">
                     <div id="showMe1" class="well" style="display: none;">
@@ -92,9 +92,8 @@
                 </div><!--container-->
             </td>
         </tr>
-
         <tr>
-            <td><input type="checkbox" name="activate" value="true" disabled >&nbsp;&nbsp;&nbsp;<b>Activate</b></td>
+            <td><input type="checkbox" name="activate" value="true" <?php if(isset($accounts[0]["units"])){ if($users[0]["active"]==1){echo("checked");}} ?> disabled ></td><td><b>Activate</b></td>
             <td>
                 <div class="container" style="text-align:left;background-color:white;width:500px;">
                     <div id="showMe2" class="well" style="display: none;">
@@ -109,7 +108,7 @@
         </tr>
 
         <tr>
-            <td><input type="checkbox" name="fund" value="true" disabled >&nbsp;&nbsp;&nbsp;<b>Fund</b></td>
+            <td><input type="checkbox" name="fund" value="true" <?php if(isset($accounts[0]["units"])){if($accounts[0]["units"]>0){echo("checked");}} ?> disabled ></td><td><b>Fund</b></td>
             <td>
                 <div class="container" style="text-align:left;background-color:white;width:500px;">
                     <div id="showMe3" class="well" style="display: none;">
@@ -139,7 +138,7 @@
         </tr>
 
         <tr>
-            <td><input type="checkbox" name="trade" value="true" disabled >&nbsp;&nbsp;&nbsp;<b>Trade</b></td>
+            <td>&nbsp;</td><td><b>Trade</b></td>
             <td>
 
                 <div class="container" style="text-align:left;background-color:white;width:500px;">
