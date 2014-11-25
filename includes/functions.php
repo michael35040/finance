@@ -219,20 +219,9 @@ function sanatize($type, $var)
 {
 	if($type=='phone')
 	{
-	        $var = str_replace("-", '', $var); //replace these symbols that are commonly typed with phone numbers.
-	        $var = str_replace(".", '', $var);
-	        $var = str_replace(",", '', $var);
-	        $var = str_replace(" ", '', $var);
-	        $var = str_replace("(", '', $var);
-	        $var = str_replace(")", '', $var);
-	        $var = str_replace("&", '', $var);
-	        //$var = str_replace("/", '', $var);
-	        //$var = str_replace("\\", '', $var);
-	        //$var = str_replace("|", '', $var);
-	        //$var = str_replace("'"), "", $var);
-	        //$var = str_replace('"'), '', $var);
-	        if (!is_numeric($var)) { apologize("Phone must be numeric!");} //if quantity is numeric	
-
+        $var = preg_replace("/[^0-9]/","", $var);
+        if (!is_numeric($var)) { apologize("Phone must be numeric!");} //if quantity is numeric
+            $var=(int)$var;
 	}
 	if($type=='address')
 	{ //only alpha numeric, space, period, and comma allowed.
