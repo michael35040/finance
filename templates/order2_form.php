@@ -162,7 +162,7 @@ foreach ($types as $type) {
     <form action="order2.php" method="post" name="<?php echo($type["name"]); ?>"
           oninput="
                     quantityAmount.value=quantity.value;
-t                   otalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($type["var"]); ?>)).toFixed(2);"
+                    totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($type["var"]); ?>)).toFixed(2);"
           onclick="
               quantityAmount.value=quantity.value;
               totalAmount.value=parseFloat(parseFloat(quantity.value)*parseFloat(<?php echo($type["var"]); ?>)).toFixed(2);"
