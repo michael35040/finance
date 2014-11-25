@@ -407,7 +407,7 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
         <td colspan="1"><?php echo(number_format($asset["userlocked"], 0, ".", ",")) ?></td>
         <td colspan="1"><?php echo(number_format(($asset["userlocked"]+$asset["userportfolio"]), 0, ".", ",")) ?></td>
         <td colspan="1"><?php echo(number_format($asset["control"], 0, ".","")) ?>%</td>
-        <td colspan="1"><?php echo($unitsymbol . number_format((($asset["userlocked"]+$asset["userportfolio"])*$asset["price"]), 0, ".", ",")) ?></td>
+        <td colspan="1"><?php echo($unitsymbol . number_format((($asset["userlocked"]+$asset["userportfolio"])*$asset["price"]), 2, ".", ",")) ?></td>
     </tr>
 </tbody>
 </table>
