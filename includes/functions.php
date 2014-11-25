@@ -265,7 +265,7 @@ function sanatize($type, $var)
 	}
 	if($type=='email') //side, type, etc.
 	{	
-		isValidEmail($var, true);
+		if (isValidEmail($var, true)==false) { apologize("Invalid email address!");}
 	}
 	
        return($var);
