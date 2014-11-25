@@ -77,6 +77,9 @@
 <form action="">
     <table class="status">
         <tr>
+            <td colspan="2"><strong><?php echo($_SESSION['email'] . " (" . $_SESSION['id'] . ")"); ?></strong></td>
+        </tr>
+        <tr>
             <td><input type="checkbox" name="register" value="true" disabled checked>&nbsp;&nbsp;&nbsp;<b>Register</b></td>
             <td>
                 <div class="container" style="text-align:left;background-color:white;width:500px;">

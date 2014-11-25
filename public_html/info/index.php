@@ -133,7 +133,7 @@ Open orders can be canceled if they have not yet been matched and a trade execut
 							<section>
 								<h3>INFORMATION</h3>
 								<ul class="alt">
-									<li><a href="#">Register</a></li>
+									<li><a href="#">Register</a></li><!--Open an Account Process; 1 page registration, activation, funding-->
 									<li><a href="#">Funding</a></li>
 									<li><a href="#">Exchange</a></li>
 								</ul>

@@ -57,7 +57,7 @@
             {
                 title: '<?php echo($symbol); ?> - TRADES/DAY',
                 hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-                vAxis: {title: 'Price(avg) & Volume(k)', minValue: 0},
+                vAxis: {title: 'Price(avg) & Volume(k)', minValue: 0}
                 //height: 500,
                 
             };
@@ -95,7 +95,7 @@
             {
                 title: '<?php echo($symbol); ?> - TRADES',
                 hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-                vAxis: {title: 'Price & Quantity', minValue: 0},
+                vAxis: {title: 'Price & Quantity', minValue: 0}
                 //height: 500,
 
             };
@@ -150,7 +150,7 @@
             {
                 title: '<?php echo($symbol); ?> - ORDERBOOK',
                 hAxis: {title: 'Price',  titleTextStyle: {color: '#333'}},
-                vAxis: {title: 'Quantity', minValue: 0, isStacked: true},
+                vAxis: {title: 'Quantity', minValue: 0, isStacked: true}
                // height: 500,
 
             };
@@ -202,7 +202,7 @@
                 //legend: 'none',
                 //pieSliceText: 'percentage' //'label', 'percentage', 'value', 'none'
                 //width: 400,
-                height: 500,
+                height: 500
                 //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
 
             };
@@ -216,6 +216,96 @@
             /////////////////
             //END CHART
             ////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //////////
+            //CHART 4
+            //ORDERBOOK V2 BID ASK WALL
+            //////////
+            var data4 = google.visualization.arrayToDataTable([
+                <?php
+
+                echo("['Date', 'Bids', 'Asks'],"); // ['Year', 'Sales', 'Expenses'],
+                //SQL QUERY FOR ALL TRADES
+                $bquantity=0; $i=0;
+                $bidsG2=[];
+                foreach ($bidsGroup as $order)	// for each of user's stocks
+                { $i++;
+                    $date = 0;
+                    $order["price"];
+                    $bquantity = $bquantity+$order["quantity"];
+                    $order["quantity"] = $bquantity;
+                    $bidsG2[$i]=$order;
+                }
+                $bidsGroupChart = array_reverse($bidsG2); //so it will be in correct ASC order for chart
+                foreach ($bidsGroupChart as $order)	// for each of user's stocks
+                {
+                    $date = 0;
+                    $price = number_format(($order["price"]), 2, '.', '');
+                    $quantity =  number_format(($order["quantity"]), 2, '.', '');
+                    echo("['" . $price . "', " . $quantity .  ", " . $date . "],");
+                }
+
+                $aquantity=0;
+                foreach ($asksGroup as $order)	// for each of user's stocks
+                {
+                    $date = 0;
+                    $price = number_format(($order["price"]), 2, '.', '');
+                    $aquantity2 = $order["quantity"];
+                    $aquantity = ($aquantity + $aquantity2);
+                    $aquantity =  number_format(($aquantity), 2, '.', '');
+                    echo("['" . $price . "', " . $date .  ", " . $aquantity . "],");
+                }
+
+                ?>
+            ]);
+            var options4 =
+            {
+                title: '<?php echo($symbol); ?> - BID ASK WALL',
+                hAxis: {title: 'Price',  titleTextStyle: {color: '#333'}},
+                vAxis: {title: 'Quantity', minValue: 0, isStacked: true}
+                // height: 500,
+
+            };
+            var chart4 = new google.visualization.SteppedAreaChart(document.getElementById('chart_div4'));
+
+            chart4.draw(data4, options4);
+            //////////
+            //END CHART 3A V2
+            ////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //echo(var_dump(get_defined_vars()));
@@ -277,6 +367,26 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="panel panel-primary"> <!--success info primary danger warning -->
     <!-- Default panel contents -->
     <div class="panel-heading">YOUR ACCOUNT</div>
@@ -302,6 +412,15 @@ if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPr
 </tbody>
 </table>
     </div><!--panel-primary your account-->
+
+
+
+
+
+
+
+
+
 
 
 
@@ -367,6 +486,37 @@ if($trades != null)
 
 </table>
     </div><!--panel-primary trades-->
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary"> <!--success info primary danger warning -->
+    <!-- Default panel contents -->
+    <div class="panel-heading">ORDERBOOK (BID-ASK WALL)</div>
+    <table class="table">
+        <thead>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <div id="chart_div4" style="overflow:hidden;">
+            </td>
+        </tr>
+        </tbody>
+
+
+    </table>
+
+</div><!--panel-primary orderbook-->
+
 
 
 
@@ -490,9 +640,7 @@ if($trades != null)
 </tr><!--orderbook bids row-->
 <tr><!--orderbook asks row-->
 <td colspan="3">
-    
-    
-    
+
     <div class="panel panel-danger">
     <!-- Default panel contents -->
     <div class="panel-heading">TOP ASKS</div>
@@ -533,6 +681,13 @@ if($trades != null)
 </tr><!--orderbook asks row-->
 </table><!--orderbook table-->
 </div><!--panel-primary orderbook-->
+
+
+
+
+
+
+
 
 
 
@@ -587,4 +742,13 @@ if($trades != null)
 </table>
 
 </div><!--panel-primary orderbook-->
+
+
+
+
+
+
+
+
+
 

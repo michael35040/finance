@@ -31,8 +31,8 @@ function sanatize($type, $var)
 	}
     if($type=='wholenumber')
     {
-        if ($var<0){ apologize("$var must be positive!");} //if quantity is numeric
-        if (preg_match("/^\d+$/", $var) == false) { apologize("The $var must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
+        if ($var<0){ apologize("Must be positive number!");} //if quantity is numeric
+        if (preg_match("/^\d+$/", $var) == false) { apologize("Must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
         if (!is_int($var)){ apologize("$var must be numeric!");} //ctype_digit will return false on negative and decimals
     }
 	if($type=='quantity')

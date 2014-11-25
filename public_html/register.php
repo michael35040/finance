@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $region = $_POST["region"]; //state
     $region = sanatize("alphabet", $region);
     
-    $zip = $_POST["zip"];
+    @$zip = (int)$_POST["zip"];
     $zip = sanatize("wholenumber", $zip);
 
     $phone = $_POST["phone"];
@@ -73,6 +73,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 $password = generate_hash($password); //generate blowfish hash from functions.php
 if (strlen($password) != 60) { apologize("Invalid password configuration."); }  // The hashed pwd should be 60 characters long. If it's not, something really odd has happened
 
+
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP')):
+    { $ipaddress = getenv('HTTP_CLIENT_IP'); }
+    elseif(getenv('HTTP_X_FORWARDED_FOR')):
+    { $ipaddress = getenv('HTTP_X_FORWARDED_FOR'); }
+    elseif(getenv('HTTP_X_FORWARDED')):
+    { $ipaddress = getenv('HTTP_X_FORWARDED'); }
+    elseif(getenv('HTTP_FORWARDED_FOR')):
+    { $ipaddress = getenv('HTTP_FORWARDED_FOR'); }
+    elseif(getenv('HTTP_FORWARDED')):
+    { $ipaddress = getenv('HTTP_FORWARDED'); }
+    elseif(getenv('REMOTE_ADDR')):
+    { $ipaddress = getenv('REMOTE_ADDR'); }
+    else:
+    { $ipaddress = 'UNKNOWN'; }
+    endif;
+
+
 query("SET AUTOCOMMIT=0");
 query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
@@ -86,7 +105,10 @@ $transaction = 'LOAN'; //for listing on history
 
 $now = time(); //get current time in unix seconds
 			//UPDATE USERS FOR USER
-if (query("INSERT INTO users (email, fname, lname, address, city, region, zip, phone, question, answer, password, last_login, registered, fails) VALUES(?, ?, ?, ?, ?, 0)", $email, $fname, $lname, $address, $city, $region, $zip, $phone, $question, $answer, $password, $now, $now) === false) 
+if (query("
+        INSERT INTO users (email, fname, lname, address, city, region, zip, phone, question, answer, password, registered, last_login, ip, fails, active)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        $email, $fname, $lname, $address, $city, $region, $zip, $phone, $question, $answer, $password, $now, $now, $ipaddress, 0, 0) === false)
 { 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");
@@ -98,7 +120,7 @@ $id = $rows[0]["id"]; //sets sql query to var
 $_SESSION["id"] = $rows[0]["id"]; //generate session id
 $_SESSION["email"] = $email;
 
-if (query("INSERT INTO accounts (id, units, loan, rate) VALUES(?, ?, ?, ?)", $id, $initialunits, $neginitialunits, $loanrate) === false) 
+if (query("INSERT INTO accounts (id, units, loan, rate, approved) VALUES(?, ?, ?, ?, ?)", $id, $initialunits, $neginitialunits, $loanrate, 0) === false)
 { 
 	query("ROLLBACK"); //rollback on failure
 	query("SET AUTOCOMMIT=1");
@@ -166,7 +188,7 @@ if (query("INSERT INTO login (id, ip, success_fail) VALUES (?, ?, ?)", $id, $ipa
 query("COMMIT;"); //If no errors, commit changes
 query("SET AUTOCOMMIT=1");
 
-redirect("activation.php");
+redirect("status.php");
 //apologize("You have successfully registered. Now your account needs to be activated.");
      
      

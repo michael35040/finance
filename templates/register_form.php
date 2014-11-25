@@ -37,9 +37,18 @@
 </style>
 
 <h2 class="form-signin-heading" style="text-shadow: 1px 1px 5px #000;">Please register</h2>
+<img src="captcha.php" />
+<br>
+
 <div class="container">
 <form id="reg" action="register.php" method="post">
     <fieldset>
+
+
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></span>
+            <input class="form-control" name="captcha" placeholder="Captcha # (Above)" type="text" maxlength="4" required/>
+        </div>
 
         <div class="input-group">
         <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
@@ -182,10 +191,6 @@
         <input class="form-control" name="confirmation" placeholder="Password Confirmation" type="password" maxlength="31" required/>
         </div>
 
-        <div class="input-group">
-        <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></span>
-        <input class="form-control" name="captcha" placeholder="Captcha # (Below)" type="text" maxlength="4" required/>
-        </div>
 
                 <span class="input-group-btn">
 
@@ -195,8 +200,6 @@
                 </button>
                 </span>
 <br>
-        <img src="captcha.php" />
-        <br>
         <br>
         <a href="login.php" class="btn btn-primary btn-sm">
             <span class="glyphicon glyphicon-off"></span>

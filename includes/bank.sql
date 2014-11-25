@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `units` decimal(65,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
   `loan` decimal(65,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
   `rate` decimal(65,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
-  `approved` int(11) NOT NULL DEFAULT '0',
+  `approved` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -48,9 +48,8 @@ TRUNCATE TABLE `accounts`;
 --
 
 INSERT INTO `accounts` (`id`, `units`, `loan`, `rate`, `approved`) VALUES
-(1, '1000000.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', 1),
-(2, '1000000.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', 1),
-(3, '1000000.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', 1);
+(1, '1000000.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', 1);
+
 
 -- --------------------------------------------------------
 
@@ -260,10 +259,7 @@ TRUNCATE TABLE `users`;
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `phone`, `registered`, `last_login`, `ip`, `fails`, `active`) VALUES
-(1, 'a', 'a@a', '$2a$11$ZIiqSdMJtMeW4xWTTQl7zueNNfjw1w.qpoJ03E5AGRfSttU7GJQn2', 1, 1414334245, 2014, '143.85.101.19', 0, 1),
-(2, 'b', 'b@b', '$2a$11$lorocz4ub9L3hy27HldufufXp3P6Z0lGb7YEO4ya3jx77SZTCtz7C', 1, 1414334258, 2014, '143.85.101.19', 0, 1),
-(3, 'c', 'c@c', '$2a$11$/AP5qMI/WiZjv9QlH7yuWufMEuEFpUmxPb2EEkW10yLL0i7Pyj5aS', 1, 1415298354, 2014, '143.85.101.19', 0, 1);
+INSERT INTO `bank`.`users` (`id`, `email`, `fname`, `lname`, `address`, `city`, `region`, `zip`, `phone`, `question`, `answer`, `password`, `registered`, `last_login`, `ip`, `fails`, `active`) VALUES ('1', 'a@pulwar.com', 'a', 'pulwar', 'pulwar st', 'City of Pulwar', 'Alabama', '11111', '1', 'What?', 'Yeah!', '$2a$11$ZIiqSdMJtMeW4xWTTQl7zueNNfjw1w.qpoJ03E5AGRfSttU7GJQn2', '1414334245', '1414334245', '143.85.101.19', '0', '1');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
