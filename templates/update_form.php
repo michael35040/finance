@@ -168,12 +168,17 @@ $answer = $userinfo[0]["answer"];
 
             <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                <input class="form-control" name="password" placeholder="Password" type="password" maxlength="31" required/>
+                <input class="form-control" name="newpassword" placeholder="Only if Changin-New Password" type="password" maxlength="31"/>
             </div>
 
             <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                <input class="form-control" name="confirmation" placeholder="Password Confirmation" type="password" maxlength="31" required/>
+                <input class="form-control" name="newconfirmation" placeholder="Only if Changing-New Confirmation" type="password" maxlength="31"/>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                <input class="form-control" name="password" placeholder="Old Password" type="password" maxlength="31" required/>
             </div>
 
             <button  type="reset" id="clear" class="btn btn-lg btn-primary btn-block">CLEAR</button>
