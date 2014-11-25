@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             //if (crypt($_POST["password"], $row["password"]) == $row["password"])
         //NEW METHOD
             if (password_verify($_POST["password"], $row["password"])) {
-                remember that user's now logged in by storing user's ID in session
+                //remember that user's now logged in by storing user's ID in session
                 $_SESSION["id"] = $row["id"];
                 $_SESSION["email"] = $row["email"];
 
