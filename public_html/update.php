@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 				{
 					$newpassword = $_POST["newpassword"];
 					$newpassword = generate_hash($newpassword); //generate blowfish hash from functions.php
-					if (strlen($password) != 60) { apologize("Invalid password configuration."); } // The hashed pwd should be 60 characters long. If it's not, something really odd has happened
+					if (strlen($newpassword) != 60) { apologize("Invalid password configuration."); } // The hashed pwd should be 60 characters long. If it's not, something really odd has happened
 					query("UPDATE users SET password=?", $newpassword);
 					
 				}
