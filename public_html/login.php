@@ -38,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     // validate submission
     if (empty($_POST["email"])) { apologize("You must provide your email address."); }
     if (empty($_POST["password"])) { apologize("You must provide your password."); }
-    if (isValidEmail($_POST["email"], true)==false) { apologize("Invalid email address!");}
     // query database for user
     $rows = query("SELECT * FROM users WHERE email = ?", $_POST["email"]);
 
