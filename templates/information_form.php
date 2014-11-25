@@ -242,7 +242,7 @@
                 //SQL QUERY FOR ALL TRADES
                 $bquantity=0; $i=0;
                 $bidsG2=[];
-                foreach ($bidsGroup as $order)	// for each of user's stocks
+                foreach ($bidsGroupAll as $order)	// for each of user's stocks
                 { $i++;
                     $date = 0;
                     $order["price"];
@@ -260,7 +260,7 @@
                 }
 
                 $aquantity=0;
-                foreach ($asksGroup as $order)	// for each of user's stocks
+                foreach ($asksGroupAll as $order)	// for each of user's stocks
                 {
                     $date = 0;
                     $price = number_format(($order["price"]), 2, '.', '');

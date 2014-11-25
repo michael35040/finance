@@ -10,10 +10,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	$row = $rows[0];
 	if (count($rows) == 1) // if we found user, check password
 	{
-		$row = $rows[0];  // first (and only) row
+
+
+
+        $row = $rows[0];  // first (and only) row
 		if (crypt($_POST["password"], $row["password"]) == $row["password"])// compare password of user's input against password that's in database
 		{
-                	$change = $_POST["change"];
+
+
+            $fname = $_POST["fname"];
+            $lname = $_POST["lname"];
+            $email = $_POST["email"];
+            $address = $_POST["address"];
+            $city = $_POST["city"];
+            $region = $_POST["region"];
+            $zip = $_POST["zip"];
+            $phone = $_POST["phone"];
+            $question = $_POST["question"];
+            $answer = $_POST["answer"];
+
+
+            
+
+            if (query("
+        INSERT INTO users (email, fname, lname, address, city, region, zip, phone, question, answer, password, registered, last_login, ip, fails, active)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    $email, $fname, $lname, $address, $city, $region, $zip, $phone, $question, $answer, $password, $now, $now, $ipaddress, 0, 0) === false)
+            {
+                query("ROLLBACK"); //rollback on failure
+                query("SET AUTOCOMMIT=1");
+                apologize("Email already in use. #1");
+            }
+
+
+
+
+            $change = $_POST["change"];
 			if ($change == 'email')
 			{
 				if (empty($_POST["email"]) || empty($_POST["confirmation"])){apologize("You must provide a email.");}
@@ -45,7 +77,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	else {apologize("Sorry, user information incorrect.");}//to many rows
 }  //post
 else{
-	$userinfo = query("SELECT email, phone FROM users WHERE id = ( ? )", $_SESSION["id"]);
+	$userinfo = query("SELECT * FROM users WHERE id = ( ? )", $_SESSION["id"]);
 	render("update_form.php", ["title" => "Update", "userinfo" => $userinfo]);}// else render form
+
+
+/*
+$fname = $userinfo[0]["fname"];
+$lname = $userinfo[0]["lname"];
+$email = $userinfo[0]["email"];
+$address = $userinfo[0]["address"];
+$city = $userinfo[0]["city"];
+$region = $userinfo[0]["region"];
+$zip = $userinfo[0]["zip"];
+$phone = $userinfo[0]["phone"];
+$question = $userinfo[0]["question"];
+$answer = $userinfo[0]["answer"];
+*/
 
 ?>
