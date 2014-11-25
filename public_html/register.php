@@ -64,15 +64,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
      
 //NEW METHOD
-//password_hash($password, PASSWORD_DEFAULT);
 /* Use the bcrypt algorithm (default as of PHP 5.5.0). Note that this constant is designed to change over time as new and stronger algorithms are added to PHP. 
      For that reason, the length of the result from using this identifier can change over time. Therefore, it is recommended to store the result in a database 
      column that can expand beyond 60 characters (255 characters would be a good choice). */
+/**
+ * In this case, we want to increase the default cost for BCRYPT to 12.
+ * Note that we also switched to BCRYPT, which will always be 60 characters.
+ */
+$options = [
+    'cost' => 12,
+];
+$password = password_hash($password, , PASSWORD_BCRYPT, $options);
+
+
 
 //OLD METHOD
+/*
 $password = generate_hash($password); //generate blowfish hash from functions.php
 if (strlen($password) != 60) { apologize("Invalid password configuration."); }  // The hashed pwd should be 60 characters long. If it's not, something really odd has happened
-
+*/
 
     $ipaddress = '';
     if (getenv('HTTP_CLIENT_IP')):
