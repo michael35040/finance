@@ -11,7 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	if (count($rows) == 1) // if we found user, check password
 	{
         	$row = $rows[0];  // first (and only) row
-		if (crypt($_POST["password"], $row["password"]) == $row["password"])// compare password of user's input against password that's in database
+		//if (crypt($_POST["password"], $row["password"]) == $row["password"])// compare password of user's input against password that's in database
+		if (password_verify($_POST["password"], $row["password"])) 
 		{
 			$fname = $_POST["fname"];
 			$fname = sanatize("alphabet", $fname);
