@@ -41,7 +41,8 @@ foreach ($allAssets as $row)		// for each of user's stocks
         if(empty($volume[0]["price"])){$volume[0]["price"]=0;}
     $asset["volume"] = $volume[0]["quantity"];
     $asset["avgprice"] = $volume[0]["price"];
-        $trades = query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $asset["symbol"]);	  // query user's portfolio
+        $trades = query("SELECT price FROM trades WHERE (symbol=? AND (type='limit' OR type='market')) ORDER BY uid DESC LIMIT 0,1", $asset["symbol"]);
+        //$trades = query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $asset["symbol"]);	  // query user's portfolio
         if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
     $asset["price"] = $trades[0]["price"]; //stock price per share
     $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
