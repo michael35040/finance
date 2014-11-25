@@ -240,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone` int(20) NOT NULL,
   `question` varchar(63) NOT NULL,
   `answer` varchar(63) NOT NULL,
-  `password` char(128) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `registered` int(15) NOT NULL,
   `last_login` int(15) NOT NULL,
   `ip` varchar(15) NOT NULL,
