@@ -55,13 +55,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 			if(!empty($_POST["newpassword"]))
 			{
-				if (empty($_POST["newpassword"]) || empty($_POST["newconfirmation"])) { apologize("If selecting a new password, re-type it in the new confirmation box."); }
+				if (empty($_POST["newconfirmation"])) { apologize("If selecting a new password, re-type it in the new confirmation box."); }
 				if($_POST["newpassword"]==$_POST["newconfirmation"])
 				{
 					$newpassword = $_POST["newpassword"];
 					$newpassword = generate_hash($newpassword); //generate blowfish hash from functions.php
 					if (strlen($newpassword) != 60) { apologize("Invalid password configuration."); } // The hashed pwd should be 60 characters long. If it's not, something really odd has happened
-					query("UPDATE users SET password=?", $newpassword);
+					query("UPDATE users SET password=? WHERE id=?", $newpassword, $_SESSION["id"]);
 					
 				}
 				else{apologize("New password and new confirmation do not match!");}
