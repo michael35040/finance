@@ -111,12 +111,12 @@ $quantity = 1; //admins id, will appear on the inital deposit as counterparty id
 $neginitialunits = ($initialunits * -1); //initial deposit
 $transaction = 'LOAN'; //for listing on history
 
-$now = time(); //get current time in unix seconds
+//$now = time(); //get current time in unix seconds
 			//UPDATE USERS FOR USER
 if (query("
-        INSERT INTO users (email, fname, lname, address, city, region, zip, phone, question, answer, password, registered, last_login, ip, fails, active)
+        INSERT INTO users (email, fname, lname, address, city, region, zip, phone, question, answer, password, ip, fails, active)
         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-        $email, $fname, $lname, $address, $city, $region, $zip, $phone, $question, $answer, $password, $now, $now, $ipaddress, 0, 0) === false)
+        $email, $fname, $lname, $address, $city, $region, $zip, $phone, $question, $answer, $password, $ipaddress, 0, 0) === false)
 { 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");
