@@ -196,6 +196,9 @@ if (query("INSERT INTO login (id, ip, success_fail) VALUES (?, ?, ?)", $id, $ipa
 query("COMMIT;"); //If no errors, commit changes
 query("SET AUTOCOMMIT=1");
 
+    //random number to prevent user hitting back and resubmitting multiple regs.
+    $_SESSION["code"]=mt_rand(0,9999);
+
 redirect("status.php");
 //apologize("You have successfully registered. Now your account needs to be activated.");
      
