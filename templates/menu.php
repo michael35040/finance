@@ -49,6 +49,7 @@
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
+                            <li><a href="admin.php">Dashboard</a></li>
                             <li><a href="transfer.php">Transfer</a></li>
                             <li><a href="admin_deposit.php">Deposit </a></li>
                             <li><a href="admin_withdraw.php">Withdraw </a></li>
@@ -56,7 +57,6 @@
                             <li><a href="admin_users.php">Users </a></li>
                             <li><a href="admin_offering.php">Offering </a></li>
                             <li><a href="admin_update.php">Update </a></li>
-                            <li><a href="_admin.php">Test</a></li>
                         </ul>
                     </div>
                 </div>

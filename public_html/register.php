@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if(!ctype_digit($_POST["captcha"])){apologize("Incorrect captcha input!");}
     $code=$_SESSION["code"];
     $captcha=(int)$_POST["captcha"];
-    if($code!=$captcha){echo("Incorrect captcha!"); exit(); }
+    if($code!=$captcha){apologize("Incorrect captcha!"); exit(); }
     // else($code===$captcha){echo("Correct captcha!"); exit(); }
 
     $fname = $_POST["fname"];
@@ -115,7 +115,7 @@ $transaction = 'LOAN'; //for listing on history
 			//UPDATE USERS FOR USER
 if (query("
         INSERT INTO users (email, fname, lname, address, city, region, zip, phone, question, answer, password, ip, fails, active)
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         $email, $fname, $lname, $address, $city, $region, $zip, $phone, $question, $answer, $password, $ipaddress, 0, 0) === false)
 { 
 		query("ROLLBACK"); //rollback on failure

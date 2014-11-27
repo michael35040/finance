@@ -229,7 +229,7 @@ TRUNCATE TABLE `trades`;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(15) unsigned NOT NULL AUTO_INCREMENT COMMENT 'user id',
+  `id` int(9) NOT NULL AUTO_INCREMENT COMMENT 'user id',
   `email` varchar(63) NOT NULL,
   `fname` varchar(63) NOT NULL,
   `lname` varchar(63) NOT NULL,
@@ -240,15 +240,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone` int(20) NOT NULL,
   `question` varchar(63) NOT NULL,
   `answer` varchar(63) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `registered` int(15) NOT NULL,
-  `last_login` int(15) NOT NULL,
+  `password` char(128) NOT NULL,
+  `registered` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ip` varchar(15) NOT NULL,
-  `fails` int(1) NOT NULL DEFAULT '0' COMMENT '# of failed login attempts \r\n\r\nsince last success',
-  `active` int(1) NOT NULL DEFAULT '0' COMMENT '0-inactive or 1-active',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  `fails` int(1) NOT NULL DEFAULT '0' COMMENT 'failed login attempts',
+  `active` int(1) NOT NULL DEFAULT '0' COMMENT '0 inactive or 1 active',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Truncate table before insert `users`
@@ -259,7 +258,11 @@ TRUNCATE TABLE `users`;
 -- Dumping data for table `users`
 --
 
-INSERT INTO `bank`.`users` (`id`, `email`, `fname`, `lname`, `address`, `city`, `region`, `zip`, `phone`, `question`, `answer`, `password`, `registered`, `last_login`, `ip`, `fails`, `active`) VALUES ('1', 'a@pulwar.com', 'a', 'pulwar', 'pulwar st', 'City of Pulwar', 'Alabama', '11111', '1', 'What?', 'Yeah!', '$2a$11$ZIiqSdMJtMeW4xWTTQl7zueNNfjw1w.qpoJ03E5AGRfSttU7GJQn2', '1414334245', '1414334245', '143.85.101.19', '0', '1');
+INSERT INTO `users` (`email`, `fname`, `lname`, `address`, `city`, `region`, `zip`, `phone`, `question`, `answer`, `password`, `registered`, `last_login`, `ip`, `fails`, `active`) VALUES
+('a@pulwar.com', 'a', 'pulwar', 'pulwar st 12 po #box 123', 'CityofPulwar', 'IA', 111112, 12, 'What?', 'Yeah!', 
+'$2y$12$nWKo8MgSUp1nqVQvEqL3VuO6o8HKFI4DP6sgnwXFRcB85CkjlRc9y', '2014-11-07 07:00:00', 2014, '143.85.101.19', 0, 1);
+
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

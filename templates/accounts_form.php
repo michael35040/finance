@@ -1,4 +1,15 @@
-
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Email</td>
+        <td>ID</td>
+    </tr>
+    <tr>
+        <td>Notifications</td>
+        <td>Email</td>
+        <td>ID</td>
+    </tr>
+</table>
 
 <table class="table table-condensed  table-bordered" >
 

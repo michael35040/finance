@@ -1,12 +1,73 @@
 <?php
 
 require("../includes/config.php");
-//$id = $_SESSION["id"];
-//if ($id != 1) { apologize("Unauthorized!");}
+$id = $_SESSION["id"];
+if ($id != 1) { apologize("Unauthorized!");}
+else
+{
+
 
 //if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 //$assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC"); // query assets
 $title = "Dashboard";
+
+
+$assets = query("SELECT symbol FROM assets"); // query database for user
+if(isset($_POST['admin'])) {
+
+    if ($_POST['admin'] == 'delete') {
+        removeAsset($_POST['symbol']);
+    }
+    if ($_POST['admin'] == 'all') {
+        clear_all();
+    }
+    if ($_POST['admin'] == 'test') {
+        test();
+    }
+    if ($_POST['admin'] == 'orderbook') {
+        clear_orderbook();
+    }
+    if ($_POST['admin'] == 'trades') {
+        clear_trades();
+    }
+    if ($_POST['admin'] == 'createstocks') {
+        try {
+            createStocks();
+        } catch (Exception $e) {
+            echo 'Message: ' . $e->getMessage();
+        }
+
+    }
+    if ($_POST['admin'] == 'randomorders') {
+        try {
+            $randomOrders = randomOrders();
+        } catch (Exception $e) {
+            echo('Error: ' . $e->getMessage() . '<br>');
+        }         //catch exception
+    }
+    if ($_POST['admin'] == 'process') {
+        if (!isset($_POST['symbol'])) {
+            apologize("Please select a symbol!");
+        }
+        if ($_POST["symbol"] == 'ALL') {
+            try {
+                $processOrderbook = processOrderbook();
+            } catch (Exception $e) {
+                echo('Error: ' . $e->getMessage() . '<br>');
+            }         //catch exception
+        } else {
+            try {
+                $processOrderbook = processOrderbook($_POST["symbol"]);
+            } catch (Exception $e) {
+                echo('Error: ' . $e->getMessage() . '<br>');
+            }         //catch exception
+        }
+        echo($processOrderbook . " orders processed.");
+    }
+}
+
+
+
 
 //TOTAL
 $count = query("SELECT COUNT(id) AS total FROM users"); // query database for user
@@ -85,13 +146,13 @@ require("../templates/header.php");
 
 
 
-<table border="3">
+<table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
 
 <tr>
-  <td colspan="5">ACTIVITY</td>
+  <td colspan="5" class="success">ACTIVITY</td>
 </tr>
-<tr>
-  <th>Period</th><th>Users</th><th>Assets</th><th>Orders</th><th>Trades</th>
+<tr class="active">
+  <td>Period</td><td>Users</td><td>Assets</td><td>Orders</td><td>Trades</td>
 </tr>
 
 <tr>
@@ -100,24 +161,21 @@ require("../templates/header.php");
   <td><?php echo(number_format($dash["assetsday"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["ordersday"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradesday"], 0, '.', ',')); ?></td>
-</tr> 
-
+</tr>
 <tr>
   <td>7 Days</td>
   <td><?php echo(number_format($dash["usersweek"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["assetsweek"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["ordersweek"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradesweek"], 0, '.', ',')); ?></td>
-</tr> 
-
+</tr>
 <tr>
   <td>30 Days</td>
   <td><?php echo(number_format($dash["usersmonth"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["assetsmonth"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["ordersmonth"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradesmonth"], 0, '.', ',')); ?></td>
-</tr> 
-
+</tr>
 <tr>
   <td>Total</td>
   <td><?php echo(number_format($dash["userstotal"], 0, '.', ',')); ?></td>
@@ -125,55 +183,85 @@ require("../templates/header.php");
   <td><?php echo(number_format($dash["orderstotal"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradestotal"], 0, '.', ',')); ?></td>
 </tr>  
+</table>
 
+<table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
 <tr>
-  <td colspan="5">STOCK SUPPLY</td>
+  <td colspan="5" class="success">STOCK SUPPLY</td>
 </tr>
-<tr>
+<tr class="active">
   <td colspan="2"></td>
   <td>IN PORTFOLIO</td>
   <td>OPEN ASKS</td>
   <td>TOTAL SUPPLY</td>
 </tr>
 <tr>
-  <td colspan="2">STOCK SUPPLY</td>
+  <td colspan="2"></td>
   <td><?php echo(number_format($StockSupply, 0, '.', ',')); ?></td>
   <td><?php echo(number_format($StockSupplyAsk, 0, '.', ',')); ?></td>
   <td><?php echo(number_format($StockTotal, 0, '.', ',')); ?></td>
 </tr>
 
 <tr>
-  <td colspan="5">MONEY SUPPLY</td>
+  <td colspan="5" class="success">MONEY SUPPLY</td>
 </tr>
-<tr>
+<tr class="active">
   <td colspan="2"></td>
   <td>IN ACCOUNTS</td>
   <td>OPEN BIDS</td>
   <td>TOTAL SUPPLY</td>
 </tr>
 <tr>
-  <td colspan="2">STOCK SUPPLY</td>
+  <td colspan="2"></td>
   <td><?php echo(number_format($MoneySupply, 2, '.', ',')); ?></td>
   <td><?php echo(number_format($MoneySupplyBids, 2, '.', ',')); ?></td>
   <td><?php echo(number_format($moneySupplyTotal, 2, '.', ',')); ?></td>
 </tr>
 
-  
-  
-  
-
-
-
-
-
-
-
-
-
 </table>
+
+
+
+<form action="admin.php"  class="symbolForm" method="post"   >
+    <fieldset>
+        <table class="table table-condensed table-striped table-bordered" id="admin" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+            <tr><th colspan=2>TESTING</th></tr>
+            <tr><td><input type="radio" name="admin" value="all"></td>          <td>Clear All</td></tr>
+            <tr><td><input type="radio" name="admin" value="test"></td>          <td>New Environment</td></tr>
+            <tr><td><input type="radio" name="admin" value="orderbook"></td>    <td>Clear Orderbook</td></tr>
+            <tr><td><input type="radio" name="admin" value="trades"></td>       <td>Clear Trades</td></tr>
+            <tr><td><input type="radio" name="admin" value="createstocks"></td> <td>Create Stocks</td></tr>
+            <tr><td><input type="radio" name="admin" value="randomorders"></td> <td>Random Orders</td></tr>
+            <tr><td><input type="radio" name="admin" value="process"></td>      <td>Process Orders*</td></tr>
+            <tr><td><input type="radio" name="admin" value="delete"></td>      <td>Delete Stocks*</td></tr>
+
+            <tr><td colspan="2">        <select name="symbol"  class="form-control" >
+                        <?php
+                        if (empty($assets)) {
+                            echo("<option value=' '>No Assets</option>");
+                        } else {
+                            //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
+                            echo ('    <option value="ALL">-All Assets-</option>');
+                            foreach ($assets as $asset) {
+                                $symbol = $asset["symbol"];
+                                echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
+                            }
+                        }
+                        ?>
+                    </select></td></tr>
+
+            <tr><td colspan='2'>
+                    <button type="submit" class="btn btn-info"><b> SUBMIT </b></button></span>
+                </td></tr>
+        </table>
+
+    </fieldset>
+</form>
 
 
 
 <?php
 require("../templates/footer.php");
+
+} //if adminid
 ?>

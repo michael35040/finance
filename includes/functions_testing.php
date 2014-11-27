@@ -12,6 +12,10 @@ function randomOrders()
     $type='limit';
     $ordersCreated=0; //total created
 
+    //count number of users
+    $userCheck = query("SELECT count(id) as number FROM users");
+    $numberUsers=$userCheck[0]["number"];
+
     $symbols =	query("SELECT symbol FROM assets ORDER BY symbol ASC");
     foreach ($symbols as $symbol) { $symbol=$symbol['symbol'];
         //apologize(var_dump(get_defined_vars()));
@@ -19,20 +23,22 @@ function randomOrders()
         //while ($i < 26) {
         $randomOrders=0;
         echo("<br><b>[" . $symbol . "] Placing Orders...</b>");
-        while ($randomOrders < 10) //number of orders
+        while ($randomOrders < 50) //number of orders
         {
             $sideNum = mt_rand(1, 2);
             if ($sideNum == 1) {
                 $side = 'a';
+                //$price = (mt_rand(1, 1000)/100);
                 $price = mt_rand(1, 400)*$divisor;
             } else {
                 $side = 'b';
+                //$price = (mt_rand(1, 1000)/100);
                 $price = mt_rand(1, 400)*$divisor;
             }
             if ($type == 'market') {$price = 0;}
 
             $quantity = mt_rand(1, 100);
-            $id = mt_rand(1, 3);
+            $id = mt_rand(1, $numberUsers);
 
 
             try

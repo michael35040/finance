@@ -6,8 +6,8 @@
 /////////////////////////////////
 function getCommission($total)
 {
-    $divisor = 0.25;
-    $commission = 0.05;
+    require 'constants.php'; //for $divisor
+
     $commissionAmount = $total * $commission; //ie 13.6875 = 273.75 * 0.05  //(5qty * $54.75)
 
      //FOR ROUNDING COMMISSION TO .25
@@ -16,12 +16,13 @@ function getCommission($total)
     $commissionAmount = floor($commissionAmount); //ie 55 = ceil(54.75)
     $commissionAmount = $commissionAmount/4; //ie 13.75
     //check to ensure it is to the nearest quarter
+    $divisor = 0.25;
     $commissionModulus = fmod($commissionAmount, $divisor);
     if($commissionModulus != 0){throw new Exception("Commission Amount Error. $divisor / $commissionAmount");} //checks to see if quarter increment
 
-    //should need it but just in case.
-    $commissionAmount = round($commissionAmount, 2);
 
+    //should need it but just in case.
+    $commissionAmount = round($commissionAmount, $decimalplaces);
     return($commissionAmount);
 }
 
@@ -263,6 +264,8 @@ function processOrderbook($symbol=null)
     //if($totalTime != 0){$speed=$totalProcessed/$totalTime;}
     //else{$speed=0;}
     //echo("<br><br><b>Processed " . $totalProcessed . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec</b>");
+
+    query("UPDATE accounts SET units = ROUND(units, 2)");
     return($totalProcessed);
 
 }
@@ -274,7 +277,9 @@ function processOrderbook($symbol=null)
 function orderbook($symbol)
 { //   apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
    // echo("<br>[" . $symbol . "] Computing orderbook...");
-    $adminid = 1;
+    //$adminid = 1;
+
+    require 'constants.php'; //for $divisor
 
     //PROCESS MARKET ORDERS
     if(empty($symbol)){throw new Exception("No symbol selected!");}
@@ -333,7 +338,6 @@ function orderbook($symbol)
 
             //TRADE AMOUNT
             $tradeAmount = ($tradePrice * $tradeSize);
-            $tradeAmount = round($tradeAmount, 2);
             if ($tradeAmount == 0) {throw new Exception("Trade Amount is 0");}
             //COMMISSION AMOUNT
             $commissionAmount = getCommission($tradeAmount);
@@ -379,6 +383,10 @@ function orderbook($symbol)
             { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update Accounts Failure: #11a"); }
             }
 
+            //ROUND ALL USERS UNITS FOR ANY ROUNDING ERRORS
+            //query("UPDATE accounts SET units = ROUND(units, ?) WHERE (id = ? OR id = ?)", $decimalplaces, $topAskUser, $adminid);
+            //query("UPDATE accounts SET units = ROUND(units, ?)", $decimalplaces);
+
             ///////////
             //PORTFOLIO
             ///////////
@@ -416,21 +424,19 @@ function orderbook($symbol)
             ///////////
             if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $topBidUser, $topAskUser, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount, $tradeType, $topBidUID, $topAskUID) === false)  { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21a"); }
 
-
-            ///////////
-            //HISTORY-NOT NEEDED AS UPDATED IN TRADES
-            ///////////
-            //UPDATE HISTORY BUYER (COMMISSION AND TRADE TOTAL)
-            //if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topBidUser, 'BUY', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21b"); }
-            //UPDATE HISTORY SELLER (NO COMMISSION AND TRAD EAMOUNT)
-            //if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topAskUser, 'SELL', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21c"); }
-            //UPDATE HISTORY ADMIN (COMMISSION AND TRADE TOTAL)
-            //if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, 'COMMISSION', $symbol, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21d"); }
-
             //ALL THINGS OKAY, COMMIT TRANSACTIONS
             query("COMMIT;"); //If no errors, commit changes
             query("SET AUTOCOMMIT=1");
 
+            //FIND TOP OF ORDERBOOK
+            $topOrders = OrderbookTop($symbol); //try catch
+            $asks = $topOrders["asks"];
+            $bids = $topOrders["bids"];
+            $topAskPrice = (float)$asks[0]["price"];
+            $topBidPrice = (float)$bids[0]["price"];
+            $tradeType = $topOrders["tradeType"];
+
+            /*
             //LAST TRADE INFO TO RETURN ON FUNCTION
             if ($topAskType == 'market') { $topAskPrice = 'market'; } //null//$tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
             if ($topBidType == 'market') { $topBidPrice = 'market'; } //null// $tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
@@ -455,7 +461,6 @@ function orderbook($symbol)
             $orderbook['tradePrice'] = $tradePrice;
             $orderbook['tradeType'] = $tradeType;
 
-            /*
             echo("<br><br><b>Executed: Trade Price: " . number_format($orderbook['tradePrice'],2,".",",") . " (" . $orderbook['tradeType'] . ")</b>");
             echo("<br>Ask Price: " . number_format($orderbook['topAskPrice'],2,".",","));
             echo("<br>Ask UID: " . $orderbook['topAskUID']); //order id; unique id
@@ -475,13 +480,6 @@ function orderbook($symbol)
             echo("<br>Bid User: " . $orderbook['topBidUser']);
             */
 
-            //FIND TOP OF ORDERBOOK
-            $topOrders = OrderbookTop($symbol); //try catch
-            $asks = $topOrders["asks"];
-            $bids = $topOrders["bids"];
-            $topAskPrice = (float)$asks[0]["price"];
-            $topBidPrice = (float)$bids[0]["price"];
-            $tradeType = $topOrders["tradeType"];
 
 
 
@@ -492,6 +490,7 @@ function orderbook($symbol)
         else {throw new Exception("ERROR!");}
 
     } //BOTTOM of WHILE STATEMENT
+
 
     $orderbook['orderProcessed'] = $orderProcessed;
     return($orderbook);
@@ -564,7 +563,7 @@ function updateSymbol($symbol, $newSymbol, $userid, $name, $type, $url, $rating,
 //Public Offering (initial)
 ////////////////////////////////////
 function publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description)
-{   $adminid = 1;
+{   require 'constants.php'; //for $divisor
 $transaction='PO'; //public offering
 if (empty($symbol)) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("You must enter symbol."); }
 $symbol = strtoupper($symbol); //cast to UpperCase
@@ -668,7 +667,8 @@ return("$symbol public offering successful!");
 //Public Offering (follow on)
 ////////////////////////////////////
 function publicOffering2($symbol, $userid, $issued, $fee)
-{   $adminid = 1;
+{   require 'constants.php'; //for $divisor
+
     $transaction='PO'; //public offering
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
@@ -748,15 +748,17 @@ function publicOffering2($symbol, $userid, $issued, $fee)
 //PLACE ORDER
 ////////////////////////////////////
 function placeOrder($symbol, $type, $side, $quantity, $price, $id)
-{   //require 'constants.php'; //for $divisor
-    $divisor = 0.25;
+{   require 'constants.php'; //for $divisor
 
-    if (empty($symbol) || empty($quantity) ||  empty($type) || empty($side)) { throw new Exception("Please fill all required fields (Symbol, Quantity, Type, Side)."); } //check to see if empty
-    if ($type=="limit"){ if(empty($price)){throw new Exception("Limit order requires price");}}
+    if (empty($symbol) || empty($quantity) ||  empty($type) || empty($price) || empty($side)) { throw new Exception("Please fill all required fields (Symbol, Quantity, Type, Side)."); } //check to see if empty
+    //if ($type=="limit") { if(empty($price)){throw new Exception("Limit order requires price");}}
 
     //QUERY TO SEE IF SYMBOL EXISTS
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
     if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange!");} //row count
+    //QUERY TO SEE IF USER EXISTS
+    $userCheck = query("SELECT count(id) as number FROM users WHERE id =?", $id);
+    if ($userCheck[0]["number"] != 1) {throw new Exception("No user exists!");} //row count
     //CHECKS INPUT
     if (preg_match("/^\d+$/", $quantity) == false) { throw new Exception("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
     if (!ctype_alnum($symbol)) {throw new Exception("Symbol must be alphanumeric!");}
@@ -772,14 +774,16 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 
     if($type=='limit')
     {
+
+
+        //$divisor = 0.25;
         //CHECK PRICE
-        if (empty($price)) { throw new Exception("Limit orders require price."); }
         $priceModulus = fmod($price, $divisor); //$divisor set in constants
         if($priceModulus != 0){throw new Exception("Not correct increment. $divisor");} //checks to see if quarter increment
         if (!is_float($price) && !is_int($price)) { throw new Exception("Price is not a number");} //if quantity is numeric
 
-        //NEW VARS FOR DB INSERT
 
+        //NEW VARS FOR DB INSERT
         if($side=='a')//limit
         {   $transaction = 'ASK';
             $tradeAmount = 0;
@@ -801,16 +805,17 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
         if($side=='b')//limit
         {   $transaction = 'BID';
             $tradeAmount = $price * $quantity;        // calculate total value (stock's price * quantity)
-            $tradeAmount = round($tradeAmount, 2);  //redundant...
 
             //QUERY CASH & UPDATE
             $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
-            $userUnits = (float)$unitsQ[0]['units'];	//convert array from query to value
+            if(isset($unitsQ[0]['units'])){$userUnits = (float)$unitsQ[0]['units'];}	//convert array from query to value
+            else{query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Buyer has no funds");}
             //WILL CONDUCT ANOTHER CHECK AT ORDERBOOK PROCESS TO ENSURE USER UNITS > 0 and ENOUGH IN units
             if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Bid order failed. Trade amount (" . $tradeAmount . ") excceds user (" . $id . ") funds (" . $userUnits . ")." ); }
             if ($userUnits < 0) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Bid order failed. User (" . $id . ") has negative balance: " . $userUnits);}
             else
-            {   if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false)
+            {
+                if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false)
             {   query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 2");
             }
             }
@@ -851,7 +856,6 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             //NEW VARS FOR DB INSERT
             $bidFunds = query("SELECT units FROM accounts WHERE id = ?", $id);
             $tradeAmount = $bidFunds[0]["units"]; //market orders lock all of the users funds
-            $tradeAmount = round($tradeAmount, 2);  //redundant...
 
             //QUERY CASH & UPDATE
             $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
@@ -860,7 +864,8 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             if ($userUnits < 0) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. " . $id . " has negative balance: " . $userUnits);}
             elseif ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Trade amount (" . $tradeAmount . ") excceds user (" . $id . ") funds (" . $userUnits . ")." ); }
             elseif($userUnits >= $tradeAmount)
-            {   if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4");}
+            {
+                if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4");}
             }
             else{  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 5");}
         }
@@ -874,7 +879,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 
     }
 
-
+    //for floating point imprecision
 
     //INSERT INTO ORDERBOOK
     if (query("INSERT INTO orderbook (symbol, side, type, price, total, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $tradeAmount, $quantity, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert Orderbook Failure"); }
@@ -886,6 +891,8 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     query("COMMIT;"); //If no errors, commit changes
     query("SET AUTOCOMMIT=1");
 
+    //ROUND ALL USERS UNITS FOR ANY ROUNDING ERRORS
+    query("UPDATE accounts SET units = ROUND(units, ?) WHERE id = ?", $decimalplaces, $id);
     return array($transaction, $symbol, $tradeAmount, $quantity);
 }
 

@@ -16,6 +16,7 @@ $sitename = 'PULWAR'; //leave a space afterwards
 $unittype = "USD";
 $unitdescription = "United States Dollar ";
 $unitsymbol = "$";
+$decimalplaces = 2;
 //grams  &cent;  &micro; &euro; &pound; &yen; &sect;
 
 
