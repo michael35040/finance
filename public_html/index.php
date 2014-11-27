@@ -10,7 +10,7 @@ session_start();
 
 if(isset($_SESSION["id"]))
 //{ apologize(var_dump(get_defined_vars())); }//dump all variables if i hit error
-{ header('Location: accounts.php');}
+{ header('Location: portfolio.php');}
 else
 //{ apologize(var_dump(get_defined_vars())); }//dump all variables if i hit error
 { header('Location: info/index.php');}

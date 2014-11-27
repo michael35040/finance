@@ -118,8 +118,10 @@ $count = query("SELECT COUNT(uid) AS total FROM assets"); // query database for 
 $dash["assetstotal"] = $count[0]["total"];
 $count = query("SELECT COUNT(uid) AS total FROM orderbook"); // query database for user
 $dash["orderstotal"] = $count[0]["total"];
-$count = query("SELECT COUNT(uid) AS total FROM trades"); // query database for user
+$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades"); // query database for user
 $dash["tradestotal"] = $count[0]["total"];
+$dash["valuetotal"] = $count[0]["value"];
+$dash["volumetotal"] = $count[0]["volume"];
 //MONTH
 $count = query("SELECT COUNT(id) AS total FROM users WHERE (`registered`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())"); // query database for user
 $dash["usersmonth"] = $count[0]["total"];
@@ -127,8 +129,10 @@ $count = query("SELECT COUNT(uid) AS total FROM assets WHERE (`date`  BETWEEN DA
 $dash["assetsmonth"] = $count[0]["total"];
 $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())"); // query database for user
 $dash["ordersmonth"] = $count[0]["total"];
-$count = query("SELECT COUNT(uid) AS total FROM trades WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())"); // query database for user
+$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())"); // query database for user
 $dash["tradesmonth"] = $count[0]["total"];
+    $dash["valuemonth"] = $count[0]["value"];
+    $dash["volumemonth"] = $count[0]["volume"];
 //WEEK
 $count = query("SELECT COUNT(id) AS total FROM users WHERE (`registered`  BETWEEN DATE_SUB(now(), INTERVAL 7 DAY) AND NOW())"); // query database for user
 $dash["usersweek"] = $count[0]["total"];
@@ -136,8 +140,11 @@ $count = query("SELECT COUNT(uid) AS total FROM assets WHERE (`date`  BETWEEN DA
 $dash["assetsweek"] = $count[0]["total"];
 $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 7 DAY) AND NOW())"); // query database for user
 $dash["ordersweek"] = $count[0]["total"];
-$count = query("SELECT COUNT(uid) AS total FROM trades WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 7 DAY) AND NOW())"); // query database for user
+$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 7 DAY) AND NOW())"); // query database for user
 $dash["tradesweek"] = $count[0]["total"];
+    $dash["valueweek"] = $count[0]["value"];
+    $dash["volumeweek"] = $count[0]["volume"];
+
 //DAY
 $count = query("SELECT COUNT(id) AS total FROM users WHERE (`registered`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())"); // query database for user
 $dash["usersday"] = $count[0]["total"];
@@ -145,8 +152,10 @@ $count = query("SELECT COUNT(uid) AS total FROM assets WHERE (`date`  BETWEEN DA
 $dash["assetsday"] = $count[0]["total"];
 $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())"); // query database for user
 $dash["ordersday"] = $count[0]["total"];
-$count = query("SELECT COUNT(uid) AS total FROM trades WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())"); // query database for user
+$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())"); // query database for user
 $dash["tradesday"] = $count[0]["total"];
+    $dash["valueday"] = $count[0]["value"];
+    $dash["volumeday"] = $count[0]["volume"];
 
 
 
@@ -180,10 +189,10 @@ require("../templates/header.php");
 
 <table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
 <tr>
-  <td colspan="5" class="success"><strong>ACTIVITY</strong></td>
+  <td colspan="7" class="success"><strong>ACTIVITY</strong></td>
 </tr>
 <tr class="active">
-  <td>PERIOD</td><td>USERS</td><td>ASSETS</td><td>ORDERS</td><td>TRADES</td>
+  <td>PERIOD</td><td>USERS</td><td>ASSETS</td><td>ORDERS</td><td>TRADES</td><td>TRD QTY VOL</td><td>TRD VALUE</td>
 </tr>
 
 <tr>
@@ -192,6 +201,8 @@ require("../templates/header.php");
   <td><?php echo(number_format($dash["assetsday"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["ordersday"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradesday"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["volumeday"], 0, '.', ',')); ?></td>
+  <td><?php echo($unitsymbol . number_format($dash["valueday"], 2, '.', ',')); ?></td>
 </tr>
 <tr>
   <td>7 Days</td>
@@ -199,6 +210,9 @@ require("../templates/header.php");
   <td><?php echo(number_format($dash["assetsweek"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["ordersweek"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradesweek"], 0, '.', ',')); ?></td>
+    <td><?php echo(number_format($dash["volumeweek"], 0, '.', ',')); ?></td>
+    <td><?php echo($unitsymbol . number_format($dash["valueweek"], 2, '.', ',')); ?></td>
+
 </tr>
 <tr>
   <td>30 Days</td>
@@ -206,6 +220,9 @@ require("../templates/header.php");
   <td><?php echo(number_format($dash["assetsmonth"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["ordersmonth"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradesmonth"], 0, '.', ',')); ?></td>
+    <td><?php echo(number_format($dash["volumemonth"], 0, '.', ',')); ?></td>
+    <td><?php echo($unitsymbol . number_format($dash["valuemonth"], 2, '.', ',')); ?></td>
+
 </tr>
 <tr>
   <td>Total</td>
@@ -213,6 +230,9 @@ require("../templates/header.php");
   <td><?php echo(number_format($dash["assetstotal"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["orderstotal"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradestotal"], 0, '.', ',')); ?></td>
+    <td><?php echo(number_format($dash["volumetotal"], 0, '.', ',')); ?></td>
+    <td><?php echo($unitsymbol . number_format($dash["valuetotal"], 2, '.', ',')); ?></td>
+
 </tr>  
 </table>
 

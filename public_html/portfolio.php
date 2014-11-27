@@ -5,6 +5,37 @@ require("../includes/config.php");
 
 $id = $_SESSION["id"]; //get id from session
 
+
+
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
+{
+    if (isset($_POST["cancel"])) {
+        $uid = $_POST["cancel"];
+        if ($uid == 'ALL') { //CANCEL ALL USERS ORDERS
+            if (query("UPDATE notification SET status = '0' WHERE id = ?", $id) === false) {
+                apologize("Unable to cancel all notifications!");
+            }
+
+        } else { //CANCEL ONLY 1 ORDER
+            if (!ctype_digit($uid)) {
+                apologize("Invalid notice #");
+            }
+            if (query("UPDATE notification SET status = '0' WHERE uid = ?", $uid) === false) {
+                apologize("Unable to cancel notification!");
+            }
+
+        }
+    }
+}
+
+
+
+
+
+
 $bidLocked =	query("SELECT SUM(total) AS total FROM orderbook WHERE (id=? AND side='b')", $id);	  // query user's portfolio
 $bidLocked = $bidLocked[0]["total"]; //shares trading
 if($bidLocked==null){$bidLocked=0;}

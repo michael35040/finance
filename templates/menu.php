@@ -9,7 +9,6 @@
                     </button>
 
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="accounts.php">Accounts</a></li>
                         <li><a href="portfolio.php">Portfolio</a></li>
                         <li><a href="history.php">History</a></li>
                         <li><a href="update.php">Update</a></li>
