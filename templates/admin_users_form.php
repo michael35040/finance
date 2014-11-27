@@ -31,8 +31,8 @@
             echo("<td>" . htmlspecialchars($row["email"]) . "</td>");
           //  echo("<td>" . htmlspecialchars($row["password"]) . "</td>"); 
             echo("<td>" . htmlspecialchars($row["phone"]) . "</td>");
-            echo("<td>" . gmdate('Y-m-d H:i:s', $row["last_login"]) . "</td>"); 
-            echo("<td>" . gmdate('Y-m-d H:i:s', $row["registered"]) . "</td>"); 
+            echo("<td>" . (date('Y-m-d H:i:s', strtotime($row["last_login"])) . "</td>"));
+            echo("<td>" . (date('Y-m-d H:i:s', strtotime($row["registered"])) . "</td>"));
             echo("<td>" . htmlspecialchars($row["fails"]) . "</td>");
             echo("<td>" . htmlspecialchars($row["ip"]) . "</td>"); 
             echo("<td>" . number_format($row["units"],2,".",",") . "</td>");

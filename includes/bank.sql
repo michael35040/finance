@@ -263,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `answer` varchar(63) NOT NULL,
   `password` char(128) NOT NULL,
   `registered` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_login` timestamp NULL DEFAULT NULL,
   `ip` varchar(15) NOT NULL,
   `fails` int(1) NOT NULL DEFAULT '0' COMMENT 'failed login attempts',
   `active` int(1) NOT NULL DEFAULT '0' COMMENT '0 inactive or 1 active',

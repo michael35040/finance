@@ -114,8 +114,8 @@ $transaction = 'LOAN'; //for listing on history
 //$now = time(); //get current time in unix seconds
 			//UPDATE USERS FOR USER
 if (query("
-        INSERT INTO users (email, fname, lname, address, city, region, zip, phone, question, answer, password, ip, fails, active)
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        INSERT INTO users (email, fname, lname, address, city, region, zip, phone, question, answer, password, ip, fails, active, last_login)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())",
         $email, $fname, $lname, $address, $city, $region, $zip, $phone, $question, $answer, $password, $ipaddress, 0, 0) === false)
 { 
 		query("ROLLBACK"); //rollback on failure

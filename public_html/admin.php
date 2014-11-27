@@ -44,6 +44,9 @@ if(isset($_POST['admin'])) {
         }
 
     }
+    if ($_POST['admin'] == 'populate') {
+        populatetrades();
+    }
     if ($_POST['admin'] == 'randomorders') {
         try {
             $randomOrders = randomOrders();
@@ -75,59 +78,78 @@ if(isset($_POST['admin'])) {
 
 
 
+
+
+
+    //TOP MONEY USERS
+    $searchusersquery = query("SELECT * FROM users, accounts WHERE users.id=accounts.id ORDER BY units DESC LIMIT 0,10 ;");
+    foreach ($searchusersquery as $row)		// for each of user
+    {
+        $info["id"] = $row["id"];
+        $info["email"] = $row["email"];
+        $info["password"] = $row["password"];
+        $info["phone"] = $row["phone"];
+        $info["last_login"] = $row["last_login"];
+        $info["registered"] = $row["registered"];
+        $info["fails"] = $row["fails"];
+        $info["ip"] = $row["ip"];
+        $accounts = query("SELECT units, loan, rate FROM accounts WHERE id = ?", $info["id"]);
+        $info["units"] = $accounts[0]["units"];
+        $info["loan"] = $accounts[0]["loan"];
+        $info["rate"] = $accounts[0]["rate"];
+        $bidLocked =	query("SELECT SUM(total) AS total FROM orderbook WHERE (id=? AND side='b')", $info["id"]);	  // query user's portfolio
+        $info["locked"] = $bidLocked[0]["total"]; //shares trading
+        $topusers[] = $info;
+    }
+
+
+
+
+
+
+
+
+
+
 //TOTAL
 $count = query("SELECT COUNT(id) AS total FROM users"); // query database for user
 $dash["userstotal"] = $count[0]["total"];
-
 $count = query("SELECT COUNT(uid) AS total FROM assets"); // query database for user
 $dash["assetstotal"] = $count[0]["total"];
-
 $count = query("SELECT COUNT(uid) AS total FROM orderbook"); // query database for user
 $dash["orderstotal"] = $count[0]["total"];
-
 $count = query("SELECT COUNT(uid) AS total FROM trades"); // query database for user
 $dash["tradestotal"] = $count[0]["total"];
-
 //MONTH
 $count = query("SELECT COUNT(id) AS total FROM users WHERE (`registered`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())"); // query database for user
 $dash["usersmonth"] = $count[0]["total"];
-
 $count = query("SELECT COUNT(uid) AS total FROM assets WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())"); // query database for user
 $dash["assetsmonth"] = $count[0]["total"];
-
 $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())"); // query database for user
 $dash["ordersmonth"] = $count[0]["total"];
-
 $count = query("SELECT COUNT(uid) AS total FROM trades WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())"); // query database for user
 $dash["tradesmonth"] = $count[0]["total"];
-
-
 //WEEK
 $count = query("SELECT COUNT(id) AS total FROM users WHERE (`registered`  BETWEEN DATE_SUB(now(), INTERVAL 7 DAY) AND NOW())"); // query database for user
 $dash["usersweek"] = $count[0]["total"];
-
 $count = query("SELECT COUNT(uid) AS total FROM assets WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 7 DAY) AND NOW())"); // query database for user
 $dash["assetsweek"] = $count[0]["total"];
-
 $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 7 DAY) AND NOW())"); // query database for user
 $dash["ordersweek"] = $count[0]["total"];
-
 $count = query("SELECT COUNT(uid) AS total FROM trades WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 7 DAY) AND NOW())"); // query database for user
 $dash["tradesweek"] = $count[0]["total"];
-
-
 //DAY
 $count = query("SELECT COUNT(id) AS total FROM users WHERE (`registered`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())"); // query database for user
 $dash["usersday"] = $count[0]["total"];
-
 $count = query("SELECT COUNT(uid) AS total FROM assets WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())"); // query database for user
 $dash["assetsday"] = $count[0]["total"];
-
 $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())"); // query database for user
 $dash["ordersday"] = $count[0]["total"];
-
 $count = query("SELECT COUNT(uid) AS total FROM trades WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())"); // query database for user
 $dash["tradesday"] = $count[0]["total"];
+
+
+
 
 
 //MONEY SUPPLY
@@ -146,6 +168,10 @@ if(empty($bidTotal[0]["total"])){$bidTotal[0]["total"]=0;}
 $MoneySupplyBids = $bidTotal[0]["total"];
 $moneySupplyTotal = $MoneySupply+$MoneySupplyBids;
 
+
+
+
+
 //apologize(var_dump(get_defined_vars())); //dump all variables anywhere (displays in header)
 require("../templates/header.php");
 ?>
@@ -153,12 +179,11 @@ require("../templates/header.php");
 
 
 <table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
-
 <tr>
   <td colspan="5" class="success"><strong>ACTIVITY</strong></td>
 </tr>
 <tr class="active">
-  <td>Period</td><td>Users</td><td>Assets</td><td>Orders</td><td>Trades</td>
+  <td>PERIOD</td><td>USERS</td><td>ASSETS</td><td>ORDERS</td><td>TRADES</td>
 </tr>
 
 <tr>
@@ -224,6 +249,59 @@ require("../templates/header.php");
 
 
 
+
+
+    <!--font color='#FF0000'></font-->
+    <table class="table table-condensed table-striped table-bordered" id="topusers" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+        <!-- HEADER ROW -->
+        <thead>
+        <tr>
+            <td colspan="11" class="success"><strong>TOP USERS</strong></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="active">
+            <td>ID</td>
+            <td>EMAIL</td>
+            <!--th>Password</th-->
+            <td>PHONE</td>
+            <td>LAST LOGIN</td>
+            <td>REGISTERED</td>
+            <td>FAILS</td>
+            <td>IP</td>
+            <td><?php echo($unittype) //set in finance.php ?></td>
+            <td>LOCKED</td>
+            <td>LOAN</td>
+            <td>RATE</td>
+        </tr>
+
+        <?php
+        foreach ($topusers as $row)
+        {
+            echo("<tr>");
+            echo("<td>" . number_format($row["id"],0,".",",") . "</td>");
+            echo("<td>" . htmlspecialchars($row["email"]) . "</td>");
+            //  echo("<td>" . htmlspecialchars($row["password"]) . "</td>");
+            echo("<td>" . htmlspecialchars($row["phone"]) . "</td>");
+            echo("<td>" . (date('Y-m-d H:i:s', strtotime($row["last_login"])) . "</td>"));
+            echo("<td>" . (date('Y-m-d H:i:s', strtotime($row["registered"])) . "</td>"));
+            echo("<td>" . htmlspecialchars($row["fails"]) . "</td>");
+            echo("<td>" . htmlspecialchars($row["ip"]) . "</td>");
+            echo("<td>" . number_format($row["units"],2,".",",") . "</td>");
+            echo("<td>" . number_format($row["locked"],2,".",",") . "</td>");
+            echo("<td>" . number_format($row["loan"],2,".",",") . "</td>");
+            echo("<td>" . number_format(($row["rate"]*100),2,".",",") . "%</td>");
+            echo("</tr>");
+        }
+        ?>
+        </tbody>
+    </table>
+
+
+
+
+
+
 <form action="admin.php"  class="symbolForm" method="post"   >
     <fieldset>
         <table class="table table-condensed table-striped table-bordered" id="admin" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
@@ -235,6 +313,7 @@ require("../templates/header.php");
             <tr><td><input type="radio" name="admin" value="createstocks"></td> <td>Create Stocks</td></tr>
             <tr><td><input type="radio" name="admin" value="randomorders"></td> <td>Random Orders</td></tr>
             <tr><td><input type="radio" name="admin" value="process"></td>      <td>Process Orders*</td></tr>
+            <tr><td><input type="radio" name="admin" value="populate"></td>      <td>Populate</td></tr>
             <tr><td><input type="radio" name="admin" value="delete"></td>      <td>Delete Stocks*</td></tr>
             <tr><td colspan="2">        <select name="symbol"  class="form-control" >
                         <?php
@@ -250,7 +329,7 @@ require("../templates/header.php");
                         }
                         ?>
                     </select></td></tr>
-            <tr><td><input type="radio" name="admin" value="notice"></td>      <td><input type="number" name="user" placeholder="User"><input type="text" name="notice" placeholder="Notice"></td></tr>
+            <tr><td><input type="radio" name="admin" value="notice"></td>      <td>Notice:<br><input type="number" name="user" placeholder="User"><input type="text" name="notice" placeholder="Notice"></td></tr>
             <tr><td colspan='2'>
                     <button type="submit" class="btn btn-info"><b> SUBMIT </b></button></span>
                 </td></tr>

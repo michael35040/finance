@@ -20,6 +20,8 @@ function randomOrders()
     foreach ($symbols as $symbol) { $symbol=$symbol['symbol'];
         //apologize(var_dump(get_defined_vars()));
 
+
+
         //while ($i < 26) {
         $randomOrders=0;
         echo("<br><b>[" . $symbol . "] Placing Orders...</b>");
@@ -29,31 +31,31 @@ function randomOrders()
             if ($sideNum == 1) {
                 $side = 'a';
                 //$price = (mt_rand(1, 1000)/100);
-                $price = mt_rand(1, 400)*$divisor;
+                $price = mt_rand(1, 400) * $divisor;
             } else {
                 $side = 'b';
                 //$price = (mt_rand(1, 1000)/100);
-                $price = mt_rand(1, 400)*$divisor;
+                $price = mt_rand(1, 400) * $divisor;
             }
-            if ($type == 'market') {$price = 0;}
+            if ($type == 'market') {
+                $price = 0;
+            }
 
             $quantity = mt_rand(1, 100);
             $id = mt_rand(1, $numberUsers);
 
 
-            try
-            {
+            try {
                 placeOrder($symbol, $type, $side, $quantity, $price, $id);
-                $total=$quantity*$price;
-                echo("<br>[ID:" .  $id . ", " . $symbol . ", " .  $type . ", " .  $side . ", $" .  $price . ", x" .  $quantity . ", Total: $" . $total . "]");
+                $total = $quantity * $price;
+                echo("<br>[ID:" . $id . ", " . $symbol . ", " . $type . ", " . $side . ", $" . $price . ", x" . $quantity . ", Total: $" . $total . "]");
                 $randomOrders++; //should be only 10 per symbol
                 $ordersCreated++; //total created
-            }
-                //catch exception
-            catch(Exception $e)
-            {
+            } //catch exception
+            catch (Exception $e) {
                 echo('<br>Error: [' . $symbol . '] ' . $e->getMessage());
             }
+
 
         }
         $symbol++; //up to 26 (Z)
@@ -74,6 +76,25 @@ function randomOrders()
 
 
 
+function populatetrades()
+{
+    $date=0;
+    while($date<3)
+    {
+        try {
+            $randomOrders = randomOrders();
+        } catch (Exception $e) {
+            echo('Error: ' . $e->getMessage() . '<br>');
+        }         //catch exception
+        try {
+            $processOrderbook = processOrderbook();
+        } catch (Exception $e) {
+            echo('Error: ' . $e->getMessage() . '<br>');
+        }
+        query("UPDATE trades SET date = DATE_SUB(date, INTERVAL 2 DAY)");
+        $date++;
+    }
+}
 
 function createStocks()
 {    include("constants.php");//for $divisor

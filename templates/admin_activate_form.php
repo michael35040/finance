@@ -1,7 +1,7 @@
 
 <table class="table table-condensed table-bordered">
 <tr class="success">
-  <td colspan="9" style="font-size:20px; text-align: center;">INACTIVE USERS</td>
+  <td colspan="2" style="font-size:20px; text-align: center;">INACTIVE USERS</td>
 </tr>
 <!--blank row breaker-->
 <tr class="active">
@@ -48,7 +48,7 @@ else
 
 <table class="table table-condensed table-bordered">
 <tr class="success">
-  <td colspan="9" style="font-size:20px; text-align: center;">ACTIVE USERS</td>
+  <td colspan="2" style="font-size:20px; text-align: center;">ACTIVE USERS</td>
 </tr>
 <!--blank row breaker-->
 <tr class="active">
