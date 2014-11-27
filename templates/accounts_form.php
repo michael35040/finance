@@ -1,15 +1,33 @@
-<table>
-    <tr>
-        <td>Name</td>
-        <td>Email</td>
-        <td>ID</td>
-    </tr>
-    <tr>
-        <td>Notifications</td>
-        <td>Email</td>
-        <td>ID</td>
-    </tr>
+<table class="table table-condensed  table-bordered" >
+<tr>
+        <td>Name: <?php echo(htmlspecialchars($fname . " " . $lname)); ?></td>
+        <td>Email: <?php echo(htmlspecialchars($email)); ?></td>
+        <td>ID: <?php echo(number_format($id, 0, '.', '')); ?></td>
+</tr>
+    </table>
+
+
+
+<table class="table table-striped table-condensed table-bordered " >
+    <?php
+
+    if(!empty($notifications)) {
+       ?><tr  class="danger"><td style="font-size:20px; text-align: center;">NOTIFICATIONS</td></tr><?php
+        foreach ($notifications as $notification) {
+            ?>
+            <tr>
+
+                <td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="accounts.php" name="cancel" value="<?php echo($notification["uid"]) ?>"><span class="glyphicon glyphicon-remove-circle"></span></button></form>
+                <strong>Notification: </strong>
+                    <?php echo(htmlspecialchars(
+                        "[" . date('Y-m-d H:i:s', strtotime($notification["date"])) . "] " .
+                        $notification["notice"])); ?></td>
+            </tr>
+        <?php
+        } //if foreach
+    } //isset ?>
 </table>
+
 
 <table class="table table-condensed  table-bordered" >
 
@@ -28,7 +46,7 @@
         if($units >= 0)
         {       ?>
             <tr>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($id); $i++; echo("-" . $i); ?></td>
                 <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td></td>
                 <td colspan="4"><?php echo($unitdescription); ?></td>
                 <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
@@ -40,7 +58,7 @@
         if($loan <0)
         {   ?>
             <tr>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($id); $i++; echo("-" . $i); ?></td>
                 <td><?php echo(strtoupper("LOAN")) //set in finance.php ?></td></td>
                 <td colspan="4">APR: <?php echo(htmlspecialchars(number_format($rate,2)));?>%</td>
                 <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
@@ -54,7 +72,7 @@
             ?>
 
             <tr>
-                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid);
+                <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($id);
                     $i++;
                     echo("-" . $i); ?></td>
                 <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>
@@ -84,3 +102,9 @@
     <!-- HEADER ROW -->
     
     </table>
+
+
+
+
+
+

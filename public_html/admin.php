@@ -12,9 +12,15 @@ else
 $title = "Dashboard";
 
 
+
 $assets = query("SELECT symbol FROM assets"); // query database for user
 if(isset($_POST['admin'])) {
 
+    if ($_POST['admin'] == 'notice') {
+        $user = ($_POST['user']);
+        $notice = ($_POST['notice']);
+        query("INSERT INTO notification (id, notice, status) VALUES (?, ?, ?)", $user, $notice, 1);
+    }
     if ($_POST['admin'] == 'delete') {
         removeAsset($_POST['symbol']);
     }
@@ -149,7 +155,7 @@ require("../templates/header.php");
 <table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
 
 <tr>
-  <td colspan="5" class="success">ACTIVITY</td>
+  <td colspan="5" class="success"><strong>ACTIVITY</strong></td>
 </tr>
 <tr class="active">
   <td>Period</td><td>Users</td><td>Assets</td><td>Orders</td><td>Trades</td>
@@ -187,32 +193,28 @@ require("../templates/header.php");
 
 <table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
 <tr>
-  <td colspan="5" class="success">STOCK SUPPLY</td>
+  <td colspan="3" class="success"><strong>STOCK SUPPLY</strong></td>
 </tr>
 <tr class="active">
-  <td colspan="2"></td>
   <td>IN PORTFOLIO</td>
   <td>OPEN ASKS</td>
   <td>TOTAL SUPPLY</td>
 </tr>
 <tr>
-  <td colspan="2"></td>
   <td><?php echo(number_format($StockSupply, 0, '.', ',')); ?></td>
   <td><?php echo(number_format($StockSupplyAsk, 0, '.', ',')); ?></td>
   <td><?php echo(number_format($StockTotal, 0, '.', ',')); ?></td>
 </tr>
 
 <tr>
-  <td colspan="5" class="success">MONEY SUPPLY</td>
+  <td colspan="3" class="success"><strong>MONEY SUPPLY</strong></td>
 </tr>
 <tr class="active">
-  <td colspan="2"></td>
   <td>IN ACCOUNTS</td>
   <td>OPEN BIDS</td>
   <td>TOTAL SUPPLY</td>
 </tr>
 <tr>
-  <td colspan="2"></td>
   <td><?php echo(number_format($MoneySupply, 2, '.', ',')); ?></td>
   <td><?php echo(number_format($MoneySupplyBids, 2, '.', ',')); ?></td>
   <td><?php echo(number_format($moneySupplyTotal, 2, '.', ',')); ?></td>
@@ -234,7 +236,6 @@ require("../templates/header.php");
             <tr><td><input type="radio" name="admin" value="randomorders"></td> <td>Random Orders</td></tr>
             <tr><td><input type="radio" name="admin" value="process"></td>      <td>Process Orders*</td></tr>
             <tr><td><input type="radio" name="admin" value="delete"></td>      <td>Delete Stocks*</td></tr>
-
             <tr><td colspan="2">        <select name="symbol"  class="form-control" >
                         <?php
                         if (empty($assets)) {
@@ -249,7 +250,7 @@ require("../templates/header.php");
                         }
                         ?>
                     </select></td></tr>
-
+            <tr><td><input type="radio" name="admin" value="notice"></td>      <td><input type="number" name="user" placeholder="User"><input type="text" name="notice" placeholder="Notice"></td></tr>
             <tr><td colspan='2'>
                     <button type="submit" class="btn btn-info"><b> SUBMIT </b></button></span>
                 </td></tr>

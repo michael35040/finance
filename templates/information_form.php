@@ -500,7 +500,7 @@ if($trades != null)
 
 <div class="panel panel-primary"> <!--success info primary danger warning -->
     <!-- Default panel contents -->
-    <div class="panel-heading">ORDERBOOK (BID-ASK WALL)</div>
+    <div class="panel-heading">ORDERBOOK</div>
     <table class="table">
         <thead>
         </thead>
@@ -530,7 +530,7 @@ if($trades != null)
 
 <div class="panel panel-primary">
 <!-- Default panel contents -->
-<div class="panel-heading">ORDERBOOK</div>
+<div class="panel-heading">ORDERBOOK (TOP)</div>
 <table class="table">
 <tr>
     <td style="width:10%">

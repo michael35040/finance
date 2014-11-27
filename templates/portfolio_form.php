@@ -206,7 +206,7 @@
     if($units >= 0)
     {       ?>
         <tr>
-            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
+            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($id); $i++; echo("-" . $i); ?></td>
             <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td></td>
             <td colspan="4"><?php echo($unitdescription); ?></td>
             <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
@@ -218,7 +218,7 @@
     if($loan <0)
     {   ?>
         <tr>
-            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid); $i++; echo("-" . $i); ?></td>
+            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($id); $i++; echo("-" . $i); ?></td>
             <td><?php echo(strtoupper("LOAN")) //set in finance.php ?></td></td>
             <td colspan="4">APR: <?php echo(htmlspecialchars(number_format($rate,2)));?>%</td>
             <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
@@ -232,7 +232,7 @@
         ?>
 
         <tr>
-            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($userid);
+            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($id);
                 $i++;
                 echo("-" . $i); ?></td>
             <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>

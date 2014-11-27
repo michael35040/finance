@@ -150,6 +150,27 @@ TRUNCATE TABLE `login`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notification`
+--
+
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE IF NOT EXISTS `notification` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(9) NOT NULL COMMENT 'userid',
+  `notice` varchar(255) NOT NULL,
+  `status` int(1) NOT NULL COMMENT '1 open or 0 close',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `notification`;
+--
+
+TRUNCATE TABLE `notification`;
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orderbook`
 --
 

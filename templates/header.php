@@ -112,14 +112,17 @@
 
                         <td>
                             <?php
-                            $users =query("SELECT id, email, active FROM users WHERE id = ?", $_SESSION["id"]);
-                            @$userid = $users[0]["id"];
+                            $users =query("SELECT id, email, fname, lname, active FROM users WHERE id = ?", $_SESSION["id"]);
+                            @$id = $users[0]["id"];
                             @$email = $users[0]["email"];
+                            @$fname = $users[0]["fname"];
+                            @$lname = $users[0]["lname"];
+
                             @$active = $users[0]["active"];
                             if($active==1)
                             {
                                 // query cash for template
-                                $accounts =	query("SELECT units, loan, rate, approved FROM accounts WHERE id = ?", $userid);	 //query db
+                                $accounts =	query("SELECT units, loan, rate, approved FROM accounts WHERE id = ?", $id);	 //query db
                                 @$units = (float)$accounts[0]["units"];
                                 @$loan = (float)$accounts[0]["loan"];
                                 @$rate = $accounts[0]["rate"];
