@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 			$region = $_POST["region"]; //state
 			$region = sanatize("alphabet", $region);
 			$zip = (int)$_POST["zip"];
-			$zip = sanatize("wholenumber", $zip);
+			$zip = sanatize("quantity", $zip);
 			$phone = $_POST["phone"];
 			$phone = sanatize("phone", $phone);
 			$answer = $_POST["answer"];
