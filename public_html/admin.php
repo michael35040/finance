@@ -36,24 +36,23 @@ $assets = query("SELECT symbol FROM assets"); // query database for user
 
 
 
-    if(isset($_POST['withdraw']) || isset($_POST['deposit'])) 
+    if(isset($_POST['transaction']))
     {
         //get variables
         if ( empty($_POST['quantity']) ||  empty($_POST['userid'])) { apologize("Please fill all required fields."); } //check to see if empty
         // if symbol or quantity empty
         $userid = sanatize('quantity', $_POST['userid']);
-        $quantity = sanatize('quantity', $_POST['quantity']);
-        $symbol = sanatize('alnum', $_POST['unittype']);
-        $transaction = 'DEPOSIT';
-        
-        if(isset($_POST['withdraw'])) 
+        $quantity = sanatize('price', $_POST['quantity']);
+        $transaction = $_POST['transaction'];
+        $symbol = $unittype;
+
+        if($transaction=="withdraw")
        {
             $totalq = query("SELECT units FROM accounts WHERE id = ?", $userid);
         	@$total = (float)$totalq[0]["units"]; //convert array to value
         	if ($quantity > $total)  //only allows user to deposit if they have less than
         	{ apologize("You only have " . number_format($total,2,".",",") . " to withdraw!"); }
         	$quantity = ($quantity*-1);
-        	$transaction = 'WITHDRAW';
        }
 
         // transaction information
@@ -70,58 +69,6 @@ $assets = query("SELECT symbol FROM assets"); // query database for user
     }
 
 
-
-
-    if(isset($_POST['transfer'])) 
-    {
-        //get variables
-    	$quantity = $_POST["quantity"];
-    	$userid = $_POST["userid"];
-    	if (empty($userid))	{apologize("You must enter the User ID of who you want to transfer funds to!");}
-    	if (empty($quantity)){apologize("You did not enter the amount to transfer!");}    //empty or a value of zero 0.
-    	//if (empty($userid) || empty($quantity)) //redundant check of either but already accomplished in the previous two args. not needed.
-    	//    {apologize("You must enter a user ID and enter a quantity.");}            
-    	// checks for whole integer
-    	if (!ctype_digit($userid)) 	{ apologize("User ID must be numeric!");}
-    	if (preg_match("/^\d+$/", $userid) == false) {apologize("You entered a negative number for user ID! A User ID should be a positve integer.");}
-    	if (preg_match("/^([0-9.]+)$/", $quantity) == false) {apologize("You submitted an invalid quantity. Please enter a positive number to transfer.");}
-    	if($quantity<0 || $userid<0){apologize("You entered a negative number!");}
-        if (!is_numeric($quantity)) { apologize("Invalid number"); }
-    	//if (!ctype_digit($quantity)){ apologize("User ID must be numeric!");} //gives error since quantity can be decimal
-        if (($quantity<0) || ($userid<0)) { apologize("Quantity must be positive!");} //if quantity is numeric
-        //check to see if valid id
-    	$num_user = query("SELECT count(*) AS num_user FROM users WHERE id = ?", $userid);
-    	$count = $num_user[0]['num_user'];
-    	if ($count == 0) {apologize("User ID not found.");}
-    	elseif ($count != 1) { apologize("Invalid User ID.");}
-    	elseif ($count == 1)
-    	{
-    		// calculate total quantity held
-    		$totalq = query("SELECT units FROM accounts WHERE id = ?", $id);
-    		@$total = (float)$totalq[0]['units']; //convert array to value
-    		// checks to see if they are transfer more than they have.
-    		if ($total < $quantity)  //it might do this in query() > function.php
-    		{apologize("Transfer amount (" . number_format($quantity,2,".",",") . ") exceeds available funds (" . number_format($total,2,".",",") . ")!");}
-    		// transaction information
-    		$transaction = 'TRANSFER';
-            $symbol=$unittype;
-    		query("SET AUTOCOMMIT=0");
-    		query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
-    		// update cash after transaction             
-    		if (query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $quantity, $id))
-            {query("ROLLBACK");query("SET AUTOCOMMIT=1");apologize("Database Failure.");}
-    		// transfer the cash to other user
-    		if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $quantity, $userid))
-            {query("ROLLBACK");query("SET AUTOCOMMIT=1");apologize("Database Failure.");}
-    		//update transaction history for transferer
-    		if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, 'TRANSFER', 'OUTGOING', $userid, $quantity, 0, $quantity) === false)
-            {query("ROLLBACK");query("SET AUTOCOMMIT=1");apologize("Database Failure.");}
-    		//update transaction history for transferee
-    		if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, 'TRANSFER', 'RECEIVING', $id, $quantity, 0, $quantity) === false)
-            {query("ROLLBACK");query("SET AUTOCOMMIT=1");apologize("Database Failure.");}
-    		query("COMMIT;"); //If no errors, commit changes
-    		query("SET AUTOCOMMIT=1");
-    }
 
 
 
@@ -533,80 +480,42 @@ require("../templates/header.php");
 
 
 
-<!--DEPOSIT-->
-<form action="admin_deposit.php" method="post">
-    <fieldset>
-        <h3>Deposit:</h3>
-        <br /><input class="input-small" name="userid" placeholder="User ID" type="number" min="0" max="any" required />
-        <br /><input class="input-medium" type="number" name="quantity" placeholder="<?php echo($unitsymbol);?> Amount/Quantity" step="0.0000000000001" min="0" max="any" required />
-        <br /><button type="submit" class="btn btn-success"><b>DEPOSIT</b></button>
-    </fieldset>
-</form>
-<br /><br />
 
+<table class="table table-condensed table-striped table-bordered" id="notice" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+    <thead>
+    <tr>
+        <td class="success" colspan="3"><strong>TRANSACTION</strong></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <script type="text/javascript">
+                function FillUnits(f)
+                { if(f.copyunits.checked == true) {f.quantity.value = <?php echo($units); ?>;}}
+            </script>
+            <form action="admin.php" method="post" class="formtable">
+                <fieldset>
+                    <input class="input-small" name="userid" placeholder="User ID" type="number" min="0" max="any" required /><br />
+                    <input class="input-medium" type="number" name="quantity" placeholder="Amount/Quantity" step="0.01" min="0" max="any" required /><br>
+                    <button type="submit"
+                            class="btn btn-warning btn-xs"
+                            name="transaction"
+                            value="withdraw">WITHDRAW
+                    </button>
+                    <button type="submit"
+                            class="btn btn-success btn-xs"
+                            name="transaction"
+                            value="deposit">DEPOSIT
+                    </button>
 
-
-
-<!--WITHDRAW-->
-<form action="admin_withdraw.php" method="post">
-    <fieldset>
-        <h3>Withdraw:</h3>
-        <br /><input class="input-small" name="userid" placeholder="User ID" type="number" min="0" max="any" required />
-        <br /><input class="input-medium" type="number" name="quantity" placeholder="<?php echo($unitsymbol);?> Amount/Quantity" step="0.0000000000001" min="0" max="any" required />
-        <br /><button type="submit" class="btn btn-danger"><b>WITHDRAW</b></button>
-    </fieldset>
-</form>
-<br /><br />
-
-
-
-
-
-
-<!--TRANSFER-->
-<script type="text/javascript">
-<!--
-function FillUnits(f)
-{
-if(f.copyunits.checked == true)
-{
-f.quantity.value = <?php echo($units); ?>;
-}
-}
-// -->
-</script>
-<style>
-#middle
-{
-background-color:transparent;
-border:0;
-}
-.formtable
-{
-/*width:75%;*/
-padding:10px;
-background-color:white;
-border:2px solid black;
-margin-top:5px;
-}
-</style>
-<form action="transfer.php" method="post" class="formtable">
-<fieldset>
-<h3>Transfer:</h3>
-<br /><input class="input-small" name="userid" placeholder="User ID" type="number" min="0" max="any" required />
-<br /><input class="input-medium" type="number" name="quantity" placeholder="<?php echo($unitsymbol);?> Amount/Quantity" step="0.0000000000001" min="0" max="any" required />
-<br /><button type="submit" class="btn btn-warning"><b>TRANSFER</b></button>
-<br /><input type="checkbox" name="copyunits" onclick="FillUnits(this.form)"> All <?php echo($unittype);?>
-<br><br>
-<i>This is an instant, permanent, and non-reversible transaction.<br />Ensure your entries are correct!</i>
-<br /><br />
-</fieldset>
-</form>
-<br /><br />
-
-
-
-
+                    <br /><input type="checkbox" name="copyunits" onclick="FillUnits(this.form)"> All <?php echo($unittype);?>
+                </fieldset>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+    </table>
 
 
 

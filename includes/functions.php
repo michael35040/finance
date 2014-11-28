@@ -237,8 +237,7 @@ function sanatize($type, $var)
 	}
 	if($type=='price')
 	{
-		$var = preg_replace("/^([0-9.]+)$/", "", $var);
-		//if (preg_match("/^([0-9.]+)$/", $var) == false) {apologize("You submitted an invalid number.");}
+		if (preg_match("/^([0-9.]+)$/", $var) == false) {apologize("You submitted an invalid number.");}
 		if ($var<0){ apologize("Price must be positive!");} //if quantity is numeric
 		$var=(float)$var;
 	    	if (!is_float($var) && !is_int($var)) { apologize("Price must be numeric!");} //if quantity is numeric

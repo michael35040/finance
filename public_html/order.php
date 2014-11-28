@@ -27,6 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     catch(Exception $e) {apologize($e->getMessage());}
 
 
+    try {processOrderbook($symbol);}
+    catch(Exception $e) {apologize($e->getMessage());}
+
     redirect("orders.php");
 
     //@$tradeTotal = (float)$tradeTotal; //convert string to float

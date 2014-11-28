@@ -7,11 +7,9 @@ require("../includes/config.php");
 // if form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    @$symbol = $_POST["symbol"]; //assign post variables to local variables, not really needed but makes coding easier
-    @$type = $_POST["type"]; //limit or market
-    @$side = $_POST["side"]; //buy/bid or sell/ask
     @$quantity = (int)$_POST["quantity"]; //not set on market orders
     $quantity = sanatize("quantity", $quantity);
+    $price=0; //market order, price is meaningless
 
     @$metalTransaction = $_POST["metalTransaction"];// buyGold, buySilver, sellGold, sellSilver
         if($metalTransaction=='buyGold') {$symbol='GOLD'; $side='b'; }
@@ -23,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     
     //FORMATS AND SCRUBS VARIABLES
     $type = 'market';
-    $price=0; //market order, price is meaningless
     //apologize($symbol . " " . $type . " " . $side . "/ x" . $quantity . "/ $" . $price . "/ ID" . $id);
     
     
