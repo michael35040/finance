@@ -110,7 +110,7 @@ function createStocks()
     $i=0;
     while ($i < 7) {
         $name=('The ' . $symbol . ' Co.');
-        $userid=mt_rand(1,3);
+        $userid=mt_rand(2,3);
         $issued = 2 * (mt_rand(1, 100) * 100000);
         $type='stocks';
         $fee=(mt_rand(1,100)/100);//0.45;
