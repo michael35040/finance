@@ -15,6 +15,7 @@ function randomOrders()
     //count number of users
     $userCheck = query("SELECT count(id) as number FROM users");
     $numberUsers=$userCheck[0]["number"];
+    if($numberUsers<3){apologize("Not enough users for trade. Requires 3.")
 
     $symbols =	query("SELECT symbol FROM assets ORDER BY symbol ASC");
     foreach ($symbols as $symbol) { $symbol=$symbol['symbol'];
@@ -42,7 +43,7 @@ function randomOrders()
             }
 
             $quantity = mt_rand(1, 100);
-            $id = mt_rand(1, $numberUsers);
+            $id = mt_rand(2, $numberUsers);
 
 
             try {
