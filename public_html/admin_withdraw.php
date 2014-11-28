@@ -45,26 +45,13 @@ query("START TRANSACTION;"); //initiate a SQL transaction in case of error betwe
     query("SET AUTOCOMMIT=1");
     apologize("Database Failure.1");
     }
-// update cash after transaction for admin
-    if (query("UPDATE accounts SET units = (units + $quantity) WHERE id = ?", 1) === false)
-    {
-        query("ROLLBACK"); //rollback on failure
-        query("SET AUTOCOMMIT=1");
-        apologize("Database Failure.4");
-    }
+
 //update transaction history for user
     if (query("INSERT INTO history (id, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)", $userid, $transaction, $symbol, $quantity, $quantity, $quantity) === false)
     {
     query("ROLLBACK"); //rollback on failure
     query("SET AUTOCOMMIT=1");
     apologize("Database Failure.2");
-    }
-//update transaction history for admin
-    if (query("INSERT INTO history (id, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)", 1, $transaction, $symbol, $userid, $quantity, $quantity) === false)
-    {
-    query("ROLLBACK"); //rollback on failure
-    query("SET AUTOCOMMIT=1");
-    apologize("Database Failure.3");
     }
 
 query("COMMIT;"); //If no errors, commit changes
