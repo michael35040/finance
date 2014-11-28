@@ -136,6 +136,9 @@ Open orders can be canceled if they have not yet been matched and a trade execut
 									<li><a href="#">Register</a></li><!--Open an Account Process; 1 page registration, activation, funding-->
 									<li><a href="#">Funding</a></li>
 									<li><a href="#">Exchange</a></li>
+									<li><a href="#">Depository</a></li>
+									<li><a href="#">Fungible Assets</a></li>
+									<li><a href="#">Delivery</a></li>
 								</ul>
 							</section>
 						</div>
