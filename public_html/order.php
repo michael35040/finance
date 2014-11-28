@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$dollar = (int)$_POST["dollar"]; //not set on market orders
     @$cents = (int)$_POST["cents"]; //not set on market orders
 
-    $dollar = sanatize("wholenumber", $dollar);
+    $dollar = sanatize("quantity", $dollar);
     if($cents!=0 && $cents!=25 && $cents!=50 && $cents!=75){apologize("Incorrect decimal!");}
     $cents=$cents/100;
     $price=$dollar+$cents;

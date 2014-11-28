@@ -1,3 +1,5 @@
+
+
 <?php
 
 require("../includes/config.php");
@@ -12,53 +14,10 @@ else
 $title = "Dashboard";
 
 
-
+//for delete or process
 $assets = query("SELECT symbol FROM assets"); // query database for user
-if(isset($_POST['admin'])) {
-
-    if ($_POST['admin'] == 'notice') {
-        $user = ($_POST['user']);
-        $notice = ($_POST['notice']);
-        query("INSERT INTO notification (id, notice, status) VALUES (?, ?, ?)", $user, $notice, 1);
-    }
-    if ($_POST['admin'] == 'delete') {
-        removeAsset($_POST['symbol']);
-    }
-    if ($_POST['admin'] == 'all') {
-        clear_all();
-    }
-    if ($_POST['admin'] == 'test') {
-        test();
-    }
-    if ($_POST['admin'] == 'orderbook') {
-        clear_orderbook();
-    }
-    if ($_POST['admin'] == 'trades') {
-        clear_trades();
-    }
-    if ($_POST['admin'] == 'createstocks') {
-        try {
-            createStocks();
-        } catch (Exception $e) {
-            echo 'Message: ' . $e->getMessage();
-        }
-
-    }
-    if ($_POST['admin'] == 'populate') {
-        populatetrades();
-    }
-    if ($_POST['admin'] == 'randomorders') {
-        try {
-            $randomOrders = randomOrders();
-        } catch (Exception $e) {
-            echo('Error: ' . $e->getMessage() . '<br>');
-        }         //catch exception
-    }
-    if ($_POST['admin'] == 'process') {
-        if (!isset($_POST['symbol'])) {
-            apologize("Please select a symbol!");
-        }
-        if ($_POST["symbol"] == 'ALL') {
+    if(isset($_POST['process'])) {
+        if ($_POST["process"] == 'ALL') {
             try {
                 $processOrderbook = processOrderbook();
             } catch (Exception $e) {
@@ -66,14 +25,55 @@ if(isset($_POST['admin'])) {
             }         //catch exception
         } else {
             try {
-                $processOrderbook = processOrderbook($_POST["symbol"]);
+                $processOrderbook = processOrderbook($_POST["process"]);
             } catch (Exception $e) {
                 echo('Error: ' . $e->getMessage() . '<br>');
             }         //catch exception
         }
         echo($processOrderbook . " orders processed.");
     }
-}
+
+
+
+    if(isset($_POST['notice'])) {
+        sanatize('quantity', $var);
+            $user = ($_POST['user']);
+            $notice = ($_POST['notice']);
+            query("INSERT INTO notification (id, notice, status) VALUES (?, ?, ?)", $user, $notice, 1);
+    }
+
+
+    if(isset($_POST['delete'])) {
+        if(!empty($_POST['delete'])) {
+        removeAsset($_POST['delete']);}
+    }
+
+
+
+
+
+    if(isset($_POST['admin'])) {
+        if ($_POST['admin'] == 'all') {clear_all();}
+        if ($_POST['admin'] == 'test') {test();}
+        if ($_POST['admin'] == 'orderbook') {clear_orderbook();}
+        if ($_POST['admin'] == 'trades') {clear_trades();}
+        if ($_POST['admin'] == 'populate') {populatetrades();}
+        if ($_POST['admin'] == 'createstocks') {
+            try {
+                createStocks();
+            } catch (Exception $e) {
+                echo 'Message: ' . $e->getMessage();
+            }
+
+        }
+        if ($_POST['admin'] == 'randomorders') {
+            try {
+                $randomOrders = randomOrders();
+            } catch (Exception $e) {
+                echo('Error: ' . $e->getMessage() . '<br>');
+            }         //catch exception
+        }
+    } //if admin post
 
 
 
@@ -185,7 +185,15 @@ $moneySupplyTotal = $MoneySupply+$MoneySupplyBids;
 require("../templates/header.php");
 ?>
 
+    <style>
+        #middle
+        {
+            background-color:transparent;
+            border:0;
+        }
 
+
+    </style>
 
 <table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
 <tr>
@@ -322,7 +330,129 @@ require("../templates/header.php");
 
 
 
-<form action="admin.php"  class="symbolForm" method="post"   >
+
+
+    <table class="table table-condensed table-striped table-bordered" id="notice" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+    <thead>
+    <tr>
+        <td class="success"><strong>NOTIFICATION</strong></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <form action="admin.php"  class="noticeForm" method="post">
+                <input type="text" name="user" placeholder="User"  size="4">
+                <input type="text" name="notice" placeholder="Notice"  size="70">
+                <button type="submit" class="btn btn-info"><b> SUBMIT </b></button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <table class="table table-condensed table-striped table-bordered" id="process" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+    <thead>
+    <tr>
+        <td class="success"><strong>PROCESS ORDERBOOK</strong></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <form action="admin.php"  class="processForm" method="post">
+
+            <select name="process"  class="form-control" >
+                    <?php
+                    if (empty($assets)) {
+                        echo("<option value=''>No Assets</option>");
+                    } else {
+                        //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
+                        echo ('    <option value="ALL">-All Assets-</option>');
+                        foreach ($assets as $asset) {
+                            $symbol = $asset["symbol"];
+                            echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
+                        }
+                    }
+                    ?>
+                </select>
+                <button type="submit" class="btn btn-success"><b> PROCESS </b></button></span>
+            </form></td>
+    </tr>
+    </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+    <table class="table table-condensed table-striped table-bordered" id="process" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+    <thead>
+    <tr>
+        <td class="danger"><strong>DELETE ASSET</strong></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <form action="admin.php"  class="deleteForm" method="post">
+
+            <select name="delete"  class="form-control" >
+                    <?php
+                    if (empty($assets)) {
+                        echo("<option value=''>No Assets</option>");
+                    } else {
+                        //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
+                        echo("<option class='select-dash' disabled='disabled' value=''>No Assets</option>");
+                        foreach ($assets as $asset) {
+                            $symbol = $asset["symbol"];
+                            echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
+                        }
+                    }
+                    ?>
+                </select>
+                <button type="submit" class="btn btn-danger"><b> DELETE </b></button></span>
+            </form></td>
+    </tr>
+    </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <form action="admin.php"  class="symbolForm" method="post"   >
     <fieldset>
         <table class="table table-condensed table-striped table-bordered" id="admin" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
             <tr><th colspan=2>TESTING</th></tr>
@@ -332,24 +462,7 @@ require("../templates/header.php");
             <tr><td><input type="radio" name="admin" value="trades"></td>       <td>Clear Trades</td></tr>
             <tr><td><input type="radio" name="admin" value="createstocks"></td> <td>Create Stocks</td></tr>
             <tr><td><input type="radio" name="admin" value="randomorders"></td> <td>Random Orders</td></tr>
-            <tr><td><input type="radio" name="admin" value="process"></td>      <td>Process Orders*</td></tr>
             <tr><td><input type="radio" name="admin" value="populate"></td>      <td>Populate</td></tr>
-            <tr><td><input type="radio" name="admin" value="delete"></td>      <td>Delete Stocks*</td></tr>
-            <tr><td colspan="2">        <select name="symbol"  class="form-control" >
-                        <?php
-                        if (empty($assets)) {
-                            echo("<option value=' '>No Assets</option>");
-                        } else {
-                            //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
-                            echo ('    <option value="ALL">-All Assets-</option>');
-                            foreach ($assets as $asset) {
-                                $symbol = $asset["symbol"];
-                                echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
-                            }
-                        }
-                        ?>
-                    </select></td></tr>
-            <tr><td><input type="radio" name="admin" value="notice"></td>      <td>Notice:<br><input type="number" name="user" placeholder="User"><input type="text" name="notice" placeholder="Notice"></td></tr>
             <tr><td colspan='2'>
                     <button type="submit" class="btn btn-info"><b> SUBMIT </b></button></span>
                 </td></tr>
