@@ -36,9 +36,8 @@ $assets = query("SELECT symbol FROM assets"); // query database for user
 
 
     if(isset($_POST['notice'])) {
-        sanatize('quantity', $var);
-            $user = ($_POST['user']);
-            $notice = ($_POST['notice']);
+            $user = sanatize('quantity', $_POST['user']);
+            $notice = sanatize('alnum', $_POST['notice']);
             query("INSERT INTO notification (id, notice, status) VALUES (?, ?, ?)", $user, $notice, 1);
     }
 
