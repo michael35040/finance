@@ -750,7 +750,12 @@ function publicOffering2($symbol, $userid, $issued, $fee)
 function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 {   require 'constants.php'; //for $divisor
 
-    if (empty($symbol) || empty($quantity) ||  empty($type) || empty($price) || empty($side)) { throw new Exception("Please fill all required fields (Symbol, Quantity, Type, Side)."); } //check to see if empty
+    if (empty($symbol) { throw new Exception("Invalid order. Trade symbol required."); } //check to see if empty
+    if (empty($quantity) { throw new Exception("Invalid order. Trade quantity required."); } //check to see if empty
+    if (empty($type) { throw new Exception("Invalid order. Trade type required."); } //check to see if empty
+    if (empty($price) { throw new Exception("Invalid order. Trade price required."); } //check to see if empty
+    if (empty($side) { throw new Exception("Invalid order. Trade side required."); } //check to see if empty
+    if (empty($id) { throw new Exception("Invalid order. User required."); } //check to see if empty
     //if ($type=="limit") { if(empty($price)){throw new Exception("Limit order requires price");}}
 
     //QUERY TO SEE IF SYMBOL EXISTS
