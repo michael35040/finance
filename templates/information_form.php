@@ -1,4 +1,9 @@
 <style>
+    #middle
+    {
+        background-color:transparent;
+        border:0;
+    }
     .symbolForm {
         display: inline-block;
         text-align:center;
