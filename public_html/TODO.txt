@@ -7,6 +7,9 @@ COMPLETED
 # add icon showing drop down feature in 'assets'
 # add ownership percentage in information panel.
 
+ability for administration tof buy backnowledge stock and remove
+
+
 http://templated.co/ion
 http://almsaeedstudio.com/preview
 
