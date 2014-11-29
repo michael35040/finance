@@ -31,9 +31,9 @@
         //width: 500,
         height: 500,
         pieSliceText: 'label',
-        legend: {position: 'none'},
         //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
         //is3D: true,
+        legend: {position: 'none'}
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
@@ -51,9 +51,9 @@
         pieSliceText: 'label',
         legend: {position: 'none'},
        // width: 500,
-        height: 500,
         //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
         //is3D: true,
+        height: 500
         };
         var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
         chart2.draw(data2, options2);
@@ -91,32 +91,6 @@
 
 
 
-    <?php if(!empty($notifications)) {?>
-        <table class="table table-striped table-condensed table-bordered" >
-        <tr  class="danger">
-            <td colspan="3" style="font-size:20px; text-align: center;">NOTIFICATIONS</td>
-        </tr>
-        <?php foreach ($notifications as $notification) { ?>
-            <tr>
-                <td colspan="3"><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="portfolio.php" name="cancel" value="<?php echo($notification["uid"]) ?>"><span class="glyphicon glyphicon-remove-circle"></span></button></form>
-                    <strong>Notification: </strong>
-                    <?php echo(htmlspecialchars("[" . date('Y-m-d H:i:s', strtotime($notification["date"])) . "] " . $notification["notice"])); ?>
-                </td>
-            </tr>
-        <?php
-        } //if foreach
-        ?>
-        <tr>
-            <td colspan="3"><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="portfolio.php" name="cancel" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form>
-                <strong>Remove All</strong>
-            </td>
-        </tr>
-        </table><?php } //!empty ?>
-
-
-
-
-
 
     <table class="table table-striped table-condensed table-bordered" >
             <tr  class="success">
@@ -130,7 +104,40 @@
         </table>
 
 
+
+
+
+<?php if(!empty($notifications)) {?>
     <table class="table table-striped table-condensed table-bordered" >
+    <tr  class="danger">
+        <td colspan="3" style="font-size:20px; text-align: center;">NOTIFICATIONS</td>
+    </tr>
+    <?php foreach ($notifications as $notification) { ?>
+        <tr>
+            <td colspan="3"><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="portfolio.php" name="cancel" value="<?php echo($notification["uid"]) ?>"><span class="glyphicon glyphicon-remove-circle"></span></button></form>
+                <strong>Notification: </strong>
+                <?php echo(htmlspecialchars("[" . date('Y-m-d H:i:s', strtotime($notification["date"])) . "] " . $notification["notice"])); ?>
+            </td>
+        </tr>
+    <?php
+    } //if foreach
+    ?>
+    <tr>
+        <td colspan="3"><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="portfolio.php" name="cancel" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form>
+            <strong>Remove All</strong>
+        </td>
+    </tr>
+    </table><?php } //!empty ?>
+
+
+
+
+
+
+
+
+
+<table class="table table-striped table-condensed table-bordered" >
         <tr  class="success">
             <td colspan="5" style="font-size:20px; text-align: center;">ACTIVITY</td>
         </tr>
@@ -326,24 +333,9 @@ if($i == 0)
             </td>
             <td><strong>
                     <?php
-                    
-                    /* //DONE ON PORTFOLIO.php
-                    //calculate value of current price
-                    $sum = array_shift($portfolio);
-                    foreach ($portfolio as $val) {
-                        foreach ($val as $key => $val) {
-                            $sum[$key] += $val;
-                        }
-                    } //sum all the values in array
-                    $portfolioTotal = $sum['total'];
-                    $value = $sum['value'];
-                     */
                     $change = ($portfolioTotal - $purchaseprice);
-                    if ($value > 0) {
-                        $percent = 100 * (($portfolioTotal / $purchaseprice) - 1); // total/purchase
-                    } else {
-                        $percent = 0;
-                    }
+                    if ($purchaseprice > 0) {$percent = 100 * (($portfolioTotal / $purchaseprice) - 1);} // total/purchase}
+                    else {$percent = 0;}
                    
 
                     echo($unitsymbol . number_format($change, 2, ".", ",") . " (<i>" . number_format($percent, 2, ".", ",") . "</i>%) "); //display change
@@ -385,13 +377,15 @@ if($i == 0)
 <table class="table table-striped table-condensed table-bordered" >
 
     <tr  class="success">
-        <td colspan="8" style="font-size:20px; text-align: center;">NETWORTH</td>
+        <td colspan="2" style="font-size:20px; text-align:center;">NETWORTH</td>
     </tr>
 
           <!-- NETWORTH ROW -->
     <tr class="active">
-        <td colspan="7"><strong>TOTAL</strong></td>
-        <td>
+        <td style="width:50%">
+            <strong>TOTAL</strong>
+        </td>
+        <td style="width:50%">
             <strong>
                 <?php
                 echo($unitsymbol);
@@ -401,11 +395,10 @@ if($i == 0)
             </strong>
         </td>
     </tr>
-
     <?php if($i!=0){ ?>
     <tr>
-        <td colspan="4"><div id="piechart" style=""></div></td>
-        <td colspan="4"><div id="piechart2" style=""></div></td>
+        <td><div id="piechart"></div></td>
+        <td><div id="piechart2"></div></td>
     </tr>
     <?php } ?>
 
@@ -421,4 +414,21 @@ if($i == 0)
     </table>
 
 
-<?php   // echo(var_dump(get_defined_vars())); ?>
+<?php
+
+
+/* //DONE ON PORTFOLIO.php
+//calculate value of current price
+$sum = array_shift($portfolio);
+foreach ($portfolio as $val) {
+    foreach ($val as $key => $val) {
+        $sum[$key] += $val;
+    }
+} //sum all the values in array
+$portfolioTotal = $sum['total'];
+$value = $sum['value'];
+ */
+
+
+
+  // echo(var_dump(get_defined_vars())); ?>

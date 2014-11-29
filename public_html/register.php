@@ -6,7 +6,7 @@ require("../includes/config.php");
 
 // if form was submitted  -- validate and insert int database
 if ($_SERVER["REQUEST_METHOD"] == "POST")
-{ //        var_dump(get_defined_vars()); //dump all variables anywhere (displays in header)
+{      //   var_dump(get_defined_vars()); //dump all variables anywhere (displays in header)
     if(!ctype_digit($_POST["captcha"])){apologize("Incorrect captcha input!");}
     $code=$_SESSION["code"];
     $captcha=(int)$_POST["captcha"];
@@ -37,6 +37,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $phone = $_POST["phone"];
     $phone = sanatize("phone", $phone);
 
+    $birth = $_POST["birth"];
+    $birth = sanatize("date", $birth);
+
     $answer = $_POST["answer"];
     
 
@@ -60,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if (empty($answer)) { apologize("You must provide a Security Answer."); }
     if (empty($password)) { apologize("You must provide a Password."); }
     if (empty($confirmation)) { apologize("You must provide a Password Confirmation."); }
+    if (empty($birth)) { apologize("You must provide a date."); }
 
 
      
@@ -114,9 +118,9 @@ $transaction = 'LOAN'; //for listing on history
 //$now = time(); //get current time in unix seconds
 			//UPDATE USERS FOR USER
 if (query("
-        INSERT INTO users (email, fname, lname, address, city, region, zip, phone, question, answer, password, ip, fails, active, last_login)
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())",
-        $email, $fname, $lname, $address, $city, $region, $zip, $phone, $question, $answer, $password, $ipaddress, 0, 0) === false)
+        INSERT INTO users (email, fname, lname, birth, address, city, region, zip, phone, question, answer, password, ip, fails, active, last_login)
+        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())",
+        $email, $fname, $lname, $birth, $address, $city, $region, $zip, $phone, $question, $answer, $password, $ipaddress, 0, 0) === false)
 { 
 		query("ROLLBACK"); //rollback on failure
 		query("SET AUTOCOMMIT=1");

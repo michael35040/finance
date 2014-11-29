@@ -254,6 +254,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(63) NOT NULL,
   `fname` varchar(63) NOT NULL,
   `lname` varchar(63) NOT NULL,
+  `birth` date NOT NULL,
   `address` varchar(63) NOT NULL,
   `city` varchar(63) NOT NULL,
   `region` varchar(63) NOT NULL,

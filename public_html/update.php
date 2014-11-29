@@ -34,6 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 			$question = $_POST["question"];
 			$password = $_POST["password"];
 
+            $birth = $_POST["birth"];
+            $birth = sanatize("date", $birth);
+
 			if (empty($fname)) { apologize("You must provide a First Name."); }
 			if (empty($lname)) { apologize("You must provide a Last Name."); }
 			if (empty($email)) { apologize("You must provide an Email."); }
@@ -45,12 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 			if (empty($question)) { apologize("You must provide a Security Question."); }
 			if (empty($answer)) { apologize("You must provide a Security Answer."); }
 			if (empty($password)) { apologize("You must provide a Password."); }
+            if (empty($birth)) { apologize("You must provide a date."); }
 
 			if (query("
 			UPDATE users 
-			SET email=?, fname=?, lname=?, address=?, city=?, region=?, zip=?, phone=?, question=?, answer=? 
+			SET email=?, fname=?, lname=?, birth=?, address=?, city=?, region=?, zip=?, phone=?, question=?, answer=?
 			WHERE id = ?",
-			$email, $fname, $lname, $address, $city, $region, $zip, $phone, $question, $answer, $_SESSION["id"]) === false)
+			$email, $fname, $lname, $birth, $address, $city, $region, $zip, $phone, $question, $answer, $_SESSION["id"]) === false)
 			{apologize("Email already in use.");}
 
 			if(!empty($_POST["newpassword"]))

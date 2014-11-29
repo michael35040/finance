@@ -223,13 +223,17 @@ function sanatize($type, $var)
         if (!is_numeric($var)) { apologize("Phone must be numeric!");} //if quantity is numeric
             $var=(int)$var;
 	}
+	if($type=='date')
+	{
+        if (preg_match("/^[-0-9]+$/", $var) == false) {apologize(" You submitted an invalid date.");}
+	}
 	if($type=='address')
 	{ //only alpha numeric, space, period, and comma allowed.
 		$var = preg_replace("/[^0-9a-zA-Z .,#-]/", "", $var); //keep - at end or it will be interpreted as range.
 	}
 
 	if($type=='quantity')
-	{	$var = preg_replace("/[^0-9]/", "", $var);
+	{	$var = preg_replace("/[^0-9]$/", "", $var);
 		if ($var<0){ apologize("Quantity must be positive!");} //if quantity is numeric
     		if (preg_match("/^\d+$/", $var) == false) { apologize("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
     		$var=(int)$var;

@@ -9,9 +9,14 @@ else
 {
 
 
+
+
 //if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 //$assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC"); // query assets
 $title = "Dashboard";
+
+
+
 
 
 //for delete or process
@@ -67,6 +72,20 @@ $assets = query("SELECT symbol FROM assets"); // query database for user
             query("COMMIT;"); //If no errors, commit changes
             query("SET AUTOCOMMIT=1");
     }
+
+
+
+
+
+
+    if(isset($_POST['reset'])) {
+            $user = sanatize('quantity', $_POST['user']);
+            $password = $_POST['reset'];
+            $options = ['cost' => 12,];
+            $password = password_hash($password, PASSWORD_BCRYPT, $options);
+        query("UPDATE users SET password=?, fails=0 WHERE id=?", $password, $user);
+    }
+
 
 
 
@@ -243,7 +262,7 @@ require("../templates/header.php");
   <td colspan="7" class="success"><strong>ACTIVITY</strong></td>
 </tr>
 <tr class="active">
-  <td>PERIOD</td><td>USERS</td><td>ASSETS</td><td>ORDERS</td><td>TRADES</td><td>TRD QTY VOL</td><td>TRD VALUE</td>
+  <td>PERIOD</td><td>USERS</td><td>ASSETS</td><td>ORDERS</td><td>TRADES</td><td>TRADE VOLUME</td><td>TRADE VALUE</td>
 </tr>
 
 <tr>
@@ -327,7 +346,7 @@ require("../templates/header.php");
         <!-- HEADER ROW -->
         <thead>
         <tr>
-            <td colspan="11" class="success"><strong>TOP USERS</strong></td>
+            <td colspan="12" class="success"><strong>TOP USERS</strong></td>
         </tr>
         </thead>
         <tbody>
@@ -344,6 +363,7 @@ require("../templates/header.php");
             <td>LOCKED</td>
             <td>LOAN</td>
             <td>RATE</td>
+            <td>PASSWORD</td>
         </tr>
 
         <?php
@@ -362,6 +382,7 @@ require("../templates/header.php");
             echo("<td>" . number_format($row["locked"],2,".",",") . "</td>");
             echo("<td>" . number_format($row["loan"],2,".",",") . "</td>");
             echo("<td>" . number_format(($row["rate"]*100),2,".",",") . "%</td>");
+            echo("<td>" . htmlspecialchars($row["password"]) . "</td>");
             echo("</tr>");
         }
         ?>
@@ -388,6 +409,36 @@ require("../templates/header.php");
                 <input type="text" name="user" placeholder="User"  size="4">
                 <input type="text" name="notice" placeholder="Notice"  size="70">
                 <button type="submit" class="btn btn-info"><b> SUBMIT </b></button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+    <table class="table table-condensed table-striped table-bordered" id="password" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+    <thead>
+    <tr>
+        <td class="success"><strong>RESET PASSWORD</strong></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <form action="admin.php" method="post">
+                <input type="text" name="user" placeholder="User"  size="4">
+                <input type="text" name="reset" placeholder="Password"  size="35">
+                <button type="submit" class="btn btn-danger"><b> RESET </b></button>
             </form>
         </td>
     </tr>

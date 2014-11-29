@@ -62,8 +62,10 @@ $asset["askstotal"] = $asksTotal[0]['asktotal'];
         //TOTAL SHARES PUBLIC (ON ORDERBOOK + ON PORTFOLIO)
 $asset["public"] = $asset["askstotal"]+$asset["totalportfolio"];
 
-//TRADES        
+//TRADES
+        //30day volume
         $volume =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY MONTH(date) ORDER BY uid ASC LIMIT 0, 500", $symbol);	  // query user's portfolio
+        //$volume =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY MONTH(date) ORDER BY uid ASC LIMIT 0, 500", $symbol);	  // query user's portfolio
         if(empty($volume[0]["quantity"])){$volume[0]["quantity"]=0;}
         if(empty($volume[0]["price"])){$volume[0]["price"]=0;}
 $asset["volume"] = $volume[0]["quantity"];

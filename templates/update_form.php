@@ -21,6 +21,7 @@
 <?php
 $fname = $userinfo[0]["fname"];
 $lname = $userinfo[0]["lname"];
+$birth = $userinfo[0]["birth"];
 $email = $userinfo[0]["email"];
 $address = $userinfo[0]["address"];
 $city = $userinfo[0]["city"];
@@ -43,6 +44,11 @@ $answer = $userinfo[0]["answer"];
             <div class="input-group">
                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                 <input class="form-control" name="lname" placeholder="Last Name" type="text" value="<?php echo(htmlspecialchars($lname)); ?>" maxlength="60" required/>
+            </div>
+
+            <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                <input class="form-control" name="birth" placeholder="Birthdate" type="date" value="<?php echo(htmlspecialchars($birth)); ?>"  required/>
             </div>
 
             <div class="input-group">
