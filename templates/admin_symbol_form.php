@@ -1,3 +1,10 @@
+<style>
+    #middle
+    {
+        background-color:transparent;
+        border:0;
+    }
+</style>
 <form action="admin_update.php" class="symbolForm" method="post" >
     <fieldset>
         <table>

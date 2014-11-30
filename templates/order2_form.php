@@ -1,6 +1,7 @@
 <?php
-$goldColor="#FCFF00;";
-$silverColor="#CCC;";
+$goldColor="#FFD700;";
+$silverColor="#C0C0C0;";
+$dollarColor="#85bb65;";
 ?>
 
 <style>
@@ -49,7 +50,7 @@ $silverColor="#CCC;";
     }
     .label-default{text-shadow: 0px 0px 5px #000; background-color:<?php echo($silverColor); ?>}
     .label-warning{text-shadow: 0px 0px 5px #000; background-color:<?php echo($goldColor); ?>}
-    .label-success{text-shadow: 0px 0px 5px #000; background-color:#5cb85c;}
+    .label-success{text-shadow: 0px 0px 5px #000; background-color:<?php echo($dollarColor); ?>}
 
 
 
@@ -61,11 +62,6 @@ $silverColor="#CCC;";
 //apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
 ?>
 
-
-<div style="color:white;text-shadow: 1px 1px 5px #000;">
-    Trades are instant and irrevocable. Prices subject to change. Price rounded to nearest quarter amount.
-
-</div>
 
 
 
@@ -177,17 +173,19 @@ foreach ($types as $type) {
                 </td>
                 <td style="border-bottom: 1px solid black;width:50%;background-color:<?php echo($type["color"]); ?>">
                     <b>Fee</b>: <?php echo($unitsymbol . number_format($type["premium"], 2, ".", ",")) ?><br />
-                    <b>Price</b>: <?php echo(number_format($type["var"], 2, ".", ",")); ?>
+                    <b>Price</b>: <?php echo(number_format($type["var"], 2, ".", ",")); ?><br>
+                    <?php //echo($type["type"]); ?> <output name="quantityAmount" for="quantity" style="display:inline;">0</output> ozt for $<output name="totalAmount" for="price quantity" style="display:inline;">0</output>
+
                 </td>
             </tr>
             <tr>
                 <td style="background-color:<?php echo($type["color"]); ?>">
                     <div class="input-group"><input type="number" class="form-control" id="quantity" name="quantity" placeholder="# of ounces" value=1
                                                     min="1" step="1" ><span class="input-group-addon">ozt</span></div>
-                    <button type="submit" name="metalTransaction" value="<?php echo($type["name"]); ?>" style="width:100%;background:<?php echo($type["button"]); ?>;color:white;"><?php echo($type["type"] . " " . $type["asset"]); ?></button>
                 </td>
                 <td style="background-color:<?php echo($type["color"]); ?>">
-                    <?php echo($type["type"]); ?> <output name="quantityAmount" for="quantity" style="display:inline;">0</output> ozt for $<output name="totalAmount" for="price quantity" style="display:inline;">0</output>
+                    <button type="submit" name="metalTransaction" value="<?php echo($type["name"]); ?>" style="width:100%;background:<?php echo($type["button"]); ?>;color:white;"><?php echo($type["type"] . " " . $type["asset"]); ?></button>
+
                 </td>
             </tr>
             </tbody>
@@ -259,6 +257,11 @@ foreach ($trades as $trade) {
     </tbody>
 </table>
 
+
+<div style="color:white;text-shadow: 1px 1px 5px #000;">
+    Trades are instant and irrevocable. Prices subject to change. Price rounded to nearest quarter amount.
+
+</div>
 
 
 

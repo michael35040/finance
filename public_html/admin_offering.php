@@ -21,13 +21,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     if(empty($issued)){apologize("Please fill out issued");}
     if(empty($fee)){$fee=0;}
    // apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
-if($offering=='followon')
-{
+
     //CHECK TO SEE IF SYMBOL EXISTS
-    $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
-    $countOwnersRows = count($symbolCheck);
-    if ($countOwnersRows != 1) {apologize("Symbol does not exist!"); }
+    $userCheck = query("SELECT id FROM users WHERE id =?", $userid);//Checks to see if they already own stock to determine if we should insert or update tables
+    $countUserRows = count($userCheck);
+    if ($countUserRows != 1) {apologize("User does not exist!"); }
+
+    if($offering=='followon')
+{
+
     try {$message = publicOffering2($symbol, $userid, $issued, $fee);}
+    catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
+}
+elseif($offering=='reverse')
+{
+
+    try {$message = publicOfferingReverse($symbol, $userid, $issued);}
     catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 }
 elseif($offering=='initial')
@@ -37,11 +46,6 @@ elseif($offering=='initial')
     @$url = $_POST["url"];
     @$rating = $_POST["rating"]; //1 - 10
     @$description = $_POST["description"];
-
-    //CHECK TO SEE IF SYMBOL EXISTS
-    $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
-    $countOwnersRows = count($symbolCheck);
-    if ($countOwnersRows != 0) {apologize("Symbol already exists!"); }
 
     try {$message = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description);}
     catch(Exception $e) {echo 'Message: ' .$e->getMessage();}

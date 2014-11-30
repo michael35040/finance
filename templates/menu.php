@@ -43,9 +43,9 @@
                 <div class="btn-group">
                     <div class="input-group">
                         <button id="adminButton" type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-home"></span>
-                            &nbsp;ADMIN
-                            <span class="caret"></span>
+                            <!--<span class="glyphicon glyphicon-home"></span>&nbsp;-->
+                             ADMIN
+                            <!--<span class="caret"></span>-->
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="admin.php">Dashboard</a></li>

@@ -92,11 +92,32 @@ $assets = query("SELECT symbol FROM assets"); // query database for user
 
 
 
+
+
+
+    if(isset($_POST['lock'])) {
+            $user = sanatize('quantity', $_POST['lock']);
+        query("UPDATE users SET active=0 WHERE id=?", $user);
+    }
+
+
+
+
+
+
+
     if(isset($_POST['notice'])) {
             $user = sanatize('quantity', $_POST['user']);
-            $notice = sanatize('alnum', $_POST['notice']);
+            $notice = sanatize('address', $_POST['notice']);
             query("INSERT INTO notification (id, notice, status) VALUES (?, ?, ?)", $user, $notice, 1);
     }
+
+
+
+
+
+
+
 
 
 
@@ -163,6 +184,12 @@ $assets = query("SELECT symbol FROM assets"); // query database for user
         $info["locked"] = $bidLocked[0]["total"]; //shares trading
         $topusers[] = $info;
     }
+
+
+
+
+
+
 
 
 
@@ -457,6 +484,43 @@ require("../templates/header.php");
 
 
 
+
+
+
+
+
+
+
+    <table class="table table-condensed table-striped table-bordered" id="lock" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+    <thead>
+    <tr>
+        <td class="warning"><strong>LOCK</strong></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <form action="admin.php" method="post">
+                <input type="text" name="lock" placeholder="User"  size="4">
+                <button type="submit" class="btn btn-danger"><b> LOCK </b></button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <table class="table table-condensed table-striped table-bordered" id="process" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
     <thead>
     <tr>
@@ -515,7 +579,7 @@ require("../templates/header.php");
                         echo("<option value=''>No Assets</option>");
                     } else {
                         //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
-                        echo("<option class='select-dash' disabled='disabled' value=''>No Assets</option>");
+                        echo("<option class='select-dash' disabled='disabled' selected value=''>SELECT</option>");
                         foreach ($assets as $asset) {
                             $symbol = $asset["symbol"];
                             echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
@@ -528,6 +592,10 @@ require("../templates/header.php");
     </tr>
     </tbody>
     </table>
+
+
+
+
 
 
 

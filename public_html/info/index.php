@@ -101,13 +101,21 @@ Certain methods of funding your account require longer processing times.
 We have three methods available for depositing funds: Wire Transfer, ACH Transfer, and Check. 
 Due to the non-immediate nature of debit and credit account transfers, as well as the commissions attached to debit and credit of transactions, we only offer trades to accounts funded by the methods listed.
 Here are the full details on how to add funds to your account, and our customer service team is available to help if you have any questions.<br>	
-<ul><li>
-<b>Wire Transfer</b> is the fastest method for funding your account. Wire transfers generally execute the same day, but may take up to one additional business day to post to your account. Your bank may charge a wire fee.<br>
-</li><li>
-<b>ACH (Automated Clearing House) Transfer</b> generally take two to three business days to post to your account. However, the fees to send this type of transfer are normally more affordable than wire fees.<br>
-</li><li>
-<b>Check</b> is the slowest method of funding your account, but also the least expensive. A bank check takes up to 14 business days to post to your account after it is received and processed.<br>
-</li></ul>
+                            <ul>
+                                    <li>
+                                        <b>Bitcoin</b> is the fastest method of funding your account. A bitcoin transaction takes up to 30 minutes to verify and to post to your account.<br>
+                                    </li>
+                                    <li>
+                                        <b>Wire Transfer</b> is the second fastest method for funding your account. Wire transfers generally execute the same day, but may take up to one additional business day to post to your account. Your bank may charge a wire fee.<br>
+                                    </li>
+                                    <li>
+                                        <b>ACH (Automated Clearing House) Transfer</b> generally take two to three business days to post to your account. However, the fees to send this type of transfer are normally more affordable than wire fees.<br>
+                                    </li>
+                                    <li>
+                                        <b>Check</b> is the slowest method of funding your account, but also the least expensive. A bank check takes up to 14 business days to post to your account after it is received and processed.<br>
+                                    </li>
+
+                            </ul>
 
 								</p>
 							</section>

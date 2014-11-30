@@ -26,6 +26,15 @@
         document.getElementById("dividend_slider_value").innerHTML=x;
     }
 </script>
+
+<style>
+    #middle
+    {
+        background-color:transparent;
+        border:0;
+    }
+</style>
+
 <form action="admin_offering.php"  method="post"
       oninput="
           feeAmount.value=commify(parseFloat(parseFloat(issued.value)*parseFloat(fee.value)).toFixed(0));
@@ -41,6 +50,7 @@
             <td>
                 <input type="radio" name="offering" value="initial" id="initial" required> Initial<br>
                 <input type="radio" name="offering" value="followon" id="followon" required> Follow-on<br>
+                <input type="radio" name="offering" value="reverse" id="reverse" required> Reverse<br>
                 <div id="infoText" style="color:red;"></div>
 
             </td>
@@ -72,9 +82,9 @@
 
 
         <tr>
-            <td>Issued</td>
+            <td id="issuedTD">Issued</td>
             <td>
-                <input id="issued" type="range" name="issued" min="10000" value="10000" max="1000000"  step="1000" style="width:100%"
+                <input id="issued" type="number" name="issued" style="width:100%"
                        onclick="issued_show_value(this.value);"
                        oninput="issued_show_value(this.value);"
                        onchange="issued_show_value(this.value);"
@@ -84,7 +94,7 @@
         </tr>
 
 
-        <tr>
+        <tr  id="feeTR">
             <td>Fee %</td>
             <td>
                 <input id="fee" type="range" name="fee" min="0" value="0" max=".5"  step=".01" style="width:100%"
@@ -157,6 +167,10 @@
 
 document.getElementById("followon").addEventListener("click", function () {
 
+    document.getElementById("fee").disabled = false;
+    document.getElementById('fee').value='';
+    document.getElementById("feeTR").style.opacity = 1; //1 visible //0 invisible
+
     document.getElementById("name").disabled = true;
     document.getElementById('name').value='';
     document.getElementById("nameTR").style.opacity = 0; //1 visible //0 invisible
@@ -179,11 +193,49 @@ document.getElementById("followon").addEventListener("click", function () {
     document.getElementById('rating_slider').value='';
     document.getElementById("rating_sliderTR").style.opacity = 0; //1 visible //0 invisible
 
-    document.getElementById('infoText').innerHTML = 'Only requires <b>"symbol"</b>, <b>"issued"</b> and <b>"fee"</b>';
+    document.getElementById('infoText').innerHTML = 'Only requires <b>"symbol"</b>, <b>"user"</b>, <b>"issued"</b> and <b>"fee"</b>';
+    document.getElementById('issuedTD').innerHTML = 'Issued';
+
+}, false);
+
+document.getElementById("reverse").addEventListener("click", function () {
+
+    document.getElementById("fee").disabled = true;
+    document.getElementById('fee').value='';
+    document.getElementById("feeTR").style.opacity = 0; //1 visible //0 invisible
+
+    document.getElementById("name").disabled = true;
+    document.getElementById('name').value='';
+    document.getElementById("nameTR").style.opacity = 0; //1 visible //0 invisible
+
+    document.getElementById("type").disabled = true;
+    document.getElementById('type').value='';
+    document.getElementById("type1").disabled = true;
+    document.getElementById('type1').value='';
+    document.getElementById("typeTR").style.opacity = 0; //1 visible //0 invisible
+
+    document.getElementById("url").disabled = true;
+    document.getElementById('url').value='';
+    document.getElementById("urlTR").style.opacity = 0; //1 visible //0 invisible
+
+    document.getElementById("description").disabled = true;
+    document.getElementById('description').value='';
+    document.getElementById("descriptionTR").style.opacity = 0; //1 visible //0 invisible
+
+    document.getElementById("rating_slider").disabled = true;
+    document.getElementById('rating_slider').value='';
+    document.getElementById("rating_sliderTR").style.opacity = 0; //1 visible //0 invisible
+
+    document.getElementById('infoText').innerHTML = 'Only requires <b>"symbol"</b>, <b>"user"</b>, and <b>"remove"</b>';
+    document.getElementById('issuedTD').innerHTML = 'Remove';
 
 }, false);
 
 document.getElementById("initial").addEventListener("click", function () {
+
+    document.getElementById("fee").disabled = false;
+    document.getElementById('fee').value='';
+    document.getElementById("feeTR").style.opacity = 1; //1 visible //0 invisible
 
     document.getElementById("name").disabled = false;
     document.getElementById('name').value='';
@@ -210,6 +262,7 @@ document.getElementById("initial").addEventListener("click", function () {
     document.getElementById("rating_sliderTR").style.opacity = 1; //1 visible //0 invisible
 
     document.getElementById('infoText').innerHTML = '';
+    document.getElementById('issuedTD').innerHTML = 'Issued';
 
 }, false);
 

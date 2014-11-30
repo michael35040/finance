@@ -535,8 +535,8 @@ function updateSymbol($symbol, $newSymbol, $userid, $name, $type, $url, $rating,
         if (query("UPDATE assets SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
         if (query("UPDATE history SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
         if (query("UPDATE orderbook SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
-        if (query("UPDATE trades SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
         if (query("UPDATE portfolio SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
+        if (query("UPDATE trades SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
     }
 
     query("COMMIT;"); //If no errors, commit changes
@@ -603,10 +603,7 @@ else
 {
      query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Public Offering Error: Too many symbol rows in assets. $symbol / $userid");
 } //apologizes if first two conditions are not meet
-    
-//INSERT INTO HISTORY
-if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, $userid, $transaction, $symbol, $issued, $fee, 0) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3ipo"); }
-    
+
 //INSERT TRADE INTO PORTFOLIO OF OWNER MINUS FEE
 if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $ownersQuantity, $price, $fee, 0, $transaction, 0, 0) === false) 
     {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Insert Owner Trade Error");}
@@ -698,8 +695,6 @@ function publicOffering2($symbol, $userid, $issued, $fee)
     {
         query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Public Offering Error: Too many symbol rows in assets. $symbol / $userid");
     } //apologizes if first two conditions are not meet
-//INSERT INTO HISTORY
-    if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, $userid, $transaction, $symbol, $issued, $fee, 0) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); apologize("Insert History Failure 3ipo"); }
 //INSERT TRADE INTO PORTFOLIO OF OWNER MINUS FEE
     if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $ownersQuantity, $price, $fee, 0, $transaction, 0, 0) === false)
     {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Insert Owner Trade Error");}
@@ -725,11 +720,77 @@ function publicOffering2($symbol, $userid, $issued, $fee)
         apologize("Admin Portfolio Error");
     } //apologizes if first two conditions are not meet
     //INSERT TRADE SHARES INTO PORTFOLIO OF ADMIN
-    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $adminid, $userid, $feeQuantity, $price, $fee, 0, $transaction, 0, 0) === false) {
-        query("ROLLBACK"); //rollback on failure
-        query("SET AUTOCOMMIT=1");
-        apologize("Insert Admin Trade Error");
+    if($feeQuantity>0){
+        if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $adminid, $userid, $feeQuantity, $price, $fee, 0, $transaction, 0, 0) === false) {
+            query("ROLLBACK"); //rollback on failure
+            query("SET AUTOCOMMIT=1");
+            apologize("Insert Admin Trade Error");
+        }
     }
+
+    query("COMMIT;"); //If no errors, commit changes
+    query("SET AUTOCOMMIT=1");
+    return("$symbol Public offering successful!");
+} //function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////
+//Public Offering (follow on)
+////////////////////////////////////
+function publicOfferingReverse($symbol, $userid, $issued)
+{   require 'constants.php'; //for $divisor
+
+    $transaction='RO'; //reverse offering
+    query("SET AUTOCOMMIT=0");
+    query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+    $symbol = strtoupper($symbol); //cast to UpperCase
+
+    //CHECK TO SEE IF SYMBOL EXISTS
+    $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
+    $countOwnersRows = count($symbolCheck);
+    if ($countOwnersRows != 1) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Symbol does not exist."); }
+    if (query("UPDATE assets SET issued=(issued-?) WHERE symbol = ?", $issued, $symbol) === false)
+    {query("ROLLBACK"); query("SET AUTOCOMMIT=1");apologize("Failure to update assets"); }
+
+    //CHECK TO SEE IF SYMBOL EXISTS
+    $ownerPortfolio = query("SELECT symbol FROM portfolio WHERE (id =? AND symbol =?)", $userid, $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
+    $countOwnersRows = count($ownerPortfolio);
+    if ($countOwnersRows == 0) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("No assets to remove.");} //update portfolio} //updates if stock already owned
+    elseif($countOwnersRows == 1) {if (query("UPDATE portfolio  SET quantity = (quantity - ?) WHERE (id = ? AND symbol = ?)", $issued, $userid, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Update to Owners Portfolio Error2");}} //update portfolio
+    else {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Public Offering Error: Too many symbol rows in assets. $symbol / $userid");} //apologizes if first two conditions are not meet
+
+    //CHECK TO SEE IF USER HAS ENOUGH FOR REMOVAL
+    $ownerPortfolio = query("SELECT quantity FROM portfolio WHERE (id =? AND symbol =?)", $userid, $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
+    $userQuantity = $ownerPortfolio[0]["quantity"];
+    if ($userQuantity < $issued) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("User does not have enough for removal."); exit();} //update portfolio} //updates if stock already owned
+
+//INSERT TRADE INTO PORTFOLIO OF OWNER MINUS FEE
+    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $issued, 0, 0, 0, $transaction, 0, 0) === false)
+    {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Insert Owner Trade Error");}
+
     query("COMMIT;"); //If no errors, commit changes
     query("SET AUTOCOMMIT=1");
     return("$symbol Public offering successful!");
@@ -887,7 +948,8 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 
     //INSERT INTO ORDERBOOK
     if (query("INSERT INTO orderbook (symbol, side, type, price, total, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $tradeAmount, $quantity, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert Orderbook Failure"); }
-    //UPDATE HISTORY
+
+    //UPDATE HISTORY (ON ORDERS PAGE)
     $rows = query("SELECT LAST_INSERT_ID() AS uid"); //this takes the id to the next page
     $ouid = $rows[0]["uid"]; //sets sql query to var
     if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $ouid, $transaction, $symbol, $quantity, $price, $tradeAmount) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3"); }

@@ -238,7 +238,7 @@
 
             //////////
             //CHART 4
-            //ORDERBOOK V2 BID ASK WALL
+            //ORDERBOOK V2 MARKET DEPTH
             //////////
             var data4 = google.visualization.arrayToDataTable([
                 <?php
@@ -279,7 +279,7 @@
             ]);
             var options4 =
             {
-                title: '<?php echo($symbol); ?> - BID ASK WALL',
+                title: '<?php echo($symbol); ?> - MARKET DEPTH',
                 hAxis: {title: 'Price',  titleTextStyle: {color: '#333'}},
                 vAxis: {title: 'Quantity', minValue: 0, isStacked: true}
                 // height: 500,

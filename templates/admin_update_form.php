@@ -14,9 +14,17 @@
         document.getElementById("rating_slider_value").innerHTML=x;
     }
 </script>
+<style>
+    #middle
+    {
+        background-color:transparent;
+        border:0;
+    }
+</style>
 <form action="admin_update.php"  method="post">
 
-    <h3>Update</h3>
+
+    <h3><div style="color:black;text-shadow: 1px 1px 5px #fff;">Update</div></h3>
 <table class="table table-condensed table-striped table-bordered" id="assets" style="border-collapse:collapse; width:100%;">
     <tr>
         <td style="width:50%">Update</td>

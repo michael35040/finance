@@ -112,7 +112,7 @@ function createStocks()
         $name=('The ' . $symbol . ' Co.');
         $userid=mt_rand(2,3);
         $issued = 2 * (mt_rand(1, 100) * 100000);
-        $type='stocks';
+        $type='stock'; //or commodity
         $fee=(mt_rand(1,100)/100);//0.45;
         $url=('http://www.' . $symbol . '.com');
         $rating=mt_rand(1,10);

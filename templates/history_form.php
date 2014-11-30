@@ -35,32 +35,6 @@
 
 
         </td></tr> <!--blank row breaker-->
-    <tr   class="active" >
-
-            <th>Transaction #</th>
-            <th>Transaction</th>
-            <th>Date/Time (Y/M/D)</th>
-            <th>Symbol</th>
-            <th>Quantity or Counterparty</th>
-            <th>Price</th>
-            <th>Total</th>
-        </tr>
-
-    <?php
-	    foreach ($history as $row)
-        {   
-            echo("<tr>");
-            echo("<td>" . htmlspecialchars($row["uid"]) . "</td>");
-            echo("<td>" . htmlspecialchars($row["transaction"]) . "</td>");			
-            echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
-            echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
-            echo("<td>" . htmlspecialchars($row["quantity"]) . "</td>");
-            echo("<td>" . $unitsymbol . htmlspecialchars(number_format($row["price"],2,".",",")) . "</td>");
-            echo("<td>" . $unitsymbol . htmlspecialchars(number_format($row["total"],2,".",",")) . "</td>");
-            echo("</tr>");
-        }
-    if($history==null){echo('<td colspan="7">None</td>');}
-    ?>
 
 
 
@@ -86,4 +60,38 @@
     if($error==null){echo('<td colspan="7">None</td>');}
 
     ?>
+
+
+
+
+    <tr   class="active" >
+
+        <th>Transaction #</th>
+        <th>Transaction</th>
+        <th>Date/Time (Y/M/D)</th>
+        <th>Symbol</th>
+        <th>Quantity or Counterparty</th>
+        <th>Price</th>
+        <th>Total</th>
+    </tr>
+
+    <?php
+    foreach ($history as $row)
+    {
+        echo("<tr>");
+        echo("<td>" . htmlspecialchars($row["uid"]) . "</td>");
+        echo("<td>" . htmlspecialchars($row["transaction"]) . "</td>");
+        echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
+        echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
+        echo("<td>" . htmlspecialchars($row["quantity"]) . "</td>");
+        echo("<td>" . $unitsymbol . htmlspecialchars(number_format($row["price"],2,".",",")) . "</td>");
+        echo("<td>" . $unitsymbol . htmlspecialchars(number_format($row["total"],2,".",",")) . "</td>");
+        echo("</tr>");
+    }
+    if($history==null){echo('<td colspan="7">None</td>');}
+    ?>
+
+
+
+
 </table>

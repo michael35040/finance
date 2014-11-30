@@ -229,7 +229,7 @@ function sanatize($type, $var)
 	}
 	if($type=='address')
 	{ //only alpha numeric, space, period, and comma allowed.
-		$var = preg_replace("/[^0-9a-zA-Z .,#-]/", "", $var); //keep - at end or it will be interpreted as range.
+		$var = preg_replace("/[^0-9a-zA-Z .,#!?-]/", "", $var); //keep - at end or it will be interpreted as range.
 	}
 
 	if($type=='quantity')
