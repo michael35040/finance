@@ -259,8 +259,7 @@ foreach ($trades as $trade) {
 
 
 <div style="color:white;text-shadow: 1px 1px 5px #000;">
-    Trades are instant and irrevocable. Prices subject to change. Price rounded to nearest quarter amount.
-
+    Trades are instant and irrevocable. Prices subject to change.
 </div>
 
 

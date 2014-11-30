@@ -78,7 +78,6 @@
     <script src="js/scripts.js"></script>
 
 
-
     <link href="css/bootstrap.css" rel="stylesheet"/>
     <link href="css/styles.php" rel="stylesheet" media="screen"/>
 

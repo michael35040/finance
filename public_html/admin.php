@@ -22,6 +22,8 @@ $title = "Dashboard";
 //for delete or process
 $assets = query("SELECT symbol FROM assets"); // query database for user
     if(isset($_POST['process'])) {
+
+
         if ($_POST["process"] == 'ALL') {
             try {
                 $processOrderbook = processOrderbook();
@@ -35,6 +37,7 @@ $assets = query("SELECT symbol FROM assets"); // query database for user
                 echo('Error: ' . $e->getMessage() . '<br>');
             }         //catch exception
         }
+
         echo($processOrderbook . " orders processed.");
     }
 

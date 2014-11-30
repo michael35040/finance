@@ -11,7 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$cents = (int)$_POST["cents"]; //not set on market orders
 
     $dollar = sanatize("quantity", $dollar);
-    if($cents!=0 && $cents!=25 && $cents!=50 && $cents!=75){apologize("Incorrect decimal!");}
+    if($cents>99 || $cents<0){apologize("Incorrect decimal!");}
+    //if($cents!=0 && $cents!=25 && $cents!=50 && $cents!=75){apologize("Incorrect decimal!");}
     $cents=$cents/100;
     $price=$dollar+$cents;
 

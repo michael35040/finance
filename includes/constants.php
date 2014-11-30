@@ -21,8 +21,10 @@ $decimalplaces = 2;
 
 
 //EXCHANGE.php/BUY.php/SELL.php
-$commission = 00.05;
-$divisor = 0.25; //increment of exchange
+$commission = 00.01;
+$divisor = 0.01; //increment of exchange
+
+$loud='quiet';
 
 //LOAN.php
 //THESE ARE UP HERE TO ALSO PASS TO THE FORM

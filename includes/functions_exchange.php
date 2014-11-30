@@ -10,16 +10,19 @@ function getCommission($total)
 
     $commissionAmount = $total * $commission; //ie 13.6875 = 273.75 * 0.05  //(5qty * $54.75)
 
+    $commissionAmount = $commissionAmount * 100; //ie 54.75 = 13.6875 * 4
+    $commissionAmount = floor($commissionAmount); //ie 55 = ceil(54.75)
+    $commissionAmount = $commissionAmount/100; //ie 13.75
+/*
      //FOR ROUNDING COMMISSION TO .25
     $commissionAmount = $commissionAmount * 4; //ie 54.75 = 13.6875 * 4
     //ceil to round up and floor to round down
     $commissionAmount = floor($commissionAmount); //ie 55 = ceil(54.75)
     $commissionAmount = $commissionAmount/4; //ie 13.75
     //check to ensure it is to the nearest quarter
-    $divisor = 0.25;
     $commissionModulus = fmod($commissionAmount, $divisor);
     if($commissionModulus != 0){throw new Exception("Commission Amount Error. $divisor / $commissionAmount");} //checks to see if quarter increment
-
+*/
 
     //should need it but just in case.
     $commissionAmount = round($commissionAmount, $decimalplaces);
@@ -31,14 +34,15 @@ function getCommission($total)
 //CHECK FOR 0 QTY ORDERS AND REMOVES
 ////////////////////////////////////
 function zeroQuantityCheck()
-{    //echo("<br>Conducting check for empty orders...");
+{    require 'constants.php';
+    if($loud!='quiet'){echo("<br>Conducting check for empty orders...");}
     $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (quantity = 0) LIMIT 0, 1");
     $removedEmpty = 0;
     while(!empty($emptyOrders))
     {   $removedEmpty++;
         cancelOrder($emptyOrders[0]["uid"]); //try catch
         $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (quantity = 0) LIMIT 0, 1"); }
-    //if($removedEmpty>0){ echo("<br>Removed: " . $removedEmpty . " empty orders.");  }
+    if($removedEmpty>0){ if($loud!='quiet'){echo("<br>Removed: " . $removedEmpty . " empty orders.");  }}
     return($removedEmpty);
 }
 
@@ -46,14 +50,15 @@ function zeroQuantityCheck()
 //CHECK FOR NEGATIVE VALUES
 ////////////////////////////////////
 function negativeValues()
-{   // echo("<br>Conducting check for negative values...");
+{   require 'constants.php';
+    if($loud!='quiet'){echo("<br>Conducting check for negative values...");}
     $negativeValueOrderbook = query("SELECT quantity, total, uid FROM orderbook WHERE (quantity < 0 OR total < 0) LIMIT 0, 1");
     if(!empty($negativeValueOrderbook)) {
         throw new Exception("<br>Negative Orderbook Values! UID: " . $negativeValueOrderbook[0]["uid"] . ", Quantity: " . $negativeValueOrderbook[0]["quantity"] . ", Total: " . $negativeValueOrderbook[0]["total"]);}
     //eventually all users order using id
     $negativeValueAccounts = query("SELECT units, id FROM accounts WHERE (units < 0) LIMIT 0, 1");
     if(!empty($negativeValueAccounts))
-    { // echo("<br>Negative Account Balance Detected! ID:"  .$negativeValueAccounts[0]["id"] . ", Balance:" . $negativeValueAccounts[0]["units"]);
+    { if($loud!='quiet'){echo("<br>Negative Account Balance Detected! ID:"  .$negativeValueAccounts[0]["id"] . ", Balance:" . $negativeValueAccounts[0]["units"]);}
         if(query("UPDATE orderbook SET type = 'cancel' WHERE id = ?", $negativeValueAccounts[0]["id"]) === false){ apologize("Unable to cancel all orders!"); }
         cancelOrderCheck(); //try catch
         throw new Exception("<br>Canceled All Users (ID:" . $negativeValueAccounts[0]["id"] . ") orders due to negative account balance. Current balance: " . $negativeValueAccounts[0]["units"]);}
@@ -64,7 +69,8 @@ function negativeValues()
 //CHECK FOR CANCELED ORDERS VALUES
 ////////////////////////////////////
 function cancelOrderCheck()
-{     //echo("<br>Conducting check for canceled orders...");
+{    require 'constants.php';
+if($loud!='quiet'){echo("<br>Conducting check for canceled orders...");}
       //Check to see if anyone canceled any orders
     $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
     $canceledNumber=0;
@@ -77,7 +83,7 @@ function cancelOrderCheck()
         $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
         $canceledNumber++;
     }
-    //if($canceledNumber>0){ echo("<br>Canceled: " . $canceledNumber . " orders.");  }
+    if($canceledNumber>0){ echo("<br>Canceled: " . $canceledNumber . " orders.");  }
 
 }
 
@@ -86,7 +92,7 @@ function cancelOrderCheck()
 //CANCEL ORDER
 ////////////////////////////////////
 function cancelOrder($uid)
-{
+{   require 'constants.php';
     $order = query("SELECT side, quantity, uid, symbol, type, price, id, total FROM orderbook WHERE uid = ?", $uid);
     if(!empty($order)) {
         @$side = $order[0]["side"];
@@ -135,7 +141,7 @@ function cancelOrder($uid)
         }
 
 
-        //echo("<br>Canceled [ID: " . $id . ", UID:" . $uid . ", Side:" . $side . ", Type:" . $type . ", Total:" . $total . ", Quantity:" . $quantity . ", Symbol:" . $symbol . "]");
+        if($loud!='quiet'){echo("<br>Canceled [ID: " . $id . ", UID:" . $uid . ", Side:" . $side . ", Type:" . $type . ", Total:" . $total . ", Quantity:" . $quantity . ", Symbol:" . $symbol . "]");}
 
 
         query("COMMIT;"); //If no errors, commit changes
@@ -154,7 +160,8 @@ function cancelOrder($uid)
 //CHECK FOR WHICH ORDERS ARE AT TOP OF ORDERBOOK
 ////////////////////////////////////
 function OrderbookTop($symbol)
-{    //echo("<br>[" . $symbol . "] Conducting check for top of orderbook...");
+{    require 'constants.php';
+    if($loud!='quiet'){echo("<br>[" . $symbol . "] Conducting check for top of orderbook...");}
 
     $topOrders=[];
 
@@ -209,10 +216,10 @@ function OrderbookTop($symbol)
 
 //apologize(var_dump(get_defined_vars()));
 function processOrderbook($symbol=null)
-{
-    //$startDate = time();
+{   require 'constants.php';
+    $startDate = time();
     $totalProcessed=0;
-    //echo(date("Y-m-d H:i:s"));
+if($loud!='quiet'){echo(date("Y-m-d H:i:s"));}
 
     //NEGATIVE VALUE CHECK
     negativeValues();
@@ -224,46 +231,60 @@ function processOrderbook($symbol=null)
         //GET A QUERY OF ALL SYMBOLS FROM ASSETS
         $symbols =	query("SELECT symbol FROM assets ORDER BY symbol ASC");
 
-        foreach ($symbols as $symbol)
-        {  // echo("<br><br>[" . $symbol["symbol"] . "] Processing orderbook...");
-            try {$orderbook = orderbook($symbol["symbol"]);
-               // echo('<br>[' . $orderbook["symbol"] . '] Processed ' . $orderbook["orderProcessed"] . ' orders.');
-                $totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
+        //to prevent stopping on error for symbol (i.e. user does not have enough funds, all user orders deleted
+        $error=1;
+        while($error>0)
+        {
+            $error=0;
+            foreach ($symbols as $symbol)
+            {   if($loud!='quiet'){echo("<br><br>[" . $symbol["symbol"] . "] Processing orderbook...");}
+                try {$orderbook = orderbook($symbol["symbol"]);
+                    if($loud!='quiet'){echo('<br>[' . $orderbook["symbol"] . '] Processed ' . $orderbook["orderProcessed"] . ' orders.');}
+                    $totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
 
+                }
+                catch(Exception $e) {
+                    if($loud!='quiet'){echo('<br><div style="color:red;">Error: [' . $symbol["symbol"] . "] " . $e->getMessage() . '</div>');}
+                $error=$error+1;
+                }
             }
-            catch(Exception $e) {
-                //echo('<br><div style="color:red;">Error: [' . $symbol["symbol"] . "] " .
-                    $e->getMessage()
-                 //   . '</div>')
-                ;}
         }
+
     }
     else
-    {   //echo("<br>[" . $symbol . "] Processing orderbook...");
+    {   if($loud!='quiet'){echo("<br>[" . $symbol . "] Processing orderbook...");}
         $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
         if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol . "] Incorrect Symbol. Not listed on the exchange!");} //row count
-        try {$orderbook = orderbook($symbol);
-            if(isset($orderbook)){
-                //echo('<br><div style="color:red; font-weight: bold;">[' . $symbol . '] Processed ' .  $orderbook["orderProcessed"] . " orders</div>");
-                $totalProcessed = ($totalProcessed +  $orderbook["orderProcessed"]);
+
+        $error=1;
+        while($error>0) {
+            $error = 0;
+
+            try {
+                $orderbook = orderbook($symbol);
+                if (isset($orderbook)) {
+                    if($loud!='quiet'){echo('<br><div style="color:red; font-weight: bold;">[' . $symbol . '] Processed ' . $orderbook["orderProcessed"] . " orders</div>");}
+                    $totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
+                }
+            } catch (Exception $e) {
+                    if($loud!='quiet'){echo '<br>[' . $symbol . "] " . $e->getMessage();}
+                $error = $error + 1;
             }
-        }catch(Exception $e) {
-            //echo '<br>[' .  $symbol . "] " .
-                $e->getMessage();}
+        }
 
     }
-    //echo("<br>");
+if($loud!='quiet'){echo("<br>");}
 
 
     //REMOVES ALL EMPTY ORDERS
     zeroQuantityCheck();
 
-    //echo(date("Y-m-d H:i:s"));
-    //$endDate =  time();
-    //$totalTime = $endDate-$startDate;
-    //if($totalTime != 0){$speed=$totalProcessed/$totalTime;}
-    //else{$speed=0;}
-    //echo("<br><br><b>Processed " . $totalProcessed . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec</b>");
+if($loud!='quiet'){ echo(date("Y-m-d H:i:s"));}
+    $endDate =  time();
+    $totalTime = $endDate-$startDate;
+    if($totalTime != 0){$speed=$totalProcessed/$totalTime;}
+    else{$speed=0;}
+    if($loud!='quiet'){echo("<br><br><b>Processed " . $totalProcessed . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec</b>");}
 
     query("UPDATE accounts SET units = ROUND(units, 2)");
     return($totalProcessed);
@@ -275,11 +296,12 @@ function processOrderbook($symbol=null)
 //EXCHANGE MARKET
 ////////////////////////////////////
 function orderbook($symbol)
-{ //   apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
-   // echo("<br>[" . $symbol . "] Computing orderbook...");
+{ require 'constants.php';
+//   apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
+if($loud!='quiet'){echo("<br>[" . $symbol . "] Computing orderbook...");}
     //$adminid = 1;
 
-    require 'constants.php'; //for $divisor
+    require 'constants.php';
 
     //PROCESS MARKET ORDERS
     if(empty($symbol)){throw new Exception("No symbol selected!");}
@@ -320,7 +342,7 @@ function orderbook($symbol)
         $orderProcessed++; //orders processed plus 1
 
         if ($topBidPrice >= $topAskPrice) //TRADES ARE POSSIBLE
-        { //echo("<br>[" . $symbol . "] Trade possible...");
+        { if($loud!='quiet'){echo("<br>[" . $symbol . "] Trade possible...");}
             //START TRANSACTION
             query("SET AUTOCOMMIT=0");
             query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
@@ -436,7 +458,7 @@ function orderbook($symbol)
             $topBidPrice = (float)$bids[0]["price"];
             $tradeType = $topOrders["tradeType"];
 
-            /*
+            /* */
             //LAST TRADE INFO TO RETURN ON FUNCTION
             if ($topAskType == 'market') { $topAskPrice = 'market'; } //null//$tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
             if ($topBidType == 'market') { $topBidPrice = 'market'; } //null// $tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
@@ -461,24 +483,25 @@ function orderbook($symbol)
             $orderbook['tradePrice'] = $tradePrice;
             $orderbook['tradeType'] = $tradeType;
 
-            echo("<br><br><b>Executed: Trade Price: " . number_format($orderbook['tradePrice'],2,".",",") . " (" . $orderbook['tradeType'] . ")</b>");
-            echo("<br>Ask Price: " . number_format($orderbook['topAskPrice'],2,".",","));
-            echo("<br>Ask UID: " . $orderbook['topAskUID']); //order id; unique id
-            echo("<br>Ask Symbol: " . $orderbook['topAskSymbol']); //symbol of equity
-            echo("<br>Ask Side: " . $orderbook['topAskSide']); //bid or ask
-            echo("<br>Ask Date: " . $orderbook['topAskDate']);
-            echo("<br>Ask Type: " . $orderbook['topAskType']);  //limit or market
-            echo("<br>Ask Size: " . $orderbook['topAskSize']); //size or quantity of trade
-            echo("<br>Ask User: " .  $orderbook['topAskUser']); //user id
-            echo("<br>Bid Price: " . number_format($orderbook['topBidPrice'],2,".",",")); //might need to make (float)
-            echo("<br>Bid UID: " . $orderbook['topBidUID']); //order id; unique id
-            echo("<br>Bid Symbol: " . $orderbook['topBidSymbol']);
-            echo("<br>Bid Side: " . $orderbook['topBidSide']); //bid or ask
-            echo("<br>Bid Date: " . $orderbook['topBidDate']);
-            echo("<br>Bid Type: " . $orderbook['topBidType']); //limit or market
-            echo("<br>Bid Size: " . $orderbook['topBidSize']);
-            echo("<br>Bid User: " . $orderbook['topBidUser']);
-            */
+            if($loud!='quiet'){
+                    echo("<br><br><b>Executed: Trade Price: " . number_format($orderbook['tradePrice'],2,".",",") . " (" . $orderbook['tradeType'] . ")</b>");
+                    echo("<br>Ask Price: " . number_format($orderbook['topAskPrice'],2,".",","));
+                    echo("<br>Ask UID: " . $orderbook['topAskUID']); //order id; unique id
+                    echo("<br>Ask Symbol: " . $orderbook['topAskSymbol']); //symbol of equity
+                    echo("<br>Ask Side: " . $orderbook['topAskSide']); //bid or ask
+                    echo("<br>Ask Date: " . $orderbook['topAskDate']);
+                    echo("<br>Ask Type: " . $orderbook['topAskType']);  //limit or market
+                    echo("<br>Ask Size: " . $orderbook['topAskSize']); //size or quantity of trade
+                    echo("<br>Ask User: " .  $orderbook['topAskUser']); //user id
+                    echo("<br>Bid Price: " . number_format($orderbook['topBidPrice'],2,".",",")); //might need to make (float)
+                    echo("<br>Bid UID: " . $orderbook['topBidUID']); //order id; unique id
+                    echo("<br>Bid Symbol: " . $orderbook['topBidSymbol']);
+                    echo("<br>Bid Side: " . $orderbook['topBidSide']); //bid or ask
+                    echo("<br>Bid Date: " . $orderbook['topBidDate']);
+                    echo("<br>Bid Type: " . $orderbook['topBidType']); //limit or market
+                    echo("<br>Bid Size: " . $orderbook['topBidSize']);
+                    echo("<br>Bid User: " . $orderbook['topBidUser']);
+                }
 
 
 
@@ -563,7 +586,7 @@ function updateSymbol($symbol, $newSymbol, $userid, $name, $type, $url, $rating,
 //Public Offering (initial)
 ////////////////////////////////////
 function publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description)
-{   require 'constants.php'; //for $divisor
+{   require 'constants.php';
 $transaction='PO'; //public offering
 if (empty($symbol)) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("You must enter symbol."); }
 $symbol = strtoupper($symbol); //cast to UpperCase
@@ -664,7 +687,7 @@ return("$symbol public offering successful!");
 //Public Offering (follow on)
 ////////////////////////////////////
 function publicOffering2($symbol, $userid, $issued, $fee)
-{   require 'constants.php'; //for $divisor
+{   require 'constants.php';
 
     $transaction='PO'; //public offering
     query("SET AUTOCOMMIT=0");
@@ -761,7 +784,7 @@ function publicOffering2($symbol, $userid, $issued, $fee)
 //Public Offering (follow on)
 ////////////////////////////////////
 function publicOfferingReverse($symbol, $userid, $issued)
-{   require 'constants.php'; //for $divisor
+{   require 'constants.php';
 
     $transaction='RO'; //reverse offering
     query("SET AUTOCOMMIT=0");
@@ -840,13 +863,13 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     if($type=='limit')
     {
 
-
+        /*
         //$divisor = 0.25;
         //CHECK PRICE
         $priceModulus = fmod($price, $divisor); //$divisor set in constants
-        if($priceModulus != 0){throw new Exception("Not correct increment. $divisor");} //checks to see if quarter increment
+        if($priceModulus != 0){throw new Exception("Not correct increment. $price . $divisor");} //checks to see if quarter increment
         if (!is_float($price) && !is_int($price)) { throw new Exception("Price is not a number");} //if quantity is numeric
-
+        */
 
         //NEW VARS FOR DB INSERT
         if($side=='a')//limit

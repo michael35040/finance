@@ -96,6 +96,8 @@
     elseif($i>0)
     {
     ?>
+    </tbody>
+    <tfoot>
     <tr >
         <td colspan="10"><strong>Sum of <?php echo($i) ?> listed transactions</strong></td>
         <?php
@@ -121,7 +123,7 @@
     <?php } //$i>0
 ?>
 
-    </tbody>
+    </tfoot>
 </table>
 
  <br />  <br />
