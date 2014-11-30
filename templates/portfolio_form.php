@@ -324,7 +324,7 @@ if($i == 0)
 
         <!-- TOTAL STOCK WORTH -->
         <tr  class="active">
-            <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Stocks) <i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order(s)</i></td>
+            <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Assets) <i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order(s)</i></td>
             <td><strong>
                     <?php //calculate value of purchase price
                     $purchaseprice = $purchaseprice[0]["purchaseprice"]; //convert array to number

@@ -10,7 +10,7 @@
 $adminid = 1;
 
 //header & footer
-$sitename = 'PULWAR'; //leave a space afterwards
+$sitename = 'Pulwar'; //leave a space afterwards
     
 //index & portfolio
 $unittype = "USD";

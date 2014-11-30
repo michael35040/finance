@@ -4,9 +4,9 @@
 ////////////////////////////////////
 
 function randomOrders()
-{    include("constants.php");//for $divisor
-    echo date("Y-m-d H:i:s");
-    $startDate =  time();
+{    require 'constants.php';
+if($loud!='quiet'){echo date("Y-m-d H:i:s");
+    $startDate =  time();}
     $ordersCreated = 0;
     $i=0;
     $type='limit';
@@ -25,7 +25,7 @@ function randomOrders()
 
         //while ($i < 26) {
         $randomOrders=0;
-        echo("<br><b>[" . $symbol . "] Placing Orders...</b>");
+        if($loud!='quiet'){echo("<br><b>[" . $symbol . "] Placing Orders...</b>");}
         while ($randomOrders < 50) //number of orders
         {
             $sideNum = mt_rand(1, 2);
@@ -49,12 +49,12 @@ function randomOrders()
             try {
                 placeOrder($symbol, $type, $side, $quantity, $price, $id);
                 $total = $quantity * $price;
-                echo("<br>[ID:" . $id . ", " . $symbol . ", " . $type . ", " . $side . ", $" . $price . ", x" . $quantity . ", Total: $" . $total . "]");
+                if($loud!='quiet'){echo("<br>[ID:" . $id . ", " . $symbol . ", " . $type . ", " . $side . ", $" . $price . ", x" . $quantity . ", Total: $" . $total . "]");}
                 $randomOrders++; //should be only 10 per symbol
                 $ordersCreated++; //total created
             } //catch exception
             catch (Exception $e) {
-                echo('<br>Error: [' . $symbol . '] ' . $e->getMessage());
+                if($loud!='quiet'){echo('<br>Error: [' . $symbol . '] ' . $e->getMessage());}
             }
 
 
@@ -63,34 +63,39 @@ function randomOrders()
         $i++; //up to 26
     }
     $endDate =  time();
+if($loud!='quiet') {
     echo("<br>");
     echo date("Y-m-d H:i:s");
     echo("<br>");
-    $endDate =  time();
-    $totalTime = $endDate-$startDate;
-    if($totalTime==0){$speed=$ordersCreated;} //so we don't divid by 0.
-    else{$speed=$ordersCreated/$totalTime;}
+    $endDate = time();
+    $totalTime = $endDate - $startDate;
+    if ($totalTime == 0) {
+        $speed = $ordersCreated;
+    } //so we don't divid by 0.
+    else {
+        $speed = $ordersCreated / $totalTime;
+    }
     echo("<br>Created " . $ordersCreated . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec<br>");
-
+}
     return($ordersCreated); //number of orders processed
 }
 
 
 
 function populatetrades()
-{
+{ require 'constants.php';
     $date=0;
     while($date<3)
     {
         try {
             $randomOrders = randomOrders();
         } catch (Exception $e) {
-            echo('Error: ' . $e->getMessage() . '<br>');
+            if($loud!='quiet') {echo('Error: ' . $e->getMessage() . '<br>');}
         }         //catch exception
         try {
             $processOrderbook = processOrderbook();
         } catch (Exception $e) {
-            echo('Error: ' . $e->getMessage() . '<br>');
+            if($loud!='quiet') {echo('Error: ' . $e->getMessage() . '<br>');}
         }
         query("UPDATE trades SET date = DATE_SUB(date, INTERVAL 2 DAY)");
         $date++;
@@ -98,15 +103,15 @@ function populatetrades()
 }
 
 function createStocks()
-{    include("constants.php");//for $divisor
-    echo("Creating Stocks");
+{    require 'constants.php';//for $divisor
+if($loud!='quiet') {echo("Creating Stocks");
     echo date("Y-m-d H:i:s");
-    $startDate =  time();
+    $startDate =  time();}
     $lastSymbol =	query("SELECT symbol FROM assets ORDER BY symbol DESC LIMIT 0, 1");
     if($lastSymbol==null){$symbol='A';}
     else{$symbol = $lastSymbol[0]["symbol"]; $symbol++;}
 
-    echo("<br>Symbol: " . $symbol);
+if($loud!='quiet') {echo("<br>Symbol: " . $symbol);}
     $i=0;
     while ($i < 7) {
         $name=('The ' . $symbol . ' Co.');
@@ -122,21 +127,21 @@ function createStocks()
             $quantity = $issued / 2;
             $price = mt_rand(1, 40) * $divisor * ($issued / 2);
             //query("INSERT INTO `portfolio` (`id`, `symbol`, `quantity`, `price`) VALUES (3, ?, ?, ?)", $symbol, $quantity, $price);
-            echo("<br>Issued-[Symbol:" . $symbol . ", Quantity:" . $quantity . ", Fee:" . $fee . "]<br>");
-            echo($publicOffering);
+            if($loud!='quiet') {echo("<br>Issued-[Symbol:" . $symbol . ", Quantity:" . $quantity . ", Fee:" . $fee . "]<br>");
+            echo($publicOffering);}
             $symbol++;
             $i++;
         }
         catch(Exception $e) {echo('<br>Error on Public Stock Offering: ' . $symbol . $e->getMessage());}
     }
-    $endDate = time();
+if($loud!='quiet') {$endDate = time();
     echo("<br>");
     echo date("Y-m-d H:i:s");
     echo("<br>");
     $endDate = time();
     $totalTime = $endDate - $startDate;
     $speed = $i / $totalTime;
-    echo("<br>Issued " . $i . " stocks offerings in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");
+    echo("<br>Issued " . $i . " stocks offerings in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");}
     return ($i);
 
 }
