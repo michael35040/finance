@@ -85,6 +85,9 @@
     $count["volume"] = $countQ[0]["volume"];
     $countQ = query("SELECT COUNT(symbol) AS total FROM portfolio WHERE id=?", $id); // query database for user
     $count["assets"] = $countQ[0]["total"];
+    $countQ = query("SELECT SUM(commission) AS commission FROM trades WHERE seller=? AND (type='limit' OR type='market')", $id); // query database for user
+    $count["commission"] = $countQ[0]["commission"];
+
     ?>
 
 
@@ -139,7 +142,7 @@
 
 <table class="table table-striped table-condensed table-bordered" >
         <tr  class="success">
-            <td colspan="5" style="font-size:20px; text-align: center;">ACTIVITY</td>
+            <td colspan="6" style="font-size:20px; text-align: center;">ACTIVITY</td>
         </tr>
     <tr>
         <td><strong>Assets: </strong><?php echo(number_format($count["assets"], 0, '.', ',')); ?></td>
@@ -147,6 +150,7 @@
         <td><strong>Trades: </strong><?php echo(number_format($count["trades"], 0, '.', ',')); ?></td>
         <td><strong>Trade Volume: </strong><?php echo(number_format($count["volume"], 0, '.', ',')); ?></td>
         <td><strong>Trade Value: </strong><?php echo($unitsymbol . number_format($count["value"], 2, '.', ',')); ?></td>
+        <td><strong>Commissions: </strong><?php echo($unitsymbol . number_format($count["commission"], 2, '.', ',')); ?></td>
     </tr>
         </table>
 
