@@ -10,25 +10,37 @@ function getCommission($total)
 
     $commissionAmount = $total * $commission; //ie 13.6875 = 273.75 * 0.05  //(5qty * $54.75)
 
+$commissionAmount = roundPrice($commissionAmount);
+
+/*
+    //FOR ROUNDING COMMISSION TO .01
     $commissionAmount = $commissionAmount * 100; //ie 54.75 = 13.6875 * 4
     $commissionAmount = floor($commissionAmount); //ie 55 = ceil(54.75)
     $commissionAmount = $commissionAmount/100; //ie 13.75
-/*
-     //FOR ROUNDING COMMISSION TO .25
-    $commissionAmount = $commissionAmount * 4; //ie 54.75 = 13.6875 * 4
-    //ceil to round up and floor to round down
-    $commissionAmount = floor($commissionAmount); //ie 55 = ceil(54.75)
-    $commissionAmount = $commissionAmount/4; //ie 13.75
-    //check to ensure it is to the nearest quarter
-    $commissionModulus = fmod($commissionAmount, $divisor);
-    if($commissionModulus != 0){throw new Exception("Commission Amount Error. $divisor / $commissionAmount");} //checks to see if quarter increment
 */
 
-    //should need it but just in case.
+    //should not need it but just in case.
     $commissionAmount = round($commissionAmount, $decimalplaces);
     return($commissionAmount);
 }
 
+
+
+///////////////////////////////////
+//CHECK PRICE FOR DIVISOR/FMOD
+//ROUND TO PRICE
+///////////////////////////////////
+function roundPrice($price)
+{
+    require 'constants.php';
+    $dividor=(100/($divisor*100));
+    $price = $price * $dividor; 
+    $price = floor($price); 
+    $price = $price/$dividor; 
+    $total = fmod($price, $divisor);
+    if($total != 0){throw new Exception("FMOD Error.");} 
+  return($total);
+}
 
 ////////////////////////////////////
 //CHECK FOR 0 QTY ORDERS AND REMOVES
@@ -863,13 +875,8 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     if($type=='limit')
     {
 
-        /*
-        //$divisor = 0.25;
-        //CHECK PRICE
-        $priceModulus = fmod($price, $divisor); //$divisor set in constants
-        if($priceModulus != 0){throw new Exception("Not correct increment. $price . $divisor");} //checks to see if quarter increment
-        if (!is_float($price) && !is_int($price)) { throw new Exception("Price is not a number");} //if quantity is numeric
-        */
+        $price = roundPrice($price);
+
 
         //NEW VARS FOR DB INSERT
         if($side=='a')//limit
