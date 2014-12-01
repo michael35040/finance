@@ -191,7 +191,8 @@ function test()
     clear_portfolio();
     clear_history();
     clear_assets();
-    query("  UPDATE `accounts` SET `units`=1000000,`loan`=0,`rate`=0,`approved`=1 WHERE 1");
+    $units = setPrice(1000000);
+    query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
 
     createStocks();
 
