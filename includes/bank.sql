@@ -31,8 +31,8 @@ USE `bank`;
 DROP TABLE IF EXISTS `accounts`;
 CREATE TABLE IF NOT EXISTS `accounts` (
   `id` int(11) NOT NULL,
-  `units` decimal(65,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
-  `loan` decimal(65,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
+  `units` bigint(20) unsigned NOT NULL DEFAULT '0',
+  `loan` bigint(20) unsigned NOT NULL DEFAULT '0',
   `rate` decimal(65,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
   `approved` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
@@ -48,7 +48,7 @@ TRUNCATE TABLE `accounts`;
 --
 
 INSERT INTO `accounts` (`id`, `units`, `loan`, `rate`, `approved`) VALUES
-(1, '1000000.000000000000000000000000000000', '0.000000000000000000000000000000', '0.000000000000000000000000000000', 1);
+(1, '0', '0', '0.000000000000000000000000000000', 1);
 
 
 -- --------------------------------------------------------
@@ -172,7 +172,8 @@ TRUNCATE TABLE `notification`;
 
 --
 -- Table structure for table `orderbook`
---
+--     bigint(20) unsigned NOT NULL DEFAULT '0',  
+
 
 DROP TABLE IF EXISTS `orderbook`;
 CREATE TABLE IF NOT EXISTS `orderbook` (
@@ -181,8 +182,8 @@ CREATE TABLE IF NOT EXISTS `orderbook` (
   `symbol` varchar(10) NOT NULL,
   `side` varchar(1) NOT NULL COMMENT 'a:ask or b:bid',
   `type` varchar(6) NOT NULL COMMENT 'limit or market',
-  `price` decimal(65,30) NOT NULL,
-  `total` decimal(65,30) NOT NULL COMMENT 'if bid order fund amount that is locked',
+  `price` bigint(20) unsigned NOT NULL,
+  `total` bigint(20) unsigned NOT NULL COMMENT 'if bid order fund amount that is locked',
   `quantity` int(11) NOT NULL COMMENT 'size quantity of order',
   `id` int(9) NOT NULL COMMENT 'user id',
   PRIMARY KEY (`uid`)
@@ -205,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `portfolio` (
   `id` int(10) NOT NULL COMMENT 'user id',
   `symbol` varchar(10) NOT NULL,
   `quantity` int(65) NOT NULL,
-  `price` decimal(65,30) NOT NULL COMMENT 'avg buy price',
+  `price` bigint(20) unsigned NOT NULL COMMENT 'avg buy price',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -225,10 +226,10 @@ CREATE TABLE IF NOT EXISTS `trades` (
   `uid` int(9) NOT NULL AUTO_INCREMENT COMMENT 'unique id',
   `symbol` varchar(10) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `price` decimal(65,30) NOT NULL,
+  `price` bigint(20) unsigned NOT NULL COMMENT 'price',
   `quantity` int(11) NOT NULL,
-  `commission` decimal(65,30) NOT NULL,
-  `total` decimal(65,30) NOT NULL,
+  `commission` bigint(20) unsigned NOT NULL COMMENT 'commission',
+  `total` bigint(20) unsigned NOT NULL COMMENT 'total',
   `type` varchar(10) NOT NULL,
   `buyer` int(9) NOT NULL COMMENT 'user id',
   `seller` int(9) NOT NULL COMMENT 'user id',
@@ -280,9 +281,8 @@ TRUNCATE TABLE `users`;
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`email`, `fname`, `lname`, `address`, `city`, `region`, `zip`, `phone`, `question`, `answer`, `password`, `registered`, `last_login`, `ip`, `fails`, `active`) VALUES
-('a@pulwar.com', 'a', 'pulwar', 'pulwar st 12 po #box 123', 'CityofPulwar', 'IA', 111112, 12, 'What?', 'Yeah!', 
-'$2y$12$nWKo8MgSUp1nqVQvEqL3VuO6o8HKFI4DP6sgnwXFRcB85CkjlRc9y', '2014-11-07 07:00:00', 2014, '143.85.101.19', 0, 1);
+INSERT INTO `users` (`email`, `fname`, `lname`, `birth`, `address`, `city`, `region`, `zip`, `phone`, `question`, `answer`, `password`, `registered`, `last_login`, `ip`, `fails`, `active`) VALUES
+('a@pulwar.com', 'a', 'pulwar', '2014-05-04', 'pulwar st 12 po #box 123', 'CityofPulwar', 'IA', 111112, 12, 'What?', 'Yeah!', '$2a$11$mSIPrGz706xUee70qha1NeWEZ/CR/.ufGS1uzTzr5wsQHApBx6Vz2', '2014-11-07 07:00:00', '2014-12-01 18:02:25', '143.85.101.19', 0, 1);
 
 
 
