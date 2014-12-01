@@ -28,7 +28,8 @@
     $OrderTotal=0;
 
     foreach ($orders as $row)
-    {
+    { 	$price = getPrice($row["price"]);
+    	$total = getPrice($row["total"]);
         echo("<tr>");
         echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="' . $row["uid"] . '"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>');
         echo("<td>" . number_format($row["uid"], 0, ".", "") . "</td>");
@@ -37,8 +38,8 @@
         echo("<td>" . htmlspecialchars(strtoupper($row["side"])) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["type"])) . "</td>");
         echo("<td>" . number_format($row["quantity"], 0, ".", ",") . "</td>");
-        echo("<td>" . $unitsymbol . number_format($row["price"], 2, ".", ",") . "</td>");
-        echo("<td>" . $unitsymbol . number_format($row["total"], 2, ".", ",") . "</td>");
+        echo("<td>" . $unitsymbol . number_format($price, 2, ".", ",") . "</td>");
+        echo("<td>" . $unitsymbol . number_format($total, 2, ".", ",") . "</td>");
         echo("</tr>");
         $OrderNumber++;
         /*
