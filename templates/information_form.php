@@ -466,7 +466,7 @@ if($trades != null)
         @$symbol = $trade["symbol"];
         @$quantity = $trade["quantity"];
         @$price = getPrice($trade["price"]);
-        @$total = getPrice($trade["total"];
+        @$total = getPrice($trade["total"]);
         @$date = $trade["date"];
         echo("
                 <tr>
