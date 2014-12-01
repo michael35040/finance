@@ -16,10 +16,10 @@ foreach ($SBallAssets as $SBrow)		// for each of user's stocks
 
     $SBtrades = query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $SBasset["symbol"]);	  // query user's portfolio
     if(empty($SBtrades[0]["price"])){$SBtrades[0]["price"]=0;}
-    $SBasset["price"] = $SBtrades[0]["price"]; //stock price per share
-    $SBasset["marketcap"] = ($SBasset["price"] * $SBasset["issued"]);
-    $SBindexMarketCap = $SBindexMarketCap+$SBasset["marketcap"];
-    $SBindexValue = $SBindexValue+$SBasset["price"];
+    $SBasset["price"] = getPrice($SBtrades[0]["price"]); //stock price per share
+    $SBasset["marketcap"] = getPrice($SBasset["price"] * $SBasset["issued"]);
+    $SBindexMarketCap = getPrice($SBindexMarketCap+$SBasset["marketcap"]);
+    $SBindexValue = getPrice($SBindexValue+$SBasset["price"]);
     $SBassets[] = $SBasset;
 }
 
@@ -123,11 +123,11 @@ function banner($price)
 
             //EACH SHARE
             foreach ($SBassets as $SBasset)
-            {
+            { $price = getPrice($SBasset["price"]);
                 echo('<span class="stockbox">');
                 echo($SBasset["symbol"] . "&nbsp;");
-                echo($unitsymbol . number_format($SBasset["price"], 2, ".", ","));
-                banner($SBasset["price"]);//CHANGE AND ARROWS
+                echo($unitsymbol . number_format($price, 2, ".", ","));
+                banner($price);//CHANGE AND ARROWS
             }
             ?>
 
