@@ -62,7 +62,7 @@
 
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-            <input class="form-control" name="birth" placeholder="Birthdate" type="date" required/>
+            <input class="form-control" name="birth" placeholder="YYYY-MM-DD (Birthdate)" type="date" required/>
         </div>
 
         <div class="input-group">
