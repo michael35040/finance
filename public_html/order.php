@@ -17,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $price=$dollar+$cents;
 
     //FORMATS AND SCRUBS VARIABLES
-    $price = sanatize("price", $price);
     $quantity = sanatize("quantity", $quantity);
     $symbol = sanatize("alphabet", $symbol);
     $type = sanatize("alphabet", $type);
