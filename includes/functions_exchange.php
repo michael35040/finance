@@ -7,23 +7,11 @@
 function getCommission($total)
 {
     require 'constants.php'; //for $divisor
-
     $commissionAmount = $total * $commission; //ie 13.6875 = 273.75 * 0.05  //(5qty * $54.75)
-
-$commissionAmount = roundPrice($commissionAmount);
-
-/*
-    //FOR ROUNDING COMMISSION TO .01
-    $commissionAmount = $commissionAmount * 100; //ie 54.75 = 13.6875 * 4
-    $commissionAmount = floor($commissionAmount); //ie 55 = ceil(54.75)
-    $commissionAmount = $commissionAmount/100; //ie 13.75
-*/
-
-    //should not need it but just in case.
-    $commissionAmount = round($commissionAmount, $decimalplaces);
+    $commissionAmount = roundPrice($commissionAmount);
+    $commissionAmount = round($commissionAmount, $decimalplaces);    //should not need it but just in case.
     return($commissionAmount);
 }
-
 
 
 ///////////////////////////////////
@@ -32,14 +20,18 @@ $commissionAmount = roundPrice($commissionAmount);
 ///////////////////////////////////
 function roundPrice($price)
 {
-    require 'constants.php';
+    //require 'constants.php';
+    $divisor=0.01;
     $dividor=(100/($divisor*100));
     $price = $price * $dividor; 
-    $price = floor($price); 
-    $price = $price/$dividor; 
-    $total = fmod($price, $divisor);
-    if($total != 0){throw new Exception("FMOD Error.");} 
-  return($total);
+    $price = (float)floor($price); 
+    $price = (float)$price/$dividor; 
+    
+    $priceCheck = ($price*100);
+    $divisorCheck = ($divisor*100);
+    $check = fmod($priceCheck, $divisorCheck);
+    if($check != 0) {apologize("Invalid price");} //{throw new Exception("FMOD Error. $price / $divisor / $total");} 
+  return($price);
 }
 
 ////////////////////////////////////
