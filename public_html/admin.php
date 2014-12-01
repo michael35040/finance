@@ -336,7 +336,7 @@ require("../templates/header.php");
   <td><?php echo(number_format($dash["ordersday"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradesday"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["volumeday"], 0, '.', ',')); ?></td>
-  <td><?php echo($unitsymbol . number_format($dash["valueday"], 2, '.', ',')); ?></td>
+  <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday"]), 2, '.', ',')); ?></td>
 </tr>
 <tr>
   <td>24-48hrs</td>
@@ -345,7 +345,7 @@ require("../templates/header.php");
   <td><?php echo(number_format($dash["ordersday2"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradesday2"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["volumeday2"], 0, '.', ',')); ?></td>
-  <td><?php echo($unitsymbol . number_format($dash["valueday2"], 2, '.', ',')); ?></td>
+  <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday2"]), 2, '.', ',')); ?></td>
 </tr>
 <tr>
   <td>48-72hrs</td>
@@ -354,7 +354,7 @@ require("../templates/header.php");
   <td><?php echo(number_format($dash["ordersday3"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradesday3"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["volumeday3"], 0, '.', ',')); ?></td>
-  <td><?php echo($unitsymbol . number_format($dash["valueday3"], 2, '.', ',')); ?></td>
+  <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday3"]), 2, '.', ',')); ?></td>
 </tr>
 <tr>
   <td>Last 7d</td>
@@ -363,7 +363,7 @@ require("../templates/header.php");
   <td><?php echo(number_format($dash["ordersweek"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradesweek"], 0, '.', ',')); ?></td>
     <td><?php echo(number_format($dash["volumeweek"], 0, '.', ',')); ?></td>
-    <td><?php echo($unitsymbol . number_format($dash["valueweek"], 2, '.', ',')); ?></td>
+    <td><?php echo($unitsymbol . number_format(getPrice($dash["valueweek"]), 2, '.', ',')); ?></td>
 
 </tr>
 <tr>
@@ -373,7 +373,7 @@ require("../templates/header.php");
   <td><?php echo(number_format($dash["ordersmonth"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradesmonth"], 0, '.', ',')); ?></td>
     <td><?php echo(number_format($dash["volumemonth"], 0, '.', ',')); ?></td>
-    <td><?php echo($unitsymbol . number_format($dash["valuemonth"], 2, '.', ',')); ?></td>
+    <td><?php echo($unitsymbol . number_format(getPrice($dash["valuemonth"]), 2, '.', ',')); ?></td>
 
 </tr>
 <tr>
@@ -383,7 +383,7 @@ require("../templates/header.php");
   <td><?php echo(number_format($dash["orderstotal"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["tradestotal"], 0, '.', ',')); ?></td>
     <td><?php echo(number_format($dash["volumetotal"], 0, '.', ',')); ?></td>
-    <td><?php echo($unitsymbol . number_format($dash["valuetotal"], 2, '.', ',')); ?></td>
+    <td><?php echo($unitsymbol . number_format(getPrice($dash["valuetotal"]), 2, '.', ',')); ?></td>
 
 </tr>  
 </table>
@@ -396,7 +396,7 @@ require("../templates/header.php");
   <td>Commissions</td>
 </tr>
 <tr>
- <td>$<?php echo(number_format($commissionsPaid, 2, '.', ',')); ?></td>
+ <td>$<?php echo(number_format(getPrice($commissionsPaid), 2, '.', ',')); ?></td>
 </tr>
 </table>
 
@@ -429,9 +429,9 @@ require("../templates/header.php");
   <td>TOTAL SUPPLY</td>
 </tr>
 <tr>
-  <td><?php echo(number_format($MoneySupply, 2, '.', ',')); ?></td>
-  <td><?php echo(number_format($MoneySupplyBids, 2, '.', ',')); ?></td>
-  <td><?php echo(number_format($moneySupplyTotal, 2, '.', ',')); ?></td>
+  <td><?php echo(number_format(getPrice($MoneySupply), 2, '.', ',')); ?></td>
+  <td><?php echo(number_format(getPrice($MoneySupplyBids), 2, '.', ',')); ?></td>
+  <td><?php echo(number_format(getPrice($moneySupplyTotal), 2, '.', ',')); ?></td>
 </tr>
 
 </table>
@@ -477,10 +477,8 @@ require("../templates/header.php");
             echo("<td>" . (date('Y-m-d H:i:s', strtotime($row["registered"])) . "</td>"));
             echo("<td>" . htmlspecialchars($row["fails"]) . "</td>");
             echo("<td>" . htmlspecialchars($row["ip"]) . "</td>");
-            echo("<td>" . number_format($row["units"],2,".",",") . "</td>");
-            echo("<td>" . number_format($row["locked"],2,".",",") . "</td>");
-            echo("<td>" . number_format($row["loan"],2,".",",") . "</td>");
-            echo("<td>" . number_format(($row["rate"]*100),2,".",",") . "%</td>");
+            echo("<td>" . number_format(getPrice($row["units"]),2,".",",") . "</td>");
+            echo("<td>" . number_format(getPrice($row["locked"]),2,".",",") . "</td>");
             echo("<td>" . htmlspecialchars($row["password"]) . "</td>");
             echo("</tr>");
         }
