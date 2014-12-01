@@ -49,7 +49,7 @@
                 {
                     $dbDate = $trade["date"];
                     $date = strtotime($dbDate);
-                    $price = number_format(($trade["price"]), 2, '.', '');
+                    $price = number_format(getPrice($trade["price"]), 2, '.', '');
                     $quantity = number_format(($trade["quantity"]), 2, '.', '')/1000;
                     //$quantity = (int)$trade["quantity"];
                     //$quantity = ($quantity/1000);
@@ -87,7 +87,7 @@
                 {
                     $dbDate = $trade["date"];
                     $date = strtotime($dbDate);
-                    $price = number_format(($trade["price"]), 2, '.', '');
+                    $price = number_format(getPrice($trade["price"]), 2, '.', '');
                     $quantity = number_format(($trade["quantity"]), 2, '.', '');
                     //$quantity = (int)$trade["quantity"];
                     //$quantity = ($quantity/1000);
@@ -133,7 +133,7 @@
                 foreach ($bidsGroupChart as $order)	// for each of user's stocks
                 {
                     $date = 0;
-                    $price = number_format(($order["price"]), 2, '.', '');
+                    $price = number_format(getPrice($order["price"]), 2, '.', '');
                     $quantity = number_format(($order["quantity"]), 2, '.', '');
                     echo("['" . $price . "', " . $quantity .  ", " . $date . "],");
                 }
@@ -141,7 +141,7 @@
                 foreach ($asksGroup as $order)	// for each of user's stocks
                 {
                     $date = 0;
-                    $price = number_format(($order["price"]), 2, '.', '');
+                    $price = number_format(getPrice($order["price"]), 2, '.', '');
                     $quantity = number_format(($order["quantity"]), 2, '.', '');
                     echo("['" . $price . "', " . $date .  ", " . $quantity . "],");
                 }
@@ -259,7 +259,7 @@
                 foreach ($bidsGroupChart as $order)	// for each of user's stocks
                 {
                     $date = 0;
-                    $price = number_format(($order["price"]), 2, '.', '');
+                    $price = number_format(getPrice($order["price"]), 2, '.', '');
                     $quantity =  number_format(($order["quantity"]), 2, '.', '');
                     echo("['" . $price . "', " . $quantity .  ", " . $date . "],");
                 }
@@ -268,7 +268,7 @@
                 foreach ($asksGroupAll as $order)	// for each of user's stocks
                 {
                     $date = 0;
-                    $price = number_format(($order["price"]), 2, '.', '');
+                    $price = number_format(getPrice($order["price"]), 2, '.', '');
                     $aquantity2 = $order["quantity"];
                     $aquantity = ($aquantity + $aquantity2);
                     $aquantity =  number_format(($aquantity), 2, '.', '');
@@ -318,11 +318,6 @@
     </script>
 </head>
 
-<?php
-if(isset($asks[0]["price"])) {$asksPrice=$asks[0]["price"];}else{$asksPrice=0;}
-if(isset($bids[0]["price"])) {$bidsPrice=$bids[0]["price"];}else{$bidsPrice=0;}
-if(isset($trades[0]["price"])) {$tradesPrice=$trades[0]["price"];}else{$tradesPrice=0;}
-?>
 
 
     
@@ -470,8 +465,8 @@ if($trades != null)
         @$seller = $trade["seller"];
         @$symbol = $trade["symbol"];
         @$quantity = $trade["quantity"];
-        @$price = $trade["price"];
-        @$total = $trade["total"];
+        @$price = getPrice($trade["price"]);
+        @$total = getPrice($trade["total"];
         @$date = $trade["date"];
         echo("
                 <tr>
@@ -552,7 +547,7 @@ if($trades != null)
             foreach ($bidsGroup as $order)
             {
                 $quantity = $order["quantity"];
-                $price = $order["price"];
+                $price = getPrice($order["price"]);
                 echo("<tr><td >" . number_format($quantity,0,".",",") . "</td><td >" . number_format($price,2,".",",") . "</td></tr>");
             }
             ?>
@@ -586,7 +581,7 @@ if($trades != null)
             <?php
             foreach ($asksGroup as $order)
             {
-                $price = $order["price"];
+                $price = getPrice($order["price"]);
                 $quantity = $order["quantity"];
                 echo("<tr ><td >" . number_format($price,2,".",",") . "</td><td >" . number_format($quantity,0,".",",") . "</td></tr>");
             }
@@ -633,7 +628,7 @@ if($trades != null)
         echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
         //echo("<td>" . htmlspecialchars($row["type"]) . "</td>");
         echo("<td>" . number_format($row["quantity"],0,".",",") . "</td>");
-        echo("<td>" . (number_format($row["price"],2,".",",")) . "</td>");
+        echo("<td>" . (number_format(getPrice($row["price"]),2,".",",")) . "</td>");
         echo("</tr>");
     }
     ?>
@@ -673,7 +668,7 @@ if($trades != null)
         echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
         //echo("<td>" . htmlspecialchars($row["type"]) . "</td>");
         echo("<td>" . number_format($row["quantity"],0,".",",") . "</td>");
-        echo("<td>" . (number_format($row["price"],2,".",",")) . "</td>");
+        echo("<td>" . (number_format(getPrice($row["price"]),2,".",",")) . "</td>");
         echo("</tr>");
 
     }
