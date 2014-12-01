@@ -50,7 +50,7 @@ $assets = query("SELECT symbol FROM assets"); // query database for user
         if ( empty($_POST['quantity']) ||  empty($_POST['userid'])) { apologize("Please fill all required fields."); } //check to see if empty
         // if symbol or quantity empty
         $userid = sanatize('quantity', $_POST['userid']);
-        $quantity = sanatize('price', $_POST['quantity']);
+        $quantity = setPrice($_POST['quantity']);
         $transaction = $_POST['transaction'];
         $symbol = $unittype;
 
