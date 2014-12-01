@@ -1,6 +1,23 @@
 <?php
 //throw new Exception(var_dump(get_defined_vars()));
 
+///////////////////////////////
+//CONVERT INTEGER PRICE TO FLOAT
+///////////////////////////////
+function getPrice($price)
+{
+    $price = $price/10000000;
+
+    setlocale(LC_MONETARY, 'en_US');
+    $price = money_format('%(#10n', $price) . "\n";
+// ($        1,234.57)
+}
+function setPrice($price)
+{
+    $price = $price*10000000;
+}
+
+
 /////////////////////////////////
 //COMMISSION
 /////////////////////////////////
@@ -8,34 +25,12 @@ function getCommission($total)
 {
     require 'constants.php'; //for $divisor
     $commissionAmount = $total * $commission; //ie 13.6875 = 273.75 * 0.05  //(5qty * $54.75)
-    $commissionAmount = roundPrice($commissionAmount);
-    $commissionAmount = round($commissionAmount, $decimalplaces);    //should not need it but just in case.
+    $commissionAmount = floor($commissionAmount); //drops decimals
     return($commissionAmount);
+    
 }
 
 
-///////////////////////////////////
-//CHECK PRICE FOR DIVISOR/FMOD
-//ROUND TO PRICE
-///////////////////////////////////
-function roundPrice($price)
-{
-    //require 'constants.php';
-    $divisor=0.01;
-    $dividor=(100/($divisor*100)); //divior =100;
-    $price = $price * $dividor;  //$price *100;
-    $price = floor($price); 
-    $price = $price/$dividor; 
-    
-    /*
-    $priceCheck = ($price*100);
-    $divisorCheck = ($divisor*100);
-    $check = fmod($priceCheck, $divisorCheck);
-    if($check != 0) {apologize("Invalid price");} //{throw new Exception("FMOD Error. $price / $divisor / $total");} 
-    */
-    
- return($price);
-}
 
 ////////////////////////////////////
 //CHECK FOR 0 QTY ORDERS AND REMOVES
@@ -293,7 +288,6 @@ if($loud!='quiet'){ echo(date("Y-m-d H:i:s"));}
     else{$speed=0;}
     if($loud!='quiet'){echo("<br><br><b>Processed " . $totalProcessed . " orders in " . $totalTime . " seconds! " . $speed . " orders/sec</b>");}
 
-    query("UPDATE accounts SET units = ROUND(units, 2)");
     return($totalProcessed);
 
 }
@@ -411,10 +405,6 @@ if($loud!='quiet'){echo("<br>[" . $symbol . "] Computing orderbook...");}
             {   if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commissionAmount, $adminid) === false)
             { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update Accounts Failure: #11a"); }
             }
-
-            //ROUND ALL USERS UNITS FOR ANY ROUNDING ERRORS
-            //query("UPDATE accounts SET units = ROUND(units, ?) WHERE (id = ? OR id = ?)", $decimalplaces, $topAskUser, $adminid);
-            //query("UPDATE accounts SET units = ROUND(units, ?)", $decimalplaces);
 
             ///////////
             //PORTFOLIO
@@ -846,7 +836,6 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     if (empty($type)) { throw new Exception("Invalid order. Trade type required."); } //check to see if empty
     if (empty($side)) { throw new Exception("Invalid order. Trade side required."); } //check to see if empty
     if (empty($id)) { throw new Exception("Invalid order. User required."); } //check to see if empty
-    if ($type=="limit") { if(empty($price)){throw new Exception("Invalid order. Limit order trade price required");}}
 
     //QUERY TO SEE IF SYMBOL EXISTS
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
@@ -869,8 +858,8 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 
     if($type=='limit')
     {
-
-        $price = roundPrice($price);
+        if(empty($price)){throw new Exception("Invalid order. Limit order trade price required");}
+        $price = setPrice($price);
 
 
         //NEW VARS FOR DB INSERT
@@ -982,8 +971,6 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     query("COMMIT;"); //If no errors, commit changes
     query("SET AUTOCOMMIT=1");
 
-    //ROUND ALL USERS UNITS FOR ANY ROUNDING ERRORS
-    query("UPDATE accounts SET units = ROUND(units, ?) WHERE id = ?", $decimalplaces, $id);
     return array($transaction, $symbol, $tradeAmount, $quantity);
 }
 
