@@ -244,28 +244,28 @@ $dash["tradesweek"] = $count[0]["total"];
 
 
 //2 DAYS AGO
-$count = query("SELECT COUNT(id) AS total FROM users WHERE (`registered`  BETWEEN DATE_SUB(CURDATE() ,INTERVAL 3 DAY ) AND DATE_SUB(CURDATE() ,INTERVAL 2 DAY))"); // query database for user
+$count = query("SELECT COUNT(id) AS total FROM users WHERE `date` < DATE_SUB(NOW(), INTERVAL 48 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 72 HOUR)");
 //YESTERDAY
-$count = query("SELECT COUNT(id) AS total FROM users WHERE (`registered` BETWEEN DATE_SUB(CURDATE() ,INTERVAL 3 DAY ) AND DATE_SUB(CURDATE() ,INTERVAL 2 DAY))"); // query database for user
+$count = query("SELECT COUNT(id) AS total FROM users WHERE `date` < DATE_SUB(NOW(), INTERVAL 48 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 72 HOUR)");
 $dash["usersday3"] = $count[0]["total"];
-$count = query("SELECT COUNT(uid) AS total FROM assets WHERE (`date`  BETWEEN DATE_SUB(CURDATE() ,INTERVAL 3 DAY ) AND DATE_SUB(CURDATE() ,INTERVAL 2 DAY))"); // query database for user
+$count = query("SELECT COUNT(uid) AS total FROM assets WHERE `date` < DATE_SUB(NOW(), INTERVAL 48 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 72 HOUR)");
 $dash["assetsday3"] = $count[0]["total"];
-$count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE (`date`  BETWEEN DATE_SUB(CURDATE() ,INTERVAL 3 DAY ) AND DATE_SUB(CURDATE() ,INTERVAL 2 DAY))"); // query database for user
+$count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE `date` < DATE_SUB(NOW(), INTERVAL 48 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 72 HOUR)");
 $dash["ordersday3"] = $count[0]["total"];
-$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (`date` BETWEEN DATE_SUB(CURDATE() ,INTERVAL 3 DAY ) AND DATE_SUB(CURDATE() ,INTERVAL 2 DAY))"); // query database for user
+$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE `date` < DATE_SUB(NOW(), INTERVAL 48 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 72 HOUR)");
 $dash["tradesday3"] = $count[0]["total"];
     $dash["valueday3"] = $count[0]["value"];
     $dash["volumeday3"] = $count[0]["volume"];
 
 
 //YESTERDAY
-$count = query("SELECT COUNT(id) AS total FROM users WHERE (`registered`  BETWEEN DATE_SUB(CURDATE() ,INTERVAL 2 DAY ) AND DATE_SUB(CURDATE() ,INTERVAL 1 DAY))"); // query database for user
+$count = query("SELECT COUNT(id) AS total FROM users WHERE `date` < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 48 HOUR)");
 $dash["usersday2"] = $count[0]["total"];
-$count = query("SELECT COUNT(uid) AS total FROM assets WHERE (`date` BETWEEN DATE_SUB(CURDATE() ,INTERVAL 2 DAY ) AND DATE_SUB(CURDATE() ,INTERVAL 1 DAY))"); // query database for user
+$count = query("SELECT COUNT(uid) AS total FROM assets WHERE `date` < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 48 HOUR)");
 $dash["assetsday2"] = $count[0]["total"];
-$count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE (`date` BETWEEN DATE_SUB(CURDATE() ,INTERVAL 2 DAY ) AND DATE_SUB(CURDATE() ,INTERVAL 1 DAY))");// query database for user
+$count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE `date` < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 48 HOUR)");
 $dash["ordersday2"] = $count[0]["total"];
-$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (`date`  BETWEEN DATE_SUB(CURDATE() ,INTERVAL 2 DAY ) AND DATE_SUB(CURDATE() ,INTERVAL 1 DAY))"); // query database for user
+$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades  `date` < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 48 HOUR)");
 $dash["tradesday2"] = $count[0]["total"];
     $dash["valueday2"] = $count[0]["value"];
     $dash["volumeday2"] = $count[0]["volume"];
