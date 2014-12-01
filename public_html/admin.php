@@ -240,13 +240,58 @@ $dash["tradesweek"] = $count[0]["total"];
     $dash["valueweek"] = $count[0]["value"];
     $dash["volumeweek"] = $count[0]["volume"];
 
+//D7
+$count = query("SELECT COUNT(id) AS total FROM users WHERE `registered` < DATE_SUB(NOW(), INTERVAL 144 HOUR) AND `registered` > DATE_SUB(NOW(), INTERVAL 168 HOUR)");
+$dash["usersday7"] = $count[0]["total"];
+$count = query("SELECT COUNT(uid) AS total FROM assets WHERE `date` < DATE_SUB(NOW(), INTERVAL 144 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 168 HOUR)");
+$dash["assetsday7"] = $count[0]["total"];
+$count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE `date` < DATE_SUB(NOW(), INTERVAL 144 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 168 HOUR)");
+$dash["ordersday7"] = $count[0]["total"];
+$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE `date` < DATE_SUB(NOW(), INTERVAL 144 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 168 HOUR)");
+$dash["tradesday7"] = $count[0]["total"];
+    $dash["valueday7"] = $count[0]["value"];
+    $dash["volumeday7"] = $count[0]["volume"];
 
 
+//D6
+$count = query("SELECT COUNT(id) AS total FROM users WHERE `registered` < DATE_SUB(NOW(), INTERVAL 120 HOUR) AND `registered` > DATE_SUB(NOW(), INTERVAL 144 HOUR)");
+$dash["usersday6"] = $count[0]["total"];
+$count = query("SELECT COUNT(uid) AS total FROM assets WHERE `date` < DATE_SUB(NOW(), INTERVAL 120 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 144 HOUR)");
+$dash["assetsday6"] = $count[0]["total"];
+$count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE `date` < DATE_SUB(NOW(), INTERVAL 120 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 144 HOUR)");
+$dash["ordersday6"] = $count[0]["total"];
+$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE `date` < DATE_SUB(NOW(), INTERVAL 120 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 144 HOUR)");
+$dash["tradesday6"] = $count[0]["total"];
+$dash["valueday6"] = $count[0]["value"];
+$dash["volumeday6"] = $count[0]["volume"];
 
-//2 DAYS AGO
-$count = query("SELECT COUNT(id) AS total FROM users WHERE `date` < DATE_SUB(NOW(), INTERVAL 48 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 72 HOUR)");
-//YESTERDAY
-$count = query("SELECT COUNT(id) AS total FROM users WHERE `date` < DATE_SUB(NOW(), INTERVAL 48 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 72 HOUR)");
+
+//D5
+$count = query("SELECT COUNT(id) AS total FROM users WHERE `registered` < DATE_SUB(NOW(), INTERVAL 96 HOUR) AND `registered` > DATE_SUB(NOW(), INTERVAL 120 HOUR)");
+$dash["usersday5"] = $count[0]["total"];
+$count = query("SELECT COUNT(uid) AS total FROM assets WHERE `date` < DATE_SUB(NOW(), INTERVAL 96 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 120 HOUR)");
+$dash["assetsday5"] = $count[0]["total"];
+$count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE `date` < DATE_SUB(NOW(), INTERVAL 96 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 120 HOUR)");
+$dash["ordersday5"] = $count[0]["total"];
+$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE `date` < DATE_SUB(NOW(), INTERVAL 96 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 120 HOUR)");
+$dash["tradesday5"] = $count[0]["total"];
+    $dash["valueday5"] = $count[0]["value"];
+    $dash["volumeday5"] = $count[0]["volume"];
+
+//D4
+$count = query("SELECT COUNT(id) AS total FROM users WHERE `registered` < DATE_SUB(NOW(), INTERVAL 72 HOUR) AND `registered` > DATE_SUB(NOW(), INTERVAL 96 HOUR)");
+$dash["usersday4"] = $count[0]["total"];
+$count = query("SELECT COUNT(uid) AS total FROM assets WHERE `date` < DATE_SUB(NOW(), INTERVAL 72 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 96 HOUR)");
+$dash["assetsday4"] = $count[0]["total"];
+$count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE `date` < DATE_SUB(NOW(), INTERVAL 72 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 96 HOUR)");
+$dash["ordersday4"] = $count[0]["total"];
+$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE `date` < DATE_SUB(NOW(), INTERVAL 72 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 96 HOUR)");
+$dash["tradesday4"] = $count[0]["total"];
+    $dash["valueday4"] = $count[0]["value"];
+    $dash["volumeday4"] = $count[0]["volume"];
+
+//D3
+$count = query("SELECT COUNT(id) AS total FROM users WHERE `registered` < DATE_SUB(NOW(), INTERVAL 48 HOUR) AND `registered` > DATE_SUB(NOW(), INTERVAL 72 HOUR)");
 $dash["usersday3"] = $count[0]["total"];
 $count = query("SELECT COUNT(uid) AS total FROM assets WHERE `date` < DATE_SUB(NOW(), INTERVAL 48 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 72 HOUR)");
 $dash["assetsday3"] = $count[0]["total"];
@@ -257,31 +302,30 @@ $dash["tradesday3"] = $count[0]["total"];
     $dash["valueday3"] = $count[0]["value"];
     $dash["volumeday3"] = $count[0]["volume"];
 
-
-//YESTERDAY
-$count = query("SELECT COUNT(id) AS total FROM users WHERE `date` < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 48 HOUR)");
+//YESTERDAY D2
+$count = query("SELECT COUNT(id) AS total FROM users WHERE `registered` < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `registered` > DATE_SUB(NOW(), INTERVAL 48 HOUR)");
 $dash["usersday2"] = $count[0]["total"];
 $count = query("SELECT COUNT(uid) AS total FROM assets WHERE `date` < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 48 HOUR)");
 $dash["assetsday2"] = $count[0]["total"];
 $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE `date` < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 48 HOUR)");
 $dash["ordersday2"] = $count[0]["total"];
-$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades  `date` < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 48 HOUR)");
+$count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE `date` < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 48 HOUR)");
 $dash["tradesday2"] = $count[0]["total"];
     $dash["valueday2"] = $count[0]["value"];
     $dash["volumeday2"] = $count[0]["volume"];
 
 
-//TODAY
+//TODAY D1
 $count = query("SELECT COUNT(id) AS total FROM users WHERE (`registered`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())"); // query database for user
-$dash["usersday"] = $count[0]["total"];
+$dash["usersday1"] = $count[0]["total"];
 $count = query("SELECT COUNT(uid) AS total FROM assets WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())"); // query database for user
-$dash["assetsday"] = $count[0]["total"];
+$dash["assetsday1"] = $count[0]["total"];
 $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())"); // query database for user
-$dash["ordersday"] = $count[0]["total"];
+$dash["ordersday1"] = $count[0]["total"];
 $count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (`date`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())"); // query database for user
-$dash["tradesday"] = $count[0]["total"];
-    $dash["valueday"] = $count[0]["value"];
-    $dash["volumeday"] = $count[0]["volume"];
+$dash["tradesday1"] = $count[0]["total"];
+    $dash["valueday1"] = $count[0]["value"];
+    $dash["volumeday1"] = $count[0]["volume"];
 
 
 
@@ -330,16 +374,16 @@ require("../templates/header.php");
 </tr>
 
 <tr>
-  <td>Last 24hrs</td>
-  <td><?php echo(number_format($dash["usersday"], 0, '.', ',')); ?></td>
-  <td><?php echo(number_format($dash["assetsday"], 0, '.', ',')); ?></td>
-  <td><?php echo(number_format($dash["ordersday"], 0, '.', ',')); ?></td>
-  <td><?php echo(number_format($dash["tradesday"], 0, '.', ',')); ?></td>
-  <td><?php echo(number_format($dash["volumeday"], 0, '.', ',')); ?></td>
-  <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday"]), 2, '.', ',')); ?></td>
+  <td>Day 1</td>
+  <td><?php echo(number_format($dash["usersday1"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["assetsday1"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["ordersday1"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["tradesday1"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["volumeday1"], 0, '.', ',')); ?></td>
+  <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday1"]), 2, '.', ',')); ?></td>
 </tr>
 <tr>
-  <td>24-48hrs</td>
+  <td>Day 2</td>
   <td><?php echo(number_format($dash["usersday2"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["assetsday2"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["ordersday2"], 0, '.', ',')); ?></td>
@@ -348,7 +392,7 @@ require("../templates/header.php");
   <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday2"]), 2, '.', ',')); ?></td>
 </tr>
 <tr>
-  <td>48-72hrs</td>
+  <td>Day 3</td>
   <td><?php echo(number_format($dash["usersday3"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["assetsday3"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["ordersday3"], 0, '.', ',')); ?></td>
@@ -357,6 +401,43 @@ require("../templates/header.php");
   <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday3"]), 2, '.', ',')); ?></td>
 </tr>
 <tr>
+  <td>Day 4</td>
+  <td><?php echo(number_format($dash["usersday4"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["assetsday4"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["ordersday4"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["tradesday4"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["volumeday4"], 0, '.', ',')); ?></td>
+  <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday4"]), 2, '.', ',')); ?></td>
+</tr>
+<tr>
+  <td>Day 5</td>
+  <td><?php echo(number_format($dash["usersday5"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["assetsday5"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["ordersday5"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["tradesday5"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["volumeday5"], 0, '.', ',')); ?></td>
+  <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday5"]), 2, '.', ',')); ?></td>
+</tr>
+<tr>
+  <td>Day 6</td>
+  <td><?php echo(number_format($dash["usersday6"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["assetsday6"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["ordersday6"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["tradesday6"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["volumeday6"], 0, '.', ',')); ?></td>
+  <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday6"]), 2, '.', ',')); ?></td>
+</tr>
+<tr>
+  <td>Day 7</td>
+  <td><?php echo(number_format($dash["usersday7"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["assetsday7"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["ordersday7"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["tradesday7"], 0, '.', ',')); ?></td>
+  <td><?php echo(number_format($dash["volumeday7"], 0, '.', ',')); ?></td>
+  <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday7"]), 2, '.', ',')); ?></td>
+</tr>
+
+<tr class="active">
   <td>Last 7d</td>
   <td><?php echo(number_format($dash["usersweek"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["assetsweek"], 0, '.', ',')); ?></td>
@@ -366,7 +447,7 @@ require("../templates/header.php");
     <td><?php echo($unitsymbol . number_format(getPrice($dash["valueweek"]), 2, '.', ',')); ?></td>
 
 </tr>
-<tr>
+<tr class="active">
   <td>Last 30d</td>
   <td><?php echo(number_format($dash["usersmonth"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["assetsmonth"], 0, '.', ',')); ?></td>
@@ -376,7 +457,7 @@ require("../templates/header.php");
     <td><?php echo($unitsymbol . number_format(getPrice($dash["valuemonth"]), 2, '.', ',')); ?></td>
 
 </tr>
-<tr>
+<tr class="active">
   <td>Total</td>
   <td><?php echo(number_format($dash["userstotal"], 0, '.', ',')); ?></td>
   <td><?php echo(number_format($dash["assetstotal"], 0, '.', ',')); ?></td>
