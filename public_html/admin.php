@@ -472,8 +472,8 @@ require("../templates/header.php");
 
 
 
-<table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
-<tr class="active">
+<table class="table table-condensed table-striped table-bordered" id="commissions" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+<tr class="success">
   <td>Commissions</td>
 </tr>
 <tr>
