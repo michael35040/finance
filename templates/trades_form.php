@@ -68,11 +68,12 @@
         $type = $trade["type"];
         $symbol = $trade["symbol"];
         $quantity = $trade["quantity"];
-        $price = $trade["price"];
-        $commission = $trade["commission"];
+        $price = getPrice($trade["price"]);
+        $commission = getPrice($trade["commission"]);
+        $total = getPrice($trade["total"]);
+
         if($seller!=$_SESSION["id"] || $type=='PO'){$commission=0;} //only seller pays commission
         $sumcommission = $sumcommission + $commission;
-        $total = $trade["total"];
         $total = $total - $commission;
         $sumtotal = $sumtotal + $total;
         echo("
