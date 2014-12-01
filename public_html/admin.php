@@ -460,8 +460,6 @@ require("../templates/header.php");
             <td>IP</td>
             <td><?php echo($unittype) //set in finance.php ?></td>
             <td>LOCKED</td>
-            <td>LOAN</td>
-            <td>RATE</td>
             <td>PASSWORD</td>
         </tr>
 
