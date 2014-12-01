@@ -124,7 +124,7 @@
         echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
         if($row["transaction"]=='EXECUTED')
-        {echo('<td><form><button type="submit" class="btn btn-primary btn-xs" formmethod="post" formaction="trades.php" name="uid" value="' . htmlspecialchars($row["ouid"]) . '">EXECUTED</button></form></td>');}
+        {echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="trades.php" name="uid" value="' . htmlspecialchars($row["ouid"]) . '">EXECUTED</button></form></td>');}
         else //BID/ASK/CANCEL
         {echo("<td>" . htmlspecialchars($row["transaction"]) . "</td>");}
         echo("</tr>");
