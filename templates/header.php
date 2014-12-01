@@ -122,11 +122,7 @@
                             {
                                 // query cash for template
                                 $accounts =	query("SELECT units, loan, rate, approved FROM accounts WHERE id = ?", $id);	 //query db
-                                @$units = (float)$accounts[0]["units"];
-                                @$loan = (float)$accounts[0]["loan"];
-                                @$rate = $accounts[0]["rate"];
-                                $rate *= 100; //for display as %
-                                @$approved = $accounts[0]['approved'];	//convert array from query to value //0 approved//1 unapproved//2 pending - not yet implemented
+                                @$units = getPrice($accounts[0]["units"]);
 
 
 
