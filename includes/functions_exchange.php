@@ -8,13 +8,16 @@ function getPrice($price)
 {
     $price = $price/10000000;
 
-    setlocale(LC_MONETARY, 'en_US');
-    $price = money_format('%(#10n', $price) . "\n";
-// ($        1,234.57)
+    //setlocale(LC_MONETARY, 'en_US');
+    //$price = money_format('%(#10n', $price) . "\n"; // ($        1,234.57)
 }
 function setPrice($price)
 {
-    $price = $price*10000000;
+    if (preg_match("/^([0-9.]+)$/", $var) == false) {apologize("You submitted an invalid price.");}
+	if ($var<0){ apologize("Price must be positive!");} //if quantity is numeric
+	$price = $price*10000000;
+	$var=floor($var);
+	if (!is_int($var)) { apologize("Price must be numeric!");} //if quantity is numeric
 }
 
 
@@ -904,7 +907,12 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 
     if($type=='market')
     {
+        $price=0;//market order
 
+        //CHECK FOR LIMIT ORDERS
+        $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
+        $limitOrders = $limitOrdersQ[0]['limitorders'];
+        if (is_null($limitOrders) || $limitOrders == 0) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
 
         if ($side == 'a')//on market
         {
@@ -948,13 +956,6 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             }
             else{  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 5");}
         }
-
-        //CHECK FOR LIMIT ORDERS
-        $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
-        $limitOrders = $limitOrdersQ[0]['limitorders'];
-        if (is_null($limitOrders) || $limitOrders == 0) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
-
-        $price=0;//market order
 
     }
 
