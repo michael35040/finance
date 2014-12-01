@@ -29,12 +29,9 @@ if ($id == 1) {
             $info["ip"] = $row["ip"];
 
             $accounts = query("SELECT units, loan, rate FROM accounts WHERE id = ?", $info["id"]);
-            $info["units"] = $accounts[0]["units"];
-            $info["loan"] = $accounts[0]["loan"];
-            $info["rate"] = $accounts[0]["rate"];
-            $bidLocked =	query("SELECT SUM(total) AS total FROM orderbook WHERE (id=? AND side='b')", $info["id"]);	  // query user's portfolio
-
-            $info["locked"] = $bidLocked[0]["total"]; //shares trading
+            $info["units"] = getPrice($accounts[0]["units"]);
+                $bidLocked =	query("SELECT SUM(total) AS total FROM orderbook WHERE (id=? AND side='b')", $info["id"]);	  // query user's portfolio
+            $info["locked"] = getPrice($bidLocked[0]["total"]); //units locked for bids
 
             $searchusers[] = $info;
         }
