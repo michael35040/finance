@@ -43,6 +43,12 @@ $asset["userlocked"] = $askQuantity;
 $bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 5", $symbol, 'b');
 $asks =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 5", $symbol, 'a');
 
+
+if(isset($asks[0]["price"])) {$asksPrice=getPrice($asks[0]["price"]);}else{$asksPrice=0;}
+if(isset($bids[0]["price"])) {$bidsPrice=getPrice($bids[0]["price"]);}else{$bidsPrice=0;}
+if(isset($trades[0]["price"])) {$tradesPrice=getPrice($trades[0]["price"]);}else{$tradesPrice=0;}        
+
+
         //ORDERS COMBINED FOR TABLE AND FOR CHARTS (COMBINED PRICE)
         $asksGroup =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='a' AND type = 'limit') GROUP BY `price` ORDER BY `price` ASC  LIMIT 0, 5", $symbol);	  // query user's portfolio
         $bidsGroup =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='b' AND type = 'limit') GROUP BY `price` ORDER BY `price` DESC  LIMIT 0, 5", $symbol);	  // query user's portfolio
@@ -69,11 +75,11 @@ $asset["public"] = $asset["askstotal"]+$asset["totalportfolio"];
         if(empty($volume[0]["quantity"])){$volume[0]["quantity"]=0;}
         if(empty($volume[0]["price"])){$volume[0]["price"]=0;}
 $asset["volume"] = $volume[0]["quantity"];
-$asset["avgprice"] = $volume[0]["price"];
+$asset["avgprice"] = getPrice($volume[0]["price"]);
         //TRADES (PROCESSED ORDERS)
 $trades =  query("SELECT * FROM trades WHERE (symbol=? AND (type='limit' OR type='market')) ORDER BY uid DESC", $symbol);
         if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
-$asset["price"] = $trades[0]["price"]; //stock price per share
+$asset["price"] = getPrice($trades[0]["price"]); //stock price per share
 $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
         //$dividend =	query("SELECT SUM(quantity) AS quantity FROM history WHERE type = 'dividend' AND symbol = ?", $asset["symbol"]);	  // query user's portfolio
         //$asset["dividend"] = $dividend["dividend"]; //shares actually held public
@@ -83,7 +89,6 @@ $asset["dividend"]=0; //until we get real ones
 $tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE (symbol=? AND (type='limit' OR type='market'))  GROUP BY DAY(date) ORDER BY uid ASC ", $symbol);	  // query user's portfolio
         //ALL TRADES CHART
 
-        
 
          //USERS CONTROL
         if($asset["public"]==0){$asset["control"]=0;} //can also use 'issued' for this and the one below as they should in theory be the same
@@ -107,6 +112,9 @@ $tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, dat
             "ownership" => $ownership,
             "bids" => $bids,
             "asks" => $asks,
+            "asksPrice" => $asksPrice,  
+            "bidsPrice"  => $bidsPrice, 
+            "tradesPrice"  => $tradesPrice,
             "asksGroup" => $asksGroup,
             "bidsGroup" => $bidsGroup,
             "asksGroupAll" => $asksGroupAll,
