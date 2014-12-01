@@ -231,7 +231,7 @@ if (!isset($commission)) //set in constants.php
     }, false);
     //BUY ORDER
     document.getElementById("buyOrder").addEventListener("click", function () {
-        document.getElementById('commissionText').innerHTML = 'No commission for BO!';
+        document.getElementById('commissionText').innerHTML = 'No commission for Bids!';
     }, false);
 
 
