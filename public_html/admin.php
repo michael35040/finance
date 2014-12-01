@@ -471,10 +471,9 @@ require("../templates/header.php");
 
 
 
-
 <table class="table table-condensed table-striped table-bordered" id="commissions" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
-<tr class="success">
-  <td>Commissions</td>
+<tr>
+  <td colspan="7" class="success"><strong>COMMISSIONS</strong></td>
 </tr>
 <tr>
  <td>$<?php echo(number_format(getPrice($commissionsPaid), 2, '.', ',')); ?></td>
