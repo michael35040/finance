@@ -22,16 +22,19 @@ function roundPrice($price)
 {
     //require 'constants.php';
     $divisor=0.01;
-    $dividor=(100/($divisor*100));
-    $price = $price * $dividor; 
-    $price = (float)floor($price); 
-    $price = (float)$price/$dividor; 
+    $dividor=(100/($divisor*100)); //divior =100;
+    $price = $price * $dividor;  //$price *100;
+    $price = floor($price); 
+    $price = $price/$dividor; 
     
+    /*
     $priceCheck = ($price*100);
     $divisorCheck = ($divisor*100);
     $check = fmod($priceCheck, $divisorCheck);
     if($check != 0) {apologize("Invalid price");} //{throw new Exception("FMOD Error. $price / $divisor / $total");} 
-  return($price);
+    */
+    
+ return($price);
 }
 
 ////////////////////////////////////
