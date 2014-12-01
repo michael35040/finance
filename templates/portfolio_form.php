@@ -102,7 +102,7 @@
             <tr>
                 <td><strong>Name: </strong><?php echo(htmlspecialchars($fname . " " . $lname)); ?></td>
                 <td><strong>Email: </strong><?php echo(htmlspecialchars($email)); ?></td>
-                <td><strong>ID: </strong><?php echo(number_format($id, 0, '.', '')); ?></td>
+                <td><strong><div style="text-align:right">ID: </strong><?php echo(number_format($id, 0, '.', '')); ?></div></td>
             </tr>
         </table>
 
@@ -150,7 +150,7 @@
         <td><strong>Trades: </strong><?php echo(number_format($count["trades"], 0, '.', ',')); ?></td>
         <td><strong>Trade Volume: </strong><?php echo(number_format($count["volume"], 0, '.', ',')); ?></td>
         <td><strong>Trade Value: </strong><?php echo($unitsymbol . number_format($count["value"], 2, '.', ',')); ?></td>
-        <td><strong>Commissions: </strong><?php echo($unitsymbol . number_format($count["commission"], 2, '.', ',')); ?></td>
+        <td><div style="text-align:right"><strong>Commissions: </strong><?php echo($unitsymbol . number_format($count["commission"], 2, '.', ',')); ?><div></td>
     </tr>
         </table>
 
@@ -180,7 +180,7 @@
     <th colspan="2">Account #</th>
     <th>Type</th>
     <th colspan="4">Description</th>
-    <th>Amount</th>
+    <th><div style="text-align:right">Amount</div></th>
 </tr>
 
 <?php
@@ -191,8 +191,9 @@ if($units >= 0)
         <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($id); $i++; echo("-" . $i); ?></td>
         <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td></td>
         <td colspan="4"><?php echo($unitdescription); ?></td>
-        <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
-            <?php echo(number_format($units,2,".",",")) ?></td>
+        <td><div style="text-align:right">
+            <?php echo($unitsymbol . number_format($units,2,".",",")) ?>
+        </div></td>
     </tr>
 <?php
 }
@@ -208,8 +209,9 @@ if($bidLocked != 0)
         <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>
         </td>
         <td colspan="4"><?php echo("Locked-Pending Bid Order(s)"); ?></td>
-        <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
-            <?php echo(number_format($bidLocked, 2, ".", ",")) ?></td>
+        <td><div style="text-align:right">
+            <?php echo($unitsymbol . number_format($bidLocked, 2, ".", ",")) ?>
+        </div></td>
     </tr>
 <?php
 }
@@ -221,14 +223,14 @@ if($i == 0)
 
 <tr  class="active">
     <td colspan="7"><strong>SUBTOTAL</strong></td>
-    <td>
+    <td><div style="text-align:right">
         <strong>
             <?php
             $accountsTotal = ($units+$bidLocked);
-            echo(number_format($accountsTotal, 2, ".", ","))
+            echo($unitsymbol . number_format($accountsTotal, 2, ".", ","))
             ?>
         </strong>
-    </td>
+    </div></td>
 </tr>
 
 </table>
@@ -255,7 +257,7 @@ if($i == 0)
         <th>Price</th>
         <th>Purchase</th>
         <th>Loss/Gain</th>
-        <th>Market Value</th>
+        <th><div style="text-align:right">Market Value</div></th>
     </tr>
 
     <!-- STOCKS ROW -->
@@ -263,7 +265,7 @@ if($i == 0)
     foreach ($portfolio as $row) {
            $totalOwned=($row["quantity"]+$row["locked"]);
         echo("<tr>");
-        echo("<td><form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp;" . $row['symbol']
+        echo("<td><form><button type='submit' class='btn btn-success btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp;" . $row['symbol']
            . "&nbsp;</b></button></form></td>");
         // . htmlspecialchars($row["symbol"]) .
         echo("<td>" . (number_format($totalOwned, 0, ".", ",")) . " (" . (number_format($row["control"], 2, ".", ",")) . "%)</td>");  //htmlspecialchars
@@ -290,7 +292,7 @@ if($i == 0)
             echo("&#x25C4; &#x25BA; </td>");
         } //even left and right arrow
         //ARROWS END
-        echo("<td>" . $unitsymbol . (number_format($row["total"], 2, ".", ",")) . "</td></tr>");
+        echo("<td><div style='text-align:right'>" . $unitsymbol . (number_format($row["total"], 2, ".", ",")) . "</div></td></tr>");
         $i++;
     } //foreach statement
 
@@ -344,11 +346,12 @@ if($i == 0)
                     //ARROWS END
                     ?></strong>
             </td>
-            <td><strong>
+            <td><div style="text-align:right">
+                <strong>
                     <?php
                     echo($unitsymbol . number_format($portfolioTotal, 2, ".", ",")); //display market value
                     ?></strong>
-            </td>
+            </div></td>
         </tr>
 
     <?php
@@ -377,13 +380,13 @@ if($i == 0)
             <strong>TOTAL</strong>
         </td>
         <td style="width:50%">
-            <strong>
+            <strong><div style="text-align:right">
                 <?php
                 echo($unitsymbol);
                 $networth = ($portfolioTotal + $accountsTotal);
                 echo(htmlspecialchars(number_format($networth, 2, ".", ","))); //networth defined previously
                 ?>
-            </strong>
+            </div></strong>
         </td>
     </tr>
     <?php if($i!=0){ ?>
@@ -394,32 +397,4 @@ if($i == 0)
     <?php } ?>
 
 
-
-
-
-
-
-
-
-
     </table>
-
-
-<?php
-
-
-/* //DONE ON PORTFOLIO.php
-//calculate value of current price
-$sum = array_shift($portfolio);
-foreach ($portfolio as $val) {
-    foreach ($val as $key => $val) {
-        $sum[$key] += $val;
-    }
-} //sum all the values in array
-$portfolioTotal = $sum['total'];
-$value = $sum['value'];
- */
-
-
-
-  // echo(var_dump(get_defined_vars())); ?>
