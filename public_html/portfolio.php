@@ -37,12 +37,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
 
 $bidLocked =	query("SELECT SUM(total) AS total FROM orderbook WHERE (id=? AND side='b')", $id);	  // query user's portfolio
-$bidLocked = $bidLocked[0]["total"]; //shares trading
+$bidLocked = getPrice($bidLocked[0]["total"]); //shares trading
 if($bidLocked==null){$bidLocked=0;}
 
 $userPortfolio =	query("SELECT symbol, quantity, price FROM portfolio WHERE id = ? ORDER BY symbol ASC", $_SESSION["id"]);
 
 $purchaseprice = query("SELECT SUM(price) AS purchaseprice FROM portfolio WHERE id = ?", $_SESSION["id"]); //calculate purchase price
+$purchaseprice = getPrice($purchaseprice[0]["purchaseprice"]); //convert array to number
+
 $portfolioTotal=0; //total market value of portfolio
 
 $portfolio = []; //to send to next page
@@ -79,10 +81,10 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
     if($stock["public"]==0){$stock["control"]=0;} //can also use 'issued' for this and the one below as they should in theory be the same
     else{$stock["control"] = (($stock["quantity"]+$stock["locked"])/$stock["public"])*100; } //based on public
 
-    $stock["value"] = $row["price"]; //total purchase price, value when bought
+    $stock["value"] = getPrice($row["price"]); //total purchase price, value when bought
     $trades =	    query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $stock["symbol"]);	  // query user's portfolio
         @$stock["price"] = $trades[0]["price"]; //stock price per share
-    $stock["total"] = (($stock["quantity"]+$stock["locked"]) * $stock["price"]); //current market price pulled from function.php
+    $stock["total"] = getPrice(($stock["quantity"]+$stock["locked"]) * $stock["price"]); //current market price pulled from function.php
 
     $portfolio[] = $stock;
     $portfolioTotal = $portfolioTotal + $stock["total"]; //total market value of portfolio
