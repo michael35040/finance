@@ -10,14 +10,16 @@ function getPrice($price)
 
     //setlocale(LC_MONETARY, 'en_US');
     //$price = money_format('%(#10n', $price) . "\n"; // ($        1,234.57)
+    return($price);
 }
 function setPrice($price)
 {
-    if (preg_match("/^([0-9.]+)$/", $var) == false) {apologize("You submitted an invalid price.");}
-	if ($var<0){ apologize("Price must be positive!");} //if quantity is numeric
+    if (preg_match("/^([0-9.]+)$/", $price) == false) {apologize("You submitted an invalid price.");}
+	if ($price<0){ apologize("Price must be positive!");} //if quantity is numeric
 	$price = $price*10000000;
-	$var=floor($var);
-	if (!is_int($var)) { apologize("Price must be numeric!");} //if quantity is numeric
+	$price=floor($price);
+	//if (!is_int($price)) { apologize("Price must be numeric!");} //if quantity is numeric
+	return($price);
 }
 
 
