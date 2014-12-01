@@ -118,8 +118,7 @@
     <?php foreach ($notifications as $notification) { ?>
         <tr>
             <td colspan="3"><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="portfolio.php" name="cancel" value="<?php echo($notification["uid"]) ?>"><span class="glyphicon glyphicon-remove-circle"></span></button></form>
-                <strong>Notification: </strong>
-                <?php echo(htmlspecialchars("[" . date('Y-m-d H:i:s', strtotime($notification["date"])) . "] " . $notification["notice"])); ?>
+                <?php echo(htmlspecialchars("[" . date('F j, Y, g:ia', strtotime($notification["date"])) . "] " . $notification["notice"])); ?>
             </td>
         </tr>
     <?php
