@@ -196,19 +196,7 @@ if($units >= 0)
     </tr>
 <?php
 }
-/*
-if($loan <0)
-{   ?>
-    <tr>
-        <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($id); $i++; echo("-" . $i); ?></td>
-        <td><?php echo(strtoupper("LOAN")) //set in finance.php ?></td></td>
-        <td colspan="4">APR: <?php echo(htmlspecialchars(number_format($rate,2)));?>%</td>
-        <td style="text-align:left"><?php echo($unitsymbol) //set in finance.php ?>
-            <?php echo(number_format($loan,2,".",",")) ?></td>
-    </tr>
-<?php
-}
-*/
+
 if($bidLocked != 0)
 {
     ?>
@@ -236,7 +224,7 @@ if($i == 0)
     <td>
         <strong>
             <?php
-            $accountsTotal = ($units+$loan+$bidLocked);
+            $accountsTotal = ($units+$bidLocked);
             echo(number_format($accountsTotal, 2, ".", ","))
             ?>
         </strong>
