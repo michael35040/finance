@@ -5,21 +5,17 @@ if (!isset($commission)) //set in constants.php
 
 <style>
     #middle
-    {
-        background-color:transparent;
+    {   background-color:transparent;
         border:0;
     }
     .exchangeTable
-    {
-        margin-top:5px;
+    {   margin-top:5px;
     }
     .exchangeTable td, .exchangeTable th
-    {
-        background-color:white;
+    {   background-color:white;
     }
     .exchangeTable tr
-    {
-        border:3px solid black;
+    {   border:3px solid black;
     }
 </style>
 <script>
@@ -85,16 +81,7 @@ if (!isset($commission)) //set in constants.php
         <TR>
             <TD ROWSPAN="1">Symbol</TD>
             <TD>
-                <!--FOR BASIC INPUT FOR TESTING
-                <input type="text" name="symbol"> -->
-
-                <!-- FOR DATALIST IF I ALSO NEED INPUT
-                <input list="symbol" placeholder="Symbol" name="symbol" maxlength="8" class="input-small" required>
-                <datalist id="symbol">
-                -->
-                <select name="symbol">
-
-                <?php
+                <select name="symbol"><?php
 
                     if (empty($stocks)) {
                         echo("<option value=' '>No Stocks Held</option>");
@@ -120,13 +107,7 @@ if (!isset($commission)) //set in constants.php
                             echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
                         }
                     }
-
-                    ?>
-                    </select>
-
-                    <!--
-                    </datalist>
-                    -->
+                    ?></select>
             </TD>
         </TR>
 
@@ -165,11 +146,15 @@ if (!isset($commission)) //set in constants.php
 
                         <?php echo($unitsymbol) ?> <input type="number" id="dollar" placeholder="dollar" name="dollar" value="0" min="0" max="999999" size="6"
                         required />
-                        . <select id="cents" name="cents">
-                            <option value="0">00</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="75">75</option>
+                        <select id="cents" name="cents">
+                        <?php 
+                        $i=0; 
+                        while($i<100)
+                        {   if($i<10){$b='0';}else{$b='';}
+                            echo('<option value="' . $i . '">.' . $b . $i . '</option>');
+                            $i = $i+($divisor*100);  //or $i++;   ; <option value="75">75</option>
+                        }
+                        ?>
                         </select>
                     </div>
 
@@ -242,11 +227,11 @@ if (!isset($commission)) //set in constants.php
 
     //SELL ORDER
     document.getElementById("sellOrder").addEventListener("click", function () {
-        document.getElementById('commissionText').innerHTML = 'Commission subtracted from subtotal.<br>Rounded to nearest .25';
+        document.getElementById('commissionText').innerHTML = 'Commission subtracted from total.';
     }, false);
     //BUY ORDER
     document.getElementById("buyOrder").addEventListener("click", function () {
-        document.getElementById('commissionText').innerHTML = 'No commission!';
+        document.getElementById('commissionText').innerHTML = 'No commission for BO!';
     }, false);
 
 
