@@ -45,11 +45,11 @@ foreach ($allAssets as $row)		// for each of user's stocks
         //$trades = query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $asset["symbol"]);	  // query user's portfolio
         if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
     $asset["price"] = getPrice($trades[0]["price"];) //stock price per share
-    $asset["marketcap"] = getPrice($asset["price"] * $asset["issued"]);
+    $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
         //$dividend =	query("SELECT SUM(quantity) AS quantity FROM history WHERE type = 'dividend' AND symbol = ?", $asset["symbol"]);	  // query user's portfolio
         $asset["dividend"]=0; //until we get real ones
     //$asset["dividend"] = $dividend["dividend"]; //shares actually held public
-    $indexMarketCap = getPrice($indexMarketCap+$asset["marketcap"]);
+    $indexMarketCap = ($indexMarketCap+$asset["marketcap"]);
     $indexValue = getPrice($indexValue+$asset["price"]);
     $assets[] = $asset;
 
