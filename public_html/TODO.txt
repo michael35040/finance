@@ -8,7 +8,7 @@ COMPLETED
 # add ownership percentage in information panel.
 
 ability for administration tof buy backnowledge stock and remove
-
+add commissionstAl for aadmin nd user
 
 http://templated.co/ion
 http://almsaeedstudio.com/preview
