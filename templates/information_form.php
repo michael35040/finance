@@ -507,7 +507,7 @@ if($trades != null)
         <tbody>
         <tr>
             <td>
-                <div id="chart_div4" style="overflow:hidden;">
+                <div id="chart_div4" style="overflow:hidden;"></div>
             </td>
         </tr>
         </tbody>
