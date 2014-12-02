@@ -141,7 +141,7 @@
                 echo("-" . $i); ?></td>
             <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>
             </td>
-            <td colspan="4"><?php echo("Locked-Pending Bid Order(s)"); ?></td>
+            <td colspan="4"><?php echo("Pending Bid Orders (Locked)"); ?></td>
             <td><div style="text-align:right">
                     <?php echo($unitsymbol . number_format($bidLocked, 2, ".", ",")) ?>
                 </div></td>
@@ -177,31 +177,6 @@
 
 
 
-<table class="table table-striped table-condensed table-bordered" >
-    <tr  class="success">
-        <td colspan="6" style="font-size:20px; text-align: center;">ACTIVITY</td>
-    </tr>
-    <tr>
-        <td><strong>Assets: </strong><?php echo(number_format($count["assets"], 0, '.', ',')); ?></td>
-        <td><strong>Orders: </strong><?php echo(number_format($count["orders"], 0, '.', ',')); ?></td>
-        <td><strong>Trades: </strong><?php echo(number_format($count["trades"], 0, '.', ',')); ?></td>
-        <td><strong>Trade Volume: </strong><?php echo(number_format($count["volume"], 0, '.', ',')); ?></td>
-        <td><strong>Trade Value: </strong><?php echo($unitsymbol . number_format($count["value"], 2, '.', ',')); ?></td>
-        <td><div style="text-align:right"><strong>Commissions: </strong><?php echo($unitsymbol . number_format($count["commission"], 2, '.', ',')); ?><div></td>
-    </tr>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -220,8 +195,8 @@
 
     <tr  class="active">
         <th>Asset</th>
-        <th>Control</th>
         <th>Quantity</th>
+        <th>Available</th>
         <th>Locked*</th>
         <th>Price</th>
         <th>Purchase</th>
@@ -277,7 +252,7 @@
             <td><strong>0</strong></td>
         </tr>
         <tr>
-            <td colspan="8" style="font-size:10px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;* Locked-Pending Ask Order(s)</i></td>
+            <td colspan="8" style="font-size:10px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;*Pending Ask Orders (Locked)</i></td>
         </tr>
 
     <?php
@@ -367,3 +342,32 @@
 
 
 </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table class="table table-striped table-condensed table-bordered" >
+    <tr  class="success">
+        <td colspan="6" style="font-size:20px; text-align: center;">ACTIVITY</td>
+    </tr>
+    <tr>
+        <td><strong>Assets: </strong><?php echo(number_format($count["assets"], 0, '.', ',')); ?></td>
+        <td><strong>Orders: </strong><?php echo(number_format($count["orders"], 0, '.', ',')); ?></td>
+        <td><strong>Trades: </strong><?php echo(number_format($count["trades"], 0, '.', ',')); ?></td>
+        <td><strong>Trade Volume: </strong><?php echo(number_format($count["volume"], 0, '.', ',')); ?></td>
+        <td><strong>Trade Value: </strong><?php echo($unitsymbol . number_format($count["value"], 2, '.', ',')); ?></td>
+        <td><div style="text-align:right"><strong>Commissions: </strong><?php echo($unitsymbol . number_format($count["commission"], 2, '.', ',')); ?><div></td>
+    </tr>
+</table>
+
+
