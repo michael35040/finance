@@ -206,9 +206,6 @@ function OrderbookTop($symbol)
         $tradeType = 'limit'; }
     else {throw new Exception("Market Order Error!");}
 
-    if (empty($asks)) { throw new Exception("No ask limit orders. Unable to cross any orders."); }
-    if (empty($bids)) { throw new Exception("No bid limit orders. Unable to cross any orders."); }
-
     $topOrders["asks"]=$asks;
     $topOrders["bids"]=$bids;
     $topOrders["tradeType"]=$tradeType;
@@ -320,6 +317,9 @@ if($loud!='quiet'){echo("<br>[" . $symbol . "] Computing orderbook...");}
     $topOrders = OrderbookTop($symbol); //try catch
     $asks = $topOrders["asks"];
     $bids = $topOrders["bids"];
+    
+    if (empty($asks) || empty($bids)) { $orderbook['orderProcessed'] = 0; return($orderbook); }  //{ throw new Exception("No bid limit orders. Unable to cross any orders."); }
+
     $topAskPrice = (float)$asks[0]["price"];
     $topBidPrice = (float)$bids[0]["price"];
     $tradeType = $topOrders["tradeType"];
