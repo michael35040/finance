@@ -22,7 +22,9 @@
 						<div class="4u">
 							<section>
 								<h3>HARD COMMODITIES</h3>
-<p>FeugiatWe specialize in the buy, sell, and trade of hard commodity assets. These include precious metals such as gold and silver. Our exchange allows customers to take a position in this unique asset class. You can buy in amounts as small as one gram and take delivery once acquiring one kilogram (32.151 troy ounces).</p>
+
+<p>We specialize in the buy, sell, and trade of hard commodity assets. These include precious metals such as gold and silver. Our exchange allows customers to take a position in this unique asset class. You can buy in amounts as small as one gram and take delivery once acquiring one kilogram (32.151 troy ounces).</p>
+<p>Conversions: 1.0g = 0.03215ozt; 1.0ozt = 31.10348g (1kg=32.1507466ozt; 100ozt=3,110.34768grams)</p>
 <p>The Good Delivery Rules set out every aspect of the Good Delivery administration including the specification standards for our exchange-traded gold and silver bars.</p>
 <p>The Good Delivery Rules provides information for existing refiners and the banks that work with them, as well as the necessary guidance for refiners seeking accreditation.</p>
 <p>Only bars that meet Good Delivery standards are acceptable in the physical settlement of an exchange gold or silver transaction. The high level of consistency within our market is maintained by ensuring both refiners and vaults implement the Good Delivery Rules relating to a bar's assay, weight and its safe handling and stacking. The main specifications for GD gold and silver bars are summarised below. No other refined gold or silver products produced by accredited refiners fall within the scope of the Good Delivery Lists.</p>
