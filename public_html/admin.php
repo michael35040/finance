@@ -520,6 +520,10 @@ require("../templates/header.php");
 
 
 
+
+
+
+
     <!--font color='#FF0000'></font-->
     <table class="table table-condensed table-striped table-bordered" id="topusers" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
         <!-- HEADER ROW -->
@@ -574,7 +578,7 @@ require("../templates/header.php");
     <table class="table table-condensed table-striped table-bordered" id="notice" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
     <thead>
     <tr>
-        <td class="success"><strong>NOTIFICATION</strong></td>
+        <td class="info"><strong>NOTIFICATION</strong></td>
     </tr>
     </thead>
     <tbody>
@@ -604,7 +608,7 @@ require("../templates/header.php");
     <table class="table table-condensed table-striped table-bordered" id="password" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
     <thead>
     <tr>
-        <td class="success"><strong>RESET PASSWORD</strong></td>
+        <td class="danger"><strong>RESET PASSWORD</strong></td>
     </tr>
     </thead>
     <tbody>
@@ -650,7 +654,7 @@ require("../templates/header.php");
         <td>
             <form action="admin.php" method="post">
                 <input type="text" name="lock" placeholder="User"  size="4">
-                <button type="submit" class="btn btn-danger"><b> LOCK </b></button>
+                <button type="submit" class="btn btn-warning"><b> LOCK </b></button>
             </form>
         </td>
     </tr>

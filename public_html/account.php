@@ -90,6 +90,20 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
     $portfolioTotal = $portfolioTotal + $stock["total"]; //total market value of portfolio
 }
 
+$notifications = query("SELECT * FROM notification WHERE (id =? AND status='1')", $id);
+
+
+    $countQ = query("SELECT COUNT(uid) AS total FROM orderbook WHERE id=?", $id); // query database for user
+$count["orders"] = $countQ[0]["total"];
+    $countQ = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (buyer=? OR seller=?)", $id, $id); // query database for user
+$count["trades"] = $countQ[0]["total"];
+$count["value"] = getPrice($countQ[0]["value"]);
+$count["volume"] = $countQ[0]["volume"];
+    $countQ = query("SELECT COUNT(symbol) AS total FROM portfolio WHERE id=?", $id); // query database for user
+$count["assets"] = $countQ[0]["total"];
+    $countQ = query("SELECT SUM(commission) AS commission FROM trades WHERE seller=? AND (type='limit' OR type='market')", $id); // to prevent the PO type from adding fee for commission
+$count["commission"] = getPrice($countQ[0]["commission"]);
+
 // render portfolio (pass in new portfolio table and cash)
-render("portfolio_form.php", ["title" => "Portfolio", "portfolio" => $portfolio, "portfolioTotal" => $portfolioTotal, "purchaseprice" => $purchaseprice, "bidLocked" => $bidLocked]);
+render("account_form.php", ["title" => "Account", "count" => $count, "notifications" => $notifications, "portfolio" => $portfolio, "portfolioTotal" => $portfolioTotal, "purchaseprice" => $purchaseprice, "bidLocked" => $bidLocked]);
 ?>                    

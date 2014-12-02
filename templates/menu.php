@@ -10,11 +10,11 @@
                     </button>
 
                     <ul class="dropdown-menu" role="menu">
+                        <li><a href="account.php">ACCOUNT</a></li>
                         <li><a href="order.php">EXCHANGE</a></li>
                         <li><a href="orders.php">ORDERS</a></li>
                         <li><a href="trades.php">TRADES</a></li>
                         <!--<li><a href="status.php">Status</a></li>-->
-                        <li><a href="portfolio.php">PORTFOLIO</a></li>
                         <li><a href="assets.php">ASSETS</a></li>
                         <li><a href="information.php">INFORMATION</a></li>
                         <li><a href="history.php">HISTORY</a></li>
@@ -32,12 +32,11 @@
                     <div class="input-group">
                         <button id="adminButton" type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
                             <!--<span class="glyphicon glyphicon-home"></span>&nbsp;-->
-                             ADMIN
-                            <!--<span class="caret"></span>-->
+                             <b>ADMIN</b>
+                            <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="admin.php">Dashboard</a></li>
-                            <li><a href="admin_activate.php">Activate </a></li>
                             <li><a href="admin_users.php">Users </a></li>
                             <li><a href="admin_offering.php">Offering </a></li>
                             <li><a href="admin_update.php">Update </a></li>

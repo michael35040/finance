@@ -1,4 +1,13 @@
 
+        <form>
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="admin_users.php" name="activate" value="ALL"><span class="glyphicon glyphicon-plus-sign"></span> Activate All</button>
+                <button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="admin_users.php" name="deactivate" value="ALL"><span class="glyphicon glyphicon-minus-sign"></span> Deactivate All</button>
+
+            </span>
+        </form>
+
+
 <!--font color='#FF0000'></font-->
 <table class="table" align="center">
 
@@ -15,8 +24,9 @@
             <th>IP</th>
             <th><?php echo($unittype) //set in finance.php ?></th>
             <th>Locked</th>
-			<th>Loan</th> 
-            <th>Rate</th>
+            <th>Active</th>
+            <th>Lock</th>
+
         </tr>
     </thead>
 
@@ -24,7 +34,7 @@
     <tbody>
 <?php
 
-	    foreach ($searchusers as $row)	
+	    foreach ($searchusers as $row)
         {   
             echo("<tr>");
             echo("<td>" . number_format($row["id"],0,".",",") . "</td>");
@@ -37,14 +47,22 @@
             echo("<td>" . htmlspecialchars($row["ip"]) . "</td>"); 
             echo("<td>" . number_format($row["units"],2,".",",") . "</td>");
             echo("<td>" . number_format($row["locked"],2,".",",") . "</td>");
-            echo("<td>" . number_format($row["loan"],2,".",",") . "</td>");
-            echo("<td>" . number_format(($row["rate"]*100),2,".",",") . "%</td>");
+
+
+            if($row["active"]==1)
+            {
+                echo("<td><span class='label label-success'>" . number_format($row["active"],0,".",",") . "</span></td>");
+                echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="admin_users.php" name="deactivate" value="' . $row["id"] . '"><span class="glyphicon glyphicon-lock"></span></button></form></td>');
+            }
+            else
+            {
+                echo("<td><span class='label label-danger'>" . number_format($row["active"],0,".",",") . "</span></td>");
+                echo('<td><form><button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="admin_users.php" name="activate" value="' . $row["id"] . '"><span class="glyphicon glyphicon-lock"></span></button></form></td>');
+            }
+
             echo("</tr>");
         }
     ?>
-
-
-
     </tbody>
 </table>
 

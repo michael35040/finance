@@ -27,14 +27,6 @@
     }
 </script>
 
-<style>
-    #middle
-    {
-        background-color:transparent;
-        border:0;
-    }
-</style>
-
 <form action="admin_offering.php"  method="post"
       oninput="
           feeAmount.value=commify(parseFloat(parseFloat(issued.value)*parseFloat(fee.value)).toFixed(0));
@@ -42,8 +34,15 @@
       onclick="
             feeAmount.value=commify(parseFloat(parseFloat(issued.value)*parseFloat(fee.value)).toFixed(0));
           ">
+
+
+    <h3>
+        PUBLIC OFFERING FORM
+    </h3>
     <table class="table table-condensed table-striped table-bordered" id="assets" style="border-collapse:collapse; width:100%;">
-        
+        <thead>
+        </thead>
+        <tbody>
         
         <tr>
             <td>Offering</td>
@@ -157,6 +156,7 @@
                 </button></td>
 
         </tr>
+        </tbody>
     </table>
 
 
