@@ -42,6 +42,7 @@ $asset["userlocked"] = $askQuantity;
         //ORDERS
 $bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 5", $symbol, 'b');
 $asks =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 5", $symbol, 'a');
+$lastorders =	query("SELECT * FROM orderbook WHERE (symbol = ?) ORDER BY uid DESC LIMIT 0, 5", $symbol);
 
 
 if(isset($asks[0]["price"])) {$asksPrice=getPrice($asks[0]["price"]);}else{$asksPrice=0;}
@@ -112,6 +113,7 @@ $tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, dat
             "ownership" => $ownership,
             "bids" => $bids,
             "asks" => $asks,
+            "lastorders" => $lastorders,
             "asksPrice" => $asksPrice,  
             "bidsPrice"  => $bidsPrice, 
             "tradesPrice"  => $tradesPrice,
