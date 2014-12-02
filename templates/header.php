@@ -150,6 +150,6 @@
         {
         ?>
     </div><!--top-->
-    <div id="middle" style="text-align:center"> <!--placing it here it only shows up when logged on so no box on login screen-->
+    <div id="middle" style="text-align:center;background-color:transparent;border:0;"> <!--placing it here it only shows up when logged on so no box on login screen-->
 <?php  } //bracket for the show on log in argument
 ?>

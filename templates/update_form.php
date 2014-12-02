@@ -1,11 +1,6 @@
 
 <style>
-    #middle
-    {
-        background-color:transparent;
-        border:0;
-        text-shadow: 2px 2px 5px #fff;
-    }
+
     .changeForm {
         text-shadow: 2px 2px 5px #fff;
         display: inline-block;

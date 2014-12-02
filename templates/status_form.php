@@ -1,9 +1,3 @@
-<?php
-
-
-
-
-?>
 
 <!-- Body of web page goes inside container tags -->
 <!-- Obtain the latest version of jquery from CDN -->
@@ -58,12 +52,7 @@
     });
 </script>
 <style>
-    #middle
-    {
-        background-color:transparent;
-        border:0;
-        text-shadow: 2px 2px 5px #fff;
-    }
+
     .status table
     {
     }

@@ -1,4 +1,3 @@
-
 <table class="table table-condensed table-bordered">
 
     <thead>

@@ -4,10 +4,6 @@ if (!isset($commission)) //set in constants.php
 ?>
 
 <style>
-    #middle
-    {   background-color:transparent;
-        border:0;
-    }
     .exchangeTable
     {   margin-top:5px;
     }

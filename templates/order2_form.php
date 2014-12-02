@@ -39,11 +39,7 @@ $dollarColor="#85bb65;";
         padding-right:20px;
         padding-bottom:20px;
     }
-    #middle
-    {
-        background-color:transparent;
-        border:0;
-    }
+
     #id td
     {
         background-color:transparent;

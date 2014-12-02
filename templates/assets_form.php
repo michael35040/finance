@@ -20,9 +20,9 @@ foreach ($assets as $asset) // for each of user's stocks
         var options = {
         title: 'Assets by Value',
         //width: 400,
-        height: 500,
-        //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
-        //is3D: true,
+            //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+            //is3D: true,
+        height: 500
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
