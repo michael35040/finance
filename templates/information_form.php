@@ -679,6 +679,47 @@ if($trades != null)
 
 </td>
 </tr><!--orderbook asks row-->
+<tr><!--orderbook lastorders row-->
+<td colspan="3">
+
+    <div class="panel panel-warning">
+    <!-- Default panel contents -->
+    <div class="panel-heading">LAST ORDERS</div>
+    <table class="table" align="center">
+    <tr class="active">
+        <td>Order #</td>
+        <td>Side</td>
+        <!--th>Type</th-->
+        <td>Date/Time (Y/M/D)</td>
+        <td>Symbol</td>
+        <td>Quantity</td>
+        <td>Price</td>
+    </tr>
+
+    <?php
+    foreach ($lastorders as $row)
+    {
+        //if ($row["side"]=="b"){$row["side"]="Bid";}
+        //if ($row["side"]=="a"){$row["side"]="Ask";}
+        echo("<tr>");
+        echo("<td>" . (number_format($row["uid"],0,".",",")) . "</td>");
+        if($row["side"]=='b'){$side='BID';}; if($row["side"]=='a'){$side='ASK ';};
+        echo("<td>" . htmlspecialchars($side) . "</td>");
+        echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
+        echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
+        //echo("<td>" . htmlspecialchars($row["type"]) . "</td>");
+        echo("<td>" . number_format($row["quantity"],0,".",",") . "</td>");
+        echo("<td>" . (number_format(getPrice($row["price"]),2,".",",")) . "</td>");
+        echo("</tr>");
+
+    }
+    ?>
+
+    </table>
+    </div><!--panel order last orders-->
+
+</td>
+</tr><!--orderbook last orders row-->
 </table><!--orderbook table-->
 </div><!--panel-primary orderbook-->
 
