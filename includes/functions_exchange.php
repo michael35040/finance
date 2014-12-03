@@ -911,10 +911,6 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     {
         $price=0;//market order
 
-        //CHECK FOR LIMIT ORDERS
-        $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
-        $limitOrders = $limitOrdersQ[0]['limitorders'];
-        if (is_null($limitOrders) || $limitOrders == 0) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
 
         if ($side == 'a')//on market
         {
@@ -958,6 +954,12 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             }
             else{  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 5");}
         }
+
+        //CHECK FOR LIMIT ORDERS
+        $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
+        $limitOrders = $limitOrdersQ[0]['limitorders'];
+        if (is_null($limitOrders) || $limitOrders == 0) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
+
 
     }
 

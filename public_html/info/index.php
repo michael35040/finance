@@ -24,8 +24,8 @@ include 'header.php';
 		<!-- One -->
 			<section id="one" class="wrapper style1">
 				<header class="major">
-					<h2>Your financial solution.</h2>
-					<p>We offer a unique set of capabilities for your financial issues</p>
+					<h2>Solutions</h2>
+					<p>We offer a unique set of capabilities to solve financial issues</p>
 				</header>
 				<div class="container">
 					<div class="row">

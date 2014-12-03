@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     try {processOrderbook($symbol);}
     catch(Exception $e) {apologize($e->getMessage());} 
 
-    redirect("order2.php");
+    redirect("exchange-quick.php");
 }
 else{
 
@@ -65,7 +65,7 @@ else{
     $silver["sell"]=($silver["bid"]-$silver["discount"]);
 
 
-    render("order2_form.php", ["title" => "Order (Quick)", "trades" => $trades, "goldAmount" => $goldAmount, "gold" => $gold, "silverAmount" => $silverAmount, "silver" => $silver]);
+    render("exchange-quick_form.php", ["title" => "Exchange (Quick)", "trades" => $trades, "goldAmount" => $goldAmount, "gold" => $gold, "silverAmount" => $silverAmount, "silver" => $silver]);
 }// else render form
 
 ?>

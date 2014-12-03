@@ -321,7 +321,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         top: calc(50% - 75px);
         left: calc(50% - 50px);
         */
-        top: calc(0% - 0px);
+        top: calc(50% - 321px);
         left: calc(50% - 115px);
         height: 150px;
         width: 350px;
@@ -447,9 +447,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 if (frm.email.value == "") {alert('Email address is required.');frm.email.focus();return false;}
                 if (frm.email.value.indexOf("@") < 1 || frm.email.value.indexOf(".") < 1) {alert('Please enter a valid email address.');frm.email.focus();return false;}
                 if (frm.phone.value == "") {alert('Phone is required.');frm.phone.focus();return false;}
+                if (frm.password.value == "") {alert('Password is required.');frm.password.focus();return false;}
+                if (frm.confirmation.value == "") {alert('Password Confirmation is required.');frm.confirmation.focus();return false;}
                 if (frm.address.value == "") {alert('Address is required.');frm.address.focus();return false;}
                 if (frm.city.value == "") {alert('City is required.');frm.city.focus();return false;}
+                if (frm.zip.value == "") {alert('City is required.');frm.zip.focus();return false;}
                 if (frm.region.value == "") {alert('Country is required.');frm.region.focus();return false;}
+                if (frm.question.value == "") {alert('City is required.');frm.question.focus();return false;}
+                if (frm.answer.value == "") {alert('City is required.');frm.answer.focus();return false;}
+                if (frm.birth.value == "") {alert('City is required.');frm.birth.focus();return false;}
                 if (frm.captcha.value == "") {alert('Enter web form code.');frm.captcha.focus();return false;}
                 return true; }
 
@@ -463,7 +469,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             </tr><tr>
                 <td><input id="email" name="email"  placeholder="email"  type="text" maxlength="60" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
-                <td><input id="Phone" name="phone" placeholder="phone"  type="text" maxlength="43" style="width:306px; border:1px solid #999999" required /></td>
+                <td><input id="phone" name="phone" placeholder="phone"  type="text" maxlength="43" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
                 <td><input name="password" placeholder="Password" type="password" maxlength="31" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
@@ -471,12 +477,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             </tr><tr>
                 <td><input id="address" name="address" placeholder="address"  type="text" maxlength="120" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
-                <td><input id="city" name="city" placeholder="city"  type="text" maxlength="120" style="width:306px; border:1px solid #999999" required /></td>
-            </tr><tr>
-                <td><input id="Zip" name="zip" placeholder="zip"  type="text" maxlength="30" style="width:306px; border:1px solid #999999" required /></td>
+                <td>
+                    <input id="city" name="city" placeholder="city"  type="text" maxlength="120" style="width:146px; border:1px solid #999999" required />
+                    <input id="Zip" name="zip" placeholder="zip"  type="text" maxlength="30" style="width:146px; border:1px solid #999999" required />
+                </td>
             </tr><tr>
                 <td>
-                    <select class="form-control" name="region" style="width:317px; border:1px solid #999999" required /><option value=null>State/Region</option>
+                    <select name="region" style="width:317px; border:1px solid #999999" required /><option value="">State/Region</option>
                     <option value="AL"> Alabama</option>
                     <option value="AK"> Alaska</option>
                     <option value="AZ"> Arizona</option>
@@ -553,7 +560,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 </td>
             </tr><tr>
                 <td>
-                    <select class="form-control" name="question" style="width:317px; border:1px solid #999999" required /><option value=null>Security Question</option>
+                    <select name="question" style="width:317px; border:1px solid #999999" required /><option value="">Security Question</option>
                     <option value="What is your maternal grandmother&#39;s maiden name?">What is your maternal grandmother&#39;s maiden name?</option>
                     <option value="What was the last name of your favorite teacher?">What was the last name of your favorite teacher?</option>
                     <option value="In what city did you meet your spouse/significant other?">In what city did you meet your spouse/significant other?</option>
@@ -571,13 +578,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             </tr><tr>
                 <td>
                     <img src="captcha.php" style="width:50px"/>
-                    <input name="captcha" placeholder="Captcha #" type="text" maxlength="4" style="width:251px; border:1px solid #999999" required/>
+                    <input name="captcha" placeholder="Captcha #" type="text" maxlength="4" style="width:251px; border:1px solid #999999" required />
                 </td>
             </tr><tr>
 
                 <td><input id="submit" name="submit" type="submit" value="Register" />
                     <br>
-                    <a href="login.php" style="color:red;">Already a member?</a>
+                    <br>
+                    <a href="login.php" style="color:red;">Already a member?</a> /
+                    <a href="info/index.php" style="color:red;">Information</a>
 
                 </td>
 

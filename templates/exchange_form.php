@@ -22,7 +22,7 @@ if (!isset($commission)) //set in constants.php
     }
 </script>
 <div class="exchangeTable">
-<form action="order.php" method="post"
+<form action="exchange.php" method="post"
       oninput="
                 priceAmount.value=parseFloat(parseFloat(dollar.value)+parseFloat(cents.value/100)).toFixed(2);
           quantityAmount.value=quantity.value;

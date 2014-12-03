@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://www.elemetalvault.com/how-it-works.htm -->
+<html class="js cssanimations csstransitions"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8"><script async="" src="./How it works   Elemetal Vault_files/analytics.js"></script><script type="text/javascript">window.NREUM||(NREUM={});NREUM.info = {"beacon":"beacon-4.newrelic.com","errorBeacon":"bam.nr-data.net","licenseKey":"e048ae77c8","applicationID":"3963765","transactionName":"NFdWMUMHWkdSVRdfCQ0dcApFKFFAcFkNQhQMXlgAQ0lkVVRTTH8IB1dM","queueTime":0,"applicationTime":3,"ttGuid":"2AEE05B5977B2F87","agent":"js-agent.newrelic.com/nr-476.min.js"}</script><script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"UwICVF5RGwAJUlJVAQQ="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),f=c.length,u=i(a,o,r),d=0;f>d;d++)c[d].apply(u,n);return u}function a(t,e){f[t]=s(t).concat(e)}function s(t){return f[t]||[]}function c(){return n(e)}var f={};return{on:a,emit:e,create:c,listeners:s,_events:f}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(f){try{r("ierr",[f,(new Date).getTime(),!0])}catch(u){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(5),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,window.onerror=e,NREUM.noticeError=n;try{throw new Error}catch(f){"stack"in f&&(t(1),t(4),"addEventListener"in window&&t(2),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&t(3),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:8,2:5,3:9,4:7,5:20,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],4:[function(t){function e(){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var n=t("ee"),r=t("handle"),o=t(2);t("loader").features.stn=!0,t(1),n.on("fn-start",function(t){var e=t[0];e instanceof Event&&(this.bstStart=Date.now())}),n.on("fn-end",function(t,e){var n=t[0];n instanceof Event&&r("bst",[n,e,this.bstStart,Date.now()])}),o.on("fn-start",function(t,e,n){this.bstStart=Date.now(),this.bstType=n}),o.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),this.bstType])}),n.on("pushState-start",function(){this.time=Date.now(),this.startPath=location.pathname+location.hash}),n.on("pushState-end",function(){r("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),"addEventListener"in window.performance&&(window.performance.addEventListener("webkitresourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.webkitClearResourceTimings()},!1),window.performance.addEventListener("resourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.clearResourceTimings()},!1)),document.addEventListener("scroll",e,!1),document.addEventListener("keypress",e,!1),document.addEventListener("click",e,!1)}},{1:6,2:8,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],5:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:20,2:21,ee:"QJf3ax",gos:"7eSDFh"}],6:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window.history,["pushState"],"-")},{1:21,2:20,ee:"QJf3ax"}],7:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:21,2:20,ee:"QJf3ax"}],8:[function(t,e){function n(t,e,n){var r=t[0];"string"==typeof r&&(r=new Function(r)),t[0]=o(r,"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:21,2:20,ee:"QJf3ax"}],9:[function(t,e){function n(){c.inPlace(this,d,"fn-")}function r(t,e){c.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}var i=t("ee").create(),a=t(1),s=t(2),c=s(i),f=s(a),u=window.XMLHttpRequest,d=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=i,window.XMLHttpRequest=function(t){var e=new u(t);try{i.emit("new-xhr",[],e),f.inPlace(e,["addEventListener","removeEventListener"],"-",function(t,e){return e}),e.addEventListener("readystatechange",n,!1)}catch(r){try{i.emit("internal-error",[r])}catch(o){}}return e},window.XMLHttpRequest.prototype=u.prototype,c.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),i.on("send-xhr-start",r),i.on("open-xhr-start",r)},{1:5,2:21,ee:"QJf3ax"}],10:[function(t){function e(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function n(t){var n=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!n.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){n.status=t.status;var a=t.responseType,f="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,u=e(f);if(u&&(r.rxSize=u),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(n.cat=d.split(", ").pop())}}else n.status=0;r.cbTime=this.cbTime,o("xhr",[n,r,this.startTime])}}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,f=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=n,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,n){var r=this.metrics,o=t[0],i=this;if(r&&o){var f=e(o);f&&(r.txSize=f)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof n.onload))&&i.end(n)}catch(e){try{a.emit("internal-error",[e])}catch(r){}}};for(var u=0;c>u;u++)n.addEventListener(s[u],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:11,3:9,4:5,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],11:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info;if(t&&t.agent&&t.licenseKey&&t.applicationID&&c&&c.body){p.proto="https"===d.split(":")[0]||t.sslForHttp?"https://":"http://",a("mark",["onload",i()]);var e=c.createElement("script");e.src=p.proto+t.agent,c.body.appendChild(e)}}function r(){"complete"===c.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=window,c=s.document,f="addEventListener",u="attachEvent",d=(""+location).split("?")[0],p=e.exports={offset:i(),origin:d,features:{}};c[f]?(c[f]("DOMContentLoaded",o,!1),s[f]("load",n,!1)):(c[u]("onreadystatechange",r),s[u]("onload",n)),a("mark",["firstbyte",i()])},{handle:"D5DuLP"}],20:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],21:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,f;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){u([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return f=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,f],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,f(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,f?s+o:o,i,s,t))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){u([o,e,n,r])}}function f(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){u([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function u(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:20,ee:"QJf3ax"}]},{},["G9z0Bl",3,10,4]);</script>
+    <title>How it works | Elemetal Vault</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Required -->
+    <link href="./How it works   Elemetal Vault_files/css" rel="stylesheet" type="text/css">
+    <link href="https://www.elemetalvault.com/Content/css?v=AmqgSrcqQ4KbdpdvhZjQvk1PQHIypoWDSIlBLaUOOgI1" rel="stylesheet">
+
+    <!-- Head from Views -->
+    
+    <!-- Icons -->
+    <link rel="apple-touch-icon" href="https://www.elemetalvault.com/content/ico/touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://www.elemetalvault.com/content/ico/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://www.elemetalvault.com/content/ico/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://www.elemetalvault.com/content/ico/touch-icon-ipad-retina.png">
+    <link rel="icon" href="https://www.elemetalvault.com/content/ico/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="https://www.elemetalvault.com/ico/favicon.ico">
+    <script src="./How it works   Elemetal Vault_files/modernizr" defer=""></script>
+
+
+    <script>(function (w, d, u) { w.readyQ = []; w.bindReadyQ = []; function p(x, y) { if (x == "ready") { w.bindReadyQ.push(y); } else { w.readyQ.push(x); } }; var a = { ready: p, bind: p }; w.$ = w.jQuery = function (f) { if (f === d || f === u) { return a } else { p(f) } } })(window, document)</script>
+<style type="text/css">.mtl-chrt { position: relative; font: 10px Helvetica,Arial,Sans-Serif; color: #eee; background-color: #232323; display: inline-block; vertical-align: top; }.mtl-chrt.addMargin { margin-right: 7px; margin-bottom: 10px; }.mtl-chrt .name, .mtl-chrt .price { position: absolute; text-transform: uppercase; color: #eee; font-size: 2.1em; top: 10px; }.mtl-chrt .name { left: 10px; }.mtl-chrt .price { right: 10px; }.mtl-chrt .grph { width: 93%; height: 55%; position: absolute; top: 40px; left: 10px; }.mtl-chrt ul { margin: 0 !important; position: absolute; bottom: 10px; left: 10px; }.mtl-chrt li { margin: 0 2px 0 0; padding: 0; display: inline-block; font-size: 0.8em; height: 14px; width: 34px; line-height: 14px; text-align: center; vertical-align: middle; cursor: pointer; background-color: #8f8f8f; }.mtl-chrt .selected { background-color: #428BCA; color: #8f8f8f; }.mtl-chrt .ftr { position: absolute; bottom: 10px; right: 10px; }.mtl-chrt .ftr span { font-family: inhert; font-size: 0.8em; white-space: nowrap; border-left:0; margin:0; }</style><!--[if lte IE 8]><style type="text/css">.mtl-chrt li {display:inline}.mtl-chrt .ftr span {font:8px Helvetica,Arial,Sans-Serif}</style><![endif]--><style type="text/css">.fancybox-margin{margin-right:17px;}</style></head>
+<body class="wp-theme-3 wp-theme-1">
+    <div class="wrapper lw">
+
+        
+<!-- Upper Navigation -->
+<div class="top-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<span class="aux-text hidden-xs">Welcome to Elemetal Vault | <a href="mailto:info@elemetalvault.com">info@elemetalvault.com</a> or (844) 435-9879</span>
+				<nav class="top-header-menu">
+					<ul class="menu">
+							<li class=""><a href="https://www.elemetalvault.com/Login">Sign in</a></li>
+						<li class=""><a href="https://www.elemetalvault.com/home/contact">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Primary Navigation -->
+<header>
+	<div id="navOne" class="navbar navbar-wp" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="https://www.elemetalvault.com/" title="ElemetalVault | Your source for trading gold and silver">
+					<img src="./How it works   Elemetal Vault_files/ElemetalVaultTM.png" alt="ElemetalVault | Your source for trading gold and silver">
+				</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown ">
+						<a href="https://www.elemetalvault.com/how-it-works.htm#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-click="dropdown" data-close-others="true">Services</a>
+						<ul class="dropdown-menu">
+							<li><a href="https://www.elemetalvault.com/services.htm">Our Services</a></li>
+							<li><a href="https://www.elemetalvault.com/services/trade-gold-and-silver.htm">Trade Gold and Silver</a></li>
+							<li><a href="https://www.elemetalvault.com/services/secure-storage.htm">Secure Storage</a></li>
+							<li><a href="https://www.elemetalvault.com/services/settlement-options.htm">Settlement Options</a></li>
+						</ul>
+					</li>
+					<li class="dropdown ">
+                        <a href="https://www.elemetalvault.com/how-it-works.htm#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-click="dropdown" data-close-others="true">About Us</a>
+						<ul class="dropdown-menu">
+							<li><a href="https://www.elemetalvault.com/about.htm">About Elemetal Vault</a></li>
+							<li><a href="https://www.elemetalvault.com/learn/why-elemetal-vault.htm">Why Elemetal Vault</a></li>
+							<li><a href="https://www.elemetalvault.com/about/certifications.htm">Our Certifications</a></li>
+							<li><a href="https://www.elemetalvault.com/about/partners-memberships.htm">Partners &amp; Memberships</a></li>
+							<li><a href="https://www.elemetalvault.com/about/privacy-policy.htm">Privacy Policy</a></li>
+							<li><a href="https://www.elemetalvault.com/about/dissolution.htm">In the Event of Our Dissolution</a></li>
+						</ul>
+					</li>
+					<li class="dropdown active">
+                        <a href="https://www.elemetalvault.com/how-it-works.htm#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-click="dropdown" data-close-others="true">How it Works</a>
+						<ul class="dropdown-menu">
+                            <li><a href="https://www.elemetalvault.com/how-it-works/getting-started.htm">Getting Started</a></li>
+							<li><a href="./How it works   Elemetal Vault_files/How it works   Elemetal Vault.html">Process overview</a></li>
+							<li><a href="https://www.elemetalvault.com/how-it-works/pricing-fees.htm">Pricing and Fees</a></li>
+							<li><a href="https://www.elemetalvault.com/how-it-works/the-vault.htm">The Vault</a></li>
+							<li><a href="https://www.elemetalvault.com/how-it-works/limits-restrictions.htm">Limits and Restrictions</a></li>
+							<li><a href="https://www.elemetalvault.com/learn.htm">Knowledge Center</a></li>
+							<li><a href="https://www.elemetalvault.com/how-it-works/faqs.htm">FAQs</a></li>
+							<li><a href="https://www.elemetalvault.com/learn/glossary.htm">Glossary</a></li>
+						</ul>
+					</li>
+					
+						<li class=""><a href="https://www.elemetalvault.com/Register" data-close-others="true" class="get-started">GET STARTED</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>
+
+        <div class="body-wrapper">
+<div class="pg-opt pin">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>How it works</h2>
+            </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li><a href="https://www.elemetalvault.com/">Home</a></li>
+                    <li class="active">How it works</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="slice bg-banner-1 how-it-works">
+    <div class="w-section inverse">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-center">
+                        <img alt="" src="./How it works   Elemetal Vault_files/ev.png" class="img-responsive icon-ctr">
+                        <h2>How to Trade Gold and Silver at Elemetal Vault</h2>
+                        <p>Funding, Trading and Managing is Simple and Secure with Elemetal Vault's Innovative Design and Intuitive Processes.</p>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="slice">
+    <div class="container">
+        <section class="slice intro">
+            <h2>After registration you'll have access to our gold and silver trading portal and other services unique to registered and verified users!  When you start trading with Elemetal Vault, here’s what you’ll see.</h2>
+        </section>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+                <a name="buysell"></a>
+                <h2>Buy and Sell</h2>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>This is the trade page, the hub of your Elemetal Vault precious metal trading experience. It’s where the action happens, and we’ve made sure to give you everything you need to buy and sell gold and silver in a clean, easy-to-use interface.</p>
+                        <p>The Available Balances window at the top right of the page displays the gold, silver and currency that you have available during trading, so you can monitor your metal and funds in real time. </p>
+                        <p>Next, you’ll find your trade windows. Here you can sell or buy your chosen precious metal instantly with just one click. View your trade updates and activity in the recent transactions report below.</p>
+                        <p>Elemetal Vault is a real-time precious metal trading platform, so be aware that trades are instant. This allows you to take immediate advantage of the spot price, at the instant the trade makes sense for you! <strong>When you click the “Buy” or “Sell” button your trade will happen immediately</strong>. You will be informed of your successful trade via the Recent  Transactions summary which appears at the bottom of the page.</p>
+                    </div>
+                    <div class="col-sm-6">
+                       <img src="./How it works   Elemetal Vault_files/trade.png" class="img-responsive screenshot">
+                   </div>
+               </div>
+            </div>
+            <div class="col-xs-12 how-it-works">
+                <hr>
+                <h2>Deposit</h2>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>We have three methods available for depositing funds: Bank Wire, Automated Clearing House, and Bank Check. Due to the non-immediate nature of debit and credit account transfers – as well as the commissions attached to debit and credit of transactions - we only offer trades to accounts funded by the methods listed on the deposit page. </p>
+                        <p>The deposit page gives you full details on how to add funds to your account, and our customer service team is available to help if you have any questions.</p>
+                    </div>
+                    <div class="col-sm-6 accent-wrapper">
+                        <div>
+                            <div class="col-md-4 accent">
+                                <div>
+                                    <h3>Bank Wire</h3>
+                                    <p>This is the fastest method for funding your trading account.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 accent">
+                                <div>
+                                    <h3>ACH Transfer</h3>
+                                    <p>Allow 2 to 3 business days for an ACH to post to your account.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 accent">
+                                <div>
+                                    <h3>Bank Check</h3>
+                                    <p>The slowest method of funding, but also the least expensive!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <hr>
+                <a name="accountdashboard"></a>
+                <h2>Account Dashboard</h2>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>The Dashboard is your friend, this is where you’ll find a complete overview of your Elemetal Vault account. Conveniently view your funds, gold and silver balances and positions, and monitor the status of in-transit metals and pending deposits.</p>
+                        <p>There are several helpful “?” located on this page, which help you better understand the numbers.  Buying Power for example, under USD Balances, represents the total dollar amount that you are able to spend on purchases at Elemetal Vault and/or Provident Metals. It’s the sum of your In Account funds and any Pending Deposits.</p>
+                        <p>The total account value is also displayed and can be found at the top of the dashboard.  This useful number calculates a quick estimate of the total dollar amount you would receive in US Dollars if you were to sell all of your metals at the current spot price, and then withdraw your funds.</p>
+                        <p>Recent activity is tracked on your account dashboard as well.  A detailed history of your buying and selling is here, along with a record of your deposits and withdrawals.</p>
+                    </div>
+                    <div class="col-sm-6">
+                       <img src="./How it works   Elemetal Vault_files/dashboard.png" class="img-responsive screenshot">
+                   </div>
+               </div>
+            </div>
+            <div class="col-xs-12 withdraw">
+                <hr>
+                <a name="withdraw"></a>
+                <h2>Withdraw</h2>
+                <p>You may withdraw your precious metal investments as either physical metals or funds using the most innovative and convenient options available.</p>
+                <div class="col-xs-12 accent-wrapper">
+                    <div class="row">
+                        <div class="col-md-4 accent">
+                            <div>
+                                <h2>Withdraw OPM Bullion</h2>
+                                <p>If you choose to take delivery of your investments as physical gold or silver, you can select from our available inventory of OPM bars and rounds. Simply select a product and enter your desired quantity. Your order and subtotal will appear &nbsp;in your cart on the right side of the page.</p>
+                                <p> When you’re done selecting your metals, click the “Place Order Now” button to be taken to the confirmation page, where you can take another look at your order and make changes where necessary. You will be contacted to arrange for secure delivery.</p>
+                                <p><img src="./How it works   Elemetal Vault_files/withdraw-metal.jpg" class="img-responsive screenshot"> </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 accent">
+                            <div>
+                                <h2>Shop at Provident Metals</h2>
+                                <p>When you register to trade gold and silver with Elemetal Vault, you get an option no other gold and silver exchange can offer - the ability to connect your account to <a href="https://providentmetals.com/">Provident Metals</a>, the premier online provider of investment-grade metals. &nbsp;Convert the funds you earn trading with us into coins, bars - anything from their vast selection of investment-grade products and accessories.</p>
+                                <p>Known for their selection, service and innovative bullion designs, Provident Precious Metals offers it’s customers unique products that can't be purchased elsewhere.</p>
+                                <p><img src="./How it works   Elemetal Vault_files/provident-devices.png" class="img-responsive provident-screen"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 accent">
+                            <div>
+                                <h2>Withdraw your Funds</h2>
+                                <p>Withdrawing funds from your “In Account Balance” is very simple, and transactions are processed quickly and securely via wire transfer. Just log in and visit the Withdraw Funds page, enter the amount you wish to withdraw, click “Submit” and confirm your request. You will receive an email notification once the wire transfer has been sent.</p>
+                                <p>The total sum of your withdrawal will be deposited into the account on file within no more than 2 business days. A record of all recent transactions is located on the Withdraw Funds page for your convenience.</p>
+                               <p><img src="./How it works   Elemetal Vault_files/withdraw-funds.jpg" class="img-responsive screenshot"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 learn-more-wrapper">
+                <hr>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a name="learnmore"></a>
+                        <h2>Learn More</h2>       
+                        <p>If you have additional questions about buying and selling gold and silver with Elemetal Vault, be sure to visit our <a href="https://www.elemetalvault.com/how-it-works/faqs.htm">FAQ’s</a>. You can also learn more about investing in precious metals and the benefits of tangible investments by reading our <a href="https://www.elemetalvault.com/learn.htm">Trading Knowledge Center</a>.</p> 
+                   </div>
+                    <div class="col-sm-6">
+                        <a name="business-days"></a>
+                        <h2>Business Day</h2>
+                        <p>Business days are Monday through Friday, excluding US bank holidays. Trades and withdrawal requests that are made after 4:15pm CST are considered as being made on the next business day. If you have any other questions about our website, please  <a href="https://www.elemetalvault.com/home/contact">contact</a> us directly.</p>
+                    </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="slice bg-2">
+        <div class="w-section inverse">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <h2>Join the Exchange</h2>
+                            <p>
+                                Ready to start buying and selling gold and silver on the most innovative platform available?<br><br>
+                                <a href="https://www.elemetalvault.com/Register" class="btn btn-one">Click here to register</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("img.screenshot").fancybox();
+        var $html = $("body, html, document");
+        if (window.navigator.userAgent.indexOf("Trident") >= 0) {
+            $('body').mousewheel(function (event, delta) {
+                // disable native scroll
+                if (event.preventDefault) {
+                    event.preventDefault();
+                } else { // IE fix
+                    event.returnValue = false;
+                };
+                $html.stop().animate({
+                    scrollTop: $html.scrollTop() + (-delta * 500)
+                }, 'slow');
+            });
+        }
+    });
+</script></div>
+        
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="col">
+                    <h4>Contact us</h4>
+                    <ul>
+                        <li>15850 Dallas Parkway</li>
+                        <li>Dallas, Texas 75248</li>
+                        <li>Phone: (844) 435-9879</li>
+                        <li>Fax: (844) 329-0923</li>
+                        <li>Email: <a href="mailto:info@elemetalvault.com" title="Email Us">info@elemetalvault.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="col">
+                    <br>
+                    <div id="metalChart">
+                        <div id="mtl-chrt-au" class="au mtl-chrt" style="width: 222px; height: 142px;"><div class="name">gold</div><ul><li class="selected">Today</li><li>30-Day</li><li>1-Year</li><li>5-Year</li></ul><div class="grph" style="padding: 0px;"><canvas class="base" width="205" height="77"></canvas><canvas class="overlay" width="205" height="77" style="position: absolute; left: 0px; top: 0px;"></canvas><div class="tickLabels" style="font-size:smaller"><div class="yAxis y1Axis" style="color:#eee"><div class="tickLabel" style="position:absolute;text-align:right;top:49px;right:185px;width:20px">1198</div><div class="tickLabel" style="position:absolute;text-align:right;top:26px;right:185px;width:20px">1202</div><div class="tickLabel" style="position:absolute;text-align:right;top:3px;right:185px;width:20px">1205</div></div></div></div><div class="ftr"><span>09:28:02 PM EST</span></div></div>
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $("#chart.au").metalChart({ Chart: "metal", Symbol: 'au', Width: "220px", Height: "140px", BackColor: "#232323", SymbolsBackColor: "#8f8f8f", FillColor: "#428BCA", ShowPrice: false });
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-sm-push-6 col-md-push-0">
+                <div class="col">
+                    <br>
+                    <div id="metalChart">
+                        <div id="mtl-chrt-ag" class="ag mtl-chrt" style="width: 222px; height: 142px;"><div class="name">silver</div><ul><li class="selected">Today</li><li>30-Day</li><li>1-Year</li><li>5-Year</li></ul><div class="grph" style="padding: 0px;"><canvas class="base" width="205" height="77"></canvas><canvas class="overlay" width="205" height="77" style="position: absolute; left: 0px; top: 0px;"></canvas><div class="tickLabels" style="font-size:smaller"><div class="yAxis y1Axis" style="color:#eee"><div class="tickLabel" style="position:absolute;text-align:right;top:63px;right:188px;width:17px">16.2</div><div class="tickLabel" style="position:absolute;text-align:right;top:40px;right:188px;width:17px">16.3</div><div class="tickLabel" style="position:absolute;text-align:right;top:17px;right:188px;width:17px">16.4</div></div></div></div><div class="ftr"><span>09:28:02 PM EST</span></div></div>
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $("#chart.ag").metalChart({ Chart: "metal", Symbol: 'ag', Width: "220px", Height: "140px", BackColor: "#232323", SymbolsBackColor: "#8f8f8f", FillColor: "#428BCA", ShowPrice: false });
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-sm-pull-6 col-md-pull-0">
+                <div class="col">
+                    <h4><a href="https://www.elemetalvault.com/about.htm">About Us</a></h4>
+                    <p>
+                        Trading with Elemetal Vault is simple and secure.
+                        <br><br>
+                            <a href="https://www.elemetalvault.com/Register" class="btn btn-two">Get started Now!</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-lg-9 copyright">
+                ©2014 Elemetal Vault. All rights reserved.
+                <a href="https://www.elemetalvault.com/home/TermsAndConditions">Terms of use</a> |
+                <a href="https://www.elemetalvault.com/about/privacy-policy.htm">Privacy policy</a> |
+                <a href="http://blog.elemetalvault.com/">Blog</a>              
+            </div>
+            <div class="col-lg-3 footer-logo">
+            </div>
+        </div>           
+    </div>
+</footer>
+
+<!--[if lt IE 9]>
+<div id="overlay"></div>
+<div id="ie8">
+    <div class="global-site-notice navbar-fixed-top noscript upgrade">
+        <div class="notice-inner container">
+            <div class="hidden close-button"></div>
+            <div class="header">
+                <div class="message">
+                    OH NO! IT APPEARS YOU ARE USING AN OLD BROWSER THAT OUR WEBSITE DOES NOT SUPPORT
+                </div>
+            </div>
+            <div class="desc">
+                Our website may look strange and behave in unexpected ways in this browser. We recommend using a recent version of one of these popular browsers:
+            </div>
+            <div class="browser-wrapper">
+                <div class="browser">
+                    <div class="logo">
+                        <a class="download" href="http://www.google.com/chrome" title="download"><span class="chrome"></span></a>
+                    </div>
+                    <div class="intro">
+                        <div class="title">
+                            <a href="http://www.google.com/chrome" title="download">Google Chrome</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="browser">
+                    <div class="logo">
+                        <a class="download" href="http://www.firefox.com" title="download"><span class="firefox"></span></a>
+                    </div>
+                    <div class="intro">
+                        <div class="title">
+                            <a class="download" href="http://www.firefox.com" title="download">Mozilla Firefox</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="browser-wrapper">
+                <div class="browser">
+                    <div class="logo">
+                        <a class="download" href="http://www.apple.com/safari" title="download"><span class="safari"></span></a>
+                    </div>
+                    <div class="intro">
+                        <div class="title">
+                            <a class="download" href="http://www.apple.com/safari" title="download">Safari</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="browser">
+                    <div class="logo">
+                        <a class="download" href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" title="download"><span class="ie"></span></a>
+                    </div>
+                    <div class="intro">
+                        <div class="title">
+                            <a class="download" href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" title="download">Internet Explorer 9 and later</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 call-us">Questions or concerns? Please, give us a call at (844) 435-9879.</div>
+        </div>
+    </div>
+</div>
+<![endif]-->
+
+    </div>
+    <!-- Vendor Script -->        
+    <script src="./How it works   Elemetal Vault_files/jQuery"></script>
+
+    <script src="./How it works   Elemetal Vault_files/vendor" defer=""></script>
+
+
+    <!-- SignalR -->
+    <script src="./How it works   Elemetal Vault_files/hubs" type="text/javascript" defer=""></script>
+    <!--[if lt IE 9]>
+         <script src="/js/ie?v=Z2_-IxrEl5wPnsqoUmIpGS0ChPmB7Z_EmmVIwxHLg8U1" defer></script>
+
+    <![endif]-->
+    <!-- Plugins -->
+    <script src="./How it works   Elemetal Vault_files/plugins" defer=""></script>
+
+    <script src="./How it works   Elemetal Vault_files/metalChart" defer=""></script>
+
+
+    <!-- Require Script -->
+    <script src="./How it works   Elemetal Vault_files/require" defer=""></script>
+
+    <script type="text/javascript">
+    var $baseUrl = "/",
+            baseScriptUrl = "/Scripts";
+    </script>
+    <script>(function ($, d) { $.each(readyQ, function (i, f) { $(f) }); $.each(bindReadyQ, function (i, f) { $(d).bind("ready", f) }) })(jQuery, document)</script>
+   
+    <!-- Scripts from Views -->
+    
+
+    <!-- Google Analyitics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-36822207-5', 'elemetalvault.com');
+        ga('send', 'pageview');
+    </script>
+
+
+<a href="https://www.elemetalvault.com/how-it-works.htm#" id="toTop" style="display: inline;"><span id="toTopHover"></span>To Top</a><script src="./How it works   Elemetal Vault_files/nr-476.min.js"></script><script type="text/javascript" src="./How it works   Elemetal Vault_files/e048ae77c8"></script></body></html>
