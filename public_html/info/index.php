@@ -32,25 +32,20 @@ include 'header.php';
 								<i class="icon fa-area-chart major"></i>
 								<h3>INVESTING</h3>
 								<p>Our transparent pricing model with no hidden fees and no middlemen allow for the lowest prices.</p>
-								<!--
-								-->
 							</section>
 						</div>
 						<div class="4u">
 							<section class="special box">
 								<i class="icon fa-refresh major"></i>
 								<h3>TRADING</h3>
-								<p>Instantly buy and sell various assets using an innovative platform created by investors, for investors, with the latest technology available.</p>
-								<!--
-								-->
+								<p>Instantly buy and sell various assets using an innovative platform with the latest technology available.</p>
 							</section>
 						</div>
 						<div class="4u">
 							<section class="special box">
 								<i class="icon fa-cog major"></i>
 								<h3>SERVICES</h3>
-								<p>We offer unique set of services ranging from advisory, management, and conseling to secure depository storage.</p>
-								
+								<p>We offer services ranging from investment advisory, management, and conseling to secure depository storage.</p>
 							</section>
 						</div>
 					</div>
@@ -60,8 +55,8 @@ include 'header.php';
 		<!-- Two -->
 			<section id="two" class="wrapper style2">
 				<header class="major">
-					<h2>INVESTMENT MANAGEMENT</h2>
-					<p>Applying insight and risk managment expertise to acheive finanical goals.</p>
+					<h2>INVESTMENT & TRADING</h2>
+					<p></p>
 				</header>
 				<div class="container">
 					<div class="row">
@@ -69,7 +64,7 @@ include 'header.php';
 							<section class="special">
 								<a href="#" class="image fit"><img src="images/pic01.jpg" alt="" /></a>
 							
-							<h3>PRODUCTS</h3>
+							<h3>INVESTING</h3>
 								<p>We offer exclusive research and analysis products on a wide range of topics. Ranging from
 								business competitiveness to equity forcasting, these products help our customers to deal with 
 								their financial horizons. Whether the problem is a business needing an analysis of their competitors 
@@ -90,8 +85,35 @@ include 'header.php';
 							<section class="special">
 								<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
 							
-							<h3>SERVICES</h3>
-								
+							<h3>TRADING</h3>
+<p>	Our local exchange provides the ability to trade equities and commodities. 
+	At the moment there are two types of orders: LIMIT and MARKET orders. 
+	Both can be used to enter or exit the market. 
+	LIMIT orders are only traded once the trade price matches or exceeds the order price. 
+	MARKET orders are executed immediately and assigned to the best BID or the best ASK. 
+	The order entry ticket is simple yet versatile. 
+	Open orders can be canceled if they have not yet been matched and a trade executed.
+</p>								
+
+
+								<ul class="actions">
+									<li><a href="../register.php" class="button alt">Learn More</a></li>
+								</ul>
+							</section>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		<!-- Three -->
+			<section id="three" class="wrapper style1">
+				<div class="container">
+					<div class="row">
+						<div class="8u">
+							<section>
+								<h2>SERVICES</h2>
+								<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+<p>Applying insight and risk managment expertise to acheive finanical goals.</p>
 								<p>We also offer wealth advisory services, including portfolio management and financial counseling, 
 								and brokerage and other transaction services to high-net-worth individuals and families.</p>
 								
@@ -119,62 +141,17 @@ include 'header.php';
 								typically longer term in nature. We make investments, some of which are consolidated, directly and 
 								indirectly through funds that we manage, in debt securities and loans, public and private equity 
 								securities, and real estate entities.</p>
+								
 
-								<ul class="actions">
-									<li><a href="../register.php" class="button alt">Learn More</a></li>
-								</ul>
-							</section>
-						</div>
-					</div>
-				</div>
-			</section>
-
-		<!-- Three -->
-			<section id="three" class="wrapper style1">
-				<div class="container">
-					<div class="row">
-						<div class="8u">
-							<section>
-								<h2>How to start!</h2>
-								<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-<p>
-	Before you begin buying and selling on the exchange you will need to fund your account. 
-	Please be sure to read and understand the specifics of each account funding option before making the choice that works best for you. 
-	Certain methods of funding your account require longer processing times. 
-	We have three methods available for depositing funds: Wire Transfer, ACH Transfer, and Check. 
-	Due to the non-immediate nature of debit and credit account transfers, as well as the commissions attached to debit and credit of transactions, we only offer trades to accounts funded by the methods listed.
-	Here are the full details on how to add funds to your account, and our customer service team is available to help if you have any questions.<br>	
-                            <ul>
-                                    <li>
-                                        <b>Bitcoin</b> is the fastest method of funding your account. A bitcoin transaction takes up to 30 minutes to verify and to post to your account.<br>
-                                    </li>
-                                    <li>
-                                        <b>Wire Transfer</b> is the second fastest method for funding your account. Wire transfers generally execute the same day, but may take up to one additional business day to post to your account. Your bank may charge a wire fee.<br>
-                                    </li>
-                                    <li>
-                                        <b>ACH (Automated Clearing House) Transfer</b> generally take two to three business days to post to your account. However, the fees to send this type of transfer are normally more affordable than wire fees.<br>
-                                    </li>
-                                    <li>
-                                        <b>Check</b> is the slowest method of funding your account, but also the least expensive. A bank check takes up to 14 business days to post to your account after it is received and processed.<br>
-                                    </li>
-
-                            </ul>
-</p>
 							</section>
 						</div>
 						<div class="4u">
 							<section>
 <h3>ORDERS</h3>
 <p>
-	Our local exchange provides the ability to trade equities and commodities. 
-	At the moment there are two types of orders: LIMIT and MARKET orders. 
-	Both can be used to enter or exit the market. 
-	LIMIT orders are only traded once the trade price matches or exceeds the order price. 
-	MARKET orders are executed immediately and assigned to the best BID or the best ASK. 
-	The order entry ticket is simple yet versatile. 
-	Open orders can be canceled if they have not yet been matched and a trade executed.
 
 </p>
+
 
 								<ul class="actions">
 									<li><a href="../register.php" class="button alt">Learn More</a></li>
