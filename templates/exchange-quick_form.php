@@ -98,8 +98,8 @@ $dollarColor="#85bb65;";
 
 <?php
 $buyGold = [
-    "type" => "BUY",
-    "asset" => "GOLD",
+    "type" => "Buy",
+    "asset" => "Gold",
     "var" => $gold["buy"],
     "color" => $goldColor,
     "name" => "buyGold",
@@ -109,8 +109,8 @@ $buyGold = [
     "button" => "green",
 ];
 $sellGold = [
-    "type" => "SELL",
-    "asset" => "GOLD",
+    "type" => "Sell",
+    "asset" => "Gold",
     "var" => $gold["sell"],
     "color" => $goldColor,
     "name" => "sellGold",
@@ -120,8 +120,8 @@ $sellGold = [
     "button" => "red",
 ];
 $buySilver = [
-    "type" => "BUY",
-    "asset" => "SILVER",
+    "type" => "Buy",
+    "asset" => "Silver",
     "var" => $silver["buy"],
     "color" => $silverColor,
     "name" => "buySilver",
@@ -131,8 +131,8 @@ $buySilver = [
     "button" => "green",
 ];
 $sellSilver = [
-    "type" => "SELL",
-    "asset" => "SILVER",
+    "type" => "Sell",
+    "asset" => "Silver",
     "var" => $silver["sell"],
     "color" => $silverColor,
     "name" => "sellSilver",
@@ -165,11 +165,18 @@ foreach ($types as $type) {
             <tbody>
             <tr>
                 <td style="width:50%;background-color:<?php echo($type["color"]); ?>">
-                    <?php echo($type["asset"] . " " . $type["trans"]); ?> Price<br /><div style="font-size:200%"><?php echo($unitsymbol . number_format($type["side"], 2, ".", ",")) ?></div>
+                    <?php echo($type["asset"] . " " . $type["type"]); ?> Price
+                    <br />
+                    <div style="font-size:200%">
+                        <?php echo(number_format($type["var"], 2, ".", ",")); ?>
+                        
+                    </div>
                 </td>
                 <td style="border-bottom: 1px solid black;width:50%;background-color:<?php echo($type["color"]); ?>">
-                    <b>Fee</b>: <?php echo($unitsymbol . number_format($type["premium"], 2, ".", ",")) ?><br />
-                    <b>Price</b>: <?php echo(number_format($type["var"], 2, ".", ",")); ?><br>
+                    <b><?php echo($type["trans"]); ?></b>: <?php echo($unitsymbol . number_format($type["side"], 2, ".", ",")) ?>
+                    <br>
+                    <b>Fee</b>: -<?php echo($unitsymbol . number_format($type["premium"], 2, ".", ",")) ?>
+                    <br />
                     <?php //echo($type["type"]); ?> <output name="quantityAmount" for="quantity" style="display:inline;">0</output> ozt for $<output name="totalAmount" for="price quantity" style="display:inline;">0</output>
 
                 </td>
@@ -225,7 +232,9 @@ foreach ($types as $type) {
 //    apologize(var_dump(get_defined_vars()));      apologize(var_dump($trade));
 $id=$_SESSION["id"];
 foreach ($trades as $trade) {
-
+    $tradePrice = getPrice($trade["price"]);
+    $tradeTotal = getPrice($trade["total"]);
+    $tradeCommission = getPrice($trade["commission"]);
     if($trade["buyer"]==$id)
     {   $color="06C";
         $trans="Buy";
@@ -235,7 +244,7 @@ foreach ($trades as $trade) {
     elseif($trade["seller"]==$id)
     {    $color="0C9";
         $trans="Sell";   
-        $trade["total"]=$trade["total"]-$trade["commission"];
+        $tradeTotal=$tradeTotal-$tradeCommission;
     }
     else{$color="000";
         $trans="UNK";}
@@ -243,9 +252,9 @@ foreach ($trades as $trade) {
     <tr>
         <td style="background-color:#<?php echo($color); ?>;"><?php echo($trans);?> <?php echo($trade["symbol"]); ?> Confirmation</td>
         <td style="background-color:#<?php echo($color); ?>;">Date: <?php echo(htmlspecialchars(date('Y-m-d H:i:s', strtotime($trade["date"])))); ?> </td>
-        <td style="background-color:#<?php echo($color); ?>;">Unit: $<?php echo(number_format($trade["price"], 2, ".", ",")); ?></td>
+        <td style="background-color:#<?php echo($color); ?>;">Unit: $<?php echo(number_format($tradePrice, 2, ".", ",")); ?></td>
         <td style="background-color:#<?php echo($color); ?>;"><?php echo(number_format($trade["quantity"], 0, ".", ",")); ?> ozt</td>
-        <td style="background-color:#<?php echo($color); ?>;">Total: $<?php echo(number_format($trade["total"], 2, ".", ",")); ?></td>
+        <td style="background-color:#<?php echo($color); ?>;">Total: $<?php echo(number_format($tradeTotal, 2, ".", ",")); ?></td>
     </tr>        
   <?php  
 } ?>
