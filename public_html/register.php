@@ -482,8 +482,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 <td><input id="submit" name="submit" type="submit" value="Register" />
 <br>
 <br>
-<a href="login.php"><button style="width:157px; background:blue; color:#fff; border:1px solid white;">Already a member?</button></a>
-<a href="info/index.php"><button style="width:156px; background:yellow; color:#000; border:1px solid white;">Learn more!</button></a> 
+<a href="login.php"><button style="width:157px;">Already a member?</button></a>
+<a href="info/index.php"><button style="width:156px;">Learn more!</button></a> 
                 </td>
 
             </tr>
@@ -502,37 +502,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 
-
-
 <script src='js/jquery.js'></script>
 
 
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
