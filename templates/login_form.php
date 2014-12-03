@@ -47,57 +47,57 @@
     .row
     {   text-align: center;
         width: 100%; //login bar
-        margin: 0 auto;
+    margin: 0 auto;
     }
 </style>
 
 
 
 
-    <div class="container">
-      <form class="form-signin" role="form" action="login.php" name="login_form" method="post">
+<div class="container">
+    <form class="form-signin" role="form" action="login.php" name="login_form" method="post">
         <h2 class="form-signin-heading" style="text-shadow: 1px 1px 5px #000;">Please sign in</h2>
 
-          <div class="input-group">
-        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-          <label for="inputEmail" class="sr-only">Email address</label>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
-          </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
+        </div>
 
-          <div class="input-group">
-          <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password"  required>
-          </div>
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password"  required>
+        </div>
 
         <span class="input-group-btn">
             <button class="btn btn-lg btn-primary btn-block" type="submit">
                 <span class="glyphicon glyphicon-off"></span>
-                 LOG IN
+                LOG IN
             </button>
         </span>
-                
-<!--
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
--->
 
-      </form>
-    </div> <!-- /container -->
+        <!--
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+        -->
+
+    </form>
+</div> <!-- /container -->
 
 
 
 <br>
 
 <a href="register.php" class="btn btn-success btn-sm">
-<span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;Not a member?&nbsp;&nbsp;</a>
+    <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;&nbsp;Not a member?&nbsp;&nbsp;</a>
 <br>
 <br>
 <a href="info/index.php" class="btn btn-warning btn-sm">
-<span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;More information</a>
+    <span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;More information</a>
 <!--btn-primary/-info/-warning/-danger/-success/default/ -->
 <!--btn-sm/-btn-medium-->
 <br>
@@ -119,31 +119,31 @@
 
 
 
-                    <table class="info" style="width:100%" align="center" cellpadding="10px">
-                        <tr>
-                            <th style="font-size:25px">Proven</th>
-                            <th style="font-size:25px">Fair</th>
-                            <th style="font-size:25px">Learn More</th>
-                            <th style="font-size:25px">Secure</th>
-                            <th style="font-size:25px">Fast</th>
-                        </tr>
+                <table class="info" style="width:100%" align="center" cellpadding="10px">
+                    <tr>
+                        <th style="font-size:25px">Proven</th>
+                        <th style="font-size:25px">Fair</th>
+                        <th style="font-size:25px">Learn More</th>
+                        <th style="font-size:25px">Secure</th>
+                        <th style="font-size:25px">Fast</th>
+                    </tr>
 
-                        <tr>
-                            <td style="width:20%;" ><span class="glyphicon glyphicon-globe" style="font-size:40px"></span></td>
-                            <td style="width:20%;" ><span class="glyphicon glyphicon-random" style="font-size:40px"></span></td>
-                            <td style="width:20%;" > </td>
-                            <td style="width:20%;" ><span class="glyphicon glyphicon-lock" style="font-size:40px"></span></td>
-                            <td style="width:20%;" ><span class="glyphicon glyphicon-flash" style="font-size:40px"></span></td>
-                        </tr>
+                    <tr>
+                        <td style="width:20%;" ><span class="glyphicon glyphicon-globe" style="font-size:40px"></span></td>
+                        <td style="width:20%;" ><span class="glyphicon glyphicon-random" style="font-size:40px"></span></td>
+                        <td style="width:20%;" > </td>
+                        <td style="width:20%;" ><span class="glyphicon glyphicon-lock" style="font-size:40px"></span></td>
+                        <td style="width:20%;" ><span class="glyphicon glyphicon-flash" style="font-size:40px"></span></td>
+                    </tr>
 
-                        <tr>
-                            <td>Our platform is powered by an exchange engine deployed by some of Wall Street's most respected trading institutions.</td>
-                            <td>Our exchange orderbook matching engine crosses orders on price/time priority allowing for transparent markets.</td>
-                            <td>   </td>
-                            <td>Our system has critical information stored on secured terminals and multi-tiered firewall architecture for safe transactions</td>
-                            <td>Our proprietary multiple asset trading system has one of the fastest trade to execution times in the financial industry.</td>
-                        </tr>
-                        <tr><td colspan="5"><br> </td></tr>
+                    <tr>
+                        <td>Our platform is powered by an exchange engine deployed by some of Wall Street's most respected trading institutions.</td>
+                        <td>Our exchange orderbook matching engine crosses orders on price/time priority allowing for transparent markets.</td>
+                        <td>   </td>
+                        <td>Our system has critical information stored on secured terminals and multi-tiered firewall architecture for safe transactions</td>
+                        <td>Our proprietary multiple asset trading system has one of the fastest trade to execution times in the financial industry.</td>
+                    </tr>
+                    <tr><td colspan="5"><br> </td></tr>
                 </table>
 
 
