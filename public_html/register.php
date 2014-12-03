@@ -485,7 +485,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
                 <a href="register.php"><button style="width:157px;">Not a member?</button></a>
                 <a href="info/index.php"><button style="width:156px;">Learn more!</button></a> 
                 -->
-                <a href="register.php" style="color:white;">Register</a> /
+                <a href="login.php" style="color:white;">Log In</a> /
                 <a href="info/index.php" style="color:white;">Information</a>
 
                 </td>
