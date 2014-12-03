@@ -3,7 +3,6 @@
 require("../includes/config.php");
 //require("../includes/constants.php");
 
-
 // if form was submitted  -- validate and insert int database
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {      //   var_dump(get_defined_vars()); //dump all variables anywhere (displays in header)
@@ -11,42 +10,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $code=$_SESSION["code"];
     $captcha=(int)$_POST["captcha"];
     if($code!=$captcha){apologize("Incorrect captcha!"); exit(); }
-    // else($code===$captcha){echo("Correct captcha!"); exit(); }
 
-    $fname = $_POST["fname"];
-    $fname = sanatize("alphabet", $fname);
-
-    $lname = $_POST["lname"];
-    $lname = sanatize("alphabet", $lname);
-
-    $email = $_POST["email"];
-    $email = sanatize("email", $email);
-
-    $address = $_POST["address"];
-    $address = sanatize("address", $address);
-
-    $city = $_POST["city"];
-    $city = sanatize("alphabet", $city);
-
-    $region = $_POST["region"]; //state
-    $region = sanatize("alphabet", $region);
-
-    @$zip = (int)$_POST["zip"];
-    $zip = sanatize("quantity", $zip);
-
-    $phone = $_POST["phone"];
-    $phone = sanatize("phone", $phone);
-
-    $birth = $_POST["birth"];
-    $birth = sanatize("date", $birth);
-
+    $fname = $_POST["fname"]; $fname = sanatize("alphabet", $fname);
+    $lname = $_POST["lname"]; $lname = sanatize("alphabet", $lname);
+    $email = $_POST["email"]; $email = sanatize("email", $email);
+    $address = $_POST["address"]; $address = sanatize("address", $address);
+    $city = $_POST["city"]; $city = sanatize("alphabet", $city);
+    $region = $_POST["region"]; $region = sanatize("alphabet", $region); //state
+    @$zip = (int)$_POST["zip"]; $zip = sanatize("quantity", $zip);
+    $phone = $_POST["phone"]; $phone = sanatize("phone", $phone);
+    $birth = $_POST["birth"]; $birth = sanatize("date", $birth);
     $answer = $_POST["answer"];
-
-
     $question = $_POST["question"];
     $password = $_POST["password"];
     $confirmation = $_POST["confirmation"];
-
 
     // validate submission
     if (empty($password) || empty($confirmation)) { apologize("You must provide a password and re-type it in the confirmation box."); }
@@ -65,49 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if (empty($confirmation)) { apologize("You must provide a Password Confirmation."); }
     if (empty($birth)) { apologize("You must provide a date."); }
 
-
-
-//NEW METHOD
-    /* Use the bcrypt algorithm (default as of PHP 5.5.0). Note that this constant is designed to change over time as new and stronger algorithms are added to PHP.
-         For that reason, the length of the result from using this identifier can change over time. Therefore, it is recommended to store the result in a database
-         column that can expand beyond 60 characters (255 characters would be a good choice). */
-    /**
-     * In this case, we want to increase the default cost for BCRYPT to 12.
-     * Note that we also switched to BCRYPT, which will always be 60 characters.
-     */
     $options = ['cost' => 12,];
     $password = password_hash($password, PASSWORD_BCRYPT, $options);
 
-
-
-//OLD METHOD
-    /*
-    $password = generate_hash($password); //generate blowfish hash from functions.php
-    if (strlen($password) != 60) { apologize("Invalid password configuration."); }  // The hashed pwd should be 60 characters long. If it's not, something really odd has happened
-    */
-
-    $ipaddress = '';
-    if (getenv('HTTP_CLIENT_IP')):
-    { $ipaddress = getenv('HTTP_CLIENT_IP'); }
-    elseif(getenv('HTTP_X_FORWARDED_FOR')):
-    { $ipaddress = getenv('HTTP_X_FORWARDED_FOR'); }
-    elseif(getenv('HTTP_X_FORWARDED')):
-    { $ipaddress = getenv('HTTP_X_FORWARDED'); }
-    elseif(getenv('HTTP_FORWARDED_FOR')):
-    { $ipaddress = getenv('HTTP_FORWARDED_FOR'); }
-    elseif(getenv('HTTP_FORWARDED')):
-    { $ipaddress = getenv('HTTP_FORWARDED'); }
-    elseif(getenv('REMOTE_ADDR')):
-    { $ipaddress = getenv('REMOTE_ADDR'); }
-    else:
-    { $ipaddress = 'UNKNOWN'; }
-    endif;
-
+    $ipaddress = getIP();
 
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
-
-
 
 //INSERTS INTO HISTORY for user
     $quantity = 1; //admins id, will appear on the inital deposit as counterparty id.
@@ -195,8 +136,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         apologize("Database Failure. #8");
     }
 
-
-
     query("COMMIT;"); //If no errors, commit changes
     query("SET AUTOCOMMIT=1");
 
@@ -204,17 +143,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $_SESSION["code"]=mt_rand(0,9999);
 
     redirect("status.php");
-//apologize("You have successfully registered. Now your account needs to be activated.");
-
 
 } //POST
 
 //    render("register_form.php", ["title" => "Register"]);
 ?>
-
-
-
-
 
 
 <!DOCTYPE html>
@@ -229,10 +162,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 
 <style>
-
-
-
-
 
     @import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
     @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
@@ -262,9 +191,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
         width: auto;
         height: auto;
-        /*
-        background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg);
-        */
         background-image: url('img/bg/1.jpg');
         background-size: cover;
         -webkit-filter: blur(5px);
@@ -278,17 +204,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
     .grad{
         position: absolute;
-        /*
-        top: -20px;
-        left: -20px;
-        right: -40px;
-        bottom: -40px;
-        */
-        top: 0px;
-        left: 0px;
-        right: 0px;
-        bottom: 0px;
-
+        top: 0px; /*top: -20px;*/
+        left: 0px; /*left: -20px;*/
+        right: 0px; /*right: -40px;*/
+        bottom: 0px; /*bottom: -40px;*/
         width: auto;
         height: auto;
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
@@ -312,17 +231,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     }
 
     .header div span{
-        color: #5379fa !important;
+        color: red !important; /*color: #5379fa !important;*/
     }
 
     .login{
         position: absolute;
-        /*
-        top: calc(50% - 75px);
-        left: calc(50% - 50px);
-        */
-        top: calc(50% - 321px);
-        left: calc(50% - 115px);
+        top: calc(50% - 321px); /*top: calc(50% - 75px);*/
+        left: calc(50% - 115px); /*left: calc(50% - 50px);*/
         height: 150px;
         width: 350px;
         padding: 10px;
@@ -354,19 +269,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         font-size: 16px;
         font-weight: 400;
         padding: 4px;
-        /*NOT FOR REGISTRATION FORM...
-        width: 250px;
-        height: 30px;
-        background: transparent;
-        border: 1px solid rgba(255,255,255,0.6);
-        border-radius: 2px;
-        color: #fff;
-        font-family: 'Exo', sans-serif;
-        font-size: 16px;
-        font-weight: 400;
-        padding: 4px;
-        margin-top: 10px;
-        */
+        /*margin-top: 10px;*/
     }
 
 
@@ -401,13 +304,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     .login input[type=password]:focus{
         outline: none;
         border: 1px solid rgba(255,255,255,0.9);
-        /*
-        outline: none;
-        border: 1px solid rgba(255,255,255,0.9);
-        */
     }
-
-
 
     .login input[type=submit]:focus{
         outline: none;
@@ -437,8 +334,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 </div>
 <br>
 
-<form role="form" action="register.php"method="post" onsubmit="return ValidateForm(this);">
     <div class="login">
+        <form role="form" action="register.php"method="post" onsubmit="return ValidateForm(this);">
 
         <script type="text/javascript">
             function ValidateForm(frm) {
@@ -583,21 +480,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             </tr><tr>
 
                 <td><input id="submit" name="submit" type="submit" value="Register" />
-                    <br>
-                    <br>
-                    <a href="login.php" style="color:red;">Already a member?</a> /
-                    <a href="info/index.php" style="color:red;">Information</a>
-
+<br>
+<br>
+<a href="login.php"><button style="width:157px; background:blue; color:#fff; border:1px solid white;">Already a member?</button></a>
+<a href="info/index.php"><button style="width:156px; background:yellow; color:#000; border:1px solid white;">Learn more!</button></a> 
                 </td>
 
             </tr>
 
+
         </table>
+    </form>
+
 
 
 
     </div>
-</form>
+
 
 
 
