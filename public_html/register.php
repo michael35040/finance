@@ -480,10 +480,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             </tr><tr>
 
                 <td><input id="submit" name="submit" type="submit" value="Register" />
-<br>
-<br>
-<a href="login.php"><button style="width:157px;">Already a member?</button></a>
-<a href="info/index.php"><button style="width:156px;">Learn more!</button></a> 
+                <br><br>
+                <!--
+                <a href="register.php"><button style="width:157px;">Not a member?</button></a>
+                <a href="info/index.php"><button style="width:156px;">Learn more!</button></a> 
+                -->
+                <a href="register.php" style="color:white;">Register</a> /
+                <a href="info/index.php" style="color:white;">Information</a>
+
                 </td>
 
             </tr>
