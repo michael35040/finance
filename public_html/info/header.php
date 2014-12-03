@@ -1,3 +1,9 @@
+<?php
+
+$sitename="Pulwar";
+$logo="INVEST WITH EXCELLENCE";
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
