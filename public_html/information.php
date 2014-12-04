@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     if (empty($_POST["symbol"])) { apologize("Please select a symbol!"); } //check to see if empty
     $symbol = $_POST["symbol"];
-    $symbol = sanatize("symbol", $symbol);
+    $symbol = sanatize("alnum", $symbol);
 
     //COMPANY INFORMATION
     $asset=[];
