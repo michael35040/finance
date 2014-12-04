@@ -45,7 +45,7 @@ include 'header.php';
 							<section class="special box">
 								<i class="icon fa-cog major"></i>
 								<h3>SERVICES</h3>
-								<p>We offer services ranging from investment advisory, management, and conseling to secure depository storage.</p>
+								<p>We offer services ranging from investment advisory, management, and counseling to secure depository storage.</p>
 							</section>
 						</div>
 					</div>
@@ -65,11 +65,12 @@ include 'header.php';
 								<a href="#" class="image fit"><img src="images/pic01.jpg" alt="" /></a>
 							
 							<h3>INVESTING</h3>
-								<p>We offer exclusive research and analysis products on a wide range of topics. Ranging from
-								business competitiveness to equity forcasting, these products help our customers to deal with 
-								their financial horizons. Whether the problem is a business needing an analysis of their competitors 
-								process and products in comparison to their own or an investor needs an in-depth earnings forecast 
-								to assist in planning their future market posistions, we have the solution.</p>
+								<p>We offer research and analysis products on a wide range of investment topics. From
+                                    business competitiveness analysis to equity forecasting research, these products help our
+                                    customers deal with their financial horizons. Whether the problem is a business needing
+                                    an analysis of their competitors process and products in comparison to their own or
+                                    an investor needs an in-depth earnings forecast to assist in planning their future
+                                    market positions, we have the solution.</p>
 
 								<ul class="actions">
 									<li><a href="../register.php" class="button alt">Learn More</a></li>
@@ -108,16 +109,18 @@ include 'header.php';
 							<section>
 								<h2>SERVICES</h2>
 								<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
-								<p>Applying insight and risk managment expertise to acheive finanical goals.
-								
-								We offer wealth advisory services, including portfolio management and financial counseling, 
-								and brokerage and other transaction services to high-net-worth individuals and families.
-								We provide a broad range of investment banking services to a diverse group of corporations, 
-								financial institutions, investment funds and governments. Services include strategic advisory 
-								assignments with respect to mergers and acquisitions, divestitures, corporate defense activities, 
-								risk management, restructurings and spin-offs, and debt and equity underwriting of public offerings 
-								and private placements, including domestic and cross-border transactions, as well as derivative 
-								transactions directly related to these activities.</p>
+								<p>Applying insight and risk management expertise to achieve financial goals.
+                                    We provide a wide range of investment and financial services to a substantial and
+                                    diversified client base that includes corporations, financial institutions, investment
+                                    funds, governments and high-net-worth individuals. Services include wealth advisory
+                                    services, portfolio management, financial counseling, brokerage, strategic advisory
+                                    assignments with respect to mergers and acquisitions, divestitures, corporate defense
+                                    activities, risk management, restructurings and spin-offs, and debt and equity
+                                    underwriting of public offerings and private placements, including domestic and
+                                    cross-border transactions, as well as derivative transactions directly related to
+                                    these activities.
+                                </p>
+
 								<!--
 								
 
@@ -133,10 +136,10 @@ include 'header.php';
 								indirectly through funds that we manage, in debt securities and loans, public and private equity 
 								securities, and real estate entities.</p>
 							
-								<p>We have parterned with secure storage facilities so our customers can inexpensively secure their 
+								<p>We have partnered with secure storage facilities so our customers can inexpensively secure their
 								assets in either allocated or unallocated accounts.</p>
 																
-								<p>We offer a vareity of products for direct sale purchasing. We specialize in 
+								<p>We offer a variety of products for direct sale purchasing. We specialize in
 								assisting our customers invest in hard asset commodities. What differentiates these offerings from those
 								available on the exchange are that these are available for immediate shipping.</p>
 								-->
@@ -164,8 +167,6 @@ include 'header.php';
 									<li><a href="#">Funding</a></li>
 									<li><a href="#">Exchange</a></li>
 									<li><a href="#">Depository</a></li>
-									<li><a href="#">Fungible Assets</a></li>
-									<li><a href="#">Delivery</a></li>
 								</ul>
 							</section>
 						</div>

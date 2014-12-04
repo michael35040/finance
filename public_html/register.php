@@ -360,23 +360,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         <table border="0" cellpadding="5" cellspacing="0" width="600">
             <tr>
                 <td>
-                    <input id="FirstName" name="fname"  placeholder="first name"  type="text" maxlength="60" style="width:146px; border:1px solid #999999" required />
-                    <input id="LastName" name="lname"  placeholder="last name" type="text" maxlength="60" style="width:146px; border:1px solid #999999" required />
+                    <input id="FirstName" name="fname"  placeholder="First Name"  type="text" maxlength="60" style="width:146px; border:1px solid #999999" required />
+                    <input id="LastName" name="lname"  placeholder="Last Name" type="text" maxlength="60" style="width:146px; border:1px solid #999999" required />
                 </td>
             </tr><tr>
-                <td><input id="email" name="email"  placeholder="email"  type="text" maxlength="60" style="width:306px; border:1px solid #999999" required /></td>
+                <td><input id="email" name="email"  placeholder="Email"  type="text" maxlength="60" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
-                <td><input id="phone" name="phone" placeholder="phone"  type="text" maxlength="43" style="width:306px; border:1px solid #999999" required /></td>
+                <td><input id="phone" name="phone" placeholder="Phone"  type="text" maxlength="43" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
                 <td><input name="password" placeholder="Password" type="password" maxlength="31" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
                 <td><input name="confirmation" placeholder="Password Confirmation" type="password" maxlength="31" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
-                <td><input id="address" name="address" placeholder="address"  type="text" maxlength="120" style="width:306px; border:1px solid #999999" required /></td>
+                <td><input id="address" name="address" placeholder="Address"  type="text" maxlength="120" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
                 <td>
-                    <input id="city" name="city" placeholder="city"  type="text" maxlength="120" style="width:146px; border:1px solid #999999" required />
-                    <input id="Zip" name="zip" placeholder="zip"  type="text" maxlength="30" style="width:146px; border:1px solid #999999" required />
+                    <input id="city" name="city" placeholder="City"  type="text" maxlength="120" style="width:146px; border:1px solid #999999" required />
+                    <input id="Zip" name="zip" placeholder="Postal Code"  type="text" maxlength="30" style="width:146px; border:1px solid #999999" required />
                 </td>
             </tr><tr>
                 <td>

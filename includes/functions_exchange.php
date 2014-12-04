@@ -456,6 +456,7 @@ if($loud!='quiet'){echo("<br>[" . $symbol . "] Computing orderbook...");}
             $topOrders = OrderbookTop($symbol); //try catch
             $asks = $topOrders["asks"];
             $bids = $topOrders["bids"];
+            if (empty($asks) || empty($bids)) { $orderbook['orderProcessed'] = 0; return($orderbook); }  //{ throw new Exception("No bid limit orders. Unable to cross any orders."); }
             $topAskPrice = (float)$asks[0]["price"];
             $topBidPrice = (float)$bids[0]["price"];
             $tradeType = $topOrders["tradeType"];

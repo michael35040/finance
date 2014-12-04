@@ -102,6 +102,8 @@ function populatetrades()
     }
 }
 
+
+
 function createStocks()
 {    require 'constants.php';//for $divisor
 if($loud!='quiet') {echo("Creating Stocks");
@@ -195,6 +197,9 @@ function test()
     query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
 
     createStocks();
+
+    publicOffering('GOLD', 'Gold Co.', 1, 1000000, 'commodity', 0.5, 'http://gold.com', 10, 'Represent 1ozt of Au Gold');
+    publicOffering('SILVER', 'Silver Co.', 1, 1000000, 'commodity', 0.5, 'http://silver.com', 10, 'Represent 1ozt of Ag Silver');
 
 
     //try {processOrderbook();}

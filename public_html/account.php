@@ -83,8 +83,8 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
 
     $stock["value"] = getPrice($row["price"]); //total purchase price, value when bought
     $trades =	    query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $stock["symbol"]);	  // query user's portfolio
-        @$stock["price"] = $trades[0]["price"]; //stock price per share
-    $stock["total"] = getPrice(($stock["quantity"]+$stock["locked"]) * $stock["price"]); //current market price pulled from function.php
+        @$stock["price"] = getPrice($trades[0]["price"]); //stock price per share
+    $stock["total"] = (($stock["quantity"]+$stock["locked"]) * $stock["price"]); //current market price pulled from function.php
 
     $portfolio[] = $stock;
     $portfolioTotal = $portfolioTotal + $stock["total"]; //total market value of portfolio
