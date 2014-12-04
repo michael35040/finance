@@ -209,7 +209,7 @@
     foreach ($portfolio as $row) {
         $totalOwned=($row["quantity"]+$row["locked"]);
         echo("<tr>");
-        echo("<td><form><button type='submit' class='btn btn-success btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp;" . $row['symbol']
+        echo("<td><form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp;" . $row['symbol']
             . "&nbsp;</b></button></form></td>");
         // . htmlspecialchars($row["symbol"]) .
         echo("<td>" . (number_format($totalOwned, 0, ".", ",")) . " (" . (number_format($row["control"], 2, ".", ",")) . "%)</td>");  //htmlspecialchars
