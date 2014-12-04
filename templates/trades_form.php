@@ -76,22 +76,22 @@
         $sumcommission = $sumcommission + $commission;
         $total = $total - $commission;
         $sumtotal = $sumtotal + $total;
-        echo("
-
-                <tr>
-                    <td>" . number_format($uid,0,".","") . "</td>
-                    <td>" . number_format($buyer,0,".","") . "</td>
-                    <td>" . number_format($bidorderuid,0,".","") . "</td>
-                    <td>" . number_format($seller,0,".","") . "</td>
-                    <td>" . number_format($askorderuid,0,".","") . "</td>
-                    <td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($date))) . "</td>
-                    <td>" . strtoupper(htmlspecialchars("$type")) . "</td>
-                    <td>" . htmlspecialchars("$symbol") . "</td>
-                    <td>" . number_format($quantity,0,".",",") . "</td>
-                    <td>" . number_format($price,2,".",",") . "</td>
-                    <td>" . number_format($commission,2,".",",") . "</td>
-                    <td>" . number_format($total,2,".",",") . "</td>
-                </tr>");
+        ?>
+        <tr>
+                    <td><?php echo(number_format($uid,0,".","")); ?></td>
+                    <td><?php  echo(number_format($buyer,0,".","")); ?></td>
+                    <td><?php  echo(number_format($bidorderuid,0,".","")); ?></td>
+                    <td><?php  echo(number_format($seller,0,".","")); ?></td>
+                    <td><?php  echo(number_format($askorderuid,0,".","")); ?></td>
+                    <td><?php  echo(htmlspecialchars(date('Y-m-d H:i:s',strtotime($date)))); ?></td>
+                    <td><?php  echo(strtoupper(htmlspecialchars("$type"))); ?></td>
+                    <td><form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='<?php echo($symbol); ?>'><b>&nbsp;<?php echo($symbol); ?>&nbsp;</b></button></form></td>
+                    <td><?php  echo(number_format($quantity,0,".",",")); ?></td>
+                    <td><?php  echo(number_format($price,2,".",",")); ?></td>
+                    <td><?php  echo(number_format($commission,2,".",",")); ?></td>
+                    <td><?php  echo(number_format($total,2,".",",")); ?></td>
+                </tr>
+    <?php                
     }
     if($i==0){echo("<tr><td colspan='12'>No trades</td></tr>");}
     elseif($i>0)
