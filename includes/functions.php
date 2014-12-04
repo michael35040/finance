@@ -245,7 +245,7 @@ function sanatize($type, $var)
 	}
 	if($type=='alnum') //side, type, etc.
 	{	$var = preg_replace("/[^0-9a-zA-Z]/", "", $var);
-    		if (!ctype_alpha($var)) { apologize("Must be alphabetic or numeric!");} //if symbol is alpha (alnum for alphanumeric)
+    		if (!ctype_alnum($var)) { apologize("Must be alphabetic or numeric!");} //if symbol is alpha (alnum for alphanumeric)
 	}
 	if($type=='email') //side, type, etc.
 	{	
