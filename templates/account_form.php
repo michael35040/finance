@@ -141,7 +141,7 @@
                 echo("-" . $i); ?></td>
             <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>
             </td>
-            <td colspan="4"><?php echo("Locked (Pending Bid Orders)"); ?></td>
+            <td colspan="4"><?php echo("Locked (<a href='orders.php'>Pending Bid Orders</a>)"); ?></td>
             <td><div style="text-align:right">
                     <?php echo($unitsymbol . number_format($bidLocked, 2, ".", ",")) ?>
                 </div></td>
@@ -252,7 +252,7 @@
             <td><strong>0</strong></td>
         </tr>
         <tr>
-            <td colspan="8" style="font-size:10px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;*Locked (Pending Ask Orders)</i></td>
+            <td colspan="8" style="font-size:10px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;*Locked (<a href='orders.php'>Pending Ask Orders</a>)</i></td>
         </tr>
 
     <?php
@@ -262,7 +262,7 @@
 
         <!-- TOTAL STOCK WORTH -->
         <tr  class="active">
-            <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Assets) <i>&nbsp;&nbsp;&nbsp;&nbsp;*Locked (Pending Ask Orders)</i></td>
+            <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Assets) <i>&nbsp;&nbsp;&nbsp;&nbsp;*Locked (<a href='orders.php'>Pending Ask Orders</a>)</i></td>
             <td><strong>
                     <?php //calculate value of purchase price
                     echo($unitsymbol . number_format($purchaseprice, 2, ".", ",")); //display purchase price
