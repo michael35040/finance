@@ -36,7 +36,7 @@
         echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="' . $row["uid"] . '"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>');
         echo("<td>" . number_format($row["uid"], 0, ".", "") . "</td>");
         echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s', strtotime($row["date"]))) . "</td>");
-         echo("<td><form><button type='submit' class='btn btn-success btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp;" . $row['symbol'] . "&nbsp;</b></button></form></td>");
+         echo("<td><form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp;" . $row['symbol'] . "&nbsp;</b></button></form></td>");
         //echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["side"])) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["type"])) . "</td>");
