@@ -141,7 +141,8 @@
                 echo("-" . $i); ?></td>
             <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>
             </td>
-            <td colspan="4"><?php echo("Locked (<a href='orders.php'>Pending Bid Orders</a>)"); ?></td>
+
+            <td colspan="4"><?php echo("Locked (<a href='orders.php'>Pending Bid Orders<form action='orders.php' method='post'><input type='submit' name='side' value='b'></form></a>)"); ?></td>
             <td><div style="text-align:right">
                     <?php echo($unitsymbol . number_format($bidLocked, 2, ".", ",")) ?>
                 </div></td>
