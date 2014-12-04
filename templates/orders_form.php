@@ -29,6 +29,9 @@
     foreach ($orders as $row)
     { 	$price = getPrice($row["price"]);
     	$total = getPrice($row["total"]);
+    	if($row["side"]=="b"){$row["side"]='bid';}
+    	if($row["side"]=="a"){$row["side"]='ask';}
+    	
         echo("<tr>");
         echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="' . $row["uid"] . '"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>');
         echo("<td>" . number_format($row["uid"], 0, ".", "") . "</td>");
