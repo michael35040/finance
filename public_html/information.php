@@ -78,9 +78,10 @@ $asset["avgprice"] = getPrice($volume[0]["price"]);
         //TRADES (PROCESSED ORDERS)
 $trades =  query("SELECT * FROM trades WHERE (symbol=? AND (type='limit' OR type='market')) ORDER BY uid DESC", $symbol);
         //if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
-        if(isset($trades[0]["price"])) {$tradesPrice=getPrice($trades[0]["price"]);}else{$tradesPrice=0;}        
+        if(isset($trades[0]["price"])) 
+            {$asset["price"] = getPrice($trades[0]["price"]); //stock price per share
+            }else{$asset["price"]=0;}        
 
-$asset["price"] = getPrice($trades[0]["price"]); //stock price per share
 $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
         //$dividend =	query("SELECT SUM(quantity) AS quantity FROM history WHERE type = 'dividend' AND symbol = ?", $asset["symbol"]);	  // query user's portfolio
         //$asset["dividend"] = $dividend["dividend"]; //shares actually held public
@@ -116,7 +117,6 @@ $tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, dat
             "lastorders" => $lastorders,
             "asksPrice" => $asksPrice,  
             "bidsPrice"  => $bidsPrice, 
-            "tradesPrice"  => $tradesPrice,
             "asksGroup" => $asksGroup,
             "bidsGroup" => $bidsGroup,
             "asksGroupAll" => $asksGroupAll,
