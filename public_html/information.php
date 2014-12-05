@@ -47,8 +47,6 @@ $lastorders =	query("SELECT * FROM orderbook WHERE (symbol = ?) ORDER BY uid DES
 
 if(isset($asks[0]["price"])) {$asksPrice=getPrice($asks[0]["price"]);}else{$asksPrice=0;}
 if(isset($bids[0]["price"])) {$bidsPrice=getPrice($bids[0]["price"]);}else{$bidsPrice=0;}
-if(isset($trades[0]["price"])) {$tradesPrice=getPrice($trades[0]["price"]);}else{$tradesPrice=0;}        
-
 
         //ORDERS COMBINED FOR TABLE AND FOR CHARTS (COMBINED PRICE)
         $asksGroup =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='a' AND type = 'limit') GROUP BY `price` ORDER BY `price` ASC  LIMIT 0, 5", $symbol);	  // query user's portfolio
@@ -79,7 +77,9 @@ $asset["volume"] = $volume[0]["quantity"];
 $asset["avgprice"] = getPrice($volume[0]["price"]);
         //TRADES (PROCESSED ORDERS)
 $trades =  query("SELECT * FROM trades WHERE (symbol=? AND (type='limit' OR type='market')) ORDER BY uid DESC", $symbol);
-        if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
+        //if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
+        if(isset($trades[0]["price"])) {$tradesPrice=getPrice($trades[0]["price"]);}else{$tradesPrice=0;}        
+
 $asset["price"] = getPrice($trades[0]["price"]); //stock price per share
 $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
         //$dividend =	query("SELECT SUM(quantity) AS quantity FROM history WHERE type = 'dividend' AND symbol = ?", $asset["symbol"]);	  // query user's portfolio
