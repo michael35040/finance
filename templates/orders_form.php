@@ -18,13 +18,13 @@
                 if ($tabletitle !== "All")
                 {
                     echo('
-                <form>
+                
 <span class="input-group-btn">
-    <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="orders.php" name="history" value="all">
+    <form method="post" action="orders.php" ><button type="submit" class="btn btn-success btn-xs" name="history" value="all">
         <span class="glyphicon glyphicon-plus-sign"></span> Show All
-    </button>
+    </button></form>
 </span>
-                </form>
+                
                 ');
                 }
             ?>
@@ -62,10 +62,10 @@
     	if($row["side"]=="a"){$row["side"]='ask';$color="style='background-color:#FFF0FF;'";}
     	
         echo("<tr>");
-        echo('<td ' . $color . '><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="' . $row["uid"] . '"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>');
+        echo('<td ' . $color . '><form method="post" action="orders.php"><button type="submit" class="btn btn-danger btn-xs" name="cancel" value="' . $row["uid"] . '"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>');
         echo("<td " . $color . ">" . number_format($row["uid"], 0, ".", "") . "</td>");
         echo("<td " . $color . ">" . htmlspecialchars(date('Y-m-d H:i:s', strtotime($row["date"]))) . "</td>");
-         echo("<td " . $color . "><form><span class='nobutton'><button type='submit' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'>" . $row['symbol'] . "</button></span></form></td>");
+         echo("<td " . $color . "><form method='post' action='information.php'><span class='nobutton'><button type='submit' name='symbol' value='" . $row['symbol'] . "'>" . $row['symbol'] . "</button></span></form></td>");
         //echo("<td " . $color . ">" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
         echo("<td " . $color . ">" . htmlspecialchars(strtoupper($row["side"])) . "</td>");
         echo("<td " . $color . ">" . htmlspecialchars(strtoupper($row["type"])) . "</td>");
@@ -91,7 +91,7 @@
     ?>
         <tr  class="danger" style="font-weight: bold;">
         <td>
-            <form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>
+            <form method="post" action="orders.php"><button type="submit" class="btn btn-danger btn-xs" name="cancel" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>
         <td colspan='5'><?php echo(number_format($OrderNumber, 0, ".", ",")) ?> open orders</td>
             <td><?php echo(number_format($OrderQuantity, 0, ".", ",")) ?></td>
             <td></td>
@@ -122,25 +122,25 @@
                 if ($tabletitle !== "All")
                 {
                 echo('
-                <form>
+                
 <span class="input-group-btn">
-    <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="orders.php" name="history" value="all">
+    <form  method="post" action="orders.php"><button type="submit" class="btn btn-success btn-xs" name="history" value="all">
         <span class="glyphicon glyphicon-plus-sign"></span> Show All
-    </button>
+    </button></form>
 </span>
-                </form>
+                
                 ');
                 }
                 else
                 {
                 echo('
-                <form>
+                
 <span class="input-group-btn">
-    <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="orders.php" name="history" value="limit">
+    <form method="post" action="orders.php"><button type="submit" class="btn btn-success btn-xs" name="history" value="limit">
         <span class="glyphicon glyphicon-minus-sign"></span> Show Last 10
-    </button>
+    </button></form>
 </span>
-                </form>
+                
                 ');
                 }
                 }
@@ -161,10 +161,10 @@
         echo("<td>" . htmlspecialchars($row["ouid"]) . "</td>");
         echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
         //echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
-        echo("<td><form><span class='nobutton'><button type='submit' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'>" . $row['symbol'] . "</button></span></form></td>");
+        echo("<td><form method='post' action='information.php'><span class='nobutton'><button type='submit' name='symbol' value='" . $row['symbol'] . "'>" . $row['symbol'] . "</button></span></form></td>");
 
         if($row["transaction"]=='EXECUTED')
-        {echo('<td><form><span class="nobutton"><button type="submit"  formmethod="post" formaction="trades.php" name="uid" value="' . htmlspecialchars($row["ouid"]) . '">EXECUTED</button></span></form></td>');}
+        {echo('<td><form method="post" action="trades.php"><span class="nobutton"><button type="submit" name="uid" value="' . htmlspecialchars($row["ouid"]) . '">EXECUTED</button></span></form></td>');}
         else //BID/ASK/CANCEL
         {echo("<td>" . htmlspecialchars($row["transaction"]) . "</td>");}
         echo("</tr>");
