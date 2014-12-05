@@ -1,9 +1,34 @@
+<style>
+    .nobutton button
+    {
+        padding:0;
+        font-weight: 100;
+        border:0;
+        background:transparent;
+    }
+</style>
+
 <table class="table table-condensed table-bordered">
 
     <thead>
     <tr class="success">
-        <td colspan="9" style="font-size:20px; text-align: center;">ACTIVE ORDERS</td>
-    </tr>
+        <td colspan="9" style="font-size:20px; text-align: center;">ACTIVE ORDERS (<?php echo(strtoupper($tabletitle)); ?>) &nbsp;
+            <?php
+            //	Display link to all history as long as your not already there
+                if ($tabletitle !== "All")
+                {
+                    echo('
+                <form>
+<span class="input-group-btn">
+    <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="orders.php" name="history" value="all">
+        <span class="glyphicon glyphicon-plus-sign"></span> Show All
+    </button>
+</span>
+                </form>
+                ');
+                }
+            ?>
+        </td></tr>
     <tr class="active">
 
         <th>Cancel</th>
@@ -26,27 +51,32 @@
     $OrderPrice=0;
     $OrderTotal=0;
 
+
     foreach ($orders as $row)
     { 	$price = getPrice($row["price"]);
     	$total = getPrice($row["total"]);
-    	if($row["side"]=="b"){$row["side"]='bid';}
-    	if($row["side"]=="a"){$row["side"]='ask';}
+
+
+        $color="";
+        if($row["side"]=="b"){$row["side"]='bid';$color="style='background-color:#F0FFFF;'";}
+    	if($row["side"]=="a"){$row["side"]='ask';$color="style='background-color:#FFF0FF;'";}
     	
         echo("<tr>");
-        echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="' . $row["uid"] . '"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>');
-        echo("<td>" . number_format($row["uid"], 0, ".", "") . "</td>");
-        echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s', strtotime($row["date"]))) . "</td>");
-         echo("<td><form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp;" . $row['symbol'] . "&nbsp;</b></button></form></td>");
-        //echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
-        echo("<td>" . htmlspecialchars(strtoupper($row["side"])) . "</td>");
-        echo("<td>" . htmlspecialchars(strtoupper($row["type"])) . "</td>");
-        echo("<td>" . number_format($row["quantity"], 0, ".", ",") . "</td>");
-        echo("<td>" . $unitsymbol . number_format($price, 2, ".", ",") . "</td>");
-        echo("<td>" . $unitsymbol . number_format($total, 2, ".", ",") . "</td>");
+        echo('<td ' . $color . '><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="' . $row["uid"] . '"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>');
+        echo("<td " . $color . ">" . number_format($row["uid"], 0, ".", "") . "</td>");
+        echo("<td " . $color . ">" . htmlspecialchars(date('Y-m-d H:i:s', strtotime($row["date"]))) . "</td>");
+         echo("<td " . $color . "><form><span class='nobutton'><button type='submit' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'>" . $row['symbol'] . "</button></span></form></td>");
+        //echo("<td " . $color . ">" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
+        echo("<td " . $color . ">" . htmlspecialchars(strtoupper($row["side"])) . "</td>");
+        echo("<td " . $color . ">" . htmlspecialchars(strtoupper($row["type"])) . "</td>");
+        echo("<td " . $color . ">" . number_format($row["quantity"], 0, ".", ",") . "</td>");
+        echo("<td " . $color . ">" . $unitsymbol . number_format($price, 2, ".", ",") . "</td>");
+        echo("<td " . $color . ">" . $unitsymbol . number_format($total, 2, ".", ",") . "</td>");
         echo("</tr>");
         $OrderNumber++;
-        /*
+
         $OrderQuantity=$OrderQuantity+$row["quantity"];
+        /*
         $OrderPrice=$OrderPrice+$row["price"];
         $OrderTotal=$OrderTotal+$row["total"];
         */
@@ -62,8 +92,10 @@
         <tr  class="danger" style="font-weight: bold;">
         <td>
             <form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="orders.php" name="cancel" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form></td>
-        <td colspan='7'><?php echo(number_format($OrderNumber, 0, ".", ",")) ?> open orders</td>
-        <td><?php echo($unitsymbol . number_format($ordertotal, 2, ".", ",")) ?></td>
+        <td colspan='5'><?php echo(number_format($OrderNumber, 0, ".", ",")) ?> open orders</td>
+            <td><?php echo(number_format($OrderQuantity, 0, ".", ",")) ?></td>
+            <td></td>
+            <td><?php echo($unitsymbol . number_format($ordertotal, 2, ".", ",")) ?></td>
         </tr>
         <?php
     }
@@ -87,32 +119,33 @@
                 //	Display link to all history as long as your not already there
                 if (isset($tabletitle))
                 {
-                    if ($tabletitle !== "All")
-                    {
-                        echo('
-<form>
+                if ($tabletitle !== "All")
+                {
+                echo('
+                <form>
 <span class="input-group-btn">
     <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="orders.php" name="history" value="all">
         <span class="glyphicon glyphicon-plus-sign"></span> Show All
     </button>
 </span>
-</form>
-	');
-                    }
-                    else
-                    {
-                        echo('
-<form>
+                </form>
+                ');
+                }
+                else
+                {
+                echo('
+                <form>
 <span class="input-group-btn">
     <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="orders.php" name="history" value="limit">
         <span class="glyphicon glyphicon-minus-sign"></span> Show Last 10
     </button>
 </span>
-</form>
-	');
-                    }
+                </form>
+                ');
+                }
                 }
                 ?>
+        </td></tr>
     <tr   class="active" >
         <th>Order #</th>
         <th>Date/Time (Y/M/D)</th>
@@ -123,13 +156,15 @@
     <tbody>
     <?php
     foreach ($history as $row)
-    {
+    {  $row["symbol"] = htmlspecialchars(strtoupper($row["symbol"]));
         echo("<tr>");
         echo("<td>" . htmlspecialchars($row["ouid"]) . "</td>");
         echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
-        echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
+        //echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
+        echo("<td><form><span class='nobutton'><button type='submit' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'>" . $row['symbol'] . "</button></span></form></td>");
+
         if($row["transaction"]=='EXECUTED')
-        {echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="trades.php" name="uid" value="' . htmlspecialchars($row["ouid"]) . '">EXECUTED</button></form></td>');}
+        {echo('<td><form><span class="nobutton"><button type="submit"  formmethod="post" formaction="trades.php" name="uid" value="' . htmlspecialchars($row["ouid"]) . '">EXECUTED</button></span></form></td>');}
         else //BID/ASK/CANCEL
         {echo("<td>" . htmlspecialchars($row["transaction"]) . "</td>");}
         echo("</tr>");

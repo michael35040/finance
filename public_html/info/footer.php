@@ -40,9 +40,9 @@
             </div>
         </div>
         <ul class="copyright">
-            <li>&copy; <?php echo($sitename) ?>. All rights reserved.</li>
+            <li>&copy; <?php echo($sitename) ?></li>
             <li><?php echo($logo) ?></li>
-            <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+            <li>All rights reserved.</li>
         </ul>
     </div>
 </footer>

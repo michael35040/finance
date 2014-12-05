@@ -1,3 +1,12 @@
+<style>
+    .nobutton button
+    {
+        padding:0;
+        font-weight: 100;
+        border:0;
+        background:transparent;
+    }
+</style>
 
 <table class="table table-condensed  table-bordered" >
 <thead>
@@ -76,20 +85,28 @@
         $sumcommission = $sumcommission + $commission;
         $total = $total - $commission;
         $sumtotal = $sumtotal + $total;
+
+
+        $color="";
+        if ($seller==$_SESSION["id"]){$color="style='background-color:#FFF0FF;'";}
+        if ($buyer==$_SESSION["id"]){$color="style='background-color:#F0FFFF;'";}
+        if ($buyer==$_SESSION["id"] && $seller==$_SESSION["id"]){$color="style='background-color:#DCDCDC;'";}
+
+
         ?>
         <tr>
-                    <td><?php echo(number_format($uid,0,".","")); ?></td>
-                    <td><?php  echo(number_format($buyer,0,".","")); ?></td>
-                    <td><?php  echo(number_format($bidorderuid,0,".","")); ?></td>
-                    <td><?php  echo(number_format($seller,0,".","")); ?></td>
-                    <td><?php  echo(number_format($askorderuid,0,".","")); ?></td>
-                    <td><?php  echo(htmlspecialchars(date('Y-m-d H:i:s',strtotime($date)))); ?></td>
-                    <td><?php  echo(strtoupper(htmlspecialchars("$type"))); ?></td>
-                    <td><form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='<?php echo($symbol); ?>'><b>&nbsp;<?php echo($symbol); ?>&nbsp;</b></button></form></td>
-                    <td><?php  echo(number_format($quantity,0,".",",")); ?></td>
-                    <td><?php  echo(number_format($price,2,".",",")); ?></td>
-                    <td><?php  echo(number_format($commission,2,".",",")); ?></td>
-                    <td><?php  echo(number_format($total,2,".",",")); ?></td>
+                    <td <?php echo($color); ?>><?php echo(number_format($uid,0,".","")); ?></td>
+                    <td <?php echo($color); ?>><?php  echo(number_format($buyer,0,".","")); ?></td>
+                    <td <?php echo($color); ?>><?php  echo(number_format($bidorderuid,0,".","")); ?></td>
+                    <td <?php echo($color); ?>><?php  echo(number_format($seller,0,".","")); ?></td>
+                    <td <?php echo($color); ?>><?php  echo(number_format($askorderuid,0,".","")); ?></td>
+                    <td <?php echo($color); ?>><?php  echo(htmlspecialchars(date('Y-m-d H:i:s',strtotime($date)))); ?></td>
+                    <td <?php echo($color); ?>><?php  echo(strtoupper(htmlspecialchars("$type"))); ?></td>
+                    <td <?php echo($color); ?>><form><span class='nobutton'><button type='submit' formmethod='post' formaction='information.php' name='symbol' value='<?php echo($symbol); ?>'><?php echo($symbol); ?></button></span></form></td>
+                    <td <?php echo($color); ?>><?php  echo(number_format($quantity,0,".",",")); ?></td>
+                    <td <?php echo($color); ?>><?php  echo(number_format($price,2,".",",")); ?></td>
+                    <td <?php echo($color); ?>><?php  echo(number_format($commission,2,".",",")); ?></td>
+                    <td <?php echo($color); ?>><?php  echo(number_format($total,2,".",",")); ?></td>
                 </tr>
     <?php                
     }

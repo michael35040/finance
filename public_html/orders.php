@@ -12,17 +12,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     
     if (isset($_POST["symbol"]))
     {
-        $symbol = htmlspecialchars($_POST["symbol"]);
-        if (!ctype_alnum($symbol)){apologize("Invalid query!");}
-        $option = 'AND symbol = ' + $symbol;
-        $limit = ""; $tabletitle = htmlspecialchars($symbol);
+        $symbol = $_POST["symbol"];
+        $asset =	query("SELECT * FROM assets WHERE symbol=?", $symbol);
+        if(empty($asset)) {apologize("Invalid Symbol!");}
+        else{$symbol=$asset[0]["symbol"];}
+        //$symbol = htmlspecialchars($_POST["symbol"]);
+        //if (!ctype_alnum($symbol)){apologize("Invalid query!");}
+        $option = 'AND side = "a" AND symbol = "' . $symbol . '"';
+        $tabletitle = "D ";
+
+        //apologize(var_dump(get_defined_vars()));
+
+        $limit = ""; $tabletitle = (htmlspecialchars($symbol) . " Ask Orders");
     }
     
     
     if (isset($_POST["side"]))
     {
-        if($_POST["side"]=='b'){$option = "AND side = 'b'";}
-        else{$option = "AND side = 'a'";}
+        if($_POST["side"]=='b'){$option = "AND side = 'b'"; $limit = ""; $tabletitle = "Bid Orders";}
+        else{$option = "AND side = 'a'"; $limit = ""; $tabletitle = "Ask Orders";}
     }
     
     

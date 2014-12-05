@@ -83,10 +83,10 @@ include 'header.php';
 							
 							<h3>TRADING</h3>
 <p>	Our exchange provides the ability to trade equities and commodities. 
-	At the moment there are two types of orders: LIMIT and MARKET orders. 
-	Both can be used to enter or exit the market. 
-	LIMIT orders are only traded once the trade price matches or exceeds the order price. 
-	MARKET orders are executed immediately and assigned to the best BID or the best ASK. 
+	At the moment there are two types of orders: limit and market orders.
+	Both can be used to enter or exit the market.
+    Limit orders are only traded once the trade price matches or exceeds the order price.
+    Market orders are executed immediately and assigned to the best bid or the best ask.
 	The order entry ticket is simple yet versatile. 
 	Open orders can be canceled if they have not yet been matched and a trade executed.
 </p>									
@@ -163,10 +163,10 @@ include 'header.php';
 							<section>
 								<h3>INFORMATION</h3>
 								<ul class="alt">
-									<li><a href="#">Register</a></li><!--Open an Account Process; 1 page registration, activation, funding-->
-									<li><a href="#">Funding</a></li>
-									<li><a href="#">Exchange</a></li>
-									<li><a href="#">Depository</a></li>
+									<li><a href="#">What to do?</a></li><!--Open an Account Process; 1 page registration, activation, funding-->
+									<li><a href="#">When to do it?</a></li>
+									<li><a href="#">Where to do it?</a></li>
+									<li><a href="#">Why do it?</a></li>
 								</ul>
 							</section>
 						</div>

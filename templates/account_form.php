@@ -54,6 +54,16 @@
 
 
 
+<style>
+    .nobutton button
+    {
+        padding:0;
+        font-weight: 100;
+        border:0;
+        background:transparent;
+    }
+</style>
+
 
 
 
@@ -140,9 +150,8 @@
                 $i++;
                 echo("-" . $i); ?></td>
             <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>
-            </td>
 
-            <td colspan="4"><?php echo("Locked (<a href='orders.php'>Pending Bid Orders<form action='orders.php' method='post'><input type='submit' name='side' value='b'></form></a>)"); ?></td>
+            <td colspan="4"><?php echo("Locked <form action='orders.php' method='post'><span class='nobutton'><button type='submit' name='side' value='b'>(Pending Bid Orders)</button></span></form>"); ?></td>
             <td><div style="text-align:right">
                     <?php echo($unitsymbol . number_format($bidLocked, 2, ".", ",")) ?>
                 </div></td>
@@ -210,12 +219,17 @@
     foreach ($portfolio as $row) {
         $totalOwned=($row["quantity"]+$row["locked"]);
         echo("<tr>");
-        echo("<td><form><button type='submit' class='btn btn-primary btn-xs' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'><b>&nbsp;" . $row['symbol']
-            . "&nbsp;</b></button></form></td>");
+        echo("<td><span class='nobutton'><form><button type='submit' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'>" . $row['symbol']
+            . "</button></form></span></td>");
         // . htmlspecialchars($row["symbol"]) .
         echo("<td>" . (number_format($totalOwned, 0, ".", ",")) . " (" . (number_format($row["control"], 2, ".", ",")) . "%)</td>");  //htmlspecialchars
         echo("<td>" . (number_format($row["quantity"], 0, ".", ",")) . "</td>");
-        echo("<td>" . (number_format($row["locked"], 0, ".", ",")) . "</td>");
+        //echo("<td>" . (number_format($row["locked"], 0, ".", ",")) . "</td>");
+
+        echo("<td><span class='nobutton'><form method='post' action='orders.php'><button type='submit' name='symbol' value='" . $row['symbol'] . "'>" . $row['locked']
+            . "</button></form></span></td>");
+
+
         echo("<td>" . $unitsymbol . (number_format($row["price"], 2, ".", ",")) . "</td>");
         echo("<td>" . $unitsymbol . (number_format($row["value"], 2, ".", ",")) . "</td>");
         $pricechange = ($row["total"] - $row["value"]);
@@ -253,7 +267,7 @@
             <td><strong>0</strong></td>
         </tr>
         <tr>
-            <td colspan="8" style="font-size:10px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;*Locked (<a href='orders.php'>Pending Ask Orders</a>)</i></td>
+            <td colspan="8" style="font-size:10px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;*Locked <span class='nobutton'><form action='orders.php' method='post'><button type='submit' name='side' value='a'>(Pending Ask Orders)</button></form></span></i></td>
         </tr>
 
     <?php
@@ -263,7 +277,7 @@
 
         <!-- TOTAL STOCK WORTH -->
         <tr  class="active">
-            <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Assets) <i>&nbsp;&nbsp;&nbsp;&nbsp;*Locked (<a href='orders.php'>Pending Ask Orders</a>)</i></td>
+            <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Assets) <i>&nbsp;&nbsp;&nbsp;&nbsp;*Locked <span class='nobutton'><form action='orders.php' method='post'><button type='submit' name='side' value='a'>(Pending Ask Orders)</button></form></span></i></td>
             <td><strong>
                     <?php //calculate value of purchase price
                     echo($unitsymbol . number_format($purchaseprice, 2, ".", ",")); //display purchase price

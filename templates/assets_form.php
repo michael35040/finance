@@ -42,8 +42,14 @@ foreach ($assets as $asset) // for each of user's stocks
         background-color: #eeeeee;
     }
 
-</style>
-
+        .nobutton button
+        {
+            padding:0;
+            font-weight: 100;
+            border:0;
+            background:transparent;
+        }
+    </style>
 
 <table class="table table-condensed table-bordered table-hover" id="assets" style="border-collapse:collapse;">
     <thead>
@@ -74,7 +80,7 @@ foreach ($assets as $asset) // for each of user's stocks
             echo('<tr class="accordian-body collapse" id="demo' . $i . '"   >');
             echo('<td colspan="1">&nbsp;&nbsp;' . htmlspecialchars($asset["name"]) . '
                 <br>&nbsp;&nbsp;' . htmlspecialchars($asset["url"]) . '
-                <br>&nbsp;&nbsp;<form><button type="submit" class="btn btn-primary btn-xs" formmethod="post" formaction="information.php" name="symbol" value="' . $asset["symbol"] . '"><span class="glyphicon glyphicon glyphicon-info-sign"> Information</span></button></form></td>');
+                <br>&nbsp;&nbsp;<form><span class="nobutton"><button type="submit" formmethod="post" formaction="information.php" name="symbol" value="' . $asset["symbol"] . '"><span class="glyphicon glyphicon glyphicon-info-sign"> Information</span></button></span></form></td>');
             echo('<td >' . $unitsymbol . (number_format($asset["bid"], 2, ".", ",")) . ' - Bid
                 <br>' . $unitsymbol . (number_format($asset["ask"], 2, ".", ",")) . ' - Ask
                 <br>' . $unitsymbol . (number_format($asset["avgprice"], 2, ".", ",")) . ' - Avg. Price (30d)</td>');
