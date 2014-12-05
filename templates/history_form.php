@@ -8,25 +8,25 @@
                 if ($title !== "All History")
                 {
                     echo('
-<form>
+
 <span class="input-group-btn">
-    <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="history.php" name="history" value="all">
+    <form method="post" action="history.php"><button type="submit" class="btn btn-success btn-xs" name="history" value="all">
         <span class="glyphicon glyphicon-plus-sign"></span> Show All
-    </button>
+    </button></form>
 </span>
-</form>
+
 	');
                 }
                 else
                 {
                     echo('
-<form>
+
 <span class="input-group-btn">
-    <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="history.php" name="history" value="limit">
+    <form method="post" action="history.php"><button type="submit" class="btn btn-success btn-xs" name="history" value="limit">
         <span class="glyphicon glyphicon-minus-sign"></span> Last 10
-    </button>
+    </button></form>
 </span>
-</form>
+
 	');
                 }
             }
