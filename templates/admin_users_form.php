@@ -1,11 +1,11 @@
 
-        <form>
+        
             <span class="input-group-btn">
-                <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="admin_users.php" name="activate" value="ALL"><span class="glyphicon glyphicon-plus-sign"></span> Activate All</button>
-                <button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="admin_users.php" name="deactivate" value="ALL"><span class="glyphicon glyphicon-minus-sign"></span> Deactivate All</button>
+                <form action="admin_users.php" method="post"><button type="submit" class="btn btn-success btn-xs" name="activate" value="ALL"><span class="glyphicon glyphicon-plus-sign"></span> Activate All</button></form>
+                <form action="admin_users.php" method="post"><button type="submit" class="btn btn-danger btn-xs" name="deactivate" value="ALL"><span class="glyphicon glyphicon-minus-sign"></span> Deactivate All</button></form>
 
             </span>
-        </form>
+        
 
 
 <!--font color='#FF0000'></font-->
@@ -52,12 +52,12 @@
             if($row["active"]==1)
             {
                 echo("<td><span class='label label-success'>" . number_format($row["active"],0,".",",") . "</span></td>");
-                echo('<td><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="admin_users.php" name="deactivate" value="' . $row["id"] . '"><span class="glyphicon glyphicon-lock"></span></button></form></td>');
+                echo('<td><form method="post" action="admin_users.php"><button type="submit" class="btn btn-danger btn-xs" name="deactivate" value="' . $row["id"] . '"><span class="glyphicon glyphicon-lock"></span></button></form></td>');
             }
             else
             {
                 echo("<td><span class='label label-danger'>" . number_format($row["active"],0,".",",") . "</span></td>");
-                echo('<td><form><button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="admin_users.php" name="activate" value="' . $row["id"] . '"><span class="glyphicon glyphicon-lock"></span></button></form></td>');
+                echo('<td><form method="post" action="admin_users.php"><button type="submit" class="btn btn-success btn-xs" name="activate" value="' . $row["id"] . '"><span class="glyphicon glyphicon-lock"></span></button></form></td>');
             }
 
             echo("</tr>");
