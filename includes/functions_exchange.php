@@ -838,12 +838,14 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 {   require 'constants.php'; //for $divisor
 
     if(empty($symbol)) { throw new Exception("Invalid order. Trade symbol required."); } //check to see if empty
-    if (empty($quantity)) { throw new Exception("Invalid order. Trade quantity required."); } //check to see if empty
-    if (empty($type)) { throw new Exception("Invalid order. Trade type required."); } //check to see if empty
-    if (empty($side)) { throw new Exception("Invalid order. Trade side required."); } //check to see if empty
-    if (empty($id)) { throw new Exception("Invalid order. User required."); } //check to see if empty
-    if($type=='limit'){if(empty($price)){throw new Exception("Invalid order. Limit order trade price required");
-        	$price = setPrice($price); }}
+    if(empty($quantity)) { throw new Exception("Invalid order. Trade quantity required."); } //check to see if empty
+    if(empty($type)) { throw new Exception("Invalid order. Trade type required."); } //check to see if empty
+    if(empty($side)) { throw new Exception("Invalid order. Trade side required."); } //check to see if empty
+    if(empty($id)) { throw new Exception("Invalid order. User required."); } //check to see if empty
+    if($type=='limit'){
+    	if(empty($price)){throw new Exception("Invalid order. Limit order trade price required");}
+    	$price = setPrice($price); }
+   if($type=='market') { $price=0;}//market order
         	
         	
     //QUERY TO SEE IF SYMBOL EXISTS
@@ -867,14 +869,13 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
    if($type=='market')
-    {   $price=0;//market order
+    {   
         if ($side == 'a'){$otherSide='b';} 
-        if($side=='b'){ $otherSide='a';  
-        }	
+        if($side=='b'){ $otherSide='a';}	
         //CHECK FOR LIMIT ORDERS
         $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
         $limitOrders = $limitOrdersQ[0]['limitorders'];
-        if (is_null($limitOrders) || $limitOrders == 0) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
+        if(empty($limitOrders)) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
     }
 
         if($side=='b')//both limit and market
