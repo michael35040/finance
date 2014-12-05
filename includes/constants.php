@@ -21,7 +21,7 @@ $decimalplaces = 2;
 
 
 //EXCHANGE.php/BUY.php/SELL.php
-$commission = 00.01;
+$commission = 00.1;
 $divisor = 0.01; //increment of exchange
 
 $loud='loud'; //quiet or loud
