@@ -69,7 +69,7 @@ $dollarColor="#85bb65;";
     <tr>
         <td style="background-color:transparent">
             <h3><span class="label label-warning">Au</span></h3>
-            <b>GOLD</b><br /><?php echo(number_format($goldAmount, 0, ".", ",")) ?> ozt
+            <b>GOLD</b><br /><?php echo(number_format($goldAmount, 0, ".", ",")) ?> g
         </td>
     </tr>
     </table>
@@ -85,7 +85,7 @@ $dollarColor="#85bb65;";
     <tr>
     <td style="background-color:transparent">
             <h3><span class="label label-default">Ag</span></h3>
-            <b>Silver</b><br /><?php echo(number_format($silverAmount, 0, ".", ",")) ?> ozt
+            <b>Silver</b><br /><?php echo(number_format($silverAmount, 0, ".", ",")) ?> g
         </td>
     </tr>
     </table>
