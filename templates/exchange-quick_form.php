@@ -69,7 +69,9 @@ $dollarColor="#85bb65;";
     <tr>
         <td style="background-color:transparent">
             <h3><span class="label label-warning">Au</span></h3>
-            <b>GOLD</b><br /><?php echo(number_format($goldAmount, 0, ".", ",")) ?> g
+            <b>GOLD</b><br /><?php echo(number_format($goldAmount, 0, ".", ",")) ?> g<br />
+            <?php $goldOZT=($goldAmount*0.0321507466); echo(number_format($goldOZT, 2, ".", ",")) ?> ozt
+            
         </td>
     </tr>
     </table>
@@ -77,7 +79,9 @@ $dollarColor="#85bb65;";
     <tr>
         <td style="background-color:transparent">
             <h3><span class="label label-success"> &nbsp; $ &nbsp; </span></h3>
-            <b><?php echo($unittype) ?></b><br /><?php echo($unitsymbol . number_format($units, 2, ".", ",")) ?>
+            <b><?php echo($unitdescriptionshort) ?></b><br />
+            <b><?php echo($unittype) ?></b><br />
+            <?php echo($unitsymbol . number_format($units, 2, ".", ",")) ?><br />
         </td>
     </tr>
     </table>
@@ -85,7 +89,8 @@ $dollarColor="#85bb65;";
     <tr>
     <td style="background-color:transparent">
             <h3><span class="label label-default">Ag</span></h3>
-            <b>Silver</b><br /><?php echo(number_format($silverAmount, 0, ".", ",")) ?> g
+            <b>Silver</b><br /><?php echo(number_format($silverAmount, 0, ".", ",")) ?> g<br />
+            <?php $silverOZT=($silverAmount*0.0321507466);  echo(number_format($silverOZT, 2, ".", ",")) ?> ozt
         </td>
     </tr>
     </table>
@@ -97,6 +102,8 @@ $dollarColor="#85bb65;";
 
 
 <?php
+$unitofmeasure='g';
+
 $buyGold = [
     "type" => "Buy",
     "asset" => "Gold",
@@ -177,14 +184,14 @@ foreach ($types as $type) {
                     <br>
                     <b>Fee</b>: -<?php echo($unitsymbol . number_format($type["premium"], 2, ".", ",")) ?>
                     <br />
-                    <?php //echo($type["type"]); ?> <output name="quantityAmount" for="quantity" style="display:inline;">0</output> ozt for $<output name="totalAmount" for="price quantity" style="display:inline;">0</output>
+                    <?php //echo($type["type"]); ?> <output name="quantityAmount" for="quantity" style="display:inline;">0</output> <?php echo($unitofmeasure); ?> for $<output name="totalAmount" for="price quantity" style="display:inline;">0</output>
 
                 </td>
             </tr>
             <tr>
                 <td style="background-color:<?php echo($type["color"]); ?>">
-                    <div class="input-group"><input type="number" class="form-control" id="quantity" name="quantity" placeholder="# of ounces" value=1
-                                                    min="1" step="1" ><span class="input-group-addon">ozt</span></div>
+                    <div class="input-group"><input type="number" class="form-control" id="quantity" name="quantity" placeholder="# of <?php echo($unitofmeasure); ?>"
+                                                    min="1" step="1" required><span class="input-group-addon"><?php echo($unitofmeasure); ?></span></div>
                 </td>
                 <td style="background-color:<?php echo($type["color"]); ?>">
                     <button type="submit" name="metalTransaction" value="<?php echo($type["name"]); ?>" style="width:100%;background:<?php echo($type["button"]); ?>;color:white;"><?php echo($type["type"] . " " . $type["asset"]); ?></button>
