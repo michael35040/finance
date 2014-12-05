@@ -188,6 +188,9 @@ function OrderbookTop($symbol)
             
             //FIND WHAT USER CAN AFFORD DUE TO LOCKED FUNDS AND THE PRICE OF THE ASK PRICE
             $marketOrders[0]["quantity"]=floor($marketOrders[0]["total"]/$asks[0]["price"]); //give it the same price so they execute
+            //apologize($marketOrders[0]["quantity"]);
+            //IF MARKET PRICE CANT AFFORD EVEN 1 QUANTITY, CANCEL ORDER
+            if($marketOrders[0]["quantity"]<1){cancelOrder($marketOrders[0]["uid"]); throw new Exception("Market order can not afford 1 quantity! Order deleted.");}
 
             
             $bids = $marketOrders;
