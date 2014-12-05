@@ -338,7 +338,7 @@
 
         </td>
         <td >
-            <?php echo($unitsymbol . number_format($tradesPrice, 2, ".", ",")) ?> - Price<br>
+            <?php echo($unitsymbol . number_format($asset["price"], 2, ".", ",")) ?> - Price<br>
             <?php echo($unitsymbol . number_format($bidsPrice, 2, ".", ",")) ?> - Bid<br>
             <?php echo($unitsymbol . number_format($asksPrice, 2, ".", ",")) ?> - Ask<br>
             <?php echo($unitsymbol . number_format($asset["avgprice"], 2, ".", ",")) ?> - Avg. (30d)
@@ -497,7 +497,7 @@ if($trades != null)
 
 
 
-<?php if($asksGroupAll != null && $bidsGroupAll != null) { ?>
+<?php if($bids != null || $asks != null) { ?>
 <div class="panel panel-primary"> <!--success info primary danger warning -->
     <!-- Default panel contents -->
     <div class="panel-heading">MARKET DEPTH</div>
@@ -530,11 +530,11 @@ if($trades != null)
 <!-- Default panel contents -->
 <div class="panel-heading">ORDERBOOK</div>
 <table class="table">
-<?php if($lastorders == null)
+<?php if($asks == null && $bids == null )
 { ?>
     <tr><td>No orders</td></tr>
 <?php } 
-if($lastorders != null)
+if($asks!= null && $bids != null )
 {
 ?>
 
