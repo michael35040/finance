@@ -879,14 +879,14 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     //both limit and market
     if($side=='b')
 	{
-		$transaction = 'BID';
+	$transaction = 'BID';
         //QUERY CASH & UPDATE
         $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
         if(!empty($unitsQ[0]['units'])){$userUnits = $unitsQ[0]['units'];}	//convert array from query to value
         //IF USERUNITS IS EMPTY (0, NULL, etc.)
-        else                    {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ")  balance: " . $userUnits);}
+        else                    {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") has unknown balance");}
         //CHECK FOR 0 or NEGATIVE BALANCE
-        if ($userUnits <= 0)    {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ")  balance: " . $userUnits);}
+        if ($userUnits <= 0)    {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") balance: " . $userUnits);}
         //DETERMINE TRADEAMOUNT BASED ON ORDER TYPE
         if($type=='limit'){$tradeAmount = $price * $quantity; }
         else{$tradeAmount = $unitsQ[0]['units']; } //market orders lock all of the users funds
