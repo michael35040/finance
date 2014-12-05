@@ -426,7 +426,6 @@
 
 
 
-
     <div class="panel panel-primary">
     <!-- Default panel contents -->
     <div class="panel-heading">TRADES</div>
@@ -435,14 +434,17 @@
 if($tradesGroup != null)
 { ?>
     <tr><td colspan="7"><div id="chart_div" style="overflow:hidden;"></div></td></tr>
-<?php } ?>
+<?php } /*tradesgroup*/?>
 
 
 <?php
+if($trades == null){ ?>
+<tr><td colspan="7">No Trades</td></tr>
+<?php } /* trades==null */ 
+
 if($trades != null)
 { ?>
     <tr><td colspan="7"><div id="chart_div1" style="overflow:hidden;"></div></td></tr>
-<?php } ?>
 
     <tr class='active'>
         <td>Trade #</td>
@@ -453,7 +455,6 @@ if($trades != null)
         <td>Price</td>
         <td>Total</td>
     </tr>
-
     <?php
     $i=0;
     foreach ($trades as $trade) {
@@ -481,8 +482,9 @@ if($trades != null)
         $i++;
         if($i==5){break;}
     } //foreach
-
     ?>
+<?php } /*trades != null*/
+?>
 
 </table>
     </div><!--panel-primary trades-->
@@ -495,9 +497,7 @@ if($trades != null)
 
 
 
-
-
-
+<?php if($asksGroupAll != null && $bidsGroupAll != null) { ?>
 <div class="panel panel-primary"> <!--success info primary danger warning -->
     <!-- Default panel contents -->
     <div class="panel-heading">MARKET DEPTH</div>
@@ -511,11 +511,9 @@ if($trades != null)
             </td>
         </tr>
         </tbody>
-
-
     </table>
-
 </div><!--panel-primary orderbook-->
+<?php } /*GroupAll*/?>
 
 
 
@@ -532,6 +530,14 @@ if($trades != null)
 <!-- Default panel contents -->
 <div class="panel-heading">ORDERBOOK</div>
 <table class="table">
+<?php if($lastorders == null)
+{ ?>
+    <tr><td>No orders</td></tr>
+<?php } 
+if($lastorders != null)
+{
+?>
+
 <tr>
     <td style="width:10%">
     <div class="panel panel-info">
@@ -720,6 +726,8 @@ if($trades != null)
 
 </td>
 </tr><!--orderbook last orders row-->
+
+<?php } /* $lastorders != null */ ?>
 </table><!--orderbook table-->
 </div><!--panel-primary orderbook-->
 
