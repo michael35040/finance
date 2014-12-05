@@ -15,6 +15,7 @@ $sitename = 'Pulwar'; //leave a space afterwards
 //index & portfolio
 $unittype = "USD";
 $unitdescription = "United States Dollar ";
+$unitdescriptionshort = "Dollar";
 $unitsymbol = "$";
 $decimalplaces = 2;
 //grams  &cent;  &micro; &euro; &pound; &yen; &sect;
