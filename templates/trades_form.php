@@ -88,9 +88,9 @@
 
 
         $color="";
-        if ($seller==$_SESSION["id"]){$color="style='background-color:#FFF0FF;'";}
-        if ($buyer==$_SESSION["id"]){$color="style='background-color:#F0FFFF;'";}
-        if ($buyer==$_SESSION["id"] && $seller==$_SESSION["id"]){$color="style='background-color:#DCDCDC;'";}
+        if ($seller==$_SESSION["id"]){$color="style='background-color:#FFFCFB;'";}
+        if ($buyer==$_SESSION["id"]){$color="style='background-color:#F5FFFF;'";}
+        if ($buyer==$_SESSION["id"] && $seller==$_SESSION["id"]){$color="style='background-color:#F0F0F0;'";}
 
 
         ?>
