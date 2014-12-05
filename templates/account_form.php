@@ -257,17 +257,14 @@
 
 
     if ($i == 0) {
-        echo("<tr><td colspan='8'>You do not have any stocks in your portfolio account</td></tr>");
+        echo("<tr><td colspan='8'>No assets currently held.</td></tr>");
         $portfolioTotal = 0;  //set to zero for networth calc
         ?>
         <tr  class="active">
-            <td colspan="5"><strong>SUBTOTAL</strong></td>
+            <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Assets) <i>&nbsp;&nbsp;&nbsp;&nbsp;*Locked <span class='nobutton'><form action='orders.php' method='post'><button type='submit' name='side' value='a'>(Pending Ask Orders)</button></form></span></i></td>
             <td><strong>0</strong></td>
             <td><strong>0</strong></td>
             <td><strong>0</strong></td>
-        </tr>
-        <tr>
-            <td colspan="8" style="font-size:10px;"><i>&nbsp;&nbsp;&nbsp;&nbsp;*Locked <span class='nobutton'><form action='orders.php' method='post'><button type='submit' name='side' value='a'>(Pending Ask Orders)</button></form></span></i></td>
         </tr>
 
     <?php
