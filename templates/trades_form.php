@@ -18,25 +18,25 @@
                 if ($title !== "All Trades")
                 {
                     echo('
-<form>
+
 <span class="input-group-btn">
-    <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="trades.php" name="trades" value="all">
+    <form method="post" action="trades.php"><button type="submit" class="btn btn-success btn-xs" name="trades" value="all">
         <span class="glyphicon glyphicon-plus-sign"></span> Show All
-    </button>
+    </button></form>
 </span>
-</form>
+
 	');
                 }
                 else
                 {
                     echo('
-<form>
+
 <span class="input-group-btn">
-    <button type="submit" class="btn btn-success btn-xs" formmethod="post" formaction="trades.php" name="trades" value="limit">
+    <form method="post" action="trades.php"><button type="submit" class="btn btn-success btn-xs" name="trades" value="limit">
         <span class="glyphicon glyphicon-minus-sign"></span> Show Last 10
-    </button>
+    </button></form>
 </span>
-</form>
+
 	');
                 }
             }
@@ -102,7 +102,7 @@
                     <td <?php echo($color); ?>><?php  echo(number_format($askorderuid,0,".","")); ?></td>
                     <td <?php echo($color); ?>><?php  echo(htmlspecialchars(date('Y-m-d H:i:s',strtotime($date)))); ?></td>
                     <td <?php echo($color); ?>><?php  echo(strtoupper(htmlspecialchars("$type"))); ?></td>
-                    <td <?php echo($color); ?>><form><span class='nobutton'><button type='submit' formmethod='post' formaction='information.php' name='symbol' value='<?php echo($symbol); ?>'><?php echo($symbol); ?></button></span></form></td>
+                    <td <?php echo($color); ?>><form method='post' action='information.php'><span class='nobutton'><button type='submit' name='symbol' value='<?php echo($symbol); ?>'><?php echo($symbol); ?></button></span></form></td>
                     <td <?php echo($color); ?>><?php  echo(number_format($quantity,0,".",",")); ?></td>
                     <td <?php echo($color); ?>><?php  echo(number_format($price,2,".",",")); ?></td>
                     <td <?php echo($color); ?>><?php  echo(number_format($commission,2,".",",")); ?></td>
