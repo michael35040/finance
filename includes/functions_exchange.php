@@ -185,6 +185,11 @@ function OrderbookTop($symbol)
                 $asks = query("SELECT 	* FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
             }
             $marketOrders[0]["price"]=$asks[0]["price"]; //give it the same price so they execute
+            
+            //FIND WHAT USER CAN AFFORD DUE TO LOCKED FUNDS AND THE PRICE OF THE ASK PRICE
+            $marketOrders[0]["quantity"]=floor($marketOrders[0]["total"]/$asks[0]["price"]); //give it the same price so they execute
+
+            
             $bids = $marketOrders;
         }    //assign top price to the ask since it is a bid market order
         elseif($marketSide == 'a')
