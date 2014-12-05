@@ -92,7 +92,7 @@
     </tr>
     <?php foreach ($notifications as $notification) { ?>
         <tr>
-            <td colspan="3"><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="portfolio.php" name="cancel" value="<?php echo($notification["uid"]) ?>"><span class="glyphicon glyphicon-remove-circle"></span></button></form>
+            <td colspan="3"><form method="post" action="portfolio.php"><button type="submit" class="btn btn-danger btn-xs" name="cancel" value="<?php echo($notification["uid"]) ?>"><span class="glyphicon glyphicon-remove-circle"></span></button></form>
                 <?php echo(htmlspecialchars("[" . date('F j, Y, g:ia', strtotime($notification["date"])) . "] " . $notification["notice"])); ?>
             </td>
         </tr>
@@ -100,7 +100,7 @@
     } //if foreach
     ?>
     <tr>
-        <td colspan="3"><form><button type="submit" class="btn btn-danger btn-xs" formmethod="post" formaction="portfolio.php" name="cancel" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form>
+        <td colspan="3"><form  method="post" action="portfolio.php"><button type="submit" class="btn btn-danger btn-xs" name="cancel" value="ALL"><span class="glyphicon glyphicon-remove-circle"></span></button></form>
             <strong>Remove All</strong>
         </td>
     </tr>
@@ -219,7 +219,7 @@
     foreach ($portfolio as $row) {
         $totalOwned=($row["quantity"]+$row["locked"]);
         echo("<tr>");
-        echo("<td><span class='nobutton'><form><button type='submit' formmethod='post' formaction='information.php' name='symbol' value='" . $row['symbol'] . "'>" . $row['symbol']
+        echo("<td><span class='nobutton'><form method='post' action='information.php'><button type='submit' name='symbol' value='" . $row['symbol'] . "'>" . $row['symbol']
             . "</button></form></span></td>");
         // . htmlspecialchars($row["symbol"]) .
         echo("<td>" . (number_format($totalOwned, 0, ".", ",")) . " (" . (number_format($row["control"], 2, ".", ",")) . "%)</td>");  //htmlspecialchars
