@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     catch(Exception $e) {apologize($e->getMessage());}
     
     try {processOrderbook($symbol);}
-    catch(Exception $e) {apologize($e->getMessage());} 
+    catch(Exception $e) {apologize($e->getMessage());}
 
     redirect("exchange-quick.php");
 }
@@ -52,7 +52,6 @@ else{
     $gold["sell"]=($gold["bid"]-$gold["discount"]);
     
     $silverAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol='SILVER'", $id);
-    
     @$silverAmount=$silverAmount[0]["quantity"];
     $silverbids =	query("SELECT price FROM orderbook WHERE (symbol='SILVER' AND side='b' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1");
     $silverasks =	query("SELECT price FROM orderbook WHERE (symbol='SILVER' AND side='a' AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1");

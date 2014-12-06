@@ -201,6 +201,8 @@ function test()
     publicOffering('GOLD', 'Gold Co.', 1, 1000000, 'commodity', 0.5, 'http://gold.com', 10, 'Represent 1ozt of Au Gold');
     publicOffering('SILVER', 'Silver Co.', 1, 1000000, 'commodity', 0.5, 'http://silver.com', 10, 'Represent 1ozt of Ag Silver');
 
+    placeOrder('SILVER', 'limit', 'b', 100000, 9, 1);
+    placeOrder('SILVER', 'limit', 'a', 1000000, 10, 1);
 
     //try {processOrderbook();}
     //catch exception

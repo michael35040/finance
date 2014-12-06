@@ -15,11 +15,11 @@ function getPrice($price)
 function setPrice($price)
 {
     if (preg_match("/^([0-9.]+)$/", $price) == false) {apologize("You submitted an invalid price.");}
-	if ($price<0){ apologize("Price must be positive!");} //if quantity is numeric
-	$price = $price*10000000;
-	$price=floor($price);
-	//if (!is_int($price)) { apologize("Price must be numeric!");} //if quantity is numeric
-	return($price);
+    if ($price<0){ apologize("Price must be positive!");} //if quantity is numeric
+    $price = $price*10000000;
+    $price=floor($price);
+    //if (!is_int($price)) { apologize("Price must be numeric!");} //if quantity is numeric
+    return($price);
 }
 
 
@@ -32,7 +32,7 @@ function getCommission($total)
     $commissionAmount = $total * $commission; //ie 13.6875 = 273.75 * 0.05  //(5qty * $54.75)
     $commissionAmount = floor($commissionAmount); //drops decimals
     return($commissionAmount);
-    
+
 }
 
 
@@ -77,8 +77,8 @@ function negativeValues()
 ////////////////////////////////////
 function cancelOrderCheck()
 {    require 'constants.php';
-if($loud!='quiet'){echo("<br>Conducting check for canceled orders...");}
-      //Check to see if anyone canceled any orders
+    if($loud!='quiet'){echo("<br>Conducting check for canceled orders...");}
+    //Check to see if anyone canceled any orders
     $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
     $canceledNumber=0;
     while(!empty($cancelOrders))
@@ -185,14 +185,6 @@ function OrderbookTop($symbol)
                 $asks = query("SELECT 	* FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
             }
             $marketOrders[0]["price"]=$asks[0]["price"]; //give it the same price so they execute
-            
-            //FIND WHAT USER CAN AFFORD DUE TO LOCKED FUNDS AND THE PRICE OF THE ASK PRICE
-            $marketOrders[0]["quantity"]=floor($marketOrders[0]["total"]/$asks[0]["price"]); //give it the same price so they execute
-            //apologize($marketOrders[0]["quantity"]);
-            //IF MARKET PRICE CANT AFFORD EVEN 1 QUANTITY, CANCEL ORDER
-            if($marketOrders[0]["quantity"]<1){cancelOrder($marketOrders[0]["uid"]); throw new Exception("Market order can not afford 1 quantity! Order deleted.");}
-
-            
             $bids = $marketOrders;
         }    //assign top price to the ask since it is a bid market order
         elseif($marketSide == 'a')
@@ -205,6 +197,10 @@ function OrderbookTop($symbol)
             }
             $marketOrders[0]["price"]=$bids[0]["price"]; //give it the same price so they execute
             $asks = $marketOrders;
+            //apologize(var_dump(get_defined_vars()));
+
+
+
         }   //assign top price to the bid since it is an ask market order
         else { throw new Exception("Market Side Error!"); }
     }
@@ -231,7 +227,7 @@ function processOrderbook($symbol=null)
 {   require 'constants.php';
     $startDate = time();
     $totalProcessed=0;
-if($loud!='quiet'){echo(date("Y-m-d H:i:s"));}
+    if($loud!='quiet'){echo(date("Y-m-d H:i:s"));}
 
     //NEGATIVE VALUE CHECK
     negativeValues();
@@ -251,13 +247,13 @@ if($loud!='quiet'){echo(date("Y-m-d H:i:s"));}
             foreach ($symbols as $symbol)
             {   if($loud!='quiet'){echo("<br><br>[" . $symbol["symbol"] . "] Processing orderbook...");}
                 try {$orderbook = orderbook($symbol["symbol"]);
-                    if($loud!='quiet'){echo('<br>[' . $orderbook["symbol"] . '] Processed ' . $orderbook["orderProcessed"] . ' orders.');}
+                    if($loud!='quiet'){echo('<br>[' . $symbol["symbol"] . '] Processed ' . $orderbook["orderProcessed"] . ' orders.');}
                     $totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
 
                 }
                 catch(Exception $e) {
                     if($loud!='quiet'){echo('<br><div style="color:red;">Error: [' . $symbol["symbol"] . "] " . $e->getMessage() . '</div>');}
-                $error=$error+1;
+                    $error=$error+1;
                 }
             }
         }
@@ -279,19 +275,19 @@ if($loud!='quiet'){echo(date("Y-m-d H:i:s"));}
                     $totalProcessed = ($totalProcessed + $orderbook["orderProcessed"]);
                 }
             } catch (Exception $e) {
-                    if($loud!='quiet'){echo '<br>[' . $symbol . "] " . $e->getMessage();}
+                if($loud!='quiet'){echo '<br>[' . $symbol . "] " . $e->getMessage();}
                 $error = $error + 1;
             }
         }
 
     }
-if($loud!='quiet'){echo("<br>");}
+    if($loud!='quiet'){echo("<br>");}
 
 
     //REMOVES ALL EMPTY ORDERS
     zeroQuantityCheck();
 
-if($loud!='quiet'){ echo(date("Y-m-d H:i:s"));}
+    if($loud!='quiet'){ echo(date("Y-m-d H:i:s"));}
     $endDate =  time();
     $totalTime = $endDate-$startDate;
     if($totalTime != 0){$speed=$totalProcessed/$totalTime;}
@@ -309,7 +305,7 @@ if($loud!='quiet'){ echo(date("Y-m-d H:i:s"));}
 function orderbook($symbol)
 { require 'constants.php';
 //   apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
-if($loud!='quiet'){echo("<br>[" . $symbol . "] Computing orderbook...");}
+    if($loud!='quiet'){echo("<br>[" . $symbol . "] Computing orderbook...");}
     //$adminid = 1;
 
     require 'constants.php';
@@ -325,7 +321,7 @@ if($loud!='quiet'){echo("<br>[" . $symbol . "] Computing orderbook...");}
     $topOrders = OrderbookTop($symbol); //try catch
     $asks = $topOrders["asks"];
     $bids = $topOrders["bids"];
-    
+
     if (empty($asks) || empty($bids)) { $orderbook['orderProcessed'] = 0; return($orderbook); }  //{ throw new Exception("No bid limit orders. Unable to cross any orders."); }
 
     $topAskPrice = (float)$asks[0]["price"];
@@ -377,6 +373,9 @@ if($loud!='quiet'){echo("<br>[" . $symbol . "] Computing orderbook...");}
             if ($tradeAmount == 0) {throw new Exception("Trade Amount is 0");}
             //COMMISSION AMOUNT
             $commissionAmount = getCommission($tradeAmount);
+
+
+
 
             ////////////
             //ORDERBOOK
@@ -443,13 +442,19 @@ if($loud!='quiet'){echo("<br>[" . $symbol . "] Computing orderbook...");}
             //INSERT IF NOT ALREADY OWNED
             if ($countRows == 0)
             {   if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $topBidUser, $symbol, $tradeSize, $tradeAmount) === false) {
-                query("ROLLBACK"); query("SET AUTOCOMMIT=1"); pologize("Failure: #18, Bid Quantity & Trade Size"); } }
+                query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #18, Bid Quantity & Trade Size"); } }
             //UPDATE IF ALREADY OWNED
             elseif($countRows == 1)
             {   if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $tradeSize, $tradeAmount, $topBidUser, $symbol) === false)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #19"); } }
             //ERROR: TO MANY ROWS
             else { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("$topBidUser has too many $symbol Portfolios! #20b"); }  //throw new Exception(var_dump(get_defined_vars()));
+
+
+
+
+            //query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
+
 
             ///////////
             //TRADE
@@ -459,15 +464,6 @@ if($loud!='quiet'){echo("<br>[" . $symbol . "] Computing orderbook...");}
             //ALL THINGS OKAY, COMMIT TRANSACTIONS
             query("COMMIT;"); //If no errors, commit changes
             query("SET AUTOCOMMIT=1");
-
-            //FIND TOP OF ORDERBOOK
-            $topOrders = OrderbookTop($symbol); //try catch
-            $asks = $topOrders["asks"];
-            $bids = $topOrders["bids"];
-            if (empty($asks) || empty($bids)) { $orderbook['orderProcessed'] = 0; return($orderbook); }  //{ throw new Exception("No bid limit orders. Unable to cross any orders."); }
-            $topAskPrice = (float)$asks[0]["price"];
-            $topBidPrice = (float)$bids[0]["price"];
-            $tradeType = $topOrders["tradeType"];
 
             /* */
             //LAST TRADE INFO TO RETURN ON FUNCTION
@@ -495,24 +491,33 @@ if($loud!='quiet'){echo("<br>[" . $symbol . "] Computing orderbook...");}
             $orderbook['tradeType'] = $tradeType;
 
             if($loud!='quiet'){
-                    echo("<br><br><b>Executed: Trade Price: " . number_format($orderbook['tradePrice'],2,".",",") . " (" . $orderbook['tradeType'] . ")</b>");
-                    echo("<br>Ask Price: " . number_format($orderbook['topAskPrice'],2,".",","));
-                    echo("<br>Ask UID: " . $orderbook['topAskUID']); //order id; unique id
-                    echo("<br>Ask Symbol: " . $orderbook['topAskSymbol']); //symbol of equity
-                    echo("<br>Ask Side: " . $orderbook['topAskSide']); //bid or ask
-                    echo("<br>Ask Date: " . $orderbook['topAskDate']);
-                    echo("<br>Ask Type: " . $orderbook['topAskType']);  //limit or market
-                    echo("<br>Ask Size: " . $orderbook['topAskSize']); //size or quantity of trade
-                    echo("<br>Ask User: " .  $orderbook['topAskUser']); //user id
-                    echo("<br>Bid Price: " . number_format($orderbook['topBidPrice'],2,".",",")); //might need to make (float)
-                    echo("<br>Bid UID: " . $orderbook['topBidUID']); //order id; unique id
-                    echo("<br>Bid Symbol: " . $orderbook['topBidSymbol']);
-                    echo("<br>Bid Side: " . $orderbook['topBidSide']); //bid or ask
-                    echo("<br>Bid Date: " . $orderbook['topBidDate']);
-                    echo("<br>Bid Type: " . $orderbook['topBidType']); //limit or market
-                    echo("<br>Bid Size: " . $orderbook['topBidSize']);
-                    echo("<br>Bid User: " . $orderbook['topBidUser']);
-                }
+                echo("<br><br><b>Executed: Trade Price: " . number_format($orderbook['tradePrice'],2,".",",") . " x " . $tradeSize . " (" . $orderbook['tradeType'] . ")</b>");
+                echo("<br>Ask Price: " . number_format($orderbook['topAskPrice'],2,".",","));
+                echo("<br>Ask UID: " . $orderbook['topAskUID']); //order id; unique id
+                echo("<br>Ask Symbol: " . $orderbook['topAskSymbol']); //symbol of equity
+                echo("<br>Ask Side: " . $orderbook['topAskSide']); //bid or ask
+                echo("<br>Ask Date: " . $orderbook['topAskDate']);
+                echo("<br>Ask Type: " . $orderbook['topAskType']);  //limit or market
+                echo("<br>Ask Size: " . $orderbook['topAskSize']); //size or quantity of trade
+                echo("<br>Ask User: " .  $orderbook['topAskUser']); //user id
+                echo("<br>Bid Price: " . number_format($orderbook['topBidPrice'],2,".",",")); //might need to make (float)
+                echo("<br>Bid UID: " . $orderbook['topBidUID']); //order id; unique id
+                echo("<br>Bid Symbol: " . $orderbook['topBidSymbol']);
+                echo("<br>Bid Side: " . $orderbook['topBidSide']); //bid or ask
+                echo("<br>Bid Date: " . $orderbook['topBidDate']);
+                echo("<br>Bid Type: " . $orderbook['topBidType']); //limit or market
+                echo("<br>Bid Size: " . $orderbook['topBidSize']);
+                echo("<br>Bid User: " . $orderbook['topBidUser']);
+            }
+
+            //FIND TOP OF ORDERBOOK
+            $topOrders = OrderbookTop($symbol); //try catch
+            $asks = $topOrders["asks"];
+            $bids = $topOrders["bids"];
+            if (empty($asks) || empty($bids)) { $orderbook['orderProcessed'] = 0; return($orderbook); }  //{ throw new Exception("No bid limit orders. Unable to cross any orders."); }
+            $topAskPrice = (float)$asks[0]["price"];
+            $topBidPrice = (float)$bids[0]["price"];
+            $tradeType = $topOrders["tradeType"];
 
 
 
@@ -551,7 +556,7 @@ if($loud!='quiet'){echo("<br>[" . $symbol . "] Computing orderbook...");}
 //Update Stock
 ////////////////////////////////////
 function updateSymbol($symbol, $newSymbol, $userid, $name, $type, $url, $rating, $description)
-{   
+{
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
     //CHECK TO SEE IF SYMBOL EXISTS
@@ -598,12 +603,12 @@ function updateSymbol($symbol, $newSymbol, $userid, $name, $type, $url, $rating,
 ////////////////////////////////////
 function publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description)
 {   require 'constants.php';
-$transaction='PO'; //public offering
-if (empty($symbol)) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("You must enter symbol."); }
-$symbol = strtoupper($symbol); //cast to UpperCase
+    $transaction='PO'; //public offering
+    if (empty($symbol)) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("You must enter symbol."); }
+    $symbol = strtoupper($symbol); //cast to UpperCase
 
-query("SET AUTOCOMMIT=0");
-query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+    query("SET AUTOCOMMIT=0");
+    query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
 
     if (empty($fee)) { $fee=0; }
@@ -611,72 +616,72 @@ query("START TRANSACTION;"); //initiate a SQL transaction in case of error betwe
     $feeQuantity = ($issued * $fee);
     $ownersQuantity = ($issued - $feeQuantity);
     $price = 0; //since a public offering, cost is 0.
-    
+
     //CHECK TO SEE IF SYMBOL EXISTS
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
     $countOwnersRows = count($symbolCheck);
     if ($countOwnersRows != 0) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Symbol already exsists."); }
-    
+
     //INSERT ASSET
     if (query("INSERT INTO assets (`symbol`, `name`, `userid`, `fee`, `issued`, `url`, `type`, `rating`, `description`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $name, $userid, $fee, $issued, $url, $type, $rating, $description) === false)  //create IPO
     { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure to insert into assets"); }
 
 //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
-$ownerPortfolio = query("SELECT symbol FROM portfolio WHERE (id =? AND symbol =?)", $userid, $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
-$countOwnersRows = count($ownerPortfolio);
-if ($countOwnersRows == 0)
-{
-    if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $userid, $symbol, $ownersQuantity, $price) === false) 
-    {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Insert to Owners Portfolio Error");} //update portfolio
-} //updates if stock already owned
-elseif ($countOwnersRows == 1) //else update db
-{   if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $ownersQuantity, $price, $userid, $symbol) === false) 
-        {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update to Owners Portfolio Error");} //update portfolio
-}
-else
-{
-     query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Public Offering Error: Too many symbol rows in assets. $symbol / $userid");
-} //apologizes if first two conditions are not meet
+    $ownerPortfolio = query("SELECT symbol FROM portfolio WHERE (id =? AND symbol =?)", $userid, $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
+    $countOwnersRows = count($ownerPortfolio);
+    if ($countOwnersRows == 0)
+    {
+        if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $userid, $symbol, $ownersQuantity, $price) === false)
+        {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Insert to Owners Portfolio Error");} //update portfolio
+    } //updates if stock already owned
+    elseif ($countOwnersRows == 1) //else update db
+    {   if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $ownersQuantity, $price, $userid, $symbol) === false)
+    {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update to Owners Portfolio Error");} //update portfolio
+    }
+    else
+    {
+        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Public Offering Error: Too many symbol rows in assets. $symbol / $userid");
+    } //apologizes if first two conditions are not meet
 
 //INSERT TRADE INTO PORTFOLIO OF OWNER MINUS FEE
-if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $ownersQuantity, $price, $fee, 0, $transaction, 0, 0) === false) 
+    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $ownersQuantity, $price, $fee, 0, $transaction, 0, 0) === false)
     {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Insert Owner Trade Error");}
-    
+
 //INSERT FEE SHARES INTO PORTFOLIO OF ADMIN
-$adminPortfolio = query("SELECT symbol FROM portfolio WHERE (id = ? AND symbol = ?)", $adminid, $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
-$adminPortfolio = count($adminPortfolio);
-if ($adminPortfolio == 0)
+    $adminPortfolio = query("SELECT symbol FROM portfolio WHERE (id = ? AND symbol = ?)", $adminid, $symbol);//Checks to see if they already own stock to determine if we should insert or update tables
+    $adminPortfolio = count($adminPortfolio);
+    if ($adminPortfolio == 0)
     { if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $adminid, $symbol, $feeQuantity, $price) === false) {
-                query("ROLLBACK"); //rollback on failure
-                query("SET AUTOCOMMIT=1");            throw new Exception("Insert Fee to Admin Error");} //update portfolio
-        } //updates if stock already owned
-        elseif ($adminPortfolio == 1) //else update db
-        {
-            if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $feeQuantity, $price, $adminid, $symbol) === false) {
-                query("ROLLBACK"); //rollback on failure
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Update to Admin Portfolio Error");
-            } //update portfolio
-        } else {
+        query("ROLLBACK"); //rollback on failure
+        query("SET AUTOCOMMIT=1");            throw new Exception("Insert Fee to Admin Error");} //update portfolio
+    } //updates if stock already owned
+    elseif ($adminPortfolio == 1) //else update db
+    {
+        if (query("UPDATE portfolio  SET quantity = (quantity + ?), price = (price + ?) WHERE (id = ? AND symbol = ?)", $feeQuantity, $price, $adminid, $symbol) === false) {
             query("ROLLBACK"); //rollback on failure
             query("SET AUTOCOMMIT=1");
-            //apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
-            throw new Exception("Admin Portfolio Error");
-        } //apologizes if first two conditions are not meet
-    
-    
+            throw new Exception("Update to Admin Portfolio Error");
+        } //update portfolio
+    } else {
+        query("ROLLBACK"); //rollback on failure
+        query("SET AUTOCOMMIT=1");
+        //apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
+        throw new Exception("Admin Portfolio Error");
+    } //apologizes if first two conditions are not meet
+
+
     //INSERT TRADE SHARES INTO PORTFOLIO OF ADMIN
-        if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $adminid, $userid, $feeQuantity, $price, $fee, 0, $transaction, 0, 0) === false) {
-            query("ROLLBACK"); //rollback on failure
-            query("SET AUTOCOMMIT=1");
-            throw new Exception("Insert Admin Trade Error");
-        }
+    if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $adminid, $userid, $feeQuantity, $price, $fee, 0, $transaction, 0, 0) === false) {
+        query("ROLLBACK"); //rollback on failure
+        query("SET AUTOCOMMIT=1");
+        throw new Exception("Insert Admin Trade Error");
+    }
 
 
-query("COMMIT;"); //If no errors, commit changes
-query("SET AUTOCOMMIT=1");
+    query("COMMIT;"); //If no errors, commit changes
+    query("SET AUTOCOMMIT=1");
 
-return("$symbol public offering successful!");
+    return("$symbol public offering successful!");
 } //function
 
 
@@ -850,20 +855,22 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     if(empty($type)) { throw new Exception("Invalid order. Trade type required."); } //check to see if empty
     if(empty($side)) { throw new Exception("Invalid order. Trade side required."); } //check to see if empty
     if(empty($id)) { throw new Exception("Invalid order. User required."); } //check to see if empty
-    
+
+    if($quantity>2000000000){ throw new Exception("Invalid order. Trade quantity exceeds limits."); }
     //SET PRICE
     if($type=='limit'){
-    	if(empty($price)){throw new Exception("Invalid order. Limit order trade price required");}
-    	$price = setPrice($price); }
+        if(empty($price)){throw new Exception("Invalid order. Limit order trade price required");}
+        if($price>9000000000000000000){ throw new Exception("Invalid order. Trade price exceeds limits."); }
+        $price = setPrice($price); }
     if($type=='market') { $price=0;}//market order doesn't require price
-    
+
     //QUERY TO SEE IF SYMBOL EXISTS
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
     if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange!");} //row count
     //QUERY TO SEE IF USER EXISTS
     $userCheck = query("SELECT count(id) as number FROM users WHERE id =?", $id);
     if ($userCheck[0]["number"] != 1) {throw new Exception("No user exists!");} //row count
-    
+
     //CHECKS INPUT
     if (preg_match("/^\d+$/", $quantity) == false) { throw new Exception("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
     if (!ctype_alnum($symbol)) {throw new Exception("Symbol must be alphanumeric!");}
@@ -876,9 +883,9 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
     if($type=='market')
-    {   
-        if ($side == 'a'){$otherSide='b';} 
-        if($side=='b'){ $otherSide='a';}	
+    {
+        if ($side == 'a'){$otherSide='b';}
+        if($side=='b'){ $otherSide='a';}
         //CHECK FOR LIMIT ORDERS SINCE MARKET ORDERS REQUIRE THEM
         $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
         $limitOrders = $limitOrdersQ[0]['limitorders'];
@@ -886,8 +893,8 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     }
     //both limit and market
     if($side=='b')
-	{
-	$transaction = 'BID';
+    {
+        $transaction = 'BID';
         //QUERY CASH & UPDATE
         $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
         if(!empty($unitsQ[0]['units'])){$userUnits = $unitsQ[0]['units'];}	//convert array from query to value
@@ -899,26 +906,26 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
         if($type=='limit'){$tradeAmount = $price * $quantity; }
         else{$tradeAmount = $unitsQ[0]['units']; } //market orders lock all of the users funds
         //ENSURE BUYER HAS ENOUGH FUNDS
-        if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Trade amount (" . $tradeAmount . ") excceds user (" . $id . ") funds (" . $userUnits . ")." ); }
+        if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Trade amount (" . $tradeAmount . ") exceeds user (" . $id . ") funds (" . $userUnits . ")." ); }
         elseif($userUnits >= $tradeAmount){if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4");}}
         else{  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 5");}
-	}
-	//both limit and market
+    }
+    //both limit and market
     if($side=='a')
-    { 
-		$transaction = 'ASK';
+    {
+        $transaction = 'ASK';
         $tradeAmount = 0;
-	    //CHECK TO SEE IF SELLER HAS ENOUGH SHARES
+        //CHECK TO SEE IF SELLER HAS ENOUGH SHARES
         $userQuantity = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol);//
         if(!empty($userQuantity)){$userQuantity = $userQuantity[0]["quantity"];}
         else{$userQuantity = 0;}
         //ENSURE SELLER HAS ENOUGH QUANTITY
         if($userQuantity <= 0) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Ask order failed. User (#" . $id . ")  quantity: " . $userQuantity);}
-        elseif($userQuantity < $quantity) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Ask order not placed. Trade quantity (" . $quantity . ") exceeds user (" . $id . ") quantity (" . $userQuantity . ").");}                                                                  
+        elseif($userQuantity < $quantity) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Ask order not placed. Trade quantity (" . $quantity . ") exceeds user (" . $id . ") quantity (" . $userQuantity . ").");}
         elseif($userQuantity >= $quantity){if(query("UPDATE portfolio SET quantity = (quantity - ?) WHERE (id = ? AND symbol = ?)", $quantity, $id, $symbol) === false){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }}
         else {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Portfolio Failure 4");}
-	}
-	
+    }
+
     //INSERT INTO ORDERBOOK
     if (query("INSERT INTO orderbook (symbol, side, type, price, total, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $tradeAmount, $quantity, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert Orderbook Failure"); }
 
