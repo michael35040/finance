@@ -63,7 +63,7 @@
                 title: '<?php echo($symbol); ?> - TRADES/DAY',
                 hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
                 vAxis: {title: 'Price(avg) & Volume(k)', minValue: 0},
-                colors:['green','yellow']
+                colors:['green','gray']
                 //height: 500,
                 
             };
@@ -102,7 +102,7 @@
                 title: '<?php echo($symbol); ?> - TRADES',
                 hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
                 vAxis: {title: 'Price & Quantity', minValue: 0},
-                colors:['green','yellow']
+                colors:['green','gray']
                 //height: 500,
 
             };
@@ -140,7 +140,7 @@
                 title: '<?php echo($symbol); ?> - QUANTITY',
                 hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
                 vAxis: {title: 'Quantity', minValue: 0, isStacked: true},
-                colors:['yellow'],
+                colors:['gray'],
                 legend: {position: 'none', textStyle: {color: 'blue', fontSize: 16}}
                 //height: 500,
 
@@ -851,10 +851,10 @@ if($asks!= null && $bids != null )
 <div class="panel panel-primary">
     <!-- Default panel contents -->
     <div class="panel-heading">ACTIVITY</div>
-<table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+<table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:left;vertical-align:middle;">
 
     <tr class="active">
-        <td>PERIOD</td><td>ORDERS</td><td>TRADES</td><td>VOLUME</td><td>VALUE</td>
+        <th>PERIOD</th><th>ORDERS</th><th>TRADES</th><th>VOLUME</th><th>VALUE</th>
     </tr>
 
     <tr>
@@ -966,7 +966,7 @@ if($asks!= null && $bids != null )
     <tr class="active">
         <th>Holder</th>
         <th>Quantity</th>
-        <th>Percentage</th>
+        <th>Control</th>
     </tr>
     </thead>
     <tbody>
@@ -1011,6 +1011,153 @@ if($asks!= null && $bids != null )
 
 
 
+
+
+
+
+
+
+<!--
+need to create another table
+if owned on a certain date, create a table of who can vote and how much their vote counts for
+this is to prevent voters voting twice or complications when buying or selling during sell
+-->
+
+
+<div class="panel panel-primary"> <!--success VOTING -->
+    <!-- Default panel contents -->
+    <div class="panel-heading">VOTING</div>
+    <table class="table">
+        <thead>
+        <tr class="active">
+            <th>Ticket</th>
+            <th>Vote</th>
+            <th>Result (Y/N)</th>
+            <th>Status</th>
+            <th>Voted/Total</th>
+            <th>Description</th>
+            <th>Vote Date</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>#1</td>
+            <td><button>YES</button> / <button>NO</button></td><!--if own--><!--if already voted-->
+            <td>4,500 (45%)/ 5,500 (55%)</td>
+            <td>Closed</td>
+            <td>10,000/20,000</td>
+            <td>Conduct secondary offering of 5 million.</td>
+            <td>06 NOV 14</td>
+
+        </tr>
+        </tbody>
+    </table>
+</div><!--panel-primary VOTING-->
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary"> <!--success VOTING -->
+    <!-- Default panel contents -->
+    <div class="panel-heading">DIVIDENDS</div>
+    <table class="table">
+        <thead>
+        <tr class="active">
+            <th>Date</th>
+            <th>Total</th>
+            <th># of Shares</th>
+            <th>Dividend per Share</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>06 NOV 14</td>
+            <td>$100,000.00</td>
+            <td>10,000,000</td>
+            <td>$0.10</td>
+        </tr>
+        <tr>
+            <td>02 FEB 14</td>
+            <td>$200,000.00</td>
+            <td>10,000,000</td>
+            <td>$0.20</td>
+        </tr>
+        </tbody>
+    </table>
+</div><!--panel-primary VOTING-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary"> <!--success ANNOUNCEMENT -->
+    <!-- Default panel contents -->
+    <div class="panel-heading">ANNOUNCEMENT</div>
+    <table class="table">
+        <thead>
+        <tr class="active">
+            <th>Date</th>
+            <th>Announcement</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>03 NOV 14</td>
+            <td>Vote coming on 10 Nov 14 for second issue offering. (+)</td>
+        </tr>
+        </tbody>
+    </table>
+</div><!--panel-primary ANNOUNCEMENT-->
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary"> <!--success OFFERING -->
+    <!-- Default panel contents -->
+    <div class="panel-heading">OFFERING</div>
+    <table class="table">
+        <thead>
+        <tr class="active">
+            <th>Date</th>
+            <th>Type</th>
+            <th>Number of Shares</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>03 NOV 14</td>
+            <td>Initial (PO)</td>
+            <td>10,000,000</td>
+        </tr>
+        </tbody>
+    </table>
+</div><!--panel-primary OFFERING-->
 
 
 
