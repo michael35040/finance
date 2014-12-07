@@ -68,13 +68,16 @@ $asset["askstotal"] = $asksTotal[0]['asktotal'];
 $asset["public"] = $asset["askstotal"]+$asset["totalportfolio"];
 
 //TRADES
-        //30day volume
-        $volume =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY MONTH(date) ORDER BY uid ASC LIMIT 0, 500", $symbol);	  // query user's portfolio
-        //$volume =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY MONTH(date) ORDER BY uid ASC LIMIT 0, 500", $symbol);	  // query user's portfolio
-        if(empty($volume[0]["quantity"])){$volume[0]["quantity"]=0;}
-        if(empty($volume[0]["price"])){$volume[0]["price"]=0;}
-$asset["volume"] = $volume[0]["quantity"];
-$asset["avgprice"] = getPrice($volume[0]["price"]);
+
+        $trades30d = query("SELECT COUNT(uid) AS count, AVG(price) AS price, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (symbol=?) AND (`date`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())", $asset["symbol"]); // query database for user
+        if(empty($trades30d[0]["volume"])){$trades30d[0]["volume"]=0;}
+        if(empty($trades30d[0]["price"])){$trades30d[0]["price"]=0;}
+        $asset["avgprice"] = getPrice($trades30d[0]["price"]);
+        $asset["volume"] = $trades30d[0]["volume"];
+
+
+
+
         //TRADES (PROCESSED ORDERS)
 $trades =  query("SELECT * FROM trades WHERE (symbol=? AND (type='limit' OR type='market')) ORDER BY uid DESC", $symbol);
         //if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
@@ -88,7 +91,7 @@ $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
 $asset["dividend"]=0; //until we get real ones
         
         //DAILY TRADES CHART
-$tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE (symbol=? AND (type='limit' OR type='market'))  GROUP BY DAY(date) ORDER BY uid ASC ", $symbol);	  // query user's portfolio
+$tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE (symbol=? AND (type='limit' OR type='market'))  GROUP BY DAY(date) ORDER BY uid ASC LIMIT 0,30", $symbol);	  // query user's portfolio
         //ALL TRADES CHART
 
 
@@ -97,6 +100,92 @@ $tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, dat
         else{$asset["control"] = (($asset["userportfolio"]+$asset["userlocked"])/$asset["public"])*100; } //based on public
        
 
+
+
+
+        /*********************VOLUME*****************************/
+//TOTAL
+        $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE symbol=?", $symbol); // query database for user
+        $dash["orderstotal"] = $count[0]["total"];
+        $count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE symbol=?", $symbol); // query database for user
+        $dash["tradestotal"] = $count[0]["total"];
+        $dash["valuetotal"] = $count[0]["value"];
+        $dash["volumetotal"] = $count[0]["volume"];
+
+//MONTH
+        $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE symbol=? AND (`date`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())", $symbol); // query database for user
+        $dash["ordersmonth"] = $count[0]["total"];
+        $count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE symbol=? AND (`date`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())", $symbol); // query database for user
+        $dash["tradesmonth"] = $count[0]["total"];
+        $dash["valuemonth"] = $count[0]["value"];
+        $dash["volumemonth"] = $count[0]["volume"];
+
+//WEEK
+        $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE symbol=? AND (`date`  BETWEEN DATE_SUB(now(), INTERVAL 7 DAY) AND NOW())", $symbol); // query database for user
+        $dash["ordersweek"] = $count[0]["total"];
+        $count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE symbol=? AND (`date`  BETWEEN DATE_SUB(now(), INTERVAL 7 DAY) AND NOW())", $symbol); // query database for user
+        $dash["tradesweek"] = $count[0]["total"];
+        $dash["valueweek"] = $count[0]["value"];
+        $dash["volumeweek"] = $count[0]["volume"];
+
+//D7
+        $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE symbol=? AND `date` < DATE_SUB(NOW(), INTERVAL 144 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 168 HOUR)", $symbol);
+        $dash["ordersday7"] = $count[0]["total"];
+        $count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE symbol=? AND `date` < DATE_SUB(NOW(), INTERVAL 144 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 168 HOUR)", $symbol);
+        $dash["tradesday7"] = $count[0]["total"];
+        $dash["valueday7"] = $count[0]["value"];
+        $dash["volumeday7"] = $count[0]["volume"];
+
+
+//D6
+        $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE symbol=? AND `date` < DATE_SUB(NOW(), INTERVAL 120 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 144 HOUR)", $symbol);
+        $dash["ordersday6"] = $count[0]["total"];
+        $count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE symbol=? AND `date` < DATE_SUB(NOW(), INTERVAL 120 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 144 HOUR)", $symbol);
+        $dash["tradesday6"] = $count[0]["total"];
+        $dash["valueday6"] = $count[0]["value"];
+        $dash["volumeday6"] = $count[0]["volume"];
+
+
+//D5
+        $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE symbol=? AND `date` < DATE_SUB(NOW(), INTERVAL 96 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 120 HOUR)", $symbol);
+        $dash["ordersday5"] = $count[0]["total"];
+        $count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE symbol=? AND `date` < DATE_SUB(NOW(), INTERVAL 96 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 120 HOUR)", $symbol);
+        $dash["tradesday5"] = $count[0]["total"];
+        $dash["valueday5"] = $count[0]["value"];
+        $dash["volumeday5"] = $count[0]["volume"];
+
+//D4
+        $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE symbol=? AND `date` < DATE_SUB(NOW(), INTERVAL 72 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 96 HOUR)", $symbol);
+        $dash["ordersday4"] = $count[0]["total"];
+        $count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE symbol=? AND `date` < DATE_SUB(NOW(), INTERVAL 72 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 96 HOUR)", $symbol);
+        $dash["tradesday4"] = $count[0]["total"];
+        $dash["valueday4"] = $count[0]["value"];
+        $dash["volumeday4"] = $count[0]["volume"];
+
+//D3
+        $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE symbol=? AND `date` < DATE_SUB(NOW(), INTERVAL 48 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 72 HOUR)", $symbol);
+        $dash["ordersday3"] = $count[0]["total"];
+        $count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE symbol=? AND `date` < DATE_SUB(NOW(), INTERVAL 48 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 72 HOUR)", $symbol);
+        $dash["tradesday3"] = $count[0]["total"];
+        $dash["valueday3"] = $count[0]["value"];
+        $dash["volumeday3"] = $count[0]["volume"];
+
+//YESTERDAY D2
+        $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE symbol=? AND `date` < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 48 HOUR)", $symbol);
+        $dash["ordersday2"] = $count[0]["total"];
+        $count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE symbol=? AND `date` < DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `date` > DATE_SUB(NOW(), INTERVAL 48 HOUR)", $symbol);
+        $dash["tradesday2"] = $count[0]["total"];
+        $dash["valueday2"] = $count[0]["value"];
+        $dash["volumeday2"] = $count[0]["volume"];
+
+
+//TODAY D1
+        $count = query("SELECT COUNT(uid) AS total FROM orderbook WHERE symbol=? AND (`date`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())", $symbol); // query database for user
+        $dash["ordersday1"] = $count[0]["total"];
+        $count = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE symbol=? AND (`date`  BETWEEN DATE_SUB(now(), INTERVAL 1 DAY) AND NOW())", $symbol); // query database for user
+        $dash["tradesday1"] = $count[0]["total"];
+        $dash["valueday1"] = $count[0]["value"];
+        $dash["volumeday1"] = $count[0]["volume"];
 
 
 
@@ -123,6 +212,7 @@ $tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, dat
             "bidsGroupAll" => $bidsGroupAll,
             "trades" => $trades,
             "tradesGroup" => $tradesGroup,
+            "dash" => $dash,
             ]);
     } //!empty
     else

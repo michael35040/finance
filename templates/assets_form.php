@@ -1,4 +1,20 @@
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+
+<script type="text/javascript" src="js/sparkline.js"></script>
+<script type="text/javascript">
+    $(function() {
+        /** This code runs when everything has been loaded on the page */
+        /* Inline sparklines take their values from the contents of the tag */
+        $('.inlinesparkline').sparkline();
+
+        $('.sparklines').sparkline('html', { enableTagOptions: true });
+
+    });
+</script>
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
@@ -49,6 +65,13 @@ foreach ($assets as $asset) // for each of user's stocks
             border:0;
             background:transparent;
         }
+    *
+    {
+        /*for sparkline box*/
+        box-sizing: initial;
+        /*box-sizing: content-box;*/
+
+    }
     </style>
 
 <table class="table table-condensed table-bordered table-hover" id="assets" style="border-collapse:collapse;">
@@ -59,7 +82,7 @@ foreach ($assets as $asset) // for each of user's stocks
     <tr class="active"><!-- active warning danger info success -->
         <th width="25%">Symbol</th>
         <th width="25%">Price</th>
-        <th width="25%">Volume</th>
+        <th width="25%">Volume (30d)</th>
         <th width="25%">Market Cap</th>
     </tr>
     </thead>
@@ -69,12 +92,35 @@ foreach ($assets as $asset) // for each of user's stocks
     {
         foreach ($assets as $asset)
         {
+            $tradesG = query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY uid ASC LIMIT 0,30", $asset["symbol"]);      // query user's portfolio
+            //$tradesG =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY DAY(date) ORDER BY uid ASC ", $asset["symbol"]);	  // query user's portfolio
+
+            $tradesCount=count($tradesG);
             $i++;
             echo('<tr data-toggle="collapse" data-target="#demo' . $i . '" class="accordion-toggle">');
             echo('<td><span class="glyphicon glyphicon-chevron-down"></span>&nbsp;&nbsp;&nbsp;&nbsp;' . htmlspecialchars($asset["symbol"]) . ' </td>');
-            echo('<td >' . $unitsymbol . htmlspecialchars(number_format($asset["price"], 2, ".", ",")) . '</td>');
-            echo('<td >' . (number_format($asset["volume"], 0, ".", ",")) . '</td>');
-            echo('<td >' . $unitsymbol . htmlspecialchars(number_format($asset["marketcap"], 2, ".", ",")) . '</td>');
+            echo('<td >' . $unitsymbol . (number_format($asset["price"], 2, ".", ",")));
+            echo('&nbsp;&nbsp;<span class="sparklines" sparkType="line" >');
+                $t=0;
+                foreach($tradesG as $trade){
+                    echo(number_format(getPrice($trade["price"]), 2, ".", ""));
+                    $t++;
+                    if($t<$tradesCount){echo(",");}
+                }
+            echo('</span></td>');
+            echo('<td >' . (number_format($asset["volume"], 0, ".", ",")));
+            echo('&nbsp;&nbsp;<span class="sparklines" sparkType="bar" sparkBarColor="blue" >');
+                $t=0;
+                foreach($tradesG as $trade){
+                    echo(number_format(($trade["volume"]), 0, ".", ""));
+                    $t++;
+                    if($t<$tradesCount){echo(",");}
+                }
+            echo('</span>');
+
+
+
+            echo('</td>');            echo('<td >' . $unitsymbol . htmlspecialchars(number_format($asset["marketcap"], 2, ".", ",")) . '</td>');
             echo('</tr>');
             echo('<div  class="hiddenRow">');
             echo('<tr class="accordian-body collapse" id="demo' . $i . '"   >');

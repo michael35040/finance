@@ -1,3 +1,133 @@
+
+https://cryptostocks.com/
+http://mpex.co/
+http://templated.co/ion
+http://almsaeedstudio.com/preview
+
+TO DO LIST:
+- Add vote option
+- Add dividend, allow owner of company to give money to shareholders.
+	if owner of a company, display dividend page
+	amount to disperse to shareholders
+	determine percentage and give to each owner
+	ensure no doublespend
+
+- Add prospectus or whatever it is called.
+
+
+
+
+
+
+
+Website : You're on it.
+
+Owner : Mircea Popescu
+
+Monthly statements available here
+
+Listed on : April 11, 2012
+
+INITIAL PUBLIC OFFERING AGREEMENT #1 
+
+This INITIAL PUBLIC OFFERING AGREEMENT (the "Agreement") is made and entered into as of February the 20th, 2012, by and among MPOE, an unregistered corporation, MPEx (GPG fingerprint 8DDE 8C2B 4DE2 278A 95C3 D65B 9214 FC6B F1B6 9921), an unregistered corporation and Mircea Popescu, an individual (GPG fingerprint 6160 E1CA C8A3 C529 66FD 7699 8A73 6F0E 2FB7 B452). Certain capitalized terms used herein are defined in Section 1 of this Agreement. 
+
+RECITALS 
+
+WHEREAS, Mircea Popescu asserts sole and unlimited authority to represent MPOE in all matters ; 
+
+WHEREAS, MPEx customarily operates during the course of its virtual business the infrastructure allowing the virtual trading of virtual shares of unregistered corporations for a virtual currency known as Bitcoin ; 
+
+WHEREAS, the parties intend in this Agreement to set forth the principal arrangements between them regarding the Initial Public Offering ; and 
+
+WHEREAS, the parties hereto have determined that in order to accomplish the objectives of the Initial Public Offering and to facilitate the consummation thereof, it is necessary and desirable to enter into the agreements and understandings set forth herein ; 
+
+NOW, THEREFORE, in consideration of the premises and the representations, warranties, covenants and agreements herein contained, the parties hereby agree as follows : 
+
+1. DEFINITIONS. 
+
+"Bitcoin" and "BTC" mean the virtual currency so known. 
+
+"GPG" means the Gnu Privacy Guard software. 
+
+Net Profits here mean profits after explicit MPOE/MPEx financing, development and marketing costs (such costs, if any, will be described monthly in the Profit and Loss Statements). 
+
+"Profit and Loss Statements" means a statement that lists as a lump sum all Bitcoin income during one calendar month as well as a reasonably detailed break-down, then as a lump sum all expenditure during that same calendar month as well as a reasonably detailed break-down, thus showing the net result of each calendar month. 
+
+Reporting Month is a time interval comprised between the end of the last Friday of any calendar month and the end of the last Friday of the next calendar month, UTC times. Thus, the Reporting Month of March 2012 begins on February the 24th, 2012 and ends on March the 31st, 2012. The reports for March 2012 would be due no later than April the 5th, 2012. 
+
+The WOT means the Web Of Trust as maintained on bitcoin-otc.com, or at any such place that it may in time be moved. 
+
+2. THE INITIAL PUBLIC OFFERING. 
+
+2.1. Transactions Prior To The IPO. Subject to the conditions hereof, MPOE and MPEx shall use their reasonable best efforts to consummate the IPO, as follows : 
+
+(a)MPOE will move the operation of its options trade on the MPEx platform ; 
+
+(b)Both MPOE and MPEx will take all reasonable measures to harmonise their respective operations so that their merger is complete within three months baring reasonable delay ; 
+
+(c)MPOE Profit and Loss Statements will be published retroactively starting with the month of August 2011 (first month in operation) ; 
+
+(d)MPEx will publish this agreement on a separate page on the MPEx website, and will make reference to this page in relation to MPOE/MPEx, under the trade name S.MPOE ; 
+
+2.2. The Terms of the IPO. 
+
+(a)Mircea Popescu has elected to divide MPOE/MPEx into 1`000`000`000 (one billion) equal non-voting shares. Mircea Popescu solemnly promises and warrants never to issue more shares on any other venue nor in any way to dilute existing shareholders at any point in the future. There will be no future share issuance, and Mircea Popescu further warrants that he will never sell more than half the total shares. 
+
+(b)These shares will be first priced by allocation in two traches, the first of which to last from the date of this agreement until March 1st, 2012, and the second to last from March 30th to April 6th, 2012. The first tranche will consist of 1`000`000 (one million) shares and the second tranche will consist of 4`000`000 (four million) shares. Each tranche will be open to public subscription, so that anyone sending any sum in BTC of which the last three digits (namely, the 7th, 8th and 9th) all euqal 9 to the address 1JPvucRfu3ZzEvfBUQTJwsxMrZjeTqD6zR will be entitled to a share allocation. At the end of the subscription period for each tranche the total BTC subscribed will be calculated, and each subscriber will be allocated shares of the tranche proportional to his contribution in the total subscription. 
+
+(c)Once this initial allocation is complete, shares may be offered for sale at a price not lower than the larger average price per share of the two tranches. 
+
+(d)Mircea Popescu solemnly promises and warrants that he will not introduce his own or any other party's private expenses into the expenses of MPOE/MPEx, that all expenses charged against MPOE/MPEx will exclusively reflect expenditure in good faith resulting from the operation of their business and that all money taken out of MPOE/MPEx by him will be in the form of dividends, paid fairly to all shareholders by proportion to the shares they hold. 
+
+(e)Mircea Popescu solemnly promises and warrants that complete and accurate Statements of Profit and Loss for each Reporting Month will be published by him no later than by the fifth day of the new month. Under exceptional circumstances and for good cause the publishing of the Statements of Profit and Loss can be deferred no more than once in a calendar year so that the Statement of Profit and Loss of one month is published together with the Statement of Profit and Loss of the next month. 
+
+(f)Immediately upon publication of each Statement of Profit and Loss MPOE/MPEx will pay to shareholders as dividends a fraction of no less than 100% (one hundred percent) of the Net Profits, if any. 
+
+(g)In the event of the sale, merger or voluntary liquidation of MPOE/MPEx all proceeds will be distributed fairly to all shareholders by proportion to the shares they hold. 
+
+(h)MPOE will accept bond deposits to the address 1JPvucRfu3ZzEvfBUQTJwsxMrZjeTqD6zR from any interested party, whether they are or are not registered with MPEx, provided cumulatively that a) they are in sum of no less than 100 BTC ; b) the last three digits (namely, the 7th, 8th and 9th) are all equal to 8 and c) that Mircea Popescu is notified via email or other private means and prior to the transaction being broadcast of the sum to be sent, the interest rate sought and the address interest and repayments are to be delivered to. All sums deposited in this manner are eligible for financing MPOE operations starting with the next Reporting Month. All sums deposited in this manner can be recalled, and will be repaid no earlier than at the end of the next Reporting Month and no later than by the 5th day of the calendar month following. 
+
+(i)MPOE will calculate, retrospectively, at the end of each Reporting Month for that Reporting Month, a capital requirement in the following manner : at every moment a momentary capital reserve requirement is calculated, equal to the total amount paid for bought contracts minus the total amount received for sold contracts plus the largest sum that can be necessary to cover all the contracts sold. The capital reserves requirement for the Reporting Month will be equal to the largest of all momentary reserve requirement calculated during that interval. 
+
+(j)MPOE will then sort all bonds deposited that are active for the respective Reporting Month in ascending order by their respective sought interest rates, up to the fulfilling of the calculated capital reserves requirement. All bonds included will receive the same interest, equal to the highest level accepted. Bonds that are not accepted receive no interest. Bonds that are partly accepted (such as for instance when 100 BTC are still needed to fulfill the calculated capital reserves requirement but a 200 BTC bond is available) will received interest on their accepted part. 
+
+(k)In the case where MPOE, after having paid the interest as detailed above as well as all costs and fees resulting from contracts purchases and executions will be found to have a shortfall, that shortfall will be applied to the capital of the bonds deposited that were accepted proportionally, so that each bond is reduced by the same ratio as the ratio between the shortfall and the calculated capital reserves requirement. Bonds that were not accepted as well as the unaccepted parts of partially accepted bonds are extempt from this reduction. 
+
+3. INDEMNIFICATIONS AND LIMITATIONS OF LIABILITY ; REMEDIES. 
+
+3.1. Neither Mircea Popescu, MPOE or MPEx nor their respective Owners, Directors, Agents or Partners assume any liability for any losses suffered or alleged to have been suffered by any third party as a result of the execution of this Agreement. All third parties are to make their own determinations, satisfy their own due dilligence policies and assume for themselves any and all risks involved. In particular compliance with any laws, rules or regulations in effect in any jurisdiction where a third party may find itself is entirely the responsibility of that third party -- neither party to this Agreement makes any guarantees or representation as to the legal status of this Agreement in any third party's jurisdiction. 
+
+3.2. BUYER BEWARE. MPOE/MPEx shall be considered a high-risk speculative investment. Past performance of the site is no guarantee of future performance. Past profitability is no guarantee of future profitability. Value of S.MPOE shares may rise or fall over time and the entire venture may become worthless for any number of reasons. Neither Mircea Popescu nor any other person or entity shall be liable or responsible for compensating any shareholder for any value lost by a depreciation in the value of shares of MPOE/MPEx. 
+
+3.3 At no point shall the obligations Mircea Popescu arising from the execution of this contract exceed the value of his interest in MPOE/MPEx. The liability of any person or entity party to this contract, either direct, indirect, incidental, tortious, punitive, exemplary or otherwise shall in no case exceed such sums as may be proven that person or entity has in fact received through the working of this contract. Signatories and investors agree to indemnify and hold harmless any party from any claims that may exceed such sums. 
+
+4. MISCELLANEA 
+
+4.1. DISCUSSION OF CONFLICT OF INTEREST. The named individual is in fact at the time of this agreement the sole proprietor and operator of both named corporations, and they were represented in this agreement by him. Consequently the dispositions of this agreement may be regarded as declaratory rather than contractual in their substance. Nevertheless, inasmuch as they are publicly made and verifiable their execution or breach can in fact be verified. 
+
+4.2. This contract is the sole and complete agreement between the parties and to the subject matter. This contract supersedes and replaces any other agreements, communicated in any other way at any point in time. This contract stands as it is, and may not be modified by third parties, irrespective if said parties should style themselves "court of law", "judge" or otherwise. 
+
+4.3. This contract is protected as copyrighted material. It may not be reused by different parties without the express permission of MPEx. 
+
+
+
+
+
+
+
+
+
+
+
+
+=====================================================================================
+
+
+
+
+
+
 COMPLETED
 # fix calc for loss/gain (change negative number on puchase in index.php for to positive.)
 # when deleting orders, remove lock from funds/shares (functions_exchange.php)
@@ -6,19 +136,16 @@ COMPLETED
 # add total value of all stocks (pular index)
 # add icon showing drop down feature in 'assets'
 # add ownership percentage in information panel.
+#ability for administration tof buy backnowledge stock and remove
+#add commissionstAl for aadmin nd user
+#figure out logo (indian, horse, bear, bull, wolf...)
+#update desposit
+#update withdraw
+#update transfer
+#change auth check on admin_ pages from 1 to admin id
 
-ability for administration tof buy backnowledge stock and remove
-add commissionstAl for aadmin nd user
 
-http://templated.co/ion
-http://almsaeedstudio.com/preview
 
-TO DO LIST
-- figure out logo (indian, horse, bear, bull, wolf...)
-- update desposit
-- update withdraw
-- update transfer
-- change auth check on admin_ pages from 1 to admin id
 - MAKE SURE EVERYTHING IS ADDED TO HISTORY (TRANSACTIONS, LOGINS, FAILED, IP, BIDS, ORDERS, ETC)
 -Add "Past Orders" from history to orders.php
 -Update header.php menu

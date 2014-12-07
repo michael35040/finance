@@ -97,7 +97,7 @@ function populatetrades()
         } catch (Exception $e) {
             if($loud!='quiet') {echo('Error: ' . $e->getMessage() . '<br>');}
         }
-        query("UPDATE trades SET date = DATE_SUB(date, INTERVAL 2 DAY)");
+        query("UPDATE trades SET date = DATE_SUB(date, INTERVAL 1 DAY)");
         $date++;
     }
 }

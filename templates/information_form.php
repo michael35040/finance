@@ -62,7 +62,8 @@
             {
                 title: '<?php echo($symbol); ?> - TRADES/DAY',
                 hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-                vAxis: {title: 'Price(avg) & Volume(k)', minValue: 0}
+                vAxis: {title: 'Price(avg) & Volume(k)', minValue: 0},
+                colors:['green','yellow']
                 //height: 500,
                 
             };
@@ -100,7 +101,8 @@
             {
                 title: '<?php echo($symbol); ?> - TRADES',
                 hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-                vAxis: {title: 'Price & Quantity', minValue: 0}
+                vAxis: {title: 'Price & Quantity', minValue: 0},
+                colors:['green','yellow']
                 //height: 500,
 
             };
@@ -109,6 +111,89 @@
             //////////
             //END CHART 2
             ////////////
+
+
+            //////////
+            //CHART 5 volume
+            //////////
+            var data5 = google.visualization.arrayToDataTable([
+                <?php
+
+                echo("['Date', 'Quantity'],"); // ['Year', 'Sales', 'Expenses'],
+                //SQL QUERY FOR ALL TRADES
+                $tradesChart = array_reverse($trades); //so it will be in correct ASC order for chart
+                foreach ($tradesChart as $trade)	// for each of user's stocks
+                {
+                    $dbDate = $trade["date"];
+                    $date = strtotime($dbDate);
+                    $price = number_format(getPrice($trade["price"]), 2, '.', '');
+                    $quantity = number_format(($trade["quantity"]), 2, '.', '');
+                    //$quantity = (int)$trade["quantity"];
+                    //$quantity = ($quantity/1000);
+
+                    echo("['" . date("m-d-Y", $date) . "', " . $quantity . "],");
+                }//ex: ['2013',  1000, 400],
+                ?>
+            ]);
+            var options5 =
+            {
+                title: '<?php echo($symbol); ?> - QUANTITY',
+                hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
+                vAxis: {title: 'Quantity', minValue: 0, isStacked: true},
+                colors:['yellow'],
+                legend: {position: 'none', textStyle: {color: 'blue', fontSize: 16}}
+                //height: 500,
+
+            };
+            var chart5 = new google.visualization.SteppedAreaChart(document.getElementById('chart_div5'));
+            chart5.draw(data5, options5);
+            //////////
+            //END CHART 5 volume
+            ////////////
+
+            //////////
+            //CHART 6 trades only
+            //////////
+            var data6 = google.visualization.arrayToDataTable([
+                <?php
+
+                echo("['Date', 'Price'],"); // ['Year', 'Sales', 'Expenses'],
+                //SQL QUERY FOR ALL TRADES
+                $tradesChart = array_reverse($trades); //so it will be in correct ASC order for chart
+                foreach ($tradesChart as $trade)	// for each of user's stocks
+                {
+                    $dbDate = $trade["date"];
+                    $date = strtotime($dbDate);
+                    $price = number_format(getPrice($trade["price"]), 2, '.', '');
+                    $quantity = number_format(($trade["quantity"]), 2, '.', '');
+                    //$quantity = (int)$trade["quantity"];
+                    //$quantity = ($quantity/1000);
+
+                    echo("['" . date("m-d-Y", $date) . "', " . $price . "],");
+                }//ex: ['2013',  1000, 400],
+                ?>
+            ]);
+            var options6 =
+            {
+                title: '<?php echo($symbol); ?> - PRICE',
+                hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
+                vAxis: {title: 'Price', minValue: 0},
+
+                colors:['green'],
+                legend: {position: 'none', textStyle: {color: 'blue', fontSize: 16}}
+                //height: 500,
+
+            };
+            var chart6 = new google.visualization.AreaChart(document.getElementById('chart_div6'));
+            chart6.draw(data6, options6);
+            //////////
+            //END CHART 6 trades only
+            ////////////
+
+
+
+
+
 
 
             <?php }   //tradesgroup != null ?>
@@ -120,7 +205,7 @@
             {
              ?>
             //////////
-            //CHART 3
+            //CHART 2
             //ORDERBOOK
             //////////
             var data2 = google.visualization.arrayToDataTable([
@@ -164,7 +249,7 @@
 
             chart2.draw(data2, options2);
             //////////
-            //END CHART
+            //END CHART 2
             ////////////
             <?php }   //$bidsGroupChart != null ?>
 
@@ -219,7 +304,7 @@
 
 
             /////////////////
-            //END CHART
+            //END CHART PIE 3
             ////////////////
 
 
@@ -394,10 +479,10 @@
 
         <thead>
     <tr class="active">            
-        <th colspan="1">Portfolio</th>
+        <th colspan="1">Available</th>
         <th colspan="1">Orderbook</th>
         <th colspan="1">Total</th>
-        <th colspan="1">Controlling Interest</th>
+        <th colspan="1">Control</th>
         <th colspan="1">Value</th>
     </tr>            
         </thead>
@@ -444,7 +529,9 @@ if($trades == null){ ?>
 
 if($trades != null)
 { ?>
-    <tr><td colspan="7"><div id="chart_div1" style="overflow:hidden;"></div></td></tr>
+    <tr><td colspan="7"><div id="chart_div1" style="overflow:hidden;"></div></td></tr><!-- trades -->
+    <tr><td colspan="7"><div id="chart_div6" style="overflow:hidden;"></div></td></tr><!-- price -->
+    <tr><td colspan="7"><div id="chart_div5" style="overflow:hidden;"></div></td></tr><!-- quantity -->
 
     <tr class='active'>
         <td>Trade #</td>
@@ -730,6 +817,136 @@ if($asks!= null && $bids != null )
 <?php } /* $lastorders != null */ ?>
 </table><!--orderbook table-->
 </div><!--panel-primary orderbook-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+    <!-- Default panel contents -->
+    <div class="panel-heading">ACTIVITY</div>
+<table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+
+    <tr class="active">
+        <td>PERIOD</td><td>ORDERS</td><td>TRADES</td><td>VOLUME</td><td>VALUE</td>
+    </tr>
+
+    <tr>
+        <td>00-24h (~<?php echo(date("M j, Y" )); ?>)</td>
+        <td><?php echo(number_format($dash["ordersday1"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["tradesday1"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["volumeday1"], 0, '.', ',')); ?></td>
+        <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday1"]), 2, '.', ',')); ?></td>
+    </tr>
+    <tr>
+        <td>24-48h (~<?php echo(date("M j, Y", strtotime( '-1 days' ) )); ?>)</td>
+        <td><?php echo(number_format($dash["ordersday2"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["tradesday2"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["volumeday2"], 0, '.', ',')); ?></td>
+        <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday2"]), 2, '.', ',')); ?></td>
+    </tr>
+    <tr>
+        <td>48-72h (~<?php echo(date("M j, Y", strtotime( '-2 days' ) )); ?>)</td>
+        <td><?php echo(number_format($dash["ordersday3"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["tradesday3"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["volumeday3"], 0, '.', ',')); ?></td>
+        <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday3"]), 2, '.', ',')); ?></td>
+    </tr>
+    <tr>
+        <td>72-96h (~<?php echo(date("M j, Y", strtotime( '-3 days' ) )); ?>)</td>
+        <td><?php echo(number_format($dash["ordersday4"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["tradesday4"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["volumeday4"], 0, '.', ',')); ?></td>
+        <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday4"]), 2, '.', ',')); ?></td>
+    </tr>
+    <tr>
+        <td>96-120h (~<?php echo(date("M j, Y", strtotime( '-4 days' ) )); ?>)</td>
+        <td><?php echo(number_format($dash["ordersday5"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["tradesday5"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["volumeday5"], 0, '.', ',')); ?></td>
+        <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday5"]), 2, '.', ',')); ?></td>
+    </tr>
+    <tr>
+        <td>120-144h (~<?php echo(date("M j, Y", strtotime( '-5 days' ) )); ?>)</td>
+        <td><?php echo(number_format($dash["ordersday6"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["tradesday6"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["volumeday6"], 0, '.', ',')); ?></td>
+        <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday6"]), 2, '.', ',')); ?></td>
+    </tr>
+    <tr>
+        <td>144-168h (~<?php echo(date("M j, Y", strtotime( '-6 days' ) )); ?>)</td>
+        <td><?php echo(number_format($dash["ordersday7"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["tradesday7"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["volumeday7"], 0, '.', ',')); ?></td>
+        <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday7"]), 2, '.', ',')); ?></td>
+    </tr>
+
+    <tr class="active">
+        <td>Last 7d</td>
+        <td><?php echo(number_format($dash["ordersweek"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["tradesweek"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["volumeweek"], 0, '.', ',')); ?></td>
+        <td><?php echo($unitsymbol . number_format(getPrice($dash["valueweek"]), 2, '.', ',')); ?></td>
+
+    </tr>
+    <tr class="active">
+        <td>Last 30d</td>
+        <td><?php echo(number_format($dash["ordersmonth"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["tradesmonth"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["volumemonth"], 0, '.', ',')); ?></td>
+        <td><?php echo($unitsymbol . number_format(getPrice($dash["valuemonth"]), 2, '.', ',')); ?></td>
+
+    </tr>
+    <tr class="active">
+        <td>Total</td>
+        <td><?php echo(number_format($dash["orderstotal"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["tradestotal"], 0, '.', ',')); ?></td>
+        <td><?php echo(number_format($dash["volumetotal"], 0, '.', ',')); ?></td>
+        <td><?php echo($unitsymbol . number_format(getPrice($dash["valuetotal"]), 2, '.', ',')); ?></td>
+
+    </tr>
+</table>
+</div><!--panel-primary orderbook-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

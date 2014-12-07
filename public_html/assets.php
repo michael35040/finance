@@ -36,11 +36,15 @@ foreach ($allAssets as $row)		// for each of user's stocks
         $ask =	query("SELECT price FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $asset["symbol"], 'a');
         if(empty($ask)){$ask=0;}
     $asset["ask"] = getPrice($ask[0]["price"]); //stock price per share
-        $volume =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY DAY(date) ORDER BY uid ASC ", $asset["symbol"]);	  // query user's portfolio
-        if(empty($volume[0]["quantity"])){$volume[0]["quantity"]=0;}
-        if(empty($volume[0]["price"])){$volume[0]["price"]=0;}
-    $asset["volume"] = $volume[0]["quantity"];
-    $asset["avgprice"] = getPrice($volume[0]["price"]);
+
+
+    $trades30d = query("SELECT COUNT(uid) AS count, AVG(price) AS price, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (symbol=?) AND (`date`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())", $asset["symbol"]); // query database for user
+    if(empty($trades30d[0]["volume"])){$trades30d[0]["volume"]=0;}
+    if(empty($trades30d[0]["price"])){$trades30d[0]["price"]=0;}
+    $asset["avgprice"] = getPrice($trades30d[0]["price"]);
+    $asset["volume"] = $trades30d[0]["volume"];
+
+
         $trades = query("SELECT price FROM trades WHERE (symbol=? AND (type='limit' OR type='market')) ORDER BY uid DESC LIMIT 0,1", $asset["symbol"]);
         //$trades = query("SELECT price FROM trades WHERE symbol = ? ORDER BY uid DESC LIMIT 0, 1", $asset["symbol"]);	  // query user's portfolio
         if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
