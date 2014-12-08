@@ -91,7 +91,8 @@ $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
 $asset["dividend"]=0; //until we get real ones
         
         //DAILY TRADES CHART
-$tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE (symbol=? AND (type='limit' OR type='market'))  GROUP BY DAY(date) ORDER BY uid ASC LIMIT 0,30", $symbol);	  // query user's portfolio
+$tradesGroup =      query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY date DESC LIMIT 0,7", $symbol);      // query user's portfolio
+//$tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE (symbol=? AND (type='limit' OR type='market'))  GROUP BY DAY(date) ORDER BY uid ASC LIMIT 0,30", $symbol);	  // query user's portfolio
         //ALL TRADES CHART
 
 
