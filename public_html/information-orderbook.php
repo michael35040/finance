@@ -11,17 +11,30 @@ $asks =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type =
 
 
 
-echo("<h3>" . htmlspecialchars(strtoupper($symbol)) . " Orderbook " . date('l jS \of F Y h:i:s A') . "</h3>");
+echo("<h3 style='text-align:center;'>" . htmlspecialchars(strtoupper($symbol)) . "<br>Orderbook<br>" . date('l jS \of F Y h:i:s A') . "</h3>");
 
 ?>
 
-<table class="table" align="center" border="3">
+<style>
+    table
+    {
+        border: 1px solid black;
+    }
+    td
+    {
+        border: 1px solid black;
+    }
+    
+</style>
+
+<table align="center">
 <tr>
     <td colspan="7" style="text-align:center;">BID</td>
     <td></td>
     <td colspan="7" style="text-align:center;">ASK</td>
 </tr>
-<tr class="active">
+
+<tr>
     <td>Side</td>
     <td>Order #</td>
     <td>Date/Time (Y/M/D)</td>
@@ -29,9 +42,7 @@ echo("<h3>" . htmlspecialchars(strtoupper($symbol)) . " Orderbook " . date('l jS
     <td>Total</td>
     <td>ID</td>
     <td>Quantity</td>
-
     <td><b>Price</b></td>
-
     <td>Quantity</td>
     <td>ID</td>
     <td>Total</td>
@@ -39,15 +50,17 @@ echo("<h3>" . htmlspecialchars(strtoupper($symbol)) . " Orderbook " . date('l jS
     <td>Date/Time (Y/M/D)</td>
     <td>Order #</td>
     <td>Side</td>
-
 </tr>
 
 
 
 <?php
 foreach ($bids as $row)
-{ ?> 
-<tr <?php if($row['id']==$id){echo('bgcolor="#FF0000"');} ?> >
+{ 
+if($row['id']==$id){$color=' style="background-color:red"';}
+else{$color='';}
+?> 
+<tr>
     <?php
     if($row["side"]=='b'){$side='BID';}
     if($row["side"]=='a'){$side='ASK ';}
@@ -58,14 +71,16 @@ foreach ($bids as $row)
     echo("<td>" . (number_format(getPrice($row["total"]),2,".",",")) . "</td>");
     echo("<td>" . (number_format(($row["id"]),0,".",",")) . "</td>");
     echo("<td>" . number_format($row["quantity"],0,".",",") . "</td>");
-    echo("<td>" . (number_format(getPrice($row["price"]),2,".",",")) . "</td>");
+    echo("<td" . $color .">" . (number_format(getPrice($row["price"]),2,".",",")) . "</td>");
     }
     ?>
     <td colspan="7"></td>
 </tr>
 
 
-<tr class="active">
+
+
+<tr>
     <td>Side</td>
     <td>Order #</td>
     <td>Date/Time (Y/M/D)</td>
@@ -73,9 +88,7 @@ foreach ($bids as $row)
     <td>Total</td>
     <td>ID</td>
     <td>Quantity</td>
-
     <td><b>Price</b></td>
-
     <td>Quantity</td>
     <td>ID</td>
     <td>Total</td>
@@ -83,19 +96,23 @@ foreach ($bids as $row)
     <td>Date/Time (Y/M/D)</td>
     <td>Order #</td>
     <td>Side</td>
-
 </tr>
+
+
 
 
 <?php
 foreach ($asks as $row)
-{ ?> 
-<tr <?php if($row['id']==$id){echo('bgcolor="#FF0000"');} ?> >
+{ 
+if($row['id']==$id){$color=' style="background-color:red"';}
+else{$color='';}
+?> 
+<tr>
     <td colspan="7"></td>
     <?php
     if($row["side"]=='b'){$side='BID';}
     if($row["side"]=='a'){$side='ASK ';}
-    echo("<td>" . (number_format(getPrice($row["price"]),2,".",",")) . "</td>");
+    echo("<td" . $color .">" . (number_format(getPrice($row["price"]),2,".",",")) . "</td>");
     echo("<td>" . number_format($row["quantity"],0,".",",") . "</td>");
     echo("<td>" . (number_format(($row["id"]),0,".",",")) . "</td>");
     echo("<td>" . (number_format(getPrice($row["total"]),2,".",",")) . "</td>");
@@ -108,7 +125,7 @@ foreach ($asks as $row)
 </tr>
 
 
-<tr class="active">
+<tr>
     <td>Side</td>
     <td>Order #</td>
     <td>Date/Time (Y/M/D)</td>
@@ -116,9 +133,7 @@ foreach ($asks as $row)
     <td>Total</td>
     <td>ID</td>
     <td>Quantity</td>
-
     <td><b>Price</b></td>
-
     <td>Quantity</td>
     <td>ID</td>
     <td>Total</td>
@@ -126,7 +141,6 @@ foreach ($asks as $row)
     <td>Date/Time (Y/M/D)</td>
     <td>Order #</td>
     <td>Side</td>
-
 </tr>
 
 
