@@ -6,8 +6,7 @@ $id = $_SESSION["id"];
 
 $symbol='A';
 
-$bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid DESC", $symbol, 'b');
-$asks =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC", $symbol, 'a');
+$trades =	query("SELECT * FROM trades WHERE (symbol = ?) ORDER BY date ASC", $symbol);
 
 
 
@@ -46,7 +45,7 @@ echo("<h3 style='text-align:center;'>" . htmlspecialchars(strtoupper($symbol)) .
 
 
 <?php
-foreach ($bids as $row)
+foreach ($trades as $row)
 { 
 if($row['buyer']==$id || $row['seller']==$id){$color=' style="background-color:red"';}
 else{$color='';}
