@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     
     render("information-trades_form.php",[
         "title" => $title,
+        "symbol" => $symbol,
         "trades" => $trades,
         "tradestotal" => $tradestotal
         ]);
