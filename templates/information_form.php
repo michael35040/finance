@@ -826,11 +826,23 @@ if($asks!= null && $bids != null )
 
 
 
-
-
-
-
-
+<div class="panel panel-primary">
+    <!-- Default panel contents -->
+    <div class="panel-heading">DAILY ACTIVITY</div>
+<table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:left;vertical-align:middle;">
+<tr class="active">
+<th>Date</th><th>Avg. Price</th><th>Volume</th>
+</tr>
+            <?php
+            $symbol = $row["symbol"];
+            $tradesG = query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY date DESC LIMIT 0,7", $symbol);      // query user's portfolio
+            echo("");
+            foreach($tradesG as $trade){
+                echo('<tr><td>' . date("M j, Y", strtotime($trade["date"])) . '</td><td>' . number_format(getPrice($trade["price"]), 2, ".", "") . '</td><td>' . number_format(($trade["volume"]), 0, ".", "") . '</td></tr>');
+                }
+            ?>
+</table>
+</div><!--panel-primary DAILY ACTIVITY-->
 
 
 
@@ -858,49 +870,49 @@ if($asks!= null && $bids != null )
     </tr>
 
     <tr>
-        <td>00-24h (~<?php echo(date("M j, Y" )); ?>)</td>
+        <td>00-24h</td>
         <td><?php echo(number_format($dash["ordersday1"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["tradesday1"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["volumeday1"], 0, '.', ',')); ?></td>
         <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday1"]), 2, '.', ',')); ?></td>
     </tr>
     <tr>
-        <td>24-48h (~<?php echo(date("M j, Y", strtotime( '-1 days' ) )); ?>)</td>
+        <td>24-48h</td>
         <td><?php echo(number_format($dash["ordersday2"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["tradesday2"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["volumeday2"], 0, '.', ',')); ?></td>
         <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday2"]), 2, '.', ',')); ?></td>
     </tr>
     <tr>
-        <td>48-72h (~<?php echo(date("M j, Y", strtotime( '-2 days' ) )); ?>)</td>
+        <td>48-72h</td>
         <td><?php echo(number_format($dash["ordersday3"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["tradesday3"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["volumeday3"], 0, '.', ',')); ?></td>
         <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday3"]), 2, '.', ',')); ?></td>
     </tr>
     <tr>
-        <td>72-96h (~<?php echo(date("M j, Y", strtotime( '-3 days' ) )); ?>)</td>
+        <td>72-96h</td>
         <td><?php echo(number_format($dash["ordersday4"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["tradesday4"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["volumeday4"], 0, '.', ',')); ?></td>
         <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday4"]), 2, '.', ',')); ?></td>
     </tr>
     <tr>
-        <td>96-120h (~<?php echo(date("M j, Y", strtotime( '-4 days' ) )); ?>)</td>
+        <td>96-120h</td>
         <td><?php echo(number_format($dash["ordersday5"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["tradesday5"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["volumeday5"], 0, '.', ',')); ?></td>
         <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday5"]), 2, '.', ',')); ?></td>
     </tr>
     <tr>
-        <td>120-144h (~<?php echo(date("M j, Y", strtotime( '-5 days' ) )); ?>)</td>
+        <td>120-144h</td>
         <td><?php echo(number_format($dash["ordersday6"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["tradesday6"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["volumeday6"], 0, '.', ',')); ?></td>
         <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday6"]), 2, '.', ',')); ?></td>
     </tr>
     <tr>
-        <td>144-168h (~<?php echo(date("M j, Y", strtotime( '-6 days' ) )); ?>)</td>
+        <td>144-168h</td>
         <td><?php echo(number_format($dash["ordersday7"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["tradesday7"], 0, '.', ',')); ?></td>
         <td><?php echo(number_format($dash["volumeday7"], 0, '.', ',')); ?></td>
@@ -932,7 +944,7 @@ if($asks!= null && $bids != null )
 
     </tr>
 </table>
-</div><!--panel-primary orderbook-->
+</div><!--panel-primary ACTIVITY-->
 
 
 
