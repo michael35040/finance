@@ -7,6 +7,7 @@ $id = $_SESSION["id"];
 $symbol='A';
 
 $trades =	query("SELECT * FROM trades WHERE (symbol = ?) ORDER BY date ASC", $symbol);
+$tradestotal =	query("SELECT SUM(price) AS totalprice, SUM(quantity) AS totalquantity, SUM(commission) AS totalcommission, COUNT(uid) AS totaltrades FROM trades WHERE (symbol = ?) ORDER BY date ASC", $symbol);
 
 
 
@@ -42,6 +43,16 @@ echo("<h3 style='text-align:center;'>" . htmlspecialchars(strtoupper($symbol)) .
     <td>Bid UID</td>
 </tr>
 
+<tr>
+    <div style="font-weight: bold;">
+    <?php echo("<td>" . (number_format($tradestotal[0]["totaltrades"],0,".",",")) . "</td>"); ?>
+    <td></td>
+    <?php echo("<td>" . (number_format(getPrice($tradestotal[0]["totalprice"],0,".",","))) . "</td>"); ?>
+    <?php echo("<td>" . (number_format($tradestotal[0]["totalquantity"],0,".",",")) . "</td>"); ?>
+    <?php echo("<td>" . (number_format(getPrice($tradestotal[0]["totalcommission"],0,".",","))) . "</td>"); ?>
+    <td colspan="6"></td>
+    </div>
+</tr>
 
 
 <?php
@@ -67,8 +78,9 @@ else{$color='';}
 
     }
     ?>
-    <td colspan="7"></td>
 </tr>
+
+
 
 
 
