@@ -82,17 +82,19 @@ foreach ($assets as $asset) // for each of user's stocks
     <tr class="active"><!-- active warning danger info success -->
         <th width="25%">Symbol</th>
         <th width="25%">Price</th>
-        <th width="25%">Volume (30d)</th>
+        <th width="25%">Volume (<?php echo($timeframe); ?>)</th>
         <th width="25%">Market Cap</th>
     </tr>
     </thead>
     <tbody>
+    
+    
     <?php $i = 0;
     if(!empty($assets))
     {
         foreach ($assets as $asset)
         {
-            $tradesG = query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY uid ASC LIMIT 0,30", $asset["symbol"]);      // query user's portfolio
+            $tradesG = query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY uid ASC LIMIT 0,7", $asset["symbol"]);      // query user's portfolio
             //$tradesG =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY DAY(date) ORDER BY uid ASC ", $asset["symbol"]);	  // query user's portfolio
 
             $tradesCount=count($tradesG);
@@ -129,7 +131,7 @@ foreach ($assets as $asset) // for each of user's stocks
                 <br>&nbsp;&nbsp;<form method="post" action="information.php"><span class="nobutton"><button type="submit" name="symbol" value="' . $asset["symbol"] . '"><span class="glyphicon glyphicon glyphicon-info-sign"> Information</span></button></span></form></td>');
             echo('<td >' . $unitsymbol . (number_format($asset["bid"], 2, ".", ",")) . ' - Bid
                 <br>' . $unitsymbol . (number_format($asset["ask"], 2, ".", ",")) . ' - Ask
-                <br>' . $unitsymbol . (number_format($asset["avgprice"], 2, ".", ",")) . ' - Avg. Price (30d)</td>');
+                <br>' . $unitsymbol . (number_format($asset["avgprice"], 2, ".", ",")) . ' - Avg. Price (' . $timeframe . ')</td>');
             echo('<td >' . (number_format($asset["public"], 0, ".", ",")) . ' - Publicly Held
                 <br>' . (number_format($asset["issued"], 0, ".", ",")) . ' - Issued (' . (number_format($asset["userid"], 0, ".", ",")) . ')
                 <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
@@ -146,6 +148,9 @@ foreach ($assets as $asset) // for each of user's stocks
         echo("<tr><td colspan='4'><i>No assets</i></td></tr>");
     }
     ?>
+    
+    
+    
     </tbody>
 </table>
 
