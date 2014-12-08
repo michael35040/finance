@@ -18,9 +18,31 @@
         color: black;
         padding: 5px 5px 5px 5px;
     }
+        *
+    {
+        /*for sparkline box*/
+        box-sizing: initial;
+        /*box-sizing: content-box;*/
+
+    }
 </style>
 <?php //need To ensure the vars sugh as bids group arefed. ?>
 <head>
+
+<!--FOR SPARKLINES-->
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/sparkline.js"></script>
+<script type="text/javascript">
+    $(function() {
+    /** This code runs when everything has been loaded on the page */
+    /* Inline sparklines take their values from the contents of the tag */
+    $('.inlinesparkline').sparkline();
+    $('.sparklines').sparkline('html', { enableTagOptions: true });
+    });
+</script>
+<!--END SPARKLINES-->
+
+
    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <!--  <script type="text/javascript" src="js/jsapi"></script> -->
      <!--script type="text/javascript" src="https://www.google.com/jsapi"></script-->
@@ -828,15 +850,43 @@ if($asks!= null && $bids != null )
 
 <div class="panel panel-primary">
     <!-- Default panel contents -->
+                <?php
+            $symbol = $row["symbol"];
+            $tradesG = query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY date DESC LIMIT 0,7", $symbol);      // query user's portfolio
+            $tradesGreverse = array_reverse($tradesG); //so it will be in correct ASC order for chart
+            $tradesCount=count($tradesG);
+            ?>
     <div class="panel-heading">DAILY ACTIVITY</div>
 <table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:left;vertical-align:middle;">
 <tr class="active">
-<th>Date</th><th>Avg. Price</th><th>Volume</th>
+<th>Date</th>
+<th>Avg. Price
+<span class="sparklines" sparkType="line" style="box-sizing: initial;">
+<?php
+                $t=0;
+                foreach($tradesGreverse as $trade){
+                    echo(number_format(getPrice($trade["price"]), 2, ".", ""));
+                    $t++;
+                    if($t<$tradesCount){echo(",");}
+                }
+                ?>
+</span>
+</th>
+<th>Volume
+<span class="sparklines" sparkType="bar" sparkBarColor="blue">
+<?php
+                $t=0;
+                foreach($tradesGreverse as $trade){
+                    echo(number_format(getPrice($trade["volume"]), 2, ".", ""));
+                    $t++;
+                    if($t<$tradesCount){echo(",");}
+                }
+                ?>
+</span>
+</th>
 </tr>
+
             <?php
-            $symbol = $row["symbol"];
-            $tradesG = query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY date DESC LIMIT 0,7", $symbol);      // query user's portfolio
-            echo("");
             foreach($tradesG as $trade){
                 echo('<tr><td>' . date("M j, Y", strtotime($trade["date"])) . '</td><td>' . number_format(getPrice($trade["price"]), 2, ".", "") . '</td><td>' . number_format(($trade["volume"]), 0, ".", "") . '</td></tr>');
                 }
