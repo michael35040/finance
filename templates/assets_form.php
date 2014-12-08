@@ -94,7 +94,7 @@ foreach ($assets as $asset) // for each of user's stocks
     {
         foreach ($assets as $asset)
         {
-            $tradesG = query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY date DESC LIMIT 0,7", $symbol);      // query user's portfolio
+            $tradesG = query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY date DESC LIMIT 0,7", $asset["symbol"]);      // query user's portfolio
             //$tradesG = query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY uid ASC LIMIT 0,7", $asset["symbol"]);      // query user's portfolio
             //$tradesG =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE symbol =? GROUP BY DAY(date) ORDER BY uid ASC ", $asset["symbol"]);	  // query user's portfolio
 
