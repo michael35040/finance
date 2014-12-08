@@ -38,11 +38,20 @@ foreach ($allAssets as $row)		// for each of user's stocks
     $asset["ask"] = getPrice($ask[0]["price"]); //stock price per share
 
 
+/*
+    $timeframe = '30d';
     $trades30d = query("SELECT COUNT(uid) AS count, AVG(price) AS price, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (symbol=?) AND (`date`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())", $asset["symbol"]); // query database for user
     if(empty($trades30d[0]["volume"])){$trades30d[0]["volume"]=0;}
     if(empty($trades30d[0]["price"])){$trades30d[0]["price"]=0;}
     $asset["avgprice"] = getPrice($trades30d[0]["price"]);
     $asset["volume"] = $trades30d[0]["volume"];
+*/
+    $timeframe = '7d';
+    $trades7d = query("SELECT COUNT(uid) AS count, AVG(price) AS price, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (symbol=?) AND (`date`  BETWEEN DATE_SUB(now(), INTERVAL 7 DAY) AND NOW())", $asset["symbol"]); // query database for user
+    if(empty($trades7d[0]["volume"])){$trades7d[0]["volume"]=0;}
+    if(empty($trades7d[0]["price"])){$trades7d[0]["price"]=0;}
+    $asset["avgprice"] = getPrice($trades7d[0]["price"]);
+    $asset["volume"] = $trades7d[0]["volume"];
 
 
         $trades = query("SELECT price FROM trades WHERE (symbol=? AND (type='limit' OR type='market')) ORDER BY uid DESC LIMIT 0,1", $asset["symbol"]);
@@ -65,6 +74,7 @@ foreach ($allAssets as $row)		// for each of user's stocks
 render("assets_form.php",
     [   "title" => "Assets",
         "assets" => $assets,
+        "timeframe" => $timeframe,
         "indexMarketCap" => $indexMarketCap,
         "indexValue" => $indexValue]);
 
