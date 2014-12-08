@@ -122,7 +122,8 @@ foreach ($assets as $asset) // for each of user's stocks
 
 
 
-            echo('</td>');            echo('<td >' . $unitsymbol . htmlspecialchars(number_format($asset["marketcap"], 2, ".", ",")) . '</td>');
+            echo('</td>');            
+            echo('<td >' . $unitsymbol . htmlspecialchars(number_format($asset["marketcap"], 2, ".", ",")) . '</td>');
             echo('</tr>');
             echo('<div  class="hiddenRow">');
             echo('<tr class="accordian-body collapse" id="demo' . $i . '"   >');
