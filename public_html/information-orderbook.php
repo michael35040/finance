@@ -6,7 +6,7 @@ $id = $_SESSION["id"];
 
 $symbol='A';
 
-$bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC", $symbol, 'b');
+$bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid DESC", $symbol, 'b');
 $asks =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC", $symbol, 'a');
 
 
@@ -65,6 +65,26 @@ foreach ($bids as $row)
 </tr>
 
 
+<tr class="active">
+    <td>Side</td>
+    <td>Order #</td>
+    <td>Date/Time (Y/M/D)</td>
+    <td>Type</td>
+    <td>Total</td>
+    <td>ID</td>
+    <td>Quantity</td>
+
+    <td><b>Price</b></td>
+
+    <td>Quantity</td>
+    <td>ID</td>
+    <td>Total</td>
+    <td>Type</td>
+    <td>Date/Time (Y/M/D)</td>
+    <td>Order #</td>
+    <td>Side</td>
+
+</tr>
 
 
 <?php
@@ -85,6 +105,28 @@ foreach ($asks as $row)
     echo("<td>" . htmlspecialchars($side) . "</td>");
     }
     ?>
+</tr>
+
+
+<tr class="active">
+    <td>Side</td>
+    <td>Order #</td>
+    <td>Date/Time (Y/M/D)</td>
+    <td>Type</td>
+    <td>Total</td>
+    <td>ID</td>
+    <td>Quantity</td>
+
+    <td><b>Price</b></td>
+
+    <td>Quantity</td>
+    <td>ID</td>
+    <td>Total</td>
+    <td>Type</td>
+    <td>Date/Time (Y/M/D)</td>
+    <td>Order #</td>
+    <td>Side</td>
+
 </tr>
 
 
