@@ -72,11 +72,11 @@
                     $dbDate = $trade["date"];
                     $date = strtotime($dbDate);
                     $price = number_format(getPrice($trade["price"]), 2, '.', '');
-                    $quantity = number_format(($trade["quantity"]), 2, '.', '')/1000;
+                    $volume = number_format(($trade["volume"]), 2, '.', '')/1000;
                     //$quantity = (int)$trade["quantity"];
                     //$quantity = ($quantity/1000);
 
-                    echo("['" . date("m-d-Y", $date) . "', " . $price .  ", " . $quantity . "],");
+                    echo("['" . date("m-d-Y", $date) . "', " . $price .  ", " . $volume . "],");
                 }//ex: ['2013',  1000, 400],
                 ?>
             ]);
@@ -852,9 +852,9 @@ if($asks!= null && $bids != null )
     <!-- Default panel contents -->
                 <?php
             $symbol = $row["symbol"];
-            $tradesG = query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY date DESC LIMIT 0,7", $symbol);      // query user's portfolio
-            $tradesGreverse = array_reverse($tradesG); //so it will be in correct ASC order for chart
-            $tradesCount=count($tradesG);
+            $tradesGroup = query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY date DESC LIMIT 0,7", $symbol);      // query user's portfolio
+            $tradesGreverse = array_reverse($tradesGroup); //so it will be in correct ASC order for chart
+            $tradesCount=count($tradesGroup);
             ?>
     <div class="panel-heading">DAILY ACTIVITY</div>
 <table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:left;vertical-align:middle;">
@@ -887,7 +887,7 @@ if($asks!= null && $bids != null )
 </tr>
 
             <?php
-            foreach($tradesG as $trade){
+            foreach($tradesGreverse as $trade){
                 echo('<tr><td>' . date("M j, Y", strtotime($trade["date"])) . '</td><td>' . number_format(getPrice($trade["price"]), 2, ".", "") . '</td><td>' . number_format(($trade["volume"]), 0, ".", "") . '</td></tr>');
                 }
             ?>
