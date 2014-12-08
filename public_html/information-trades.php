@@ -4,15 +4,26 @@ require("../includes/config.php");
 $title = "Trades";
 $id = $_SESSION["id"];
 
-$symbol='A';
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    if(isset($_POST['symbol'])){ $symbol=$_POST['symbol'];} 
+    else{apologize("Unknown symbol!"); exit();}
+    
+    $trades =	query("SELECT * FROM trades WHERE (symbol = ?) ORDER BY date ASC", $symbol);
+    $tradestotal =	query("SELECT SUM(price) AS totalprice, SUM(total) AS totaltotal, SUM(quantity) AS totalquantity, SUM(commission) AS totalcommission, COUNT(uid) AS totaltrades FROM trades WHERE (symbol = ?) ORDER BY date ASC", $symbol);
+    
+    //render("information-trades_form.php",["title" => $title,"trades" => $trades,"tradestotal" => $tradestotal]);
+}
+else{
+ apologize("No symbol selected!");
+}
+?>
 
-$trades =	query("SELECT * FROM trades WHERE (symbol = ?) ORDER BY date ASC", $symbol);
-$tradestotal =	query("SELECT SUM(price) AS totalprice, SUM(quantity) AS totalquantity, SUM(commission) AS totalcommission, COUNT(uid) AS totaltrades FROM trades WHERE (symbol = ?) ORDER BY date ASC", $symbol);
 
 
 
+<?php
 echo("<h3 style='text-align:center;'>" . htmlspecialchars(strtoupper($symbol)) . "<br>Trades<br>" . date('l jS \of F Y h:i:s A') . "</h3>");
-
 ?>
 
 <style>
@@ -24,6 +35,11 @@ echo("<h3 style='text-align:center;'>" . htmlspecialchars(strtoupper($symbol)) .
     {
         border: 1px solid black;
     }
+    .bold td
+     {
+         font-weight: bold;
+     }
+
     
 </style>
 
@@ -43,15 +59,14 @@ echo("<h3 style='text-align:center;'>" . htmlspecialchars(strtoupper($symbol)) .
     <td>Bid UID</td>
 </tr>
 
-<tr>
-    <div style="font-weight: bold;">
+<tr class="bold">
     <?php echo("<td>" . (number_format($tradestotal[0]["totaltrades"],0,".",",")) . "</td>"); ?>
     <td></td>
     <?php echo("<td>" . (number_format(getPrice($tradestotal[0]["totalprice"],0,".",","))) . "</td>"); ?>
     <?php echo("<td>" . (number_format($tradestotal[0]["totalquantity"],0,".",",")) . "</td>"); ?>
     <?php echo("<td>" . (number_format(getPrice($tradestotal[0]["totalcommission"],0,".",","))) . "</td>"); ?>
-    <td colspan="6"></td>
-    </div>
+    <?php echo("<td>" . (number_format(getPrice($tradestotal[0]["totaltotal"],0,".",","))) . "</td>"); ?>
+    <td colspan="5"></td>
 </tr>
 
 
