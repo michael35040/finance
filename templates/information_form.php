@@ -1,4 +1,12 @@
 <style>
+
+    .nobutton button
+    {
+        padding:0;
+        font-weight: 100;
+        border:0;
+        background:transparent;
+    }
     #middle
     {
         background-color:transparent;
@@ -537,7 +545,11 @@
 
     <div class="panel panel-primary">
     <!-- Default panel contents -->
-    <div class="panel-heading">TRADES</div>
+
+
+    <div class="panel-heading">
+        <form method="post" action="information-trades.php"><span class="nobutton"><button type="submit" name="symbol" value="<?php echo($asset["symbol"]); ?>">TRADES</button></span></form></td>
+    </div>
 <table class="table">
 <?php
 if($tradesGroup != null)
