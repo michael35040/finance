@@ -549,13 +549,13 @@ if($tradesGroup != null)
     
 <?php $tradesCount=count($tradesGroup);?>
 <tr class="active">
-<td>Date</td>
-<td>Avg. Price
+<td colspan="3">Date</td>
+<td colspan="2">Avg. Price
     <span class="sparklines" sparkType="line">
     <?php $t=0; foreach($tradesGroup as $trade){echo(number_format(getPrice($trade["price"]), 2, ".", "")); $t++; if($t<$tradesCount){echo(",");} } ?>
     </span>
 </td>
-<td>Volume
+<td colspan="2">Volume
     <span class="sparklines" sparkType="bar" sparkBarColor="blue">
     <?php  $t=0; foreach($tradesGroup as $trade){echo(number_format(($trade["volume"]), 0, ".", "")); $t++; if($t<$tradesCount){echo(",");}}?>
     </span>
@@ -563,7 +563,7 @@ if($tradesGroup != null)
 </tr>
 
 <?php
-foreach($tradesGroup as $trade){echo('<tr><td>' . date("M j, Y", strtotime($trade["date"])) . '</td><td>' . number_format(getPrice($trade["price"]), 2, ".", "") . '</td><td>' . number_format(($trade["volume"]), 0, ".", "") . '</td></tr>');
+foreach($tradesGroup as $trade){echo('<tr><td colspan="3">' . date("M j, Y", strtotime($trade["date"])) . '</td><td colspan="2">' . number_format(getPrice($trade["price"]), 2, ".", "") . '</td><td colspan="2">' . number_format(($trade["volume"]), 0, ".", "") . '</td></tr>');
 }
 ?>
 
