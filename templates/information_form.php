@@ -54,6 +54,8 @@
         <?php
             if($tradesGroup != null)
             {
+                        $tradesGroup = array_reverse($tradesGroup); //so it will be in correct ASC order for chart
+
             ?>
 
 
@@ -541,6 +543,36 @@
 if($tradesGroup != null)
 { ?>
     <tr><td colspan="7"><div id="chart_div" style="overflow:hidden;"></div></td></tr>
+    
+    
+    
+    
+<?php $tradesCount=count($tradesGroup);?>
+<tr class="active">
+<td>Date</td>
+<td>Avg. Price
+    <span class="sparklines" sparkType="line">
+    <?php $t=0; foreach($tradesGroup as $trade){echo(number_format(getPrice($trade["price"]), 2, ".", "")); $t++; if($t<$tradesCount){echo(",");} } ?>
+    </span>
+</td>
+<td>Volume
+    <span class="sparklines" sparkType="bar" sparkBarColor="blue">
+    <?php  $t=0; foreach($tradesGroup as $trade){echo(number_format(($trade["volume"]), 0, ".", "")); $t++; if($t<$tradesCount){echo(",");}}?>
+    </span>
+</td>
+</tr>
+
+<?php
+foreach($tradesGroup as $trade){echo('<tr><td>' . date("M j, Y", strtotime($trade["date"])) . '</td><td>' . number_format(getPrice($trade["price"]), 2, ".", "") . '</td><td>' . number_format(($trade["volume"]), 0, ".", "") . '</td></tr>');
+}
+?>
+
+
+
+
+
+    
+    
 <?php } /*tradesgroup*/?>
 
 
@@ -846,53 +878,6 @@ if($asks!= null && $bids != null )
 
 
 
-
-
-<div class="panel panel-primary">
-    <!-- Default panel contents -->
-                <?php
-            $symbol = $row["symbol"];
-            $tradesGroup = query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY date DESC LIMIT 0,7", $symbol);      // query user's portfolio
-            $tradesGreverse = array_reverse($tradesGroup); //so it will be in correct ASC order for chart
-            $tradesCount=count($tradesGroup);
-            ?>
-    <div class="panel-heading">DAILY ACTIVITY</div>
-<table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:left;vertical-align:middle;">
-<tr class="active">
-<th>Date</th>
-<th>Avg. Price
-<span class="sparklines" sparkType="line" style="box-sizing: initial;">
-<?php
-                $t=0;
-                foreach($tradesGreverse as $trade){
-                    echo(number_format(getPrice($trade["price"]), 2, ".", ""));
-                    $t++;
-                    if($t<$tradesCount){echo(",");}
-                }
-                ?>
-</span>
-</th>
-<th>Volume
-<span class="sparklines" sparkType="bar" sparkBarColor="blue">
-<?php
-                $t=0;
-                foreach($tradesGreverse as $trade){
-                    echo(number_format(($trade["volume"]), 0, ".", ""));
-                    $t++;
-                    if($t<$tradesCount){echo(",");}
-                }
-                ?>
-</span>
-</th>
-</tr>
-
-            <?php
-            foreach($tradesGreverse as $trade){
-                echo('<tr><td>' . date("M j, Y", strtotime($trade["date"])) . '</td><td>' . number_format(getPrice($trade["price"]), 2, ".", "") . '</td><td>' . number_format(($trade["volume"]), 0, ".", "") . '</td></tr>');
-                }
-            ?>
-</table>
-</div><!--panel-primary DAILY ACTIVITY-->
 
 
 
