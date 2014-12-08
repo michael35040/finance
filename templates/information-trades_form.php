@@ -24,7 +24,7 @@ echo("<h3 style='text-align:center;'>" . htmlspecialchars(strtoupper($symbol)) .
 <table align="center">
 
 <tr>
-    <td>Order #</td>
+    <td>Trade #</td>
     <td>Date/Time (Y/M/D)</td>
     <td>Price</td>
     <td>Quantity</td>
