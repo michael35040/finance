@@ -877,7 +877,7 @@ if($asks!= null && $bids != null )
 <?php
                 $t=0;
                 foreach($tradesGreverse as $trade){
-                    echo(number_format(getPrice($trade["volume"]), 2, ".", ""));
+                    echo(number_format(($trade["volume"]), 0, ".", ""));
                     $t++;
                     if($t<$tradesCount){echo(",");}
                 }
