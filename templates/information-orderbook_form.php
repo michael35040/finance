@@ -1,14 +1,14 @@
 
 <style>
-    h3
+    h6
     {
-        text-shadow: 1px 1px 2px #000;
-        color:white;
+        text-shadow: 1px 1px 2px #fff;
+        color:black;
 
     }
     .nobutton button
     {
-        text-shadow: 1px 1px 2px #000;
+        text-shadow: 1px 1px 2px #fff;
 
         padding:0;
         font-weight: 100;
@@ -18,17 +18,19 @@
 </style>
 
 
-<h3 style='text-align:center;'>
-    <form method="post" action="information.php"><span class="nobutton"><button type="submit" name="symbol" value="<?php echo(htmlspecialchars(strtoupper($symbol))); ?>"><?php echo(htmlspecialchars(strtoupper($symbol))); ?></button></span></form><br>
-    <?php echo($title); ?><br>
+<h6 style='text-align:center;'>
     <?php echo(date('l jS \of F Y h:i:s A')); ?>
-</h3>
+</h6>
 
 <table align="center" class="table">
     <tr>
-        <td colspan="7" style="text-align:center;border:1px solid black;font-weight:bold;">BID</td>
-        <td></td>
-        <td colspan="7" style="text-align:center;border:1px solid black;font-weight:bold;">ASK</td>
+        <td colspan="7" style="text-align:center;border:1px solid black;font-weight:bold;background-color:black;color:white;">BID</td>
+        <td>
+        <div style="text-align:center">
+            <form method="post" action="information.php"><span class="nobutton"><button type="submit" name="symbol" value="<?php echo(htmlspecialchars(strtoupper($symbol))); ?>"><?php echo(htmlspecialchars(strtoupper($symbol))); ?></button></span></form><br>
+        </div>
+        </td>
+        <td colspan="7" style="text-align:center;border:1px solid black;font-weight:bold;background-color:black;color:white;">ASK</td>
     </tr>
 
     <tr>
