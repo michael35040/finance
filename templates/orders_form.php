@@ -170,21 +170,5 @@
         echo("</tr>");
     }
     ?>
-    <tr >
-
-        <td colspan="3"><strong>Sum of Listed Transactions</strong></td>
-        <td><?php
-            //calculate gains/losses
-            $acc = array_shift($history);
-            foreach ($history as $val) {
-                foreach ($val as $key => $val) {
-                    $acc[$key] += $val;
-                }
-            }
-            $gainlosses = getPrice($acc['total']);
-
-            echo("<strong>" . $unitsymbol . htmlspecialchars(number_format($gainlosses,2,".",",")) . "</strong>");
-            ?></td>
-    </tr>
     </tbody>
 </table>
