@@ -57,7 +57,6 @@ function drawChart()
     <?php
         if($tradesGroup != null)
         {
-                    $tradesGroup = array_reverse($tradesGroup); //so it will be in correct ASC order for chart
 
         ?>
 
@@ -71,8 +70,8 @@ function drawChart()
 
         echo("['Date', 'Price', 'Volume(k)'],"); // ['Year', 'Sales', 'Expenses'],
         //SQL QUERY FOR ALL TRADES
-
-        foreach ($tradesGroup as $trade)	// for each of user's stocks
+        $tradesGroupR = array_reverse($tradesGroup); //so it will be in correct ASC order for chart
+        foreach ($tradesGroupR as $trade)	// for each of user's stocks
         {
             $dbDate = $trade["date"];
             $date = strtotime($dbDate);
@@ -559,12 +558,12 @@ function drawChart()
                 <td colspan="2">Date</td>
                 <td colspan="2">Avg. Price
     <span class="sparklines" sparkType="line">
-    <?php $t=0; foreach($tradesGroup as $trade){echo(number_format(getPrice($trade["price"]), $decimalplaces, ".", "")); $t++; if($t<$tradesCount){echo(",");} } ?>
+    <?php $t=0; foreach($tradesGroupR as $trade){echo(number_format(getPrice($trade["price"]), $decimalplaces, ".", "")); $t++; if($t<$tradesCount){echo(",");} } ?>
     </span>
                 </td>
                 <td colspan="3">Volume
     <span class="sparklines" sparkType="bar" sparkBarColor="blue">
-    <?php  $t=0; foreach($tradesGroup as $trade){echo(number_format(($trade["volume"]), 0, ".", "")); $t++; if($t<$tradesCount){echo(",");}}?>
+    <?php  $t=0; foreach($tradesGroupR as $trade){echo(number_format(($trade["volume"]), 0, ".", "")); $t++; if($t<$tradesCount){echo(",");}}?>
     </span>
                 </td>
             </tr>
