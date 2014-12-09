@@ -8,6 +8,8 @@
     }
     .nobutton button
     {
+        text-shadow: 1px 1px 2px #000;
+
         padding:0;
         font-weight: 100;
         border:0;
