@@ -9,7 +9,7 @@ require("../includes/constants.php"); //global finance constants
  <?php echo(htmlspecialchars($sitename))?> &#169; 1985-2014
 
 <h6 style='text-align:center; text-shadow: 1px 1px 2px #000; color:white;'>
-Server Time: <?php echo(date('l jS \of F Y h:i:s A')); ?>
+Server Time: <?php echo(date('Y-m-d H:i:s')); ?>
 </h6>
 
 </div> <!--bottom-->
