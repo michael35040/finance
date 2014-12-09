@@ -181,7 +181,8 @@
                     $acc[$key] += $val;
                 }
             }
-            $gainlosses = $acc['total'];
+            $gainlosses = getPrice($acc['total']);
+
             echo("<strong>" . $unitsymbol . htmlspecialchars(number_format($gainlosses,2,".",",")) . "</strong>");
             ?></td>
     </tr>
