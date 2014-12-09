@@ -64,7 +64,7 @@ else
 
 } //else !post , 
 */
-$orders = query("SELECT uid, date, symbol, side, type, quantity, price, total FROM orderbook WHERE (id = ? $option) ORDER BY uid DESC", $id);
+$orders = query("SELECT uid, date, symbol, side, type, quantity, price, total FROM orderbook WHERE (id = ? $option) ORDER BY uid DESC $limit", $id);
 $ordertotal = query("SELECT SUM(total) AS sumtotal FROM orderbook WHERE (id = ? $option)", $id);
 $history = query("SELECT ouid, date, symbol, transaction, total FROM history WHERE (id = ?) ORDER BY uid DESC $limit", $id);
 render("orders_form.php", ["title" => $title, "tabletitle" => $tabletitle, "orders" => $orders,  "ordertotal" => $ordertotal, "history" => $history]);

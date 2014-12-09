@@ -59,13 +59,13 @@
         <?php
         if($row["side"]=='b'){$side='BID';}
         if($row["side"]=='a'){$side='ASK ';}
-        echo('<td' . $color .'>' . (number_format(($row["id"]),0,".",",")) . '</td>');
+        echo('<td' . $color .'>' . (number_format(($row["id"]),0,".","")) . '</td>');
         echo('<td>' . htmlspecialchars($side) . '</td>');
         echo('<td>' . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . '</td>');
         echo('<td>' . htmlspecialchars($row["type"]) . '</td>');
         echo('<td>' . $unitsymbol . (number_format(getPrice($row["total"]),$decimalplaces,".",",")) . '</td>');
         echo('<td>' . number_format($row["quantity"],0,".",",") . '</td>');
-        echo('<td>' . (number_format($row["uid"],0,".",",")) . '</td>');
+        echo('<td>' . (number_format($row["uid"],0,".","")) . '</td>');
         echo('<td style="background-color:lightgray;">' . $unitsymbol . (number_format(getPrice($row["price"]),$decimalplaces,".",",")) . '</td>
         <td colspan="7"></td>');
 
@@ -89,13 +89,13 @@
         if($row["side"]=='a'){$side='ASK ';}
 
         echo('<td style="background-color:lightgray;">' . $unitsymbol . (number_format(getPrice($row["price"]),$decimalplaces,".",",")) . '</td>');
-        echo('<td>' . (number_format($row["uid"],0,".",",")) . '</td>');
+        echo('<td>' . (number_format($row["uid"],0,".","")) . '</td>');
         echo('<td>' . number_format($row["quantity"],0,".",",") . '</td>');
         echo('<td>' . $unitsymbol . (number_format(getPrice($row["total"]),$decimalplaces,".",",")) . '</td>');
         echo('<td>' . htmlspecialchars($row["type"]) . '</td>');
         echo('<td>' . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . '</td>');
         echo('<td>' . htmlspecialchars($side) . '</td>');
-        echo('<td' . $color .'>' . (number_format(($row["id"]),0,".",",")) . '</td>');
+        echo('<td' . $color .'>' . (number_format(($row["id"]),0,".","")) . '</td>');
         }
         ?>
     </tr>

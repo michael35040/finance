@@ -66,17 +66,17 @@ if($row['seller']==$id){$colorS='<td style="background-color:red">';} else{$colo
     <tr>
     <?php
 
-    echo("<td>" . (number_format($row["uid"],0,".",",")) . "</td>");
+    echo("<td>" . (number_format($row["uid"],0,".","")) . "</td>");
     echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
     echo("<td>" . (number_format(($row["quantity"]),0,".",",")) . "</td>");
     echo("<td>" . (number_format(getPrice($row["total"]),$decimalplaces,".",",")) . "</td>");
     echo("<td>" . (number_format(getPrice($row["price"]),$decimalplaces,".",",")) . "</td>");
     echo("<td>" . (number_format(getPrice($row["commission"]),$decimalplaces,".",",")) . "</td>");
     echo("<td>" . htmlspecialchars($row["type"]) . "</td>");
-    echo($colorB . (number_format(($row["buyer"]),0,".",",")) . "</td>");
-    echo($colorS . (number_format(($row["seller"]),0,".",",")) . "</td>");
-    echo("<td>" . (number_format(($row["askorderuid"]),0,".",",")) . "</td>");
-    echo("<td>" . (number_format(($row["bidorderuid"]),0,".",",")) . "</td>");
+    echo($colorB . (number_format(($row["buyer"]),0,".","")) . "</td>");
+    echo($colorS . (number_format(($row["seller"]),0,".","")) . "</td>");
+    echo("<td>" . (number_format(($row["askorderuid"]),0,".","")) . "</td>");
+    echo("<td>" . (number_format(($row["bidorderuid"]),0,".","")) . "</td>");
 
     }
     ?>
