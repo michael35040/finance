@@ -15,22 +15,25 @@ h3
     <?php echo(date('l jS \of F Y h:i:s A')); ?>
 </h3>
 
+
+
+
 <table align="center" class="table">
-
-
-
     <tr class="info" style="font-weight:bold;">
-        <?php echo("<td>" . (number_format($tradestotal[0]["totaltrades"],0,".",",")) . "</td>"); ?>
-        <td></td>
-        <?php echo("<td>" . (number_format($tradestotal[0]["totalquantity"],0,".",",")) . "</td>"); ?>
-        <?php echo("<td>" . $unitsymbol . (number_format(getPrice($tradestotal[0]["totaltotal"]),$decimalplaces,".",",")) . "</td>"); ?>
-        <?php echo("<td>" . $unitsymbol . (number_format(getPrice($tradestotal[0]["avgprice"]),$decimalplaces,".",",")) . "</td>"); ?>
-        <?php echo("<td>" . $unitsymbol . (number_format(getPrice($tradestotal[0]["totalcommission"]),$decimalplaces,".",",")) . "</td>"); ?>
+        <td>Total</td>
+        <?php echo("<td>" . (number_format($tradestotal[0]["totaltrades"],0,".",",")) . " Trades</td>"); ?>
+        <?php echo("<td>" . (number_format($tradestotal[0]["totalquantity"],0,".",",")) . " Quantity</td>"); ?>
+        <?php echo("<td>" . $unitsymbol . (number_format(getPrice($tradestotal[0]["totaltotal"]),$decimalplaces,".",",")) . " Total</td>"); ?>
+        <?php echo("<td>" . $unitsymbol . (number_format(getPrice($tradestotal[0]["avgprice"]),$decimalplaces,".",",")) . " Avg. Price</td>"); ?>
+        <?php echo("<td>" . $unitsymbol . (number_format(getPrice($tradestotal[0]["totalcommission"]),$decimalplaces,".",",")) . " Commission</td>"); ?>
         <td colspan="5"></td>
     </tr>
+</table>
+
+<br>
 
 
-
+<table align="center" class="table">
 
     <tr class="active">
         <th>Trade #</th>
@@ -50,11 +53,11 @@ h3
 
 <?php
 foreach ($trades as $row)
-{ 
-if($row['buyer']==$id || $row['seller']==$id){$color=' style="background-color:red"';}
-else{$color='';}
-?> 
-<tr <?php echo($color); ?> >
+{
+if($row['buyer']==$id){$colorB='<td style="background-color:red">';} else{$colorB='<td>';}
+if($row['seller']==$id){$colorS='<td style="background-color:red">';} else{$colorS='<td>';}
+?>
+    <tr>
     <?php
 
     echo("<td>" . (number_format($row["uid"],0,".",",")) . "</td>");
@@ -64,8 +67,8 @@ else{$color='';}
     echo("<td>" . (number_format(getPrice($row["price"]),$decimalplaces,".",",")) . "</td>");
     echo("<td>" . (number_format(getPrice($row["commission"]),$decimalplaces,".",",")) . "</td>");
     echo("<td>" . htmlspecialchars($row["type"]) . "</td>");
-    echo("<td>" . (number_format(($row["buyer"]),0,".",",")) . "</td>");
-    echo("<td>" . (number_format(($row["seller"]),0,".",",")) . "</td>");
+    echo($colorB . (number_format(($row["buyer"]),0,".",",")) . "</td>");
+    echo($colorS . (number_format(($row["seller"]),0,".",",")) . "</td>");
     echo("<td>" . (number_format(($row["askorderuid"]),0,".",",")) . "</td>");
     echo("<td>" . (number_format(($row["bidorderuid"]),0,".",",")) . "</td>");
 

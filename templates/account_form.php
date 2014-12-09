@@ -151,7 +151,7 @@
                 echo("-" . $i); ?></td>
             <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>
 
-            <td colspan="4"><?php echo("Locked <form action='orders.php' method='post'><span class='nobutton'><button type='submit' name='side' value='b'>(Pending Bid Orders)</button></span></form>"); ?></td>
+            <td colspan="4"><?php echo("<form action='orders.php' method='post'><span class='nobutton'><button type='submit' name='side' value='b'>" . $unitdescription . " (Pending Bid Orders)</button></span></form>"); ?></td>
             <td><div style="text-align:right">
                     <?php echo($unitsymbol . number_format($bidLocked, 2, ".", ",")) ?>
                 </div></td>
@@ -205,9 +205,9 @@
 
     <tr  class="active">
         <th>Asset</th>
-        <th>Quantity</th>
+        <th>Total (Control)</th>
         <th>Available</th>
-        <th>Locked*</th>
+        <th>Orderbook*</th>
         <th>Price</th>
         <th>Purchase</th>
         <th>Loss/Gain</th>
@@ -226,7 +226,7 @@
         echo("<td>" . (number_format($row["quantity"], 0, ".", ",")) . "</td>");
         //echo("<td>" . (number_format($row["locked"], 0, ".", ",")) . "</td>");
 
-        echo("<td><span class='nobutton'><form method='post' action='orders.php'><button type='submit' name='symbol' value='" . $row['symbol'] . "'>" . $row['locked']
+        echo("<td><span class='nobutton'><form method='post' action='orders.php'><button type='submit' name='symbol' value='" . $row['symbol'] . "'>" . (number_format($row["locked"], 0, ".", ","))
             . "</button></form></span></td>");
 
 
@@ -261,7 +261,7 @@
         $portfolioTotal = 0;  //set to zero for networth calc
         ?>
         <tr  class="active">
-            <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Assets) <i>&nbsp;&nbsp;&nbsp;&nbsp;*Locked <span class='nobutton'><form action='orders.php' method='post'><button type='submit' name='side' value='a'>(Pending Ask Orders)</button></form></span></i></td>
+            <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Assets) <i>&nbsp;&nbsp;&nbsp;&nbsp;<span class='nobutton'><form action='orders.php' method='post'><button type='submit' name='side' value='a'>*Pending Ask Orders</button></form></span></i></td>
             <td><strong>0</strong></td>
             <td><strong>0</strong></td>
             <td><strong>0</strong></td>

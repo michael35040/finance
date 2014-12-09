@@ -265,7 +265,7 @@ function drawChart()
     ]);
     var options2 =
     {
-        title: '<?php echo($symbol); ?> - ORDERBOOK',
+        title: '<?php echo($symbol); ?> - TOP OF ORDERBOOK',
         hAxis: {title: 'Price',  titleTextStyle: {color: '#333'}},
         vAxis: {title: 'Quantity', minValue: 0, isStacked: true}
         // height: 500,
