@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
         //$symbol = htmlspecialchars($_POST["symbol"]);
         //if (!ctype_alnum($symbol)){apologize("Invalid query!");}
         $option = 'AND side = "a" AND symbol = "' . $symbol . '"';
-        $tabletitle = "D ";
+        $tabletitle = htmlspecialchars($symbol);
 
         //apologize(var_dump(get_defined_vars()));
 
