@@ -517,7 +517,7 @@ function drawChart()
             <td colspan="1"><?php echo(number_format($asset["userportfolio"], 0, ".", ",")) ?></td>
             <td colspan="1"><?php echo(number_format($asset["userlocked"], 0, ".", ",")) ?></td>
             <td colspan="1"><?php echo(number_format(($asset["userlocked"]+$asset["userportfolio"]), 0, ".", ",")) ?></td>
-            <td colspan="1"><?php echo(number_format($asset["control"], 0, ".","")) ?>%</td>
+            <td colspan="1"><?php echo(number_format($asset["control"], 4, ".","")) ?>%</td>
             <td colspan="1"><?php echo($unitsymbol . number_format((($asset["userlocked"]+$asset["userportfolio"])*$asset["price"]), $decimalplaces, ".", ",")) ?></td>
         </tr>
         </tbody>
