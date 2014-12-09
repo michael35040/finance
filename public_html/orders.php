@@ -3,7 +3,8 @@ require("../includes/config.php");
 
 $id =  $_SESSION["id"];
 $title = "Orders";
-$limit = "LIMIT 0, 10";
+$limit = "LIMIT 0, 10"; //active orders
+$limit2 = "LIMIT 0, 10"; //order history
 $tabletitle = "Last 10";
 $option = '';
 
@@ -51,10 +52,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     }
     
     
-    if (isset($_POST["history"])) 
+    if (isset($_POST["history2"])) 
     {
-        $history = $_POST["history"];
-        if ($history == "all") {$limit = ""; $tabletitle = "All";}
+        $history2 = $_POST["history2"];
+        if ($history2 == "all") {$limit2 = ""; $tabletitle = "All";}
     }
     
 }
@@ -66,7 +67,7 @@ else
 */
 $orders = query("SELECT uid, date, symbol, side, type, quantity, price, total FROM orderbook WHERE (id = ? $option) ORDER BY uid DESC $limit", $id);
 $ordertotal = query("SELECT SUM(total) AS sumtotal FROM orderbook WHERE (id = ? $option)", $id);
-$history = query("SELECT ouid, date, symbol, transaction, total FROM history WHERE (id = ?) ORDER BY uid DESC $limit", $id);
+$history = query("SELECT ouid, date, symbol, transaction, total FROM history WHERE (id = ?) ORDER BY uid DESC $limit2", $id);
 render("orders_form.php", ["title" => $title, "tabletitle" => $tabletitle, "orders" => $orders,  "ordertotal" => $ordertotal, "history" => $history]);
 
 ?>
