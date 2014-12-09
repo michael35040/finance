@@ -238,19 +238,23 @@
         } else {
             $percentchange = 0;
         }
-        echo("<td>" . $unitsymbol . number_format($pricechange, 2, ".", ",") . " (<i>" . number_format($percentchange, 2, ".", ",") . "</i>%) ");
 
+        echo("<td>"); 
+        
         //ARROWS START
         if ($row['value'] < $row['total']) {
-            echo("<font color='#00FF00'>&#x25B2;</font></td>");
+            echo("<font color='#00FF00'>&#x25B2;</font>");
         } //money is up
         elseif ($row['value'] > $row['total']) {
-            echo("<font color='#FF0000'>&#x25BC;</font></td>");
+            echo("<font color='#FF0000'>&#x25BC;</font>");
         }  //money is down
         else {
-            echo("&#x25C4; &#x25BA; </td>");
+            echo("&#x25C4;");  //eft:[&#x25C4;]   right: [&#x25BA;]
         } //even left and right arrow
         //ARROWS END
+
+        echo($unitsymbol . number_format($pricechange, 2, ".", ",") . " (<i>" . number_format($percentchange, 2, ".", ",") . "</i>%)  </td>");
+
         echo("<td><div style='text-align:right'>" . $unitsymbol . (number_format($row["total"], 2, ".", ",")) . "</div></td></tr>");
         $i++;
     } //foreach statement
@@ -274,7 +278,7 @@
 
         <!-- TOTAL STOCK WORTH -->
         <tr  class="active">
-            <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Assets) <i>&nbsp;&nbsp;&nbsp;&nbsp;*Locked <span class='nobutton'><form action='orders.php' method='post'><button type='submit' name='side' value='a'>(Pending Ask Orders)</button></form></span></i></td>
+            <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Assets) <i>&nbsp;&nbsp;&nbsp;&nbsp;<span class='nobutton'><form action='orders.php' method='post'><button type='submit' name='side' value='a'>*Pending Ask Orders</button></form></span></i></td>
             <td><strong>
                     <?php //calculate value of purchase price
                     echo($unitsymbol . number_format($purchaseprice, 2, ".", ",")); //display purchase price
@@ -286,9 +290,6 @@
                     if ($purchaseprice > 0) {$percent = 100 * (($portfolioTotal / $purchaseprice) - 1);} // total/purchase}
                     else {$percent = 0;}
 
-
-                    echo($unitsymbol . number_format($change, 2, ".", ",") . " (<i>" . number_format($percent, 2, ".", ",") . "</i>%) "); //display change
-
                     //ARROWS START
                     if ($value < $portfolioTotal) {
                         echo("<font color='#00FF00'>&#x25B2;</font>");
@@ -297,9 +298,13 @@
                         echo("<font color='#FF0000'>&#x25BC;</font>");
                     }  //money is down
                     else {
-                        echo("&#x25C4; &#x25BA;");
+                        echo("&#x25C4;"); //eft:[&#x25C4;]   right: [&#x25BA;]
                     } //even left and right arrow
                     //ARROWS END
+                    
+                    echo($unitsymbol . number_format($change, 2, ".", ",") . " (<i>" . number_format($percent, 2, ".", ",") . "</i>%) "); //display change
+
+
                     ?></strong>
             </td>
             <td><div style="text-align:right">
