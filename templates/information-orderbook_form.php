@@ -1,8 +1,3 @@
-<h3 style='text-align:center;'>
-    <?php echo(htmlspecialchars(strtoupper($symbol))); ?><br>
-    Orderbook<br>
-    <?php echo(date('l jS \of F Y h:i:s A')); ?>
-</h3>
 
 <style>
     h3
@@ -11,7 +6,21 @@
         color:white;
 
     }
+    .nobutton button
+    {
+        padding:0;
+        font-weight: 100;
+        border:0;
+        background:transparent;
+    }
 </style>
+
+
+<h3 style='text-align:center;'>
+    <form method="post" action="information.php"><span class="nobutton"><button type="submit" name="symbol" value="<?php echo(htmlspecialchars(strtoupper($symbol))); ?>"><?php echo(htmlspecialchars(strtoupper($symbol))); ?></button></span></form><br>
+    <?php echo($title); ?><br>
+    <?php echo(date('l jS \of F Y h:i:s A')); ?>
+</h3>
 
 <table align="center" class="table">
     <tr>

@@ -4,14 +4,20 @@ h3
 {
     text-shadow: 1px 1px 2px #000;
     color:white;
-
+}
+.nobutton button
+{
+    padding:0;
+    font-weight: 100;
+    border:0;
+    background:transparent;
 }
 </style>
 
 
 <h3 style='text-align:center;'>
-    <?php echo(htmlspecialchars(strtoupper($symbol))); ?><br>
-    Trades<br>
+    <form method="post" action="information.php"><span class="nobutton"><button type="submit" name="symbol" value="<?php echo(htmlspecialchars(strtoupper($symbol))); ?>"><?php echo(htmlspecialchars(strtoupper($symbol))); ?></button></span></form><br>
+    <?php echo($title); ?><br>
     <?php echo(date('l jS \of F Y h:i:s A')); ?>
 </h3>
 
