@@ -8,7 +8,6 @@ require("../includes/constants.php"); //global finance constants
 <br>
  <?php echo(htmlspecialchars($sitename))?> &#169; 1985-2014
 
-
 </div> <!--bottom-->
 
 
