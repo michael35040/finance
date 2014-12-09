@@ -1,14 +1,14 @@
 
 <style>
-h3
-{
-    text-shadow: 1px 1px 2px #000;
-    color:white;
-}
+    h6
+    {
+        text-shadow: 1px 1px 2px #fff;
+        color:black;
+
+    }
 .nobutton button
 {
-    text-shadow: 1px 1px 2px #000;
-
+    /*text-shadow: 1px 1px 2px #000;*/
     padding:0;
     font-weight: 100;
     border:0;
@@ -17,29 +17,25 @@ h3
 </style>
 
 
-<h3 style='text-align:center;'>
-    <form method="post" action="information.php"><span class="nobutton"><button type="submit" name="symbol" value="<?php echo(htmlspecialchars(strtoupper($symbol))); ?>"><?php echo(htmlspecialchars(strtoupper($symbol))); ?></button></span></form><br>
-    <?php echo($title); ?><br>
+<h6 style='text-align:center;'>
     <?php echo(date('l jS \of F Y h:i:s A')); ?>
-</h3>
+</h6>
 
 
 
 
-<table align="center" class="table">
-    <tr class="info" style="font-weight:bold;">
-        <td>Total</td>
-        <?php echo("<td>" . (number_format($tradestotal[0]["totaltrades"],0,".",",")) . " Trades</td>"); ?>
-        <?php echo("<td>" . (number_format($tradestotal[0]["totalquantity"],0,".",",")) . " Quantity</td>"); ?>
-        <?php echo("<td>" . $unitsymbol . (number_format(getPrice($tradestotal[0]["totaltotal"]),$decimalplaces,".",",")) . " Total</td>"); ?>
-        <?php echo("<td>" . $unitsymbol . (number_format(getPrice($tradestotal[0]["avgprice"]),$decimalplaces,".",",")) . " Avg. Price</td>"); ?>
-        <?php echo("<td>" . $unitsymbol . (number_format(getPrice($tradestotal[0]["totalcommission"]),$decimalplaces,".",",")) . " Commission</td>"); ?>
-        <td colspan="5"></td>
+<table align="center" class="table" style="border:3px solid black;">
+    <tr class="primary">
+        <td>
+            <form method="post" action="information.php"><span class="nobutton"><button type="submit" name="symbol" value="<?php echo(htmlspecialchars(strtoupper($symbol))); ?>"><?php echo(htmlspecialchars(strtoupper($symbol))); ?></button></span></form><br>
+        </td>
+        <td><span style="font-weight:bold;">Trades:</span> <?php echo(number_format($tradestotal[0]["totaltrades"],0,".",",")); ?></td>
+        <td><span style="font-weight:bold;">Quantity:</span> <?php echo(number_format($tradestotal[0]["totalquantity"],0,".",",")); ?></td>
+        <td><span style="font-weight:bold;">Total:</span> <?php echo($unitsymbol . (number_format(getPrice($tradestotal[0]["totaltotal"]),$decimalplaces,".",","))); ?></td>
+        <td><span style="font-weight:bold;">Avg. Price:</span> <?php echo($unitsymbol . (number_format(getPrice($tradestotal[0]["avgprice"]),$decimalplaces,".",","))); ?></td>
+        <td><span style="font-weight:bold;">Commission:</span> <?php echo($unitsymbol . (number_format(getPrice($tradestotal[0]["totalcommission"]),$decimalplaces,".",","))); ?></td>
     </tr>
 </table>
-
-<br>
-
 
 <table align="center" class="table">
 
