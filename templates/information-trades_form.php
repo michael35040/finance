@@ -1,11 +1,5 @@
 
 <style>
-    h6
-    {
-        text-shadow: 1px 1px 2px #fff;
-        color:black;
-
-    }
 .nobutton button
 {
     /*text-shadow: 1px 1px 2px #000;*/
@@ -15,14 +9,6 @@
     background:transparent;
 }
 </style>
-
-
-<h6 style='text-align:center;'>
-    <?php echo(date('l jS \of F Y h:i:s A')); ?>
-</h6>
-
-
-
 
 <table align="center" class="table" style="border:3px solid black;">
     <tr class="primary">
