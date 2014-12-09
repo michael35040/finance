@@ -15,17 +15,32 @@
         <td colspan="9" style="font-size:20px; text-align: center;">ACTIVE ORDERS (<?php echo(strtoupper($tabletitle)); ?>) &nbsp;
             <?php
             //	Display link to all history as long as your not already there
+                if (isset($tabletitle))
+                {
                 if ($tabletitle !== "All")
                 {
-                    echo('
+                echo('
                 
 <span class="input-group-btn">
-    <form method="post" action="orders.php" ><button type="submit" class="btn btn-success btn-xs" name="history" value="all">
+    <form  method="post" action="orders.php"><button type="submit" class="btn btn-success btn-xs" name="history" value="all">
         <span class="glyphicon glyphicon-plus-sign"></span> Show All
     </button></form>
 </span>
                 
                 ');
+                }
+                else
+                {
+                echo('
+                
+<span class="input-group-btn">
+    <form method="post" action="orders.php"><button type="submit" class="btn btn-success btn-xs" name="history" value="limit">
+        <span class="glyphicon glyphicon-minus-sign"></span> Show Last 10
+    </button></form>
+</span>
+                
+                ');
+                }
                 }
             ?>
         </td></tr>
