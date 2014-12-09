@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     else{apologize("Unknown symbol!"); exit();}
     
     $trades =	query("SELECT * FROM trades WHERE (symbol = ?) ORDER BY date ASC", $symbol);
-    $tradestotal =	query("SELECT SUM(price) AS totalprice, SUM(total) AS totaltotal, SUM(quantity) AS totalquantity, SUM(commission) AS totalcommission, COUNT(uid) AS totaltrades FROM trades WHERE (symbol = ?) ORDER BY date ASC", $symbol);
+    $tradestotal =	query("SELECT AVG(price) AS avgprice, SUM(total) AS totaltotal, SUM(quantity) AS totalquantity, SUM(commission) AS totalcommission, COUNT(uid) AS totaltrades FROM trades WHERE (symbol = ?) ORDER BY date ASC", $symbol);
     
     render("information-trades_form.php",[
         "title" => $title,

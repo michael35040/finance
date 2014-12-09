@@ -84,8 +84,8 @@
         echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
         echo("<td>" . htmlspecialchars($row["quantity"]) . "</td>");
-        echo("<td>" . $unitsymbol . htmlspecialchars(number_format(getPrice($row["price"]),2,".",",")) . "</td>");
-        echo("<td>" . $unitsymbol . htmlspecialchars(number_format(getPrice($row["total"]),2,".",",")) . "</td>");
+        echo("<td>" . $unitsymbol . (number_format(getPrice($row["price"]),$decimalplaces,".",",")) . "</td>");
+        echo("<td>" . $unitsymbol . (number_format(getPrice($row["total"]),$decimalplaces,".",",")) . "</td>");
         echo("</tr>");
     }
     if($history==null){echo('<td colspan="7">None</td>');}

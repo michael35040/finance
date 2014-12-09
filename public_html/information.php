@@ -68,12 +68,12 @@ $asset["askstotal"] = $asksTotal[0]['asktotal'];
 $asset["public"] = $asset["askstotal"]+$asset["totalportfolio"];
 
 //TRADES
-
-        $trades30d = query("SELECT COUNT(uid) AS count, AVG(price) AS price, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (symbol=?) AND (`date`  BETWEEN DATE_SUB(now(), INTERVAL 30 DAY) AND NOW())", $asset["symbol"]); // query database for user
-        if(empty($trades30d[0]["volume"])){$trades30d[0]["volume"]=0;}
-        if(empty($trades30d[0]["price"])){$trades30d[0]["price"]=0;}
-        $asset["avgprice"] = getPrice($trades30d[0]["price"]);
-        $asset["volume"] = $trades30d[0]["volume"];
+        $timeframe = '7d';
+        $tradesTime = query("SELECT COUNT(uid) AS count, AVG(price) AS price, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (symbol=?) AND (`date`  BETWEEN DATE_SUB(now(), INTERVAL 7 DAY) AND NOW())", $asset["symbol"]); // query database for user
+        if(empty($tradesTime[0]["volume"])){$tradesTime[0]["volume"]=0;}
+        if(empty($tradesTime[0]["price"])){$tradesTime[0]["price"]=0;}
+        $asset["avgprice"] = getPrice($tradesTime[0]["price"]);
+        $asset["volume"] = $tradesTime[0]["volume"];
 
 
 
@@ -91,7 +91,7 @@ $asset["marketcap"] = ($asset["price"] * $asset["issued"]);
 $asset["dividend"]=0; //until we get real ones
         
         //DAILY TRADES CHART
-$tradesGroup =      query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY date DESC LIMIT 0,7", $symbol);      // query user's portfolio
+        $tradesGroup =      query("SELECT SUM(quantity) AS volume, AVG(price) AS price, date FROM trades WHERE ( (type='LIMIT' or type='MARKET') AND symbol =?) GROUP BY DAY(date) ORDER BY date DESC LIMIT 0,7", $symbol);      // query user's portfolio
 //$tradesGroup =	query("SELECT SUM(quantity) AS quantity, AVG(price) AS price, date FROM trades WHERE (symbol=? AND (type='limit' OR type='market'))  GROUP BY DAY(date) ORDER BY uid ASC LIMIT 0,30", $symbol);	  // query user's portfolio
         //ALL TRADES CHART
 
@@ -201,6 +201,7 @@ $tradesGroup =      query("SELECT SUM(quantity) AS volume, AVG(price) AS price, 
             "title" => "Information",
             "symbol" => $symbol,
             "asset" => $asset,
+            "timeframe" => $timeframe,
             "ownership" => $ownership,
             "bids" => $bids,
             "asks" => $asks,

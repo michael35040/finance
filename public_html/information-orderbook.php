@@ -1,147 +1,27 @@
 <?php
 require("../includes/config.php");
 // if form was submitted
-$title = "Oderbook";
+$title = "Trades";
 $id = $_SESSION["id"];
 
-$symbol='A';
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    if(isset($_POST['symbol'])){ $symbol=$_POST['symbol'];}
+    else{apologize("Unknown symbol!"); exit();}
 
-$bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid DESC", $symbol, 'b');
-$asks =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC", $symbol, 'a');
+    $bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid DESC", $symbol, 'b');
+    $asks =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC", $symbol, 'a');
 
-
-
-echo("<h3 style='text-align:center;'>" . htmlspecialchars(strtoupper($symbol)) . "<br>Orderbook<br>" . date('l jS \of F Y h:i:s A') . "</h3>");
-
+    render("information-orderbook_form.php",[
+        "title" => $title,
+        "symbol" => $symbol,
+        "bids" => $bids,
+        "asks" => $asks
+    ]);
+}
+else{
+    apologize("No symbol selected!");
+}
 ?>
 
-<style>
-    table
-    {
-        border: 1px solid black;
-    }
-    td
-    {
-        border: 1px solid black;
-    }
-    
-</style>
 
-<table align="center">
-<tr>
-    <td colspan="7" style="text-align:center;">BID</td>
-    <td></td>
-    <td colspan="7" style="text-align:center;">ASK</td>
-</tr>
-
-<tr>
-    <td>Side</td>
-    <td>Order #</td>
-    <td>Date/Time (Y/M/D)</td>
-    <td>Type</td>
-    <td>Total</td>
-    <td>ID</td>
-    <td>Quantity</td>
-    <td><b>Price</b></td>
-    <td>Quantity</td>
-    <td>ID</td>
-    <td>Total</td>
-    <td>Type</td>
-    <td>Date/Time (Y/M/D)</td>
-    <td>Order #</td>
-    <td>Side</td>
-</tr>
-
-
-
-<?php
-foreach ($bids as $row)
-{ 
-if($row['id']==$id){$color=' style="background-color:red"';}
-else{$color='';}
-?> 
-<tr>
-    <?php
-    if($row["side"]=='b'){$side='BID';}
-    if($row["side"]=='a'){$side='ASK ';}
-    echo("<td>" . htmlspecialchars($side) . "</td>");
-    echo("<td>" . (number_format($row["uid"],0,".",",")) . "</td>");
-    echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
-    echo("<td>" . htmlspecialchars($row["type"]) . "</td>");
-    echo("<td>" . (number_format(getPrice($row["total"]),2,".",",")) . "</td>");
-    echo("<td>" . (number_format(($row["id"]),0,".",",")) . "</td>");
-    echo("<td>" . number_format($row["quantity"],0,".",",") . "</td>");
-    echo("<td" . $color .">" . (number_format(getPrice($row["price"]),2,".",",")) . "</td>");
-    }
-    ?>
-    <td colspan="7"></td>
-</tr>
-
-
-
-
-<tr>
-    <td>Side</td>
-    <td>Order #</td>
-    <td>Date/Time (Y/M/D)</td>
-    <td>Type</td>
-    <td>Total</td>
-    <td>ID</td>
-    <td>Quantity</td>
-    <td><b>Price</b></td>
-    <td>Quantity</td>
-    <td>ID</td>
-    <td>Total</td>
-    <td>Type</td>
-    <td>Date/Time (Y/M/D)</td>
-    <td>Order #</td>
-    <td>Side</td>
-</tr>
-
-
-
-
-<?php
-foreach ($asks as $row)
-{ 
-if($row['id']==$id){$color=' style="background-color:red"';}
-else{$color='';}
-?> 
-<tr>
-    <td colspan="7"></td>
-    <?php
-    if($row["side"]=='b'){$side='BID';}
-    if($row["side"]=='a'){$side='ASK ';}
-    echo("<td" . $color .">" . (number_format(getPrice($row["price"]),2,".",",")) . "</td>");
-    echo("<td>" . number_format($row["quantity"],0,".",",") . "</td>");
-    echo("<td>" . (number_format(($row["id"]),0,".",",")) . "</td>");
-    echo("<td>" . (number_format(getPrice($row["total"]),2,".",",")) . "</td>");
-    echo("<td>" . htmlspecialchars($row["type"]) . "</td>");
-    echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
-    echo("<td>" . (number_format($row["uid"],0,".",",")) . "</td>");
-    echo("<td>" . htmlspecialchars($side) . "</td>");
-    }
-    ?>
-</tr>
-
-
-<tr>
-    <td>Side</td>
-    <td>Order #</td>
-    <td>Date/Time (Y/M/D)</td>
-    <td>Type</td>
-    <td>Total</td>
-    <td>ID</td>
-    <td>Quantity</td>
-    <td><b>Price</b></td>
-    <td>Quantity</td>
-    <td>ID</td>
-    <td>Total</td>
-    <td>Type</td>
-    <td>Date/Time (Y/M/D)</td>
-    <td>Order #</td>
-    <td>Side</td>
-</tr>
-
-
-</table>

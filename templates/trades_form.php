@@ -108,7 +108,7 @@
                     <td <?php echo($color); ?>><?php  echo(number_format($commission,2,".",",")); ?></td>
                     <td <?php echo($color); ?>><?php  echo(number_format($total,2,".",",")); ?></td>
                 </tr>
-    <?php                
+    <?php
     }
     if($i==0){echo("<tr><td colspan='12'>No trades</td></tr>");}
     elseif($i>0)

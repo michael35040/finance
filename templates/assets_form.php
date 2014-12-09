@@ -26,7 +26,7 @@
 echo("['Asset', 'Value'],");
 foreach ($assets as $asset) // for each of user's stocks
 {
-        $value = number_format(($asset["marketcap"]), 0, '.', '');
+        $value = number_format(($asset["marketcap"]), $decimalplaces, '.', '');
         $asset = htmlspecialchars($asset["symbol"]);
         echo("['" . $asset . "', " . $value . "],");
 } ?>  
@@ -104,11 +104,11 @@ foreach ($assets as $asset) // for each of user's stocks
             $i++;
             echo('<tr data-toggle="collapse" data-target="#demo' . $i . '" class="accordion-toggle">');
             echo('<td><span class="glyphicon glyphicon-chevron-down"></span>&nbsp;&nbsp;&nbsp;&nbsp;' . htmlspecialchars($asset["symbol"]) . ' </td>');
-            echo('<td >' . $unitsymbol . (number_format($asset["price"], 2, ".", ",")));
+            echo('<td >' . $unitsymbol . (number_format($asset["price"], $decimalplaces, ".", ",")));
             echo('&nbsp;&nbsp;<span class="sparklines" sparkType="line" >');
                 $t=0;
                 foreach($tradesG as $trade){
-                    echo(number_format(getPrice($trade["price"]), 2, ".", ""));
+                    echo(number_format(getPrice($trade["price"]), $decimalplaces, ".", ""));
                     $t++;
                     if($t<$tradesCount){echo(",");}
                 }
@@ -126,25 +126,27 @@ foreach ($assets as $asset) // for each of user's stocks
 
 
             echo('</td>');            
-            echo('<td >' . $unitsymbol . htmlspecialchars(number_format($asset["marketcap"], 2, ".", ",")) . '</td>');
+            echo('<td >' . $unitsymbol . htmlspecialchars(number_format($asset["marketcap"], $decimalplaces, ".", ",")) . '</td>');
             echo('</tr>');
             echo('<div  class="hiddenRow">');
             echo('<tr class="accordian-body collapse" id="demo' . $i . '"   >');
             echo('<td colspan="1">&nbsp;&nbsp;' . htmlspecialchars($asset["name"]) . '
                 <br>&nbsp;&nbsp;' . htmlspecialchars($asset["url"]) . '
                 <br>&nbsp;&nbsp;<form method="post" action="information.php"><span class="nobutton"><button type="submit" name="symbol" value="' . $asset["symbol"] . '"><span class="glyphicon glyphicon glyphicon-info-sign"> Information</span></button></span></form></td>');
-            echo('<td >' . $unitsymbol . (number_format($asset["bid"], 2, ".", ",")) . ' - Bid
-                <br>' . $unitsymbol . (number_format($asset["ask"], 2, ".", ",")) . ' - Ask
-                <br>' . $unitsymbol . (number_format($asset["avgprice"], 2, ".", ",")) . ' - Avg. Price (' . $timeframe . ')</td>');
+            echo('<td >' . $unitsymbol . (number_format($asset["bid"], $decimalplaces, ".", ",")) . ' - Bid
+                <br>' . $unitsymbol . (number_format($asset["ask"], $decimalplaces, ".", ",")) . ' - Ask
+                <br>' . $unitsymbol . (number_format($asset["avgprice"], $decimalplaces, ".", ",")) . ' - Avg. Price (' . $timeframe . ')</td>');
             echo('<td >' . (number_format($asset["public"], 0, ".", ",")) . ' - Publicly Held
                 <br>' . (number_format($asset["issued"], 0, ".", ",")) . ' - Issued (' . (number_format($asset["userid"], 0, ".", ",")) . ')
                 <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
-            echo('<td >Dividend: ' . (number_format($asset["dividend"], 2, ".", ",")) . '
-                <br>Rating: ' . htmlspecialchars($asset["rating"]) . '
-                <br>Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '</td>');
-            echo('</tr>');
+            echo('<td >
+                Rating: ' . htmlspecialchars($asset["rating"]) . ' <br>
+                Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '<br>');
+                //Dividend: ' . (number_format($asset["dividend"], $decimalplaces, ".", ","))
+                if($asset["type"]=="stock"){echo('Dividend: ' . number_format($asset["dividend"], $decimalplaces, ".", ",")); }
+            echo('</td></tr>');
         }
-        echo("<tr><td colspan='3'><strong>Market Value</strong></td><td><strong>" . $unitsymbol . (number_format($indexMarketCap, 2, ".", ",")) . "</strong></td></tr>");
+        echo("<tr><td colspan='3'><strong>Market Value</strong></td><td><strong>" . $unitsymbol . (number_format($indexMarketCap, $decimalplaces, ".", ",")) . "</strong></td></tr>");
         echo('<tr><td colspan="4"><div id="piechart" style=""></div></td></tr>');
     }
     if($i==0)
