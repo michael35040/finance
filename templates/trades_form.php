@@ -105,7 +105,7 @@
                     <td <?php echo($color); ?>><form method='post' action='information.php'><span class='nobutton'><button type='submit' name='symbol' value='<?php echo($symbol); ?>'><?php echo($symbol); ?></button></span></form></td>
                     <td <?php echo($color); ?>><?php  echo(number_format($quantity,0,".",",")); ?></td>
                     <td <?php echo($color); ?>><?php  echo(number_format($price,2,".",",")); ?></td>
-                    <td <?php echo($color); ?>><?php  echo(number_format($commission,2,".",",")); ?></td>
+                    <td <?php echo($color); ?>>-<?php  echo(number_format($commission,2,".",",")); ?></td>
                     <td <?php echo($color); ?>><?php  echo(number_format($total,2,".",",")); ?></td>
                 </tr>
     <?php
@@ -117,22 +117,14 @@
     </tbody>
     <tfoot>
     <tr >
-        <td colspan="10"><strong>Sum of <?php echo($i) ?> listed transactions</strong></td>
-        <?php
-        /*
-            //calculate gains/losses
-            $acc = array_shift($trades);
-            foreach ($trades as $val) {
-                foreach ($val as $key => $val) {
-                    $acc[$key] += $val;
-                }
-            }
-        $sumtotal = $acc['total'];
-        $sumcommission = $acc['commission'];
-        */
-        ?>
+        <td colspan="8"><strong>Sum of <?php echo($i) ?> listed transactions</strong></td>
+        <td colspan="2">
+            <strong> <?php 
+            $subtotal=$sumcommission+$sumtotal;
+            echo($unitsymbol . htmlspecialchars(number_format($subtotal,2,".",","))); ?>
+        </td>        
         <td>
-            <strong> <?php echo($unitsymbol . htmlspecialchars(number_format($sumcommission,2,".",","))); ?>
+            <strong> -<?php echo($unitsymbol . htmlspecialchars(number_format($sumcommission,2,".",","))); ?>
         </td>
         <td>
             <strong> <?php echo($unitsymbol . htmlspecialchars(number_format($sumtotal,2,".",","))); ?>
