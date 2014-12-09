@@ -77,7 +77,7 @@
     <tr>
         <td><strong>Name: </strong><?php echo(htmlspecialchars($fname . " " . $lname)); ?></td>
         <td><strong>Email: </strong><?php echo(htmlspecialchars($email)); ?></td>
-        <td><strong><div style="text-align:right">ID: </strong><?php echo(number_format($id, 0, '.', '')); ?></div></td>
+        <td><span style="text-align:right"><strong>ID: </strong><?php echo(number_format($id, 0, '.', '')); ?></span></td>
     </tr>
 </table>
 
