@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 }
 else{
     //apologize("No symbol selected!");
-    redirect("login.php");
+    redirect("information.php");
 }
 ?>
 
