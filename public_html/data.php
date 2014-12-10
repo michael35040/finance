@@ -14,11 +14,15 @@ echo('[');
 foreach ($trades as $trade) // for each of user's stocks
 { 	$date = strtotime($trade["date"]);
 	$date = $date*1000; //javascript expects milliseconds
-  echo('{');
-  echo($date . ',');
-  echo(number_format($trade["price"],2,".","") . ',');
-  echo($trade["quantity"]);
-  echo("}");
+    echo('[');
+        echo($date);
+        echo(',');
+        echo(number_format($trade["price"],2,".",""));
+        //echo(',');
+        //echo($trade["quantity"]);
+    echo("]");
+    echo(",");
+
 }
 echo("]");
 //end of chart  

@@ -25,7 +25,7 @@ $decimalplaces = 2;
 $commission = 00.1;
 $divisor = 0.01; //increment of exchange
 
-$loud='loud'; //quiet or loud
+$loud='quiet'; //quiet or loud
 
 //LOAN.php
 //THESE ARE UP HERE TO ALSO PASS TO THE FORM

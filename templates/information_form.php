@@ -546,7 +546,7 @@ function drawChart()
     </div>
     <table class="table">
         <?php
-        if($tradesGroup != null)
+        if(!empty($tradesGroup))
         { ?>
             <tr><td colspan="7"><div id="chart_div" style="overflow:hidden;"></div></td></tr>
 
@@ -577,11 +577,11 @@ function drawChart()
 
 
         <?php
-        if($trades == null){ ?>
+        if(empty($trades)){ ?>
             <tr><td colspan="7">No Trades</td></tr>
         <?php } /* trades==null */
 
-        if($trades != null)
+        if(!empty($trades))
         { ?>
             <tr><td colspan="7"><div id="chart_div1" style="overflow:hidden;"></div></td></tr><!-- trades -->
             <tr><td colspan="7"><div id="chart_div6" style="overflow:hidden;"></div></td></tr><!-- price -->
@@ -657,12 +657,8 @@ function drawChart()
     <form method="post" action="information-orderbook.php"><span class="nobutton"><button type="submit" name="symbol" value="<?php echo($asset["symbol"]); ?>">ORDERBOOK</button></span></form>
 </div>
 <table class="table">
-<?php if($asks == null && $bids == null )
-{ ?>
-    <tr><td>No orders</td></tr>
-<?php }
-if($asks!= null && $bids != null )
-{
+<?php
+if(!empty($asks) || !empty($bids)){
     ?>
 
 
@@ -672,7 +668,7 @@ if($asks!= null && $bids != null )
 
     <tr>
         <td colspan="3">
-            <?php if($bids != null || $asks != null) { ?>
+            <?php if(!empty($asks) || !empty($bids)) { ?>
                 <div class="panel panel-success"> <!--success info primary danger warning -->
                     <!-- Default panel contents -->
                     <div class="panel-heading">MARKET DEPTH</div>
@@ -890,7 +886,14 @@ if($asks!= null && $bids != null )
 
 
 
-<?php } /* $lastorders != null */ ?>
+<?php } /* $lastorders != null */
+ //if(empty($asks) && empty($bids))
+else{ ?>
+    <tr><td>No orders</td></tr>
+<?php }
+
+
+?>
 </table><!--orderbook table-->
 </div><!--panel-primary orderbook-->
 

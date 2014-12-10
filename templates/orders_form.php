@@ -19,7 +19,7 @@
                 {
                 if ($tabletitle !== "All")
                 {
-                echo('<span class="input-group-btn">
+                echo('<span class="input-group-btn" style="display:inline;">
     <form  method="post" action="orders.php"><button type="submit" class="btn btn-success btn-xs" name="history" value="all">
         <span class="glyphicon glyphicon-plus-sign"></span> Show All
     </button></form>
@@ -29,7 +29,7 @@
                 }
                 else
                 {
-                echo('<span class="input-group-btn">
+                    echo('<span class="input-group-btn" style="display:inline;">
     <form method="post" action="orders.php"><button type="submit" class="btn btn-success btn-xs" name="history" value="limit">
         <span class="glyphicon glyphicon-minus-sign"></span> Show Last 10
     </button></form>
@@ -132,7 +132,7 @@
                 {
                 if ($tabletitle !== "All")
                 {
-                echo('<span class="input-group-btn">
+                    echo('<span class="input-group-btn" style="display:inline;">
     <form  method="post" action="orders.php"><button type="submit" class="btn btn-success btn-xs" name="history" value="all">
         <span class="glyphicon glyphicon-plus-sign"></span> Show All
     </button></form>
@@ -142,7 +142,7 @@
                 }
                 else
                 {
-                echo('<span class="input-group-btn">
+                    echo('<span class="input-group-btn" style="display:inline;">
     <form method="post" action="orders.php"><button type="submit" class="btn btn-success btn-xs" name="history" value="limit">
         <span class="glyphicon glyphicon-minus-sign"></span> Show Last 10
     </button></form>
