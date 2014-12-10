@@ -54,19 +54,20 @@
         echo("<td>" . htmlspecialchars($row["uid"]) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["type"])) . "</td>");
         echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
-        echo("<td colspan='4'>" . htmlspecialchars($row["description"]) . "</td>");
+        echo("<td>" . htmlspecialchars($row["description"]) . "</td>");
         echo("</tr>");
     }
     if($error==null){echo('<td colspan="7">None</td>');}
 
     ?>
 
+</table>
 
 
-
+<table class="table table-condensed  table-bordered" >
     <tr   class="active" >
 
-        <th>Transaction #</th>
+        <th>#</th>
         <th>Transaction</th>
         <th>Date/Time (Y/M/D)</th>
         <th>Symbol</th>
