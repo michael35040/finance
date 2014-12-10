@@ -113,6 +113,7 @@ CREATE TABLE IF NOT EXISTS `history` (
   `ouid` int(10) unsigned NOT NULL COMMENT 'original uid from other tables',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `transaction` varchar(10) NOT NULL COMMENT 'buy sell transfer',
+  `counterparty` int(10) unsigned DEFAULT NULL COMMENT 'user id',
   `symbol` varchar(10) NOT NULL,
   `quantity` int(64) NOT NULL COMMENT 'local-id-bid',
   `price` bigint(20) unsigned NOT NULL COMMENT 'or amount transfered',
