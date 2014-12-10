@@ -41,7 +41,7 @@
 
 
     <tr   class="active" >
-        <th>History #</th>
+        <th>#</th>
         <th>Type</th>
         <th>Date/Time (Y/M/D)</th>
         <th colspan="4">Description</th>
