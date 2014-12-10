@@ -51,10 +51,10 @@ $assets = query("SELECT symbol FROM assets"); // query database for user
         // if symbol or quantity empty
         $userid = sanatize('quantity', $_POST['userid']);
         $quantity = setPrice($_POST['quantity']);
-        $transaction = $_POST['transaction'];
+        $transaction = strtoupper($_POST['transaction']);
         $symbol = $unittype;
 
-        if($transaction=="withdraw")
+        if($transaction=="WITHDRAW")
        {
             $totalq = query("SELECT units FROM accounts WHERE id = ?", $userid);
         	@$total = (float)$totalq[0]["units"]; //convert array to value
@@ -62,6 +62,19 @@ $assets = query("SELECT symbol FROM assets"); // query database for user
         	{ apologize("You only have " . number_format($total,2,".",",") . " to withdraw!"); }
         	$quantity = ($quantity*-1);
        }
+       /* IF TRANFER
+       UID - TRANSFER #
+       ID - USER TRANSFEREE
+       OUID - 0
+       DATE - CURRENT TIMESTAMP
+       TRANSACTION - TRANSFER
+       SYMBOL - MONEY TYPE (ie USD)
+       COUNTERPARTY - TRANSFEREE
+       QUANTITY -  0
+       PRICE - 0
+       TOTAL - AMOUNT
+       */
+       
 
         // transaction information
             query("SET AUTOCOMMIT=0");
