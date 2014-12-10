@@ -115,9 +115,9 @@ CREATE TABLE IF NOT EXISTS `history` (
   `transaction` varchar(10) NOT NULL COMMENT 'buy sell transfer',
   `symbol` varchar(10) NOT NULL,
   `quantity` int(64) NOT NULL COMMENT 'local-id-bid',
-  `price` decimal(65,30) NOT NULL COMMENT 'or amount transfered',
-  `commission` decimal(65,30) NOT NULL COMMENT 'commission',
-  `total` decimal(65,30) NOT NULL COMMENT 'history-id-bid/ask or local-id-ask \r\n\r\nor transafer-id',
+  `price` bigint(20) unsigned NOT NULL COMMENT 'or amount transfered',
+  `commission` bigint(20) unsigned NOT NULL COMMENT 'commission',
+  `total` bigint(20) unsigned NOT NULL COMMENT 'history-id-bid/ask or local-id-ask \r\n\r\nor transafer-id',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='id, transaction, symbol, \r\n\r\nshares, \r\n\r\nprice' AUTO_INCREMENT=1 ;
 
