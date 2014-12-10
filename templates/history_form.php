@@ -35,18 +35,54 @@
 
 
         </td></tr> <!--blank row breaker-->
+</table>
 
 
 
 
 
+<table class="table table-condensed  table-bordered" >
+    <tr   class="active" >
+
+        <th>#</th>
+        <th>Transaction</th>
+        <th>Date/Time (Y/M/D)</th>
+        <th>Counterparty</th>
+        <th>Amount</th>
+    </tr>
+
+    <?php
+    foreach ($history as $row)
+    {
+    	$price = getPrice($row["price"]);
+    	$total = getPrice($row["total"]);
+
+        echo("<tr>");
+        echo("<td>" . htmlspecialchars($row["uid"]) . "</td>");
+        echo("<td>" . htmlspecialchars($row["transaction"]) . "</td>");
+        echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
+        //echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
+        echo("<td>" . htmlspecialchars($row["counterparty"]) . "</td>");
+        //echo("<td>" . htmlspecialchars($row["quantity"]) . "</td>");
+        //echo("<td>" . $unitsymbol . (number_format($price,$decimalplaces,".",",")) . "</td>");
+        echo("<td>" . $unitsymbol . (number_format($total,$decimalplaces,".",",")) . "</td>");
+        echo("</tr>");
+    }
+    if($history==null){echo('<td colspan="7">None</td>');}
+    ?>
+</table>
+
+
+
+
+
+<table class="table table-condensed  table-bordered" >
     <tr   class="active" >
         <th>#</th>
         <th>Type</th>
         <th>Date/Time (Y/M/D)</th>
         <th colspan="4">Description</th>
     </tr>
-
     <?php
     foreach ($error as $row)
     {
@@ -63,39 +99,3 @@
 
 </table>
 
-
-<table class="table table-condensed  table-bordered" >
-    <tr   class="active" >
-
-        <th>#</th>
-        <th>Transaction</th>
-        <th>Date/Time (Y/M/D)</th>
-        <th>Symbol</th>
-        <th>Quantity or Counterparty</th>
-        <th>Price</th>
-        <th>Total</th>
-    </tr>
-
-    <?php
-    foreach ($history as $row)
-    {
-    	$price = getPrice($row["price"]);
-    	$total = getPrice($row["total"]);
-
-        echo("<tr>");
-        echo("<td>" . htmlspecialchars($row["uid"]) . "</td>");
-        echo("<td>" . htmlspecialchars($row["transaction"]) . "</td>");
-        echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
-        echo("<td>" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
-        echo("<td>" . htmlspecialchars($row["quantity"]) . "</td>");
-        echo("<td>" . $unitsymbol . (number_format($price,$decimalplaces,".",",")) . "</td>");
-        echo("<td>" . $unitsymbol . (number_format($total,$decimalplaces,".",",")) . "</td>");
-        echo("</tr>");
-    }
-    if($history==null){echo('<td colspan="7">None</td>');}
-    ?>
-
-
-
-
-</table>
