@@ -61,14 +61,16 @@ function drawChart()
         ?>
 
 
+
+
     /////////////////
     //CHART 1
-    //TRADES GROUP
+    //TRADES GROUP PRICE
     ////////////////
-    var data = google.visualization.arrayToDataTable([
+    var data1 = google.visualization.arrayToDataTable([
         <?php
 
-        echo("['Date', 'Price', 'Volume(k)'],"); // ['Year', 'Sales', 'Expenses'],
+        echo("['Date', 'Price'],"); // ['Year', 'Sales', 'Expenses'],
         //SQL QUERY FOR ALL TRADES
         $tradesGroupR = array_reverse($tradesGroup); //so it will be in correct ASC order for chart
         foreach ($tradesGroupR as $trade)	// for each of user's stocks
@@ -76,144 +78,71 @@ function drawChart()
             $dbDate = $trade["date"];
             $date = strtotime($dbDate);
             $price = number_format(getPrice($trade["price"]), $decimalplaces, '.', '');
-            $volume = number_format(($trade["volume"]), $decimalplaces, '.', '')/1000;
-            //$quantity = (int)$trade["quantity"];
-            //$quantity = ($quantity/1000);
+            //$volume = number_format(($trade["volume"]), $decimalplaces, '.', '')/1000;
 
-            echo("['" . date("m-d-Y", $date) . "', " . $price .  ", " . $volume . "],");
-        }//ex: ['2013',  1000, 400],
-        ?>
-    ]);
-    var options =
-    {
-        title: '<?php echo($symbol); ?> - TRADES/DAY',
-        hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-        vAxis: {title: 'Price(avg) & Volume(k)', minValue: 0},
-        colors:['green','gray']
-        //height: 500,
-
-    };
-    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
-    //////////////
-    //END CHART 1
-    ////////////
-
-
-    //////////
-    //CHART 2
-    //TRADES
-    //////////
-    var data1 = google.visualization.arrayToDataTable([
-        <?php
-
-        echo("['Date', 'Price', 'Volume'],"); // ['Year', 'Sales', 'Expenses'],
-        //SQL QUERY FOR ALL TRADES
-        $tradesChart = array_reverse($trades); //so it will be in correct ASC order for chart
-        foreach ($tradesChart as $trade)	// for each of user's stocks
-        {
-            $dbDate = $trade["date"];
-            $date = strtotime($dbDate);
-            $price = number_format(getPrice($trade["price"]), $decimalplaces, '.', '');
-            $quantity = number_format(($trade["quantity"]), 0, '.', '');
-            //$quantity = (int)$trade["quantity"];
-            //$quantity = ($quantity/1000);
-
-            echo("['" . date("m-d-Y", $date) . "', " . $price .  ", " . $quantity . "],");
+            //echo("['" . date("m-d-Y", $date) . "', " . $price .  ", " . $volume . "],");
+            echo("['" . date("m-d-Y", $date) . "', " . $price .  "],");
         }//ex: ['2013',  1000, 400],
         ?>
     ]);
     var options1 =
     {
-        title: '<?php echo($symbol); ?> - TRADES',
-        hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-        vAxis: {title: 'Price & Quantity', minValue: 0},
-        colors:['green','gray']
+        title: '<?php echo($symbol); ?> - TRADES/DAY - PRICE',
+        legend:'none',
+       // hAxis: {title: '',  titleTextStyle: {color: '#333'}},
+       // vAxis: {title: '', minValue: 0},
+        //colors:['green','gray']
+        colors:['green']
         //height: 500,
 
     };
     var chart1 = new google.visualization.AreaChart(document.getElementById('chart_div1'));
     chart1.draw(data1, options1);
-    //////////
-    //END CHART 2
+    //////////////
+    //END CHART 1
     ////////////
 
 
-    //////////
-    //CHART 5 volume
-    //////////
-    var data5 = google.visualization.arrayToDataTable([
-        <?php
 
-        echo("['Date', 'Quantity'],"); // ['Year', 'Sales', 'Expenses'],
-        //SQL QUERY FOR ALL TRADES
-        $tradesChart = array_reverse($trades); //so it will be in correct ASC order for chart
-        foreach ($tradesChart as $trade)	// for each of user's stocks
-        {
-            $dbDate = $trade["date"];
-            $date = strtotime($dbDate);
-            $price = number_format(getPrice($trade["price"]), $decimalplaces, '.', '');
-            $quantity = number_format(($trade["quantity"]), 0, '.', '');
-            //$quantity = (int)$trade["quantity"];
-            //$quantity = ($quantity/1000);
 
-            echo("['" . date("m-d-Y", $date) . "', " . $quantity . "],");
-        }//ex: ['2013',  1000, 400],
-        ?>
-    ]);
-    var options5 =
-    {
-        title: '<?php echo($symbol); ?> - QUANTITY',
-        hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-        vAxis: {title: 'Quantity', minValue: 0, isStacked: true},
-        colors:['gray'],
-        legend: {position: 'none', textStyle: {color: 'blue', fontSize: 16}}
-        //height: 500,
-
-    };
-    var chart5 = new google.visualization.SteppedAreaChart(document.getElementById('chart_div5'));
-    chart5.draw(data5, options5);
-    //////////
-    //END CHART 5 volume
-    ////////////
-
-    //////////
-    //CHART 6 trades only
-    //////////
-    var data6 = google.visualization.arrayToDataTable([
+    /////////////////
+    //CHART 2
+    //TRADES GROUP VOLUME
+    ////////////////
+    var data2 = google.visualization.arrayToDataTable([
         <?php
 
         echo("['Date', 'Price'],"); // ['Year', 'Sales', 'Expenses'],
         //SQL QUERY FOR ALL TRADES
-        $tradesChart = array_reverse($trades); //so it will be in correct ASC order for chart
-        foreach ($tradesChart as $trade)	// for each of user's stocks
+        $tradesGroupR = array_reverse($tradesGroup); //so it will be in correct ASC order for chart
+        foreach ($tradesGroupR as $trade)	// for each of user's stocks
         {
             $dbDate = $trade["date"];
             $date = strtotime($dbDate);
-            $price = number_format(getPrice($trade["price"]), $decimalplaces, '.', '');
-            $quantity = number_format(($trade["quantity"]), 0, '.', '');
-            //$quantity = (int)$trade["quantity"];
-            //$quantity = ($quantity/1000);
+            //$price = number_format(getPrice($trade["price"]), $decimalplaces, '.', '');
+            $volume = number_format(($trade["volume"]), $decimalplaces, '.', '')/1000;
 
-            echo("['" . date("m-d-Y", $date) . "', " . $price . "],");
+            //echo("['" . date("m-d-Y", $date) . "', " . $price .  ", " . $volume . "],");
+            echo("['" . date("m-d-Y", $date) . "', " . $volume .  "],");
         }//ex: ['2013',  1000, 400],
         ?>
     ]);
-    var options6 =
+    var options2 =
     {
-        title: '<?php echo($symbol); ?> - PRICE',
-        hAxis: {title: 'Date',  titleTextStyle: {color: '#333'}},
-        vAxis: {title: 'Price', minValue: 0},
-
-        colors:['green'],
-        legend: {position: 'none', textStyle: {color: 'blue', fontSize: 16}}
+        title: '<?php echo($symbol); ?> - TRADES/DAY - VOLUME',
+        legend:'none',
+       // hAxis: {title: '',  titleTextStyle: {color: '#333'}},
+       // vAxis: {title: '', minValue: 0},
+        vAxis: {title: '', minValue: 0, isStacked: true},
+        //colors:['green','gray']
+        colors:['gray']
         //height: 500,
 
     };
-    var chart6 = new google.visualization.AreaChart(document.getElementById('chart_div6'));
-    chart6.draw(data6, options6);
-    //////////
-    //END CHART 6 trades only
+    var chart2 = new google.visualization.SteppedAreaChart(document.getElementById('chart_div2'));
+    chart2.draw(data2, options2);
+    //////////////
+    //END CHART 2
     ////////////
 
 
@@ -221,8 +150,47 @@ function drawChart()
 
 
 
+    //////////
+    //CHART 3 ALL PRICE & VOLUME
+    //////////
+    var data3 = google.visualization.arrayToDataTable([
+        <?php
+
+        echo("['Date', 'Price', 'Quantity'],"); // ['Year', 'Sales', 'Expenses'],
+        //SQL QUERY FOR ALL TRADES
+        $tradesChart = array_reverse($trades); //so it will be in correct ASC order for chart
+        foreach ($tradesChart as $trade)	// for each of user's stocks
+        {
+            $dbDate = $trade["date"];
+            $date = strtotime($dbDate);
+            $price = number_format(getPrice($trade["price"]), $decimalplaces, '.', '');
+            $quantity = number_format(($trade["quantity"]), 0, '.', '');
+
+            echo("['" . date("m-d-Y", $date) . "', " . $price . ", " . $quantity . "],");
+        }//ex: ['2013',  1000, 400],
+        ?>
+    ]);
+    var options3 =
+    {
+        title: '<?php echo($symbol); ?> - ALL',
+        hAxis: {title: '',  titleTextStyle: {color: '#333'}},
+        vAxis: {title: '', minValue: 0},
+        colors:['green','gray'],
+        legend: {position: 'none', textStyle: {color: 'blue', fontSize: 16}}
+        //height: 500,
+
+    };
+    var chart3 = new google.visualization.AreaChart(document.getElementById('chart_div3'));
+    chart3.draw(data3, options3);
+    //////////
+    //END CHART 3 ALL PRICE & VOLUME
+    ////////////
+
 
     <?php }   //tradesgroup != null ?>
+
+
+
 
 
 
@@ -231,10 +199,10 @@ function drawChart()
     {
      ?>
     //////////
-    //CHART 2
+    //CHART 5
     //ORDERBOOK
     //////////
-    var data2 = google.visualization.arrayToDataTable([
+    var data5 = google.visualization.arrayToDataTable([
         <?php
 
         echo("['Date', 'Bids', 'Asks'],"); // ['Year', 'Sales', 'Expenses'],
@@ -262,7 +230,7 @@ function drawChart()
 
         ?>
     ]);
-    var options2 =
+    var options5 =
     {
         title: '<?php echo($symbol); ?> - TOP OF ORDERBOOK',
         hAxis: {title: 'Price',  titleTextStyle: {color: '#333'}},
@@ -270,23 +238,22 @@ function drawChart()
         // height: 500,
 
     };
-    //var chart2 = new google.visualization.AreaChart(document.getElementById('chart_div2'));
-    var chart2 = new google.visualization.SteppedAreaChart(document.getElementById('chart_div2'));
+    var chart5 = new google.visualization.SteppedAreaChart(document.getElementById('chart_div5'));
 
-    chart2.draw(data2, options2);
+    chart5.draw(data5, options5);
     //////////
-    //END CHART 2
+    //END CHART 5
     ////////////
     <?php }   //$bidsGroupChart != null ?>
 
 
 
     /////////////////
-    //CHART PIE
+    //CHART PIE 6
     //OWNERSHIP
     ////////////////
 
-    var data3 = google.visualization.arrayToDataTable([
+    var data6 = google.visualization.arrayToDataTable([
         ['User', 'Quantity'],
         <?php
         $owned=0;
@@ -312,7 +279,7 @@ function drawChart()
 
 
 
-    var options3 = {
+    var options6 = {
         //title: 'Ownership Control',
         //is3D: true,
         //legend: 'none',
@@ -323,14 +290,14 @@ function drawChart()
 
     };
 
-    var chart3 = new google.visualization.PieChart(document.getElementById('piechart'));
+    var chart6 = new google.visualization.PieChart(document.getElementById('chart_div6'));
 
-    chart3.draw(data3, options3);
+    chart6.draw(data6, options6);
 
 
 
     /////////////////
-    //END CHART PIE 3
+    //END CHART PIE 6
     ////////////////
 
 
@@ -348,10 +315,10 @@ function drawChart()
 
 
     //////////
-    //CHART 4
-    //ORDERBOOK V2 MARKET DEPTH
+    //CHART 7
+    //ORDERBOOK 7 MARKET DEPTH
     //////////
-    var data4 = google.visualization.arrayToDataTable([
+    var data7 = google.visualization.arrayToDataTable([
         <?php
 
         echo("['Date', 'Bids', 'Asks'],"); // ['Year', 'Sales', 'Expenses'],
@@ -388,7 +355,7 @@ function drawChart()
 
         ?>
     ]);
-    var options4 =
+    var options7 =
     {
         title: '<?php echo($symbol); ?> - MARKET DEPTH',
         hAxis: {title: 'Price',  titleTextStyle: {color: '#333'}},
@@ -396,9 +363,9 @@ function drawChart()
         // height: 500,
 
     };
-    var chart4 = new google.visualization.SteppedAreaChart(document.getElementById('chart_div4'));
+    var chart7 = new google.visualization.SteppedAreaChart(document.getElementById('chart_div7'));
 
-    chart4.draw(data4, options4);
+    chart7.draw(data7, options7);
     //////////
     //END CHART 3A V2
     ////////////
@@ -548,7 +515,8 @@ function drawChart()
         <?php
         if(!empty($tradesGroup))
         { ?>
-            <tr><td colspan="7"><div id="chart_div" style="overflow:hidden;"></div></td></tr>
+            <tr><td colspan="7"><div id="chart_div1" style="overflow:hidden;"></div></td></tr><!--TGP-->
+            <tr><td colspan="7"><div id="chart_div2" style="overflow:hidden;"></div></td></tr><!--TGV-->
 
 
 
@@ -583,9 +551,7 @@ function drawChart()
 
         if(!empty($trades))
         { ?>
-            <tr><td colspan="7"><div id="chart_div1" style="overflow:hidden;"></div></td></tr><!-- trades -->
-            <tr><td colspan="7"><div id="chart_div6" style="overflow:hidden;"></div></td></tr><!-- price -->
-            <tr><td colspan="7"><div id="chart_div5" style="overflow:hidden;"></div></td></tr><!-- quantity -->
+            <tr><td colspan="7"><div id="chart_div3" style="overflow:hidden;"></div></td></tr><!-- trades -->
 
             <tr class='active'>
                 <td>Trade #</td>
@@ -678,7 +644,8 @@ if(!empty($asks) || !empty($bids)){
                         <tbody>
                         <tr>
                             <td>
-                                <div id="chart_div4" style="overflow:hidden;"></div>
+                                <div id="chart_div7" style="overflow:hidden;"></div><!--MD OB-->
+                                <div id="chart_div5"></div>  <!--OB-->
                             </td>
                         </tr>
                         </tbody>
@@ -690,13 +657,8 @@ if(!empty($asks) || !empty($bids)){
 
 
 
-
-
-
-
-
     <tr>
-        <td style="width:10%">
+        <td style="width:50%">
             <div class="panel panel-info">
                 <!-- Default panel contents -->
                 <div class="panel-heading">BIDS</div>
@@ -723,11 +685,16 @@ if(!empty($asks) || !empty($bids)){
                 </table>
             </div><!--panel bids-->
 
+
+
+
         </td>
-        <td style="vertical-align: bottom;">
-            <div id="chart_div2"></div>
+
+        <td>
         </td>
-        <td style="width:10%">
+        
+        
+        <td style="width:50%">
 
             <div class="panel panel-danger">
                 <!-- Default panel contents -->
@@ -1070,7 +1037,7 @@ else{ ?>
         ?>
         <tr>
             <td colspan="3">
-                <div id="piechart" style=""></div>
+                <div id="chart_div6" style=""></div>
 
             </td>
         </tr>
