@@ -83,7 +83,7 @@ $assets = query("SELECT symbol FROM assets"); // query database for user
             if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $quantity, $userid) === false)
             {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure #P1.");} //update portfolio
         //update transaction history for user
-        if (query("INSERT INTO history (id, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)", $userid, $transaction, $symbol, $adminid, $quantity, $quantity) === false)
+        if (query("INSERT INTO history (id, transaction, symbol, quantity, price, counterparty, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, $transaction, $symbol, 0, 0, $adminid, $quantity) === false)
             {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure #P2.");} //update portfolio
             query("COMMIT;"); //If no errors, commit changes
             query("SET AUTOCOMMIT=1");
