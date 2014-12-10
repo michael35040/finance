@@ -499,37 +499,40 @@ function drawChart()
 
 
 
-
-
-
-
-
 <div class="panel panel-primary">
-    <!-- Default panel contents -->
-
-
+<!-- Default panel contents -->
     <div class="panel-heading">
         <form method="post" action="information-trades.php"><span class="nobutton"><button type="submit" name="symbol" value="<?php echo($asset["symbol"]); ?>">TRADES</button></span></form>
     </div>
+
     <table class="table">
+<tr>
+<td>
+                <div class="panel panel-success"> <!--success info primary danger warning -->
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">DAILY TRADES</div>
+                    
+
+
         <?php
         if(!empty($tradesGroup))
         { ?>
-            <tr><td colspan="7"><div id="chart_div1" style="overflow:hidden;"></div></td></tr><!--TGP-->
-            <tr><td colspan="7"><div id="chart_div2" style="overflow:hidden;"></div></td></tr><!--TGV-->
+    <table class="table">
+            <tr><td colspan="3"><div id="chart_div1" style="overflow:hidden;"></div></td></tr><!--TGP-->
+            <tr><td colspan="3"><div id="chart_div2" style="overflow:hidden;"></div></td></tr><!--TGV-->
 
 
 
 
             <?php $tradesCount=count($tradesGroup);?>
             <tr class="active">
-                <td colspan="2">Date</td>
-                <td colspan="2">Avg. Price
+                <td>Date</td>
+                <td>Avg. Price
     <span class="sparklines" sparkType="line">
     <?php $t=0; foreach($tradesGroupR as $trade){echo(number_format(getPrice($trade["price"]), $decimalplaces, ".", "")); $t++; if($t<$tradesCount){echo(",");} } ?>
     </span>
                 </td>
-                <td colspan="3">Volume
+                <td>Volume
     <span class="sparklines" sparkType="bar" sparkBarColor="blue">
     <?php  $t=0; foreach($tradesGroupR as $trade){echo(number_format(($trade["volume"]), 0, ".", "")); $t++; if($t<$tradesCount){echo(",");}}?>
     </span>
@@ -537,27 +540,42 @@ function drawChart()
             </tr>
 
             <?php
-            foreach($tradesGroup as $trade){echo('<tr><td colspan="2">' . date("M j, Y", strtotime($trade["date"])) . '</td><td colspan="2">' . number_format(getPrice($trade["price"]), $decimalplaces, ".", "") . '</td><td colspan="3">' . number_format(($trade["volume"]), 0, ".", "") . '</td></tr>');
+            foreach($tradesGroup as $trade){echo('
+                <tr><td>' . date("M j, Y", strtotime($trade["date"])) . '
+                </td><td>' . number_format(getPrice($trade["price"]), $decimalplaces, ".", "") . '
+                </td><td>' . number_format(($trade["volume"]), 0, ".", "") . '</td></tr>');
             }
             ?>
-
+    </table>
         <?php } /*tradesgroup*/?>
+
+
+
+</div> <!--                    <div class="panel-heading">DAILY TRADES</div>-->
+</td>
+</tr>
+<tr>
+<td>
+                <div class="panel panel-success"> <!--success info primary danger warning -->
+                    <!-- Default panel contents -->
+<div class="panel-heading">LAST TRADES</div>
 
 
         <?php
         if(empty($trades)){ ?>
-            <tr><td colspan="7">No Trades</td></tr>
+    <table class="table">
+            <tr><td>No Trades</td></tr>
+            </table>
         <?php } /* trades==null */
 
         if(!empty($trades))
         { ?>
-            <tr><td colspan="7"><div id="chart_div3" style="overflow:hidden;"></div></td></tr><!-- trades -->
-
+    <table class="table">
+            <tr><td colspan="6"><div id="chart_div3" style="overflow:hidden;"></div></td></tr><!-- trades -->
             <tr class='active'>
                 <td>Trade #</td>
                 <td>Buyer-Bid/Seller-Ask/Type</td>
                 <td>Date/Time (Y/M/D)</td>
-                <td>Symbol</td>
                 <td>Quantity</td>
                 <td>Price</td>
                 <td>Total</td>
@@ -571,17 +589,16 @@ function drawChart()
                 @$askuid = $trade["askorderuid"];
                 @$buyer = $trade["buyer"];//$trade["buyer"];
                 @$seller = $trade["seller"];
-                @$symbol = $trade["symbol"];
+                //@$symbol = htmlspecialchars($trade["symbol"]);
                 @$quantity = $trade["quantity"];
                 @$price = getPrice($trade["price"]);
                 @$total = getPrice($trade["total"]);
                 @$date = $trade["date"];
                 echo("
                 <tr>
-                <td>" . number_format($tradeID, 0, ".", ",") . "</td>
+                <td>" . number_format($tradeID, 0, ".", "") . "</td>
                 <td>" . $buyer . "-" . $biduid . "/" . $seller . "-" . $askuid . "/" . strtoupper($tradeType) . "</td>
-                <td>" . htmlspecialchars(date('Y-m-d H:i:s', strtotime($date))) . "</td>
-                <td>" . htmlspecialchars("$symbol") . "</td>
+                <td>" . htmlspecialchars(date('m/d H:i', strtotime($date))) . "</td>
                 <td>" . number_format($quantity, 0, ".", ",") . "</td>
                 <td>$" . number_format($price, $decimalplaces, ".", ",") . "</td>
                 <td>$" . number_format($total, $decimalplaces, ".", ",") . "</td>
@@ -590,10 +607,15 @@ function drawChart()
                 if($i==5){break;}
             } //foreach
             ?>
+            </table>
         <?php } /*trades != null*/
         ?>
 
-    </table>
+</div> <!--<div class="panel-heading">LAST TRADES</div>-->
+</td>
+</tr>
+</table>
+
 </div><!--panel-primary trades-->
 
 
@@ -750,7 +772,7 @@ if(!empty($asks) || !empty($bids)){
                     {
                         //if($row["side"]=='b'){$side='BID';}; if($row["side"]=='a'){$side='ASK ';};
                         echo("<tr>");
-                        echo("<td>" . (number_format($row["uid"],0,".",",")) . "</td>");
+                        echo("<td>" . (number_format($row["uid"],0,".","")) . "</td>");
                         //echo("<td>" . htmlspecialchars($side) . "</td>");
                         echo("<td>" . htmlspecialchars(date('m/d H:i',strtotime($row["date"]))) . "</td>");
                         //echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
@@ -788,7 +810,7 @@ if(!empty($asks) || !empty($bids)){
                     {
                         //if($row["side"]=='b'){$side='BID';}; if($row["side"]=='a'){$side='ASK ';};
                         echo("<tr>");
-                        echo("<td>" . (number_format($row["uid"],0,".",",")) . "</td>");
+                        echo("<td>" . (number_format($row["uid"],0,".","")) . "</td>");
                         //echo("<td>" . htmlspecialchars($side) . "</td>");
                         echo("<td>" . htmlspecialchars(date('m/d H:i',strtotime($row["date"]))) . "</td>");
                         //echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
@@ -825,7 +847,7 @@ if(!empty($asks) || !empty($bids)){
                     {
                        //if($row["side"]=='b'){$side='BID';}; if($row["side"]=='a'){$side='ASK ';};
                         echo("<tr>");
-                        echo("<td>" . (number_format($row["uid"],0,".",",")) . htmlspecialchars($row["side"]) . "</td>");
+                        echo("<td>" . (number_format($row["uid"],0,".","")) . htmlspecialchars($row["side"]) . "</td>");
                         //echo("<td>" . htmlspecialchars($side) . "</td>");
                         echo("<td>" . htmlspecialchars(date('m/d H:i',strtotime($row["date"]))) . "</td>");
                         //echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
