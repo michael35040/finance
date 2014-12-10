@@ -34,11 +34,13 @@ min-height: 100%;
 body {
 margin: 0 0 50px; /* bottom = footer height */
 
+/*
 background-size: cover;
 background-image: url('../img/bg/<?php echo($img); ?>.jpg');
 background-repeat: no-repeat;
 background-attachment: fixed;
 background-position: center;
+*/
 }
 
 #page {
