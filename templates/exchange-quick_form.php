@@ -2,6 +2,21 @@
 $goldColor="#FFD700;";
 $silverColor="#C0C0C0;";
 $dollarColor="#85bb65;";
+
+/*
+XAU - Gold Ounce AU
+XAG - Silver Ounce AG
+XBT - Bitcoin NA
+USD - US Dollar (United States) $
+EUR - Euro (Euro Member Countries) €
+GBP - British Pound (United Kingdom) £
+INR - Indian Rupee (India) ₹
+CHF - Swiss Franc (Switzerland) NA
+JPY - Japanese Yen (Japan) ¥
+CNY - Chinese Yuan Renminbi (China) ¥
+*/
+
+
 ?>
 
 <style>
