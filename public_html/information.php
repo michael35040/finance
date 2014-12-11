@@ -79,7 +79,7 @@ $asset["public"] = $asset["askstotal"]+$asset["totalportfolio"];
 
 
         //TRADES (PROCESSED ORDERS)
-$trades =  query("SELECT * FROM trades WHERE (symbol=? AND (type='limit' OR type='market')) ORDER BY uid DESC", $symbol);
+$trades =  query("SELECT * FROM trades WHERE (symbol=? AND (type='limit' OR type='market')) ORDER BY uid DESC LIMIT 0,100", $symbol);
         //if(empty($trades[0]["price"])){$trades[0]["price"]=0;}
         if(isset($trades[0]["price"])) 
             {$asset["price"] = getPrice($trades[0]["price"]); //stock price per share

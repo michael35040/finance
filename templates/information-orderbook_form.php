@@ -11,7 +11,7 @@
     }
 </style>
 
-<table align="center" class="table">
+<table align="center" class="table" style="text-align:center;">
     <tr>
         <td colspan="7" style="text-align:center;border:1px solid black;font-weight:bold;background-color:black;color:white;">BID</td>
         <td>
@@ -22,7 +22,7 @@
         <td colspan="7" style="text-align:center;border:1px solid black;font-weight:bold;background-color:black;color:white;">ASK</td>
     </tr>
 
-    <tr>
+    <tr class="active">
         <td>ID</td>
         <td>Side</td>
         <td>Date/Time (Y/M/D)</td>
@@ -55,7 +55,7 @@
         echo('<td' . $color .'>' . (number_format(($row["id"]),0,".","")) . '</td>');
         echo('<td>' . htmlspecialchars($side) . '</td>');
         echo('<td>' . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . '</td>');
-        echo('<td>' . htmlspecialchars($row["type"]) . '</td>');
+        echo('<td>' . htmlspecialchars(strtoupper($row["type"])) . '</td>');
         echo('<td>' . $unitsymbol . (number_format(getPrice($row["total"]),$decimalplaces,".",",")) . '</td>');
         echo('<td>' . number_format($row["quantity"],0,".",",") . '</td>');
         echo('<td>' . (number_format($row["uid"],0,".","")) . '</td>');
