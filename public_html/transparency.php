@@ -59,33 +59,46 @@ $id = $_SESSION["id"]; //get id from session
         //apologize(var_dump(get_defined_vars()));
         
         */
-}
-
-
-
-
-
-
 
 ?>
 
 <p>Below is a record our financial obligations to our members along with the amount of assets in our full reserve. Our real-time transparency system enables anyone at any time to confirm our solvency and ensure that his or her value is safe.</p>
 
-
-<h3>Reserve Assets: 590,613.87 USD</h3>
-    1037.423455 BTC
-    172473.63 USD
-    0.00 EUR
-    0.00 GBP
-    0.00 CNY
-    0.00 JPY
-    40.00 XAU 
-
-<h3>Obligations to our members: 482,934.71 USD</h3>
-    885.731546 BTC
-    116883.83 USD
-    7448.52 EUR
-    2927.93 GBP
-    8303.87 CNY
-    99332.99 JPY
-    28.43055 XAU 
+<table border="3" style="text-align:center;">
+<tr>
+<td></td>
+    <td>BTC</td>
+    <td>GOLD/XAU</td>
+    <td>SILVER/XAG</td>
+    <td>USD</td>
+    <td>EUR</td>
+    <td>GBP</td>
+    <td>CNY</td>
+    <td>JPY</td>
+<td><strong>TOTAL (USD)</strong></td>
+</tr>
+<tr>
+<td>Assets</td>
+    <td>1037.423455</td>
+    <td>40.00</td>
+    <td>40.00</td>
+    <td>172473.63</td>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td>0.00</td>
+    <td><strong>590,613.87</strong></td>
+</tr>
+<tr>
+<td>Obligations</td>
+    <td>885.731546</td>
+    <td>28.43055</td>
+    <td>28.43055</td>
+    <td>116883.83</td>
+    <td>7448.52</td>
+    <td>2927.93</td>
+    <td>8303.87</td>
+    <td>99332.99</td>
+    <td><strong>482,934.71</strong></td>
+</tr>
+</table>
