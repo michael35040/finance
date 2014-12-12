@@ -1037,7 +1037,7 @@ else{ ?>
         
         $unlisted=$asset["public"]-$listedOwned;
         $percentage=($unlisted/$asset["public"])*100;
-        echo("<tr class='active'><td>Remaining</td><td>");
+        echo("<tr><td>Remaining</td><td>");
         echo((number_format($unlisted,0,".",",")));
         echo("</td><td>" . (number_format($percentage,2,".",",")) . "%</td></tr>");
 
