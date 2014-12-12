@@ -617,7 +617,7 @@ function updateSymbol($symbol, $newSymbol, $userid, $name, $type, $url, $rating,
 ////////////////////////////////////
 //DE LISTING
 ////////////////////////////////////
-function removeAsset($symbol)
+function delist($symbol)
 {
 //cancel all orders on orderbook
     if(query("UPDATE orderbook SET type = ('cancel') WHERE (symbol = ?)", $symbol) === false){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("RA1"); }
