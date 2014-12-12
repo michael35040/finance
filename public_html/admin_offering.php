@@ -39,6 +39,15 @@ elseif($offering=='reverse')
     try {$message = removeQuantity($symbol, $userid, $issued);}
     catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 }
+elseif($offering=='delist')
+{
+    if(!empty($_POST['delete'])) 
+    {
+        $symbol = $_POST['delete'];
+        try {$message = delist($symbol);}
+        catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
+    }
+}
 elseif($offering=='initial')
 {
     @$name = $_POST["name"];
