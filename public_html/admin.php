@@ -4,26 +4,26 @@
 
 require("../includes/config.php");
 $id = $_SESSION["id"];
+$title = "Dashboard";
+$assets = query("SELECT symbol FROM assets"); // for processing, delete, and remove orderbook menu
+
 if ($id != 1) { apologize("Unauthorized!"); exit();}
 else
 {
+    
+    
+    
+    
+    
 
 
 
 
-//if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
-//$assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC"); // query assets
-$title = "Dashboard";
 
 
 
 
-
-//for delete or process
-$assets = query("SELECT symbol FROM assets"); // query database for user
     if(isset($_POST['process'])) {
-
-
         if ($_POST["process"] == 'ALL') {
             try {
                 $processOrderbook = processOrderbook();
@@ -757,6 +757,13 @@ require("../templates/header.php");
     </tr>
     </tbody>
     </table>
+
+
+
+
+
+
+
 
 
 
