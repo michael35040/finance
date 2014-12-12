@@ -168,6 +168,14 @@
 
 document.getElementById("followon").addEventListener("click", function () {
 
+    document.getElementById("userid").disabled = false;
+    document.getElementById('userid').value='';
+    document.getElementById("useridTR").style.opacity = 1; //1 visible //0 invisible
+
+    document.getElementById("issued").disabled = false;
+    document.getElementById('issued').value='';
+    document.getElementById("issuedTR").style.opacity = 1; //1 visible //0 invisible
+
     document.getElementById("fee").disabled = false;
     document.getElementById('fee').value='';
     document.getElementById("feeTR").style.opacity = 1; //1 visible //0 invisible
@@ -201,6 +209,14 @@ document.getElementById("followon").addEventListener("click", function () {
 
 document.getElementById("reverse").addEventListener("click", function () {
 
+    document.getElementById("userid").disabled = false;
+    document.getElementById('userid').value='';
+    document.getElementById("useridTR").style.opacity = 1; //1 visible //0 invisible
+
+    document.getElementById("issued").disabled = false;
+    document.getElementById('issued').value='';
+    document.getElementById("issuedTR").style.opacity = 1; //1 visible //0 invisible
+
     document.getElementById("fee").disabled = true;
     document.getElementById('fee').value='';
     document.getElementById("feeTR").style.opacity = 0; //1 visible //0 invisible
@@ -233,6 +249,14 @@ document.getElementById("reverse").addEventListener("click", function () {
 }, false);
 
 document.getElementById("initial").addEventListener("click", function () {
+
+    document.getElementById("userid").disabled = false;
+    document.getElementById('userid').value='';
+    document.getElementById("useridTR").style.opacity = 1; //1 visible //0 invisible
+
+    document.getElementById("issued").disabled = false;
+    document.getElementById('issued').value='';
+    document.getElementById("issuedTR").style.opacity = 1; //1 visible //0 invisible
 
     document.getElementById("fee").disabled = false;
     document.getElementById('fee').value='';
