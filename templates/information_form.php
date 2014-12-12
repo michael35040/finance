@@ -312,6 +312,63 @@ function drawChart()
 
 
 
+    /////////////////
+    //CHART PIE 6A
+    //OWNERSHIP
+    ////////////////
+
+    var data6A = google.visualization.arrayToDataTable([
+        ['User', 'Quantity'],
+        <?php
+        $owned=0;
+        foreach ($ownership as $owners)	// for each of user's stocks
+         {
+             $quantity = number_format(($owners["quantity"]), 0, '.', '');
+             $id = number_format(($owners["id"]), 0, '.', '');
+             echo("['User: " . $id . "', " . $quantity . "],");
+             $owned=$owned+$quantity;
+         }
+
+     $asset["askstotal"]=number_format(($asset["askstotal"]), 0, '.', '');
+     $leftOver=($asset["public"]-$owned-$asset["askstotal"]); //takes the amount issued and subtracts the listed owned to figure out how many shares are left from top listed users for pie chart
+     $leftOver=number_format(($leftOver), 0, '.', '');
+     echo("['Other Users', " . $leftOver . "],");
+     echo("['Orderbook', " . $asset["askstotal"] . "],");
+     //if($leftOver>0){} //if($askQuantity>0){}
+      //   ['Work',     11],
+      //   ['Sleep',    7]
+         ?>
+    ]);
+
+
+
+
+    var options6A = {
+        //title: 'Ownership Control',
+        //is3D: true,
+        //legend: 'none',
+        //pieSliceText: 'percentage' //'label', 'percentage', 'value', 'none'
+        //width: 400,
+
+        height: 500
+        //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+
+    };
+
+    var chart6A = new google.visualization.PieChart(document.getElementById('chart_div6A'));
+
+    chart6A.draw(data6A, options6A);
+
+
+
+    /////////////////
+    //END CHART PIE 6A
+    ////////////////
+
+
+
+
+
 
 
 
