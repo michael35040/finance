@@ -614,6 +614,23 @@ function updateSymbol($symbol, $newSymbol, $userid, $name, $type, $url, $rating,
 
 
 
+////////////////////////////////////
+//DE LISTING
+////////////////////////////////////
+function removeAsset($symbol)
+{
+//cancel all orders on orderbook
+    if(query("UPDATE orderbook SET type = ('cancel') WHERE (symbol = ?)", $symbol) === false){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("RA1"); }
+
+    //delete from assets
+    if (query("DELETE FROM assets WHERE (symbol = ?)", $symbol) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #RA2"); }
+
+    //delete from portfolio
+    if (query("DELETE FROM portfolio WHERE (symbol = ?)", $symbol) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #RA3"); }
+
+    if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", 1, 0, 'DELISTED', $symbol, 0, 0, 0) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #RA4"); }
+
+}
 
 
 
@@ -626,7 +643,7 @@ function updateSymbol($symbol, $newSymbol, $userid, $name, $type, $url, $rating,
 ////////////////////////////////////
 function publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description)
 {   require 'constants.php';
-    $transaction='PO'; //public offering
+    $transaction='INITIAL'; //public offering
     if (empty($symbol)) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("You must enter symbol."); }
     $symbol = strtoupper($symbol); //cast to UpperCase
 
@@ -728,7 +745,7 @@ function publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $ra
 function publicOffering2($symbol, $userid, $issued, $fee)
 {   require 'constants.php';
 
-    $transaction='PO'; //public offering
+    $transaction='ISSUE'; //public offering
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
     $symbol = strtoupper($symbol); //cast to UpperCase
@@ -820,12 +837,12 @@ function publicOffering2($symbol, $userid, $issued, $fee)
 
 
 ////////////////////////////////////
-//Public Offering (follow on)
+//Public Offering (reverse)
 ////////////////////////////////////
-function publicOfferingReverse($symbol, $userid, $issued)
+function removeQuantity($symbol, $userid, $issued)
 {   require 'constants.php';
 
-    $transaction='RO'; //reverse offering
+    $transaction='REMOVE'; //reverse offering
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
     $symbol = strtoupper($symbol); //cast to UpperCase
@@ -849,7 +866,7 @@ function publicOfferingReverse($symbol, $userid, $issued)
     $userQuantity = $ownerPortfolio[0]["quantity"];
     if ($userQuantity < $issued) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("User does not have enough for removal."); exit();} //update portfolio} //updates if stock already owned
 
-//INSERT TRADE INTO PORTFOLIO OF OWNER MINUS FEE
+//INSERT TRADE 
     if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $userid, $userid, $issued, 0, 0, 0, $transaction, 0, 0) === false)
     {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Insert Owner Trade Error");}
 
@@ -857,6 +874,10 @@ function publicOfferingReverse($symbol, $userid, $issued)
     query("SET AUTOCOMMIT=1");
     return("$symbol Public offering successful!");
 } //function
+
+
+
+
 
 
 
