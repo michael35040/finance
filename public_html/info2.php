@@ -1,9 +1,62 @@
 
 <?php
+// configuration
+require("../includes/config.php");
 
 
+$id = $_SESSION["id"]; //get id from session
 
+
+// apologize(var_dump(get_defined_vars()));
+
+function ownership($symbol)
+{
+$ownership = query("
+ SELECT 
+ 	SUM(orderbook.quantity) AS orderbook, 
+    portfolio.quantity AS portfolio, 
+    (COALESCE(SUM(orderbook.quantity),0)+COALESCE(portfolio.quantity,0)) AS total, 
+    portfolio.id 
+ FROM portfolio
+ LEFT JOIN 
+	orderbook ON portfolio.id = orderbook.id and 
+    orderbook.symbol =? and 
+    orderbook.side='a' 
+WHERE portfolio.symbol =? 
+GROUP BY portfolio.id 
+	", $symbol, $symbol);
+
+ return($ownership);
+}
+
+$ownership = ownership('A');
+// apologize(var_dump(get_defined_vars()));
 ?>
+
+
+
+<table>
+<tr>
+<th>ID</th>
+<th>Orderbook</th>
+<th>Portfolio</th>
+<th>Total</th>
+</tr>
+<?php 
+
+foreach ($ownership as $owner)
+{ 
+    echo("<tr>");
+    echo("<td>" . $owner['id'] . "</td>");
+    echo("<td>" . $owner['orderbook'] . "</td>");
+    echo("<td>" . $owner['portfolio'] . "</td>");
+    echo("<td>" . $owner['total'] . "</td>");
+    echo("</tr>");
+}
+?>
+</table>
+
+
 
 
 <!--
@@ -11,7 +64,6 @@ need to create another table
 if owned on a certain date, create a table of who can vote and how much their vote counts for
 this is to prevent voters voting twice or complications when buying or selling during sell
 -->
-
 
 <div class="panel panel-primary"> <!--success VOTING -->
     <!-- Default panel contents -->
