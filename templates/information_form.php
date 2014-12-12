@@ -256,63 +256,6 @@ function drawChart()
 
 
     /////////////////
-    //CHART PIE 6
-    //OWNERSHIP
-    ////////////////
-
-    var data6 = google.visualization.arrayToDataTable([
-        ['User', 'Quantity'],
-        <?php
-        $owned=0;
-        foreach ($ownership as $owners)	// for each of user's stocks
-         {
-             $quantity = number_format(($owners["quantity"]), 0, '.', '');
-             $id = number_format(($owners["id"]), 0, '.', '');
-             echo("['User: " . $id . "', " . $quantity . "],");
-             $owned=$owned+$quantity;
-         }
-
-     $asset["askstotal"]=number_format(($asset["askstotal"]), 0, '.', '');
-     $leftOver=($asset["public"]-$owned-$asset["askstotal"]); //takes the amount issued and subtracts the listed owned to figure out how many shares are left from top listed users for pie chart
-     $leftOver=number_format(($leftOver), 0, '.', '');
-     echo("['Other Users', " . $leftOver . "],");
-     echo("['Orderbook', " . $asset["askstotal"] . "],");
-     //if($leftOver>0){} //if($askQuantity>0){}
-      //   ['Work',     11],
-      //   ['Sleep',    7]
-         ?>
-    ]);
-
-
-
-
-    var options6 = {
-        //title: 'Ownership Control',
-        //is3D: true,
-        //legend: 'none',
-        //pieSliceText: 'percentage' //'label', 'percentage', 'value', 'none'
-        //width: 400,
-
-        height: 500
-        //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
-
-    };
-
-    var chart6 = new google.visualization.PieChart(document.getElementById('chart_div6'));
-
-    chart6.draw(data6, options6);
-
-
-
-    /////////////////
-    //END CHART PIE 6
-    ////////////////
-
-
-
-
-
-    /////////////////
     //CHART PIE 6A
     //OWNERSHIP
     ////////////////
@@ -321,20 +264,19 @@ function drawChart()
         ['User', 'Quantity'],
         <?php
         $owned=0;
-        foreach ($ownership as $owners)	// for each of user's stocks
-         {
-             $quantity = number_format(($owners["quantity"]), 0, '.', '');
-             $id = number_format(($owners["id"]), 0, '.', '');
-             echo("['User: " . $id . "', " . $quantity . "],");
-             $owned=$owned+$quantity;
-         }
-
-     $asset["askstotal"]=number_format(($asset["askstotal"]), 0, '.', '');
-     $leftOver=($asset["public"]-$owned-$asset["askstotal"]); //takes the amount issued and subtracts the listed owned to figure out how many shares are left from top listed users for pie chart
-     $leftOver=number_format(($leftOver), 0, '.', '');
-     echo("['Other Users', " . $leftOver . "],");
-     echo("['Orderbook', " . $asset["askstotal"] . "],");
-     //if($leftOver>0){} //if($askQuantity>0){}
+        foreach ($ownership2 as $owner)
+        {
+            /*
+            echo("<td>" . $owner['id'] . "</td>");
+            echo("<td>" . $owner['orderbook'] . "</td>");
+            echo("<td>" . $owner['portfolio'] . "</td>");
+            echo("<td>" . $owner['total'] . "</td>");
+            */
+            if($owner['total']>0)
+            {
+             echo("['User: " . $owner['id'] . "', " . number_format($owner['total'], 0, '.', '') . "],");
+            }
+        }
       //   ['Work',     11],
       //   ['Sleep',    7]
          ?>
@@ -344,7 +286,7 @@ function drawChart()
 
 
     var options6A = {
-        //title: 'Ownership Control',
+        title: 'Ownership',
         //is3D: true,
         //legend: 'none',
         //pieSliceText: 'percentage' //'label', 'percentage', 'value', 'none'
@@ -1071,42 +1013,55 @@ else{ ?>
     <table class="table" style="text-align:center;">
         <thead>
         <tr class="active">
-            <td>Holder</td>
-            <td>Quantity</td>
-            <td>Control</td>
+            <td><strong>User</strong></td>
+            <td><strong>Quantity</strong></td>
+            <td><strong>Control</strong></td>
         </tr>
         </thead>
         <tbody>
 
 
         <?php
-        foreach ($ownership as $row)
-        { $percentage=($row["quantity"]/$asset["public"])*100;
+        $i=0; $listedOwned=0;
+        foreach ($ownership2 as $row)
+        {   $i++;
+            $percentage=($row["total"]/$asset["public"])*100;
             echo("<tr>");
-            echo("<td>" . (number_format($row["id"],0,".",",")) . " (sans o.b.)</td>");
-            echo("<td>" . (number_format($row["quantity"],0,".",",")) . "</td>");
+            echo("<td>" . (number_format($row["id"],0,".",",")) . "</td>");
+            echo("<td>" . (number_format($row["total"],0,".",",")) . "</td>");
             echo("<td>" . (number_format($percentage,2,".",",")) . "%</td>");
             echo("</tr>");
+            $listedOwned = $listedOwned+$row["total"];
+            if($i==5){break;}
         }
+        
+        $unlisted=$asset["public"]-$listedOwned;
+        $percentage=($unlisted/$asset["public"])*100;
+        echo("<tr class='active'><td>Remaining</td><td>");
+        echo((number_format($unlisted,0,".",",")));
+        echo("</td><td>" . (number_format($percentage,2,".",",")) . "%</td></tr>");
 
-        // if($leftOver>0)
-        // {
-        $percentage=($leftOver/$asset["public"])*100;
-        echo("<tr><td>Other Users</td><td>" . number_format($leftOver, 0, '.', '') . "</td><td>" . (number_format($percentage,2,".",",")) . "%</td>");
-        // }
+        
+        $totallisted=$asset["public"]/$asset["public"];
+        $percentage=($asset["public"]/$asset["public"])*100;
+        echo("<tr class='active'><td><strong>Total</strong></td><td><strong>");
+        echo((number_format($asset["public"],0,".",",")));
+        echo("</strong></td><td><strong>" . (number_format($percentage,2,".",",")) . "%</strong></td></tr>");
+
 
         //if($asset["askstotal"]>0)
         //{
         $percentage=($asset["askstotal"]/$asset["public"])*100;
-        echo("<tr><td>Orderbook</td><td>");
+        echo("<tr class='active'><td>On Orderbook</td><td>");
         echo((number_format($asset["askstotal"],0,".",",")));
         echo("</td><td>" . (number_format($percentage,2,".",",")) . "%</td></tr>");
         //}
         ?>
         <tr>
             <td colspan="3">
-                <div id="chart_div6" style=""></div>
-
+                <table>
+                <tr>
+                        <div id="chart_div6A" style=""></div>
             </td>
         </tr>
         </tbody>
@@ -1115,6 +1070,9 @@ else{ ?>
     </table>
 
 </div><!--panel-primary orderbook-->
+
+
+
 
 
 
