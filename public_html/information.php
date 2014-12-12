@@ -31,6 +31,8 @@ $asset["userportfolio"]=$usersPortfolio[0]["quantity"];
         //ALL OWNERSHIP FOR PIECHART
 $ownership =query("SELECT SUM(`quantity`) AS quantity, id FROM `portfolio` WHERE (symbol = ?) GROUP BY `id` ORDER BY `quantity` DESC LIMIT 0, 5", $symbol);	  // query user's portfolio
         
+$ownership2 = ownership($symbol);
+        
 //ORDERBOOK        
         
         //USERS ORDERBOOK
@@ -191,7 +193,6 @@ $asset["dividend"]=0; //until we get real ones
 
 
 
-$ownership = ownership($symbol);
 
 
 
@@ -199,11 +200,11 @@ $ownership = ownership($symbol);
         //WORKING SQL QUERY FOR CHARTING DAILY TRADES
         render("information_form.php", [
             "title" => "Information",
-            "ownership" => $ownership,
             "symbol" => $symbol,
             "asset" => $asset,
             "timeframe" => $timeframe,
             "ownership" => $ownership,
+            "ownership2" => $ownership2,
             "bids" => $bids,
             "asks" => $asks,
             "lastorders" => $lastorders,
