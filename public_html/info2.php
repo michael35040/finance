@@ -9,25 +9,7 @@ $id = $_SESSION["id"]; //get id from session
 
 // apologize(var_dump(get_defined_vars()));
 
-function ownership($symbol)
-{
-$ownership = query("
- SELECT 
- 	SUM(orderbook.quantity) AS orderbook, 
-    portfolio.quantity AS portfolio, 
-    (COALESCE(SUM(orderbook.quantity),0)+COALESCE(portfolio.quantity,0)) AS total, 
-    portfolio.id 
- FROM portfolio
- LEFT JOIN 
-	orderbook ON portfolio.id = orderbook.id and 
-    orderbook.symbol =? and 
-    orderbook.side='a' 
-WHERE portfolio.symbol =? 
-GROUP BY portfolio.id 
-	", $symbol, $symbol);
 
- return($ownership);
-}
 
 $ownership = ownership('A');
 // apologize(var_dump(get_defined_vars()));
