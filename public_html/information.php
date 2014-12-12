@@ -191,7 +191,7 @@ $asset["dividend"]=0; //until we get real ones
 
 
 
-
+$ownership = ownership($symbol);
 
 
 
@@ -199,6 +199,7 @@ $asset["dividend"]=0; //until we get real ones
         //WORKING SQL QUERY FOR CHARTING DAILY TRADES
         render("information_form.php", [
             "title" => "Information",
+            "ownership" => $ownership,
             "symbol" => $symbol,
             "asset" => $asset,
             "timeframe" => $timeframe,
