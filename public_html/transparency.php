@@ -60,16 +60,39 @@ $id = $_SESSION["id"]; //get id from session
         
         */
 
+$assets["XBT"] = 1037.423455;
+$assets["XAU"] = 40.00;
+$assets["XAG"] = 40.00;
+$assets["USD"] = 172473.63;
+$assets["EUR"] = 0.00;
+$assets["GBP"] = 0.00;
+$assets["CNY"] = 0.00;
+$assets["JPY"] = 0.00;
+$assets["TOT"] = 590613.87;
+
+$obligations["XBT"] = 885.731546;
+$obligations["XAU"] = 28.43055;
+$obligations["XAG"] = 28.43055;
+$obligations["USD"] = 116883.83;
+$obligations["EUR"] = 7448.52;
+$obligations["GBP"] = 2927.93;
+$obligations["CNY"] = 8303.87;
+$obligations["JPY"] = 99332.99;
+$obligations["TOT"] = 482934.71;
+
+
 ?>
+
+
 
 <p>Below is a record our financial obligations to our members along with the amount of assets in our full reserve. Our real-time transparency system enables anyone at any time to confirm our solvency and ensure that his or her value is safe.</p>
 
 <table border="3" style="text-align:center;">
 <tr>
 <td></td>
-    <td>BTC</td>
-    <td>GOLD/XAU</td>
-    <td>SILVER/XAG</td>
+    <td>XBT</td>
+    <td>XAU</td>
+    <td>XAG</td>
     <td>USD</td>
     <td>EUR</td>
     <td>GBP</td>
@@ -79,26 +102,29 @@ $id = $_SESSION["id"]; //get id from session
 </tr>
 <tr>
 <td>Assets</td>
-    <td>1037.423455</td>
-    <td>40.00</td>
-    <td>40.00</td>
-    <td>172473.63</td>
-    <td>0.00</td>
-    <td>0.00</td>
-    <td>0.00</td>
-    <td>0.00</td>
-    <td><strong>590,613.87</strong></td>
+<td><?php echo(number_format($assets["XBT"],4,".","")); ?></td>
+<td><?php echo(number_format($assets["XAU"],4,".","")); ?></td>
+<td><?php echo(number_format($assets["XAG"],4,".","")); ?></td>
+<td><?php echo(number_format($assets["USD"],4,".","")); ?></td>
+<td><?php echo(number_format($assets["EUR"],4,".","")); ?></td>
+<td><?php echo(number_format($assets["GBP"],4,".","")); ?></td>
+<td><?php echo(number_format($assets["CNY"],4,".","")); ?></td>
+<td><?php echo(number_format($assets["JPY"],4,".","")); ?></td>
+<td><strong><?php echo(number_format($assets["TOT"],4,".","")); ?></strong></td>
 </tr>
 <tr>
 <td>Obligations</td>
-    <td>885.731546</td>
-    <td>28.43055</td>
-    <td>28.43055</td>
-    <td>116883.83</td>
-    <td>7448.52</td>
-    <td>2927.93</td>
-    <td>8303.87</td>
-    <td>99332.99</td>
-    <td><strong>482,934.71</strong></td>
+<td><?php echo(number_format($obligations["XBT"],4,".","")); ?></td>
+<td><?php echo(number_format($obligations["XAU"],4,".","")); ?></td>
+<td><?php echo(number_format($obligations["XAG"],4,".","")); ?></td>
+<td><?php echo(number_format($obligations["USD"],4,".","")); ?></td>
+<td><?php echo(number_format($obligations["EUR"],4,".","")); ?></td>
+<td><?php echo(number_format($obligations["GBP"],4,".","")); ?></td>
+<td><?php echo(number_format($obligations["CNY"],4,".","")); ?></td>
+<td><?php echo(number_format($obligations["JPY"],4,".","")); ?></td>
+<td><strong><?php echo(number_format($obligations["TOT"],4,".","")); ?></strong></td>
 </tr>
 </table>
+*XBT: Bitcoin (BTC)<br>
+*XAU: Gold (Au)<br>
+*XAG: Silver (Ag)<br>
