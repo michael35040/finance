@@ -140,14 +140,6 @@ else
 
 
 
-    if(isset($_POST['delete'])) {
-        if(!empty($_POST['delete'])) {
-        removeAsset($_POST['delete']);}
-    }
-
-
-
-
 
 
 
@@ -716,50 +708,6 @@ require("../templates/header.php");
     </tr>
     </tbody>
     </table>
-
-
-
-
-
-
-
-
-
-
-
-    <table class="table table-condensed table-striped table-bordered" id="process" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
-    <thead>
-    <tr>
-        <td class="danger"><strong>DELETE ASSET</strong></td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>
-            <form action="admin.php"  class="deleteForm" method="post">
-
-            <select name="delete"  class="form-control" >
-                    <?php
-                    if (empty($assets)) {
-                        echo("<option value=''>No Assets</option>");
-                    } else {
-                        //echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
-                        echo("<option class='select-dash' disabled='disabled' selected value=''>SELECT</option>");
-                        foreach ($assets as $asset) {
-                            $symbol = $asset["symbol"];
-                            echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
-                        }
-                    }
-                    ?>
-                </select>
-                <button type="submit" class="btn btn-danger"><b> DELETE </b></button></span>
-            </form></td>
-    </tr>
-    </tbody>
-    </table>
-
-
-
 
 
 
