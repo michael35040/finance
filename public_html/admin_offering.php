@@ -20,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
         catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
     }
     
-    
+    if($offering!='delist')
+    {
         if(empty($_POST["userid"])){apologize("Please fill out userid");}
         else{$userid = $_POST["userid"];} //owner or chief executive
         
@@ -36,6 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
         $userCheck = query("SELECT id FROM users WHERE id =?", $userid);//Checks to see if they already own stock to determine if we should insert or update tables
         $countUserRows = count($userCheck);
         if ($countUserRows != 1) {apologize("User does not exist!"); }
+    }
+    
     
         if($offering=='followon')
     {
