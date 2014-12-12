@@ -121,59 +121,21 @@
         <td colspan="8" style="font-size:20px; text-align: center;">ACCOUNTS</td>
     </tr>
     <tr   class="active">
-        <th colspan="2">Account #</th>
+        <!--<th>Account #</th>-->
         <th>Type</th>
-        <th colspan="4">Description</th>
-        <th><div style="text-align:right">Amount</div></th>
+        <th>Description</th>
+        <th>Locked*</th>
+        <th>Available</th>
+        <th><div style="text-align:right">Total</div></th>
     </tr>
-
-    <?php
-    $i=0;
-    if($units >= 0)
-    {       ?>
-        <tr>
-            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($id); $i++; echo("-" . $i); ?></td>
+        <tr><!--USD-->
+            <!--<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php //  echo($id); $i++; echo("-" . $i); ?></td> -->
             <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td></td>
-            <td colspan="4"><?php echo($unitdescription); ?></td>
-            <td><div style="text-align:right">
-                    <?php echo($unitsymbol . number_format($units,2,".",",")) ?>
-                </div></td>
+            <td><?php echo($unitdescription); ?></td>
+            <td><?php echo("<form action='orders.php' method='post'><span class='nobutton'><button type='submit' name='side' value='b'>" . $unitsymbol . number_format($bidLocked,2,".",",") . "</button></span></form>"); ?></td>
+            <td><?php echo($unitsymbol . number_format($units,2,".",",")) ?></td>
+            <td><div style="text-align:right"><?php echo($unitsymbol . number_format(($units+$bidLocked),2,".",",")) ?></div></td>
         </tr>
-    <?php
-    }
-    if($bidLocked != 0)
-    {
-        ?>
-
-        <tr>
-            <td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo($id);
-                $i++;
-                echo("-" . $i); ?></td>
-            <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td>
-
-            <td colspan="4"><?php echo("<form action='orders.php' method='post'><span class='nobutton'><button type='submit' name='side' value='b'>" . $unitdescription . " (Pending Bid Orders)</button></span></form>"); ?></td>
-            <td><div style="text-align:right">
-                    <?php echo($unitsymbol . number_format($bidLocked, 2, ".", ",")) ?>
-                </div></td>
-        </tr>
-    <?php
-    }
-    if($i == 0)
-    {
-        echo("<tr><td colspan='8'>You do not have any funds in any accounts</td></tr>");
-
-    } ?>
-    <tr  class="active">
-        <td colspan="7"><strong>SUBTOTAL</strong></td>
-        <td><div style="text-align:right">
-                <strong>
-                    <?php
-                    $accountsTotal = ($units+$bidLocked);
-                    echo($unitsymbol . number_format($accountsTotal, 2, ".", ","))
-                    ?>
-                </strong>
-            </div></td>
-    </tr>
 </table>
 
 
@@ -207,12 +169,25 @@
         <th>Asset</th>
         <th>Total (Control)</th>
         <th>Available</th>
-        <th>Orderbook*</th>
+        <th>Locked*</th>
         <th>Price</th>
         <th>Purchase</th>
         <th>Loss/Gain</th>
         <th><div style="text-align:right">Market Value</div></th>
     </tr>
+
+<?php /*
+    <tr><!--USD-->
+        <td><?php //echo(strtoupper($unittype)); //echo($unitdescription); //set in finance.php ?></td>
+        <td><?php //echo($unitsymbol . number_format(($bidLocked + $units),2,".",",")) ?></td>
+        <td><?php //echo($unitsymbol . number_format($units,2,".",",")) ?></td>
+        <td><?php //echo($unitsymbol . number_format($bidLocked, 2, ".", ",")) ?></td>
+        <td><!--Price--></td>
+        <td><!--Purchase--></td>
+        <td><!--Loss/Gain--></td>
+        <td><!--<div style="text-align:right">Market Value</div>--></td>
+    </tr>
+*/ ?>
 
     <!-- STOCKS ROW -->
     <?php $i = 0;
@@ -239,8 +214,8 @@
             $percentchange = 0;
         }
 
-        echo("<td>"); 
-        
+        echo("<td>");
+
         //ARROWS START
         if ($row['value'] < $row['total']) {
             echo("<font color='#00FF00'>&#x25B2;</font>");
@@ -301,7 +276,7 @@
                         echo("&#x25C4;"); //eft:[&#x25C4;]   right: [&#x25BA;]
                     } //even left and right arrow
                     //ARROWS END
-                    
+
                     echo($unitsymbol . number_format($change, 2, ".", ",") . " (<i>" . number_format($percent, 2, ".", ",") . "</i>%) "); //display change
 
 
@@ -344,7 +319,7 @@
             <strong><div style="text-align:right">
                     <?php
                     echo($unitsymbol);
-                    $networth = ($portfolioTotal + $accountsTotal);
+                    $networth = ($portfolioTotal + $units + $bidLocked);
                     echo(htmlspecialchars(number_format($networth, 2, ".", ","))); //networth defined previously
                     ?>
                 </div></strong>
