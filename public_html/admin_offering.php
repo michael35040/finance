@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 elseif($offering=='reverse')
 {
 
-    try {$message = publicOfferingReverse($symbol, $userid, $issued);}
+    try {$message = removeQuantity($symbol, $userid, $issued);}
     catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
 }
 elseif($offering=='initial')
