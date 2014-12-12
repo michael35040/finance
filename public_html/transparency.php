@@ -102,27 +102,27 @@ $obligations["TOT"] = 482934.71;
 </tr>
 <tr>
 <td>Assets</td>
-<td><?php echo(number_format($assets["XBT"],4,".","")); ?></td>
-<td><?php echo(number_format($assets["XAU"],4,".","")); ?></td>
-<td><?php echo(number_format($assets["XAG"],4,".","")); ?></td>
-<td><?php echo(number_format($assets["USD"],4,".","")); ?></td>
-<td><?php echo(number_format($assets["EUR"],4,".","")); ?></td>
-<td><?php echo(number_format($assets["GBP"],4,".","")); ?></td>
-<td><?php echo(number_format($assets["CNY"],4,".","")); ?></td>
-<td><?php echo(number_format($assets["JPY"],4,".","")); ?></td>
-<td><strong><?php echo(number_format($assets["TOT"],4,".","")); ?></strong></td>
+<td><?php echo(number_format($assets["XBT"],4,".",",")); ?></td>
+<td><?php echo(number_format($assets["XAU"],4,".",",")); ?></td>
+<td><?php echo(number_format($assets["XAG"],4,".",",")); ?></td>
+<td><?php echo(number_format($assets["USD"],4,".",",")); ?></td>
+<td><?php echo(number_format($assets["EUR"],4,".",",")); ?></td>
+<td><?php echo(number_format($assets["GBP"],4,".",",")); ?></td>
+<td><?php echo(number_format($assets["CNY"],4,".",",")); ?></td>
+<td><?php echo(number_format($assets["JPY"],4,".",",")); ?></td>
+<td><strong><?php echo(number_format($assets["TOT"],4,".",",")); ?></strong></td>
 </tr>
 <tr>
 <td>Obligations</td>
-<td><?php echo(number_format($obligations["XBT"],4,".","")); ?></td>
-<td><?php echo(number_format($obligations["XAU"],4,".","")); ?></td>
-<td><?php echo(number_format($obligations["XAG"],4,".","")); ?></td>
-<td><?php echo(number_format($obligations["USD"],4,".","")); ?></td>
-<td><?php echo(number_format($obligations["EUR"],4,".","")); ?></td>
-<td><?php echo(number_format($obligations["GBP"],4,".","")); ?></td>
-<td><?php echo(number_format($obligations["CNY"],4,".","")); ?></td>
-<td><?php echo(number_format($obligations["JPY"],4,".","")); ?></td>
-<td><strong><?php echo(number_format($obligations["TOT"],4,".","")); ?></strong></td>
+<td><?php echo(number_format($obligations["XBT"],4,".",",")); ?></td>
+<td><?php echo(number_format($obligations["XAU"],4,".",",")); ?></td>
+<td><?php echo(number_format($obligations["XAG"],4,".",",")); ?></td>
+<td><?php echo(number_format($obligations["USD"],4,".",",")); ?></td>
+<td><?php echo(number_format($obligations["EUR"],4,".",",")); ?></td>
+<td><?php echo(number_format($obligations["GBP"],4,".",",")); ?></td>
+<td><?php echo(number_format($obligations["CNY"],4,".",",")); ?></td>
+<td><?php echo(number_format($obligations["JPY"],4,".",",")); ?></td>
+<td><strong><?php echo(number_format($obligations["TOT"],4,".",",")); ?></strong></td>
 </tr>
 </table>
 *XBT: Bitcoin (BTC)<br>
