@@ -149,23 +149,6 @@ if($loud!='quiet') {$endDate = time();
 }
 
 
-////////////////////////////////////
-//REMOVE ASSET
-////////////////////////////////////
-function removeAsset($symbol)
-{
-//cancel all orders on orderbook
-    if(query("UPDATE orderbook SET type = ('cancel') WHERE (symbol = ?)", $symbol) === false){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("RA1"); }
-
-    //delete from assets
-    if (query("DELETE FROM assets WHERE (symbol = ?)", $symbol) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #RA2"); }
-
-    //delete from portfolio
-    if (query("DELETE FROM portfolio WHERE (symbol = ?)", $symbol) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #RA3"); }
-
-    if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", 1, 0, 'REMOVE ASSET', $symbol, 0, 0, 0) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #RA4"); }
-
-}
 
 
 
