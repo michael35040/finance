@@ -193,7 +193,6 @@ function OrderbookTop($symbol)
 {    require 'constants.php';
     if($loud!='quiet'){echo("<br>[" . $symbol . "] Conducting check for top of orderbook...");}
 
-    $topOrders=[];
 
     //MARKET ORDERS SHOULD BE AT TOP IF THEY EXIST
     $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market' AND quantity>0) ORDER BY uid ASC LIMIT 0, 1", $symbol);
@@ -353,7 +352,6 @@ function orderbook($symbol)
 
     //PROCESS ORDERS
     $orderProcessed = 0; //orders processed
-    $orderbook=[];
     $orderbook["symbol"]=$symbol;
     while ($topBidPrice >= $topAskPrice)
     {   @$topAskUID = (int)($asks[0]["uid"]); //order id; unique id
@@ -444,18 +442,24 @@ function orderbook($symbol)
             ///////////
             //PORTFOLIO
             ///////////
-            //QUICK ERROR CHECK
             //CHECK THE QUANTITY FOR INSERT OR DELETE
             $askPortfolio = query("SELECT quantity, symbol FROM portfolio WHERE (symbol=? AND id=?)", $symbol, $topAskUser);
+            //QUICK ERROR CHECK
             $askPortfolioRows = count($askPortfolio);
             if ($askPortfolioRows > 1){ query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("$topAskUser has too many $symbol Portfolios! #20a"); }
+            if(empty($askPortfolio[0]["quantity"])){$askPortfolio=0;}
+            else{$askPortfolio = $askPortfolio[0]["quantity"];}
 
-            @$askPortfolio = $askPortfolio[0]["quantity"];
+            $askOrderbook =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id=? AND symbol =? AND side='a')", $topAskUser, $symbol);	  // query user's portfolio
+            if(empty($askOrderbook[0]["quantity"])){$askOrderbook=0;}
+            else{$askOrderbook = $askOrderbook[0]["quantity"];}
+
             // DELETE IF TRADE IS ALL THEY OWN//WOULD BE 0 SINCE THE REST WOULD BE IN ORDERBOOK
-            if($askPortfolio == 0) {if (query("DELETE FROM portfolio WHERE (id = ? AND symbol = ?)", $topAskUser, $symbol) === false)
+            if($askPortfolio < 0 || $askOrderbook < 0) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #14aa. OB or P negative value." . $topAskUser); }
+            if($askPortfolio == 0 && $askOrderbook == 0) {if (query("DELETE FROM portfolio WHERE (id = ? AND symbol = ?)", $topAskUser, $symbol) === false)
             { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #14"); } }
             // QUANTITY WERE REMOVED WHEN PUT INTO ORDERBOOK BUT NEED TO UPDATE PRICE
-            elseif($askPortfolio > 0) {if (query("UPDATE portfolio SET price = (price - ? - ?) WHERE (id = ? AND symbol = ?)", $tradeAmount, $commissionAmount, $topAskUser, $symbol) === false)
+            elseif($askPortfolio > 0 || $askOrderbook > 0) {if (query("UPDATE portfolio SET price = (price - ? - ?) WHERE (id = ? AND symbol = ?)", $tradeAmount, $commissionAmount, $topAskUser, $symbol) === false)
             { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #14a"); } }
             else { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #14b. Seller has no portfolio." . $topAskUser); }
 

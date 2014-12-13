@@ -58,14 +58,14 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
     
     //USERS ORDERBOOK
         $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id=? AND symbol =? AND side='a')", $id, $stock["symbol"]);	  // query user's portfolio
-        if(empty($askQuantity[0]["quantity"])){$askQuantity[0]["quantity"]=0;}
-        $askQuantity = $askQuantity[0]["quantity"]; //shares trading
+    $askQuantity = $askQuantity[0]["quantity"]; //shares trading
+    if(empty($askQuantity)){$askQuantity=0;}
     $stock["locked"] = $askQuantity;
     
     //TOTAL SHARES PUBLIC
         $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $row["symbol"]); // query user's portfolio
-        if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
-        $publicQuantity = $public[0]["quantity"]; //shares held
+    $publicQuantity = $public[0]["quantity"]; //shares held
+        if(empty($publicQuantity)){$publicQuantity=0;}
         $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $row["symbol"]); // query user's portfolio
         if(empty($askQuantity[0]["quantity"])){$askQuantity[0]["quantity"]=0;}
         $askQuantity = $askQuantity[0]["quantity"]; //shares trading
@@ -89,6 +89,7 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
     $portfolio[] = $stock;
     $portfolioTotal = $portfolioTotal + $stock["total"]; //total market value of portfolio
 }
+//echo(var_dump(get_defined_vars()));
 
 $notifications = query("SELECT * FROM notification WHERE (id =? AND status='1')", $id);
 

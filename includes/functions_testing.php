@@ -29,14 +29,19 @@ if($loud!='quiet'){echo date("Y-m-d H:i:s");
         while ($randomOrders < 50) //number of orders
         {
             $sideNum = mt_rand(1, 2);
+            $percent=mt_rand(95,105);$percent=$percent/100;
             if ($sideNum == 1) {
                 $side = 'a';
                 //$price = (mt_rand(1, 1000)/100);
-                $price = mt_rand(1, 400) * $divisor;
+                $askPrice =	query("SELECT price FROM orderbook WHERE symbol=? AND side='a' ORDER BY price ASC", $symbol);
+                if(empty($askPrice)){$price = mt_rand(1, 400) * $divisor;}
+                else{$price=getPrice($askPrice[0]["price"]);$price=$price*$percent;}
             } else {
                 $side = 'b';
                 //$price = (mt_rand(1, 1000)/100);
-                $price = mt_rand(1, 400) * $divisor;
+                $askPrice =	query("SELECT price FROM orderbook WHERE symbol=? AND side='a' ORDER BY price ASC", $symbol);
+                if(empty($askPrice)){$price = mt_rand(1, 400) * $divisor;}
+                else{$price=getPrice($askPrice[0]["price"]);$price=$price*$percent;}
             }
             if ($type == 'market') {
                 $price = 0;
@@ -176,16 +181,24 @@ function test()
     clear_portfolio();
     clear_history();
     clear_assets();
-    $units = setPrice(1000000);
+    $units = setPrice(100000000);
     query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
+    query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE id=1", $units);
 
-    createStocks();
+    //createStocks();
 
-    publicOffering('GOLD', 'Gold Co.', 1, 1000000, 'commodity', 0.5, 'http://gold.com', 10, 'Represent 1ozt of Au Gold');
-    publicOffering('SILVER', 'Silver Co.', 1, 1000000, 'commodity', 0.5, 'http://silver.com', 10, 'Represent 1ozt of Ag Silver');
+    publicOffering('GOLD', 'Gold (Au)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Gold', 10, 'Each unit represents 1 ounce of Gold. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams. 1 troy ounce of 99.9% fine Gold; XAU - Gold Ounce AU');
+    publicOffering('SILVER', 'Silver (Ag)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Silver', 10, 'Each unit represents 1 ounce of Silver. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams. 1 troy ounce of 99.9% fine Silver; XAG - Silver Ounce AG');
+    publicOffering('BITCOIN', 'Bitcoin (BTC)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Bitcoin', 10, ' Each unit represents 1 BTC. Conversion: 0.01 BTC = 1 million Satoshi 1 Satoshi = 0.00000001; XBT - Bitcoin BTC');
 
-    placeOrder('SILVER', 'limit', 'b', 100000, 9, 1);
-    placeOrder('SILVER', 'limit', 'a', 1000000, 10, 1);
+    placeOrder('GOLD', 'limit', 'b', 1000, 1100, 1);
+    placeOrder('GOLD', 'limit', 'a', 1000000, 1300, 1);
+
+    placeOrder('SILVER', 'limit', 'b', 100000, 15, 1);
+    placeOrder('SILVER', 'limit', 'a', 1000000, 19, 1);
+
+    placeOrder('BITCOIN', 'limit', 'b', 10000, 300, 1);
+    placeOrder('BITCOIN', 'limit', 'a', 1000000, 400, 1);
 
     //try {processOrderbook();}
     //catch exception

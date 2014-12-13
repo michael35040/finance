@@ -176,19 +176,6 @@
         <th><div style="text-align:right">Market Value</div></th>
     </tr>
 
-<?php /*
-    <tr><!--USD-->
-        <td><?php //echo(strtoupper($unittype)); //echo($unitdescription); //set in finance.php ?></td>
-        <td><?php //echo($unitsymbol . number_format(($bidLocked + $units),2,".",",")) ?></td>
-        <td><?php //echo($unitsymbol . number_format($units,2,".",",")) ?></td>
-        <td><?php //echo($unitsymbol . number_format($bidLocked, 2, ".", ",")) ?></td>
-        <td><!--Price--></td>
-        <td><!--Purchase--></td>
-        <td><!--Loss/Gain--></td>
-        <td><!--<div style="text-align:right">Market Value</div>--></td>
-    </tr>
-*/ ?>
-
     <!-- STOCKS ROW -->
     <?php $i = 0;
     foreach ($portfolio as $row) {
