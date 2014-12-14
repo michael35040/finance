@@ -14,39 +14,28 @@
             {       $value = number_format(($asset["total"]), 0, '.', '');
                     $asset = htmlspecialchars($asset["symbol"]);
                     echo("['" . $asset . "', " . $value . "],");
-            } ?>
-        ]);
+            }
+            echo("['" . htmlspecialchars($unitdescription) . "', " . number_format(($units), 0, '.', '') . "],");
+            echo("['Locked', " . number_format(($bidLocked), 0, '.', '') . "]");
+        ?>
+
+    ]);
         var options = {
-            title: 'Portfolio Assets by Value',
+            //title: 'Portfolio Assets by Value',
             //width: 500,
             height: 500,
-            pieSliceText: 'label',
             //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
             //is3D: true,
-            legend: {position: 'none'}
+            //legend: {position: 'none'},
+            pieSliceText: 'label'
         };
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
 
 
-//CHART 2     
-        var data2 = google.visualization.arrayToDataTable([
-            ['Accounts', 'Value'],
-            ['<?php echo($unitdescription); ?>', <?php echo(number_format($units, 0, ".", "")) ?>],
-            ['Locked', <?php echo(number_format($bidLocked, 0, ".", "")) ?>],
-            ['Portfolio', <?php echo(number_format($portfolioTotal, 0, ".", "")) ?>]
-        ]);
-        var options2 = {
-            title: 'Networth by Asset Value',
-            pieSliceText: 'label',
-            legend: {position: 'none'},
-            // width: 500,
-            //colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
-            //is3D: true,
-            height: 500
-        };
-        var chart2 = new google.visualization.PieChart(document.getElementById('piechart2'));
-        chart2.draw(data2, options2);
+
+
+
 
 
     }
@@ -312,12 +301,9 @@
                 </div></strong>
         </td>
     </tr>
-    <?php if($i!=0){ ?>
         <tr>
-            <td><div id="piechart"></div></td>
-            <td><div id="piechart2"></div></td>
+            <td colspan="2"><div id="piechart"></div></td>
         </tr>
-    <?php } ?>
 
 
 </table>

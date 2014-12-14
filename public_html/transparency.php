@@ -44,7 +44,23 @@ render("transparency_form.php", [
 //$stocks = $infos;
 //apologize(var_dump(get_defined_vars()));
 
+/*
+$assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC");	  // query user's portfolio
+foreach ($assets as $row)		// for each of user's stocks
+{
+    $symbol = $row["symbol"];
+    $public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $symbol);	  // query user's portfolio
+    if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
+    $totalPortfolio = $public[0]["quantity"]; //shares held
 
+    $public =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (symbol =? AND side='a')", $symbol);	  // query user's portfolio
+    if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
+    $totalOrderbook = $public[0]["quantity"]; //shares held
+
+    $obligations2["$symbol"] = ($totalPortfolio+$totalOrderbook);
+
+}
+*/
 
 ?>
 
@@ -77,6 +93,22 @@ render("transparency_form.php", [
         <td><?php echo(number_format($assets["JPY"],4,".",",")); ?></td>
         <td><strong><?php echo(number_format($assets["TOT"],4,".",",")); ?></strong></td>
     </tr>
+
+    <?php
+
+        $quantityAsset =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", 'XBT');	  // query user's portfolio
+    if(empty($obligations["XBT"]){$quantityAsset[0]["quantity"]=0;}
+    $obligations["XBT"] = $XBT[0]["quantity"];
+        $XAU =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", 'XAU');	  // query user's portfolio
+    if(empty($obligations["XAU"]){$XBT[0]["quantity"]=0;}
+    $obligations["XAU"] = $XAU[0]["quantity"];
+        $XAG =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", 'XAG');	  // query user's portfolio
+    $obligations["XAG"] = $XAG[0]["quantity"];
+
+    //apologize(var_dump(get_defined_vars()));
+
+    ?>
+
     <tr>
         <td>Obligations</td>
         <td><?php echo(number_format($obligations["XBT"],4,".",",")); ?></td>
@@ -95,27 +127,3 @@ render("transparency_form.php", [
 *XAG: Silver (Ag)<br>
 
 
-<?php
-$assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC");	  // query user's portfolio
-foreach ($assets as $row)		// for each of user's stocks
-{
-$symbol = $row["symbol"];
-$public =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE symbol =?", $symbol);	  // query user's portfolio
-if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
-$totalPortfolio = $public[0]["quantity"]; //shares held
-
-$public =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (symbol =? AND side='a')", $symbol);	  // query user's portfolio
-if(empty($public[0]["quantity"])){$public[0]["quantity"]=0;}
-$totalOrderbook = $public[0]["quantity"]; //shares held
-
-$obligations2["$symbol"] = ($totalPortfolio+$totalOrderbook);
-
-}
-?>
-
-<h3>OBLIGATIONS</h3>
-<table>
-    <tr><td>BITCOIN</td><td><?php echo($obligations2["BITCOIN"]); ?></td></tr>
-    <tr><td>GOLD</td><td><?php echo($obligations2["GOLD"]); ?></td></tr>
-    <tr><td>SILVER</td><td><?php echo($obligations2["SILVER"]); ?></td></tr>
-</table>

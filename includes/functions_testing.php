@@ -187,9 +187,14 @@ function test()
 
     //createStocks();
 
-    publicOffering('GOLD', 'Gold (Au)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Gold', 10, 'Each unit represents 1 ounce of Gold. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams. 1 troy ounce of 99.9% fine Gold; XAU - Gold Ounce AU');
-    publicOffering('SILVER', 'Silver (Ag)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Silver', 10, 'Each unit represents 1 ounce of Silver. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams. 1 troy ounce of 99.9% fine Silver; XAG - Silver Ounce AG');
-    publicOffering('BITCOIN', 'Bitcoin (BTC)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Bitcoin', 10, ' Each unit represents 1 BTC. Conversion: 0.01 BTC = 1 million Satoshi 1 Satoshi = 0.00000001; XBT - Bitcoin BTC');
+    publicOffering('XAU', 'Gold (Au)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Gold', 10, 'Each unit represents 1 ounce of Gold. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams. 1 troy ounce of 99.9% fine Gold; XAU - Gold Ounce AU');
+    publicOffering('XAG', 'Silver (Ag)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Silver', 10, 'Each unit represents 1 ounce of Silver. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams. 1 troy ounce of 99.9% fine Silver; XAG - Silver Ounce AG');
+    publicOffering('XBT', 'Bitcoin (BTC)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Bitcoin', 10, ' Each unit represents 1 BTC. Conversion: 0.01 BTC = 1 million Satoshi 1 Satoshi = 0.00000001; XBT - Bitcoin BTC');
+    publicOffering('EUR', 'Euro € (Euro Member Countries)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Euro', 10, ' Each unit represents 1 BTC. Conversion: 0.01 BTC = 1 million Satoshi 1 Satoshi = 0.00000001; XBT - Bitcoin BTC');
+    publicOffering('GBP', 'British Pound £ (United Kingdom)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Pound_(currency)', 10, ' Each unit represents 1 BTC. Conversion: 0.01 BTC = 1 million Satoshi 1 Satoshi = 0.00000001; XBT - Bitcoin BTC');
+    publicOffering('INR', 'Indian Rupee  ₹ (India)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Rupee', 10, ' Each unit represents 1 BTC. Conversion: 0.01 BTC = 1 million Satoshi 1 Satoshi = 0.00000001; XBT - Bitcoin BTC');
+    publicOffering('CNY', 'Chinese Yuan Renminbi  ¥ (China)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Yuan', 10, ' Each unit represents 1 BTC. Conversion: 0.01 BTC = 1 million Satoshi 1 Satoshi = 0.00000001; XBT - Bitcoin BTC');
+    publicOffering('JPY', 'Japanese Yen  ¥ (Japan)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Yen', 10, ' Each unit represents 1 BTC. Conversion: 0.01 BTC = 1 million Satoshi 1 Satoshi = 0.00000001; XBT - Bitcoin BTC');
 
     placeOrder('GOLD', 'limit', 'b', 1000, 1100, 1);
     placeOrder('GOLD', 'limit', 'a', 1000000, 1300, 1);

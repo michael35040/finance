@@ -518,8 +518,8 @@ function orderbook($symbol)
             $orderbook['tradeType'] = $tradeType;
 
             if($loud!='quiet'){
-                echo("<br><br><b>Executed: Trade Price: " . number_format($orderbook['tradePrice'],2,".",",") . " x " . $tradeSize . " (" . $orderbook['tradeType'] . ")</b>");
-                echo("<br>Ask Price: " . number_format($orderbook['topAskPrice'],2,".",","));
+                echo("<br><br><b>Executed: Trade Price: " . (number_format($orderbook['tradePrice'],2,".",",")) . " x " . $tradeSize . " (" . $orderbook['tradeType'] . ")</b>");
+                echo("<br>Ask Price: " . (number_format($orderbook['topAskPrice'],2,".",",")));
                 echo("<br>Ask UID: " . $orderbook['topAskUID']); //order id; unique id
                 echo("<br>Ask Symbol: " . $orderbook['topAskSymbol']); //symbol of equity
                 echo("<br>Ask Side: " . $orderbook['topAskSide']); //bid or ask
@@ -527,7 +527,7 @@ function orderbook($symbol)
                 echo("<br>Ask Type: " . $orderbook['topAskType']);  //limit or market
                 echo("<br>Ask Size: " . $orderbook['topAskSize']); //size or quantity of trade
                 echo("<br>Ask User: " .  $orderbook['topAskUser']); //user id
-                echo("<br>Bid Price: " . number_format($orderbook['topBidPrice'],2,".",",")); //might need to make (float)
+                echo("<br>Bid Price: " . (number_format($orderbook['topBidPrice'],2,".",","))); //might need to make (float)
                 echo("<br>Bid UID: " . $orderbook['topBidUID']); //order id; unique id
                 echo("<br>Bid Symbol: " . $orderbook['topBidSymbol']);
                 echo("<br>Bid Side: " . $orderbook['topBidSide']); //bid or ask
