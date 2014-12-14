@@ -30,7 +30,7 @@ USE `bank`;
 
 DROP TABLE IF EXISTS `accounts`;
 CREATE TABLE IF NOT EXISTS `accounts` (
-  `id` int(11) NOT NULL,
+  `id` int(10) NOT NULL,
   `units` bigint(20) unsigned NOT NULL DEFAULT '0',
   `loan` bigint(20) unsigned NOT NULL DEFAULT '0',
   `rate` decimal(65,30) NOT NULL DEFAULT '0.000000000000000000000000000000',
@@ -156,8 +156,8 @@ TRUNCATE TABLE `login`;
 
 DROP TABLE IF EXISTS `notification`;
 CREATE TABLE IF NOT EXISTS `notification` (
-  `uid` int(11) NOT NULL AUTO_INCREMENT,
-  `id` int(9) NOT NULL COMMENT 'userid',
+  `uid` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL COMMENT 'userid',
   `notice` varchar(255) NOT NULL,
   `status` int(1) NOT NULL COMMENT '1 open or 0 close',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -178,14 +178,14 @@ TRUNCATE TABLE `notification`;
 
 DROP TABLE IF EXISTS `orderbook`;
 CREATE TABLE IF NOT EXISTS `orderbook` (
-  `uid` int(9) NOT NULL AUTO_INCREMENT COMMENT 'unique id',
+  `uid` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique id',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `symbol` varchar(10) NOT NULL,
   `side` varchar(1) NOT NULL COMMENT 'a:ask or b:bid',
   `type` varchar(6) NOT NULL COMMENT 'limit or market',
   `price` bigint(20) unsigned NOT NULL,
   `total` bigint(20) unsigned NOT NULL COMMENT 'if bid order fund amount that is locked',
-  `quantity` int(11) NOT NULL COMMENT 'size quantity of order',
+  `quantity` int(65) NOT NULL COMMENT 'size quantity of order',
   `id` int(9) NOT NULL COMMENT 'user id',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -224,18 +224,18 @@ TRUNCATE TABLE `portfolio`;
 
 DROP TABLE IF EXISTS `trades`;
 CREATE TABLE IF NOT EXISTS `trades` (
-  `uid` int(9) NOT NULL AUTO_INCREMENT COMMENT 'unique id',
+  `uid` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique id',
   `symbol` varchar(10) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `price` bigint(20) unsigned NOT NULL COMMENT 'price',
-  `quantity` int(11) NOT NULL,
+  `quantity` int(63) NOT NULL,
   `commission` bigint(20) unsigned NOT NULL COMMENT 'commission',
   `total` bigint(20) unsigned NOT NULL COMMENT 'total',
   `type` varchar(10) NOT NULL,
-  `buyer` int(9) NOT NULL COMMENT 'user id',
-  `seller` int(9) NOT NULL COMMENT 'user id',
-  `askorderuid` int(9) NOT NULL,
-  `bidorderuid` int(9) NOT NULL,
+  `buyer` int(10) NOT NULL COMMENT 'user id',
+  `seller` int(10) NOT NULL COMMENT 'user id',
+  `askorderuid` int(10) NOT NULL,
+  `bidorderuid` int(10) NOT NULL,
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -252,7 +252,7 @@ TRUNCATE TABLE `trades`;
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(9) NOT NULL AUTO_INCREMENT COMMENT 'user id',
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'user id',
   `email` varchar(63) NOT NULL,
   `fname` varchar(63) NOT NULL,
   `lname` varchar(63) NOT NULL,
@@ -284,6 +284,55 @@ TRUNCATE TABLE `users`;
 
 INSERT INTO `users` (`email`, `fname`, `lname`, `birth`, `address`, `city`, `region`, `zip`, `phone`, `question`, `answer`, `password`, `registered`, `last_login`, `ip`, `fails`, `active`) VALUES
 ('a@pulwar.com', 'a', 'pulwar', '2014-05-04', 'pulwar st 12 po #box 123', 'CityofPulwar', 'IA', 111112, 12, 'What?', 'Yeah!', '$2a$11$mSIPrGz706xUee70qha1NeWEZ/CR/.ufGS1uzTzr5wsQHApBx6Vz2', '2014-11-07 07:00:00', '2014-12-01 18:02:25', '143.85.101.19', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `voting`
+--
+
+DROP TABLE IF EXISTS `voting`;
+CREATE TABLE IF NOT EXISTS `voting`(
+  `uid` int(10) NOT NULL AUTO_INCREMENT,
+  `symbol` varchar(10) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'time initiated',
+  `question` varchar(63) NOT NULL,
+  `total` int(10) NOT NULL COMMENT 'public shares',
+  `status` varchar(63) NOT NULL COMMENT 'open or closed',
+
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `voting`
+--
+
+TRUNCATE TABLE `voting`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `votes`
+--
+
+DROP TABLE IF EXISTS `votes`;
+CREATE TABLE IF NOT EXISTS `votes`(
+  `uid` int(10) NOT NULL AUTO_INCREMENT,
+  `votinguid` int(10) NOT NULL COMMENT 'same as voting uid',
+  `symbol` varchar(10) NOT NULL,
+  `userid` int(10) NOT NULL COMMENT 'user id',
+  `count` int(10) NOT NULL COMMENT 'shares owned',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'time voted',
+  `vote` varchar(63) NOT NULL COMMENT 'yes or no',
+
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `votes`
+--
+
+TRUNCATE TABLE `votes`;
+-- --------------------------------------------------------
 
 
 

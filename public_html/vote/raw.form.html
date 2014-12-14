@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <title><!-- Insert your title here --></title>
+    <style>
+        form.webPoll {
+        float: left;
+        background:#ededed;
+        behavior:url(PIE.php);
+        border:1px solid #bebebe;
+        -moz-border-radius:8px;
+        -webkit-border-radius:8px;  
+        border-radius:8px;
+        -moz-box-shadow:#666 0 2px 3px;
+        -webkit-box-shadow:#666 0 2px 3px;
+        box-shadow:#666 0 2px 3px;
+        margin:10px 0 10px 8px;
+        padding:6px;
+        position:relative;
+        width:246px;
+    }
+    form.webPoll fieldset {
+        background:#FCFAFC;
+        behavior:url(PIE.php);
+        border:1px solid #FCFAFC;
+        -moz-border-radius:10px;
+        -webkit-border-radius:10px;
+        border-radius:10px;
+        margin:0;
+        padding:0;
+        position:relative;
+    }
+    form.webPoll ul {
+        behavior:url(PIE.php);
+        border:2px #bebebe solid;
+        -moz-border-radius:10px;
+        -webkit-border-radius:10px;
+        border-radius:10px;
+        font-family:verdana;
+        font-size:10px;
+        list-style-type:none;
+        margin:0;
+        padding:10px 0;
+        position:relative;
+    }
+    form.webPoll li {
+        margin:0 16px;
+        overflow:auto;
+        padding:4px 0 6px;
+        position: relative;
+    }
+    form.webPoll input {
+        position: absolute;
+        top: 4px;
+        *top: 0;
+        left: 0;
+        margin: 0;
+        padding:0;
+    }
+    label.poll_active {
+        float:right;
+        width:90%;
+    }
+    form.webPoll .result {
+        background: #d81b21;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ff8080), to(#aa1317));
+        background: -moz-linear-gradient(top,  #ff8080,  #aa1317);
+        -pie-background: linear-gradient(#ff8080, #aa1317);
+        border:1px red solid;
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        border-radius:3px;
+        clear:both;
+        color:#EFEFEF;
+        padding-left:2px;
+        behavior: url('PIE.php');
+    }
+    form.webPoll h4 {
+        color:#444;
+        font-family:Georgia, serif;
+        font-size:19px;
+        font-weight:400;
+        line-height:1.4em;
+        margin:6px 4px 12px;
+        padding:0;
+    }
+    .buttons {
+        margin:8px 0 1px;
+        padding:0;
+        text-align:right;
+        width:122px;
+    }
+    .vote {
+        background:url('vote.png') repeat scroll 0 0 transparent;
+        border:medium none;
+        height:40px;
+        text-indent:-9999em;
+        width:122px;
+    }
+    .vote:hover {
+        background-position:0 -41px;
+        cursor:pointer;
+    }
+    li.bordered {
+        border-bottom:1px #bebebe solid;
+    }
+    </style>
+</head>
+<body>
+    <form class="webPoll" method="post" action="/poll/test.php">
+        <h4>What question would you like to ask?</h4>
+        <fieldset>
+        <ul>
+            <li class='bordered'>
+                <label class='poll_active'>
+                <input type='radio' name='AID' value='0'>
+                First Answer Here
+                </label>
+            </li>
+            <li class='bordered'>
+                <label class='poll_active'>
+                <input type='radio' name='AID' value='0'>
+                Second long answer here. It wraps over more then one line but you can
+                see the radio button hangs off properly.
+                </label>
+            </li>
+            <li>
+                <label class='poll_active'>
+                <input type='radio' name='AID' value='0'>
+                Last answer.
+                </label>
+            </li>
+        </ul>
+        </fieldset>
+        <p class="buttons">
+            <button type="submit" class="vote">Vote!</button>
+        </p>
+    </form>
+    
+        <form class="webPoll" method="post" action="/poll/test.php">
+        <h4>What question would you like to ask?</h4>
+        <fieldset>
+        <ul>
+        <li class='poll_results'>
+        <div class='result' style='width:20px;'>&nbsp;</div>
+        <label>
+            10%: First Answer Here
+        </label>
+        </li>
+        </ul>
+        </fieldset>
+        <p class="buttons">
+            <button type="submit" class="vote">Vote!</button>
+        </p>
+    </form>
+
+<form class="webPoll" method="post" action="/poll/test.php">
+                       <input type="hidden" name="QID" value="cf338d4a20ae4af7f66f69d47bce6e00" />
+                       <h4>What subjects would you like to learn more about?</h4>
+
+                       <fieldset><ul>
+    <li class='bordered'>
+            <label class='poll_active'>
+            <input type='radio' name='AID' value='0' />
+                HTML & CSS
+            </label>
+    </li>
+
+    <li class='bordered'>
+
+            <label class='poll_active'>
+            <input type='radio' name='AID' value='1' />
+                Javascript
+            </label>
+    </li>
+
+    <li class='bordered'>
+            <label class='poll_active'>
+            <input type='radio' name='AID' value='2' />
+                JS Frameworks (Jquery, etc)
+            </label>
+
+    </li>
+
+    <li class='bordered'>
+            <label class='poll_active'>
+            <input type='radio' name='AID' value='3' />
+                Ruby/Ruby on Rails
+            </label>
+    </li>
+
+    <li class='bordered'>
+
+            <label class='poll_active'>
+            <input type='radio' name='AID' value='4' />
+                PHP
+            </label>
+    </li>
+
+    <li class=''>
+            <label class='poll_active'>
+            <input type='radio' name='AID' value='5' />
+                mySQL
+            </label>
+
+    </li>
+
+</ul></fieldset><p class="buttons"><button type="submit" class="vote">Vote!</button></p>
+</form>
+   
+</body>
+</html>
