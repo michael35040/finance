@@ -18,7 +18,7 @@ if(isset($_POST['update']))
     @$name = $_POST["name"];
     @$userid = $_POST["userid"]; //owner or chief executive
     @$url = $_POST["url"];
-    @$type = $_POST["type"]; //share or commodity
+    @$type = $_POST["type"]; //stock or commodity
     @$rating = $_POST["rating"]; //1 - 10
     @$description = $_POST["description"];
 
