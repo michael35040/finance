@@ -192,12 +192,23 @@ function test()
     publicOffering('XAG', 'Silver (Ag)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Silver', 10, 'Each unit represents 1 troy ounce of 99.9% fine Silver. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams; XAG - Silver Ounce AG');
     publicOffering('XBT', 'Bitcoin (BTC)', 1, 100000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Bitcoin', 10, 'Each unit represents 1 BTC. Conversion: 0.01 BTC = 1 million Satoshi 1 Satoshi = 0.00000001; XBT - Bitcoin BTC');
 
-    publicOffering('EUR', 'Euro € (Euro Member Countries)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Euro', 10, 'Each unit represents €1 Euro; EUR - Euro (Euro Member Countries)');
-    publicOffering('USD', 'Dollar $ (United States)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Dollar', 10, 'Each unit represents $1 Dollar; USD - U.S. Dollar (United States)');
-    publicOffering('GBP', 'British Pound £ (United Kingdom)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Pound_(currency)', 10, 'Each unit represents £1 Pound; GBP - British Pound Sterling (United Kingdom)');
-    publicOffering('INR', 'Indian Rupee  ₹ (India)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Rupee', 10, 'Each unit represents ₹1 Rupee; INR - Indian Rupee (India)');
-    publicOffering('CNY', 'Chinese Yuan Renminbi  ¥ (China)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yuan', 10, 'Each unit represents ¥1 Yuan; CNY - Chinese Yuan Renminbi (China)');
-    publicOffering('JPY', 'Japanese Yen  ¥ (Japan)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yen', 10, 'Each unit represents ¥1 Yuan; JPY - Japanese Yen (Japan)');
+    // € Euro
+    publicOffering('EUR', 'Euro (Euro Member Countries)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Euro', 10, 'Each unit represents €1 Euro; EUR - Euro (Euro Member Countries)');
+    
+    // $ Dollar
+    publicOffering('USD', 'Dollar (United States)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Dollar', 10, 'Each unit represents $1 Dollar; USD - U.S. Dollar (United States)');
+    
+    // £ Pound
+    publicOffering('GBP', 'British Pound (United Kingdom)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Pound_(currency)', 10, 'Each unit represents £1 Pound; GBP - British Pound Sterling (United Kingdom)');
+    
+    // ₹ Rupee
+    publicOffering('INR', 'Indian Rupee (India)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Rupee', 10, 'Each unit represents ₹1 Rupee; INR - Indian Rupee (India)');
+    
+    // ¥ Yuan
+    publicOffering('CNY', 'Chinese Yuan Renminbi (China)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yuan', 10, 'Each unit represents ¥1 Yuan; CNY - Chinese Yuan Renminbi (China)');
+    
+    // ¥ Yen
+    publicOffering('JPY', 'Japanese Yen (Japan)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yen', 10, 'Each unit represents ¥1 Yuan; JPY - Japanese Yen (Japan)');
 
     //GOLD $1200
     placeOrder('XAU', 'limit', 'b', 1000, 1100, 1);
