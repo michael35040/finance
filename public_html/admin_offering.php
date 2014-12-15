@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     elseif($offering=='initial')
     {
         @$name = $_POST["name"];
-        @$type = $_POST["type"]; //share or commodity
+        @$type = $_POST["type"]; //stock or commodity
         @$url = $_POST["url"];
         @$rating = $_POST["rating"]; //1 - 10
         @$description = $_POST["description"];
