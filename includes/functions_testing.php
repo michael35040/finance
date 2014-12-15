@@ -220,20 +220,20 @@ function test()
     placeOrder('XBT', 'limit', 'b', 10000, 300, 1);
     placeOrder('XBT', 'limit', 'a', 100000, 400, 1);
 
-    placeOrder('EUR', 'limit', 'b', 1000, 1100, 1);
-    placeOrder('EUR', 'limit', 'a', 50000, 1300, 1);
+    placeOrder('EUR', 'limit', 'b', 1000, 60, 1);
+    placeOrder('EUR', 'limit', 'a', 50000, 65, 1);
 
-    placeOrder('GBP', 'limit', 'b', 1000, 1100, 1);
-    placeOrder('GBP', 'limit', 'a', 50000, 1300, 1);
+    placeOrder('GBP', 'limit', 'b', 1000, 10, 1);
+    placeOrder('GBP', 'limit', 'a', 50000, 13, 1);
 
-    placeOrder('INR', 'limit', 'b', 100000, 15, 1);
-    placeOrder('INR', 'limit', 'a', 1000000, 19, 1);
+    placeOrder('INR', 'limit', 'b', 100000, 1.5, 1);
+    placeOrder('INR', 'limit', 'a', 1000000, 1.9, 1);
 
-    placeOrder('CNY', 'limit', 'b', 10000, 300, 1);
-    placeOrder('CNY', 'limit', 'a', 100000, 400, 1);
+    placeOrder('CNY', 'limit', 'b', 10000, 25, 1);
+    placeOrder('CNY', 'limit', 'a', 100000, 30, 1);
 
-    placeOrder('JPY', 'limit', 'b', 10000, 300, 1);
-    placeOrder('JPY', 'limit', 'a', 100000, 400, 1);
+    placeOrder('JPY', 'limit', 'b', 10000, 0.3, 1);
+    placeOrder('JPY', 'limit', 'a', 100000, 0.4, 1);
 
 
 
