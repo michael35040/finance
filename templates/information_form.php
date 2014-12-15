@@ -695,7 +695,7 @@ if(!empty($asks) || !empty($bids)){
                     {
                         $quantity = $order["quantity"];
                         $price = getPrice($order["price"]);
-                        echo("<tr><td >" . number_format($quantity,0,".",",") . "</td><td >" . number_format($price,2,".",",") . "</td></tr>");
+                        echo("<tr><td >" . number_format($quantity,0,".",",") . "</td><td >" . number_format($price,$decimalplaces,".",",") . "</td></tr>");
                     }
                     ?>
 
