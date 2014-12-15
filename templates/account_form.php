@@ -15,7 +15,7 @@
                     $asset = htmlspecialchars($asset["symbol"]);
                     echo("['" . $asset . "', " . $value . "],");
             }
-            echo("['" . htmlspecialchars($unitdescription) . "', " . number_format(($units), 0, '.', '') . "],");
+            echo("['" . htmlspecialchars($unittype) . "', " . number_format(($units), 0, '.', '') . "],");
             echo("['Locked', " . number_format(($bidLocked), 0, '.', '') . "]");
         ?>
 
