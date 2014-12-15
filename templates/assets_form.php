@@ -142,8 +142,10 @@ foreach ($assets as $asset) // for each of user's stocks
             echo('<td >
                 Rating: ' . htmlspecialchars($asset["rating"]) . ' <br>
                 Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '<br>');
-                //Dividend: ' . (number_format($asset["dividend"], $decimalplaces, ".", ","))
-                if($asset["type"]=="stock"){echo('Dividend: ' . number_format($asset["dividend"], $decimalplaces, ".", ",")); }
+            //COMMODITY, CURRENCY, STOCK
+                if      ($asset["type"]=="stock"){echo('Dividend: ' . number_format($asset["dividend"], $decimalplaces, ".", ",")); }
+                //elseif  ($asset["type"]=="commodity"){echo('Ratio: ' . number_format($asset["dividend"], $decimalplaces, ".", ",")); }
+                //elseif  ($asset["type"]=="currency"){echo('Exc. Rate: ' . number_format($asset["dividend"], $decimalplaces, ".", ",")); }
             echo('</td></tr>');
         }
         echo("<tr><td colspan='3'><strong>Market Value</strong></td><td><strong>" . $unitsymbol . (number_format($indexMarketCap, $decimalplaces, ".", ",")) . "</strong></td></tr>");
