@@ -11,12 +11,12 @@
             <?php
             echo("['Asset', 'Value'],");
             foreach ($portfolio as $asset) // for each of user's stocks
-            {       $value = number_format(($asset["total"]), 0, '.', '');
+            {       $value = number_format(($asset["total"]), $decimalplaces, '.', '');
                     $asset = htmlspecialchars($asset["symbol"]);
                     echo("['" . $asset . "', " . $value . "],");
             }
-            echo("['" . htmlspecialchars($unittype) . "', " . number_format(($units), 0, '.', '') . "],");
-            echo("['Locked', " . number_format(($bidLocked), 0, '.', '') . "]");
+            echo("['" . htmlspecialchars($unittype) . "', " . number_format(($units), $decimalplaces, '.', '') . "],");
+            echo("['Locked', " . number_format(($bidLocked), $decimalplaces, '.', '') . "]");
         ?>
 
     ]);
@@ -121,9 +121,9 @@
             <!--<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php //  echo($id); $i++; echo("-" . $i); ?></td> -->
             <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td></td>
             <td><?php echo($unitdescription); ?></td>
-            <td><?php echo("<form action='orders.php' method='post'><span class='nobutton'><button type='submit' name='side' value='b'>" . $unitsymbol . number_format($bidLocked,2,".",",") . "</button></span></form>"); ?></td>
-            <td><?php echo($unitsymbol . number_format($units,2,".",",")) ?></td>
-            <td><div style="text-align:right"><?php echo($unitsymbol . number_format(($units+$bidLocked),2,".",",")) ?></div></td>
+            <td><?php echo("<form action='orders.php' method='post'><span class='nobutton'><button type='submit' name='side' value='b'>" . $unitsymbol . number_format($bidLocked,$decimalplaces,".",",") . "</button></span></form>"); ?></td>
+            <td><?php echo($unitsymbol . number_format($units,$decimalplaces,".",",")) ?></td>
+            <td><div style="text-align:right"><?php echo($unitsymbol . number_format(($units+$bidLocked),$decimalplaces,".",",")) ?></div></td>
         </tr>
 </table>
 
@@ -181,8 +181,8 @@
             . "</button></form></span></td>");
 
 
-        echo("<td>" . $unitsymbol . (number_format($row["price"], 2, ".", ",")) . "</td>");
-        echo("<td>" . $unitsymbol . (number_format($row["value"], 2, ".", ",")) . "</td>");
+        echo("<td>" . $unitsymbol . (number_format($row["price"], $decimalplaces, ".", ",")) . "</td>");
+        echo("<td>" . $unitsymbol . (number_format($row["value"], $decimalplaces, ".", ",")) . "</td>");
         $pricechange = ($row["total"] - $row["value"]);
         if ($row["value"] > 0) {
             $percentchange = 100 * (($row["total"] / $row["value"]) - 1); // total/purchase
@@ -204,9 +204,9 @@
         } //even left and right arrow
         //ARROWS END
 
-        echo($unitsymbol . number_format($pricechange, 2, ".", ",") . " (<i>" . number_format($percentchange, 2, ".", ",") . "</i>%)  </td>");
+        echo($unitsymbol . number_format($pricechange, $decimalplaces, ".", ",") . " (<i>" . number_format($percentchange, 2, ".", ",") . "</i>%)  </td>");
 
-        echo("<td><div style='text-align:right'>" . $unitsymbol . (number_format($row["total"], 2, ".", ",")) . "</div></td></tr>");
+        echo("<td><div style='text-align:right'>" . $unitsymbol . (number_format($row["total"], $decimalplaces, ".", ",")) . "</div></td></tr>");
         $i++;
     } //foreach statement
 
@@ -232,7 +232,7 @@
             <td colspan="5"><strong>SUBTOTAL</strong> (<?php echo($i); ?> Assets) <i>&nbsp;&nbsp;&nbsp;&nbsp;<span class='nobutton'><form action='orders.php' method='post'><button type='submit' name='side' value='a'>*Pending Ask Orders</button></form></span></i></td>
             <td><strong>
                     <?php //calculate value of purchase price
-                    echo($unitsymbol . number_format($purchaseprice, 2, ".", ",")); //display purchase price
+                    echo($unitsymbol . number_format($purchaseprice, $decimalplaces, ".", ",")); //display purchase price
                     ?></strong>
             </td>
             <td><strong>
@@ -253,7 +253,7 @@
                     } //even left and right arrow
                     //ARROWS END
 
-                    echo($unitsymbol . number_format($change, 2, ".", ",") . " (<i>" . number_format($percent, 2, ".", ",") . "</i>%) "); //display change
+                    echo($unitsymbol . number_format($change, $decimalplaces, ".", ",") . " (<i>" . number_format($percent, 2, ".", ",") . "</i>%) "); //display change
 
 
                     ?></strong>
@@ -261,7 +261,7 @@
             <td><div style="text-align:right">
                     <strong>
                         <?php
-                        echo($unitsymbol . number_format($portfolioTotal, 2, ".", ",")); //display market value
+                        echo($unitsymbol . number_format($portfolioTotal, $decimalplaces, ".", ",")); //display market value
                         ?></strong>
                 </div></td>
         </tr>
@@ -294,9 +294,8 @@
         <td style="width:50%">
             <strong><div style="text-align:right">
                     <?php
-                    echo($unitsymbol);
                     $networth = ($portfolioTotal + $units + $bidLocked);
-                    echo(htmlspecialchars(number_format($networth, 2, ".", ","))); //networth defined previously
+                    echo($unitsymbol . htmlspecialchars(number_format($networth, $decimalplaces, ".", ","))); //networth defined previously
                     ?>
                 </div></strong>
         </td>
@@ -330,8 +329,8 @@
         <td><strong>Orders: </strong><?php echo(number_format($count["orders"], 0, '.', ',')); ?></td>
         <td><strong>Trades: </strong><?php echo(number_format($count["trades"], 0, '.', ',')); ?></td>
         <td><strong>Trade Volume: </strong><?php echo(number_format($count["volume"], 0, '.', ',')); ?></td>
-        <td><strong>Trade Value: </strong><?php echo($unitsymbol . number_format($count["value"], 2, '.', ',')); ?></td>
-        <td><div style="text-align:right"><strong>Commissions: </strong><?php echo($unitsymbol . number_format($count["commission"], 2, '.', ',')); ?><div></td>
+        <td><strong>Trade Value: </strong><?php echo($unitsymbol . number_format($count["value"], $decimalplaces, '.', ',')); ?></td>
+        <td><div style="text-align:right"><strong>Commissions: </strong><?php echo($unitsymbol . number_format($count["commission"], $decimalplaces, '.', ',')); ?><div></td>
     </tr>
 </table>
 
