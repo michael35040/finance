@@ -6,6 +6,10 @@
         border:0;
         background:transparent;
     }
+    .table
+    {
+    	text-align: center;
+    }
 </style>
 
 <table class="table table-condensed  table-bordered" >
@@ -81,7 +85,7 @@
         $commission = getPrice($trade["commission"]);
         $total = getPrice($trade["total"]);
 
-        if($seller!=$_SESSION["id"] || $type=='PO'){$commission=0;} //only seller pays commission
+        if($seller!=$_SESSION["id"]){$commission=0;} // || ($type!='market' && $type!='limit')){$commission=0;} //only seller pays commission && do not include ipos.
         $sumcommission = $sumcommission + $commission;
         $total = $total - $commission;
         $sumtotal = $sumtotal + $total;
@@ -124,10 +128,10 @@
             echo($unitsymbol . htmlspecialchars(number_format($subtotal,2,".",","))); ?>
         </td>        
         <td>
-            <strong> -<?php echo($unitsymbol . htmlspecialchars(number_format($sumcommission,2,".",","))); ?>
+            <strong>-<?php echo($unitsymbol . htmlspecialchars(number_format($sumcommission,2,".",","))); ?></strong>
         </td>
         <td>
-            <strong> <?php echo($unitsymbol . htmlspecialchars(number_format($sumtotal,2,".",","))); ?>
+            <strong> <?php echo($unitsymbol . htmlspecialchars(number_format($sumtotal,2,".",","))); ?></strong>
         </td>
     </tr>
     <?php } //$i>0
