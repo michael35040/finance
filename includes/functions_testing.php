@@ -197,22 +197,22 @@ function test()
         'XBT', 'Bitcoin (BTC)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Bitcoin', 10, 
         'Each unit represents 1 BTC. Conversion: 0.01 BTC = 1 million Satoshi 1 Satoshi = 0.00000001; XBT - Bitcoin BTC');
     publicOffering(
-        'EUR', 'Euro € (Euro Member Countries)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Euro', 10, 
+        'EUR', 'Euro € (Euro Member Countries)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Euro', 10, 
         'Each unit represents €1 Euro; EUR - Euro (Euro Member Countries)');
     publicOffering(
-        'USD', 'Dollar $ (United States)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Dollar', 10, 
+        'USD', 'Dollar $ (United States)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Dollar', 10, 
         'Each unit represents $1 Dollar; USD - U.S. Dollar (United States)');
     publicOffering(
-        'GBP', 'British Pound £ (United Kingdom)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Pound_(currency)', 10, 
+        'GBP', 'British Pound £ (United Kingdom)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Pound_(currency)', 10, 
         'Each unit represents £1 Pound; GBP - British Pound Sterling (United Kingdom)');
     publicOffering(
-        'INR', 'Indian Rupee  ₹ (India)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Rupee', 10, 
+        'INR', 'Indian Rupee  ₹ (India)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Rupee', 10, 
         'Each unit represents ₹1 Rupee; INR - Indian Rupee (India)');
     publicOffering(
-        'CNY', 'Chinese Yuan Renminbi  ¥ (China)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Yuan', 10, 
+        'CNY', 'Chinese Yuan Renminbi  ¥ (China)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yuan', 10, 
         'Each unit represents ¥1 Yuan; CNY - Chinese Yuan Renminbi (China)');
     publicOffering(
-        'JPY', 'Japanese Yen  ¥ (Japan)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Yen', 10, 
+        'JPY', 'Japanese Yen  ¥ (Japan)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yen', 10, 
         'Each unit represents ¥1 Yuan; JPY - Japanese Yen (Japan)');
 
 
