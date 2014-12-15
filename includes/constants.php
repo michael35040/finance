@@ -16,7 +16,7 @@ $sitename = 'Pulwar'; //leave a space afterwards
 $unittype = "BTC";
 $unitdescription = "Bitcoin Cryptocurrency";
 $unitdescriptionshort = "Bitcoin";
-$unitsymbol = "฿";
+$unitsymbol = "B";
 $decimalplaces = 8;
 //grams  &cent;  &micro; &euro; &pound; &yen; &sect;
 
