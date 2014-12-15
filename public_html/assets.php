@@ -27,7 +27,7 @@ foreach ($allAssets as $row)		// for each of user's stocks
     $asset["public"] = $askQuantity+$publicQuantity;
 
     $asset["url"] = $row["url"]; //webpage
-    $asset["type"] = $row["type"]; //type of asset (shares, commodity)
+    $asset["type"] = $row["type"]; //type of asset (stock, currency, commodity)
     $asset["rating"] = $row["rating"]; //my rating
     $asset["description"] = $row["description"]; //description of asset
         $bid =	query("SELECT price FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $asset["symbol"], 'b');
