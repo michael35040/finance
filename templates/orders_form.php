@@ -86,8 +86,8 @@
         echo("<td " . $color . ">" . htmlspecialchars(strtoupper($row["side"])) . "</td>");
         echo("<td " . $color . ">" . htmlspecialchars(strtoupper($row["type"])) . "</td>");
         echo("<td " . $color . ">" . number_format($row["quantity"], 0, ".", ",") . "</td>");
-        echo("<td " . $color . ">" . $unitsymbol . number_format($price, 2, ".", ",") . "</td>");
-        echo("<td " . $color . ">" . $unitsymbol . number_format($total, 2, ".", ",") . "</td>");
+        echo("<td " . $color . ">" . $unitsymbol . number_format($price, $decimalplaces, ".", ",") . "</td>");
+        echo("<td " . $color . ">" . $unitsymbol . number_format($total, $decimalplaces, ".", ",") . "</td>");
         echo("</tr>");
         $OrderNumber++;
 
@@ -111,7 +111,7 @@
         <td colspan='5'><?php echo(number_format($OrderNumber, 0, ".", ",")) ?> open orders</td>
             <td><?php echo(number_format($OrderQuantity, 0, ".", ",")) ?></td>
             <td></td>
-            <td><?php echo($unitsymbol . number_format($ordertotal, 2, ".", ",")) ?></td>
+            <td><?php echo($unitsymbol . number_format($ordertotal, $decimalplaces, ".", ",")) ?></td>
         </tr>
         <?php
     }
