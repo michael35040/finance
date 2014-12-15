@@ -50,6 +50,7 @@
         <td>
             <input type="radio" name="type" value="stock" <?php if($type=='stock'){echo("checked");} ?> > Stock<br>
             <input type="radio" name="type" value="commodity" <?php if($type=='commodity'){echo("checked");} ?> > Commodity<br>
+            <input type="radio" name="type" value="currency" <?php if($type=='currency'){echo("checked");} ?> > Currency<br>
         </td>
     </tr>
 
