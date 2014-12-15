@@ -6,7 +6,7 @@
         border:0;
         background:transparent;
     }
-    .table
+        .table, th
     {
     	text-align: center;
     }
@@ -48,18 +48,18 @@
             ?>
         </td></tr>
     <tr   class="active" >
-        <td ><b>Trade #</b></td>
-        <td ><b>Buyer</b></td>
-        <td ><b>Bid Order#</b></td>
-        <td ><b>Seller</b></td>
-        <td ><b>Ask Order#</b></td>
-        <td ><b>Date</b></td>
-        <td ><b>Type</b></td>
-        <td ><b>Symbol</b></td>
-        <td ><b>Quantity</b></td>
-        <td ><b>Price</b></td>
-        <td ><b>Commission</b></td>
-        <td ><b>Total</b></td>
+        <th >Trade #</th>
+        <th >Buyer</th>
+        <th >Bid Order#</th>
+        <th >Seller</th>
+        <th >Ask Order#</th>
+        <th >Date</th>
+        <th >Type</th>
+        <th >Symbol</th>
+        <th >Quantity</th>
+        <th >Price</th>
+        <th >Commission</th>
+        <th >Total</th>
     </tr>
 
 </thead>
