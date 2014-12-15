@@ -108,9 +108,9 @@
                     <td <?php echo($color); ?>><?php  echo(strtoupper(htmlspecialchars("$type"))); ?></td>
                     <td <?php echo($color); ?>><form method='post' action='information.php'><span class='nobutton'><button type='submit' name='symbol' value='<?php echo($symbol); ?>'><?php echo($symbol); ?></button></span></form></td>
                     <td <?php echo($color); ?>><?php  echo(number_format($quantity,0,".",",")); ?></td>
-                    <td <?php echo($color); ?>><?php  echo(number_format($price,2,".",",")); ?></td>
-                    <td <?php echo($color); ?>>-<?php  echo(number_format($commission,2,".",",")); ?></td>
-                    <td <?php echo($color); ?>><?php  echo(number_format($total,2,".",",")); ?></td>
+                    <td <?php echo($color); ?>><?php  echo($unitsymbol . number_format($price,$decimalplaces,".",",")); ?></td>
+                    <td <?php echo($color); ?>><?php  echo($unitsymbol . '-' . number_format($commission,$decimalplaces,".",",")); ?></td>
+                    <td <?php echo($color); ?>><?php  echo($unitsymbol . number_format($total,$decimalplaces,".",",")); ?></td>
                 </tr>
     <?php
     }
@@ -125,13 +125,13 @@
         <td colspan="2">
             <strong> <?php 
             $subtotal=$sumcommission+$sumtotal;
-            echo($unitsymbol . htmlspecialchars(number_format($subtotal,2,".",","))); ?>
+            echo($unitsymbol . htmlspecialchars(number_format($subtotal,$decimalplaces,".",","))); ?>
         </td>        
         <td>
-            <strong>-<?php echo($unitsymbol . htmlspecialchars(number_format($sumcommission,2,".",","))); ?></strong>
+            <strong><?php echo($unitsymbol . '-' . htmlspecialchars(number_format($sumcommission,$decimalplaces,".",","))); ?></strong>
         </td>
         <td>
-            <strong> <?php echo($unitsymbol . htmlspecialchars(number_format($sumtotal,2,".",","))); ?></strong>
+            <strong> <?php echo($unitsymbol . htmlspecialchars(number_format($sumtotal,$decimalplaces,".",","))); ?></strong>
         </td>
     </tr>
     <?php } //$i>0
