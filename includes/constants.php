@@ -13,11 +13,11 @@ $adminid = 1;
 $sitename = 'Pulwar'; //leave a space afterwards
     
 //index & portfolio
-$unittype = "BTC";
-$unitdescription = "Bitcoin Cryptocurrency";
-$unitdescriptionshort = "Bitcoin";
-$unitsymbol = "B";
-$decimalplaces = 8;
+$unittype = "USD";
+$unitdescription = "U.S. Dollar";
+$unitdescriptionshort = "Dollar";
+$unitsymbol = "$";
+$decimalplaces = 2;
 //grams  &cent;  &micro; &euro; &pound; &yen; &sect;
 
 
