@@ -6,6 +6,11 @@
         border:0;
         background:transparent;
     }
+        .table, th
+    {
+    	text-align: center;
+    }
+    
 </style>
 
 <table class="table table-condensed table-bordered">
