@@ -96,7 +96,7 @@ $notifications = query("SELECT * FROM notification WHERE (id =? AND status='1')"
 
     $countQ = query("SELECT COUNT(uid) AS total FROM orderbook WHERE id=?", $id); // query database for user
 $count["orders"] = $countQ[0]["total"];
-    $countQ = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE (buyer=? OR seller=?)", $id, $id); // query database for user
+    $countQ = query("SELECT COUNT(uid) AS total, SUM(total) AS value, SUM(quantity) AS volume FROM trades WHERE ((type='limit' or type='market') AND (buyer=? OR seller=?))", $id, $id); // query database for user
 $count["trades"] = $countQ[0]["total"];
 $count["value"] = getPrice($countQ[0]["value"]);
 $count["volume"] = $countQ[0]["volume"];
