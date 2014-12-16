@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98d2116d-c45c-42b6-b017-d0dbd15fc29c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/account_form.php" afterPath="$PROJECT_DIR$/templates/account_form.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/constants.php" afterPath="$PROJECT_DIR$/includes/constants.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/functions_exchange.php" afterPath="$PROJECT_DIR$/includes/functions_exchange.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/functions_testing.php" afterPath="$PROJECT_DIR$/includes/functions_testing.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/vote/sqlite.setup.php" afterPath="$PROJECT_DIR$/public_html/vote/sqlite.setup.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/transparency.php" afterPath="$PROJECT_DIR$/public_html/transparency.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/vote.php" afterPath="$PROJECT_DIR$/public_html/vote.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="finance.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,7 +28,246 @@
     <favorites_list name="finance" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="transparency.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/transparency.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="323">
+              <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+              <folding>
+                <marker date="1418684964052" expanded="true" signature="35:109" placeholder="SELECT SUM(q..portfolio..." />
+                <marker date="1418684964052" expanded="true" signature="138:200" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1418684964052" expanded="true" signature="138:200" placeholder="SELECT SUM(q..orderbook..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="transparency_form.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/transparency_form.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.1538461" vertical-offset="378" max-vertical-offset="1904">
+              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+              <folding>
+                <marker date="1418687109155" expanded="true" signature="427:495" placeholder="SELECT SUM(t..orderbook..." />
+                <marker date="1418687109155" expanded="true" signature="682:734" placeholder="SELECT SUM(u..accounts..." />
+                <marker date="1418687109155" expanded="true" signature="969:1036" placeholder="SELECT SUM(t..orderbook..." />
+                <marker date="1418687109155" expanded="true" signature="1218:1269" placeholder="SELECT SUM(u..accounts..." />
+                <marker date="1418687109155" expanded="true" signature="1778:1823" placeholder="SELECT symbo..assets..." />
+                <marker date="1418687109155" expanded="true" signature="1994:2069" placeholder="SELECT SUM(q..portfolio..." />
+                <marker date="1418687109155" expanded="true" signature="2321:2416" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1418687109155" expanded="true" signature="2414:2416" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1418687109155" expanded="true" signature="2414:2416" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1418687109155" expanded="true" signature="2901:2975" placeholder="SELECT SUM(q..portfolio..." />
+                <marker date="1418687109155" expanded="true" signature="3207:3301" placeholder="SELECT SUM(q..orderbook..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions_testing.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/functions_testing.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8846154" vertical-offset="2958" max-vertical-offset="5729">
+              <caret line="183" column="33" selection-start-line="183" selection-start-column="33" selection-end-line="183" selection-end-column="33" />
+              <folding>
+                <marker date="1418683672764" expanded="true" signature="361:398" placeholder="SELECT count..users..." />
+                <marker date="1418683672764" expanded="true" signature="545:590" placeholder="SELECT symbo..assets..." />
+                <marker date="1418683672764" expanded="true" signature="1158:1232" placeholder="SELECT price..orderbook..." />
+                <marker date="1418683672764" expanded="true" signature="1541:1615" placeholder="SELECT price..orderbook..." />
+                <marker date="1418683672764" expanded="true" signature="3654:3709" placeholder="UPDATE trade..." />
+                <marker date="1418683672764" expanded="true" signature="3936:3993" placeholder="SELECT symbo..assets..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="constants.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/constants.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.576923" vertical-offset="204" max-vertical-offset="833">
+              <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions_exchange.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/includes/functions_exchange.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8179916" vertical-offset="3621" max-vertical-offset="17442">
+              <caret line="236" column="13" selection-start-line="236" selection-start-column="13" selection-end-line="236" selection-end-column="13" />
+              <folding>
+                <marker date="1418688112460" expanded="true" signature="783:1192" placeholder="SELECT SUM(o..portfolio..." />
+                <marker date="1418688112460" expanded="true" signature="2555:2622" placeholder="SELECT quant..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="2793:2860" placeholder="SELECT quant..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="3273:3360" placeholder="SELECT quant..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="3700:3759" placeholder="SELECT units..accounts..." />
+                <marker date="1418688112460" expanded="true" signature="3984:4033" placeholder="UPDATE order..." />
+                <marker date="1418688112460" expanded="true" signature="4782:4863" placeholder="SELECT side,..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="5091:5172" placeholder="SELECT side,..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="5464:5551" placeholder="SELECT side,..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="6087:6163" placeholder="UPDATE portf..." />
+                <marker date="1418688112460" expanded="true" signature="6410:6462" placeholder="UPDATE accou..." />
+                <marker date="1418688112460" expanded="true" signature="6732:6769" placeholder="DELETE FROM ..." />
+                <marker date="1418688112460" expanded="true" signature="7159:7263" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="7634:7738" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="8772:8877" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="9058:9186" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="9467:9585" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="9634:9763" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="10074:10203" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="10415:10533" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="10582:10711" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="11130:11259" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="11300:11428" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="12315:12360" placeholder="SELECT symbo..assets..." />
+                <marker date="1418688112460" expanded="false" signature="13105:13115" placeholder="..." />
+                <marker date="1418688112460" expanded="true" signature="13395:13436" placeholder="SELECT symbo..assets..." />
+                <marker date="1418688112460" expanded="false" signature="13828:13857" placeholder="..." />
+                <marker date="1418688112460" expanded="true" signature="15227:15268" placeholder="SELECT symbo..assets..." />
+                <marker date="1418688112460" expanded="true" signature="18566:18612" placeholder="SELECT quant..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="19191:19245" placeholder="UPDATE order..." />
+                <marker date="1418688112460" expanded="true" signature="19503:19542" placeholder="SELECT total..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="19990:20061" placeholder="UPDATE order..." />
+                <marker date="1418688112460" expanded="true" signature="20369:20425" placeholder="UPDATE accou..." />
+                <marker date="1418688112460" expanded="true" signature="20711:20763" placeholder="UPDATE accou..." />
+                <marker date="1418688112460" expanded="true" signature="21098:21162" placeholder="SELECT quant..portfolio..." />
+                <marker date="1418688112460" expanded="true" signature="21606:21693" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="22230:22281" placeholder="DELETE FROM ..." />
+                <marker date="1418688112460" expanded="true" signature="22575:22649" placeholder="UPDATE portf..." />
+                <marker date="1418688112460" expanded="true" signature="23042:23100" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1418688112460" expanded="true" signature="23370:23441" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="23736:23834" placeholder="UPDATE portf..." />
+                <marker date="1418688112460" expanded="true" signature="24468:24616" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="29763:29804" placeholder="SELECT symbo..assets..." />
+                <marker date="1418688112460" expanded="true" signature="30118:30163" placeholder="UPDATE asset..." />
+                <marker date="1418688112460" expanded="true" signature="30322:30365" placeholder="UPDATE asset..." />
+                <marker date="1418688112460" expanded="true" signature="30522:30563" placeholder="UPDATE asset..." />
+                <marker date="1418688112460" expanded="true" signature="30719:30761" placeholder="UPDATE asset..." />
+                <marker date="1418688112460" expanded="true" signature="30919:30964" placeholder="UPDATE asset..." />
+                <marker date="1418688112460" expanded="true" signature="31130:31180" placeholder="UPDATE asset..." />
+                <marker date="1418688112460" expanded="true" signature="31357:31402" placeholder="UPDATE asset..." />
+                <marker date="1418688112460" expanded="true" signature="31545:31591" placeholder="UPDATE histo..." />
+                <marker date="1418688112460" expanded="true" signature="31734:31782" placeholder="UPDATE order..." />
+                <marker date="1418688112460" expanded="true" signature="31925:31973" placeholder="UPDATE portf..." />
+                <marker date="1418688112460" expanded="true" signature="32116:32161" placeholder="UPDATE trade..." />
+                <marker date="1418688112460" expanded="true" signature="32590:32647" placeholder="UPDATE order..." />
+                <marker date="1418688112460" expanded="true" signature="32789:32826" placeholder="DELETE FROM ..." />
+                <marker date="1418688112460" expanded="true" signature="32981:33021" placeholder="DELETE FROM ..." />
+                <marker date="1418688112460" expanded="true" signature="33148:33252" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="34402:34443" placeholder="SELECT symbo..assets..." />
+                <marker date="1418688112460" expanded="true" signature="34754:34893" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="35185:35241" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1418688112460" expanded="true" signature="35457:35528" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="35827:35925" placeholder="UPDATE portf..." />
+                <marker date="1418688112460" expanded="true" signature="36403:36551" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="36821:36879" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1418688112460" expanded="true" signature="37086:37157" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="37494:37592" placeholder="UPDATE portf..." />
+                <marker date="1418688112460" expanded="true" signature="38205:38353" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="39256:39297" placeholder="SELECT symbo..assets..." />
+                <marker date="1418688112460" expanded="true" signature="39717:39769" placeholder="UPDATE asset..." />
+                <marker date="1418688112460" expanded="true" signature="39971:40027" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1418688112460" expanded="true" signature="40243:40314" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="40604:40702" placeholder="UPDATE portf..." />
+                <marker date="1418688112460" expanded="true" signature="41160:41308" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="41567:41625" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1418688112460" expanded="true" signature="41832:41903" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="42230:42328" placeholder="UPDATE portf..." />
+                <marker date="1418688112460" expanded="true" signature="42947:43095" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="44011:44052" placeholder="SELECT symbo..assets..." />
+                <marker date="1418688112460" expanded="true" signature="44332:44384" placeholder="UPDATE asset..." />
+                <marker date="1418688112460" expanded="true" signature="44573:44629" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1418688112460" expanded="true" signature="45002:45079" placeholder="UPDATE portf..." />
+                <marker date="1418688112460" expanded="true" signature="45510:45568" placeholder="SELECT quant..portfolio..." />
+                <marker date="1418688112460" expanded="true" signature="45960:46108" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="47745:47786" placeholder="SELECT symbo..assets..." />
+                <marker date="1418688112460" expanded="true" signature="47975:48024" placeholder="SELECT count..users..." />
+                <marker date="1418688112460" expanded="true" signature="49166:49261" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1418688112460" expanded="true" signature="49609:49648" placeholder="SELECT units..accounts..." />
+                <marker date="1418688112460" expanded="true" signature="50723:50775" placeholder="UPDATE accou..." />
+                <marker date="1418688112460" expanded="true" signature="51221:51281" placeholder="SELECT quant..portfolio..." />
+                <marker date="1418688112460" expanded="true" signature="51915:51991" placeholder="UPDATE portf..." />
+                <marker date="1418688112460" expanded="true" signature="52296:52395" placeholder="INSERT INTO ..." />
+                <marker date="1418688112460" expanded="true" signature="52767:52871" placeholder="INSERT INTO ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/admin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.0" vertical-offset="1082" max-vertical-offset="13515">
+              <caret line="70" column="35" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.038462" vertical-offset="816" max-vertical-offset="5865">
+              <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="account_form.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/account_form.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.076923" vertical-offset="1734" max-vertical-offset="5831">
+              <caret line="122" column="43" selection-start-line="122" selection-start-column="27" selection-end-line="122" selection-end-column="43" />
+              <folding>
+                <marker date="1418683673181" expanded="false" signature="6915:6931" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="account.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public_html/account.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.43037975" vertical-offset="0" max-vertical-offset="1972">
+              <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+              <folding>
+                <marker date="1418683672798" expanded="true" signature="324:373" placeholder="UPDATE notif..." />
+                <marker date="1418683672798" expanded="true" signature="636:686" placeholder="UPDATE notif..." />
+                <marker date="1418683672798" expanded="true" signature="828:895" placeholder="SELECT SUM(t..orderbook..." />
+                <marker date="1418683672798" expanded="true" signature="1057:1135" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1418683672798" expanded="true" signature="1181:1243" placeholder="SELECT SUM(p..portfolio..." />
+                <marker date="1418683672798" expanded="true" signature="1754:1841" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1418683672798" expanded="true" signature="2099:2162" placeholder="SELECT SUM(q..portfolio..." />
+                <marker date="1418683672798" expanded="true" signature="2353:2429" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1418683672798" expanded="true" signature="2728:2769" placeholder="SELECT issue..assets..." />
+                <marker date="1418683672798" expanded="true" signature="3357:3427" placeholder="SELECT price..trades..." />
+                <marker date="1418683672798" expanded="true" signature="3872:3927" placeholder="SELECT * FRO..notification..." />
+                <marker date="1418683672798" expanded="true" signature="3959:4011" placeholder="SELECT COUNT..orderbook..." />
+                <marker date="1418683672798" expanded="true" signature="4108:4258" placeholder="SELECT COUNT..." />
+                <marker date="1418683672798" expanded="true" signature="4450:4505" placeholder="SELECT COUNT..portfolio..." />
+                <marker date="1418683672798" expanded="true" signature="4602:4701" placeholder="SELECT SUM(c..trades..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/header.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.653846" vertical-offset="1464" max-vertical-offset="2465">
+              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+              <folding>
+                <marker date="1417561219552" expanded="true" signature="2495:2557" placeholder="SELECT id, e..users..." />
+                <marker date="1417561219552" expanded="true" signature="3012:3073" placeholder="SELECT units..accounts..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -68,21 +302,22 @@
         <option value="$PROJECT_DIR$/public_html/info2.php" />
         <option value="$PROJECT_DIR$/public_html/vote/webPoll.class.php" />
         <option value="$PROJECT_DIR$/public_html/vote/index.php" />
-        <option value="$PROJECT_DIR$/includes/functions_exchange.php" />
         <option value="$PROJECT_DIR$/templates/account_form.php" />
         <option value="$PROJECT_DIR$/public_html/vote/sqlite.setup.php" />
         <option value="$PROJECT_DIR$/public_html/vote.php" />
         <option value="$PROJECT_DIR$/public_html/css/dashboard.php" />
-        <option value="$PROJECT_DIR$/includes/constants.php" />
         <option value="$PROJECT_DIR$/includes/functions_testing.php" />
         <option value="$PROJECT_DIR$/public_html/transparency.php" />
+        <option value="$PROJECT_DIR$/templates/transparency_form.php" />
+        <option value="$PROJECT_DIR$/includes/constants.php" />
+        <option value="$PROJECT_DIR$/includes/functions_exchange.php" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="296" />
-    <option name="width" value="1070" />
+    <option name="x" value="178" />
+    <option name="width" value="1188" />
     <option name="height" value="728" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -131,15 +366,15 @@
       <BehatRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
       <pass-parent-env-vars>false</pass-parent-env-vars>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -158,8 +393,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="296" y="0" width="1070" height="728" extended-state="0" />
-    <editor active="false" />
+    <frame x="178" y="0" width="1188" height="728" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -173,13 +408,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -206,34 +441,15 @@
           <line>91</line>
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/public_html/transparency.php</url>
-          <line>30</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/public_html/vote.php</url>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public_html/account.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1108" max-vertical-offset="1955">
-          <caret line="85" column="56" selection-start-line="85" selection-start-column="56" selection-end-line="85" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/account_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="6698">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="64" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/orders.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1343">
@@ -346,13 +562,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9230769" vertical-offset="153" max-vertical-offset="2465">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/exchange_form.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.8568873" vertical-offset="717" max-vertical-offset="4335">
@@ -386,13 +595,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="1700">
           <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/trades_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="2482">
-          <caret line="31" column="26" selection-start-line="31" selection-start-column="26" selection-end-line="31" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -488,195 +690,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/functions_exchange.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71833646" vertical-offset="5162" max-vertical-offset="16949">
-          <caret line="326" column="27" selection-start-line="326" selection-start-column="27" selection-end-line="326" selection-end-column="27" />
-          <folding>
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT SUM(o..portfolio..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT quant..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT quant..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT quant..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT units..accounts..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE order..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT side,..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT side,..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT side,..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE accou..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
-            <marker date="1418584331794" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
-            <marker date="1418584331794" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT quant..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE order..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT total..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE order..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE accou..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE accou..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT quant..portfolio..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE histo..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE order..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE trade..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE order..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT quant..portfolio..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT count..users..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT units..accounts..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE accou..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="SELECT quant..portfolio..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418584331794" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/account.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42094862" vertical-offset="841" max-vertical-offset="1972">
-          <caret line="62" column="19" selection-start-line="62" selection-start-column="19" selection-end-line="62" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.83004" vertical-offset="13009" max-vertical-offset="13515">
-          <caret line="175" column="50" selection-start-line="175" selection-start-column="40" selection-end-line="175" selection-end-column="50" />
-          <folding>
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT units..accounts..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="UPDATE accou..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="UPDATE users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="UPDATE users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT units..accounts..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT SUM(t..orderbook..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT SUM(c..trades..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..assets..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..assets..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..assets..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..assets..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..assets..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..assets..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..assets..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..assets..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..assets..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..users..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..assets..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT SUM(q..portfolio..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT SUM(u..accounts..." />
-            <marker date="1418422985041" expanded="true" signature="-1:-1" placeholder="SELECT SUM(t..orderbook..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/vote.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5608856" vertical-offset="444" max-vertical-offset="986">
           <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
           <folding>
-            <element signature="e#8#235#0#PHP" expanded="true" />
+            <element signature="e#8#235#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/constants.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59594095" vertical-offset="0" max-vertical-offset="833">
-          <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -684,31 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="29583" max-vertical-offset="50371">
           <caret line="1750" column="12" selection-start-line="1750" selection-start-column="1" selection-end-line="1750" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/transparency.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25708884" vertical-offset="1377" max-vertical-offset="2295">
-          <caret line="89" column="34" selection-start-line="89" selection-start-column="34" selection-end-line="89" selection-end-column="34" />
-          <folding>
-            <marker date="1418598103138" expanded="true" signature="-1:-1" placeholder="SELECT SUM(q..portfolio..." />
-            <marker date="1418598103138" expanded="true" signature="-1:-1" placeholder="SELECT SUM(q..portfolio..." />
-            <marker date="1418598103138" expanded="true" signature="-1:-1" placeholder="SELECT SUM(q..portfolio..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/account_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15500945" vertical-offset="2536" max-vertical-offset="5848">
-          <caret line="154" column="34" selection-start-line="154" selection-start-column="34" selection-end-line="154" selection-end-column="34" />
-          <folding>
-            <marker date="1418584671794" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1418584671794" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1418584671794" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -716,7 +711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26086956" vertical-offset="950" max-vertical-offset="1479">
           <caret line="64" column="37" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -724,9 +718,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34501845" vertical-offset="0" max-vertical-offset="935">
           <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-          <folding>
-            <marker date="1418167593095" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..trades..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -734,7 +725,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.47416973" vertical-offset="954" max-vertical-offset="1904">
           <caret line="41" column="20" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -746,17 +736,237 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/trades_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.076923" vertical-offset="1636" max-vertical-offset="2550">
+          <caret line="130" column="51" selection-start-line="130" selection-start-column="51" selection-end-line="130" selection-end-column="123" />
+          <folding>
+            <marker date="1418683673644" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1418683673644" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1418683673644" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1418683673644" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1418683673644" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1418683673644" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1418683673644" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1418683673644" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.653846" vertical-offset="1464" max-vertical-offset="2465">
+          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+          <folding>
+            <marker date="1417561219552" expanded="true" signature="2495:2557" placeholder="SELECT id, e..users..." />
+            <marker date="1417561219552" expanded="true" signature="3012:3073" placeholder="SELECT units..accounts..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/account.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.43037975" vertical-offset="0" max-vertical-offset="1972">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+          <folding>
+            <marker date="1418683672798" expanded="true" signature="324:373" placeholder="UPDATE notif..." />
+            <marker date="1418683672798" expanded="true" signature="636:686" placeholder="UPDATE notif..." />
+            <marker date="1418683672798" expanded="true" signature="828:895" placeholder="SELECT SUM(t..orderbook..." />
+            <marker date="1418683672798" expanded="true" signature="1057:1135" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1418683672798" expanded="true" signature="1181:1243" placeholder="SELECT SUM(p..portfolio..." />
+            <marker date="1418683672798" expanded="true" signature="1754:1841" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1418683672798" expanded="true" signature="2099:2162" placeholder="SELECT SUM(q..portfolio..." />
+            <marker date="1418683672798" expanded="true" signature="2353:2429" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1418683672798" expanded="true" signature="2728:2769" placeholder="SELECT issue..assets..." />
+            <marker date="1418683672798" expanded="true" signature="3357:3427" placeholder="SELECT price..trades..." />
+            <marker date="1418683672798" expanded="true" signature="3872:3927" placeholder="SELECT * FRO..notification..." />
+            <marker date="1418683672798" expanded="true" signature="3959:4011" placeholder="SELECT COUNT..orderbook..." />
+            <marker date="1418683672798" expanded="true" signature="4108:4258" placeholder="SELECT COUNT..." />
+            <marker date="1418683672798" expanded="true" signature="4450:4505" placeholder="SELECT COUNT..portfolio..." />
+            <marker date="1418683672798" expanded="true" signature="4602:4701" placeholder="SELECT SUM(c..trades..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/includes/functions_testing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38941398" vertical-offset="3211" max-vertical-offset="5151">
-          <caret line="201" column="54" selection-start-line="201" selection-start-column="54" selection-end-line="201" selection-end-column="54" />
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="2958" max-vertical-offset="5729">
+          <caret line="183" column="33" selection-start-line="183" selection-start-column="33" selection-end-line="183" selection-end-column="33" />
           <folding>
-            <marker date="1418588024872" expanded="true" signature="-1:-1" placeholder="SELECT count..users..." />
-            <marker date="1418588024872" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
-            <marker date="1418588024872" expanded="true" signature="-1:-1" placeholder="SELECT price..orderbook..." />
-            <marker date="1418588024872" expanded="true" signature="-1:-1" placeholder="SELECT price..orderbook..." />
-            <marker date="1418588024872" expanded="true" signature="-1:-1" placeholder="UPDATE trade..." />
-            <marker date="1418588024872" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1418683672764" expanded="true" signature="361:398" placeholder="SELECT count..users..." />
+            <marker date="1418683672764" expanded="true" signature="545:590" placeholder="SELECT symbo..assets..." />
+            <marker date="1418683672764" expanded="true" signature="1158:1232" placeholder="SELECT price..orderbook..." />
+            <marker date="1418683672764" expanded="true" signature="1541:1615" placeholder="SELECT price..orderbook..." />
+            <marker date="1418683672764" expanded="true" signature="3654:3709" placeholder="UPDATE trade..." />
+            <marker date="1418683672764" expanded="true" signature="3936:3993" placeholder="SELECT symbo..assets..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/transparency.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="323">
+          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding>
+            <marker date="1418684964052" expanded="true" signature="35:109" placeholder="SELECT SUM(q..portfolio..." />
+            <marker date="1418684964052" expanded="true" signature="138:200" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1418684964052" expanded="true" signature="138:200" placeholder="SELECT SUM(q..orderbook..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/account_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.076923" vertical-offset="1734" max-vertical-offset="5831">
+          <caret line="122" column="43" selection-start-line="122" selection-start-column="27" selection-end-line="122" selection-end-column="43" />
+          <folding>
+            <marker date="1418683673181" expanded="false" signature="6915:6931" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/transparency_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1538461" vertical-offset="378" max-vertical-offset="1904">
+          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
+          <folding>
+            <marker date="1418687109155" expanded="true" signature="427:495" placeholder="SELECT SUM(t..orderbook..." />
+            <marker date="1418687109155" expanded="true" signature="682:734" placeholder="SELECT SUM(u..accounts..." />
+            <marker date="1418687109155" expanded="true" signature="969:1036" placeholder="SELECT SUM(t..orderbook..." />
+            <marker date="1418687109155" expanded="true" signature="1218:1269" placeholder="SELECT SUM(u..accounts..." />
+            <marker date="1418687109155" expanded="true" signature="1778:1823" placeholder="SELECT symbo..assets..." />
+            <marker date="1418687109155" expanded="true" signature="1994:2069" placeholder="SELECT SUM(q..portfolio..." />
+            <marker date="1418687109155" expanded="true" signature="2321:2416" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1418687109155" expanded="true" signature="2414:2416" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1418687109155" expanded="true" signature="2414:2416" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1418687109155" expanded="true" signature="2901:2975" placeholder="SELECT SUM(q..portfolio..." />
+            <marker date="1418687109155" expanded="true" signature="3207:3301" placeholder="SELECT SUM(q..orderbook..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/constants.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923" vertical-offset="204" max-vertical-offset="833">
+          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462" vertical-offset="816" max-vertical-offset="5865">
+          <caret line="75" column="8" selection-start-line="75" selection-start-column="8" selection-end-line="75" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0" vertical-offset="1082" max-vertical-offset="13515">
+          <caret line="70" column="35" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/functions_exchange.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8179916" vertical-offset="3621" max-vertical-offset="17442">
+          <caret line="236" column="13" selection-start-line="236" selection-start-column="13" selection-end-line="236" selection-end-column="13" />
+          <folding>
+            <marker date="1418688112460" expanded="true" signature="783:1192" placeholder="SELECT SUM(o..portfolio..." />
+            <marker date="1418688112460" expanded="true" signature="2555:2622" placeholder="SELECT quant..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="2793:2860" placeholder="SELECT quant..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="3273:3360" placeholder="SELECT quant..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="3700:3759" placeholder="SELECT units..accounts..." />
+            <marker date="1418688112460" expanded="true" signature="3984:4033" placeholder="UPDATE order..." />
+            <marker date="1418688112460" expanded="true" signature="4782:4863" placeholder="SELECT side,..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="5091:5172" placeholder="SELECT side,..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="5464:5551" placeholder="SELECT side,..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="6087:6163" placeholder="UPDATE portf..." />
+            <marker date="1418688112460" expanded="true" signature="6410:6462" placeholder="UPDATE accou..." />
+            <marker date="1418688112460" expanded="true" signature="6732:6769" placeholder="DELETE FROM ..." />
+            <marker date="1418688112460" expanded="true" signature="7159:7263" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="7634:7738" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="8772:8877" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="9058:9186" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="9467:9585" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="9634:9763" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="10074:10203" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="10415:10533" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="10582:10711" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="11130:11259" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="11300:11428" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="12315:12360" placeholder="SELECT symbo..assets..." />
+            <marker date="1418688112460" expanded="false" signature="13105:13115" placeholder="..." />
+            <marker date="1418688112460" expanded="true" signature="13395:13436" placeholder="SELECT symbo..assets..." />
+            <marker date="1418688112460" expanded="false" signature="13828:13857" placeholder="..." />
+            <marker date="1418688112460" expanded="true" signature="15227:15268" placeholder="SELECT symbo..assets..." />
+            <marker date="1418688112460" expanded="true" signature="18566:18612" placeholder="SELECT quant..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="19191:19245" placeholder="UPDATE order..." />
+            <marker date="1418688112460" expanded="true" signature="19503:19542" placeholder="SELECT total..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="19990:20061" placeholder="UPDATE order..." />
+            <marker date="1418688112460" expanded="true" signature="20369:20425" placeholder="UPDATE accou..." />
+            <marker date="1418688112460" expanded="true" signature="20711:20763" placeholder="UPDATE accou..." />
+            <marker date="1418688112460" expanded="true" signature="21098:21162" placeholder="SELECT quant..portfolio..." />
+            <marker date="1418688112460" expanded="true" signature="21606:21693" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="22230:22281" placeholder="DELETE FROM ..." />
+            <marker date="1418688112460" expanded="true" signature="22575:22649" placeholder="UPDATE portf..." />
+            <marker date="1418688112460" expanded="true" signature="23042:23100" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1418688112460" expanded="true" signature="23370:23441" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="23736:23834" placeholder="UPDATE portf..." />
+            <marker date="1418688112460" expanded="true" signature="24468:24616" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="29763:29804" placeholder="SELECT symbo..assets..." />
+            <marker date="1418688112460" expanded="true" signature="30118:30163" placeholder="UPDATE asset..." />
+            <marker date="1418688112460" expanded="true" signature="30322:30365" placeholder="UPDATE asset..." />
+            <marker date="1418688112460" expanded="true" signature="30522:30563" placeholder="UPDATE asset..." />
+            <marker date="1418688112460" expanded="true" signature="30719:30761" placeholder="UPDATE asset..." />
+            <marker date="1418688112460" expanded="true" signature="30919:30964" placeholder="UPDATE asset..." />
+            <marker date="1418688112460" expanded="true" signature="31130:31180" placeholder="UPDATE asset..." />
+            <marker date="1418688112460" expanded="true" signature="31357:31402" placeholder="UPDATE asset..." />
+            <marker date="1418688112460" expanded="true" signature="31545:31591" placeholder="UPDATE histo..." />
+            <marker date="1418688112460" expanded="true" signature="31734:31782" placeholder="UPDATE order..." />
+            <marker date="1418688112460" expanded="true" signature="31925:31973" placeholder="UPDATE portf..." />
+            <marker date="1418688112460" expanded="true" signature="32116:32161" placeholder="UPDATE trade..." />
+            <marker date="1418688112460" expanded="true" signature="32590:32647" placeholder="UPDATE order..." />
+            <marker date="1418688112460" expanded="true" signature="32789:32826" placeholder="DELETE FROM ..." />
+            <marker date="1418688112460" expanded="true" signature="32981:33021" placeholder="DELETE FROM ..." />
+            <marker date="1418688112460" expanded="true" signature="33148:33252" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="34402:34443" placeholder="SELECT symbo..assets..." />
+            <marker date="1418688112460" expanded="true" signature="34754:34893" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="35185:35241" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1418688112460" expanded="true" signature="35457:35528" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="35827:35925" placeholder="UPDATE portf..." />
+            <marker date="1418688112460" expanded="true" signature="36403:36551" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="36821:36879" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1418688112460" expanded="true" signature="37086:37157" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="37494:37592" placeholder="UPDATE portf..." />
+            <marker date="1418688112460" expanded="true" signature="38205:38353" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="39256:39297" placeholder="SELECT symbo..assets..." />
+            <marker date="1418688112460" expanded="true" signature="39717:39769" placeholder="UPDATE asset..." />
+            <marker date="1418688112460" expanded="true" signature="39971:40027" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1418688112460" expanded="true" signature="40243:40314" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="40604:40702" placeholder="UPDATE portf..." />
+            <marker date="1418688112460" expanded="true" signature="41160:41308" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="41567:41625" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1418688112460" expanded="true" signature="41832:41903" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="42230:42328" placeholder="UPDATE portf..." />
+            <marker date="1418688112460" expanded="true" signature="42947:43095" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="44011:44052" placeholder="SELECT symbo..assets..." />
+            <marker date="1418688112460" expanded="true" signature="44332:44384" placeholder="UPDATE asset..." />
+            <marker date="1418688112460" expanded="true" signature="44573:44629" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1418688112460" expanded="true" signature="45002:45079" placeholder="UPDATE portf..." />
+            <marker date="1418688112460" expanded="true" signature="45510:45568" placeholder="SELECT quant..portfolio..." />
+            <marker date="1418688112460" expanded="true" signature="45960:46108" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="47745:47786" placeholder="SELECT symbo..assets..." />
+            <marker date="1418688112460" expanded="true" signature="47975:48024" placeholder="SELECT count..users..." />
+            <marker date="1418688112460" expanded="true" signature="49166:49261" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1418688112460" expanded="true" signature="49609:49648" placeholder="SELECT units..accounts..." />
+            <marker date="1418688112460" expanded="true" signature="50723:50775" placeholder="UPDATE accou..." />
+            <marker date="1418688112460" expanded="true" signature="51221:51281" placeholder="SELECT quant..portfolio..." />
+            <marker date="1418688112460" expanded="true" signature="51915:51991" placeholder="UPDATE portf..." />
+            <marker date="1418688112460" expanded="true" signature="52296:52395" placeholder="INSERT INTO ..." />
+            <marker date="1418688112460" expanded="true" signature="52767:52871" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>

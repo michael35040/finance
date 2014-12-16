@@ -1,6 +1,35 @@
 <?php
 //throw new Exception(var_dump(get_defined_vars()));
 
+
+///////////////////////////////
+//GET OWNERS AND THEIR TOTAL AMOUNT
+///////////////////////////////
+function convertAsset($symbol1, $symbol2, $amount)
+{
+    //SELL ORDER
+    $symbol=$symbol1;
+    $type='market';
+    $side='a';
+    $quantity=$amount;
+    $price=0;
+    $id = $_SESSION["id"];
+    placeOrder($symbol, $type, $side, $quantity, $price, $id);
+
+
+    //SELL ORDER
+    $symbol=$symbol1;
+    $type='market';
+    $side='b';
+    $quantity=9999999999;
+    $price=0;
+    $id = $_SESSION["id"];
+    placeOrder($symbol, $type, $side, $quantity, $price, $id);
+
+
+
+}
+
 ///////////////////////////////
 //GET OWNERS AND THEIR TOTAL AMOUNT
 ///////////////////////////////
@@ -494,8 +523,8 @@ function orderbook($symbol)
 
             /* */
             //LAST TRADE INFO TO RETURN ON FUNCTION
-            if ($topAskType == 'market') { $topAskPrice = 'market'; } //null//$tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
-            if ($topBidType == 'market') { $topBidPrice = 'market'; } //null// $tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
+            //if ($topAskType == 'market') { $topAskPrice = 'market'; } //null//$tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
+            //if ($topBidType == 'market') { $topBidPrice = 'market'; } //null// $tradePrice;}     //since the do while loop gives it the next orders price, not the last traded
             $orderbook['topAskPrice'] = ($asks[0]["price"]); //limit price
             $orderbook['topAskUID'] = ($asks[0]["uid"]);  //order id; unique id
             $orderbook['topAskSymbol'] = ($asks[0]["symbol"]); //symbol of equity
