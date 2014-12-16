@@ -2,10 +2,37 @@
 //throw new Exception(var_dump(get_defined_vars()));
 
 
+
+///////////////////////////////
+//CONVERT/TRANSFER BETWEEN ASSETS
+///////////////////////////////
+function convertAsset($id, $symbol1, $symbol2, $amount)
+{    //$order = placeOrder($symbol, $type, $side, $quantity, $price, $id);
+    //$id=$_SESSION['id'];
+$symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol1);
+if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol1 . "] Incorrect Symbol. Not listed on the exchange!");} //row count
+
+$symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol2);
+if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol2 . "] Incorrect Symbol. Not listed on the exchange!");} //row count
+
+$userUnits =	query("SELECT COALESCE(units,0) FROM accounts WHERE id = ?", $id);	 //query db
+$userUnits = getPrice($userUnits[0]["units"]);
+if($userUnits<=0){apologize("User has no funds!");}
+$unitsBefore = $userUnits;
+$sell = placeOrder($symbol1, 'market', 'a', $amount, 0, $id);
+    try {processOrderbook($symbol1);}
+    catch(Exception $e) {apologize($e->getMessage());}
+
+$userUnits =	query("SELECT COALESCE(units,0) FROM accounts WHERE id = ?", $id);	 //query db
+$userUnits = getPrice($userUnits[0]["units"]);
+if($userUnits<=0){apologize("User has no funds!");}
+$unitsAfter = $userUnits;
+$price=$unitsAfter-$unitsBefore;
+$buy = placeOrder($symbol2 'market', 'b', $price, 999999999, $id); //2000000000
+    try {processOrderbook($symbol2);}
+    catch(Exception $e) {apologize($e->getMessage());}
+    
 /*
-///////////////////////////////
-//TRANSFER BETWEEN ASSETS
-///////////////////////////////
 //CHECK EXCHANGE AROUND LINE 444.
 //CHECK EXCHANGE PLACE ORDER AROUND 1000
 
@@ -13,21 +40,27 @@ placeOrder($symbol, $type, $side, $quantity, $price, $id);
 //if( type='market' && quantity=null && $side='b')($check price; $price/askprice=$quantity)
 //if( type='market' && price=null && $side='b')($price=$askPrice*$quantity)
 
-function convertAsset($symbol1, $symbol2, $amount)
-{    //$order = placeOrder($symbol, $type, $side, $quantity, $price, $id);
+    //$askPrice = ???;
+    //if( type='market' && empty($quantity) && $side='b')($check price; $price/askprice=$quantity)
+    //if( type='market' && empty($price) && $side='b')($price=$askPrice*$quantity)
 
-$unitsBefore = query(units);
-$sell = placeOrder($symbol1, 'market', 'a', $amount, null, $id);
-executeTrades();
-$unitsAfter = query(units);
-$price=$unitsAfter-$unitsBefore;
-$buy = placeOrder($symbol2 'market', 'b', $price, null, $id);
-executeTrades();
-
-
+    if($type=='market' && $side='b')
+    { 
+        if(empty($quantity)) 
+            { 
+                if(empty($price)){throw new Exception("Invalid order. Limit order trade price required");}
+                $quantity=$price/$askPrice; //$price for this instance means total market buyer wants to spend.
+            }
+    }
+    else
+    { //    if($type=='limit')
+        if(empty($quantity)) { throw new Exception("Invalid order. Trade quantity required."); } //check to see if empty
+    }
+    
+*/
     
 }
-*/
+
 
 ///////////////////////////////
 //GET OWNERS AND THEIR TOTAL AMOUNT
@@ -436,21 +469,41 @@ function orderbook($symbol)
             //IF BUYER DOESN'T HAVE ENOUGH FUNDS CANCEL ORDER
             if ($orderbookUnits < $tradeAmount)
                 {
-                    //IF LIMIT
-                    query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUID); throw new Exception("Buyer does not have enough funds. Buyers orders deleted"); 
-                    
-                    //IF MARKET //CAN ADJUST THE TRADESIZE DOWN HERE IF NEEDED.
-                    /*
-                
+                    //IF MARKET ADJUST THE TRADESIZE DOWN.
                     //CHECK TO SEE IF MARKET ORDER (if $bidtype='market')
-                    //CHECK TO SEE IF BID SIZE IS GREATER THAN 1 AS WE CANT GO LOWER if($tradeSize>1){}else{cancelOrder()}; //as it can't go lower.
+                    if($topBidType='market')
+                    {
+                    //IF LESS THAN 1, WE CANT GO SMALLER SO CANCEL
+                        if($tradeSize<=1)
+                            {
+                                query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUID); throw new Exception("Buyer does not have enough funds. Buyers orders deleted"); 
+                            }
                     //CALCULATE WHAT THEY CAN AFFORD BASED ON ASKPRICE ($tradeSize = $bidUnits/$AskPrice)
-                    //DON"T HAVE TO WORRY THAT IT WILL BE BIGGER THAN BUYER WANTED AS THEY ALREADY PICKED A QUANTITY THAT WAS TOO MUCH BUT WE CAN CALCULATE CHECK IT AGAIN (if $tradeSize>$bidSize ERROR!)
-                    //ADJUST ACTUAL BID SIZE IN ORDERBOOK PRICE TO THIS AMOUNT (set orderbook UID to quantity)
-                    //CALCULATE NEW TRADEAMOUNT (  $tradeAmount = ($tradePrice * $tradeSize);)
-                    //$tradeSize=???, $tradeAmount=???, 
+                        $oldTradeSize=$tradeSize; //keep for history
+                        $newTradeSize=floor($orderbookUnits/$tradePrice);
+                    //ERROR CHECK TO SEE IF NEW SIZE IS BIGGER THAN OLD ONE. THIS PREVENTS IT FROM BEING LARGER THAN THE ASK SIZE
+                        if($newTradeSize>$oldTradeSize)
+                            {
+                                query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUID); throw new Exception("Buyer does not have enough funds. Buyers orders deleted"); 
+                            }
+                    //ERROR CHECK TO SEE IF LESS THAN 1        
+                        if($newTradeSize<1)
+                            {
+                                query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUID); throw new Exception("Buyer does not have enough funds. Buyers orders deleted"); 
+                            }
+                    //CALCULATE NEW TRADEAMOUNT 
+                        $tradeSize = $newTradeSize;
+                        $tradeAmount = ($tradePrice * $tradeSize);
                     //INSERT INTO HISTORY TO ACCOUNT FOR DIFFERENCE (updated bid order ID, adjust size based on value...)
-                    */
+                        if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topBidUser, $topBidUID, 'QTY CHANGE', $symbol, $newTradeSize, $tradePrice, $tradeAmount) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3"); }
+
+                        
+                    //IF LIMIT
+                    else 
+                    { //($tradeType='limit') OR $topAskType='market'
+                        query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUID); throw new Exception("Buyer does not have enough funds. Buyers orders deleted"); 
+                    }
+
                 }
             if (query("UPDATE orderbook SET quantity=(quantity-?), total=(total-?) WHERE uid=?", $tradeSize, $tradeAmount, $topBidUID) === false)
                 {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update OB Failure: #5"); }
@@ -949,23 +1002,6 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 
     //SET QUANTITY
     if(empty($quantity)) { throw new Exception("Invalid order. Trade quantity required."); } //check to see if empty
-    /*
-    //if( type='market' && quantity=null && $side='b')($check price; $price/askprice=$quantity)
-    //if( type='market' && price=null && $side='b')($price=$askPrice*$quantity)
-
-    if($type=='market' && $side='b')
-    { 
-        if(empty($quantity)) 
-            { 
-                if(empty($price)){throw new Exception("Invalid order. Limit order trade price required");}
-                $quantity=$price/$askPrice; //$price for this instance means total market buyer wants to spend.
-            }
-    }
-    else
-    { //    if($type=='limit')
-        if(empty($quantity)) { throw new Exception("Invalid order. Trade quantity required."); } //check to see if empty
-    }
-    */
     if($quantity>2000000000){ throw new Exception("Invalid order. Trade quantity exceeds limits."); }
 
     //SET PRICE
