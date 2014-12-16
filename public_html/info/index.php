@@ -1,6 +1,15 @@
 <!-- Header -->
 <?php 
 
+/*
+Four principles of Pulwar.
+
+Store - Buy/Sell Precious Metals from us.
+Depository - Store your precious metals in allocated or unallocated accounts.
+Exchange - Transact with other users with the lowest fees and costs.
+Convert - Easily switch between commodities and currencies.
+
+*/
 
 include 'header.php'; 
 
