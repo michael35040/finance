@@ -2,33 +2,34 @@
 //throw new Exception(var_dump(get_defined_vars()));
 
 
+/*
 ///////////////////////////////
-//GET OWNERS AND THEIR TOTAL AMOUNT
+//TRANSFER BETWEEN ASSETS
 ///////////////////////////////
 function convertAsset($symbol1, $symbol2, $amount)
-{
-    //SELL ORDER
-    $symbol=$symbol1;
-    $type='market';
-    $side='a';
-    $quantity=$amount;
-    $price=0;
-    $id = $_SESSION["id"];
-    placeOrder($symbol, $type, $side, $quantity, $price, $id);
+{    //$order = placeOrder($symbol, $type, $side, $quantity, $price, $id);
 
-
-    //SELL ORDER
-    $symbol=$symbol1;
-    $type='market';
-    $side='b';
-    $quantity=9999999999;
-    $price=0;
-    $id = $_SESSION["id"];
-    placeOrder($symbol, $type, $side, $quantity, $price, $id);
-
-
-
+    //FIGURE HOW MUCH THE ORDER WILL NET 
+        $unitsBefore = $units;
+    //SELL ORDER    
+        $order = placeOrder($symbol1, 'market', 'a', $amount, 0, $_SESSION["id"]);
+    //EXECUTE ORDER
+        execute();
+    //FIGURE OUT HOW MUCH THE ORDER WILL NET
+        $unitsAfter = $units
+        $amountReceived = $unitsAfter-$unitsBefore;
+    //ERROR CHECK make sure we don't get negative balance.
+        if($amountReceived<$units){apologize("Error");} 
+    //FIGURE OUT HOW MUCH QUANTITY FROM PRICE.
+        $buyQuantity = $amountReceived/$topAskPrice;
+        while($amountLeft > $topAskPrice) 
+        {
+            //MARKET BUY ORDER
+            placeOrder($symbol2, 'market', 'b', ???$quantity???, 0, $_SESSION["id"]);
+            execute();
+        }
 }
+*/
 
 ///////////////////////////////
 //GET OWNERS AND THEIR TOTAL AMOUNT
@@ -222,7 +223,6 @@ function OrderbookTop($symbol)
 {    require 'constants.php';
     if($loud!='quiet'){echo("<br>[" . $symbol . "] Conducting check for top of orderbook...");}
 
-
     //MARKET ORDERS SHOULD BE AT TOP IF THEY EXIST
     $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market' AND quantity>0) ORDER BY uid ASC LIMIT 0, 1", $symbol);
     if(!empty($marketOrders))
@@ -249,8 +249,6 @@ function OrderbookTop($symbol)
             $marketOrders[0]["price"]=$bids[0]["price"]; //give it the same price so they execute
             $asks = $marketOrders;
             //apologize(var_dump(get_defined_vars()));
-
-
 
         }   //assign top price to the bid since it is an ask market order
         else { throw new Exception("Market Side Error!"); }
