@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
+
     .logobar
     {
         width: 100%;
@@ -129,11 +130,13 @@
         </table>
 
 
-        <?php
-        if (isset($_SESSION["id"]))
-        {
-        ?>
+<?php
+if(isset($_SESSION["id"]))
+{
+//placing it here it only shows up when logged on so no box on login screen
+?>
     </div><!--top-->
-    <div id="middle" style="text-align:center;background-color:transparent;border:0;"> <!--placing it here it only shows up when logged on so no box on login screen-->
-        <?php  } //bracket for the show on log in argument
-        ?>
+    <div id="middle" style="text-align:center;background-color:transparent;border:0;"> 
+<?php  
+} //bracket for the show on log in argument
+?>
