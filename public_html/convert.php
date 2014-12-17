@@ -8,13 +8,16 @@ $title = "Convert";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
-    if(empty($symbol1) || empty($symbol2) || empty($amount)){apologize("Please fill out all required fields");}
-    if(!is_numeric($amount)){apologize("Invalid Quantity");}
-    
+
     $symbol1 = $_POST["symbol1"];    
     $symbol2 = $_POST["symbol2"];    
     $amount = (int)$_POST["quantity"]; 
-
+    
+    if(empty($symbol1)){apologize("Please fill out all required fields. Asset 1 is empty.");}
+    if(empty($symbol2)){apologize("Please fill out all required fields. Asset 2 is empty.");}
+    if(empty($amount)){apologize("Please fill out all required fields. Amount is empty.");}
+    if(!is_numeric($amount)){apologize("Invalid Quantity");}
+    
     convertAsset($id, $symbol1, $symbol2, $amount);
     redirect("account.php");
 }
