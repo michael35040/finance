@@ -186,12 +186,10 @@
 <hr>
 <br>
 <br>
-   
+<img src="http://placehold.it/200x100/0F0/fff&text=<?php echo($symbol); ?>">
 <img src="placeholder.php?size=50x25&bg=ffd700&fg=fff&text=XAU" alt="XAU" />
 <img src="placeholder.php?size=100x50&bg=ffd700&fg=fff&text=XAU GOLD" alt="XAU" />
 <img src="placeholder.php?size=200x100&bg=ffd700&fg=fff&text=XAU GOLD" alt="XAU" />
-
-
 <br>
 <hr>
 <br>
@@ -201,7 +199,8 @@
 
                         if (empty($stocks)) {
                             echo("<option value=' '>No Stocks Held</option>");
-                        } else {
+                        } else 
+                        {
                             foreach ($stocks as $stock) {
                                 $symbol = $stock["symbol"];
                                 $symbol = htmlspecialchars($symbol);
@@ -210,23 +209,34 @@
                                 $lockedStock = $stock["locked"];
                                 $lockedStock = htmlspecialchars($lockedStock);
                                 //echo("<option value='" . $symbol . "'>  " . $symbol . " (" . $quantity . "/" . $lockedStock . ")</option>");
-?>
-  <label>
-    <input type="radio" name="symbol1" value="<?php echo($symbol); ?>" />
-    <img src="http://placehold.it/200x100/0F0/fff&text=<?php echo($symbol . " " . $quantity . "/" . $lockedStock); ?>">
-  </label>
-<?php
+                                ?>
+                                  <label>
+                                    <input type="radio" name="symbol1" value="<?php echo($symbol); ?>" />
+                                    <img src="http://placehold.it/200x100/0F0/fff&text=<?php echo($symbol); ?>">
+                                    <br><?php echo(number_format($quantity, 0, '.', ',') . "/" . number_format($lockedStock, 0, '.', ',')); ?>
+                                  </label>
+                                <?php
 
                             }
                         }
+                        
+echo ('<hr>');                        
+                        
                         if (empty($assets)) {
                             echo("<option value=' '>No Assets</option>");
-                        } else {
-                            echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
+                        } else 
+                        {
+                            
                             foreach ($assets as $asset) {
                                 $symbol = $asset["symbol"];
                                 $symbol = htmlspecialchars($symbol);
-                                echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
+                                //echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
+                                ?>
+                              <label>
+                                <input type="radio" name="symbol2" value="<?php echo($symbol); ?>" />
+                                <img src="http://placehold.it/200x100/0F0/fff&text=<?php echo($symbol); ?>">
+                              </label>
+                            <?php
                             }
                         }
                         ?>
