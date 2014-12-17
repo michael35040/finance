@@ -55,29 +55,27 @@
         $symbol = $row["symbol"];
 
         $obligationPortfolio =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE (symbol =? AND id<>1)", $symbol);	  // query user's portfolio
-        if(empty($obligationPortfolio[0]["quantity"])){$obligationPortfolio[0]["quantity"]=0;}
-        $totalPortfolio = $obligationPortfolio[0]["quantity"]; //shares held
-
+            if(empty($obligationPortfolio[0]["quantity"])){$obligationPortfolio[0]["quantity"]=0;}
+            $totalPortfolio = $obligationPortfolio[0]["quantity"]; //shares held
         $obligationOrderbook =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a' AND id<>1)", $symbol);	  // query user's portfolio
-        if(empty($obligationOrderbook[0]["quantity"])){$obligationOrderbook[0]["quantity"]=0;}
-        $totalOrderbook = $obligationOrderbook[0]["quantity"]; //shares held
-
+            if(empty($obligationOrderbook[0]["quantity"])){$obligationOrderbook[0]["quantity"]=0;}
+            $totalOrderbook = $obligationOrderbook[0]["quantity"]; //shares held
         $obligations = ($totalPortfolio+$totalOrderbook);
-        if(empty($obligationOrderbook[0]["price"])){$obligationOrderbook[0]["price"]=0;}
-        $obligationMV = ($obligationOrderbook[0]["price"]*$obligations) + $obligationMV;
 
 
         $assetPortfolio =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE (symbol =? AND id=1)", $symbol);	  // query user's portfolio
-        if(empty($assetPortfolio[0]["quantity"])){$assetPortfolio[0]["quantity"]=0;}
-        $totalPortfolio = $assetPortfolio[0]["quantity"]; //shares held
-
+            if(empty($assetPortfolio[0]["quantity"])){$assetPortfolio[0]["quantity"]=0;}
+            $totalPortfolio = $assetPortfolio[0]["quantity"]; //shares held
         $assetOrderbook =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a' AND id=1)", $symbol);	  // query user's portfolio
-        if(empty($assetOrderbook[0]["quantity"])){$assetOrderbook[0]["quantity"]=0;}
-        $totalOrderbook = $assetOrderbook[0]["quantity"]; //shares held
-
+            if(empty($assetOrderbook[0]["quantity"])){$assetOrderbook[0]["quantity"]=0;}
+            $totalOrderbook = $assetOrderbook[0]["quantity"]; //shares held
         $assets = ($totalPortfolio+$totalOrderbook);
-        if(empty($assetOrderbook[0]["price"])){$assetOrderbook[0]["price"]=0;}
-        $assetMV = ($assetOrderbook[0]["price"]*$assets) + $assetMV;
+
+            //if(empty($obligationOrderbook[0]["price"])){$AskPrice=0;} //returning 0...
+            if(empty($assetOrderbook[0]["price"])){$AskPrice=0;}
+            else{$AskPrice=$assetOrderbook[0]["price"];}
+        $obligationMV = ($AskPrice*$obligations) + $obligationMV;
+        $assetMV = ($AskPrice*$assets) + $assetMV;
 
         ?>
 
