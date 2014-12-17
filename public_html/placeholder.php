@@ -49,7 +49,7 @@ $text       = isset($_GET['text']) ? strip_tags($_GET['text']) : $getsize;
 $text       = str_replace('+', ' ', $text);
 
 // Text positioning
-$fontsize   = 4;
+$fontsize   = 5; //1-5, 5 is largest
 $fontwidth  = imagefontwidth($fontsize);    // width of a character
 $fontheight = imagefontheight($fontsize);   // height of a character
 $length     = strlen($text);                // number of characters
