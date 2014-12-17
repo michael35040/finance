@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     if(!is_numeric($amount)){apologize("Invalid Quantity");}
     
     convertAsset($id, $symbol1, $symbol2, $amount);
-    redirect("account.php");
+    redirect("trades.php");
 }
 else
 {
