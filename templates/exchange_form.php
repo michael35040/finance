@@ -224,7 +224,7 @@ if (!isset($commission)) //set in constants.php
 
     //SELL ORDER
     document.getElementById("sellOrder").addEventListener("click", function () {
-        document.getElementById('commissionText').innerHTML = 'Commission subtracted from total.';
+        document.getElementById('commissionText').innerHTML = '<?php echo(number_format($commission, 2, '.', '')) ?>% commission.';
     }, false);
     //BUY ORDER
     document.getElementById("buyOrder").addEventListener("click", function () {
