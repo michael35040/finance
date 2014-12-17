@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     @$amount = (int)$_POST["quantity"]; //not set on market orders
 
     convertAsset($id, $symbol1, $symbol2, $amount);
-    redirect("account.php")
+    redirect("account.php");
 }
 else
 {
@@ -34,7 +34,7 @@ else
     render("convert_form.php", [
         "title" => $title,
         "assets" => $assets,
-        "stocks" => $stocks,
+        "stocks" => $stocks
     ]);
 
 }
