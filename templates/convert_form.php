@@ -12,7 +12,29 @@
         background:white;
         text-align: center;
     }
-</style>
+
+
+
+
+/*BELOW FOR PICTURE RADIO*/
+    label > input{ /* HIDE RADIO */
+      display:none;
+    }
+    label > input + img{ /* IMAGE STYLES */
+      cursor:pointer;
+      border:2px solid transparent;
+    }
+    label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
+      border:2px solid #f00;
+    }  
+/*ABOVE FOR PICTURE RADIO*/
+    
+  </style>
+  
+
+
+
+
 
 <form action="convert.php" method="post">
     <fieldset>
@@ -129,3 +151,89 @@
 
     </fieldset>
 </form>
+
+
+
+
+<br>
+<hr>
+<br>
+<br>
+
+
+  <label>
+    <input type="radio" name="symbol1" value="USD" />
+    <img src="http://placehold.it/200x100/0F0/fff&text=USD">
+  </label>
+  
+  <label>
+    <input type="radio" name="symbol1" value="XBT"/>
+    <img src="http://placehold.it/200x100/35d/fff&text=XBT">
+  </label>
+  
+  <label>
+    <input type="radio" name="symbol1" value="XAG" />
+    <img src="http://placehold.it/200x100/CCC/fff&text=XAG">
+  </label>
+  
+  <label>
+    <input type="radio" name="symbol1" value="XAU" />
+    <img src="http://placehold.it/200x100/ffd700/fff&text=XAU">
+  </label>
+ 
+ 
+<br>
+<hr>
+<br>
+<br>
+   
+<img src="placeholder.php?size=50x25&bg=ffd700&fg=fff&text=XAU" alt="XAU" />
+<img src="placeholder.php?size=100x50&bg=ffd700&fg=fff&text=XAU GOLD" alt="XAU" />
+<img src="placeholder.php?size=200x100&bg=ffd700&fg=fff&text=XAU GOLD" alt="XAU" />
+
+
+<br>
+<hr>
+<br>
+<br>
+
+<?php
+
+                        if (empty($stocks)) {
+                            echo("<option value=' '>No Stocks Held</option>");
+                        } else {
+                            foreach ($stocks as $stock) {
+                                $symbol = $stock["symbol"];
+                                $symbol = htmlspecialchars($symbol);
+                                $quantity = $stock["quantity"];
+                                $quantity = htmlspecialchars($quantity);
+                                $lockedStock = $stock["locked"];
+                                $lockedStock = htmlspecialchars($lockedStock);
+                                //echo("<option value='" . $symbol . "'>  " . $symbol . " (" . $quantity . "/" . $lockedStock . ")</option>");
+?>
+  <label>
+    <input type="radio" name="symbol1" value="<?php echo($symbol); ?>" />
+    <img src="http://placehold.it/200x100/0F0/fff&text=<?php echo($symbol . " " . $quantity . "/" . $lockedStock); ?>">
+  </label>
+<?php
+
+                            }
+                        }
+                        if (empty($assets)) {
+                            echo("<option value=' '>No Assets</option>");
+                        } else {
+                            echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
+                            foreach ($assets as $asset) {
+                                $symbol = $asset["symbol"];
+                                $symbol = htmlspecialchars($symbol);
+                                echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
+                            }
+                        }
+                        ?>
+
+
+
+
+
+
+
