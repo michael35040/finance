@@ -1,5 +1,3 @@
-<html>
-
 <form action="convert.php" method="post">
     <fieldset>
 
@@ -115,5 +113,3 @@
 
     </fieldset>
 </form>
-
-</html>
