@@ -34,9 +34,9 @@ else
     }
 
     render("convert_form.php", [
-        //"title" => $title,
-        //"assets" => $assets,
-        //"stocks" => $stocks
+        "title" => $title,
+        "assets" => $assets,
+        "stocks" => $stocks
     ]);
 
 }
