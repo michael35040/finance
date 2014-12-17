@@ -9,6 +9,8 @@
 function convertAsset($id, $symbol1, $symbol2, $amount)
 {    //$order = placeOrder($symbol, $type, $side, $quantity, $price, $id);
     //$id=$_SESSION['id'];
+    require 'constants.php';
+    
     $symbol1 = strtoupper($symbol1); //cast to UpperCase
     $symbol2 = strtoupper($symbol2); //cast to UpperCase
 
@@ -48,7 +50,7 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
     echo("USER UNITS AFTER: $unitsAfter");
     echo("<br>");
     $unitsDifference = ($unitsAfter-$unitsBefore);
-    echo("USER UNITS DIFFERECE: $unitsDifference");
+    echo("SALE PROCEEDS: $unitsDifference");
     echo("<br>");
 
     //FIGURE PRICE OF NEW ASSET TO GET APPROXIMATION OF HOW MANY TO BUY
@@ -63,8 +65,17 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
     echo("(UNITS AFTER: $unitsAfter - UNITS BEFORE: $unitsBefore )/ ASK PRICE: $askPrice");
     echo("<br>");
     
-    if($quantity < 1){apologize("$symbol1 successfully sold for $unitsDifference. However, this is not enough to buy even 1x of $symbol2.");}
-
+    if($quantity < 1)
+    {
+        $sellPrice = number_format($unitsDifference, $decimalplaces, '.', ',');
+        $askPrice = number_format($askPrice, $decimalplaces, '.', ',');
+        $commissionPercentage = $commission * 100;
+        $commissionPercentage = number_format($commissionPercentage, 2, '.', ',');
+        apologize(
+            $symbol1 . " successfully sold for " . $unitsymbol  . $sellPrice . " (inc. " . $commissionPercentage . "% commission). " . 
+            "However, this is not enough to buy 1x " . $symbol2 . " at " . $unitsymbol . $askPrice . "."
+        );
+    }
     //PLACE BUY ORDER
     placeOrder($symbol2, 'market', 'b', $quantity, 0, $id); //2000000000
     try {processOrderbook($symbol2);}
