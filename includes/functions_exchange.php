@@ -38,22 +38,25 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
     echo("<br>");
 
     //FIGURE HOW MUCH USER GETS FROM SELL
-    $userUnits =	query("SELECT COALESCE(units,0) FROM accounts WHERE id = ?", $id);	 //query db
+    $userUnits =	query("SELECT COALESCE(units,0) as units FROM accounts WHERE id = ?", $id);	 //query db
     $userUnits = getPrice($userUnits[0]["units"]);
     if($userUnits<=0){apologize("User has no funds!");}
     $unitsAfter = $userUnits;
     echo("USER UNITS AFTER: $unitsAfter");
     echo("<br>");
+    $unitsDifference = ($unitsAfter-$unitsBefore);
+    echo("USER UNITS DIFFERECE: $unitsDifference");
+    echo("<br>");
 
     //FIGURE PRICE OF NEW ASSET TO GET APPROXIMATION OF HOW MANY TO BUY
     $asks = query("SELECT price FROM orderbook WHERE (symbol = ? AND side ='a' AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol2);
-    if(!empty($asks)){$askPrice = $asks[0]["price"];}
+    if(!empty($asks)){$askPrice = getPrice($asks[0]["price"]);}
     else{apologize("No Asks!");}
-    echo("ASK PRICE: $asks[0]['price']");
+    echo("ASK PRICE: $askPrice");
     echo("<br>");
 
     //DETERMINE HOW MANY TO BUY BASED ON HOW MUCH THEY RECEIVED FROM LAST TRANSACTION
-    $quantity = ($unitsAfter-$unitsBefore)/$askPrice;
+    $quantity = (int)floor($unitsDifference/$askPrice);
     echo("(UNITS AFTER: $unitsAfter - UNITS BEFORE: $unitsBefore )/ ASK PRICE: $askPrice");
     echo("<br>");
 

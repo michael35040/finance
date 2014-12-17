@@ -133,7 +133,7 @@ else
 
 
             <tr><td colspan="2">
-                        <button type="submit" class="btn btn-primary">SUBMIT</button>
+                        <button type="submit" class="btn btn-primary">CONVERT</button>
                 </td>
             </tr>
 
