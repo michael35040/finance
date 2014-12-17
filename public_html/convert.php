@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 require("../includes/config.php");
 //apologize(var_dump(get_defined_vars()));
@@ -34,9 +34,9 @@ else
     }
 
     render("convert_form.php", [
-        "title" => $title,
-        "assets" => $assets,
-        "stocks" => $stocks
+        //"title" => $title,
+        //"assets" => $assets,
+        //"stocks" => $stocks
     ]);
 
 }
