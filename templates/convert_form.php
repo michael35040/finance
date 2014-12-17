@@ -1,3 +1,19 @@
+
+<style>
+.nobutton button
+    {
+        padding:0;
+        font-weight: 100;
+        border:0;
+        background:transparent;
+    }
+.table, th
+    {
+        background:white;
+        text-align: center;
+    }
+</style>
+
 <form action="convert.php" method="post">
     <fieldset>
 
