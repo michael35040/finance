@@ -1,6 +1,13 @@
 <?php
 if (!isset($commission)) //set in constants.php
 { $commission = 0; }
+
+          /* FROM ONINPUT
+          commissionAmount.value=(parseFloat(commissionAmount.value)*4).toFixed(2);
+          commissionAmount.value=Math.floor(commissionAmount.value);
+          commissionAmount.value=(parseFloat(commissionAmount.value)/4).toFixed(2);
+          */
+              
 ?>
 
 <style>
@@ -30,9 +37,6 @@ if (!isset($commission)) //set in constants.php
           if(document.getElementById('sellOrder').checked==true)
           {
           commissionAmount.value=parseFloat(parseInt(quantityAmount.value)*parseFloat(priceAmount.value)*<?php echo($commission) ?>).toFixed(2);
-          commissionAmount.value=(parseFloat(commissionAmount.value)*4).toFixed(2);
-          commissionAmount.value=Math.floor(commissionAmount.value);
-          commissionAmount.value=(parseFloat(commissionAmount.value)/4).toFixed(2);
           }
           if(document.getElementById('buyOrder').checked==true){commissionAmount.value=parseFloat(parseInt(quantityAmount.value)*parseFloat(priceAmount.value)*0).toFixed(2);}
           subtotal.value=parseFloat(parseFloat(quantityAmount.value)*parseFloat(priceAmount.value)).toFixed(2);
@@ -50,9 +54,6 @@ if (!isset($commission)) //set in constants.php
           if(document.getElementById('sellOrder').checked==true)
           {
           commissionAmount.value=parseFloat(parseInt(quantityAmount.value)*parseFloat(priceAmount.value)*<?php echo($commission) ?>).toFixed(2);
-          commissionAmount.value=(parseFloat(commissionAmount.value)*4).toFixed(2);
-          commissionAmount.value=Math.floor(commissionAmount.value);
-          commissionAmount.value=(parseFloat(commissionAmount.value)/4).toFixed(2);
           }
           if(document.getElementById('buyOrder').checked==true){commissionAmount.value=parseFloat(parseInt(quantityAmount.value)*parseFloat(priceAmount.value)*0).toFixed(2);}
           subtotal.value=parseFloat(parseFloat(quantityAmount.value)*parseFloat(priceAmount.value)).toFixed(2);
