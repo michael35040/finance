@@ -9,6 +9,9 @@
 function convertAsset($id, $symbol1, $symbol2, $amount)
 {    //$order = placeOrder($symbol, $type, $side, $quantity, $price, $id);
     //$id=$_SESSION['id'];
+    $symbol1 = strtoupper($symbol1); //cast to UpperCase
+    $symbol2 = strtoupper($symbol2); //cast to UpperCase
+
 
     echo("CHECKING SYMBOL 1");
     echo("<br>");
@@ -59,6 +62,8 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
     $quantity = (int)floor($unitsDifference/$askPrice);
     echo("(UNITS AFTER: $unitsAfter - UNITS BEFORE: $unitsBefore )/ ASK PRICE: $askPrice");
     echo("<br>");
+    
+    if($quantity < 1){apologize("$symbol1 successfully sold for $unitsDifference. However, this is not enough to buy even 1x of $symbol2.");}
 
     //PLACE BUY ORDER
     placeOrder($symbol2, 'market', 'b', $quantity, 0, $id); //2000000000
