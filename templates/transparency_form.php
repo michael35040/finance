@@ -182,9 +182,9 @@
         */
                     
             //if(empty($obligationOrderbook[0]["price"])){$AskPrice=0;} //returning 0...
-        $askPrice =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a' AND id=1)", $symbol);	  // query user's portfolio
-            if(empty($askPrice[0]["price"])){$askPrice[0]["price"]=0;}
-        $askPrice = $askPrice[0]["price"];
+        $AskPrice =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a' AND id=1)", $symbol);	  // query user's portfolio
+            if(empty($AskPrice[0]["price"])){$AskPrice[0]["price"]=0;}
+        $AskPrice = $AskPrice[0]["price"];
         $obligationMV = ($AskPrice*$obligations) + $obligationMV;
         $assetMV = ($AskPrice*$assets) + $assetMV;
         ?>
