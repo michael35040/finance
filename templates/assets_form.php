@@ -140,10 +140,13 @@ foreach ($assets as $asset) // for each of user's stocks
                 <br>' . (number_format($asset["issued"], 0, ".", ",")) . ' - Issued (' . (number_format($asset["userid"], 0, ".", ",")) . ')
                 <br>' . htmlspecialchars($asset["date"]) . ' - Listed</td>');
             echo('<td >
-                Rating: ' . htmlspecialchars($asset["rating"]) . ' <br>
-                Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '<br>');
+                Type: ' . htmlspecialchars(ucfirst($asset["type"])) . '<br>
+                ');
             //COMMODITY, CURRENCY, STOCK
-                if      ($asset["type"]=="stock"){echo('Dividend: ' . number_format($asset["dividend"], $decimalplaces, ".", ",")); }
+                if ($asset["type"]=="stock"){echo('
+                Rating: ' . htmlspecialchars($asset["rating"]) . ' <br>
+                Dividend: ' . number_format($asset["dividend"], $decimalplaces, ".", ",")
+                ); }
                 //elseif  ($asset["type"]=="commodity"){echo('Ratio: ' . number_format($asset["dividend"], $decimalplaces, ".", ",")); }
                 //elseif  ($asset["type"]=="currency"){echo('Exc. Rate: ' . number_format($asset["dividend"], $decimalplaces, ".", ",")); }
             echo('</td></tr>');
