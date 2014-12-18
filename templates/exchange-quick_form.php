@@ -3,19 +3,6 @@ $goldColor="#FFD700;";
 $silverColor="#C0C0C0;";
 $dollarColor="#85bb65;";
 
-/*
-XAU - Gold Ounce AU
-XAG - Silver Ounce AG
-XBT - Bitcoin NA
-USD - US Dollar (United States) $
-EUR - Euro (Euro Member Countries) €
-GBP - British Pound (United Kingdom) £
-INR - Indian Rupee (India) ₹
-CHF - Swiss Franc (Switzerland) NA
-JPY - Japanese Yen (Japan) ¥
-CNY - Chinese Yuan Renminbi (China) ¥
-*/
-
 
 ?>
 
@@ -117,8 +104,8 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 
 <?php
-$unitofmeasure='g';
-
+$unitofmeasure='ozt';
+$buttoncolor = '#000000';
 $buyGold = [
     "type" => "Buy",
     "asset" => "Gold",
@@ -128,7 +115,7 @@ $buyGold = [
     "premium" => $gold["premium"],
     "trans" => "Ask",
     "side" => $gold["ask"],
-    "button" => "green",
+    "button" => $buttoncolor,
 ];
 $sellGold = [
     "type" => "Sell",
@@ -139,7 +126,7 @@ $sellGold = [
     "premium" => $gold["discount"],
     "trans" => "Bid",
     "side" => $gold["bid"],
-    "button" => "red",
+    "button" => $buttoncolor,
 ];
 $buySilver = [
     "type" => "Buy",
@@ -150,7 +137,7 @@ $buySilver = [
     "premium" => $silver["premium"],
     "trans" => "Ask",
     "side" => $silver["ask"],
-    "button" => "green",
+    "button" => $buttoncolor,
 ];
 $sellSilver = [
     "type" => "Sell",
@@ -161,7 +148,7 @@ $sellSilver = [
     "premium" => $silver["discount"],
     "trans" => "Bid",
     "side" => $silver["bid"],
-    "button" => "red",
+    "button" => $buttoncolor,
 ];
 $types=[
     0=>$buyGold,
@@ -199,7 +186,7 @@ foreach ($types as $type) {
                     <br>
                     <b>Fee</b>: -<?php echo($unitsymbol . number_format($type["premium"], 2, ".", ",")) ?>
                     <br />
-                    <?php //echo($type["type"]); ?> <output name="quantityAmount" for="quantity" style="display:inline;">0</output> <?php echo($unitofmeasure); ?> for $<output name="totalAmount" for="price quantity" style="display:inline;">0</output>
+                    <?php //echo($type["type"]); ?><output name="quantityAmount" for="quantity" style="display:inline;">0</output><?php echo($unitofmeasure); ?> for $<output name="totalAmount" for="price quantity" style="display:inline;">0</output>
 
                 </td>
             </tr>
@@ -209,7 +196,7 @@ foreach ($types as $type) {
                                                     min="1" step="1" required><span class="input-group-addon"><?php echo($unitofmeasure); ?></span></div>
                 </td>
                 <td style="background-color:<?php echo($type["color"]); ?>">
-                    <button type="submit" name="metalTransaction" value="<?php echo($type["name"]); ?>" style="width:100%;background:<?php echo($type["button"]); ?>;color:white;"><?php echo($type["type"] . " " . $type["asset"]); ?></button>
+                    <button type="submit" name="metalTransaction" value="<?php echo($type["name"]); ?>" style="height:30px;width:100%;background:<?php echo($type["button"]); ?>;color:white;"><?php echo(strtoupper($type["type"])); // . " " . $type["asset"]); ?></button>
 
                 </td>
             </tr>
