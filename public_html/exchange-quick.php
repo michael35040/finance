@@ -4,6 +4,10 @@ require("../includes/config.php");
 
  $id = $_SESSION["id"]; //get id from session
  
+ $symbolgold = 'XAU'; //'gold'
+ $symbolsilver = 'XAG'; //'silver'
+ 
+ 
 // if form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -12,10 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $price=0; //market order, price is meaningless
 
     @$metalTransaction = $_POST["metalTransaction"];// buyGold, buySilver, sellGold, sellSilver
-        if($metalTransaction=='buyGold') {$symbol='GOLD'; $side='b'; }
-        elseif($metalTransaction=='buySilver') { $symbol='SILVER'; $side='b';}
-        elseif($metalTransaction=='sellGold') { $symbol='GOLD'; $side='a'; }
-        elseif($metalTransaction=='sellSilver') {$symbol='SILVER'; $side='a'; }
+        if($metalTransaction=='buyGold') {$symbol=$symbolgold; $side='b'; }
+        elseif($metalTransaction=='buySilver') { $symbol=$symbolsilver; $side='b';}
+        elseif($metalTransaction=='sellGold') { $symbol=$symbolgold; $side='a'; }
+        elseif($metalTransaction=='sellSilver') {$symbol=$symbolsilver; $side='a'; }
         else{apologize('Unknown action!');}// //dump all variables if i hit error
         //apologize(var_dump(get_defined_vars()));
     
@@ -36,12 +40,12 @@ else{
 
     $id = $_SESSION["id"]; //get id from session
 
-    $trades = query("SELECT * FROM trades WHERE ((symbol='SILVER' OR symbol='GOLD') AND (buyer=? OR seller=?)) ORDER BY uid DESC LIMIT 0, 5", $id, $id);
+    $trades = query("SELECT * FROM trades WHERE ((symbol='SILVER' OR symbol=?) AND (buyer=? OR seller=?)) ORDER BY uid DESC LIMIT 0, 5", $symbolgold, $id, $id);
 
-    $goldAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol='GOLD' ORDER BY symbol ASC", $_SESSION["id"]);
+    $goldAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol=? ORDER BY symbol ASC", $_SESSION["id"], $symbolgold);
    @$goldAmount=$goldAmount[0]["quantity"];
-    $goldbids =	query("SELECT price FROM orderbook WHERE (symbol='GOLD' AND side='b' AND type = 'limit') ORDER BY price DESC, uid DESC LIMIT 0, 1");
-    $goldasks =	query("SELECT price FROM orderbook WHERE (symbol='GOLD' AND side='a' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1");
+    $goldbids =	query("SELECT price FROM orderbook WHERE (symbol=? AND side='b' AND type = 'limit') ORDER BY price DESC, uid DESC LIMIT 0, 1", $symbolgold);
+    $goldasks =	query("SELECT price FROM orderbook WHERE (symbol=? AND side='a' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbolgold);
     
     @$gold["ask"]= getPrice($goldasks[0]["price"]);
     $gold["premium"]=0; //buying has no commission //($gold["ask"]*$commission);
@@ -51,10 +55,10 @@ else{
     $gold["discount"]=($gold["bid"]*$commission); 
     $gold["sell"]=($gold["bid"]-$gold["discount"]);
     
-    $silverAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol='SILVER'", $id);
+    $silverAmount =	query("SELECT quantity FROM portfolio WHERE id = ? AND symbol=?", $id, $symbolsilver);
     @$silverAmount=$silverAmount[0]["quantity"];
-    $silverbids =	query("SELECT price FROM orderbook WHERE (symbol='SILVER' AND side='b' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1");
-    $silverasks =	query("SELECT price FROM orderbook WHERE (symbol='SILVER' AND side='a' AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1");
+    $silverbids =	query("SELECT price FROM orderbook WHERE (symbol=? AND side='b' AND type = 'limit') ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbolsilver);
+    $silverasks =	query("SELECT price FROM orderbook WHERE (symbol=? AND side='a' AND type = 'limit') ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbolsilver);
     
     @$silver["ask"]=getPrice($silverasks[0]["price"]);
     $silver["premium"]=0; //buying has no commission //($silver["ask"]*$commission);
