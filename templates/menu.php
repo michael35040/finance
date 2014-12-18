@@ -17,11 +17,11 @@
                         <li><a href="convert.php">CONVERT</a></li>
                         <li><a href="orders.php">ORDERS</a></li>
                         <li><a href="trades.php">TRADES</a></li>
-                        <!--<li><a href="status.php">Status</a></li>-->
-                        <!--<li><a href="information.php">INFORMATION</a></li>-->
+                        <li><a href="status.php">STATUS</a></li>
+                        <li><a href="information.php">INFORMATION</a></li>
                         <li><a href="history.php">HISTORY</a></li>
                         <li><a href="update.php">UPDATE</a></li>
-                        <!--<li><a href="order2.php">Order 2</a></li>-->
+                        <li><a href="transparency.php">Transparency</a></li>
                         <!--<li><a href="transfer.php">Transfer </a></li><li><a href="loan.php">Loan</a></li><?php //if ($loan < 0) { //-0.00000001 ?><li><a href="loanpay.php">Pay Loan</a></li> --><?php //} ?>
                     </ul>
                 </div>
