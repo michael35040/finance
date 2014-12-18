@@ -161,6 +161,7 @@
     {
         $symbol = $row["symbol"];
 
+        //pull obligations from port and ob db.
         $obligationPortfolio =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE (symbol =? AND id<>1)", $symbol);	  // query user's portfolio
             if(empty($obligationPortfolio[0]["quantity"])){$obligationPortfolio[0]["quantity"]=0;}
             $totalPortfolio = $obligationPortfolio[0]["quantity"]; //shares held
@@ -169,21 +170,23 @@
             $totalOrderbook = $obligationOrderbook[0]["quantity"]; //shares held
         $obligations = ($totalPortfolio+$totalOrderbook);
 
-
-        $assetPortfolio =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE (symbol =? AND id=1)", $symbol);	  // query user's portfolio
-            if(empty($assetPortfolio[0]["quantity"])){$assetPortfolio[0]["quantity"]=0;}
-            $totalPortfolio = $assetPortfolio[0]["quantity"]; //shares held
-        $assetOrderbook =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a' AND id=1)", $symbol);	  // query user's portfolio
-            if(empty($assetOrderbook[0]["quantity"])){$assetOrderbook[0]["quantity"]=0;}
-            $totalOrderbook = $assetOrderbook[0]["quantity"]; //shares held
-        $assets = ($totalPortfolio+$totalOrderbook);
-
+        //pull assets total from db
+        $assets = 1000000; //until we create the 'assets' db.
+        /*
+        //ASSETS DB MODEL
+        //UID // ITEMS (# OF ITEMS) // DESCRIPTION (i.e. 100ozt SILVER BAR) // SERIAL (OR ADDRESS) // QUANTITY (GRAMS) // DEPOSITORY //
+        
+        $asset =	query("SELECT SUM(quantity) AS quantity FROM assets WHERE (symbol =?)", $symbol);	  // query user's portfolio
+            if(empty($asset[0]["quantity"])){$asset[0]["quantity"]=0;}
+            $assets = $assetPortfolio[0]["quantity"]; //shares held
+        */
+                    
             //if(empty($obligationOrderbook[0]["price"])){$AskPrice=0;} //returning 0...
-            if(empty($assetOrderbook[0]["price"])){$AskPrice=0;}
-            else{$AskPrice=$assetOrderbook[0]["price"];}
+        $askPrice =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a' AND id=1)", $symbol);	  // query user's portfolio
+            if(empty($askPrice[0]["price"])){$askPrice[0]["price"]=0;}
+        $askPrice = $askPrice[0]["price"];
         $obligationMV = ($AskPrice*$obligations) + $obligationMV;
         $assetMV = ($AskPrice*$assets) + $assetMV;
-
         ?>
 
         <tr>
