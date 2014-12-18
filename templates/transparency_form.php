@@ -12,6 +12,113 @@
     }
 </style>
 
+
+
+
+<table class="table table-condensed  table-bordered" >
+<thead>
+    <tr   class="active" >
+        <th colspan="3">Reference</th>
+    </tr>
+    <tr   class="active" >
+        <th></th>
+        <th>Troy Ounces (X**)</th>
+        <th>Grams (X**G)</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Gold</td><!--metal-->
+        <td>XAU</td><!--ozt-->
+        <td>XAUG</td><!--g-->
+    </tr>
+    <tr>
+        <td>Silver</td><!--metal-->
+        <td>XAG</td><!--ozt-->
+        <td>XAGG</td><!--g-->
+    </tr>
+    <tr>
+        <td>Platinum</td><!--metal-->
+        <td>XPT</td><!--ozt-->
+        <td>XPTG</td><!--g-->
+    </tr>
+    <tr>
+        <td>Palladium</td><!--metal-->
+        <td>XPD</td><!--ozt-->
+        <td>XPDG</td><!--g-->
+    </tr>
+</tbody>    
+</table>
+
+<table class="table table-condensed  table-bordered" >
+    <thead>
+        <tr class="active">
+            <th colspan="3">Units of Measure</th>
+        </tr>
+        <tr class="active">
+            <th>Abr.</th>
+            <th>Name</th>
+            <th>Conv.</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>mg</td>
+            <td>milligrams</td>
+            <td>0.001g</td>
+        </tr>
+        <tr>
+            <td>g</td>
+            <td>gram</td>
+            <td>1g</td>
+        </tr>
+        <tr>
+            <td>ozt</td>
+            <td>troy ounce</td>
+            <td>31.1034768g</td>
+        </tr>
+        <tr>
+            <td>kg</td>
+            <td>kilograms</td>
+            <td>1,000g</td>
+        </tr>
+        <tr>
+            <td>Mg</td>
+            <td>megagrams</td>
+            <td>1,000,000g</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-condensed  table-bordered" >
+<thead>
+    <tr   class="active" >
+        <th>Notes</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Bullion is stored with LBMA member companies.</td><!--notes-->
+    </tr>    
+    <tr>
+        <td>All weights displayed are fine weight. Ounces are Troy.</td><!--notes-->
+    </tr>    
+    <tr>
+        <td>Totals are rounded to two decimal places for display.</td><!--notes-->
+    </tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
 <table class="table table-condensed  table-bordered" >
     <tr   class="active" >
         <th>Asset</th>
@@ -114,60 +221,6 @@
 
 
 
-<table class="table table-condensed  table-bordered" >
-<thead>
-    <tr   class="active" >
-        <th colspan="3">Reference</th>
-    </tr>
-    <tr   class="active" >
-        <th></th>
-        <th>Troy Ounces</th>
-        <th>Grams</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>Gold</td><!--metal-->
-        <td>XAU</td><!--ozt-->
-        <td>XAUG</td><!--g-->
-    </tr>
-    <tr>
-        <td>Silver</td><!--metal-->
-        <td>XAG</td><!--ozt-->
-        <td>XAGG</td><!--g-->
-    </tr>
-    <tr>
-        <td>Platinum</td><!--metal-->
-        <td>XPT</td><!--ozt-->
-        <td>XPTG</td><!--g-->
-    </tr>
-    <tr>
-        <td>Palladium</td><!--metal-->
-        <td>XPD</td><!--ozt-->
-        <td>XPDG</td><!--g-->
-    </tr>
-</tbody>    
-</table>
-
-
-<table class="table table-condensed  table-bordered" >
-<thead>
-    <tr   class="active" >
-        <th>Notes</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>Bullion is stored with LBMA member companies.</td><!--notes-->
-    </tr>    
-    <tr>
-        <td>All weights displayed are fine weight. Ounces are Troy.</td><!--notes-->
-    </tr>    
-    <tr>
-        <td>Totals are rounded to two decimal places for display.</td><!--notes-->
-    </tr>
-</tbody>
-</table>
 
 
 
@@ -179,11 +232,11 @@
         <th colspan="2">Liabilities (In Circulation)</th>
     </tr>
     <tr   class="active" >
-        <td>Metal</td>
-        <td>Fine Troy Ounces</td>
-        <td>Fine Grams</td>
-        <td>Fine Troy Ounces</td>
-        <td>Fine Grams</td>
+        <th>Metal</td>
+        <th>Fine Troy Ounces (ozt)</th>
+        <th>Fine Grams (g)</th>
+        <th>Fine Troy Ounces (ozt)</th>
+        <th>Fine Grams (g) </th>
     </tr>
 </thead>
 <tbody>
@@ -364,15 +417,15 @@
 <table class="table table-condensed  table-bordered" >
     <thead>
         <tr class="active">
-            <td colspan="3">Currently there are 5,152,000 accounts</td>
+            <th colspan="3">Currently there are 5,152,000 accounts</th>
         </tr>
         <tr class="active">
-            <td colspan="3">System Activity 24h</td>
+            <th colspan="3">System Activity 24h</th>
         </tr>
         <tr class="active">
-            <td>New Accounts</td>
-            <td>Users Accessing</td>
-            <td>Spends</td>
+            <th>New Accounts</th>
+            <th>Users Accessing</th>
+            <th>Spends</th>
         </tr>
     </thead>
     <tbody>
@@ -384,67 +437,131 @@
     </tbody>
 </table>
 
-<table class="table table-condensed  table-bordered" >
-    <thead>
-        <tr class="active">
-            <td colspan="3">Conversion</td>
-        </tr>
-        <tr class="active">
-            <td>Abr.</td>
-            <td>Name</td>
-            <td>Conv.</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>mg</td>
-            <td>milligrams</td>
-            <td>0.001g</td>
-        </tr>
-        <tr>
-            <td>g</td>
-            <td>gram</td>
-            <td>1g</td>
-        </tr>
-        <tr>
-            <td>ozt</td>
-            <td>troy ounce</td>
-            <td>31.1034768g</td>
-        </tr>
-        <tr>
-            <td>kg</td>
-            <td>kilograms</td>
-            <td>1,000g</td>
-        </tr>
-        <tr>
-            <td>Mg</td>
-            <td>megagrams</td>
-            <td>1,000,000g</td>
-        </tr>
-    </tbody>
-</table>
+
+
+
 
 <table class="table table-condensed  table-bordered" >
     <thead>
         <tr class="active">
-            <td colspan="3">Velocity 24h</td>
+            <th colspan="4">Velocity 24h</th>
         </tr>
         <tr class="active">
-            <td>Metal</td>
-            <td>Weight</td>
-            <td>USD Equiv.</td>
+            <th>Metal</th>
+            <th>Spends</th>
+            <th>Weight</th>
+            <th>USD Equiv.</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>Gold</td>
+            <td>10,097</td>
             <td>26.68 kg</td>
             <td>$827,064.10</td>
         </tr>
         <tr>
             <td>Silver</td>
+            <td>3</td>
             <td>145.11 g</td>
             <td>$85.71</td>
         </tr>
     </tbody>
 </table>
+
+
+<table class="table table-condensed  table-bordered" >
+    <thead>
+        <tr class="active">
+            <th colspan="3">Distribution of Spends (XAU) 24h</th>
+        </tr>
+        <tr class="active">
+            <th></th>
+            <th>QTY</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <?php
+    function convertgram($total)
+    {
+        //CONVERT UNIT OF MEASURE TO APPROPRIATE UNIT (mg, g, kg, Mg)
+        //everything in grams.
+        //miligram
+        if($total<1){$number = $total*1000; $unit = 'mg';}
+        //gram
+        if($total>=1 && $total<1000){$number = $total; $unit = 'g';}
+        //kilogram
+        if($total>=1000 && $total<1000000){$number = $total/1000; $unit = 'kg';}
+        //megagram
+        if($total>=1000000){$number = $total/1000000; $unit = 'Mg';}
+        
+        echo($number . $unit);
+        return;
+        
+        //i.e. convergram($total); 
+    }
+    ?>
+    <tbody>
+        <tr>
+            <td>0mg-1mg</td>
+            <td>748</td>
+            <td>407.83mg</td>
+        </tr>
+        <tr>
+            <td>1mg-10mg</td>
+            <td>2332</td>
+            <td>9.67g</td>
+        </tr>
+        <tr>
+            <td>10mg-100mg</td>
+            <td>2407</td>
+            <td>103.93mg</td>
+        </tr>
+        <tr>
+            <td>1000mg-1g</td>
+            <td>2816</td>
+            <td>1.10kg</td>
+        </tr>
+        <tr>
+            <td>1g-10g</td>
+            <td>1408</td>
+            <td>5.06kg</td>
+        </tr>
+        <tr>
+            <td>10g-100g</td>
+            <td>346</td>
+            <td>10.58kg</td>
+        </tr>
+        <tr>
+            <td>100g-1kg</td>
+            <td>40</td>
+            <td>9.83kg</td>
+        </tr>
+        <tr>
+            <td>1kg-10kg</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>10kg-100kg</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>100kg-1Mg</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>1Mg-10Mg</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>10Mg+</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+    </tbody>
+</table>
+
