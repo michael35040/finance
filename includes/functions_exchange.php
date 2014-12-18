@@ -56,7 +56,12 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
     //echo("ASK PRICE: $askPrice <br>");
 
     //DETERMINE HOW MANY TO BUY BASED ON HOW MUCH THEY RECEIVED FROM LAST TRANSACTION
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//
+    //CAUSING ERRORS MAKING ME BUY TO MANY
+    //IT IS BASING IT OFF THE CHEAPEST ASK PRICE BUT EACH TRADE CHIPS AWAY AT THE ASKS
+    //NEED TO FIGURE OUT HOW TO UPDATE AFTER EACH TRADE.
     $quantity = (int)floor($unitsDifference/$askPrice);
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!//    
     //echo("(UNITS AFTER: $unitsAfter - UNITS BEFORE: $unitsBefore )/ ASK PRICE: $askPrice <br>");
 
     if($quantity < 1)
