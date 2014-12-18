@@ -437,9 +437,13 @@ function drawChart()
                 <?php echo(htmlspecialchars($asset["date"])) ?> - Listed
             </td>
             <td >
-                Rating: <?php echo(htmlspecialchars($asset["rating"])) ?><br>
                 Type: <?php echo(htmlspecialchars(ucfirst($asset["type"]))) ?><br>
-                <?php if($asset["type"]=="stock"){echo('Dividend: ' . number_format($asset["dividend"], $decimalplaces, ".", ",")); } ?>
+                <?php 
+                if($asset["type"]=="stock"){echo('
+                Rating: ' . htmlspecialchars($asset["rating"]) . ' <br>
+                Dividend: ' . number_format($asset["dividend"], $decimalplaces, ".", ",")
+                ); } 
+                ?>
             </td>
         </tr>
         <tr>
