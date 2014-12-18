@@ -51,6 +51,19 @@ function colorize($symbol)
     if($symbol == 'XAU'){$color = 'ffd700';} //gold
 
     return($color);
+    
+/*
+XAU - Gold Ounce AU
+XAG - Silver Ounce AG
+XBT - Bitcoin NA
+USD - US Dollar (United States) $
+EUR - Euro (Euro Member Countries) €
+GBP - British Pound (United Kingdom) £
+INR - Indian Rupee (India) ₹
+CHF - Swiss Franc (Switzerland) NA
+JPY - Japanese Yen (Japan) ¥
+CNY - Chinese Yuan Renminbi (China) ¥
+*/
 }
 
 ?>
