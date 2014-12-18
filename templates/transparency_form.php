@@ -146,11 +146,6 @@
         <td>XPD</td><!--ozt-->
         <td>XPDG</td><!--g-->
     </tr>
-    <tr>
-        <td>Conversion</td><!--metal-->
-        <td>1</td><!--ozt-->
-        <td>31.1034768</td><!--g-->
-    </tr>
 </tbody>    
 </table>
 
@@ -232,22 +227,61 @@
 <table class="table table-condensed  table-bordered" >
 <thead>
     <tr   class="active" >
-        <th colspan="5">Bullion Reserve Special Purpose Trust</th>
+        <th colspan="17">Bullion Reserve Special Purpose Trust</th>
     </tr>
     <tr   class="active" >
-        <th colspan="5">Summary by Repository</th>
+        <th colspan="17">Summary by Repository</th>
+    </tr>
+    <tr   class="active" >
+        <th colspan="1"></th>
+        <th colspan="4">XAU</th>
+        <th colspan="4">XAG</th>
+        <th colspan="4">XPT</th>
+        <th colspan="4">XPD</th>
     </tr>
     <tr   class="active" >
         <th>Repository</th>
-        <th># of Items</th>
-        <th>Fine Troy Ounces</th>
-        <th>Fine Grams</th>
-        <th>Portion of Total</th>
+        <!--XAU-->
+        <th>#</th><!--Number of Items-->
+        <th>ozt</th><!--Fine Troy Ounces-->
+        <th>g</th><!--Fine Grams-->
+        <th>%</th><!--Portion of Total -->
+        <!--XAG-->
+        <th>#</th><!--Number of Items-->
+        <th>ozt</th><!--Fine Troy Ounces-->
+        <th>g</th><!--Fine Grams-->
+        <th>%</th><!--Portion of Total -->
+        <!--XPT-->
+        <th>#</th><!--Number of Items-->
+        <th>ozt</th><!--Fine Troy Ounces-->
+        <th>g</th><!--Fine Grams-->
+        <th>%</th><!--Portion of Total -->
+        <!--XPD-->
+        <th>#</th><!--Number of Items-->
+        <th>ozt</th><!--Fine Troy Ounces-->
+        <th>g</th><!--Fine Grams-->
+        <th>%</th><!--Portion of Total -->
     </tr>
 </thead>
 <tbody>
     <tr>
         <td>Brinks</td>
+        <!--XAU-->
+        <td>120</td>
+        <td>48,133.55</td>
+        <td>1,497,120.76</td>
+        <td>61.58%</td>
+        <!--XAG-->
+        <td>120</td>
+        <td>48,133.55</td>
+        <td>1,497,120.76</td>
+        <td>61.58%</td>
+        <!--XPT-->
+        <td>120</td>
+        <td>48,133.55</td>
+        <td>1,497,120.76</td>
+        <td>61.58%</td>
+        <!--XPD-->
         <td>120</td>
         <td>48,133.55</td>
         <td>1,497,120.76</td>
@@ -255,6 +289,22 @@
     </tr>
     <tr>
         <td>Transguard</td>
+        <!--XAU-->
+        <td>230</td>
+        <td>28,430.95</td>
+        <td>884,301.39</td>
+        <td>36.38%</td>
+        <!--XAG-->
+        <td>230</td>
+        <td>28,430.95</td>
+        <td>884,301.39</td>
+        <td>36.38%</td>
+        <!--XPT-->
+        <td>230</td>
+        <td>28,430.95</td>
+        <td>884,301.39</td>
+        <td>36.38%</td>
+        <!--XPD-->
         <td>230</td>
         <td>28,430.95</td>
         <td>884,301.39</td>
@@ -262,6 +312,22 @@
     </tr>
     <tr>
         <td>MAT Securitas Express AG</td>
+        <!--XAU-->
+        <td>4</td>
+        <td>1,593.73</td>
+        <td>49,570.54</td>
+        <td>2.04%</td>
+        <!--XAG-->
+        <td>4</td>
+        <td>1,593.73</td>
+        <td>49,570.54</td>
+        <td>2.04%</td>
+        <!--XPT-->
+        <td>4</td>
+        <td>1,593.73</td>
+        <td>49,570.54</td>
+        <td>2.04%</td>
+        <!--XPD-->
         <td>4</td>
         <td>1,593.73</td>
         <td>49,570.54</td>
@@ -269,10 +335,116 @@
     </tr>
     <tr class="active">
         <td>TOTAL</td>
+        <!--XAU-->
+        <td>354</td>
+        <td>78,158.23</td>
+        <td>2,430,992.69</td>
+        <td>100.00%</td>
+        <!--XAG-->
+        <td>354</td>
+        <td>78,158.23</td>
+        <td>2,430,992.69</td>
+        <td>100.00%</td>
+        <!--XPT-->
+        <td>354</td>
+        <td>78,158.23</td>
+        <td>2,430,992.69</td>
+        <td>100.00%</td>
+        <!--XPD-->
         <td>354</td>
         <td>78,158.23</td>
         <td>2,430,992.69</td>
         <td>100.00%</td>
     </tr>
 </tbody>    
+</table>
+
+
+
+<table class="table table-condensed  table-bordered" >
+    <thead>
+        <tr class="active">
+            <td colspan="3">Currently there are 5,152,000 accounts</td>
+        </tr>
+        <tr class="active">
+            <td colspan="3">System Activity 24h</td>
+        </tr>
+        <tr class="active">
+            <td>New Accounts</td>
+            <td>Users Accessing</td>
+            <td>Spends</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>194</td>
+            <td>10,774</td>
+            <td>10,100</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-condensed  table-bordered" >
+    <thead>
+        <tr class="active">
+            <td colspan="3">Conversion</td>
+        </tr>
+        <tr class="active">
+            <td>Abr.</td>
+            <td>Name</td>
+            <td>Conv.</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>mg</td>
+            <td>milligrams</td>
+            <td>0.001g</td>
+        </tr>
+        <tr>
+            <td>g</td>
+            <td>gram</td>
+            <td>1g</td>
+        </tr>
+        <tr>
+            <td>ozt</td>
+            <td>troy ounce</td>
+            <td>31.1034768g</td>
+        </tr>
+        <tr>
+            <td>kg</td>
+            <td>kilograms</td>
+            <td>1,000g</td>
+        </tr>
+        <tr>
+            <td>Mg</td>
+            <td>megagrams</td>
+            <td>1,000,000g</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-condensed  table-bordered" >
+    <thead>
+        <tr class="active">
+            <td colspan="3">Velocity 24h</td>
+        </tr>
+        <tr class="active">
+            <td>Metal</td>
+            <td>Weight</td>
+            <td>USD Equiv.</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Gold</td>
+            <td>26.68 kg</td>
+            <td>$827,064.10</td>
+        </tr>
+        <tr>
+            <td>Silver</td>
+            <td>145.11 g</td>
+            <td>$85.71</td>
+        </tr>
+    </tbody>
 </table>
