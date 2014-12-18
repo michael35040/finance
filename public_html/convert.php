@@ -9,22 +9,25 @@ $title = "Convert";
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
 
-    $symbol1 = $_POST["symbol1"];    
-    $symbol2 = $_POST["symbol2"];    
-    $amount = (int)$_POST["quantity"]; 
-    
-    if(empty($symbol1)){apologize("Please fill out all required fields. Asset 1 is empty.");}
-    if(empty($symbol2)){apologize("Please fill out all required fields. Asset 2 is empty.");}
-    if(empty($amount)){apologize("Please fill out all required fields. Amount is empty.");}
-    if(!is_numeric($amount)){apologize("Invalid Quantity");}
-    
-    convertAsset($id, $symbol1, $symbol2, $amount);
+    if(empty($_POST["symbol1"]) || empty($_POST["symbol2"])){apologize("Please fill out all required fields. Asset not selected.");}
+    if(empty($_POST["quantity"])){apologize("Please fill out all required fields. Amount not selected.");}
+    if(!is_numeric($_POST["quantity"])){apologize("Invalid Quantity");}
+
+    $symbol1 = $_POST["symbol1"];
+    $symbol2 = $_POST["symbol2"];
+    $amount = (int)$_POST["quantity"];
+
+
+    try {convertAsset($id, $symbol1, $symbol2, $amount);}
+    catch(Exception $e) {apologize($e->getMessage());}
+
+
     redirect("trades.php");
 }
 else
 {
     $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC");	
-
+    $stocks=[];
     $stocksQ = query("SELECT symbol, quantity FROM portfolio WHERE id = ? ORDER BY symbol ASC", $id);	 
     foreach ($stocksQ as $row)	
     {
@@ -33,6 +36,9 @@ else
         $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id=? AND symbol=? AND side='a')", $id, $stock["symbol"]);	
         $askQuantity = $askQuantity[0]["quantity"]; 
         $stock["locked"] = (int)$askQuantity;
+        $askPrice =	query("SELECT price FROM orderbook WHERE symbol =? AND side='a' ORDER BY price DESC", $stock["symbol"]);
+        if(empty($askPrice)){$stock["askprice"]=0;}else{$stock["askprice"] = getPrice($askPrice[0]["price"]);}
+
         $stocks[] = $stock;
     }
 

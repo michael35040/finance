@@ -15,14 +15,12 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
     $symbol2 = strtoupper($symbol2); //cast to UpperCase
 
 
-    //echo("CHECKING SYMBOL 1");
-    //echo("<br>");
+    //echo("CHECKING SYMBOL 1 <br>");
     //CHECK FOR SYMBOL 1
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol1);
     if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol1 . "] Incorrect Symbol. Not listed on the exchange!");} //row count
 
-    //echo("CHECKING SYMBOL 2");
-    //echo("<br>");
+    //echo("CHECKING SYMBOL 2 <br>");
     //CHECK FOR SYMBOL 2
     $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol2);
     if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol2 . "] Incorrect Symbol. Not listed on the exchange!");} //row count
@@ -32,39 +30,35 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
     $userUnits = getPrice($userUnits[0]["units"]);
     if($userUnits<=0){apologize("User has no funds!");}
     $unitsBefore = $userUnits;
-    //echo("USER UNITS BEFORE: $unitsBefore");
-    //echo("<br>");
+    //echo("USER UNITS BEFORE: $unitsBefore <br>");
 
     //PLACE SELL ORDER
-    placeOrder($symbol1, 'market', 'a', $amount, 0, $id);
+    try{placeOrder($symbol1, 'market', 'a', $amount, 0, $id);}
+    catch(Exception $e) {apologize($e->getMessage());}
+
     try {processOrderbook($symbol1);}
     catch(Exception $e) {apologize($e->getMessage());}
-    //echo("SELL ORDER $symbol1, AMOUNT: $amount");
-    //echo("<br>");
+    //echo("SELL ORDER $symbol1, AMOUNT: $amount <br>");
 
     //FIGURE HOW MUCH USER GETS FROM SELL
     $userUnits =	query("SELECT COALESCE(units,0) as units FROM accounts WHERE id = ?", $id);	 //query db
     $userUnits = getPrice($userUnits[0]["units"]);
     if($userUnits<=0){apologize("User has no funds!");}
     $unitsAfter = $userUnits;
-    //echo("USER UNITS AFTER: $unitsAfter");
-    //echo("<br>");
+    //echo("USER UNITS AFTER: $unitsAfter <br>");
     $unitsDifference = ($unitsAfter-$unitsBefore);
-    //echo("SALE PROCEEDS: $unitsDifference");
-    //echo("<br>");
+    //echo("SALE PROCEEDS: $unitsDifference <br>");
 
     //FIGURE PRICE OF NEW ASSET TO GET APPROXIMATION OF HOW MANY TO BUY
     $asks = query("SELECT price FROM orderbook WHERE (symbol = ? AND side ='a' AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol2);
     if(!empty($asks)){$askPrice = getPrice($asks[0]["price"]);}
     else{apologize("No Asks!");}
-    //echo("ASK PRICE: $askPrice");
-    //echo("<br>");
+    //echo("ASK PRICE: $askPrice <br>");
 
     //DETERMINE HOW MANY TO BUY BASED ON HOW MUCH THEY RECEIVED FROM LAST TRANSACTION
     $quantity = (int)floor($unitsDifference/$askPrice);
-    //echo("(UNITS AFTER: $unitsAfter - UNITS BEFORE: $unitsBefore )/ ASK PRICE: $askPrice");
-    //echo("<br>");
-    
+    //echo("(UNITS AFTER: $unitsAfter - UNITS BEFORE: $unitsBefore )/ ASK PRICE: $askPrice <br>");
+
     if($quantity < 1)
     {
         $sellPrice = number_format($unitsDifference, $decimalplaces, '.', ',');
@@ -77,11 +71,12 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
         );
     }
     //PLACE BUY ORDER
-    placeOrder($symbol2, 'market', 'b', $quantity, 0, $id); //2000000000
-    try {processOrderbook($symbol2);}
+    try{placeOrder($symbol2, 'market', 'b', $quantity, 0, $id);}
     catch(Exception $e) {apologize($e->getMessage());}
-    //echo("BUY ORDER $symbol2, QUANTITY: $quantity");
-    //echo("<br>");
+
+    try{processOrderbook($symbol2);}
+    catch(Exception $e) {apologize($e->getMessage());}
+    //echo("BUY ORDER $symbol2, QUANTITY: $quantity <br>");
 
 
 }
