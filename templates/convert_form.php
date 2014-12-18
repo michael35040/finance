@@ -22,10 +22,10 @@
     }
     label > input + img{ /* IMAGE STYLES */
       cursor:pointer;
-      border:5px solid #000; /*5px solid transparent*/
+      border:5px solid #fff; /*5px solid transparent*/
     }
     label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
-      border:5px solid #fff; /*f00*/
+      border:5px solid #000; /*f00*/
     }  
 /*ABOVE FOR PICTURE RADIO*/
     
