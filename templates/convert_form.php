@@ -74,8 +74,11 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 
 <input type="number" id="quantity" placeholder="Quantity" name="quantity" min="1" required>
-<hr>
 
+
+
+<hr>
+<h3>FROM</h3>
 
 
 
@@ -136,7 +139,8 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 
 
-        <hr>
+<hr>
+<h3>TO</h3>
 
 
 
