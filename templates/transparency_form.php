@@ -91,7 +91,7 @@
     $assetMV = $assetMV+$totalAssets;
     ?>
 
-    <tr>
+    <tr   class="active" >
 
         <td><strong>TOTAL</strong></td>
         <td><strong><?php echo(number_format(getPrice($obligationMV),$decimalplaces,".",",")); ?></strong></td>
@@ -102,3 +102,177 @@
 </table>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+<table class="table table-condensed  table-bordered" >
+<thead>
+    <tr   class="active" >
+        <th colspan="3">Reference</th>
+    </tr>
+    <tr   class="active" >
+        <th></th>
+        <th>Troy Ounces</th>
+        <th>Grams</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Gold</td><!--metal-->
+        <td>XAU</td><!--ozt-->
+        <td>XAUG</td><!--g-->
+    </tr>
+    <tr>
+        <td>Silver</td><!--metal-->
+        <td>XAG</td><!--ozt-->
+        <td>XAGG</td><!--g-->
+    </tr>
+    <tr>
+        <td>Platinum</td><!--metal-->
+        <td>XPT</td><!--ozt-->
+        <td>XPTG</td><!--g-->
+    </tr>
+    <tr>
+        <td>Palladium</td><!--metal-->
+        <td>XPD</td><!--ozt-->
+        <td>XPDG</td><!--g-->
+    </tr>
+    <tr>
+        <td>Conversion</td><!--metal-->
+        <td>1</td><!--ozt-->
+        <td>31.1034768</td><!--g-->
+    </tr>
+</tbody>    
+</table>
+
+
+<table class="table table-condensed  table-bordered" >
+<thead>
+    <tr   class="active" >
+        <th>Notes</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Bullion is stored with LBMA member companies.</td><!--notes-->
+    </tr>    
+    <tr>
+        <td>All weights displayed are fine weight. Ounces are Troy.</td><!--notes-->
+    </tr>    
+    <tr>
+        <td>Totals are rounded to two decimal places for display.</td><!--notes-->
+    </tr>
+</tbody>
+</table>
+
+
+
+<table class="table table-condensed  table-bordered" >
+<thead>
+    <tr   class="active" >
+        <th></th>
+        <th colspan="2">Assets (Bullion Reserve SPT)</th>
+        <th colspan="2">Liabilities (In Circulation)</th>
+    </tr>
+    <tr   class="active" >
+        <td>Metal</td>
+        <td>Fine Troy Ounces</td>
+        <td>Fine Grams</td>
+        <td>Fine Troy Ounces</td>
+        <td>Fine Grams</td>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Gold</td><!--metal-->
+        <td></td><!--ozt asset-->
+        <td></td><!--g asset-->
+        <td></td><!--ozt liability-->
+        <td></td><!--g liability-->
+    </tr>
+    <tr>
+        <td>Silver</td><!--metal-->
+        <td></td><!--ozt asset-->
+        <td></td><!--g asset-->
+        <td></td><!--ozt liability-->
+        <td></td><!--g liability-->
+    </tr>
+    <tr>
+        <td>Platinum</td><!--metal-->
+        <td></td><!--ozt asset-->
+        <td></td><!--g asset-->
+        <td></td><!--ozt liability-->
+        <td></td><!--g liability-->
+    </tr>
+    <tr>
+        <td>Palladium</td><!--metal-->
+        <td></td><!--ozt asset-->
+        <td></td><!--g asset-->
+        <td></td><!--ozt liability-->
+        <td></td><!--g liability-->
+    </tr>
+</tbody>    
+</table>
+
+
+
+
+
+
+
+<table class="table table-condensed  table-bordered" >
+<thead>
+    <tr   class="active" >
+        <th colspan="5">Bullion Reserve Special Purpose Trust</th>
+    </tr>
+    <tr   class="active" >
+        <th colspan="5">Summary by Repository</th>
+    </tr>
+    <tr   class="active" >
+        <th>Repository</th>
+        <th># of Items</th>
+        <th>Fine Troy Ounces</th>
+        <th>Fine Grams</th>
+        <th>Portion of Total</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Brinks</td>
+        <td>120</td>
+        <td>48,133.55</td>
+        <td>1,497,120.76</td>
+        <td>61.58%</td>
+    </tr>
+    <tr>
+        <td>Transguard</td>
+        <td>230</td>
+        <td>28,430.95</td>
+        <td>884,301.39</td>
+        <td>36.38%</td>
+    </tr>
+    <tr>
+        <td>MAT Securitas Express AG</td>
+        <td>4</td>
+        <td>1,593.73</td>
+        <td>49,570.54</td>
+        <td>2.04%</td>
+    </tr>
+    <tr class="active">
+        <td>TOTAL</td>
+        <td>354</td>
+        <td>78,158.23</td>
+        <td>2,430,992.69</td>
+        <td>100.00%</td>
+    </tr>
+</tbody>    
+</table>
