@@ -190,7 +190,9 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 
 
+<?php
 
+?>
 
 
 
@@ -209,7 +211,7 @@ $assetcount = count($assets);
             echo('<td>' . $asset["symbol"] . '</td>');
             $symbolRow[$a1] = $asset["symbol"];
         } 
-        apologize(var_dump(get_defined_vars()));
+        //apologize(var_dump(get_defined_vars()));
         ?>
     </tr>
 </thead>
@@ -219,7 +221,8 @@ foreach ($assets as $asset)
     { 
         echo('<tr><td>' . $asset["symbol"] . '</td>');
         $i=0;
-        while($assetcount>$i){echo('<td></td>'); $i++;}
+        
+        while($assetcount>$i){$i++; echo('<td>' . conversionRate($symbolRow[$i], $asset["symbol"]) . '</td>');}
         echo('</tr>');
     } ?>
 
