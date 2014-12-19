@@ -1,6 +1,26 @@
 <?php
 //throw new Exception(var_dump(get_defined_vars()));
 
+function conversionRate($symbol1, $symbol2)
+{
+    //find symbol1 top ask price
+    $asks = query("SELECT price FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol1, 'a');
+    if(empty($asks)){$asks[0]["price"] = 0;}
+    $symbol1Ask = $asks[0]["price"];
+    
+    //find symbol2 top ask price
+    $asks = query("SELECT price FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol2, 'a');
+    if(empty($asks)){$asks[0]["price"] = 0;}
+    $symbol2Ask = $asks[0]["price"];
+      
+    //divide the difference
+    if($symbol1Ask==0 || $symbol2Ask==0){$return=0;}
+    else{$return = $symbol1Ask/$symbol2Ask;}
+    
+    //return the value
+    return($return);
+}
+
 
 
 ///////////////////////////////
