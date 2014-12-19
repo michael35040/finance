@@ -1109,19 +1109,28 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
 
     //BUYING
     if($symbol1==$unittype){
-            try{placeOrder($symbol2, 'convert', 'b', 9999999, $amount, $id);} //type: buy as much as possible
-            catch(Exception $e) {apologize($e->getMessage());}
+                //CHECK FOR SYMBOL 1
+        $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol2);
+        if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol2 . "] Incorrect Symbol. Not listed on the exchange!");} //row count
+
+        try{placeOrder($symbol2, 'convert', 'b', 9999999, $amount, $id);} //type: buy as much as possible
+        catch(Exception $e) {apologize($e->getMessage());}
         
-            try{processOrderbook($symbol2);}
-            catch(Exception $e) {apologize($e->getMessage());}        
+        try{processOrderbook($symbol2);}
+        catch(Exception $e) {apologize($e->getMessage());}        
     }
     //SELLING
     elseif($symbol2==$unittype){
-            try{placeOrder($symbol2, 'market', 'a', $amount, 0, $id);} //type: 'convert'
-            catch(Exception $e) {apologize($e->getMessage());}
         
-            try{processOrderbook($symbol2);}
-            catch(Exception $e) {apologize($e->getMessage());}
+        //CHECK FOR SYMBOL 1
+        $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol1);
+        if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol1 . "] Incorrect Symbol. Not listed on the exchange!");} //row count
+
+        try{placeOrder($symbol1, 'market', 'a', $amount, 0, $id);} //type: 'convert'
+        catch(Exception $e) {apologize($e->getMessage());}
+        
+        try{processOrderbook($symbol1);}
+        catch(Exception $e) {apologize($e->getMessage());}
     }
     //CONVERTING
     else //not unittype symbol
