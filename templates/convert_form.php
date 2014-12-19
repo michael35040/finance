@@ -181,3 +181,51 @@ CNY - Chinese Yuan Renminbi (China) ¥
 <?php $commission*=100; echo(number_format($commission, 2, '.', ',') . "% Commission"); ?>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table class='table'>
+<?php 
+$assetcount = count($assets);
+?>
+<thead>
+    <tr>
+    <?php 
+        $a1=0;
+        foreach($assets as $asset){ 
+            $a1++;
+            echo('<td>' . $asset["symbol"] . '</td>');
+            $symbolRow[$a1] = $asset["symbol"];
+        } 
+        apologize(var_dump(get_defined_vars()));
+        ?>
+    </tr>
+</thead>
+<tbody>
+<?php 
+foreach ($assets as $asset) 
+    { 
+        echo('<tr><td>' . $asset["symbol"] . '</td>');
+        $i=0;
+        while($assetcount>$i){echo('<td></td>'); $i++;}
+        echo('</tr>');
+    } ?>
+
+    <tr>
+        <td></td>
+    </tr>
+</tbody>
+</table>
+
