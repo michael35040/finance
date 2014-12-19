@@ -51,8 +51,16 @@ function colorize($symbol)
     if($symbol == 'XAU'){$color = 'ffd700';} //gold
 
     return($color);
+/*CONSTANTS
+$unittype = "USD";
+$unitdescription = "U.S. Dollar";
+$unitdescriptionshort = "Dollar";
+$unitsymbol = "$";
+$decimalplaces = 2;
+*/
+
     
-/*
+/*ASSETS
 XAU - Gold Ounce AU
 XAG - Silver Ounce AG
 XBT - Bitcoin NA
@@ -81,11 +89,16 @@ CNY - Chinese Yuan Renminbi (China) ¥
 <h3>FROM</h3>
 
 
+<!--UNITS-->
+<label>
+<input type="radio" name="symbol1" value="<?php echo($unittype); ?>" />
+<img src="placeholder.php?height=100&width=200&text=<?php echo($unittype); ?>&quantity=<?php echo($units); ?>&price=<?php echo("1"); ?>&backgroundcolor=<?php echo("00ff00"); ?>&fontcolor=ffffff" alt="<?php echo($unittype); ?>" />
+</label>
 
-<?php
+                                <?php
 
                         if (empty($stocks)) {
-                            echo("<option value=''>No Stocks Held</option>");
+                            echo("<option value=''>No Assets Held</option>");
                         } else 
                         {
                             foreach ($stocks as $stock) {
@@ -104,9 +117,6 @@ CNY - Chinese Yuan Renminbi (China) ¥
                                   <label>
                                     <input type="radio" name="symbol1" value="<?php echo($symbol); ?>" />
                                       <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&quantity=<?php echo($quantity); ?>&price=<?php echo($price); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>" />
-
-                                      <?php //echo($stock["askprice"]); // echo('<br>' . number_format($quantity, 0, '.', ',')); // . "/" . number_format($lockedStock, 0, '.', ',')
-                                      ?>
                                   </label>
                                 <?php
                                 }
@@ -114,26 +124,7 @@ CNY - Chinese Yuan Renminbi (China) ¥
                         }
 ?>
         <br>
-        <?php
-        /*
-            if (empty($stocks)) {
-                echo("<select name='symbol1'>");
-                echo("<option value='' disabled='disabled'>No Stocks Held</option>");
-            } else {
-                echo ('<option class="select-dash" disabled="disabled">-Assets (Owned/Locked)-</option>');
-                foreach ($stocks as $stock) {
-                    $symbol = $stock["symbol"];
-                    $symbol = htmlspecialchars($symbol);
-                    $quantity = $stock["quantity"];
-                    $quantity = htmlspecialchars($quantity);
-                    $lockedStock = $stock["locked"];
-                    $lockedStock = htmlspecialchars($lockedStock);
-                    echo("<option value='" . $symbol . "'>  " . $symbol . " (" . $quantity . "/" . $lockedStock . ")</option>");
-                }
-            }
-        echo("</select>");
-        */
-        ?>
+
 
 
 
@@ -143,7 +134,11 @@ CNY - Chinese Yuan Renminbi (China) ¥
 <h3>TO</h3>
 
 
-
+<!--UNITS-->
+<label>
+<input type="radio" name="symbol2" value="<?php echo($unittype); ?>" />
+<img src="placeholder.php?height=100&width=200&text=<?php echo($unittype); ?>&backgroundcolor=<?php echo("00ff00"); ?>&fontcolor=ffffff" alt="<?php echo($unittype); ?>" />
+</label>
         <?php
 
                         if (empty($assets)) {
@@ -166,24 +161,8 @@ CNY - Chinese Yuan Renminbi (China) ¥
                             }
                         }
                         ?>
-
-
         <br>
-        <?php
-        /*
-            if (empty($assets)) {
-                echo("<select name='symbol2'><option value=''>No Assets</option>");
-            } else {
-                echo ('    <option class="select-dash" disabled="disabled">-All Assets-</option>');
-                foreach ($assets as $asset) {
-                    $symbol = $asset["symbol"];
-                    $symbol = htmlspecialchars($symbol);
-                    echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
-                }
-            }
-        echo("</select>");
-        */
-        ?>
+
 
 
 
