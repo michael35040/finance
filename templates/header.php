@@ -106,8 +106,9 @@
                         if($active==1)
                         {
                             // query cash for template
-                            $accounts =	query("SELECT units, loan, rate, approved FROM accounts WHERE id = ?", $id);	 //query db
-                            @$units = getPrice($accounts[0]["units"]);
+                            $accounts =	query("SELECT units FROM accounts WHERE id = ?", $id);	 //query db //, loan, rate, approved
+                            if(empty($accounts)){$units=0;}
+                            else{$units = getPrice($accounts[0]["units"]);}
 
 
 
