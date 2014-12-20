@@ -25,7 +25,7 @@
       border:5px solid transparent; /*5px solid transparent*/
     }
     label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
-      border:5px solid #fff; /*f00*/
+      border:5px solid #f00; /*f00*/
     }  
 /*ABOVE FOR PICTURE RADIO*/
     

@@ -33,6 +33,7 @@ function adjustBrightness($hex, $steps) {
     return $r_hex.$g_hex.$b_hex;
 }
 
+
 //placeholder.php?name1=value1&name2=value2
 //placeholder.php?height=100&width=200&text=SILVER&backgroundcolor=ffd700
 
@@ -79,6 +80,7 @@ imagefilledrectangle($im, 0, 0, ($width-1), ($height-1), $backgroundcolor);
 //SYMBOL TEXT
 $size = 85;
 $fontcolor2 = adjustBrightness($backgroundcolor, 0);
+
 $bbox = imagettfbbox($size, $rotation, $font, $text);
 $x = $bbox[0] + (imagesx($im) / 2) - ($bbox[4] / 2) - 5; //horizontal
 $y = $bbox[1] + (imagesy($im) / 2) - ($bbox[5] / 2) - 5; //vertical
@@ -87,7 +89,7 @@ imagettftext($im, $size, $rotation, $x, $y, $fontcolor2, $font, $text);
 
 
 //NAME TEXT
-$size = 15;
+$size = 20;
 $bbox = imagettfbbox($size, $rotation, $font, $name);
 $x = $bbox[0] + (imagesx($im) / 2) - ($bbox[4] / 2) - 5; //horizontal
 $y = $bbox[1] + (imagesy($im) / 2) - ($bbox[5] / 2) - 5; //vertical
@@ -101,6 +103,7 @@ if($quantity>0)
     //$font = 'fonts/engraved.ttf';
     $size = 16;
     $quantity = strval(number_format($quantity, 0, ".", ","));
+    $quantity = ($quantity . ' qty');
     $bbox = imagettfbbox($size, $rotation, $font, $quantity);
     $x = $bbox[0] + (imagesx($im) / 2) - ($bbox[4] / 2) - 5; //horizontal
     $y = $bbox[1] + (imagesy($im) / 2) - ($bbox[5] / 2) - 35; //vertical
