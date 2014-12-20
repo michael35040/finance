@@ -3,7 +3,7 @@
 require("../includes/config.php");
 //apologize(var_dump(get_defined_vars()));
 $id = $_SESSION["id"];
-$title = "Convert";
+$title = "Exchange";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
@@ -42,7 +42,7 @@ else
         $stocks[] = $stock;
     }
 
-    render("convert_form.php", [
+    render("exchange-convert_form.php", [
         "title" => $title,
         "assets" => $assets,
         "stocks" => $stocks

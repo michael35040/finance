@@ -51,6 +51,7 @@ INSERT INTO `accounts` (`id`, `units`, `loan`, `rate`, `approved`) VALUES
 (1, '0', '0', '0.000000000000000000000000000000', 1);
 
 
+
 -- --------------------------------------------------------
 
 --
@@ -72,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `assets` (
   `description` varchar(999) DEFAULT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE KEY `symbol` (`symbol`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Truncate table before insert `assets`
@@ -120,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `history` (
   `commission` bigint(20) unsigned NOT NULL COMMENT 'commission',
   `total` bigint(20) unsigned NOT NULL COMMENT 'history-id-bid/ask or local-id-ask \r\n\r\nor transafer-id',
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='id, transaction, symbol, \r\n\r\nshares, \r\n\r\nprice' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Truncate table before insert `history`
@@ -219,6 +220,33 @@ TRUNCATE TABLE `portfolio`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `storage`
+--
+
+DROP TABLE IF EXISTS `storage`;
+CREATE TABLE IF NOT EXISTS `storage` (
+  `uid` int(10) NOT NULL AUTO_INCREMENT,
+  `symbol` varchar(10) NOT NULL,
+  `depository` varchar(63) NOT NULL,
+  `description` varchar(63) NOT NULL,
+  `asw` decimal(65,30) NOT NULL,
+  `purity` decimal(65,30) NOT NULL,
+  `country` varchar(63) NOT NULL,
+  `year` int(9) NOT NULL,
+  `weight` int(10) NOT NULL,
+  `quantity` int(10) NOT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+--
+-- Truncate table before insert `storage`
+--
+
+TRUNCATE TABLE `storage`;
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `trades`
 --
 
@@ -299,7 +327,6 @@ CREATE TABLE IF NOT EXISTS `voting`(
   `question` varchar(63) NOT NULL,
   `total` int(10) NOT NULL COMMENT 'public shares',
   `status` varchar(63) NOT NULL COMMENT 'open or closed',
-
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

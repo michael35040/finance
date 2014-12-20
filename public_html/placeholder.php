@@ -45,54 +45,43 @@ $shadow=imagecolorallocate($im, $r, $g, $b);
 
 
 
-$font = 'fonts/chunky.otf';
+    imagefilledrectangle($im, 0, 0, ($width-1), ($height-1), $backgroundcolor);
 
-
-imagefilledrectangle($im, 0, 0, ($width-1), ($height-1), $backgroundcolor);
-  
-  //FIGURE SIZE
-  // First we create our bounding box for the first text
-  $bbox = imagettfbbox($size, $rotation, $font, $text);
-  
-  //CENTER TEXT This is our cordinates for X and Y
-  $x = $bbox[0] + (imagesx($im) / 2) - ($bbox[4] / 2);
-  $y = $bbox[1] + (imagesy($im) / 2) - ($bbox[5] / 2);
-
-// Add some shadow to the text
-  imagettftext($im, $size, $rotation, ($x+1), ($y+1), $shadow, $font, $text);
-
-    // Add the text
+    //SYMBOL TEXT
+    $size = 20;
+    $font = 'fonts/LeagueGothic-Regular.otf';
+    $bbox = imagettfbbox($size, $rotation, $font, $text);
+    $x = $bbox[0] + (imagesx($im) / 2) - ($bbox[4] / 2) - 5; //horizontal
+    $y = $bbox[1] + (imagesy($im) / 2) - ($bbox[5] / 2) - 5; //vertical
+    imagettftext($im, $size, $rotation, ($x+1), ($y+1), $shadow, $font, $text);
     imagettftext($im, $size, $rotation, $x, $y, $fontcolor, $font, $text);
 
 
-// Add the secondary text
+// QUANTITY TEXT
 if($quantity>0)
 {
-    $qsize = 10;
-    $qshadow = $shadow;
-    $qfontcolor = $fontcolor;
-    $quantity = number_format($quantity, 0, ".", ",") . "x";
-    $qbbox = imagettfbbox($qsize, $rotation, $font, $quantity);
-    $qx = $qbbox[0] + 15;
-    $qy = $qbbox[1] + 15;
-    imagettftext($im, $qsize, $rotation, ($qx+1), ($qy+1), $qshadow, $font, $quantity);
-    imagettftext($im, $qsize, $rotation, $qx, $qy, $qfontcolor, $font, $quantity);
+    //$font = 'fonts/engraved.ttf';
+    $size = 16;
+    $quantity = strval(number_format($quantity, 0, ".", ","));
+    $bbox = imagettfbbox($size, $rotation, $font, $quantity);
+    $x = $bbox[0] + (imagesx($im) / 2) - ($bbox[4] / 2) - 5; //horizontal
+    $y = $bbox[1] + (imagesy($im) / 2) - ($bbox[5] / 2) - 35; //vertical
+    imagettftext($im, $size, $rotation, ($x+1), ($y+1), $shadow, $font, $quantity);
+    imagettftext($im, $size, $rotation, $x, $y, $fontcolor, $font, $quantity);
 }
 
-// Add the price text
+// PRICE TEXT
 if($quantity>0)
 {
-    $psize = 12;
-    $pshadow = $shadow;
-    $pfontcolor = $fontcolor;
-    $price = $unitsymbol . number_format($price, $decimalplaces, ".", ",");
-    $pbbox = imagettfbbox($psize, $rotation, $font, $price);
+    $size = 16;
+    $price = $unitsymbol . number_format($price, $decimalplaces, ".", ","); //$price, $decimalplaces
+    $bbox = imagettfbbox($size, $rotation, $font, $price);
     //CENTER TEXT This is our cordinates for X and Y
-    $px = $bbox[0] + (imagesx($im) / 2) - ($bbox[4] / 2);
-    $py = $bbox[1] + (imagesy($im) * 0.75) - ($bbox[5] / 2);
+    $x = $bbox[0] + (imagesx($im) / 2) - ($bbox[4] / 2) - 5; //horizontal
+    $y = $bbox[1] + (imagesy($im) / 2) - ($bbox[5] / 2) + 25; //vertical
 
-    imagettftext($im, $psize, $rotation, ($px+1), ($py+1), $pshadow, $font, $price);
-    imagettftext($im, $psize, $rotation, $px, $py, $pfontcolor, $font, $price);
+    imagettftext($im, $size, $rotation, ($x+1), ($y+1), $shadow, $font, $price);
+    imagettftext($im, $size, $rotation, $x, $y, $fontcolor, $font, $price);
 }
 
 // Using imagepng() results in clearer text compared with imagejpeg()

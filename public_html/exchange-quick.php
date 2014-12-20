@@ -68,7 +68,7 @@ else{
     $silver["sell"]=($silver["bid"]-$silver["discount"]);
 
 
-    render("exchange-quick_form.php", ["title" => "Exchange (Quick)", "trades" => $trades, "goldAmount" => $goldAmount, "gold" => $gold, "silverAmount" => $silverAmount, "silver" => $silver]);
+    render("exchange-quick_form.php", ["title" => "Quick Trade", "trades" => $trades, "goldAmount" => $goldAmount, "gold" => $gold, "silverAmount" => $silverAmount, "silver" => $silver]);
 }// else render form
 
 ?>

@@ -1,4 +1,13 @@
 <style>
+    <style>
+    .hiddenRow {
+        padding: 0 !important;
+    }
+
+    .accordian-body td
+    {
+        background-color: #eeeeee;
+    }
 
     .nobutton button
     {

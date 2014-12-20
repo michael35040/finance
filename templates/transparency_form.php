@@ -170,12 +170,12 @@
             $totalOrderbook = $obligationOrderbook[0]["quantity"]; //shares held
         $obligations = ($totalPortfolio+$totalOrderbook);
 
-        //pull assets total from db
-        $assets = 1000000; //until we create the 'assets' db.
+        //storage table
+        //uid, despository, description, weight, quantity
+        //$storage =query("SELECT SUM(quantity) AS quantity FROM storage WHERE (symbol =?)", $symbol);	  // query user's portfolio
+
+        $storage = 1000000; //until we create the 'assets' db.
         /*
-        //ASSETS DB MODEL
-        //UID // ITEMS (# OF ITEMS) // DESCRIPTION (i.e. 100ozt SILVER BAR) // SERIAL (OR ADDRESS) // QUANTITY (GRAMS) // DEPOSITORY //
-        
         $asset =	query("SELECT SUM(quantity) AS quantity FROM assets WHERE (symbol =?)", $symbol);	  // query user's portfolio
             if(empty($asset[0]["quantity"])){$asset[0]["quantity"]=0;}
             $assets = $assetPortfolio[0]["quantity"]; //shares held
@@ -186,13 +186,13 @@
             if(empty($AskPrice[0]["price"])){$AskPrice[0]["price"]=0;}
         $AskPrice = $AskPrice[0]["price"];
         $obligationMV = ($AskPrice*$obligations) + $obligationMV;
-        $assetMV = ($AskPrice*$assets) + $assetMV;
+        $assetMV = ($AskPrice*$storage) + $assetMV;
         ?>
 
         <tr>
             <td><?php echo($symbol); ?></td>
             <td><?php echo(number_format($obligations,$decimalplaces,".",",")); ?></td>
-            <td><?php echo(number_format($assets,$decimalplaces,".",",")); ?></td>
+            <td><?php echo(number_format($storage,$decimalplaces,".",",")); ?></td>
         </tr>
     <?php
     }
