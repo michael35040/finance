@@ -242,16 +242,19 @@
                     else {$percent = 0;}
 
                     //ARROWS START
-                    if ($value < $portfolioTotal) {
+                    if ($purchaseprice < $portfolioTotal) {
                         echo("<font color='#00FF00'>&#x25B2;</font>");
                     } //money is up
-                    elseif ($value > $portfolioTotal) {
+                    elseif ($purchaseprice > $portfolioTotal) {
                         echo("<font color='#FF0000'>&#x25BC;</font>");
                     }  //money is down
                     else {
                         echo("&#x25C4;"); //eft:[&#x25C4;]   right: [&#x25BA;]
                     } //even left and right arrow
                     //ARROWS END
+
+
+
 
                     echo($unitsymbol . number_format($change, $decimalplaces, ".", ",") . " (<i>" . number_format($percent, 2, ".", ",") . "</i>%) "); //display change
 
