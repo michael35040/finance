@@ -411,6 +411,9 @@ function orderbook($symbol)
             //TRADE AMOUNT
             $tradeAmount = ($tradePrice * $tradeSize);
             if ($tradeAmount == 0) {throw new Exception("Trade Amount is 0");}
+
+
+
             //COMMISSION AMOUNT
             $commissionAmount = getCommission($tradeAmount);
 
@@ -428,7 +431,7 @@ function orderbook($symbol)
             //throw new Exception(var_dump(get_defined_vars()));
 
             //IF BUYER DOESN'T HAVE ENOUGH FUNDS CANCEL ORDER
-            if ($orderbookUnits < $tradeAmount)
+            if ($orderbookUnits < ($tradeAmount+$commissionAmount))
             {
                 //IF MARKET ADJUST THE TRADESIZE DOWN.
                 //CHECK TO SEE IF MARKET ORDER (if $bidtype='market')
@@ -462,8 +465,13 @@ function orderbook($symbol)
                         $tradeSize = $newTradeSize;
                         $tradeAmount = ($tradePrice * $tradeSize);
 
+                        //COMMISSION AMOUNT ON NEW AMOUNT
+                        $commissionAmount = getCommission($tradeAmount);
+
+
                         //CHECK AGAIN WITH NEW AMOUNT
-                        if ($orderbookUnits < $tradeAmount){query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUID); throw new Exception("Buyer does not have enough funds. Buyers orders deleted");}
+                        if ($orderbookUnits < ($tradeAmount+$commissionAmount))
+                            {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUID); throw new Exception("Buyer does not have enough funds. Buyers orders deleted");}
 
                         //INSERT INTO HISTORY TO ACCOUNT FOR DIFFERENCE (updated bid order ID, adjust size based on value...)
                         if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topBidUser, $topBidUID, 'QTY CHANGE', $symbol, $newTradeSize, $tradePrice, $tradeAmount) === false) {
@@ -1178,7 +1186,7 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
     
         //GET THE USER UNITS
         $userUnits =	query("SELECT COALESCE(units,0) as units FROM accounts WHERE id = ?", $id);	 //query db
-        $userUnits = getPrice($userUnits[0]["units"]);
+        $userUnits = ($userUnits[0]["units"]);
         if($userUnits<=0){apologize("User has no funds!");}
         $unitsBefore = $userUnits;
         //echo("USER UNITS BEFORE: $unitsBefore <br>");
@@ -1193,11 +1201,12 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
     
         //FIGURE HOW MUCH USER GETS FROM SELL
         $userUnits =	query("SELECT COALESCE(units,0) as units FROM accounts WHERE id = ?", $id);	 //query db
-        $userUnits = getPrice($userUnits[0]["units"]);
+        $userUnits = ($userUnits[0]["units"]);
         if($userUnits<=0){apologize("User has no funds!");}
         $unitsAfter = $userUnits;
         //echo("USER UNITS AFTER: $unitsAfter <br>");
         $unitsDifference = (int)floor($unitsAfter-$unitsBefore);
+        $unitsDifference = getPrice($unitsDifference);
         //echo("SALE PROCEEDS: $unitsDifference <br>");
 
         /* NEW WAY */

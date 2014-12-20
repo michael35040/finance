@@ -22,10 +22,10 @@
     }
     label > input + img{ /* IMAGE STYLES */
       cursor:pointer;
-      border:5px solid #fff; /*5px solid transparent*/
+      border:5px solid transparent; /*5px solid transparent*/
     }
     label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
-      border:5px solid #000; /*f00*/
+      border:5px solid #fff; /*f00*/
     }  
 /*ABOVE FOR PICTURE RADIO*/
     
@@ -40,13 +40,13 @@
 function colorize($symbol)
 {
     $color = '888888';
-    if($symbol == 'CNY'){$color = 'ff0000';} //red
+    if($symbol == 'CNY'){$color = 'FF3300';} //red
     if($symbol == 'EUR'){$color = '000099';} //official euro blue
     if($symbol == 'GBP'){$color = '3355dd';} //blue
     if($symbol == 'INR'){$color = '663300';} //brown
-    if($symbol == 'JPY'){$color = 'ffa500';} //orange
-    if($symbol == 'USD'){$color = '00ff00';} //green
-    if($symbol == 'XBT'){$color = '000000';} //black
+    if($symbol == 'JPY'){$color = 'FF9999';} //white
+    if($symbol == 'USD'){$color = '85bb65';} //green 85bb65 00ff00 336600
+    if($symbol == 'XBT'){$color = 'ffa500';} //orange ffa500
     if($symbol == 'XAG'){$color = 'cccccc';} //gray
     if($symbol == 'XAU'){$color = 'ffd700';} //gold
 
@@ -93,7 +93,7 @@ CNY - Chinese Yuan Renminbi (China) ¥
 <!--UNITS-->
 <label>
 <input type="radio" name="symbol1" value="<?php echo($unittype); ?>" />
-<img src="placeholder.php?height=100&width=200&text=<?php echo($unittype); ?>&quantity=<?php echo($units); ?>&price=<?php echo("1"); ?>&backgroundcolor=<?php echo("00ff00"); ?>&fontcolor=ffffff" alt="<?php echo($unittype); ?>" />
+<img src="placeholder.php?height=100&width=200&text=<?php echo($unittype); ?>&name=<?php echo($unitdescription); ?>&quantity=<?php echo($units); ?>&price=<?php echo("1"); ?>&backgroundcolor=<?php $color = colorize($unittype); echo($color); ?>&fontcolor=ffffff" alt="<?php echo($unittype); ?>" />
 </label>
 
                                 <?php
@@ -111,13 +111,14 @@ CNY - Chinese Yuan Renminbi (China) ¥
                                 $price=$stock["askprice"];
                                 $lockedStock = htmlspecialchars($lockedStock);
                                 $color = colorize($symbol);
+                                $name = $stock["name"];
                                 //echo("<option value='" . $symbol . "'>  " . $symbol . " (" . $quantity . "/" . $lockedStock . ")</option>");
                                 if($quantity>0)
                                 {
                                 ?>
                                   <label>
                                     <input type="radio" name="symbol1" value="<?php echo($symbol); ?>" />
-                                      <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&quantity=<?php echo($quantity); ?>&price=<?php echo($price); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>" />
+                                      <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&name=<?php echo($name); ?>&price=<?php echo("1"); ?>&quantity=<?php echo($quantity); ?>&price=<?php echo($price); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>" />
                                   </label>
                                 <?php
                                 }
@@ -137,8 +138,8 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 <!--UNITS-->
 <label>
-<input type="radio" name="symbol2" value="<?php echo($unittype); ?>" />
-<img src="placeholder.php?height=100&width=200&text=<?php echo($unittype); ?>&backgroundcolor=<?php echo("00ff00"); ?>&fontcolor=ffffff" alt="<?php echo($unittype); ?>" />
+    <input type="radio" name="symbol2" value="<?php echo($unittype); ?>" />
+<img src="placeholder.php?height=100&width=200&text=<?php echo($unittype); ?>&name=<?php echo($unitdescription); ?>&backgroundcolor=<?php $color = colorize($unittype); echo($color); ?>&fontcolor=ffffff" alt="<?php echo($unittype); ?>" />
 </label>
         <?php
 
@@ -151,12 +152,13 @@ CNY - Chinese Yuan Renminbi (China) ¥
                                 $symbol = $asset["symbol"];
                                 $symbol = htmlspecialchars($symbol);
                                 $color = colorize($symbol);
+                                $name = htmlspecialchars($asset["name"]);
 
                                 //echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
                                 ?>
                               <label>
                                 <input type="radio" name="symbol2" value="<?php echo($symbol); ?>" />
-                                  <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>" />
+                                  <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&name=<?php echo($name); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>" />
                               </label>
                             <?php
                             }

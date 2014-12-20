@@ -196,19 +196,19 @@ function test()
     //publicOffering('USD', 'Dollar (United States)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Dollar', 10, 'Each unit represents $1 Dollar; USD - U.S. Dollar (United States)');
 
     // € Euro
-    publicOffering('EUR', 'Euro (Euro Member Countries)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Euro', 10, 'Each unit represents €1 Euro; EUR - Euro (Euro Member Countries)');
+    publicOffering('EUR', 'Euro', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Euro', 10, 'Each unit represents €1 Euro; EUR - Euro (Euro Member Countries)');
     
     // £ Pound
-    publicOffering('GBP', 'British Pound (United Kingdom)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Pound_(currency)', 10, 'Each unit represents £1 Pound; GBP - British Pound Sterling (United Kingdom)');
+    publicOffering('GBP', 'British Pound', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Pound_(currency)', 10, 'Each unit represents £1 Pound; GBP - British Pound Sterling (United Kingdom)');
     
     // ₹ Rupee
-    publicOffering('INR', 'Indian Rupee (India)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Rupee', 10, 'Each unit represents ₹1 Rupee; INR - Indian Rupee (India)');
+    publicOffering('INR', 'Indian Rupee', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Rupee', 10, 'Each unit represents ₹1 Rupee; INR - Indian Rupee (India)');
     
     // ¥ Yuan
-    publicOffering('CNY', 'Chinese Yuan Renminbi (China)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yuan', 10, 'Each unit represents ¥1 Yuan; CNY - Chinese Yuan Renminbi (China)');
+    publicOffering('CNY', 'Chinese Yuan Renminbi', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yuan', 10, 'Each unit represents ¥1 Yuan; CNY - Chinese Yuan Renminbi (China)');
     
     // ¥ Yen
-    publicOffering('JPY', 'Japanese Yen (Japan)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yen', 10, 'Each unit represents ¥1 Yuan; JPY - Japanese Yen (Japan)');
+    publicOffering('JPY', 'Japanese Yen', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yen', 10, 'Each unit represents ¥1 Yuan; JPY - Japanese Yen (Japan)');
 
     //GOLD $1200
     placeOrder('XAU', 'limit', 'b', 1000, 1100, 1);
