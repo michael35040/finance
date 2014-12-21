@@ -1,247 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98d2116d-c45c-42b6-b017-d0dbd15fc29c" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\TODO.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\banner.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\chart.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\data.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\error.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\exchange-quick.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info2.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\legal.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\storage.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\CME-Group-Logo.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\ElemetalVaultTM.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\ISO-Grey.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\LBMA.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\analytics.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\e048ae77c8" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\ev.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\hubs" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\jQuery" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\metalChart" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\modernizr" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\nr-476.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\plugins" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\require" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Certifications   Elemetal Vault_files\vendor" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\1014bb612f5506d402de4be4ce928d50" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\1500x1500-Elemetal-Vault_3-1024x1024-2xvarnwq8mx3i95prk2pz4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\290a82cc8817f98a3aaf894574379f64" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\300lo.json" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\346b4a6fb7aff0a8b0951bc4a5ee081c" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\55b10f1d7b1d6247456eaf58aadf5c1e" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\567b306872f6b6979a9108ffc2a78fed" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\5ab2c21d06" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\6e070682707619cb6c52277b38fd3b66" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\6e5dc429422222822af33da9d7c04145" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\7361e42c5cfcc505d1c042283583d74a" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\959898936ffec9149a84ea5f66d6963f" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\ad6e7df835ca0a07f68a24c7d7ae0730" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\addthis_widget.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\analytics.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\comment-reply.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\core164.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\d298a4ad9742e3eb521e5af10c4dab3c" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\dashblg4.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\e45ac0cdb22d89e50271c475850304f4" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\e5aad83ad52a8b1bc5e12ab648b615eb" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\f12ea7d843e4fbc80c6b8e16fda2a7d6" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\ff58c11c7fd2d9e72875c836076c7a09" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\font-awesome.min.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\form.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\global.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\icons_bbb.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\icons_cc_two_rows.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\jquery-migrate.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\layers067.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\layers087.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\mbox.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\modernizr.custom.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\nr-476.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\sat.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\sh180.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\standard" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\style.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\trdblg.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\widget007.mobile.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Elemetal Vault  Secure Trading and Vault Storage_files\widget007.old.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\ElemetalVaultTM.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\analytics.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\e048ae77c8" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\ev.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\hubs" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\jQuery" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\metalChart" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\modernizr" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\nr-476.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\plugins" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\require" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\FAQs   Elemetal Vault_files\vendor" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\ElemetalVaultTM.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\analytics.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\e048ae77c8" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\ev.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\hubs" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\jQuery" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\metalChart" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\modernizr" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\nr-476.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\plugins" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\require" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Gold and Silver Trading Knowledge Center   Elemetal Vault_files\vendor" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\ElemetalVaultTM.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\analytics.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\dashboard.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\e048ae77c8" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\ev.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\hubs" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\jQuery" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\metalChart" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\modernizr" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\nr-476.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\plugins" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\provident-devices.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\require" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\trade.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\vendor" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\withdraw-funds.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\How it works   Elemetal Vault_files\withdraw-metal.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\ElemetalVaultTM.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\analytics.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\e048ae77c8" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\ev.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\hubs" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\jQuery" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\jpeg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\metalChart" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\modernizr" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\nr-476.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\plugins" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\require" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Pricing and Fees   Elemetal Vault_files\vendor" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\ElemetalVaultTM.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\analytics.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\e048ae77c8" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\ev.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\hubs" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\jQuery" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\metalChart" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\modernizr" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\nr-476.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\plugins" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\require" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Secure Storage   Elemetal Vault_files\vendor" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\ElemetalVaultTM.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\analytics.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\e048ae77c8" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\ev.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\hubs" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\jQuery" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\metalChart" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\modernizr" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\nr-476.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\plugins" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\require" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\elemetal\Settlement Options   Elemetal Vault_files\vendor" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\old\_stock_quotes.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\old\currency-exchange.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\old\currency-exchangealt.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\old\metal deposit.php.txt" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\old\metals-industrial.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\old\metals-precious.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\old\metals.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test.htm" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\colorschememapping.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\filelist.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image001.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image002.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image003.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image004.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image005.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image006.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image007.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image008.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image009.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image010.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image011.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image012.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image013.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image014.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image015.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image016.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image017.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image018.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image019.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image020.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image021.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image022.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image023.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image024.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image025.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image026.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image027.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image028.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image029.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image030.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image031.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image032.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image033.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image034.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image035.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image036.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image037.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image038.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image039.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image040.gif" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image041.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image042.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image043.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image044.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\image045.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\test\test_files\themedata.thmx" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\vote.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\vote\PIE.htc" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\vote\PIE.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\vote\hover.htc" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\vote\index.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\vote\poll.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\vote\raw.form.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\vote\sqlite.setup.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\vote\vote.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\vote\voting.db" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\vote\webPoll.class.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\templates\dump.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\templates\exchange-quick_form.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\wamp\www\finance\templates\image.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/exchange-convert.php" afterPath="$PROJECT_DIR$/public_html/exchange-convert.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/exchange-convert_form.php" afterPath="$PROJECT_DIR$/templates/exchange-convert_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/functions_exchange.php" afterPath="$PROJECT_DIR$/includes/functions_exchange.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/information-orderbook_form.php" afterPath="$PROJECT_DIR$/templates/information-orderbook_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/menu.php" afterPath="$PROJECT_DIR$/templates/menu.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/transparency.php" afterPath="$PROJECT_DIR$/public_html/transparency.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/transparency_form.php" afterPath="$PROJECT_DIR$/templates/transparency_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="98d2116d-c45c-42b6-b017-d0dbd15fc29c" name="Default" comment="" />
     <ignored path="finance.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -265,189 +25,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="transparency.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/transparency.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="391">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="exchange-convert.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/exchange-convert.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.807693" vertical-offset="357" max-vertical-offset="1275">
-              <caret line="36" column="168" selection-start-line="36" selection-start-column="168" selection-end-line="36" selection-end-column="168" />
-              <folding>
-                <marker date="1419138688397" expanded="true" signature="917:968" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138688397" expanded="true" signature="1038:1170" placeholder="SELECT price..orderbook..." />
-                <marker date="1419138688397" expanded="true" signature="1378:1449" placeholder="SELECT symbo..portfolio..." />
-                <marker date="1419138688397" expanded="true" signature="1564:1602" placeholder="SELECT name ..assets..." />
-                <marker date="1419138688397" expanded="true" signature="1788:1874" placeholder="SELECT SUM(q..orderbook..." />
-                <marker date="1419138688397" expanded="true" signature="2040:2172" placeholder="SELECT price..orderbook..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="constants.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/constants.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769" vertical-offset="51" max-vertical-offset="833">
-              <caret line="16" column="16" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="exchange-convert_form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/exchange-convert_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.038462" vertical-offset="1785" max-vertical-offset="5032">
-              <caret line="128" column="126" selection-start-line="128" selection-start-column="126" selection-end-line="128" selection-end-column="126" />
-              <folding>
-                <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#fieldset#0;n#form#0;n#!!top" expanded="true" />
-                <marker date="1419139397724" expanded="true" signature="7861:7937" placeholder="..." />
-                <marker date="1419139397724" expanded="true" signature="7914:7932" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="information-orderbook_form.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/information-orderbook_form.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7161172" vertical-offset="1071" max-vertical-offset="1751">
-              <caret line="86" column="89" selection-start-line="86" selection-start-column="89" selection-end-line="86" selection-end-column="89" />
+            <state vertical-scroll-proportion="0.15567766" vertical-offset="1071" max-vertical-offset="1751">
+              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
               <folding>
                 <marker date="1419139688514" expanded="false" signature="2147:2174" placeholder="..." />
                 <marker date="1419139688514" expanded="false" signature="2645:2672" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="functions_exchange.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/functions_exchange.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769" vertical-offset="51" max-vertical-offset="21420">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding>
-                <marker date="1419138916765" expanded="true" signature="320:452" placeholder="SELECT price..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="702:834" placeholder="SELECT price..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="1061:1193" placeholder="SELECT price..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="1363:1495" placeholder="SELECT price..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="1949:2358" placeholder="SELECT SUM(o..portfolio..." />
-                <marker date="1419138916765" expanded="true" signature="3720:3787" placeholder="SELECT quant..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="3958:4025" placeholder="SELECT quant..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="4438:4525" placeholder="SELECT quant..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="4865:4924" placeholder="SELECT units..accounts..." />
-                <marker date="1419138916765" expanded="true" signature="5149:5198" placeholder="UPDATE order..." />
-                <marker date="1419138916765" expanded="true" signature="5947:6028" placeholder="SELECT side,..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="6256:6337" placeholder="SELECT side,..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="6629:6716" placeholder="SELECT side,..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="7252:7328" placeholder="UPDATE portf..." />
-                <marker date="1419138916765" expanded="true" signature="7575:7627" placeholder="UPDATE accou..." />
-                <marker date="1419138916765" expanded="true" signature="7897:7934" placeholder="DELETE FROM ..." />
-                <marker date="1419138916765" expanded="true" signature="8324:8428" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="8799:8903" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="9936:10041" placeholder="SELECT * FRO..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="10222:10350" placeholder="SELECT * FRO..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="10631:10749" placeholder="SELECT * FRO..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="10798:10927" placeholder="SELECT * FRO..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="11238:11367" placeholder="SELECT * FRO..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="11579:11697" placeholder="SELECT * FRO..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="11746:11875" placeholder="SELECT * FRO..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="12292:12421" placeholder="SELECT * FRO..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="12462:12590" placeholder="SELECT * FRO..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="13477:13522" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138916765" expanded="true" signature="14267:14277" placeholder="..." />
-                <marker date="1419138916765" expanded="true" signature="14557:14598" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138916765" expanded="true" signature="14994:15023" placeholder="..." />
-                <marker date="1419138916765" expanded="true" signature="16393:16434" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138916765" expanded="true" signature="19796:19835" placeholder="SELECT total..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="22641:22745" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="23461:23532" placeholder="UPDATE order..." />
-                <marker date="1419138916765" expanded="true" signature="23762:23808" placeholder="SELECT quant..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="24387:24441" placeholder="UPDATE order..." />
-                <marker date="1419138916765" expanded="true" signature="24756:24812" placeholder="UPDATE accou..." />
-                <marker date="1419138916765" expanded="true" signature="25098:25150" placeholder="UPDATE accou..." />
-                <marker date="1419138916765" expanded="true" signature="25485:25549" placeholder="SELECT quant..portfolio..." />
-                <marker date="1419138916765" expanded="true" signature="25993:26080" placeholder="SELECT SUM(q..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="26617:26668" placeholder="DELETE FROM ..." />
-                <marker date="1419138916765" expanded="true" signature="26962:27036" placeholder="UPDATE portf..." />
-                <marker date="1419138916765" expanded="true" signature="27429:27487" placeholder="SELECT symbo..portfolio..." />
-                <marker date="1419138916765" expanded="true" signature="27757:27828" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="28123:28221" placeholder="UPDATE portf..." />
-                <marker date="1419138916765" expanded="true" signature="28855:29003" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="34150:34191" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138916765" expanded="true" signature="34505:34550" placeholder="UPDATE asset..." />
-                <marker date="1419138916765" expanded="true" signature="34709:34752" placeholder="UPDATE asset..." />
-                <marker date="1419138916765" expanded="true" signature="34909:34950" placeholder="UPDATE asset..." />
-                <marker date="1419138916765" expanded="true" signature="35106:35148" placeholder="UPDATE asset..." />
-                <marker date="1419138916765" expanded="true" signature="35306:35351" placeholder="UPDATE asset..." />
-                <marker date="1419138916765" expanded="true" signature="35517:35567" placeholder="UPDATE asset..." />
-                <marker date="1419138916765" expanded="true" signature="35744:35789" placeholder="UPDATE asset..." />
-                <marker date="1419138916765" expanded="true" signature="35932:35978" placeholder="UPDATE histo..." />
-                <marker date="1419138916765" expanded="true" signature="36121:36169" placeholder="UPDATE order..." />
-                <marker date="1419138916765" expanded="true" signature="36312:36360" placeholder="UPDATE portf..." />
-                <marker date="1419138916765" expanded="true" signature="36503:36548" placeholder="UPDATE trade..." />
-                <marker date="1419138916765" expanded="true" signature="36977:37034" placeholder="UPDATE order..." />
-                <marker date="1419138916765" expanded="true" signature="37176:37213" placeholder="DELETE FROM ..." />
-                <marker date="1419138916765" expanded="true" signature="37368:37408" placeholder="DELETE FROM ..." />
-                <marker date="1419138916765" expanded="true" signature="37535:37639" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="38789:38830" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138916765" expanded="true" signature="39141:39280" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="39572:39628" placeholder="SELECT symbo..portfolio..." />
-                <marker date="1419138916765" expanded="true" signature="39844:39915" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="40214:40312" placeholder="UPDATE portf..." />
-                <marker date="1419138916765" expanded="true" signature="40790:40938" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="41208:41266" placeholder="SELECT symbo..portfolio..." />
-                <marker date="1419138916765" expanded="true" signature="41473:41544" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="41881:41979" placeholder="UPDATE portf..." />
-                <marker date="1419138916765" expanded="true" signature="42592:42740" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="43643:43684" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138916765" expanded="true" signature="44104:44156" placeholder="UPDATE asset..." />
-                <marker date="1419138916765" expanded="true" signature="44358:44414" placeholder="SELECT symbo..portfolio..." />
-                <marker date="1419138916765" expanded="true" signature="44630:44701" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="44991:45089" placeholder="UPDATE portf..." />
-                <marker date="1419138916765" expanded="true" signature="45547:45695" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="45954:46012" placeholder="SELECT symbo..portfolio..." />
-                <marker date="1419138916765" expanded="true" signature="46219:46290" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="46617:46715" placeholder="UPDATE portf..." />
-                <marker date="1419138916765" expanded="true" signature="47334:47482" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="48398:48439" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138916765" expanded="true" signature="48719:48771" placeholder="UPDATE asset..." />
-                <marker date="1419138916765" expanded="true" signature="48960:49016" placeholder="SELECT symbo..portfolio..." />
-                <marker date="1419138916765" expanded="true" signature="49389:49466" placeholder="UPDATE portf..." />
-                <marker date="1419138916765" expanded="true" signature="49897:49955" placeholder="SELECT quant..portfolio..." />
-                <marker date="1419138916765" expanded="true" signature="50347:50495" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="51401:51442" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138916765" expanded="true" signature="52951:53000" placeholder="SELECT count..users..." />
-                <marker date="1419138916765" expanded="true" signature="53761:53821" placeholder="SELECT quant..portfolio..." />
-                <marker date="1419138916765" expanded="true" signature="54455:54531" placeholder="UPDATE portf..." />
-                <marker date="1419138916765" expanded="true" signature="55268:55307" placeholder="SELECT units..accounts..." />
-                <marker date="1419138916765" expanded="true" signature="56242:56294" placeholder="UPDATE accou..." />
-                <marker date="1419138916765" expanded="true" signature="56781:56876" placeholder="SELECT SUM(q..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="57218:57278" placeholder="SELECT quant..portfolio..." />
-                <marker date="1419138916765" expanded="true" signature="57912:57988" placeholder="UPDATE portf..." />
-                <marker date="1419138916765" expanded="true" signature="58480:58575" placeholder="SELECT SUM(q..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="58864:58903" placeholder="SELECT units..accounts..." />
-                <marker date="1419138916765" expanded="true" signature="59910:59962" placeholder="UPDATE accou..." />
-                <marker date="1419138916765" expanded="true" signature="60747:60842" placeholder="SELECT SUM(q..orderbook..." />
-                <marker date="1419138916765" expanded="true" signature="61131:61170" placeholder="SELECT units..accounts..." />
-                <marker date="1419138916765" expanded="true" signature="62153:62205" placeholder="UPDATE accou..." />
-                <marker date="1419138916765" expanded="true" signature="62650:62749" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="63104:63208" placeholder="INSERT INTO ..." />
-                <marker date="1419138916765" expanded="true" signature="64186:64227" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138916765" expanded="true" signature="64818:64859" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138916765" expanded="true" signature="65466:65507" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138916765" expanded="true" signature="65772:65813" placeholder="SELECT symbo..assets..." />
-                <marker date="1419138916765" expanded="true" signature="66034:66094" placeholder="SELECT COALE..accounts..." />
-                <marker date="1419138916765" expanded="true" signature="66717:66777" placeholder="SELECT COALE..accounts..." />
               </folding>
             </state>
           </provider>
@@ -592,7 +177,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -956,12 +541,12 @@
         <state vertical-scroll-proportion="-9.807693" vertical-offset="357" max-vertical-offset="1275">
           <caret line="36" column="168" selection-start-line="36" selection-start-column="168" selection-end-line="36" selection-end-column="168" />
           <folding>
-            <marker date="1419138688397" expanded="true" signature="917:968" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138688397" expanded="true" signature="1038:1170" placeholder="SELECT price..orderbook..." />
-            <marker date="1419138688397" expanded="true" signature="1378:1449" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1419138688397" expanded="true" signature="1564:1602" placeholder="SELECT name ..assets..." />
-            <marker date="1419138688397" expanded="true" signature="1788:1874" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1419138688397" expanded="true" signature="2040:2172" placeholder="SELECT price..orderbook..." />
+            <marker date="1419138688397" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138688397" expanded="true" signature="-1:-1" placeholder="SELECT price..orderbook..." />
+            <marker date="1419138688397" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1419138688397" expanded="true" signature="-1:-1" placeholder="SELECT name ..assets..." />
+            <marker date="1419138688397" expanded="true" signature="-1:-1" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1419138688397" expanded="true" signature="-1:-1" placeholder="SELECT price..orderbook..." />
           </folding>
         </state>
       </provider>
@@ -979,118 +564,118 @@
         <state vertical-scroll-proportion="-5.230769" vertical-offset="51" max-vertical-offset="21420">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
-            <marker date="1419138916765" expanded="true" signature="320:452" placeholder="SELECT price..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="702:834" placeholder="SELECT price..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="1061:1193" placeholder="SELECT price..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="1363:1495" placeholder="SELECT price..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="1949:2358" placeholder="SELECT SUM(o..portfolio..." />
-            <marker date="1419138916765" expanded="true" signature="3720:3787" placeholder="SELECT quant..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="3958:4025" placeholder="SELECT quant..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="4438:4525" placeholder="SELECT quant..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="4865:4924" placeholder="SELECT units..accounts..." />
-            <marker date="1419138916765" expanded="true" signature="5149:5198" placeholder="UPDATE order..." />
-            <marker date="1419138916765" expanded="true" signature="5947:6028" placeholder="SELECT side,..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="6256:6337" placeholder="SELECT side,..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="6629:6716" placeholder="SELECT side,..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="7252:7328" placeholder="UPDATE portf..." />
-            <marker date="1419138916765" expanded="true" signature="7575:7627" placeholder="UPDATE accou..." />
-            <marker date="1419138916765" expanded="true" signature="7897:7934" placeholder="DELETE FROM ..." />
-            <marker date="1419138916765" expanded="true" signature="8324:8428" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="8799:8903" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="9936:10041" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="10222:10350" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="10631:10749" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="10798:10927" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="11238:11367" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="11579:11697" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="11746:11875" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="12292:12421" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="12462:12590" placeholder="SELECT * FRO..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="13477:13522" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138916765" expanded="true" signature="14267:14277" placeholder="..." />
-            <marker date="1419138916765" expanded="true" signature="14557:14598" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138916765" expanded="true" signature="14994:15023" placeholder="..." />
-            <marker date="1419138916765" expanded="true" signature="16393:16434" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138916765" expanded="true" signature="19796:19835" placeholder="SELECT total..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="22641:22745" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="23461:23532" placeholder="UPDATE order..." />
-            <marker date="1419138916765" expanded="true" signature="23762:23808" placeholder="SELECT quant..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="24387:24441" placeholder="UPDATE order..." />
-            <marker date="1419138916765" expanded="true" signature="24756:24812" placeholder="UPDATE accou..." />
-            <marker date="1419138916765" expanded="true" signature="25098:25150" placeholder="UPDATE accou..." />
-            <marker date="1419138916765" expanded="true" signature="25485:25549" placeholder="SELECT quant..portfolio..." />
-            <marker date="1419138916765" expanded="true" signature="25993:26080" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="26617:26668" placeholder="DELETE FROM ..." />
-            <marker date="1419138916765" expanded="true" signature="26962:27036" placeholder="UPDATE portf..." />
-            <marker date="1419138916765" expanded="true" signature="27429:27487" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1419138916765" expanded="true" signature="27757:27828" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="28123:28221" placeholder="UPDATE portf..." />
-            <marker date="1419138916765" expanded="true" signature="28855:29003" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="34150:34191" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138916765" expanded="true" signature="34505:34550" placeholder="UPDATE asset..." />
-            <marker date="1419138916765" expanded="true" signature="34709:34752" placeholder="UPDATE asset..." />
-            <marker date="1419138916765" expanded="true" signature="34909:34950" placeholder="UPDATE asset..." />
-            <marker date="1419138916765" expanded="true" signature="35106:35148" placeholder="UPDATE asset..." />
-            <marker date="1419138916765" expanded="true" signature="35306:35351" placeholder="UPDATE asset..." />
-            <marker date="1419138916765" expanded="true" signature="35517:35567" placeholder="UPDATE asset..." />
-            <marker date="1419138916765" expanded="true" signature="35744:35789" placeholder="UPDATE asset..." />
-            <marker date="1419138916765" expanded="true" signature="35932:35978" placeholder="UPDATE histo..." />
-            <marker date="1419138916765" expanded="true" signature="36121:36169" placeholder="UPDATE order..." />
-            <marker date="1419138916765" expanded="true" signature="36312:36360" placeholder="UPDATE portf..." />
-            <marker date="1419138916765" expanded="true" signature="36503:36548" placeholder="UPDATE trade..." />
-            <marker date="1419138916765" expanded="true" signature="36977:37034" placeholder="UPDATE order..." />
-            <marker date="1419138916765" expanded="true" signature="37176:37213" placeholder="DELETE FROM ..." />
-            <marker date="1419138916765" expanded="true" signature="37368:37408" placeholder="DELETE FROM ..." />
-            <marker date="1419138916765" expanded="true" signature="37535:37639" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="38789:38830" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138916765" expanded="true" signature="39141:39280" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="39572:39628" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1419138916765" expanded="true" signature="39844:39915" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="40214:40312" placeholder="UPDATE portf..." />
-            <marker date="1419138916765" expanded="true" signature="40790:40938" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="41208:41266" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1419138916765" expanded="true" signature="41473:41544" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="41881:41979" placeholder="UPDATE portf..." />
-            <marker date="1419138916765" expanded="true" signature="42592:42740" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="43643:43684" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138916765" expanded="true" signature="44104:44156" placeholder="UPDATE asset..." />
-            <marker date="1419138916765" expanded="true" signature="44358:44414" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1419138916765" expanded="true" signature="44630:44701" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="44991:45089" placeholder="UPDATE portf..." />
-            <marker date="1419138916765" expanded="true" signature="45547:45695" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="45954:46012" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1419138916765" expanded="true" signature="46219:46290" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="46617:46715" placeholder="UPDATE portf..." />
-            <marker date="1419138916765" expanded="true" signature="47334:47482" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="48398:48439" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138916765" expanded="true" signature="48719:48771" placeholder="UPDATE asset..." />
-            <marker date="1419138916765" expanded="true" signature="48960:49016" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1419138916765" expanded="true" signature="49389:49466" placeholder="UPDATE portf..." />
-            <marker date="1419138916765" expanded="true" signature="49897:49955" placeholder="SELECT quant..portfolio..." />
-            <marker date="1419138916765" expanded="true" signature="50347:50495" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="51401:51442" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138916765" expanded="true" signature="52951:53000" placeholder="SELECT count..users..." />
-            <marker date="1419138916765" expanded="true" signature="53761:53821" placeholder="SELECT quant..portfolio..." />
-            <marker date="1419138916765" expanded="true" signature="54455:54531" placeholder="UPDATE portf..." />
-            <marker date="1419138916765" expanded="true" signature="55268:55307" placeholder="SELECT units..accounts..." />
-            <marker date="1419138916765" expanded="true" signature="56242:56294" placeholder="UPDATE accou..." />
-            <marker date="1419138916765" expanded="true" signature="56781:56876" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="57218:57278" placeholder="SELECT quant..portfolio..." />
-            <marker date="1419138916765" expanded="true" signature="57912:57988" placeholder="UPDATE portf..." />
-            <marker date="1419138916765" expanded="true" signature="58480:58575" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="58864:58903" placeholder="SELECT units..accounts..." />
-            <marker date="1419138916765" expanded="true" signature="59910:59962" placeholder="UPDATE accou..." />
-            <marker date="1419138916765" expanded="true" signature="60747:60842" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1419138916765" expanded="true" signature="61131:61170" placeholder="SELECT units..accounts..." />
-            <marker date="1419138916765" expanded="true" signature="62153:62205" placeholder="UPDATE accou..." />
-            <marker date="1419138916765" expanded="true" signature="62650:62749" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="63104:63208" placeholder="INSERT INTO ..." />
-            <marker date="1419138916765" expanded="true" signature="64186:64227" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138916765" expanded="true" signature="64818:64859" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138916765" expanded="true" signature="65466:65507" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138916765" expanded="true" signature="65772:65813" placeholder="SELECT symbo..assets..." />
-            <marker date="1419138916765" expanded="true" signature="66034:66094" placeholder="SELECT COALE..accounts..." />
-            <marker date="1419138916765" expanded="true" signature="66717:66777" placeholder="SELECT COALE..accounts..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT price..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT price..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT price..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT price..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT SUM(o..portfolio..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT quant..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT quant..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT quant..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT units..accounts..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE order..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT side,..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT side,..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT side,..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE accou..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT total..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE order..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT quant..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE order..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE accou..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE accou..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT quant..portfolio..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE histo..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE order..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE trade..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE order..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE asset..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT quant..portfolio..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT count..users..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT quant..portfolio..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT units..accounts..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE accou..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT quant..portfolio..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE portf..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT units..accounts..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE accou..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT units..accounts..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="UPDATE accou..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT COALE..accounts..." />
+            <marker date="1419138916765" expanded="true" signature="-1:-1" placeholder="SELECT COALE..accounts..." />
           </folding>
         </state>
       </provider>
@@ -1102,16 +687,16 @@
           <folding>
             <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#fieldset#0;n#form#0;n#!!top" expanded="true" />
-            <marker date="1419139397724" expanded="true" signature="7861:7937" placeholder="..." />
-            <marker date="1419139397724" expanded="true" signature="7914:7932" placeholder="..." />
+            <marker date="1419139397724" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1419139397724" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/information-orderbook_form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7161172" vertical-offset="1071" max-vertical-offset="1751">
-          <caret line="86" column="89" selection-start-line="86" selection-start-column="89" selection-end-line="86" selection-end-column="89" />
+        <state vertical-scroll-proportion="0.15567766" vertical-offset="1071" max-vertical-offset="1751">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding>
             <marker date="1419139688514" expanded="false" signature="2147:2174" placeholder="..." />
             <marker date="1419139688514" expanded="false" signature="2645:2672" placeholder="..." />
