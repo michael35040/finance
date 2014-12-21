@@ -6,6 +6,9 @@ require("../includes/config.php");
 
 $id = $_SESSION["id"]; //get id from session
 
+if ($id != 1) { apologize("Unauthorized!"); exit();}
+else
+{
 
 // apologize(var_dump(get_defined_vars()));
 
@@ -183,5 +186,8 @@ this is to prevent voters voting twice or complications when buying or selling d
 </div><!--panel-primary OFFERING-->
 
 
+<?php
 
+} //admin id
+?>
 

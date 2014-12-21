@@ -26,7 +26,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 }
 else
 {
-    $assets =	query("SELECT symbol, name FROM assets ORDER BY symbol ASC");
+    $asset["symbol"] = $unittype;
+    $asset["name"] = $unitdescription;
+    $asset["price"] = 1;
+    $assets[]=$asset;
+
+    $assetsQ =	query("SELECT symbol, name FROM assets ORDER BY symbol ASC");
+    foreach ($assetsQ as $asset)
+    {
+        $askPrice =	query("SELECT price FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $asset["symbol"],'a');
+        if(empty($askPrice)){$asset["askprice"]=0;}else{$asset["askprice"] = getPrice($askPrice[0]["price"]);}
+
+        $assets[]=$asset;
+    }
     $stocks=[];
     $stocksQ = query("SELECT symbol, quantity FROM portfolio WHERE id = ? ORDER BY symbol ASC", $id);	 
     foreach ($stocksQ as $row)	
@@ -40,7 +52,8 @@ else
         $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id=? AND symbol=? AND side='a')", $id, $stock["symbol"]);
         if(empty($askQuantity)){$stock["locked"]=0;}else{$stock["locked"] = (int)$askQuantity[0]["quantity"];}
 
-        $askPrice =	query("SELECT price FROM orderbook WHERE symbol =? AND side='a' ORDER BY price DESC", $stock["symbol"]);
+        $askPrice =	query("SELECT price FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $stock["symbol"],'a');
+
         if(empty($askPrice)){$stock["askprice"]=0;}else{$stock["askprice"] = getPrice($askPrice[0]["price"]);}
 
         $stocks[] = $stock;

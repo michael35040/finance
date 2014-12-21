@@ -59,7 +59,7 @@
         echo('<td>' . $unitsymbol . (number_format(getPrice($row["total"]),$decimalplaces,".",",")) . '</td>');
         echo('<td>' . number_format($row["quantity"],0,".",",") . '</td>');
         echo('<td>' . (number_format($row["uid"],0,".","")) . '</td>');
-        echo('<td style="background-color:lightgray;">' . $unitsymbol . (number_format(getPrice($row["price"]),$decimalplaces,".",",")) . '</td>
+        echo('<td style="background-color:lightgray;">' . $unitsymbol . (number_format(getPrice($row["price"]),($decimalplaces+2),".",",")) . '</td>
         <td colspan="7"></td>');
 
 
@@ -81,7 +81,7 @@
         if($row["side"]=='b'){$side='BID';}
         if($row["side"]=='a'){$side='ASK ';}
 
-        echo('<td style="background-color:lightgray;">' . $unitsymbol . (number_format(getPrice($row["price"]),$decimalplaces,".",",")) . '</td>');
+        echo('<td style="background-color:lightgray;">' . $unitsymbol . (number_format(getPrice($row["price"]),($decimalplaces+2),".",",")) . '</td>');
         echo('<td>' . (number_format($row["uid"],0,".","")) . '</td>');
         echo('<td>' . number_format($row["quantity"],0,".",",") . '</td>');
         echo('<td>' . $unitsymbol . (number_format(getPrice($row["total"]),$decimalplaces,".",",")) . '</td>');

@@ -25,7 +25,7 @@
       border:5px solid transparent; /*5px solid transparent*/
     }
     label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
-      border:5px solid #f00; /*f00*/
+      border:5px solid #000; /*f00*/
     }  
 /*ABOVE FOR PICTURE RADIO*/
     
@@ -76,130 +76,6 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 ?>
 
-<h3>QUANTITY</h3>
-
-<form action="exchange-convert.php" method="post">
-    <fieldset>
-
-
-<input type="number" id="quantity" placeholder="Quantity" name="quantity" min="1" required>
-
-
-
-<hr>
-<h3>FROM</h3>
-
-
-<!--UNITS-->
-<label>
-<input type="radio" name="symbol1" value="<?php echo($unittype); ?>" />
-<img src="placeholder.php?height=100&width=200&text=<?php echo($unittype); ?>&name=<?php echo($unitdescription); ?>&quantity=<?php echo($units); ?>&price=<?php echo("1"); ?>&backgroundcolor=<?php $color = colorize($unittype); echo($color); ?>&fontcolor=ffffff" alt="<?php echo($unittype); ?>" />
-</label>
-
-                                <?php
-
-                        if (empty($stocks)) {
-                            echo("<option value=''>No Assets Held</option>");
-                        } else 
-                        {
-                            foreach ($stocks as $stock) {
-                                $symbol = $stock["symbol"];
-                                $symbol = htmlspecialchars($symbol);
-                                $quantity = $stock["quantity"];
-                                $quantity = htmlspecialchars($quantity);
-                                $lockedStock = $stock["locked"];
-                                $price=$stock["askprice"];
-                                $lockedStock = htmlspecialchars($lockedStock);
-                                $color = colorize($symbol);
-                                $name = $stock["name"];
-                                //echo("<option value='" . $symbol . "'>  " . $symbol . " (" . $quantity . "/" . $lockedStock . ")</option>");
-                                if($quantity>0)
-                                {
-                                ?>
-                                  <label>
-                                    <input type="radio" name="symbol1" value="<?php echo($symbol); ?>" />
-                                      <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&name=<?php echo($name); ?>&price=<?php echo("1"); ?>&quantity=<?php echo($quantity); ?>&price=<?php echo($price); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>" />
-                                  </label>
-                                <?php
-                                }
-                            }
-                        }
-?>
-        <br>
-
-
-
-
-
-
-<hr>
-<h3>TO</h3>
-
-
-<!--UNITS-->
-<label>
-    <input type="radio" name="symbol2" value="<?php echo($unittype); ?>" />
-<img src="placeholder.php?height=100&width=200&text=<?php echo($unittype); ?>&name=<?php echo($unitdescription); ?>&backgroundcolor=<?php $color = colorize($unittype); echo($color); ?>&fontcolor=ffffff" alt="<?php echo($unittype); ?>" />
-</label>
-        <?php
-
-                        if (empty($assets)) {
-                            echo("<option value=' '>No Assets</option>");
-                        } else 
-                        {
-                            
-                            foreach ($assets as $asset) {
-                                $symbol = $asset["symbol"];
-                                $symbol = htmlspecialchars($symbol);
-                                $color = colorize($symbol);
-                                $name = htmlspecialchars($asset["name"]);
-
-                                //echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
-                                ?>
-                              <label>
-                                <input type="radio" name="symbol2" value="<?php echo($symbol); ?>" />
-                                  <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&name=<?php echo($name); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>" />
-                              </label>
-                            <?php
-                            }
-                        }
-                        ?>
-        <br>
-
-
-
-
-
-<hr>
-
-        <div style="font-size: xx-small; color:red;">
-            <?php $commission*=100; echo(number_format($commission, 2, '.', ',') . "% Commission"); ?>
-        </div>
-
-
-        <button type="submit" class="btn btn-primary">SUBMIT</button>
-
-        <br>
-        <br>
-
-
-    </fieldset>
-</form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -208,7 +84,7 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal">
+<button type="button" class="btn btn-danger btn" data-toggle="modal" data-target="#myModal">
     Rates
 </button>
 
@@ -276,9 +152,132 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 
 
+
+
+
+
+
+
+
+
+<h3>QUANTITY</h3>
+
+<form action="exchange-convert.php" method="post">
+    <fieldset>
+
+
+<input type="number" id="quantity" placeholder="Quantity" name="quantity" min="1" required>
+
+
+
+<hr>
+<h3>FROM</h3>
+
+
+<!--UNITS-->
+<label>
+<input type="radio" name="symbol1" value="<?php echo($unittype); ?>" />
+<img src="placeholder.php?height=100&width=200&text=<?php echo($unittype); ?>&name=<?php echo($unitdescription); ?>&quantity=<?php echo($units); ?>&price=<?php echo("1"); ?>&backgroundcolor=<?php $color = colorize($unittype); echo($color); ?>&fontcolor=ffffff" alt="<?php echo($unittype); ?>" />
+</label>
+
+                                <?php
+
+                        if (empty($stocks)) {
+                            echo("<option value=''>No Assets Held</option>");
+                        } else 
+                        {
+                            foreach ($stocks as $stock) {
+                                $symbol = $stock["symbol"];
+                                $symbol = htmlspecialchars($symbol);
+                                $quantity = $stock["quantity"];
+                                $quantity = htmlspecialchars($quantity);
+                                $lockedStock = $stock["locked"];
+                                $price=$stock["askprice"];
+                                $lockedStock = htmlspecialchars($lockedStock);
+                                $color = colorize($symbol);
+                                $name = $stock["name"];
+                                //echo("<option value='" . $symbol . "'>  " . $symbol . " (" . $quantity . "/" . $lockedStock . ")</option>");
+                                if($quantity>0)
+                                {
+                                ?>
+                                  <label>
+                                    <input type="radio" name="symbol1" value="<?php echo($symbol); ?>" />
+                                      <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&name=<?php echo($name); ?>&price=<?php echo("1"); ?>&quantity=<?php echo($quantity); ?>&price=<?php echo($price); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>" />
+                                  </label>
+                                <?php
+                                }
+                            }
+                        }
+?>
+        <br>
+
+
+
+
+
+
+<hr>
+<h3>TO</h3>
+
+
+
+        <?php
+
+                        if (empty($assets)) {
+                            echo("<option value=' '>No Assets</option>");
+                        } else 
+                        {
+                            
+                            foreach ($assets as $asset) {
+                                $symbol = $asset["symbol"];
+                                $symbol = htmlspecialchars($symbol);
+                                $color = colorize($symbol);
+                                $name = htmlspecialchars($asset["name"]);
+
+                                //echo("<option value='" . $symbol . "'>  " . $symbol . "</option>");
+                                ?>
+                              <label>
+                                <input type="radio" name="symbol2" value="<?php echo($symbol); ?>" />
+                                  <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&name=<?php echo($name); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>" />
+                              </label>
+                            <?php
+                            }
+                        }
+                        ?>
+        <br>
+
+
+
+
+
+<hr>
+
+        <div style="font-size: xx-small; color:red;">
+            Prices are dynamic and subject to change.<br>
+            <?php $commission*=100; echo(number_format($commission, 2, '.', ',') . "% Commission"); ?>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">SUBMIT</button>
+
+        <br>
+        <br>
+
+
+    </fieldset>
+</form>
+
+
+
+
+
+
+
+
+
+
 <a href="exchange-advance.php">
-<button type="button" class="btn btn-danger btn-xs">
-    Advanced
+<button type="button" class="btn btn-danger btn-xs">Advanced
 </button>
 </a>
 
