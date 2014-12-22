@@ -216,7 +216,11 @@ function ownership($symbol)
 ///////////////////////////////
 function getPrice($price)
 {
-    $price = $price/10000000;
+    require 'constants.php';
+
+    //$price = $price/(pow(10, $decimalplaces););
+    //$price = $price/(10**$decimalplaces);
+    $price = $price/1000;
 
     //setlocale(LC_MONETARY, 'en_US');
     //$price = money_format('%(#10n', $price) . "\n"; // ($        1,234.57)
@@ -224,9 +228,15 @@ function getPrice($price)
 }
 function setPrice($price)
 {
+    require 'constants.php';
+
     if (preg_match("/^([0-9.]+)$/", $price) == false) {apologize("You submitted an invalid price.");}
     if ($price<0){ apologize("Price must be positive!");} //if quantity is numeric
-    $price = $price*10000000;
+
+    //$price = $price*(pow(10, $decimalplaces););
+    //$price = $price*(10**$decimalplaces);
+    $price = $price*1000;
+
     $price=floor($price);
     //if (!is_int($price)) { apologize("Price must be numeric!");} //if quantity is numeric
     return($price);

@@ -453,7 +453,9 @@ function drawChart()
                 <?php echo(htmlspecialchars($asset["name"])) ?> (<?php echo(htmlspecialchars($asset["symbol"])) ?>)<br>
                 <?php echo(htmlspecialchars($asset["url"])) ?><br>
                 Market Capitalization: <?php echo($unitsymbol . number_format($asset["marketcap"], $decimalplaces, ".", ",")) ?><br>
-                Description: <?php echo(htmlspecialchars(ucfirst($asset["description"]))) ?>
+
+                <?php //NO htmlspecialchars IN ORDER TO DISPLAY CURRENCY SIGN ?>
+                Description: <?php echo(ucfirst($asset["description"])) ?>
             </td>
         </tr>
         <tr >
@@ -524,7 +526,12 @@ function drawChart()
         <tbody>
         <tr>
             <td><?php echo(number_format($asset["userportfolio"], 0, ".", ",")); ?></td>
-            <td><?php echo(number_format($asset["userlocked"], 0, ".", ",")); ?></td>
+
+
+            <td><span class='nobutton'><form method='post' action='orders.php'><button type='submit' name='symbol' value='<?php echo($asset['symbol']); ?>'><?php echo(number_format($asset["userlocked"], 0, ".", ",")); ?></button></form></span></td>
+            <?php /* <td><?php echo(number_format($asset["userlocked"], 0, ".", ",")); ?></td> */ ?>
+
+
             <td><?php echo(number_format(($asset["userlocked"]+$asset["userportfolio"]), 0, ".", ",")); ?> (<?php echo(number_format($asset["control"], 4, ".","")); ?>%)</td>
         </tr>
 

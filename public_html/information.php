@@ -67,7 +67,7 @@ $asset["askstotal"] = $asksTotal[0]['asktotal'];
         //if ($asksTotal == 0){$asksTotal = "No Orders";}
 
         //TOTAL SHARES PUBLIC (ON ORDERBOOK + ON PORTFOLIO)
-$asset["public"] = $asset["askstotal"]+$asset["totalportfolio"];
+$asset["public"] = $asset["askstotal"]+$asset["totalportfolio"]; //asktotal will not show market ask orders, might cause issues...
 
 //TRADES
         $timeframe = '7d';

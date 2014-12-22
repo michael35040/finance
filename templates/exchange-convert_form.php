@@ -45,12 +45,14 @@ function colorize($symbol)
     if($symbol == 'CNY'){$color = 'FF3300';} //red
     if($symbol == 'EUR'){$color = '000099';} //official euro blue
     if($symbol == 'GBP'){$color = '3355dd';} //blue
-    if($symbol == 'INR'){$color = '996633';} //brown 996633 663300
+    if($symbol == 'INR'){$color = 'FF0066';} //brown 996633 663300
     if($symbol == 'JPY'){$color = 'FF9999';} //white
     if($symbol == 'USD'){$color = '85bb65';} //green 85bb65 00ff00 336600
     if($symbol == 'XBT'){$color = 'ffa500';} //orange ffa500
     if($symbol == 'XAG'){$color = 'cccccc';} //gray
     if($symbol == 'XAU'){$color = 'ffd700';} //gold
+    if($symbol == 'XCU'){$color = 'B87333';} //copper B87333
+
 
     return($color);
 /*CONSTANTS
@@ -67,12 +69,12 @@ XAU - Gold Ounce AU
 XAG - Silver Ounce AG
 XBT - Bitcoin NA
 USD - US Dollar (United States) $
-EUR - Euro (Euro Member Countries) €
-GBP - British Pound (United Kingdom) £
-INR - Indian Rupee (India) ₹
+EUR - Euro (Euro Member Countries) € &euro;
+GBP - British Pound (United Kingdom) £ &#x20A4; &pound;
+INR - Indian Rupee (India) ₹ &#x20B9;
 CHF - Swiss Franc (Switzerland) NA
-JPY - Japanese Yen (Japan) ¥
-CNY - Chinese Yuan Renminbi (China) ¥
+JPY - Japanese Yen (Japan) ¥ &#xa5; &yen;
+CNY - Chinese Yuan Renminbi (China) ¥ &yen;
 */
 }
 

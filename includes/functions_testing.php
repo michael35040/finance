@@ -186,6 +186,12 @@ function test()
     query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE id=1", $units);
 
 
+
+
+
+
+
+
     //BITCOIN $350/31
     if($unittype!='XBT')
     {
@@ -198,16 +204,16 @@ function test()
     // $ Dollar
     if($unittype!='USD')
     {
-        publicOffering('USD', 'Dollar (United States)', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Dollar', 10, 'Each unit represents $1 Dollar; USD - U.S. Dollar (United States)');
+        publicOffering('USD', 'U.S. Dollar', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Dollar', 10, 'Each unit represents $0.01 Dollar; USD - U.S. Dollar (United States)');
         placeOrder('USD', 'limit', 'b', 350, 34, 1);
         placeOrder('USD', 'limit', 'a', 400, 36, 1);
     }
 
 
     //GOLD $1200/31
-    publicOffering('XAU', 'Gold (Au)', 1, 50000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Gold', 10, 'Each unit represents 1 gram of 99.9% fine Gold. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');
-    placeOrder('XAU', 'limit', 'b', 1000, 34, 1);
-    placeOrder('XAU', 'limit', 'a', 50000, 36, 1);
+    publicOffering('XAU', 'Gold (Au)', 1, 500, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Gold', 10, 'Each unit represents 1 gram of 99.9% fine Gold. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');
+    placeOrder('XAU', 'limit', 'b', 100, 34, 1);
+    placeOrder('XAU', 'limit', 'a', 500, 36, 1);
 
     //SILVER $17/31
     publicOffering('XAG', 'Silver (Ag)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Silver', 10, 'Each unit represents 1 gram of 99.9% fine Silver. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');
@@ -220,27 +226,27 @@ function test()
     placeOrder('XCU', 'limit', 'a', 1000000, 4, 1);
 
     // € Euro
-    publicOffering('EUR', 'Euro', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Euro', 10, 'Each unit represents €1 Euro; EUR - Euro (Euro Member Countries)');
+    publicOffering('EUR', 'Euro', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Euro', 10, 'Each unit represents &euro; 1 Euro. EUR - Euro (Euro Member Countries)');
     placeOrder('EUR', 'limit', 'b', 1000, 60, 1);
     placeOrder('EUR', 'limit', 'a', 50000, 65, 1);
 
     // £ Pound
-    publicOffering('GBP', 'British Pound', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Pound_(currency)', 10, 'Each unit represents £1 Pound; GBP - British Pound Sterling (United Kingdom)');
+    publicOffering('GBP', 'British Pound', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Pound_(currency)', 10, 'Each unit represents &pound; 1 Pound. GBP - British Pound Sterling (United Kingdom)');
     placeOrder('GBP', 'limit', 'b', 1000, 10, 1);
     placeOrder('GBP', 'limit', 'a', 50000, 13, 1);
 
     // ₹ Rupee
-    publicOffering('INR', 'Indian Rupee', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Rupee', 10, 'Each unit represents ₹1 Rupee; INR - Indian Rupee (India)');
+    publicOffering('INR', 'Indian Rupee', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Rupee', 10, 'Each unit represents &#x20B9; 1 Rupee. INR - Indian Rupee (India)');
     placeOrder('INR', 'limit', 'b', 100000, 1.5, 1);
     placeOrder('INR', 'limit', 'a', 1000000, 1.9, 1);
 
     // ¥ Yuan
-    publicOffering('CNY', 'Chinese Yuan Renminbi', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yuan', 10, 'Each unit represents ¥1 Yuan; CNY - Chinese Yuan Renminbi (China)');
+    publicOffering('CNY', 'Chinese Yuan Renminbi', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yuan', 10, 'Each unit represents &yen; 1 Yuan. CNY - Chinese Yuan Renminbi (China)');
     placeOrder('CNY', 'limit', 'b', 10000, 25, 1);
     placeOrder('CNY', 'limit', 'a', 100000, 30, 1);
 
     // ¥ Yen
-    publicOffering('JPY', 'Japanese Yen', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yen', 10, 'Each unit represents ¥1 Yuan; JPY - Japanese Yen (Japan)');
+    publicOffering('JPY', 'Japanese Yen', 1, 1000000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yen', 10, 'Each unit represents &yen; 1 Yen. JPY - Japanese Yen (Japan)');
     placeOrder('JPY', 'limit', 'b', 10000, 0.3, 1);
     placeOrder('JPY', 'limit', 'a', 100000, 0.4, 1);
 
