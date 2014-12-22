@@ -613,8 +613,8 @@ function drawChart()
                                 ?>
                             <tr>
                                 <td><?php echo(date("m/d", strtotime($trade["date"]))); ?></td>
-                                <td><?php echo($unitsymbol . number_format(getPrice($trade["price"]), $decimalplaces, ".", "")); ?></td>
-                                <td><?php echo(number_format(($trade["volume"]), 0, ".", "")); ?></td>
+                                <td><?php echo($unitsymbol . number_format(getPrice($trade["price"]), $decimalplaces, ".", ",")); ?></td>
+                                <td><?php echo(number_format(($trade["volume"]), 0, ".", ",")); ?></td>
                             </tr>
                             <?php
                             }

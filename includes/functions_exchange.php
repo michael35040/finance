@@ -605,25 +605,25 @@ function orderbook($symbol)
                         query("ROLLBACK");
                         query("SET AUTOCOMMIT=1");
                         cancelOrder($topBidUID);
-                        throw new Exception("Buyer does not have enough funds. Buyers orders deleted");
+                        throw new Exception("Unable to make the order any smaller");
                     }
                     else{ //$tradeSize > 1
                         //CALCULATE WHAT THEY CAN AFFORD BASED ON ASKPRICE ($tradeSize = $bidUnits/$AskPrice)
                         $oldTradeSize = $tradeSize; //keep for history
-                        $newTradeSize = floor($orderbookUnits / $tradePrice);
+                        $newTradeSize = floor($orderbookUnits / ($tradePrice + ($tradePrice*$commission)));
                         //ERROR CHECK TO SEE IF NEW SIZE IS BIGGER THAN OLD ONE. THIS PREVENTS IT FROM BEING LARGER THAN THE ASK SIZE
                         if ($newTradeSize > $oldTradeSize) {
                             query("ROLLBACK");
                             query("SET AUTOCOMMIT=1");
                             cancelOrder($topBidUID);
-                            throw new Exception("Buyer does not have enough funds. Buyers orders deleted");
+                            throw new Exception("New trade size is larger than old trade size");
                         }
                         //ERROR CHECK TO SEE IF LESS THAN 1
                         if ($newTradeSize < 1) {
                             query("ROLLBACK");
                             query("SET AUTOCOMMIT=1");
                             cancelOrder($topBidUID);
-                            throw new Exception("Buyer does not have enough funds. Buyers orders deleted");
+                            throw new Exception("New trade size is less than 1");
                         }
                         //CALCULATE NEW TRADEAMOUNT
                         $tradeSize = $newTradeSize;
@@ -634,8 +634,11 @@ function orderbook($symbol)
 
 
                         //CHECK AGAIN WITH NEW AMOUNT
-                        if ($orderbookUnits < ($tradeAmount+$commissionAmount))
-                            {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUID); throw new Exception("Buyer does not have enough funds. Buyers orders deleted");}
+                        if ($orderbookUnits < ($tradeAmount+$commissionAmount)) {
+                            query("ROLLBACK");
+                            query("SET AUTOCOMMIT=1");
+                            cancelOrder($topBidUID);
+                            throw new Exception("Buyer does not have enough funds. Buyers orders deleted (1)");}
 
                         //INSERT INTO HISTORY TO ACCOUNT FOR DIFFERENCE (updated bid order ID, adjust size based on value...)
                         if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $topBidUser, $topBidUID, 'QTY CHANGE', $symbol, $newTradeSize, $tradePrice, $tradeAmount) === false) {
@@ -649,7 +652,10 @@ function orderbook($symbol)
                 //IF LIMIT
                 else
                 { //($tradeType='limit') OR $topAskType='market'
-                    query("ROLLBACK"); query("SET AUTOCOMMIT=1"); cancelOrder($topBidUID); throw new Exception("Buyer does not have enough funds. Buyers orders deleted");
+                    query("ROLLBACK");
+                    query("SET AUTOCOMMIT=1");
+                    cancelOrder($topBidUID);
+                    throw new Exception("Buyer does not have enough funds. Buyers orders deleted (2)");
                 }
 
             }
