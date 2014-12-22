@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if(isset($_POST['symbol'])){ $symbol=$_POST['symbol'];}
     else{apologize("Unknown symbol!"); exit();}
 
-    $title = $symbol . " (Orderbook)";
+    $title = $symbol . " (Order Book)";
     $bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid DESC", $symbol, 'b');
     $asks =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit') ORDER BY price ASC, uid ASC", $symbol, 'a');
 

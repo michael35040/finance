@@ -5,6 +5,34 @@ header('Content-Type: image/png');
 require("../includes/config.php");
 //apologize(var_dump(get_defined_vars()));
 
+function adjustColor($color_code,$percentage_adjuster = 0) {
+    $percentage_adjuster = round($percentage_adjuster/100,2);
+    if(is_array($color_code)) {
+        $r = $color_code["r"] - (round($color_code["r"])*$percentage_adjuster);
+        $g = $color_code["g"] - (round($color_code["g"])*$percentage_adjuster);
+        $b = $color_code["b"] - (round($color_code["b"])*$percentage_adjuster);
+
+        return array("r"=> round(max(0,min(255,$r))),
+            "g"=> round(max(0,min(255,$g))),
+            "b"=> round(max(0,min(255,$b))));
+    }
+    else
+    { //if(preg_match("/#/",$color_code))
+        $hex = str_replace("#","",$color_code);
+        $r = (strlen($hex) == 3)? hexdec(substr($hex,0,1).substr($hex,0,1)):hexdec(substr($hex,0,2));
+        $g = (strlen($hex) == 3)? hexdec(substr($hex,1,1).substr($hex,1,1)):hexdec(substr($hex,2,2));
+        $b = (strlen($hex) == 3)? hexdec(substr($hex,2,1).substr($hex,2,1)):hexdec(substr($hex,4,2));
+        $r = round($r - ($r*$percentage_adjuster));
+        $g = round($g - ($g*$percentage_adjuster));
+        $b = round($b - ($b*$percentage_adjuster));
+
+        return str_pad(dechex( max(0,min(255,$r)) ),2,"0",STR_PAD_LEFT)
+        .str_pad(dechex( max(0,min(255,$g)) ),2,"0",STR_PAD_LEFT)
+        .str_pad(dechex( max(0,min(255,$b)) ),2,"0",STR_PAD_LEFT);
+
+    }
+}
+
 function adjustBrightness($hex, $steps) {
     // Steps should be between -255 and 255. Negative = darker, positive = lighter
     $steps = max(-255, min(255, $steps));
@@ -82,8 +110,8 @@ imagefilledrectangle($im, 0, 0, ($width-1), ($height-1), $backgroundcolor);
 
 //SYMBOL TEXT
 $size = 85;
-$fontcolor2 = adjustBrightness($backgroundcolor, 0);
-
+//$fontcolor2 = adjustBrightness($backgroundcolor, -1);
+$fontcolor2 = adjustColor($backgroundcolor,1); //-5 for lighter, 5 for darker
 $bbox = imagettfbbox($size, $rotation, $font, $text);
 $x = $bbox[0] + (imagesx($im) / 2) - ($bbox[4] / 2) - 5; //horizontal
 $y = $bbox[1] + (imagesy($im) / 2) - ($bbox[5] / 2) - 5; //vertical

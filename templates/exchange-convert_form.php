@@ -26,9 +26,11 @@
     }
     label > input:checked + img{ /* (CHECKED) IMAGE STYLES */
       border:5px solid #000; /*f00*/
+        box-shadow:0px 12px 22px 1px #333;
+
     }  
 /*ABOVE FOR PICTURE RADIO*/
-    
+
   </style>
   
 
@@ -39,11 +41,11 @@
 <?php
 function colorize($symbol)
 {
-    $color = '888888';
+    $color = '404040';
     if($symbol == 'CNY'){$color = 'FF3300';} //red
     if($symbol == 'EUR'){$color = '000099';} //official euro blue
     if($symbol == 'GBP'){$color = '3355dd';} //blue
-    if($symbol == 'INR'){$color = '663300';} //brown
+    if($symbol == 'INR'){$color = '996633';} //brown 996633 663300
     if($symbol == 'JPY'){$color = 'FF9999';} //white
     if($symbol == 'USD'){$color = '85bb65';} //green 85bb65 00ff00 336600
     if($symbol == 'XBT'){$color = 'ffa500';} //orange ffa500
@@ -249,15 +251,20 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 <hr>
 
-        <div style="font-size: xx-small; color:red;">
-            Prices are dynamic and subject to change.<br>
-            <?php $commission*=100; echo(number_format($commission, 2, '.', ',') . "% Commission"); ?>
-        </div>
 
         <!-- Button trigger modal -->
-        <button type="submit" class="btn btn-primary">SUBMIT</button>
+        <button type="submit" class="btn btn-primary btn-lg">SUBMIT</button>
+
 
         <br>
+        <br>
+
+        <div style="font-size: x-small; color:red;">
+            <?php $commission*=100; echo(number_format($commission, 2, '.', ',') . "% Commission"); ?>
+            Prices are dynamic and subject to change.<br>
+            Remainder of transactions converted to <?php echo($unitdescription); ?>.<br>
+        </div>
+
         <br>
 
 

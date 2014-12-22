@@ -128,6 +128,7 @@ function conversionRate($symbol1, $symbol2)
 {
     require 'constants.php';
 
+
     if($symbol1==$unittype && $symbol2==$unittype){
         return(1);
     }
@@ -1312,11 +1313,14 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
 {    //$order = placeOrder($symbol, $type, $side, $quantity, $price, $id);
     //$id=$_SESSION['id'];
     require 'constants.php';
-    
+
+    if(!is_numeric($amount)){apologize("Invalid Quantity");}
+
     $symbol1 = strtoupper($symbol1); //cast to UpperCase
     $symbol2 = strtoupper($symbol2); //cast to UpperCase
 
-    if($symbol1 == $symbol2){throw new Exception("Same assets.");} 
+    if($symbol1 == $symbol2){throw new Exception("Please choose different assets to convert.");}
+
     //BUYING
     if($symbol1===$unittype){
         // echo("BUYING <br>");

@@ -200,7 +200,7 @@ function drawChart()
     var options3 =
     {
         title: '<?php  echo($symbol); ?> - LAST 100',
-        hAxis: {title: '',  titleTextStyle: {color: '#333'}},
+        hAxis: {title: '', textPosition: 'none',  titleTextStyle: {color: '#333'}},
         vAxis: {title: '', minValue: 0},
         colors:['green','gray'],
         legend: {position: 'none', textStyle: {color: 'blue', fontSize: 16}}
@@ -261,9 +261,9 @@ function drawChart()
     ]);
     var options5 =
     {
-        title: '<?php echo($symbol); ?> - TOP OF ORDERBOOK',
+        title: '<?php echo($symbol); ?> - TOP OF ORDER BOOK',
         legend: {position: 'none', textStyle: {color: 'blue', fontSize: 16}},
-        hAxis: {title: 'Price',  titleTextStyle: {color: '#333'}},
+        hAxis: {title: 'Price', titleTextStyle: {color: '#333'}},
         vAxis: {title: '', minValue: 0, isStacked: true}
         // height: 500,
 
@@ -390,8 +390,14 @@ function drawChart()
         title: '<?php echo($symbol); ?> - MARKET DEPTH',
         legend: {position: 'none', textStyle: {color: 'blue', fontSize: 16}},
 
-        hAxis: {title: '',  titleTextStyle: {color: '#333'}},
-        vAxis: {title: '', minValue: 0, isStacked: true}
+        hAxis: {
+            title: '',
+            textPosition: 'none',
+            titleTextStyle: {color: '#333'}},
+        vAxis: {
+            title: '',
+            minValue: 0,
+            isStacked: true}
         // height: 500,
 
     };
@@ -709,7 +715,7 @@ function drawChart()
 <div class="panel panel-primary">
 <!-- Default panel contents -->
 <div class="panel-heading">
-    <form method="post" action="information-orderbook.php"><span class="nobutton"><button type="submit" name="symbol" value="<?php echo($asset["symbol"]); ?>">ORDERBOOK</button></span></form>
+    <form method="post" action="information-orderbook.php"><span class="nobutton"><button type="submit" name="symbol" value="<?php echo($asset["symbol"]); ?>">ORDER BOOK</button></span></form>
 </div>
 <table class="table">
 <?php

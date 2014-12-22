@@ -11,12 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
     if(empty($_POST["symbol1"]) || empty($_POST["symbol2"])){apologize("Please fill out all required fields. Asset not selected.");}
     if(empty($_POST["quantity"])){apologize("Please fill out all required fields. Amount not selected.");}
-    if(!is_numeric($_POST["quantity"])){apologize("Invalid Quantity");}
 
     $symbol1 = $_POST["symbol1"];
     $symbol2 = $_POST["symbol2"];
     $amount = (int)$_POST["quantity"];
-
 
     try {convertAsset($id, $symbol1, $symbol2, $amount);}
     catch(Exception $e) {apologize($e->getMessage());}
