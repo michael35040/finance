@@ -134,7 +134,7 @@ if($quantity>0)
     //$font = 'fonts/engraved.ttf';
     $size = 16;
     $quantity = strval(number_format($quantity, 0, ".", ","));
-    $quantity = ($quantity . ' qty');
+    $quantity = ($quantity . 'x');
     $bbox = imagettfbbox($size, $rotation, $font, $quantity);
     $x = $bbox[0] + (imagesx($im) / 2) - ($bbox[4] / 2) - 5; //horizontal
     $y = $bbox[1] + (imagesy($im) / 2) - ($bbox[5] / 2) - 35; //vertical
