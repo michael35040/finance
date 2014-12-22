@@ -11,12 +11,12 @@ $adminid = 1;
 
 //header & footer
 $sitename = 'Pulwar'; //leave a space afterwards
-    
+
 //index & portfolio
-$unittype = "USD";
-$unitdescription = "U.S. Dollar";
-$unitdescriptionshort = "Dollar";
-$unitsymbol = "$";
+$unittype = "XBT"; //USD
+$unitdescription = "Bitcoin Bits"; //U.S. Dollar
+$unitdescriptionshort = "Bits"; //Dollar
+$unitsymbol = "b"; //$
 $decimalplaces = 2;
 //grams  &cent;  &micro; &euro; &pound; &yen; &sect;
 
