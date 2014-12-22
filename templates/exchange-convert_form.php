@@ -87,61 +87,6 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Conversion Rates</h4>
-            </div>
-            <div class="modal-body">
-                <p>Rates are based on top ask. Prices are dynamic.</p>
-
-                <table class="table table-condensed  table-bordered" style="font-size:8px;">
-                    <?php
-                    $assetcount = count($assets);
-                    ?>
-                    <thead>
-                    <tr><td></td>
-                        <?php     //apologize(var_dump(get_defined_vars()));
-
-                        $a1=0;
-
-                        foreach($assets as $asset){
-                            $a1++;
-                            echo('<td>' . $asset["symbol"] . '</td>');
-                            $symbolRow[$a1] = $asset["symbol"];
-                        }
-
-
-
-                        ?>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    foreach ($assets as $asset)
-                    {
-                        echo('<tr><td>' . $asset["symbol"] . '</td>');
-                        $i=0;
-                        while($assetcount>$i){$i++; echo('<td>' . number_format(conversionRate($asset["symbol"],$symbolRow[$i]),2,".",",") . '</td>');}
-                        echo('</tr>');
-                    } ?>
-
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
 
 
 
@@ -279,7 +224,8 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 
 
-<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">Rates</button>
+<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#rates">Rates</button>
+<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#cards">Cards</button>
 <a href="exchange-advance.php">
 <button type="button" class="btn btn-danger btn-xs">Advanced
 </button>
@@ -289,6 +235,97 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 
 
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="rates" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Conversion Rates</h4>
+            </div>
+            <div class="modal-body">
+                <p>Rates are based on top ask. Prices are dynamic.</p>
+
+                <table class="table table-condensed  table-bordered" style="font-size:8px;">
+                    <?php
+                    $assetcount = count($assets);
+                    ?>
+                    <thead>
+                    <tr><td></td>
+                        <?php     //apologize(var_dump(get_defined_vars()));
+
+                        $a1=0;
+
+                        foreach($assets as $asset){
+                            $a1++;
+                            echo('<td>' . $asset["symbol"] . '</td>');
+                            $symbolRow[$a1] = $asset["symbol"];
+                        }
+
+
+
+                        ?>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    foreach ($assets as $asset)
+                    {
+                        echo('<tr><td>' . $asset["symbol"] . '</td>');
+                        $i=0;
+                        while($assetcount>$i){$i++; echo('<td>' . number_format(conversionRate($asset["symbol"],$symbolRow[$i]),2,".",",") . '</td>');}
+                        echo('</tr>');
+                    } ?>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="cards" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Card Layout</h4>
+            </div>
+            <div class="modal-body">
+
+                <img src="placeholder.php?height=100&width=200&text=ASSET&name=NAME&quantity=QUANTITY&price=PRICE&backgroundcolor=888888&fontcolor=ffffff" alt="CARD" />
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
