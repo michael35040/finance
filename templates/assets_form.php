@@ -132,7 +132,7 @@ foreach ($assets as $asset) // for each of user's stocks
             echo('<tr class="accordian-body collapse" id="demo' . $i . '"   >');
             echo('<td colspan="1">&nbsp;&nbsp;' . htmlspecialchars($asset["name"]) . '
                 <br>&nbsp;&nbsp;' . htmlspecialchars($asset["url"]) . '
-                <br>&nbsp;&nbsp;<form method="post" action="information.php"><span class="nobutton"><button type="submit" name="symbol" value="' . $asset["symbol"] . '"><span class="glyphicon glyphicon glyphicon-info-sign"> Information</span></button></span></form></td>');
+                <br>&nbsp;&nbsp;<form method="post" action="information.php"><span class="nobutton"><button class="btn btn-link" type="submit" name="symbol" value="' . $asset["symbol"] . '"><span class="glyphicon glyphicon glyphicon-info-sign"> Information</span></button></span></form></td>');
             echo('<td >' . $unitsymbol . (number_format($asset["bid"], $decimalplaces, ".", ",")) . ' - Bid
                 <br>' . $unitsymbol . (number_format($asset["ask"], $decimalplaces, ".", ",")) . ' - Ask
                 <br>' . $unitsymbol . (number_format($asset["avgprice"], $decimalplaces, ".", ",")) . ' - Avg. Price (' . $timeframe . ')</td>');

@@ -61,6 +61,9 @@ if(!ctype_alnum($rotation))         {exit;apologize("Invalid Format!8");}
 
 // Create the image
 $im = imagecreatetruecolor($width, $height);
+//$im     = imagecreatefrompng("images/button1.png");
+//imagecreatefromjpeg imagecreatefromgif imagecreatefrompng
+
 
 //requires 6 chars
 list($r,$g,$b) = array_map('hexdec',str_split($fontcolor,2));

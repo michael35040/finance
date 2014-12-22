@@ -1,5 +1,19 @@
 <style>
-    <style>
+    .table > thead > tr > td.active,
+    .table > tbody > tr > td.active,
+    .table > tfoot > tr > td.active,
+    .table > thead > tr > th.active,
+    .table > tbody > tr > th.active,
+    .table > tfoot > tr > th.active,
+    .table > thead > tr.active > td,
+    .table > tbody > tr.active > td,
+    .table > tfoot > tr.active > td,
+    .table > thead > tr.active > th,
+    .table > tbody > tr.active > th,
+    .table > tfoot > tr.active > th {
+        background-color: #f5f5f5; /*ffd700 gray #f5f5f5*/
+    }
+
     .hiddenRow {
         padding: 0 !important;
     }
@@ -418,21 +432,25 @@ function drawChart()
 
 
 
-<div class="panel panel-success"> <!--success info primary danger warning -->
+    <!--<div class="panel panel-success">--> <!--success info primary danger warning -->
     <!-- Default panel contents -->
-    <div class="panel-heading" style="font-size:20px; text-align: center;padding:5px;color: black;">INFORMATION</div>
+    <!--<div class="panel-heading" style="font-size:20px; text-align: center;padding:5px;color: black;">INFORMATION</div>-->
     <table class="table">
         <thead>
+        <tr  class="success">
+            <td colspan="3" style="font-size:20px; text-align: center;">INFORMATION</td>
+        </tr>
         </thead>
         <tbody>
-        <tr >
-            <td>
-                Symbol: <?php echo(htmlspecialchars($asset["symbol"])) ?><br>
-                Name: <?php echo(htmlspecialchars($asset["name"])) ?><br>
-                URL: <?php echo(htmlspecialchars($asset["url"])) ?><br>
-                Market Cap: <?php echo($unitsymbol . number_format($asset["marketcap"], $decimalplaces, ".", ",")) ?>
-
+        <tr>
+            <td colspan="3">
+                <?php echo(htmlspecialchars($asset["name"])) ?> (<?php echo(htmlspecialchars($asset["symbol"])) ?>)<br>
+                <?php echo(htmlspecialchars($asset["url"])) ?><br>
+                Market Capitalization: <?php echo($unitsymbol . number_format($asset["marketcap"], $decimalplaces, ".", ",")) ?><br>
+                Description: <?php echo(htmlspecialchars(ucfirst($asset["description"]))) ?>
             </td>
+        </tr>
+        <tr >
             <td >
                 <?php echo($unitsymbol . number_format($asset["price"], $decimalplaces, ".", ",")) ?> - Last<br>
                 <?php echo($unitsymbol . number_format($bidsPrice, $decimalplaces, ".", ",")) ?> - Bid<br>
@@ -455,12 +473,10 @@ function drawChart()
                 ?>
             </td>
         </tr>
-        <tr>
-            <td colspan="4">Description: <?php echo(htmlspecialchars(ucfirst($asset["description"]))) ?></td>
-        </tr>
+
         </tbody>
     </table>
-</div><!--panel-primary-->
+    <!--</div>--><!--panel-primary-->
 
 
 
@@ -497,18 +513,54 @@ function drawChart()
             <td>Available</td>
             <td>Orderbook</td>
             <td>Total</td>
-            <td>Control</td>
-            <td>Value</td>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td><?php echo(number_format($asset["userportfolio"], 0, ".", ",")) ?></td>
-            <td><?php echo(number_format($asset["userlocked"], 0, ".", ",")) ?></td>
-            <td><?php echo(number_format(($asset["userlocked"]+$asset["userportfolio"]), 0, ".", ",")) ?></td>
-            <td><?php echo(number_format($asset["control"], 4, ".","")) ?>%</td>
-            <td><?php echo($unitsymbol . number_format((($asset["userlocked"]+$asset["userportfolio"])*$asset["price"]), $decimalplaces, ".", ",")) ?></td>
+            <td><?php echo(number_format($asset["userportfolio"], 0, ".", ",")); ?></td>
+            <td><?php echo(number_format($asset["userlocked"], 0, ".", ",")); ?></td>
+            <td><?php echo(number_format(($asset["userlocked"]+$asset["userportfolio"]), 0, ".", ",")); ?> (<?php echo(number_format($asset["control"], 4, ".","")); ?>%)</td>
         </tr>
+
+
+
+
+        <tr class="active">
+            <td>Purchase</td>
+            <td>Loss/Gain</td>
+            <td>Market Value</td>
+        </tr>
+        <tr>
+            <td><?php echo($unitsymbol . number_format($asset["purchaseprice"], $decimalplaces, ".", ",")); ?></td>
+            <td>
+
+                <?php
+                $marketValue = (($asset["userlocked"]+$asset["userportfolio"])*$asset["price"]);
+                $pricechange = ($marketValue-$asset["purchaseprice"]);
+                if ($asset["purchaseprice"] > 0) {
+                    $percentchange = 100 * (($marketValue / $asset["purchaseprice"]) - 1); // total/purchase
+                } else {
+                    $percentchange = 0;
+                }
+
+                //ARROWS START
+                if ($asset["purchaseprice"] < $marketValue) {
+                    echo("<font color='#00FF00'>&#x25B2;</font>");
+                } //money is up
+                elseif ($asset["purchaseprice"] > $marketValue) {
+                    echo("<font color='#FF0000'>&#x25BC;</font>");
+                }  //money is down
+                else {
+                    echo("&#x25C4;");  //eft:[&#x25C4;]   right: [&#x25BA;]
+                } //even left and right arrow
+                //ARROWS END
+                ?>
+
+                <?php echo($unitsymbol . number_format($pricechange, $decimalplaces, ".", ",")); ?>
+            </td>
+            <td><?php echo($unitsymbol . number_format($marketValue, $decimalplaces, ".", ",")); ?></td>
+        </tr>
+
         </tbody>
     </table>
 </div><!--panel-primary your account-->
@@ -924,49 +976,49 @@ else{ ?>
             <td><?php echo(number_format($dash["ordersday1"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["tradesday1"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["volumeday1"], 0, '.', ',')); ?></td>
-            <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday1"]), $decimalplaces, '.', ',')); ?></td>
+            <td><?php echo($unitsymbol . number_format(($dash["valueday1"]), $decimalplaces, '.', ',')); ?></td>
         </tr>
         <tr>
             <td>24-48h</td>
             <td><?php echo(number_format($dash["ordersday2"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["tradesday2"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["volumeday2"], 0, '.', ',')); ?></td>
-            <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday2"]), $decimalplaces, '.', ',')); ?></td>
+            <td><?php echo($unitsymbol . number_format(($dash["valueday2"]), $decimalplaces, '.', ',')); ?></td>
         </tr>
         <tr>
             <td>48-72h</td>
             <td><?php echo(number_format($dash["ordersday3"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["tradesday3"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["volumeday3"], 0, '.', ',')); ?></td>
-            <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday3"]), $decimalplaces, '.', ',')); ?></td>
+            <td><?php echo($unitsymbol . number_format(($dash["valueday3"]), $decimalplaces, '.', ',')); ?></td>
         </tr>
         <tr>
             <td>72-96h</td>
             <td><?php echo(number_format($dash["ordersday4"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["tradesday4"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["volumeday4"], 0, '.', ',')); ?></td>
-            <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday4"]), $decimalplaces, '.', ',')); ?></td>
+            <td><?php echo($unitsymbol . number_format(($dash["valueday4"]), $decimalplaces, '.', ',')); ?></td>
         </tr>
         <tr>
             <td>96-120h</td>
             <td><?php echo(number_format($dash["ordersday5"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["tradesday5"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["volumeday5"], 0, '.', ',')); ?></td>
-            <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday5"]), $decimalplaces, '.', ',')); ?></td>
+            <td><?php echo($unitsymbol . number_format(($dash["valueday5"]), $decimalplaces, '.', ',')); ?></td>
         </tr>
         <tr>
             <td>120-144h</td>
             <td><?php echo(number_format($dash["ordersday6"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["tradesday6"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["volumeday6"], 0, '.', ',')); ?></td>
-            <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday6"]), $decimalplaces, '.', ',')); ?></td>
+            <td><?php echo($unitsymbol . number_format(($dash["valueday6"]), $decimalplaces, '.', ',')); ?></td>
         </tr>
         <tr>
             <td>144-168h</td>
             <td><?php echo(number_format($dash["ordersday7"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["tradesday7"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["volumeday7"], 0, '.', ',')); ?></td>
-            <td><?php echo($unitsymbol . number_format(getPrice($dash["valueday7"]), $decimalplaces, '.', ',')); ?></td>
+            <td><?php echo($unitsymbol . number_format(($dash["valueday7"]), $decimalplaces, '.', ',')); ?></td>
         </tr>
 
         <tr class="active">
@@ -974,7 +1026,7 @@ else{ ?>
             <td><?php echo(number_format($dash["ordersweek"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["tradesweek"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["volumeweek"], 0, '.', ',')); ?></td>
-            <td><?php echo($unitsymbol . number_format(getPrice($dash["valueweek"]), $decimalplaces, '.', ',')); ?></td>
+            <td><?php echo($unitsymbol . number_format(($dash["valueweek"]), $decimalplaces, '.', ',')); ?></td>
 
         </tr>
         <tr class="active">
@@ -982,7 +1034,7 @@ else{ ?>
             <td><?php echo(number_format($dash["ordersmonth"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["tradesmonth"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["volumemonth"], 0, '.', ',')); ?></td>
-            <td><?php echo($unitsymbol . number_format(getPrice($dash["valuemonth"]), $decimalplaces, '.', ',')); ?></td>
+            <td><?php echo($unitsymbol . number_format(($dash["valuemonth"]), $decimalplaces, '.', ',')); ?></td>
 
         </tr>
         <tr class="active">
@@ -990,7 +1042,7 @@ else{ ?>
             <td><?php echo(number_format($dash["orderstotal"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["tradestotal"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format($dash["volumetotal"], 0, '.', ',')); ?></td>
-            <td><?php echo($unitsymbol . number_format(getPrice($dash["valuetotal"]), $decimalplaces, '.', ',')); ?></td>
+            <td><?php echo($unitsymbol . number_format(($dash["valuetotal"]), $decimalplaces, '.', ',')); ?></td>
 
         </tr>
     </table>

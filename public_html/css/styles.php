@@ -13,6 +13,45 @@ a:visited {color:black;}  /* visited link */
 a:hover {color:black;}  /* mouse over link */
 a:active {color:black;}  /* selected link */
 
+
+
+
+
+
+
+
+.table > thead > tr > td.success,
+.table > tbody > tr > td.success,
+.table > tfoot > tr > td.success,
+.table > thead > tr > th.success,
+.table > tbody > tr > th.success,
+.table > tfoot > tr > th.success,
+.table > thead > tr.success > td,
+.table > tbody > tr.success > td,
+.table > tfoot > tr.success > td,
+.table > thead > tr.success > th,
+.table > tbody > tr.success > th,
+.table > tfoot > tr.success > th {
+background-color: #A0A0A0; /*CC9900 dark gold *//*A0A0A0  dark silver*/
+}
+
+
+.table > thead > tr > td.active,
+.table > tbody > tr > td.active,
+.table > tfoot > tr > td.active,
+.table > thead > tr > th.active,
+.table > tbody > tr > th.active,
+.table > tfoot > tr > th.active,
+.table > thead > tr.active > td,
+.table > tbody > tr.active > td,
+.table > tfoot > tr.active > td,
+.table > thead > tr.active > th,
+.table > tbody > tr.active > th,
+.table > tfoot > tr.active > th {
+background-color: #C8C8C8; /*ffd700 light gold*//*C8C8C8   light silver*/
+}
+
+
 td 
 {
  background-color:#ffffff; /*fix zooming issue*/
@@ -34,7 +73,7 @@ min-height: 100%;
 body {
   margin: 0 0 50px; /* bottom = footer height */
   
-  background-color:#ffffff; /*#D0D0D0*/
+  background-color:#D9DDD5; /*#D0D0D0*/
   /*
   background-size: cover;
   background-image: url('../img/bg/<?php echo($img); ?>.jpg');

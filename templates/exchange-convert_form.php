@@ -83,10 +83,7 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-danger btn" data-toggle="modal" data-target="#myModal">
-    Rates
-</button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -257,7 +254,7 @@ CNY - Chinese Yuan Renminbi (China) ¥
             <?php $commission*=100; echo(number_format($commission, 2, '.', ',') . "% Commission"); ?>
         </div>
 
-
+        <!-- Button trigger modal -->
         <button type="submit" class="btn btn-primary">SUBMIT</button>
 
         <br>
@@ -275,7 +272,7 @@ CNY - Chinese Yuan Renminbi (China) ¥
 
 
 
-
+<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">Rates</button>
 <a href="exchange-advance.php">
 <button type="button" class="btn btn-danger btn-xs">Advanced
 </button>
