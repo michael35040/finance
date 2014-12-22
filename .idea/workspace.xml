@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="98d2116d-c45c-42b6-b017-d0dbd15fc29c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/exchange-convert_form.php" afterPath="$PROJECT_DIR$/templates/exchange-convert_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/placeholder.php" afterPath="$PROJECT_DIR$/public_html/placeholder.php" />
-    </list>
+    <list default="true" id="98d2116d-c45c-42b6-b017-d0dbd15fc29c" name="Default" comment="" />
     <ignored path="finance.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
