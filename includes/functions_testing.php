@@ -211,9 +211,9 @@ function test()
 
 
     //GOLD $1200/31
-    publicOffering('XAU', 'Gold (Au)', 1, 500, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Gold', 10, 'Each unit represents 1 gram of 99.9% fine Gold. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');
-    placeOrder('XAU', 'limit', 'b', 100, 34, 1);
-    placeOrder('XAU', 'limit', 'a', 500, 36, 1);
+    publicOffering('XAU', 'Gold (Au)', 1, 500000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Gold', 10, 'Each unit represents 1 gram of 99.9% fine Gold. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');
+    placeOrder('XAU', 'limit', 'b', 100000, 34, 1);
+    placeOrder('XAU', 'limit', 'a', 50000, 36, 1);
 
     //SILVER $17/31
     publicOffering('XAG', 'Silver (Ag)', 1, 1000000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Silver', 10, 'Each unit represents 1 gram of 99.9% fine Silver. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');

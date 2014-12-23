@@ -1,3 +1,5 @@
+DELETE FROM `storage` WHERE 1;
+TRUNCATE storage;
 INSERT INTO storage(uid,symbol,country,description,year,quantity,asw,weight,purity,depository) VALUES (1,'xag','Armenia','Noah Ark',2013,1,1,1,'99.90%','MAT Securitas Express AG');
 INSERT INTO storage(uid,symbol,country,description,year,quantity,asw,weight,purity,depository) VALUES (2,'xag','Australian','Kookaburra',2011,1,1,1,'99.90%','MAT Securitas Express AG');
 INSERT INTO storage(uid,symbol,country,description,year,quantity,asw,weight,purity,depository) VALUES (3,'xag','Australian','Crocodile',2014,1,1,1,'99.90%','MAT Securitas Express AG');
@@ -106,3 +108,6 @@ INSERT INTO storage(uid,symbol,country,description,year,quantity,asw,weight,puri
 INSERT INTO storage(uid,symbol,country,description,year,quantity,asw,weight,purity,depository) VALUES (106,'xag','U.S.','Commerative Washington Quarter',1982,2,0.18,0.36,'90.00%','Brinks');
 INSERT INTO storage(uid,symbol,country,description,year,quantity,asw,weight,purity,depository) VALUES (107,'xag','U.S.','WW2 Silver Nickles st',0,11,0.06,0.62,'35.00%','Brinks');
 INSERT INTO storage(uid,symbol,country,description,year,quantity,asw,weight,purity,depository) VALUES (108,'xag','U.S.','American Beautiful st PCGS Slabbed',2010,5,5,25,'99.90%','Brinks');
+INSERT INTO storage(uid,symbol,country,description,year,quantity,asw,weight,purity,depository) VALUES (109,'xag','Generic','Provident Prospector 1 oz Silver Round',2014,41,1,41,'99.90%','Transit');
+INSERT INTO storage(uid,symbol,country,description,year,quantity,asw,weight,purity,depository) VALUES (110,'xag','Generic','NTR Buffalo 1 oz Silver Round',2014,11,1,11,'99.90%','Transit');
+INSERT INTO storage(uid,symbol,country,description,year,quantity,asw,weight,purity,depository) VALUES (111,'xcu','Generic','Copper Crackers',2014,16,2,32,'99.90%','Transit');

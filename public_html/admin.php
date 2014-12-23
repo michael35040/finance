@@ -17,7 +17,35 @@ else
 
 
     if(isset($_POST['addasset'])) {
-        $symbol = $_POST['addasset'];
+        $symbol = strtolower($_POST['addasset']);
+        $depository = $_POST['depository'];
+        $description = $_POST['description'];
+        $asw = $_POST['asw'];
+        $purity = $_POST['purity'];
+        $country = $_POST['country'];
+        $year = $_POST['year'];
+        $quantity = $_POST['quantity'];
+        $weight = $_POST['weight'];
+
+        if (query("  INSERT INTO storage (symbol, depository, description, asw, purity, country, year, weight, quantity)
+                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                $symbol, $depository, $description, $asw, $purity, $country, $year, $weight, $quantity) === false)
+        {apologize("Database Failure #P2.");} //update portfolio
+    }
+
+
+    if (isset($_POST["removeAsset"]))
+    {
+        $uid = $_POST["removeAsset"];
+        if (!ctype_digit($uid)){apologize("Invalid asset #");}
+        if (query("DELETE FROM `storage` WHERE uid = ?", $uid) === false) {apologize("Unable to cancel order!");}
+    }
+
+
+    if (isset($_POST["updateasset"]))
+    {
+        $uid =  $_POST['updateasset'];
+        $symbol = strtolower($_POST['symbol']);
         $depository = $_POST['depository'];
         $description = $_POST['description'];
         $asw = $_POST['asw'];
@@ -27,23 +55,12 @@ else
         $weight = $_POST['weight'];
         $quantity = $_POST['quantity'];
 
-        if (query("  INSERT INTO storage (symbol, depository, description, asw, purity, country, year, weight, quantity)
-                      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                $symbol, $depository, $description, $asw, $purity, $country, $year, $weight, $quantity) === false)
-        {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure #P2.");} //update portfolio
-        query("COMMIT;"); //If no errors, commit changes
-        query("SET AUTOCOMMIT=1");
-    }
-
-
-    if (isset($_POST["removeAsset"]))
-    {
-        $uid = $_POST["removeAsset"];
         if (!ctype_digit($uid)){apologize("Invalid asset #");}
-            if (query("DELETE FROM `storage` WHERE uid = ?", $uid) === false) {apologize("Unable to cancel order!");}
+        if (query("UPDATE `storage` SET symbol=?, depository=?, description=?, asw=?, purity=?, country=?, year=?, weight=?, quantity=? WHERE uid=?",
+                $symbol, $depository, $description, $asw, $purity, $country, $year, $weight, $quantity, $uid) === false)
+        {apologize("Database Failure #P3.");} //update portfolio
+
     }
-
-
 
 
 
@@ -807,17 +824,18 @@ else
             <td colspan="13" class="success"><strong>ITEMS</strong></td>
         </tr>
         <tr class="active">
+            <td></td>
+            <td></td>
             <td>UID</td>
             <td>Depository</td>
             <td>Symbol</td>
             <td>Description</td>
-            <td>ASW</td>
             <td>Purity</td>
             <td>Country</td>
             <td>Year</td>
-            <td>Weight (g)</td>
-            <td>Weight (ozt)</td>
+            <td>ASW</td>
             <td># of Items</td>
+            <td>Total Weight (ozt)</td>
 
         </tr>
 
@@ -837,22 +855,33 @@ else
         {
             ?>
             <tr>
-                <td><form method="post" action="admin.php"><button type="submit" class="btn btn-danger btn-xs" name="removeAsset" value="<?php echo($row["uid"]); ?>"><span class="glyphicon glyphicon-remove-circle"></span></button></form><?php echo(number_format($row["uid"], 0, '.', ',')); ?></td>
-                <td><?php echo(htmlspecialchars($row["depository"])); ?></td>
-                <td><?php echo(htmlspecialchars(strtoupper($row["symbol"]))); ?></td>
-                <td><?php echo(htmlspecialchars($row["description"])); ?></td>
-                <td><?php echo(number_format($row["asw"], 2, '.', ',')); ?></td>
-                <td><?php echo(number_format($row["purity"], 2, '.', ',')); ?></td>
-                <td><?php echo(htmlspecialchars($row["country"])); ?></td>
-                <td><?php echo(number_format($row["year"], 0, '.', '')); ?></td>
-                <td><?php echo(number_format((31.1034768*$row["weight"]), 2, '.', ',')); ?></td>
-                <td><?php echo(number_format($row["weight"], 4, '.', ',')); ?></td>
-                <td><?php echo(number_format(($row["quantity"]), 0, '.', ',')); ?></td>
+
+                <td>
+                    <form method="post" action="admin.php"><button type="submit" class="btn btn-danger btn-xs" name="removeAsset" value="<?php echo($row["uid"]); ?>"><span class="glyphicon glyphicon-remove-circle"></span></button>
+                    </form>
+                </td>
+
+                <form method="post" action="admin.php">
+                    <td><button type="submit" class="btn btn-warning btn-xs" ><span class="glyphicon glyphicon-refresh"></span></button></td>
+                    <td>   <input type="text" name="updateasset" placeholder="UID" value="<?php echo(number_format($row["uid"], 0, '.', ',')); //echo(number_format((31.1034768*$row["weight"]), 2, '.', ',')); ?>"></td>
+                    <td>   <input type="text" name="depository" placeholder="Depository" value="<?php echo(htmlspecialchars($row["depository"])); ?>"></td>
+                    <td><input type="text" name="symbol" placeholder="Symbol"  size="4" value="<?php echo(htmlspecialchars(strtoupper($row["symbol"]))); ?>"></td>
+                    <td><input type="text" name="description" placeholder="Description" value="<?php echo(($row["description"])); ?>"></td>
+                    <td><input type="text" name="asw" placeholder="ASW"  size="4" value="<?php echo(number_format($row["asw"], 2, '.', ',')); ?>"></td>
+                    <td><input type="text" name="purity" placeholder="Purity"  size="4" value="<?php echo(number_format($row["purity"], 2, '.', ',')); ?>"></td>
+                    <td><input type="text" name="country" placeholder="Country"  size="4" value="<?php echo(htmlspecialchars($row["country"])); ?>"></td>
+                    <td><input type="text" name="year" placeholder="Year"  size="4" value="<?php echo(number_format($row["year"], 0, '.', '')); ?>"></td>
+                    <td><input type="text" name="quantity" placeholder="Quantity"  size="4" value="<?php echo(number_format(($row["quantity"]), 0, '.', ',')); ?>"></td>
+                    <td><input type="text" name="weight" placeholder="ozt Weight"  size="4" value="<?php echo(number_format($row["weight"], 4, '.', ',')); ?>">
+                    </td>
+                </form>
             </tr>
         <?php } ?>
         <tr>
             <form action="admin.php"  class="noticeForm" method="post">
                 <td><button type="submit" class="btn btn-info"><b> + </b></button></td>
+                <td></td>
+                <td></td>
                 <td><input type="text" name="depository" placeholder="Depository"></td>
                 <td><input type="text" name="addasset" placeholder="Symbol"  size="4"></td>
                 <td><input type="text" name="description" placeholder="Description"></td>
@@ -860,9 +889,8 @@ else
                 <td><input type="text" name="purity" placeholder="Purity"  size="4"></td>
                 <td><input type="text" name="country" placeholder="Country"  size="4"></td>
                 <td><input type="text" name="year" placeholder="Year"  size="4"></td>
-                <td>grams</td>
-                <td><input type="text" name="weight" placeholder="ozt Weight"  size="4"></td>
                 <td><input type="text" name="quantity" placeholder="Quantity"  size="4"></td>
+                <td><input type="text" name="weight" placeholder="ozt Weight"  size="4"></td>
             </form>
 
         </tr>

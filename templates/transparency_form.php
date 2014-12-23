@@ -15,98 +15,104 @@
 
 
 
-<table class="table table-condensed  table-bordered" >
-<thead>
-    <tr   class="active" >
-        <th colspan="3">Reference</th>
-    </tr>
-    <tr   class="active" >
-        <th></th>
-        <th>Troy Ounces (X**)</th>
-        <th>Grams (X**G)</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>Gold</td><!--metal-->
-        <td>XAU</td><!--ozt-->
-        <td>XAUG</td><!--g-->
-    </tr>
-    <tr>
-        <td>Silver</td><!--metal-->
-        <td>XAG</td><!--ozt-->
-        <td>XAGG</td><!--g-->
-    </tr>
-    <tr>
-        <td>Platinum</td><!--metal-->
-        <td>XPT</td><!--ozt-->
-        <td>XPTG</td><!--g-->
-    </tr>
-    <tr>
-        <td>Palladium</td><!--metal-->
-        <td>XPD</td><!--ozt-->
-        <td>XPDG</td><!--g-->
-    </tr>
-</tbody>    
-</table>
+
+
+
 
 <table class="table table-condensed  table-bordered" >
     <thead>
-        <tr class="active">
-            <th colspan="3">Units of Measure</th>
-        </tr>
-        <tr class="active">
-            <th>Abr.</th>
-            <th>Name</th>
-            <th>Conv.</th>
-        </tr>
+    <tr class="active">
+        <th colspan="4">Currently there are 5,152,000 accounts</th>
+    </tr>
+    <tr class="active">
+        <th colspan="4">System Activity 24h</th>
+    </tr>
+    <tr class="active">
+        <th>New Accounts</th>
+        <th>Users Accessing</th>
+        <th>Transfers</th>
+        <th>Trades</th>
+    </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>mg</td>
-            <td>milligrams</td>
-            <td>0.001g</td>
-        </tr>
-        <tr>
-            <td>g</td>
-            <td>gram</td>
-            <td>1g</td>
-        </tr>
-        <tr>
-            <td>ozt</td>
-            <td>troy ounce</td>
-            <td>31.1034768g</td>
-        </tr>
-        <tr>
-            <td>kg</td>
-            <td>kilograms</td>
-            <td>1,000g</td>
-        </tr>
-        <tr>
-            <td>Mg</td>
-            <td>megagrams</td>
-            <td>1,000,000g</td>
-        </tr>
+    <tr>
+        <td>194</td>
+        <td>10,774</td>
+        <td>10,100</td>
+        <td>10,100</td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table class="table table-condensed  table-bordered" >
+    <thead>
+    <tr class="active">
+        <th colspan="3">Units of Measure</th>
+    </tr>
+    <tr class="active">
+        <th>Abr.</th>
+        <th>Name</th>
+        <th>Conv.</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>mg</td>
+        <td>milligrams</td>
+        <td>0.001g</td>
+    </tr>
+    <tr>
+        <td>g</td>
+        <td>gram</td>
+        <td>1g</td>
+    </tr>
+    <tr>
+        <td>ozt</td>
+        <td>troy ounce</td>
+        <td>31.1034768g</td>
+    </tr>
+    <tr>
+        <td>kg</td>
+        <td>kilograms</td>
+        <td>1,000g</td>
+    </tr>
+    <tr>
+        <td>Mg</td>
+        <td>megagrams</td>
+        <td>1,000,000g</td>
+    </tr>
     </tbody>
 </table>
 
 <table class="table table-condensed  table-bordered" >
-<thead>
+    <thead>
     <tr   class="active" >
         <th>Notes</th>
     </tr>
-</thead>
-<tbody>
+    </thead>
+    <tbody>
     <tr>
         <td>Bullion is stored with LBMA member companies.</td><!--notes-->
-    </tr>    
+    </tr>
     <tr>
         <td>All weights displayed are fine weight. Ounces are Troy.</td><!--notes-->
-    </tr>    
+    </tr>
     <tr>
         <td>Totals are rounded to two decimal places for display.</td><!--notes-->
     </tr>
-</tbody>
+    </tbody>
 </table>
 
 
@@ -122,97 +128,110 @@
 <table class="table table-condensed  table-bordered" >
     <tr   class="active" >
         <th>Asset</th>
-        <th>Obligations</th>
-        <th>Obligations M.V.</th>
-        <th>Assets</th>
-        <th>M.V./Issued</th>
+        <th>Type</th>
+        <th>Price</th>
+        <th>Issued (Storage)<br>Assets<br>Bullion Reserve SPT</th>
+        <th>Obligations (in Circulation)<br>Liabilities<br>Total (Portfolios/Orderbooks)</th>
+        <th>Market Value</th>
     </tr>
     <?php
-    //OBLIGATIONS UNITS
-    $bidLocked =	query("SELECT SUM(total) AS total FROM orderbook WHERE (side='b')");	  // query user's portfolio
-    if($bidLocked[0]["total"]==null){$bidLocked[0]["total"]=0;}
-    $obligationsLocked = ($bidLocked[0]["total"]); //shares trading
-    $accounts =	query("SELECT SUM(units) as units FROM accounts");	 //query db
-    if($accounts[0]["units"]==null){$accounts[0]["units"]=0;}
-    $obligationsUnits = ($accounts[0]["units"]);
-    $totalObligations = $obligationsLocked + $obligationsUnits;
-
-    //ASSETS UNITS
-    $totalAssets = 1000000000;
 
     ////////////////////////
     //UNITS TOTAL AND IN CIRCULATION
     ////////////////////////
+    //UNITS
+    $unitsLocked =	query("SELECT SUM(total) AS total FROM orderbook WHERE (side='b')");	  // query user's portfolio
+    if(empty($unitsLocked)){$unitsLocked[0]["total"]=0;}
+    $unitsLocked = ($unitsLocked[0]["total"]); //shares trading
+    $unitsAccounts =	query("SELECT SUM(units) as units FROM accounts");	 //query db
+    if(empty($unitsAccounts)){$unitsAccounts[0]["units"]=0;}
+    $unitsAccounts = ($unitsAccounts[0]["units"]);
+    $totalUnits = $unitsAccounts + $unitsLocked;
     ?>
     <tr>
         <td><?php echo($unittype); ?></td>
-        <td><?php echo(number_format(getPrice($totalObligations),$decimalplaces,".",",")); ?></td>
-        <td><?php echo(number_format(getPrice($totalObligations),$decimalplaces,".",",")); ?></td>
-        <td><?php echo(number_format(getPrice($totalAssets),$decimalplaces,".",",")); ?></td>
-        <td><?php echo(number_format(getPrice($totalAssets),$decimalplaces,".",",")); ?></td>
+        <td><?php echo('Currency'); ?></td>
+        <td><?php echo($unitsymbol . number_format(1,$decimalplaces,".",",")); ?></td>
+        <td><?php echo(number_format(getPrice($totalUnits),$decimalplaces,".",",")); ?></td>
+        <td><?php echo(number_format(getPrice($totalUnits),$decimalplaces,".",",")); ?></td>
+        <td><?php echo(number_format(getPrice($totalUnits),$decimalplaces,".",",")); ?></td>
     </tr>
 
     <?php
-    $obligationMV = 0;
-    $assetMV = 0;
 
+
+
+
+
+
+
+    ////////////////////////
+    //REST OF ASSETS IN CIRCULATION
+    ////////////////////////
+    //ASSETS
     $assets =	query("SELECT symbol, issued, type FROM assets ORDER BY symbol ASC");	  // query user's portfolio
     foreach ($assets as $row)		// for each of user's stocks
     {
+        echo('<tr>');
+
         $symbol = $row["symbol"];
+        echo('<td>');
+        echo($symbol);
+        echo('</td>');
 
-        //pull obligations from port and ob db.
-        $obligationPortfolio =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE (symbol =?)", $symbol);	  // query user's portfolio
-            if(empty($obligationPortfolio[0]["quantity"])){$obligationPortfolio[0]["quantity"]=0;}
-            $totalPortfolio = $obligationPortfolio[0]["quantity"]; //shares held
-        $obligationOrderbook =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a')", $symbol);	  // query user's portfolio
-            if(empty($obligationOrderbook[0]["quantity"])){$obligationOrderbook[0]["quantity"]=0;}
-            $totalOrderbook = $obligationOrderbook[0]["quantity"]; //shares held
-        $obligations = ($totalPortfolio+$totalOrderbook); //total in circulation
-        $issued = $row["issued"]; //total issued
+        //ASSETS TYPE
         $type = $row["type"]; //total issued
+        echo('<td>');
+        echo(ucfirst($type));
+        echo('</td>');
 
 
-        $storage = 1000000; //until we create the 'assets' db.
+        $AskPrice =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a' AND id=1)", $symbol);	  // query user's portfolio
+        if(empty($AskPrice[0]["price"])){$AskPrice[0]["price"]=0;}
+        //ASSETS PRICE
+        $AskPrice = getPrice($AskPrice[0]["price"]);
+        echo('<td>');
+        echo($unitsymbol . number_format($AskPrice,$decimalplaces,".",","));
+        echo('</td>');
 
+
+        //ASSETS ISSUED
+        $issued = $row["issued"]; //total issued
+        echo('<td>' . number_format($issued,0,".",","));
         if($type=='commodity')
         {
             $storage = query("SELECT SUM(asw*quantity) AS weight FROM storage WHERE symbol=?", $symbol);
-            $storage = $storage[0]["weight"];
+            $storage = $storage[0]["weight"]*31.1034768;
+            echo(' (' . number_format($storage,$decimalplaces,".",",") . 'g)');
         }
+        echo('</td>');
 
-                    
-        $AskPrice =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a' AND id=1)", $symbol);	  // query user's portfolio
-            if(empty($AskPrice[0]["price"])){$AskPrice[0]["price"]=0;}
-        $AskPrice = $AskPrice[0]["price"];
-        $obligationMV = ($AskPrice*$obligations) + $obligationMV;
-        $assetMV = ($AskPrice*$storage) + $assetMV;
-        ?>
+        $obligationPortfolio =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE (symbol =?)", $symbol);	  // query user's portfolio
+        if(empty($obligationPortfolio[0]["quantity"])){$obligationPortfolio[0]["quantity"]=0;}
+        $totalPortfolio = $obligationPortfolio[0]["quantity"]; //shares held
+        $obligationOrderbook =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a')", $symbol);	  // query user's portfolio
+        if(empty($obligationOrderbook[0]["quantity"])){$obligationOrderbook[0]["quantity"]=0;}
+        $totalOrderbook = $obligationOrderbook[0]["quantity"]; //shares held
+        //ASSETS IN CIRCULATION
+        $obligations = ($totalPortfolio+$totalOrderbook); //total in circulation
+        $obligationMV = ($AskPrice*$obligations);
+        echo('<td>');
+        echo(number_format($obligations,0,".",","));
+        echo('(');
+        echo(number_format($totalPortfolio,0,".",","));
+        echo('/');
+        echo(number_format($totalOrderbook,0,".",","));
+        echo(')</td><td>');
+        echo($unitsymbol . (number_format($obligationMV,$decimalplaces,".",",")));
+        echo('</td>');
 
-        <tr>
-            <td><?php echo($symbol); ?></td>
-            <td><?php echo(number_format($obligations,$decimalplaces,".",",")); ?></td>
-            <td><?php echo(number_format(getPrice($obligationMV),$decimalplaces,".",",")); ?></td>
 
-            <?php if($type=='commodity'){?><td><?php echo(number_format($storage,$decimalplaces,".",",")); ?></td><?php }else{ ?>
-            <td><?php echo(number_format($issued,$decimalplaces,".",",")); ?></td><?php } ?>
-
-            <td><?php echo(number_format(getPrice($assetMV),$decimalplaces,".",",")); ?></td>
-        </tr>
-    <?php
+        echo('</tr>');
     }
 
-    $obligationMV = $obligationMV+$totalObligations;
-    $assetMV = $assetMV+$totalAssets;
     ?>
 
-    <tr   class="active" >
 
-        <td><strong>TOTAL</strong></td>
-        <td><strong><?php echo(number_format(getPrice($obligationMV),$decimalplaces,".",",")); ?></strong></td>
-        <td><strong><?php echo(number_format(getPrice($assetMV),$decimalplaces,".",",")); ?></strong></td>
-
-    </tr>
 
 </table>
 
@@ -232,262 +251,48 @@
 
 
 
-<table class="table table-condensed  table-bordered" >
-<thead>
-    <tr   class="active" >
-        <th></th>
-        <th colspan="2">Assets (Bullion Reserve SPT)</th>
-        <th colspan="2">Liabilities (In Circulation)</th>
-    </tr>
-    <tr   class="active" >
-        <th>Metal</td>
-        <th>Fine Troy Ounces (ozt)</th>
-        <th>Fine Grams (g)</th>
-        <th>Fine Troy Ounces (ozt)</th>
-        <th>Fine Grams (g) </th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>Gold</td><!--metal-->
-        <td></td><!--ozt asset-->
-        <td></td><!--g asset-->
-        <td></td><!--ozt liability-->
-        <td></td><!--g liability-->
-    </tr>
-    <tr>
-        <td>Silver</td><!--metal-->
-        <td></td><!--ozt asset-->
-        <td></td><!--g asset-->
-        <td></td><!--ozt liability-->
-        <td></td><!--g liability-->
-    </tr>
-    <tr>
-        <td>Platinum</td><!--metal-->
-        <td></td><!--ozt asset-->
-        <td></td><!--g asset-->
-        <td></td><!--ozt liability-->
-        <td></td><!--g liability-->
-    </tr>
-    <tr>
-        <td>Palladium</td><!--metal-->
-        <td></td><!--ozt asset-->
-        <td></td><!--g asset-->
-        <td></td><!--ozt liability-->
-        <td></td><!--g liability-->
-    </tr>
-</tbody>    
-</table>
-
-
-
-
 
 
 
 <table class="table table-condensed  table-bordered" >
-<thead>
-    <tr   class="active" >
-        <th colspan="17">Bullion Reserve Special Purpose Trust</th>
-    </tr>
-    <tr   class="active" >
-        <th colspan="17">Summary by Repository</th>
-    </tr>
-    <tr   class="active" >
-        <th colspan="1"></th>
-        <th colspan="4">XAU</th>
-        <th colspan="4">XAG</th>
-        <th colspan="4">XPT</th>
-        <th colspan="4">XPD</th>
-    </tr>
-    <tr   class="active" >
-        <th>Repository</th>
-        <!--XAU-->
-        <th>#</th><!--Number of Items-->
-        <th>ozt</th><!--Fine Troy Ounces-->
-        <th>g</th><!--Fine Grams-->
-        <th>%</th><!--Portion of Total -->
-        <!--XAG-->
-        <th>#</th><!--Number of Items-->
-        <th>ozt</th><!--Fine Troy Ounces-->
-        <th>g</th><!--Fine Grams-->
-        <th>%</th><!--Portion of Total -->
-        <!--XPT-->
-        <th>#</th><!--Number of Items-->
-        <th>ozt</th><!--Fine Troy Ounces-->
-        <th>g</th><!--Fine Grams-->
-        <th>%</th><!--Portion of Total -->
-        <!--XPD-->
-        <th>#</th><!--Number of Items-->
-        <th>ozt</th><!--Fine Troy Ounces-->
-        <th>g</th><!--Fine Grams-->
-        <th>%</th><!--Portion of Total -->
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>Brinks</td>
-        <!--XAU-->
-        <td>120</td>
-        <td>48,133.55</td>
-        <td>1,497,120.76</td>
-        <td>61.58%</td>
-        <!--XAG-->
-        <td>120</td>
-        <td>48,133.55</td>
-        <td>1,497,120.76</td>
-        <td>61.58%</td>
-        <!--XPT-->
-        <td>120</td>
-        <td>48,133.55</td>
-        <td>1,497,120.76</td>
-        <td>61.58%</td>
-        <!--XPD-->
-        <td>120</td>
-        <td>48,133.55</td>
-        <td>1,497,120.76</td>
-        <td>61.58%</td>
-    </tr>
-    <tr>
-        <td>Transguard</td>
-        <!--XAU-->
-        <td>230</td>
-        <td>28,430.95</td>
-        <td>884,301.39</td>
-        <td>36.38%</td>
-        <!--XAG-->
-        <td>230</td>
-        <td>28,430.95</td>
-        <td>884,301.39</td>
-        <td>36.38%</td>
-        <!--XPT-->
-        <td>230</td>
-        <td>28,430.95</td>
-        <td>884,301.39</td>
-        <td>36.38%</td>
-        <!--XPD-->
-        <td>230</td>
-        <td>28,430.95</td>
-        <td>884,301.39</td>
-        <td>36.38%</td>
-    </tr>
-    <tr>
-        <td>MAT Securitas Express AG</td>
-        <!--XAU-->
-        <td>4</td>
-        <td>1,593.73</td>
-        <td>49,570.54</td>
-        <td>2.04%</td>
-        <!--XAG-->
-        <td>4</td>
-        <td>1,593.73</td>
-        <td>49,570.54</td>
-        <td>2.04%</td>
-        <!--XPT-->
-        <td>4</td>
-        <td>1,593.73</td>
-        <td>49,570.54</td>
-        <td>2.04%</td>
-        <!--XPD-->
-        <td>4</td>
-        <td>1,593.73</td>
-        <td>49,570.54</td>
-        <td>2.04%</td>
+    <thead>
+    <tr class="active">
+        <th colspan="4">Velocity 24h</th>
     </tr>
     <tr class="active">
-        <td>TOTAL</td>
-        <!--XAU-->
-        <td>354</td>
-        <td>78,158.23</td>
-        <td>2,430,992.69</td>
-        <td>100.00%</td>
-        <!--XAG-->
-        <td>354</td>
-        <td>78,158.23</td>
-        <td>2,430,992.69</td>
-        <td>100.00%</td>
-        <!--XPT-->
-        <td>354</td>
-        <td>78,158.23</td>
-        <td>2,430,992.69</td>
-        <td>100.00%</td>
-        <!--XPD-->
-        <td>354</td>
-        <td>78,158.23</td>
-        <td>2,430,992.69</td>
-        <td>100.00%</td>
+        <th>Metal</th>
+        <th>Transfers</th>
+        <th>Weight</th>
+        <th>USD Equiv.</th>
     </tr>
-</tbody>    
-</table>
-
-
-
-<table class="table table-condensed  table-bordered" >
-    <thead>
-        <tr class="active">
-            <th colspan="3">Currently there are 5,152,000 accounts</th>
-        </tr>
-        <tr class="active">
-            <th colspan="3">System Activity 24h</th>
-        </tr>
-        <tr class="active">
-            <th>New Accounts</th>
-            <th>Users Accessing</th>
-            <th>Spends</th>
-        </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>194</td>
-            <td>10,774</td>
-            <td>10,100</td>
-        </tr>
-    </tbody>
-</table>
-
-
-
-
-
-<table class="table table-condensed  table-bordered" >
-    <thead>
-        <tr class="active">
-            <th colspan="4">Velocity 24h</th>
-        </tr>
-        <tr class="active">
-            <th>Metal</th>
-            <th>Transfers</th>
-            <th>Weight</th>
-            <th>USD Equiv.</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Gold</td>
-            <td>10,097</td>
-            <td>26.68 kg</td>
-            <td>$827,064.10</td>
-        </tr>
-        <tr>
-            <td>Silver</td>
-            <td>3</td>
-            <td>145.11 g</td>
-            <td>$85.71</td>
-        </tr>
+    <tr>
+        <td>Gold</td>
+        <td>10,097</td>
+        <td>26.68 kg</td>
+        <td>$827,064.10</td>
+    </tr>
+    <tr>
+        <td>Silver</td>
+        <td>3</td>
+        <td>145.11 g</td>
+        <td>$85.71</td>
+    </tr>
     </tbody>
 </table>
 
 
 <table class="table table-condensed  table-bordered" >
     <thead>
-        <tr class="active">
-            <th colspan="3">Distribution of Spends (XAU) 24h</th>
-        </tr>
-        <tr class="active">
-            <th></th>
-            <th>QTY</th>
-            <th>Total</th>
-        </tr>
+    <tr class="active">
+        <th colspan="3">Distribution of Spends (XAU) 24h</th>
+    </tr>
+    <tr class="active">
+        <th></th>
+        <th>QTY</th>
+        <th>Total</th>
+    </tr>
     </thead>
     <?php
     function convertgram($total)
@@ -502,74 +307,74 @@
         if($total>=1000 && $total<1000000){$number = $total/1000; $unit = 'kg';}
         //megagram
         if($total>=1000000){$number = $total/1000000; $unit = 'Mg';}
-        
+
         echo($number . $unit);
         return;
-        
+
         //i.e. convergram($total); 
     }
     ?>
     <tbody>
-        <tr>
-            <td>0mg-1mg</td>
-            <td>748</td>
-            <td>407.83mg</td>
-        </tr>
-        <tr>
-            <td>1mg-10mg</td>
-            <td>2332</td>
-            <td>9.67g</td>
-        </tr>
-        <tr>
-            <td>10mg-100mg</td>
-            <td>2407</td>
-            <td>103.93mg</td>
-        </tr>
-        <tr>
-            <td>1000mg-1g</td>
-            <td>2816</td>
-            <td>1.10kg</td>
-        </tr>
-        <tr>
-            <td>1g-10g</td>
-            <td>1408</td>
-            <td>5.06kg</td>
-        </tr>
-        <tr>
-            <td>10g-100g</td>
-            <td>346</td>
-            <td>10.58kg</td>
-        </tr>
-        <tr>
-            <td>100g-1kg</td>
-            <td>40</td>
-            <td>9.83kg</td>
-        </tr>
-        <tr>
-            <td>1kg-10kg</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>10kg-100kg</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>100kg-1Mg</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>1Mg-10Mg</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td>10Mg+</td>
-            <td>0</td>
-            <td>0</td>
-        </tr>
+    <tr>
+        <td>0mg-1mg</td>
+        <td>748</td>
+        <td>407.83mg</td>
+    </tr>
+    <tr>
+        <td>1mg-10mg</td>
+        <td>2332</td>
+        <td>9.67g</td>
+    </tr>
+    <tr>
+        <td>10mg-100mg</td>
+        <td>2407</td>
+        <td>103.93mg</td>
+    </tr>
+    <tr>
+        <td>1000mg-1g</td>
+        <td>2816</td>
+        <td>1.10kg</td>
+    </tr>
+    <tr>
+        <td>1g-10g</td>
+        <td>1408</td>
+        <td>5.06kg</td>
+    </tr>
+    <tr>
+        <td>10g-100g</td>
+        <td>346</td>
+        <td>10.58kg</td>
+    </tr>
+    <tr>
+        <td>100g-1kg</td>
+        <td>40</td>
+        <td>9.83kg</td>
+    </tr>
+    <tr>
+        <td>1kg-10kg</td>
+        <td>0</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>10kg-100kg</td>
+        <td>0</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>100kg-1Mg</td>
+        <td>0</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>1Mg-10Mg</td>
+        <td>0</td>
+        <td>0</td>
+    </tr>
+    <tr>
+        <td>10Mg+</td>
+        <td>0</td>
+        <td>0</td>
+    </tr>
     </tbody>
 </table>
 
@@ -603,59 +408,52 @@
 if(isset($_POST['storage']))
 {
 //get variables
-if ( empty($_POST['quantity']) ||  empty($_POST['userid'])) { apologize("Please fill all required fields."); } //check to see if empty
+    if ( empty($_POST['quantity']) ||  empty($_POST['userid'])) { apologize("Please fill all required fields."); } //check to see if empty
 // if symbol or quantity empty
-$userid = sanatize('quantity', $_POST['userid']);
-$quantity = setPrice($_POST['quantity']);
-$transaction = strtoupper($_POST['transaction']);
-$symbol = $unittype;
+    $userid = sanatize('quantity', $_POST['userid']);
+    $quantity = setPrice($_POST['quantity']);
+    $transaction = strtoupper($_POST['transaction']);
+    $symbol = $unittype;
 
-if($transaction=="WITHDRAW") {
-$totalq = query("SELECT units FROM accounts WHERE id = ?", $userid);
-@$total = (float)$totalq[0]["units"]; //convert array to value
-if ($quantity > $total)  //only allows user to deposit if they have less than
-{
-apologize("You only have " . number_format($total, 2, ".", ",") . " to withdraw!");
-}
-$quantity = ($quantity * -1);
-}
+    if($transaction=="WITHDRAW") {
+        $totalq = query("SELECT units FROM accounts WHERE id = ?", $userid);
+        @$total = (float)$totalq[0]["units"]; //convert array to value
+        if ($quantity > $total)  //only allows user to deposit if they have less than
+        {
+            apologize("You only have " . number_format($total, 2, ".", ",") . " to withdraw!");
+        }
+        $quantity = ($quantity * -1);
+    }
 
 
 // transaction information
-query("SET AUTOCOMMIT=0");
-query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+    query("SET AUTOCOMMIT=0");
+    query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 // update cash after transaction for user
-if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $quantity, $userid) === false)
-{query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure #P1.");} //update portfolio
+    if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $quantity, $userid) === false)
+    {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure #P1.");} //update portfolio
 //update transaction history for user
-if (query("INSERT INTO history (id, transaction, symbol, quantity, price, counterparty, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, $transaction, $symbol, 0, 0, $adminid, $quantity) === false)
-{query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure #P2.");} //update portfolio
-query("COMMIT;"); //If no errors, commit changes
-query("SET AUTOCOMMIT=1");
+    if (query("INSERT INTO history (id, transaction, symbol, quantity, price, counterparty, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, $transaction, $symbol, 0, 0, $adminid, $quantity) === false)
+    {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure #P2.");} //update portfolio
+    query("COMMIT;"); //If no errors, commit changes
+    query("SET AUTOCOMMIT=1");
 }
 
 
 
 
 
-$depository = query("SELECT depository, symbol, SUM(asw*quantity) AS weight FROM storage GROUP BY depository, symbol");
+$depository = query("SELECT depository, symbol, SUM(asw*quantity) AS weight, SUM(quantity) AS sumqty FROM storage GROUP BY depository, symbol");
 $storage = query("SELECT * FROM storage WHERE 1"); // query database for user
 
 
 
-foreach ($depository as $row) {
-$symbol = $row["symbol"];
-$AskPrice = query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a' AND id=1)", $symbol);
-if (empty($AskPrice[0]["price"])) {$AskPrice[0]["price"] = 0;}
-$AskPrice[$symbol] = $AskPrice[0]["price"];
-}
 
 
 $total = query("SELECT symbol, SUM(asw*quantity) AS weight FROM storage GROUP BY symbol");
 foreach ($total as $row) {
-$symbol=$row['symbol'];
-if (empty($total[0]["weight"])) {$total[0]["weight"] = 0;}
-$totalweight[$symbol] = $total[0]["weight"];
+    if (empty($total[0]["weight"])) {$total[0]["weight"] = 0;}
+    $totalweight[$row["symbol"]] = $total[0]["weight"];
 }
 ?>
 
@@ -666,9 +464,9 @@ $totalweight[$symbol] = $total[0]["weight"];
     <tr class="active">
         <td>Depository</td>
         <td>Symbol</td>
+        <td>Items (#)</td>
         <td>Weight (g)</td>
         <td>Weight (ozt)</td>
-        <td>Value</td>
         <td>Portion (%)</td>
 
     </tr>
@@ -680,10 +478,10 @@ $totalweight[$symbol] = $total[0]["weight"];
         <tr>
             <td><?php echo(htmlspecialchars($row["depository"])); ?></td>
             <td><?php echo(htmlspecialchars(strtoupper($row["symbol"]))); ?></td>
+            <td><?php echo(number_format($row["sumqty"], 0, '.', ',')); ?></td>
             <td><?php echo(number_format((31.1034768*$weight), 2, '.', ',')); ?></td>
             <td><?php echo(number_format($weight, 4, '.', ',')); ?></td>
-            <td><?php echo($unitsymbol . number_format(getPrice($AskPrice[$symbol]*$weight), 2, '.', ',')); ?></td>
-            <td><?php echo(number_format((100*($weight/$totalweight[$symbol])), 2, '.', ',')); ?>%</td>
+            <td><?php echo(number_format((100*($weight/$totalweight[$row["symbol"]])), 2, '.', ',')); ?>%</td>
         </tr>
     <?php } ?>
 </table>
@@ -706,47 +504,45 @@ $totalweight[$symbol] = $total[0]["weight"];
 
 
 
-    <table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+<table class="table table-condensed table-striped table-bordered" id="activity" style="border-collapse:collapse;text-align:center;vertical-align:middle;">
+    <tr>
+        <td colspan="13" class="success"><strong>ITEMS</strong></td>
+    </tr>
+    <tr class="active">
+        <td>UID</td>
+        <td>Depository</td>
+        <td>Symbol</td>
+        <td>Description</td>
+        <td>ASW</td>
+        <td>Purity</td>
+        <td>Country</td>
+        <td>Year</td>
+        <td>Weight (g)</td>
+        <td>Weight (ozt)</td>
+        <td># of Items</td>
+        <td>Portion</td>
+
+    </tr>
+
+    <?php
+    foreach ($storage as $row)
+    {
+        ?>
         <tr>
-            <td colspan="13" class="success"><strong>ITEMS</strong></td>
+
+            <td><?php echo(number_format($row["uid"], 0, '.', ',')); ?></td>
+            <td><?php echo(htmlspecialchars($row["depository"])); ?></td>
+            <td><?php echo(htmlspecialchars(strtoupper($row["symbol"]))); ?></td>
+            <td><?php echo(htmlspecialchars($row["description"])); ?></td>
+            <td><?php echo(number_format($row["asw"], 2, '.', ',')); ?></td>
+            <td><?php echo(number_format($row["purity"], 2, '.', ',')); ?></td>
+            <td><?php echo(htmlspecialchars($row["country"])); ?></td>
+            <td><?php echo(number_format($row["year"], 0, '.', '')); ?></td>
+            <td><?php echo(number_format((31.1034768*$row["weight"]), 2, '.', ',')); ?></td>
+            <td><?php echo(number_format($row["weight"], 4, '.', ',')); ?></td>
+            <td><?php echo(number_format(($row["quantity"]), 0, '.', ',')); ?></td>
+            <td><?php echo(number_format((100*($row["weight"]/$totalweight[$row["symbol"]])), 2, '.', ',')); ?>%</td>
         </tr>
-        <tr class="active">
-            <td>UID</td>
-            <td>Depository</td>
-            <td>Symbol</td>
-            <td>Description</td>
-            <td>ASW</td>
-            <td>Purity</td>
-            <td>Country</td>
-            <td>Year</td>
-            <td>Weight (g)</td>
-            <td>Weight (ozt)</td>
-            <td># of Items</td>
-            <td>Value</td>
-            <td>Portion</td>
-
-        </tr>
-
-        <?php
-        foreach ($storage as $row)
-        {
-            ?>
-            <tr>
-
-                <td><?php echo(number_format($row["uid"], 0, '.', ',')); ?></td>
-                <td><?php echo(htmlspecialchars($row["depository"])); ?></td>
-                <td><?php echo(htmlspecialchars(strtoupper($row["symbol"]))); ?></td>
-                <td><?php echo(htmlspecialchars($row["description"])); ?></td>
-                <td><?php echo(number_format($row["asw"], 2, '.', ',')); ?></td>
-                <td><?php echo(number_format($row["purity"], 2, '.', ',')); ?></td>
-                <td><?php echo(htmlspecialchars($row["country"])); ?></td>
-                <td><?php echo(number_format($row["year"], 0, '.', '')); ?></td>
-                <td><?php echo(number_format((31.1034768*$row["weight"]), 2, '.', ',')); ?></td>
-                <td><?php echo(number_format($row["weight"], 4, '.', ',')); ?></td>
-                <td><?php echo(number_format(($row["quantity"]), 0, '.', ',')); ?></td>
-                <td><?php echo($unitsymbol . number_format(getPrice($AskPrice[$symbol]*$row["weight"]), 2, '.', ',')); ?></td>
-                <td><?php echo(number_format((100*($row["weight"]/$totalweight[$symbol])), 2, '.', ',')); ?>%</td>
-            </tr>
-        <?php } ?>
-    </table>
+    <?php } ?>
+</table>
 

@@ -374,6 +374,11 @@ function cancelOrder($uid)
         query("COMMIT;"); //If no errors, commit changes
         query("SET AUTOCOMMIT=1");
 
+        //PROCESS ORDERBOOK
+        try {processOrderbook($symbol);}
+        catch(Exception $e) {apologize($e->getMessage());}
+
+
     } //!empty
 
     //var_dump(get_defined_vars());
@@ -656,7 +661,7 @@ function orderbook($symbol)
                             query("ROLLBACK");
                             query("SET AUTOCOMMIT=1");
                             throw new Exception("Insert History Failure 3");
-                        }                        
+                        }
                     }
 
                 }
@@ -1164,33 +1169,33 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 //apologize(var_dump(get_defined_vars()));
 //CHECKS INPUT
 //CHECK FOR EMPTY VARIABLES
-if(empty($symbol)) { throw new Exception("Invalid order. Trade symbol required."); } //check to see if empty
-if (!ctype_alnum($symbol)) {throw new Exception("Symbol must be alphanumeric!");}
+    if(empty($symbol)) { throw new Exception("Invalid order. Trade symbol required."); } //check to see if empty
+    if (!ctype_alnum($symbol)) {throw new Exception("Symbol must be alphanumeric!");}
 //QUERY TO SEE IF SYMBOL EXISTS
-$symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
-if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange! (7)");} //row count
-$symbol = strtoupper($symbol); //cast to UpperCase
-if(empty($type)) { throw new Exception("Invalid order. Trade type required."); } //check to see if empty
-if($type!='market' && $type!='limit' && $type!='marketprice'){ throw new Exception("Invalid order type."); }
-if(empty($side)) { throw new Exception("Invalid order. Trade side required."); } //check to see if empty
-if($side!='a' && $side!='b'){ throw new Exception("Invalid order side."); }
-if(!ctype_alpha($type) || !ctype_alpha($side)) { throw new Exception("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
+    $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
+    if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange! (7)");} //row count
+    $symbol = strtoupper($symbol); //cast to UpperCase
+    if(empty($type)) { throw new Exception("Invalid order. Trade type required."); } //check to see if empty
+    if($type!='market' && $type!='limit' && $type!='marketprice'){ throw new Exception("Invalid order type."); }
+    if(empty($side)) { throw new Exception("Invalid order. Trade side required."); } //check to see if empty
+    if($side!='a' && $side!='b'){ throw new Exception("Invalid order side."); }
+    if(!ctype_alpha($type) || !ctype_alpha($side)) { throw new Exception("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
 //SET QUANTITY
-if($type!='marketprice')
-{
-    if(empty($quantity)) { throw new Exception("Invalid order. Trade quantity required."); } //check to see if empty
-    if($quantity>2000000000){ throw new Exception("Invalid order. Trade quantity exceeds limits."); }
-    if($quantity < 0){throw new Exception("Quantity must be positive!");}
-    if (preg_match("/^\d+$/", $quantity) == false) { throw new Exception("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
-    if (!is_int($quantity) ) { throw new Exception("Quantity must be numeric!");} //if quantity is numeric
-}
+    if($type!='marketprice')
+    {
+        if(empty($quantity)) { throw new Exception("Invalid order. Trade quantity required."); } //check to see if empty
+        if($quantity>2000000000){ throw new Exception("Invalid order. Trade quantity exceeds limits."); }
+        if($quantity < 0){throw new Exception("Quantity must be positive!");}
+        if (preg_match("/^\d+$/", $quantity) == false) { throw new Exception("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
+        if (!is_int($quantity) ) { throw new Exception("Quantity must be numeric!");} //if quantity is numeric
+    }
 //QUERY TO SEE IF USER EXISTS
-if(empty($id)) { throw new Exception("Invalid order. User required."); } //check to see if empty
-$userCheck = query("SELECT count(id) as number FROM users WHERE id =?", $id);
-if ($userCheck[0]["number"] != 1) {throw new Exception("No user exists!");} //row count
-    
-query("SET AUTOCOMMIT=0");
-query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+    if(empty($id)) { throw new Exception("Invalid order. User required."); } //check to see if empty
+    $userCheck = query("SELECT count(id) as number FROM users WHERE id =?", $id);
+    if ($userCheck[0]["number"] != 1) {throw new Exception("No user exists!");} //row count
+
+    query("SET AUTOCOMMIT=0");
+    query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
 //LIMIT ASK
     if($type=='limit' && $side=='a'){
@@ -1223,14 +1228,14 @@ query("START TRANSACTION;"); //initiate a SQL transaction in case of error betwe
         //CHECK FOR 0 or NEGATIVE BALANCE
         if($userUnits <= 0){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") balance: " . $userUnits);}
         //DETERMINE TRADEAMOUNT BASED ON ORDER TYPE
-        $tradeAmount = $price * $quantity; 
+        $tradeAmount = $price * $quantity;
         //ENSURE BUYER HAS ENOUGH FUNDS
         if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Trade amount (" . $tradeAmount . ") exceeds user (" . $id . ") funds (" . $userUnits . ")." ); }
         elseif($userUnits >= $tradeAmount){if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4");}}
         else{  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 5");}
     }
 //MARKET ASK
-    elseif($type=='market' && $side=='a'){ 
+    elseif($type=='market' && $side=='a'){
         $price=0;//market order doesn't require price
         $otherSide='b';
         //CHECK FOR LIMIT ORDERS SINCE MARKET ORDERS REQUIRE THEM
@@ -1271,7 +1276,7 @@ query("START TRANSACTION;"); //initiate a SQL transaction in case of error betwe
         if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Trade amount (" . $tradeAmount . ") exceeds user (" . $id . ") funds (" . $userUnits . ")." ); }
         elseif($userUnits >= $tradeAmount){if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4");}}
         else{  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 5");}
-    } 
+    }
 //CONVERT BUY
     elseif($type=='marketprice' && $side=='b'){
         if(empty($price)){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Trade price required for this order type.");}
@@ -1302,14 +1307,20 @@ query("START TRANSACTION;"); //initiate a SQL transaction in case of error betwe
 
 
 //INSERT INTO ORDERBOOK
-if (query("INSERT INTO orderbook (symbol, side, type, price, total, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $tradeAmount, $quantity, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert Orderbook Failure"); }
+    if (query("INSERT INTO orderbook (symbol, side, type, price, total, quantity, id) VALUES (?, ?, ?, ?, ?, ?, ?)", $symbol, $side, $type, $price, $tradeAmount, $quantity, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert Orderbook Failure"); }
 //UPDATE HISTORY (ON ORDERS PAGE)
-$rows = query("SELECT LAST_INSERT_ID() AS uid"); //this takes the id to the next page
-$ouid = $rows[0]["uid"]; //sets sql query to var
-if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $ouid, $transaction, $symbol, $quantity, $price, $tradeAmount) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3"); }
-query("COMMIT;"); //If no errors, commit changes
-query("SET AUTOCOMMIT=1");
-return array($transaction, $symbol, $tradeAmount, $quantity);
+    $rows = query("SELECT LAST_INSERT_ID() AS uid"); //this takes the id to the next page
+    $ouid = $rows[0]["uid"]; //sets sql query to var
+    if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $ouid, $transaction, $symbol, $quantity, $price, $tradeAmount) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3"); }
+    query("COMMIT;"); //If no errors, commit changes
+    query("SET AUTOCOMMIT=1");
+
+    //PROCESS ORDERBOOK
+    try {processOrderbook($symbol);}
+    catch(Exception $e) {apologize($e->getMessage());}
+
+    //RETURN
+    return array($transaction, $symbol, $tradeAmount, $quantity);
 }
 
 
@@ -1340,9 +1351,9 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
 
         try{placeOrder($symbol2, 'marketprice', 'b', 9999999, $amount, $id);} //type: buy as much as possible
         catch(Exception $e) {apologize($e->getMessage());}
-        
+
         try{processOrderbook($symbol2);}
-        catch(Exception $e) {apologize($e->getMessage());}        
+        catch(Exception $e) {apologize($e->getMessage());}
     }
     //SELLING
     elseif($symbol2===$unittype){
@@ -1353,7 +1364,7 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
 
         try{placeOrder($symbol1, 'market', 'a', $amount, 0, $id);} //type: 'marketprice'
         catch(Exception $e) {apologize($e->getMessage());}
-        
+
         try{processOrderbook($symbol1);}
         catch(Exception $e) {apologize($e->getMessage());}
     }
@@ -1364,27 +1375,28 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
         //CHECK FOR SYMBOL 1
         $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol1);
         if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol1 . "] Incorrect Symbol. Not listed on the exchange! (3)");} //row count
-    
+
         //echo("CHECKING SYMBOL 2 <br>");
         //CHECK FOR SYMBOL 2
         $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol2);
         if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol2 . "] Incorrect Symbol. Not listed on the exchange! (4)");} //row count
-    
+
         //GET THE USER UNITS
         $userUnits =	query("SELECT COALESCE(units,0) as units FROM accounts WHERE id = ?", $id);	 //query db
         $userUnits = ($userUnits[0]["units"]);
         if($userUnits<=0){apologize("User has no funds!");}
         $unitsBefore = $userUnits;
         //echo("USER UNITS BEFORE: $unitsBefore <br>");
-    
+
         //PLACE SELL ORDER
         try{placeOrder($symbol1, 'market', 'a', $amount, 0, $id);}
         catch(Exception $e) {apologize($e->getMessage());}
-    
+
+        //PROCESS ORDERBOOK SELL
         try {processOrderbook($symbol1);}
         catch(Exception $e) {apologize($e->getMessage());}
         //echo("SELL ORDER $symbol1, AMOUNT: $amount <br>");
-    
+
         //FIGURE HOW MUCH USER GETS FROM SELL
         $userUnits =	query("SELECT COALESCE(units,0) as units FROM accounts WHERE id = ?", $id);	 //query db
         $userUnits = ($userUnits[0]["units"]);
@@ -1395,14 +1407,14 @@ function convertAsset($id, $symbol1, $symbol2, $amount)
         $unitsDifference = getPrice($unitsDifference);
         //echo("SALE PROCEEDS: $unitsDifference <br>");
 
-        /* NEW WAY */
+        //PLACE BUY ORDER
         try{placeOrder($symbol2, 'marketprice', 'b', 9999999, $unitsDifference, $id);} //type: 'marketprice' or 'market'
         catch(Exception $e) {apologize($e->getMessage());}
 
-
+        //PROCESS ORDERBOOK BUY
         try{processOrderbook($symbol2);}
         catch(Exception $e) {apologize($e->getMessage());}
-    //echo("BUY ORDER $symbol2, QUANTITY: $quantity <br>");
+        //echo("BUY ORDER $symbol2, QUANTITY: $quantity <br>");
 
     } //else not unittype (symbol1 || symbol2)
 
