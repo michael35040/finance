@@ -108,7 +108,7 @@ CNY - Chinese Yuan Renminbi (China) ¥ &yen;
 
 <h3>QUANTITY</h3>
 
-<form action="exchange-convert.php" method="post">
+<form action="convert.php" method="post">
     <fieldset>
 
 
@@ -228,7 +228,7 @@ CNY - Chinese Yuan Renminbi (China) ¥ &yen;
 
 <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#rates">Rates</button>
 <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#cards">Cards</button>
-<a href="exchange-advance.php">
+<a href="exchange.php">
 <button type="button" class="btn btn-danger btn-xs">Advanced
 </button>
 </a>

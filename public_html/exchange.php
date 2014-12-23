@@ -51,7 +51,7 @@ else
  //apologize(var_dump(get_defined_vars())); //dump all variables if i hit error
 
 
-    render("exchange-advance_form.php", ["title" => "Exchange Advance", "stocks" => $stocks, "assets" => $assets]); // render buy form
+    render("exchange_form.php", ["title" => "Exchange", "stocks" => $stocks, "assets" => $assets]); // render buy form
 }
 // apologize(var_dump(get_defined_vars())); //dump all variables if i hit error  
 ?>

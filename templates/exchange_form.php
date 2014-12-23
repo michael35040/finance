@@ -29,7 +29,7 @@ if (!isset($commission)) //set in constants.php
     }
 </script>
 <div class="exchangeTable">
-<form action="exchange-advance.php" method="post"
+<form action="exchange.php" method="post"
       oninput="
                 priceAmount.value=parseFloat(parseFloat(dollar.value)+parseFloat(cents.value/100)).toFixed(2);
           quantityAmount.value=quantity.value;
@@ -211,7 +211,7 @@ if (!isset($commission)) //set in constants.php
 </TABLE>
 
 
-        <a href="exchange-convert.php">
+        <a href="convert.php">
             <button type="button" class="btn btn-danger btn-xs">
                 Basic
             </button>
