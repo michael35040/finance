@@ -354,12 +354,6 @@ $dash["volumetotal"] = $count[0]["volume"];
 
 
 
-<p>
-    <b>Notes: </b>
-    All weights displayed are fine weight. Totals are rounded for for display.
-</p>
-
-
 
 
 
@@ -406,16 +400,7 @@ $dash["volumetotal"] = $count[0]["volume"];
 
     </tr>
 
-
-
     <?php
-
-
-
-
-
-
-
     ////////////////////////
     //REST OF ASSETS IN CIRCULATION
     ////////////////////////
@@ -513,6 +498,12 @@ $dash["volumetotal"] = $count[0]["volume"];
 
 
 
+
+
+<p>
+    <b>Notes: </b>
+    All weights displayed are fine weight. Totals are rounded for display.
+</p>
 
 
 
@@ -651,26 +642,10 @@ foreach ($total as $row) {
     </thead>
     <tbody>
     <tr class="success">
-        <th colspan="4">XAU - TRANSFERS 24h</th>
-    </tr>
-    <tr class="success">
-        <th colspan="4">VELOCITY</th>
+        <th colspan="4">XAU - TRANSFER VELOCITY 24h</th>
     </tr>
     <tr class="active">
-        <td></td>
-        <th>Transfers</th>
-        <th>Weight</th>
-    </tr>
-    <tr>
-        <td>TOTAL</td>
-        <td>10,097</td>
-        <td>26.68 kg</td>
-    </tr>
-    <tr class="success">
-        <th colspan="3">DISTRIBUTION</th>
-    </tr>
-    <tr class="active">
-        <th></th>
+        <th>Distribution</th>
         <th>Transfers</th>
         <th>Weight</th>
     </tr>
@@ -755,6 +730,11 @@ foreach ($total as $row) {
         <td>10Mg+</td>
         <td>0</td>
         <td>0</td>
+    </tr>
+    <tr class="active">
+        <td>TOTAL</td>
+        <td>10,097</td>
+        <td>26.68 kg</td>
     </tr>
     </tbody>
 </table>

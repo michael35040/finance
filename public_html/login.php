@@ -129,7 +129,9 @@ $askGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` 
             */
             background-image: url('img/bg/1.jpg');
             background-size: cover;
+            /*
             -webkit-filter: blur(5px);
+            */
             z-index: 0;
 
             background-repeat: no-repeat;
