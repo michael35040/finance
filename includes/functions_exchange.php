@@ -6,30 +6,30 @@ function transfer($quantity, $symbol, $userid)
 
     $id=$_SESSION["id"];
 
+    //CHECK INPUT
     if (empty($userid)) {apologize("You must enter the User ID of who you want to transfer funds to!");}
     if (empty($quantity)){apologize("You did not enter the amount to transfer!");}
     if (!ctype_digit($userid)) { apologize("User ID must be numeric!");}
-
     if (preg_match("/^\d+$/", $userid) == false) {apologize("You entered a negative number for user ID! A User ID should be a positve integer.");}
     if (preg_match("/^([0-9.]+)$/", $quantity) == false) {apologize("You submitted an invalid quantity. Please enter a positive number to transfer.");}
     if (!is_numeric($quantity)) { apologize("Invalid number"); }
     if (($quantity<0) || ($userid<0)) { apologize("Quantity must be positive!");} //if quantity is numeric
 
-    //check to see if valid id
+    //CHECK USER
     $num_user = query("SELECT count(*) AS num_user FROM users WHERE id = ?", $userid);
     $count = $num_user[0]['num_user'];
     if ($count == 0) {apologize("User ID not found.");}
-    elseif ($count != 1) { apologize("Invalid User ID.");}
     elseif ($count == 1)
     {
+        //IF UNITS
         if($symbol==$unittype)
         {
+            //CONVERT QUANTITY TO PRICE
+            $price = setPrice($quantity);
 
-            // calculate total quantity held
+            // CHECK TO MAKE SURE AMOUNT IS LESS THAN WHAT THEY HAVE.
             $totalq = query("SELECT units FROM accounts WHERE id = ?", $id);
             @$total = (float)$totalq[0]['units']; //convert array to value
-
-            // checks to see if they are transfer more than they have.
             if ($total < $quantity){apologize("You tried to transfer " . number_format($quantity, 2, ".", ",") . " but you only have " . number_format($total, 2, ".", ",") . "!");}
 
             // transaction information
@@ -38,74 +38,59 @@ function transfer($quantity, $symbol, $userid)
             query("SET AUTOCOMMIT=0");
             query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
-            // update cash after transaction
+            // CALCULATE COMMISSION
+            $commission = 0;
+            $total = $price + $commission;
+            //GIVE ADMIN COMMISSION
+            //if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commission, $adminid)) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure.");}
+
+            // REMOVE CASH FROM USER
             if (query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $price, $id)) {
                 query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure.");
             }
 
-            // transfer the cash to other user
+            //UPDATE USER HISTORY
+            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, 'TRANSFER', 'OUTGOING', $id, $price, $commission, $quantity) === false) {
+                query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure.");
+            }
+
+            // GIVE TO OTHER USER
             if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $price, $userid)) {
                 query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure.");
             }
 
-            // transfer the cash to admin
-            if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commission, $adminid)) {
-                query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure.");
-            }
-
-
-            //update transaction history for transferer
-            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, 'TRANSFER', 'OUTGOING', $id, $price, $commission, $quantity) === false) {
-                query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure.");
-            }
-            //update transaction history for transferee
+            //UPDATE OTHER USER HISTORY
             if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $userid, 'TRANSFER', 'RECEIVING', $userid, $price, $commission, $quantity) === false) {
                 query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure.");
             }
 
-            if (query("INSERT INTO history (id, transaction, symbol, quantity, price, commission, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $adminid, 'TRANSFER', 'TRANSFER', $id, $price, $commission, $quantity) === false) {
-                query("ROLLBACK"); query("SET AUTOCOMMIT=1"); apologize("Database Failure.");
-            }
-
-
-            query("COMMIT;"); //If no errors, commit changes
-            query("SET AUTOCOMMIT=1");
-
-        } //symbol is units
+        } //IS SYMBOL, NOT UNITS
         else
         {
+            //CHECK FOR SYMBOL
             $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
-            if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol . "] Incorrect Symbol. Not listed on the exchange! (5)");} //row count
+            if (count($symbolCheck) != 1) {throw new Exception("[" . $symbol . "] Incorrect Symbol. Not listed on the exchange!");} //row count
 
-
-            if (query("UPDATE orderbook SET quantity=(quantity-?), total=(total-?) WHERE uid=?", $quantity, $id) === false)
-            {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update OB Failure: #5"); }
-
-            //CHECK THE QUANTITY FOR INSERT OR DELETE
-            $askPortfolio = query("SELECT quantity, symbol FROM portfolio WHERE (symbol=? AND id=?)", $symbol, $id);
-
-            //QUICK ERROR CHECK
+            //CHECK FOR USERS PORTFOLIO AND QUANTITY
+            $askPortfolio = query("SELECT quantity FROM portfolio WHERE (symbol=? AND id=?)", $symbol, $id);
             $askPortfolioRows = count($askPortfolio);
-            if ($askPortfolioRows != 1){ query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("$id does not own any $symbol! #20a"); }
+            if ($askPortfolioRows != 1){ query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("$id does not own any $symbol for transfer."); }
 
-            if(empty($askPortfolio[0]["quantity"])){$askPortfolio=0;}
-            else{$askPortfolio = $askPortfolio[0]["quantity"];}
+            if(empty($askPortfolio)) {throw new Exception("[" . $symbol . "] User does not own symbol for transfer!");}
+            else {$idPortfolio = $askPortfolio[0]["quantity"];}
+            if($idPortfolio<$quantity){throw new Exception("[" . $symbol . "] User does not own enough for transfer!");}
 
-            $askOrderbook =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE (id=? AND symbol =? AND side='a')", $id, $symbol);	  // query user's portfolio
-            if(empty($askOrderbook[0]["quantity"])){$askOrderbook=0;}
-            else{$askOrderbook = $askOrderbook[0]["quantity"];}
+            //REMOVE FROM USER
+            if (query("UPDATE portfolio SET quantity=(quantity-?) WHERE uid=?", $quantity, $id) === false){query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update OB Failure: #5"); }
 
-            // DELETE IF TRADE IS ALL THEY OWN//WOULD BE 0 SINCE THE REST WOULD BE IN ORDERBOOK
-            if($askPortfolio < 0 || $askOrderbook < 0) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #14aa. OB or P negative value." . $id); }
-            if($askPortfolio == 0 && $askOrderbook == 0) {if (query("DELETE FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol) === false)
-            { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #14"); } }
-
-            //GIVE SHARES TO  USER
-            $bidQuantityRows = query("SELECT symbol FROM portfolio WHERE (id = ? AND symbol = ?)", $userid, $symbol); //Checks to see if they already own stock to determine if we should insert or update tables
-            $countRows = count($bidQuantityRows);
+            //CHECK OTHER USERS PORTFOLIO FOR INSERT OR DELETE
+            $askPortfolio = query("SELECT quantity FROM portfolio WHERE (symbol=? AND id=?)", $symbol, $userid);
+            $countRows = count($askPortfolio);
+            //GIVE TO OTHER USER
             //INSERT IF NOT ALREADY OWNED
             if ($countRows == 0)
-            {   if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $userid, $symbol, $quantity, $tradeAmount) === false) {
+            {   $tradeAmount=0;
+                if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $userid, $symbol, $quantity, $tradeAmount) === false) {
                 query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #18, Bid Quantity & Trade Size"); } }
             //UPDATE IF ALREADY OWNED
             elseif($countRows == 1)
@@ -113,13 +98,15 @@ function transfer($quantity, $symbol, $userid)
             {   query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #19"); } }
             //ERROR: TO MANY ROWS
             else { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("$topBidUser has too many $symbol Portfolios! #20b"); }  //throw new Exception(var_dump(get_defined_vars()));
-
         }
-    }//if count==1
 
+        //COMMIT
+        query("COMMIT;"); //If no errors, commit changes
+        query("SET AUTOCOMMIT=1");
 
-
-
+    }//if user count==1
+    else //if ($count != 1)
+    { apologize("Invalid User ID.");}
 
 }
 

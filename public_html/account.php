@@ -68,15 +68,14 @@ foreach ($userPortfolio as $row)		// for each of user's stocks
         if(empty($publicQuantity)){$publicQuantity=0;}
         $askQuantity =	query("SELECT SUM(quantity) AS quantity FROM orderbook WHERE symbol =? AND side='a'", $row["symbol"]); // query user's portfolio
         if(empty($askQuantity[0]["quantity"])){$askQuantity[0]["quantity"]=0;}
-        $askQuantity = $askQuantity[0]["quantity"]; //shares trading
+    $askQuantity = $askQuantity[0]["quantity"]; //shares trading
     $stock["public"] = $askQuantity+$publicQuantity;
     
     //TOTAL SHARES ISSUED
-    $issued =	query("SELECT issued FROM assets WHERE symbol =?", $stock["symbol"]);	  // query user's portfolio
-        if(empty($issued[0]["issued"])){$issued[0]["issued"]=0;}
-        $issued = $issued[0]["issued"]; //shares held
-    $stock["issued"]=$issued;
-    
+    $issued =	query("SELECT issued, type FROM assets WHERE symbol =?", $stock["symbol"]);	  // query user's portfolio
+    $stock["issued"] = $issued[0]["issued"]; //shares held
+    $stock["type"]=($issued[0]["type"]);
+
     //USERS CONTROL
     if($stock["public"]==0){$stock["control"]=0;} //can also use 'issued' for this and the one below as they should in theory be the same
     else{$stock["control"] = (($stock["quantity"]+$stock["locked"])/$stock["public"])*100; } //based on public

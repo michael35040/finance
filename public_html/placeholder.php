@@ -103,8 +103,10 @@ if(!empty($_GET["quantity"])){$quantity = $_GET["quantity"];
 
 // Create the image
 $im = imagecreatetruecolor($width, $height);
-//$im     = imagecreatefrompng("images/button1.png");
-//imagecreatefromjpeg imagecreatefromgif imagecreatefrompng
+
+//$im     = imagecreatefromjpeg("img/btc.jpg"); //imagecreatefromjpeg imagecreatefromgif imagecreatefrompng
+
+
 
 
 //requires 6 chars

@@ -12,6 +12,146 @@
     }
 </style>
 
+
+
+
+
+
+
+
+
+
+
+
+<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#trades">SORT</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="trades" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">TRADES</h4>
+            </div>
+            <div class="modal-body">
+
+
+
+                <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+                <script type="text/javascript">
+                    google.load("visualization", "1", {packages:["table"]});
+                    google.setOnLoadCallback(drawTable);
+
+                    function drawTable() {
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('number', 'Trade');
+                        data.addColumn('number', 'Buyer');
+                        data.addColumn('number', 'Bid');
+                        data.addColumn('number', 'Seller');
+                        data.addColumn('number', 'Ask');
+                        data.addColumn('string', 'Date'); /*datetime*/
+                        data.addColumn('string', 'Type');
+                        data.addColumn('string', 'Symbol');
+                        data.addColumn('number', 'Quantity');
+                        data.addColumn('number', 'Price');
+                        data.addColumn('number', 'Commission');
+                        data.addColumn('number', 'Total');
+                        data.addRows([
+                            <?php
+
+
+
+                            foreach ($trades as $trade) {
+                                $uid = $trade["uid"];
+                                $buyer = $trade["buyer"];
+                                $bidorderuid = $trade["bidorderuid"];
+                                $seller = $trade["seller"];
+                                $askorderuid = $trade["askorderuid"];
+                                $date = $trade["date"]; //  $date = date("Y,n,j", $trade["date"]); //date('Y-m-d H:i:s', strtotime($row["date"]))
+                                $type = strtoupper($trade["type"]);
+                                $symbol = $trade["symbol"];
+                                $quantity = $trade["quantity"];
+                                $price = getPrice($trade["price"]);
+                                $commission = getPrice($trade["commission"]);
+                                $total = getPrice($trade["total"]);
+                                 ?>
+                            [
+                                <?php echo("{v: " . $uid . ", f: '" . number_format($uid, 0, ".", "") . "'},"); ?>
+                                <?php echo("{v: " . $buyer . ", f: '" . number_format($buyer, 0, ".", "") . "'},"); ?>
+                                <?php echo("{v: " . $bidorderuid . ", f: '" . number_format($bidorderuid, 0, ".", "") . "'},"); ?>
+                                <?php echo("{v: " . $seller . ", f: '" . number_format($seller, 0, ".", "") . "'},"); ?>
+                                <?php echo("{v: " . $askorderuid . ", f: '" . number_format($askorderuid, 0, ".", "") . "'},"); ?>
+                                <?php echo("'" . $date . "',"); //echo(" new Date(" . $date . "),"); ?>
+                                <?php echo("'" . $type . "',"); ?>
+                                <?php echo("'" . $symbol . "',"); ?>
+                                <?php echo("{v: " . $quantity . ", f: '" .  number_format($quantity, 0, ".", ",") . "'},"); ?>
+                                <?php echo("{v: " . $price . ", f: '" . $unitsymbol . number_format($price, $decimalplaces, ".", ",") . "'},"); ?>
+                                <?php echo("{v: " . $commission . ", f: '" . $unitsymbol . number_format($commission, $decimalplaces, ".", ",") . "'},"); ?>
+                                <?php echo("{v: " . $total . ", f: '" . $unitsymbol . number_format($total, $decimalplaces, ".", ",") . "'},"); ?>
+
+                            ],
+                            <?php
+                            }?>
+
+                        ]);
+
+                        var table = new google.visualization.Table(document.getElementById('table_div'));
+
+                        table.draw(data, {showRowNumber: false});
+                    }
+                </script>
+                <div id="table_div"></div>
+
+
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <table class="table table-condensed  table-bordered" >
 <thead>
     <tr   class="success" ><td colspan="12"  style="font-size:20px; text-align: center;"><?php echo(strtoupper($title)); ?> &nbsp;
@@ -140,5 +280,9 @@
     </tfoot>
 </table>
 
- <br />  <br />
+
+
+
+
+
 

@@ -13,8 +13,9 @@
         text-align: center;
     }
 
-
-
+.borderimage{
+    border:5px solid transparent;
+}
 
 /*BELOW FOR PICTURE RADIO*/
     label > input{ /* HIDE RADIO */
@@ -31,8 +32,38 @@
     }  
 /*ABOVE FOR PICTURE RADIO*/
 
-  </style>
-  
+
+
+
+#btnSocial{
+    /*
+    width:100px;
+    opacity: 0.5;
+    -webkit-opacity: 0.5;
+    -moz-opacity: 0.5;
+    */
+    transition: 0.5s ease;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    position: relative;
+
+}
+#btnSocial:hover{
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform:scale(1.1,1.1);
+    opacity: 1;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+}
+.social{
+    top:0;
+    left:0;
+}
+
+
+
+</style>
+
 
 
 
@@ -97,15 +128,6 @@ CNY - Chinese Yuan Renminbi (China) ¥ &yen;
 
 
 
-
-
-
-
-
-
-
-
-
 <h3>QUANTITY</h3>
 
 <form action="convert.php" method="post">
@@ -120,10 +142,17 @@ CNY - Chinese Yuan Renminbi (China) ¥ &yen;
 <h3>FROM</h3>
 
 
+
+
 <!--UNITS-->
 <label>
-<input type="radio" name="symbol1" value="<?php echo($unittype); ?>" />
-<img src="placeholder.php?height=100&width=200&text=<?php echo($unittype); ?>&name=<?php echo($unitdescription); ?>&quantity=<?php echo($units); ?>&price=<?php echo("1"); ?>&backgroundcolor=<?php $color = colorize($unittype); echo($color); ?>&fontcolor=ffffff" alt="<?php echo($unittype); ?>" />
+    <input type="radio" name="symbol1" value="<?php echo($unittype); ?>" />
+
+    <img src="placeholder.php?height=100&width=200&text=<?php echo($unittype); ?>&name=<?php echo($unitdescription); ?>&quantity=<?php echo($units); ?>&price=<?php echo("1"); ?>&backgroundcolor=<?php $color = colorize($unittype); echo($color); ?>&fontcolor=ffffff"
+             alt="<?php echo($unittype); ?>"
+             id="btnSocial"
+             class="social"
+            />
 </label>
 
                                 <?php
@@ -148,8 +177,12 @@ CNY - Chinese Yuan Renminbi (China) ¥ &yen;
                                 ?>
                                   <label>
                                     <input type="radio" name="symbol1" value="<?php echo($symbol); ?>" />
-                                      <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&name=<?php echo($name); ?>&price=<?php echo("1"); ?>&quantity=<?php echo($quantity); ?>&price=<?php echo($price); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>" />
+                                  <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&name=<?php echo($name); ?>&price=<?php echo("1"); ?>&quantity=<?php echo($quantity); ?>&price=<?php echo($price); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>"
+                                           id="btnSocial"
+                                           class="social"
+                                          />
                                   </label>
+
                                 <?php
                                 }
                             }
@@ -184,7 +217,10 @@ CNY - Chinese Yuan Renminbi (China) ¥ &yen;
                                 ?>
                               <label>
                                 <input type="radio" name="symbol2" value="<?php echo($symbol); ?>" />
-                                  <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&name=<?php echo($name); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>" />
+                                  <img src="placeholder.php?height=100&width=200&text=<?php echo($symbol); ?>&name=<?php echo($name); ?>&backgroundcolor=<?php echo($color); ?>&fontcolor=ffffff" alt="<?php echo($symbol); ?>"
+                                       id="btnSocial"
+                                       class="social"
+                                      />
                               </label>
                             <?php
                             }

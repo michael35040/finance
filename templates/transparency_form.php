@@ -33,6 +33,23 @@
 
 
 
+<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#activity">ACTIVITY</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="activity" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" id="myModalLabel">ACTIVITY</h4>
+</div>
+<div class="modal-body">
+
+
+
+
+
 
 
 
@@ -280,6 +297,13 @@ $dash["volumetotal"] = $count[0]["volume"];
 
 
 
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
 
 
 
@@ -298,6 +322,19 @@ $dash["volumetotal"] = $count[0]["volume"];
 
 
 
+
+<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#measure">UNITS OF MEASURE</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="measure" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">UNITS OF MEASURE</h4>
+            </div>
+            <div class="modal-body">
 
 
 
@@ -308,44 +345,56 @@ $dash["volumetotal"] = $count[0]["volume"];
 
 
 <table class="table table-condensed  table-bordered" >
-    <thead>
-    <tr class="success">
-        <th colspan="3">UNITS OF MEASURE</th>
-    </tr>
-    <tr class="active">
-        <th>Abr.</th>
-        <th>Name</th>
-        <th>Conv.</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>mg</td>
-        <td>milligrams</td>
-        <td>0.001g</td>
-    </tr>
-    <tr>
-        <td>g</td>
-        <td>gram</td>
-        <td>1g</td>
-    </tr>
-    <tr>
-        <td>ozt</td>
-        <td>troy ounce</td>
-        <td>31.1034768g</td>
-    </tr>
-    <tr>
-        <td>kg</td>
-        <td>kilograms</td>
-        <td>1,000g</td>
-    </tr>
-    <tr>
-        <td>Mg</td>
-        <td>megagrams</td>
-        <td>1,000,000g</td>
-    </tr>
-    </tbody>
-</table>
+                    <thead>
+                    <tr class="success">
+                        <th colspan="3">UNITS OF MEASURE</th>
+                    </tr>
+                    <tr class="active">
+                        <th>Abr.</th>
+                        <th>Name</th>
+                        <th>Conv.</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>mg</td>
+                        <td>milligrams</td>
+                        <td>0.001g</td>
+                    </tr>
+                    <tr>
+                        <td>g</td>
+                        <td>gram</td>
+                        <td>1g</td>
+                    </tr>
+                    <tr>
+                        <td>ozt</td>
+                        <td>troy ounce</td>
+                        <td>31.1034768g</td>
+                    </tr>
+                    <tr>
+                        <td>kg</td>
+                        <td>kilograms</td>
+                        <td>1,000g</td>
+                    </tr>
+                    <tr>
+                        <td>Mg</td>
+                        <td>megagrams</td>
+                        <td>1,000,000g</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -355,6 +404,29 @@ $dash["volumetotal"] = $count[0]["volume"];
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#LEDGER">LEDGER</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="LEDGER" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4 class="modal-title" id="myModalLabel">LEDGER</h4>
+</div>
+<div class="modal-body">
 
 
 
@@ -472,6 +544,13 @@ $dash["volumetotal"] = $count[0]["volume"];
 
 
 
+</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+</div>
+</div>
+</div>
 
 
 
@@ -500,10 +579,6 @@ $dash["volumetotal"] = $count[0]["volume"];
 
 
 
-<p>
-    <b>Notes: </b>
-    All weights displayed are fine weight. Totals are rounded for display.
-</p>
 
 
 
@@ -516,6 +591,21 @@ $dash["volumetotal"] = $count[0]["volume"];
 
 
 
+
+
+
+<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#storage">STORAGE</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="storage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">STORAGE</h4>
+            </div>
+            <div class="modal-body">
 
 
 
@@ -605,6 +695,13 @@ foreach ($total as $row) {
 
 
 
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
 
 
 
@@ -635,9 +732,25 @@ foreach ($total as $row) {
 
 
 
+<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#VELOCITY">VELOCITY</button>
 
 
-<table class="table table-condensed  table-bordered" >
+<!-- Modal -->
+<div class="modal fade" id="VELOCITY" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">VELOCITY</h4>
+            </div>
+            <div class="modal-body">
+
+
+
+
+
+
+            <table class="table table-condensed  table-bordered" >
     <thead>
     </thead>
     <tbody>
@@ -742,11 +855,45 @@ foreach ($total as $row) {
 
 
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#COMMISSION">COMMISSION</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="COMMISSION" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">COMMISSION</h4>
+            </div>
+            <div class="modal-body">
 
 
 <?php
-//COMMISSIONS PAID
+//COMMISSIONS
 $commissionsPaid = query("SELECT SUM(commission) AS commission FROM trades WHERE (type='limit' OR type='market')"); // query database for user
 $commissionsPaid = $commissionsPaid[0]["commission"];
 
@@ -763,3 +910,20 @@ $commissionsPaid = $commissionsPaid[0]["commission"];
 </table>
 
 
+
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+<p>
+    <b>Notes: </b>
+    All weights displayed are fine weight. Totals are rounded for display.
+</p>
