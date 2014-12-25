@@ -138,9 +138,9 @@
         tabledata.addColumn('number', 'Rate (<?php echo(strtoupper($unittype)); ?>)');
         tabledata.addColumn('number', 'Value');
         /*
-         tabledata.addColumn('number', 'Control');
          tabledata.addColumn('number', 'Available');
          tabledata.addColumn('number', 'Locked');
+         tabledata.addColumn('number', 'Control');
          tabledata.addColumn('number', 'Purchase');
          tabledata.addColumn('number', 'Profit');
          tabledata.addColumn('number', 'Change');
@@ -148,15 +148,15 @@
         tabledata.addRows([
             /*['Mike',  {v: 10000, f: '$10,000'}, true],*/
             [
-                <?php $totalUnits = ($units+$bidLocked); ?>
                 <?php echo("'" . strtoupper($unittype) . "',"); ?>
-                <?php echo("{v: " . $totalUnits . ", f: '" . number_format($totalUnits, $decimalplaces, ".", ",") . "'},"); ?>
+                <?php  $totalUnits = ($units+$bidLocked); echo("{v: " . $totalUnits . ", f: '$" . number_format($totalUnits, $decimalplaces, ".", ",") . "'},"); ?>
                 <?php echo("{v: " . 1 . ", f: '$" . number_format(1, $decimalplaces, ".", ",") . "'},"); ?>
-                <?php echo("{v: " . $totalUnits . ", f: '$" . number_format($totalUnits, $decimalplaces, ".", ",") . "'},"); ?>
+                <?php  $totalUnits = ($units+$bidLocked); echo("{v: " . $totalUnits . ", f: '$" . number_format($totalUnits, $decimalplaces, ".", ",") . "'},"); ?>
 
-                <?php // echo("{v: " . 0 . ", f: '" . number_format(0, 0, ".", ",") . "%'},"); ?>
                 <?php // echo("{v: " . $units . ", f: '" . number_format($units, $decimalplaces, ".", ",") . "'},"); ?>
                 <?php // echo("{v: " . $bidLocked . ", f: '" . number_format($bidLocked, $decimalplaces, ".", ",") . "'},"); ?>
+                <?php // echo("{v: " . $totalUnits . ", f: '" . number_format($totalUnits, $decimalplaces, ".", ",") . "'},"); ?>
+                <?php // echo("{v: " . 0 . ", f: '" . number_format(0, 0, ".", ",") . "%'},"); ?>
                 <?php // echo("{v: " . 0 . ", f: '$" . number_format(0, $decimalplaces, ".", ",") . "'},"); ?>
                 <?php // echo("{v: " . 0 . ", f: '$" . number_format(0, $decimalplaces, ".", ",") . "'},"); ?>
                 <?php // echo("{v: " . 0 . ", f: '" . number_format(0, $decimalplaces, ".", ",") . "%'},"); ?>
@@ -167,11 +167,11 @@
                 <?php echo("'" . $row['symbol'] . "',"); ?>
                 <?php echo("{v: " . ($row["quantity"]+$row["locked"]) . ", f: '" . number_format(($row["quantity"]+$row["locked"]), 0, ".", ",") . "'},"); ?>
                 <?php echo("{v: " . $row['price'] . ", f: '$" . number_format($row['price'], 2, ".", ",") . "'},"); ?>
-                <?php echo("{v: " . $row['total'] . ", f: '$" . number_format($row['total'], 2, ".", ",") . "'},"); ?>
+                <?php echo("{v: " . $row['total'] . ", f: '$" . number_format($row['total'], 2, ".", ",") . "'},"); //market value ?>
 
-                <?php // echo("{v: " . $row['control'] . ", f: '" . number_format($row['control'], 0, ".", ",") . "%'},"); ?>
                 <?php // echo("{v: " . $row['quantity'] . ", f: '" . number_format($row['quantity'], 0, ".", ",") . "'},"); ?>
                 <?php // echo("{v: " . $row['locked'] . ", f: '" . number_format($row['locked'], 0, ".", ",") . "'},"); ?>
+                <?php // echo("{v: " . $row['control'] . ", f: '" . number_format($row['control'], 0, ".", ",") . "%'},"); ?>
                 <?php // echo("{v: " . $row['value'] . ", f: '$" . number_format($row['value'], 2, ".", ",") . "'},"); ?>
                 <?php // $pricechange = ($row["total"] - $row["value"]); echo("{v: " . $pricechange . ", f: '$" . number_format($pricechange, 2, ".", ",") . "'},"); ?>
                 <?php // if ($row["value"] > 0) {$percentchange = 100 * (($row["total"] / $row["value"]) - 1);} else {$percentchange = 0;} echo("{v: " . $percentchange . ", f: '" . number_format($percentchange, 2, ".", ",") . "%'},"); ?>
@@ -221,8 +221,8 @@
                     $asset = htmlspecialchars($asset["symbol"]);
                     echo("['" . $asset . "', " . $value . "],");
             }
-            echo("['" . htmlspecialchars($unittype) . "', " . number_format(($units), $decimalplaces, '.', '') . "],");
-            echo("['Locked', " . number_format(($bidLocked), $decimalplaces, '.', '') . "]");
+            echo("['" . htmlspecialchars($unittype) . "', " . number_format(($units+$bidLocked), $decimalplaces, '.', '') . "],");
+           // echo("['Locked', " . number_format(($bidLocked), $decimalplaces, '.', '') . "]");
         ?>
 
         ]);
@@ -268,11 +268,11 @@
 
 
 
-<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#NETWORTH">NETWORTH</button>
+<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#ADVANCE">ADVANCE</button>
 
 
 <!-- Modal -->
-<div class="modal fade" id="NETWORTH" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="ADVANCE" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog modal-lg">
 <div class="modal-content">
 <div class="modal-header">
@@ -375,10 +375,10 @@
             <tr  class="active">
                 <th>Asset</th>
                 <th>Type</th>
-                <th>Total</th>
                 <th>Control</th>
                 <th>Available</th>
                 <th><span class='nobutton'><form action='orders.php' method='post'><button type='submit' name='side' value='a'><b>Locked</b></button></form></span></th>
+                <th>Total</th>
                 <th>Price</th>
                 <th>Purchase</th>
                 <th>Loss/Gain</th>
@@ -388,41 +388,24 @@
             <?php $i = 0;
             foreach ($portfolio as $row) {
                 echo("<tr>");
-                echo("<td><span class='nobutton'><form method='post' action='information.php'><button type='submit' name='symbol' value='" . $row['symbol'] . "'>" . $row['symbol']
-                    . "</button></form></span></td>");
-                // . htmlspecialchars($row["symbol"]) .
-                echo("<td>" . ucfirst($row['type']) . "</td>");  //htmlspecialchars
-                echo("<td>" . (number_format(($row["quantity"]+$row["locked"]), 0, ".", ",")) . "</td>");  //htmlspecialchars
-                if($row['type']=='stock'){echo("<td>" . (number_format($row["control"], 2, ".", ",")) . "%</td>"); }else{echo("<td>N/A</td>");} //htmlspecialchars
-                echo("<td>" . (number_format($row["quantity"], 0, ".", ",")) . "</td>");
-                //echo("<td>" . (number_format($row["locked"], 0, ".", ",")) . "</td>");
+                /*symbol*/      echo("<td><span class='nobutton'><form method='post' action='information.php'><button type='submit' name='symbol' value='" . $row['symbol'] . "'>" . $row['symbol'] . "</button></form></span></td>"); // . htmlspecialchars($row["symbol"]) .
+                /*type*/        echo("<td>" . ucfirst($row['type']) . "</td>");  //htmlspecialchars
+                /*control*/     if($row['type']=='stock'){echo("<td>" . (number_format($row["control"], 2, ".", ",")) . "%</td>"); }else{echo("<td>N/A</td>");} //htmlspecialchars
+                /*quantity*/    echo("<td>" . (number_format($row["quantity"], 0, ".", ",")) . "</td>");
+                /*locked*/      echo("<td><span class='nobutton'><form method='post' action='orders.php'><button type='submit' name='symbol' value='" . $row['symbol'] . "'>" . (number_format($row["locked"], 0, ".", ",")) . "</button></form></span></td>");
+                /*total*/       echo("<td>" . (number_format(($row["quantity"]+$row["locked"]), 0, ".", ",")) . "</td>");  //htmlspecialchars
+                /*price*/       echo("<td>" . $unitsymbol . (number_format($row["price"], $decimalplaces, ".", ",")) . "</td>");
+                /*purchase*/    echo("<td>" . $unitsymbol . (number_format($row["value"], $decimalplaces, ".", ",")) . "</td>");
 
-                echo("<td><span class='nobutton'><form method='post' action='orders.php'><button type='submit' name='symbol' value='" . $row['symbol'] . "'>" . (number_format($row["locked"], 0, ".", ","))
-                    . "</button></form></span></td>");
-                echo("<td>" . $unitsymbol . (number_format($row["price"], $decimalplaces, ".", ",")) . "</td>");
-                echo("<td>" . $unitsymbol . (number_format($row["value"], $decimalplaces, ".", ",")) . "</td>");
-                $pricechange = ($row["total"] - $row["value"]);
-                if ($row["value"] > 0) {
-                    $percentchange = 100 * (($row["total"] / $row["value"]) - 1); // total/purchase
-                } else {
-                    $percentchange = 0;
-                }
-                echo("<td>");
-                //ARROWS START
-                if ($row['value'] < $row['total']) {
-                    echo("<font color='#00FF00'>&#x25B2;</font>");
-                } //money is up
-                elseif ($row['value'] > $row['total']) {
-                    echo("<font color='#FF0000'>&#x25BC;</font>");
-                }  //money is down
-                else {
-                    echo("&#x25C4;");  //eft:[&#x25C4;]   right: [&#x25BA;]
-                } //even left and right arrow
-                //ARROWS END
-
-                echo($unitsymbol . number_format($pricechange, $decimalplaces, ".", ",") . " (<i>" . number_format($percentchange, 2, ".", ",") . "</i>%)  </td>");
-
-                echo("<td><div style='text-align:right'>" . $unitsymbol . (number_format($row["total"], $decimalplaces, ".", ",")) . "</div></td></tr>");
+                                    $pricechange = ($row["total"] - $row["value"]);
+                                    if ($row["value"] > 0) {$percentchange = 100 * (($row["total"] / $row["value"]) - 1);} else { $percentchange = 0;} echo("<td>");
+                                    //ARROWS START
+                                    if ($row['value'] < $row['total']) { echo("<font color='#00FF00'>&#x25B2;</font>");} //money is up
+                                    elseif ($row['value'] > $row['total']) {echo("<font color='#FF0000'>&#x25BC;</font>");}  //money is down
+                                    else {echo("&#x25C4;");}  //eft:[&#x25C4;]   right: [&#x25BA;] //even left and right arrow
+                                    //ARROWS END
+                /*pricechange*/ echo($unitsymbol . number_format($pricechange, $decimalplaces, ".", ",") . " (<i>" . number_format($percentchange, 2, ".", ",") . "</i>%)  </td>");
+                /*mkt val*/     echo("<td><div style='text-align:right'>" . $unitsymbol . (number_format($row["total"], $decimalplaces, ".", ",")) . "</div></td></tr>");
                 $i++;
             } //foreach statement
             if ($i == 0) {
@@ -491,7 +474,7 @@
 
         <table class="table table-striped table-condensed table-bordered" >
             <tr class="success">
-                <td colspan="6">ACTIVITY</td>
+                <td colspan="6" style="font-size:20px; text-align: center;">ACTIVITY</td>
             </tr>
             <tr class="active">
                 <th>Assets</th>

@@ -2,16 +2,134 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98d2116d-c45c-42b6-b017-d0dbd15fc29c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/account.php" afterPath="$PROJECT_DIR$/public_html/account.php" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\LICENSE" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\README.md" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\css\agency.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\css\bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\css\bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\css\font-awesome.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\css\font-awesome.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\fonts\FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\fonts\fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\fonts\fontawesome-webfont.svg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\fonts\fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\fonts\fontawesome-webfont.woff" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\bordered-pulled.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\core.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\fixed-width.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\font-awesome.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\icons.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\larger.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\list.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\mixins.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\path.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\rotated-flipped.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\spinning.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\stacked.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\less\variables.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\_bordered-pulled.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\_core.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\_fixed-width.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\_icons.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\_larger.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\_list.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\_mixins.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\_path.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\_rotated-flipped.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\_spinning.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\_stacked.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\_variables.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\font-awesome\scss\font-awesome.scss" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\fonts\glyphicons-halflings-regular.eot" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\fonts\glyphicons-halflings-regular.svg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\fonts\glyphicons-halflings-regular.ttf" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\fonts\glyphicons-halflings-regular.woff" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\about\1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\about\2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\about\3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\about\4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\header-bg.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\logos\aetuts.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\logos\creative-market.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\logos\designmodo.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\logos\envato.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\logos\microlancer.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\logos\themeforest.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\logos\wordpress.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\map-image.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\portfolio\dreams-preview.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\portfolio\dreams.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\portfolio\escape-preview.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\portfolio\escape.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\portfolio\golden-preview.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\portfolio\golden.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\portfolio\roundicons-free.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\portfolio\roundicons.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\portfolio\startup-framework-preview.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\portfolio\startup-framework.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\portfolio\treehouse-preview.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\portfolio\treehouse.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\team\1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\team\2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\img\team\3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\index.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\js\agency.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\js\bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\js\bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\js\cbpAnimatedHeader.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\js\cbpAnimatedHeader.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\js\classie.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\js\contact_me.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\js\jqBootstrapValidation.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\js\jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\less\agency.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\less\mixins.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\less\variables.less" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\agency\mail\contact_me.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\img\card\btc.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\img\card\card.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\img\card\cny.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\img\card\eur.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\img\card\gbp.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\img\card\usd.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\img\card\xau.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\img\preview - Copy.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\img\preview.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\css\font-awesome.min.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\css\skel.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\css\style-large.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\css\style-medium.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\css\style-small.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\css\style-xlarge.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\css\style-xsmall.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\css\style.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\fonts\FontAwesome.otf" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\fonts\fontawesome-webfont.eot" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\fonts\fontawesome-webfont.svg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\fonts\fontawesome-webfont.ttf" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\fonts\fontawesome-webfont.woff" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\footer.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\header.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\images\banner.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\images\logo.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\images\old\banner.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\images\old\pic01.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\images\old\pic02.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\images\old\pic03.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\images\pic01.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\images\pic02.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\images\pic03.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\js\html5shiv.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\js\init.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\js\jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\js\skel-layers.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\js\skel.min.js" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\left-sidebar.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\no-sidebar.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\wamp\www\finance\public_html\info\right-sidebar.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/account_form.php" afterPath="$PROJECT_DIR$/templates/account_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/convert_form.php" afterPath="$PROJECT_DIR$/templates/convert_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/footer.php" afterPath="$PROJECT_DIR$/templates/footer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/functions_exchange.php" afterPath="$PROJECT_DIR$/includes/functions_exchange.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/functions_testing.php" afterPath="$PROJECT_DIR$/includes/functions_testing.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/orders_form.php" afterPath="$PROJECT_DIR$/templates/orders_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/placeholder.php" afterPath="$PROJECT_DIR$/public_html/placeholder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/trades_form.php" afterPath="$PROJECT_DIR$/templates/trades_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/transparency_form.php" afterPath="$PROJECT_DIR$/templates/transparency_form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/info/index.php" afterPath="$PROJECT_DIR$/public_html/info/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="finance.iws" />
@@ -37,230 +155,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/footer.php">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public_html/info/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.65384614" vertical-offset="0" max-vertical-offset="391">
-              <caret line="1" column="67" selection-start-line="1" selection-start-column="67" selection-end-line="1" selection-end-column="67" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="placeholder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/placeholder.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.538462" vertical-offset="1602" max-vertical-offset="3264">
-              <caret line="118" column="58" selection-start-line="118" selection-start-column="58" selection-end-line="118" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="account_form.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/account_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27878788" vertical-offset="9008" max-vertical-offset="9503">
-              <caret line="538" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="553" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#td#2;n#tr#1;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#1;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#strong#0;n#td#1;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#td#0;n#tr#2;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#th#3;n#tr#1;n#table#0;n#td#0;n#tr#2;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#3;n#tr#2;n#table#0;n#td#0;n#tr#2;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#td#0;n#tr#3;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#th#9;n#tr#1;n#table#0;n#td#0;n#tr#3;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#3;n#tr#3;n#table#0;n#td#0;n#tr#3;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transparency_form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/transparency_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.9615383" vertical-offset="14634" max-vertical-offset="15793">
-              <caret line="879" column="0" selection-start-line="879" selection-start-column="0" selection-end-line="892" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#5;n#!!top" expanded="true" />
-                <marker date="1419444276277" expanded="true" signature="1237:1345" placeholder="SELECT COUNT..users..." />
-                <marker date="1419444276277" expanded="true" signature="1433:1537" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419444276277" expanded="true" signature="1626:1733" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="1822:1972" placeholder="SELECT COUNT..." />
-                <marker date="1419444276277" expanded="true" signature="2742:2886" placeholder="SELECT COUNT..users..." />
-                <marker date="1419444276277" expanded="true" signature="2947:3081" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419444276277" expanded="true" signature="3143:3280" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="3342:3522" placeholder="SELECT COUNT..." />
-                <marker date="1419444276277" expanded="true" signature="4255:4399" placeholder="SELECT COUNT..users..." />
-                <marker date="1419444276277" expanded="true" signature="4460:4594" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419444276277" expanded="true" signature="4656:4793" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="4855:5035" placeholder="SELECT COUNT..." />
-                <marker date="1419444276277" expanded="true" signature="5768:5912" placeholder="SELECT COUNT..users..." />
-                <marker date="1419444276277" expanded="true" signature="5973:6107" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419444276277" expanded="true" signature="6169:6306" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="6368:6548" placeholder="SELECT COUNT..." />
-                <marker date="1419444276277" expanded="true" signature="7281:7426" placeholder="SELECT COUNT..users..." />
-                <marker date="1419444276277" expanded="true" signature="7487:7622" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419444276277" expanded="true" signature="7684:7822" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="7884:8065" placeholder="SELECT COUNT..." />
-                <marker date="1419444276277" expanded="true" signature="8798:8944" placeholder="SELECT COUNT..users..." />
-                <marker date="1419444276277" expanded="true" signature="9005:9141" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419444276277" expanded="true" signature="9203:9342" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="9404:9586" placeholder="SELECT COUNT..." />
-                <marker date="1419444276277" expanded="true" signature="10319:10465" placeholder="SELECT COUNT..users..." />
-                <marker date="1419444276277" expanded="true" signature="10526:10662" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419444276277" expanded="true" signature="10724:10863" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="10925:11107" placeholder="SELECT COUNT..." />
-                <marker date="1419444276277" expanded="true" signature="11842:11950" placeholder="SELECT COUNT..users..." />
-                <marker date="1419444276277" expanded="true" signature="12038:12142" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419444276277" expanded="true" signature="12231:12338" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="12427:12577" placeholder="SELECT COUNT..." />
-                <marker date="1419444276277" expanded="true" signature="13357:13466" placeholder="SELECT COUNT..users..." />
-                <marker date="1419444276277" expanded="true" signature="13555:13660" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419444276277" expanded="true" signature="13750:13858" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="13948:14099" placeholder="SELECT COUNT..." />
-                <marker date="1419444276277" expanded="true" signature="14889:14925" placeholder="SELECT COUNT..users..." />
-                <marker date="1419444276277" expanded="true" signature="15014:15052" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419444276277" expanded="true" signature="15142:15183" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="15273:15357" placeholder="SELECT COUNT..." />
-                <marker date="1419444276277" expanded="true" signature="19626:19684" placeholder="SELECT SUM(t..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="19865:19905" placeholder="SELECT SUM(u..accounts..." />
-                <marker date="1419444276277" expanded="true" signature="20822:20881" placeholder="SELECT symbo..assets..." />
-                <marker date="1419444276277" expanded="true" signature="21276:21370" placeholder="SELECT SUM(q..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="21879:21941" placeholder="SELECT SUM(a..storage..." />
-                <marker date="1419444276277" expanded="true" signature="22163:22228" placeholder="SELECT SUM(q..portfolio..." />
-                <marker date="1419444276277" expanded="true" signature="22479:22564" placeholder="SELECT SUM(q..orderbook..." />
-                <marker date="1419444276277" expanded="true" signature="24561:24600" placeholder="SELECT units..accounts..." />
-                <marker date="1419444276277" expanded="true" signature="25157:25209" placeholder="UPDATE accou..." />
-                <marker date="1419444276277" expanded="true" signature="25403:25515" placeholder="INSERT INTO ..." />
-                <marker date="1419444276277" expanded="true" signature="25807:25927" placeholder="SELECT depos..storage..." />
-                <marker date="1419444276277" expanded="true" signature="25949:25978" placeholder="SELECT * FRO..storage..." />
-                <marker date="1419444276277" expanded="true" signature="26030:26101" placeholder="SELECT symbo..storage..." />
-                <marker date="1419444276277" expanded="true" signature="31256:31342" placeholder="SELECT SUM(c..trades..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="orders_form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/orders_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.153847" vertical-offset="667" max-vertical-offset="5831">
-              <caret line="67" column="99" selection-start-line="67" selection-start-column="99" selection-end-line="67" selection-end-column="99" />
-              <folding>
-                <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#1;n#!!top" expanded="true" />
-                <marker date="1419446489979" expanded="true" signature="4026:4041" placeholder="..." />
-                <marker date="1419446489979" expanded="false" signature="4453:4468" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="4469:4693" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="4515:4685" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="4595:4678" placeholder="..." />
-                <marker date="1419446489979" expanded="false" signature="4852:4867" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="4868:5098" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="4913:5090" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="4995:5083" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="5486:5644" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="7691:7721" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="8379:8397" placeholder="..." />
-                <marker date="1419446489979" expanded="false" signature="8802:8817" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="8818:9042" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="8864:9034" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="8944:9027" placeholder="..." />
-                <marker date="1419446489979" expanded="false" signature="9201:9216" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="9217:9447" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="9262:9439" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="9344:9432" placeholder="..." />
-                <marker date="1419446489979" expanded="true" signature="9720:9770" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="functions_testing.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/includes/functions_testing.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-26.0" vertical-offset="2979" max-vertical-offset="6001">
-              <caret line="215" column="39" selection-start-line="215" selection-start-column="39" selection-end-line="215" selection-end-column="39" />
-              <folding>
-                <marker date="1419446858287" expanded="true" signature="361:398" placeholder="SELECT count..users..." />
-                <marker date="1419446858287" expanded="true" signature="545:590" placeholder="SELECT symbo..assets..." />
-                <marker date="1419446858287" expanded="true" signature="1158:1232" placeholder="SELECT price..orderbook..." />
-                <marker date="1419446858287" expanded="true" signature="1541:1615" placeholder="SELECT price..orderbook..." />
-                <marker date="1419446858287" expanded="true" signature="3654:3709" placeholder="UPDATE trade..." />
-                <marker date="1419446858287" expanded="true" signature="3936:3993" placeholder="SELECT symbo..assets..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="trades_form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/trades_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.6153846" vertical-offset="1275" max-vertical-offset="4998">
-              <caret line="79" column="99" selection-start-line="79" selection-start-column="99" selection-end-line="79" selection-end-column="99" />
-              <folding>
-                <marker date="1419446452487" expanded="false" signature="5598:5613" placeholder="..." />
-                <marker date="1419446452487" expanded="true" signature="5614:5836" placeholder="..." />
-                <marker date="1419446452487" expanded="true" signature="5659:5828" placeholder="..." />
-                <marker date="1419446452487" expanded="true" signature="5738:5821" placeholder="..." />
-                <marker date="1419446452487" expanded="false" signature="5990:6005" placeholder="..." />
-                <marker date="1419446452487" expanded="true" signature="6006:6235" placeholder="..." />
-                <marker date="1419446452487" expanded="true" signature="6051:6227" placeholder="..." />
-                <marker date="1419446452487" expanded="true" signature="6132:6220" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="trades.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/trades.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="629">
-              <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="account.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/account.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.037037" vertical-offset="1020" max-vertical-offset="1955">
-              <caret line="76" column="19" selection-start-line="76" selection-start-column="19" selection-end-line="76" selection-end-column="19" />
-              <folding>
-                <marker date="1419440275515" expanded="true" signature="324:373" placeholder="UPDATE notif..." />
-                <marker date="1419440275515" expanded="true" signature="636:686" placeholder="UPDATE notif..." />
-                <marker date="1419440275515" expanded="true" signature="828:895" placeholder="SELECT SUM(t..orderbook..." />
-                <marker date="1419440275515" expanded="true" signature="1057:1135" placeholder="SELECT symbo..portfolio..." />
-                <marker date="1419440275515" expanded="true" signature="1181:1243" placeholder="SELECT SUM(p..portfolio..." />
-                <marker date="1419440275515" expanded="true" signature="1754:1841" placeholder="SELECT SUM(q..orderbook..." />
-                <marker date="1419440275515" expanded="true" signature="2099:2162" placeholder="SELECT SUM(q..portfolio..." />
-                <marker date="1419440275515" expanded="true" signature="2353:2429" placeholder="SELECT SUM(q..orderbook..." />
-                <marker date="1419440275515" expanded="true" signature="2724:2771" placeholder="SELECT issue..assets..." />
-                <marker date="1419440275515" expanded="true" signature="3306:3376" placeholder="SELECT price..trades..." />
-                <marker date="1419440275515" expanded="true" signature="3821:3876" placeholder="SELECT * FRO..notification..." />
-                <marker date="1419440275515" expanded="true" signature="3908:3960" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419440275515" expanded="true" signature="4057:4207" placeholder="SELECT COUNT..." />
-                <marker date="1419440275515" expanded="true" signature="4399:4454" placeholder="SELECT COUNT..portfolio..." />
-                <marker date="1419440275515" expanded="true" signature="4551:4650" placeholder="SELECT SUM(c..trades..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="information_form.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/information_form.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.884615" vertical-offset="7409" max-vertical-offset="19839">
-              <caret line="454" column="124" selection-start-line="454" selection-start-column="64" selection-end-line="454" selection-end-column="124" />
+            <state vertical-scroll-proportion="0.06805293" vertical-offset="10538" max-vertical-offset="13107">
+              <caret line="622" column="0" selection-start-line="622" selection-start-column="0" selection-end-line="622" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -281,7 +180,6 @@
       <list>
         <option value="$PROJECT_DIR$/public_html/register.php" />
         <option value="$PROJECT_DIR$/public_html/info/footer.php" />
-        <option value="$PROJECT_DIR$/public_html/info/index.php" />
         <option value="$PROJECT_DIR$/public_html/data.php" />
         <option value="$PROJECT_DIR$/public_html/chart.php" />
         <option value="$PROJECT_DIR$/templates/history_form.php" />
@@ -329,15 +227,16 @@
         <option value="$PROJECT_DIR$/templates/orders_form.php" />
         <option value="$PROJECT_DIR$/includes/functions_testing.php" />
         <option value="$PROJECT_DIR$/templates/account_form.php" />
+        <option value="$PROJECT_DIR$/public_html/agency/index.php" />
+        <option value="$PROJECT_DIR$/public_html/info/index.php" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="335" />
+    <option name="width" value="1031" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -385,15 +284,15 @@
       <BehatRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
       <tasks />
       <pass-parent-env-vars>false</pass-parent-env-vars>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -412,28 +311,28 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="335" y="0" width="1031" height="728" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998326" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24941725" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47833067" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -485,25 +384,11 @@
           <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="36" />
+      <option name="time" value="39" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/information_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="13362" max-vertical-offset="19618">
-          <caret line="797" column="10" selection-start-line="797" selection-start-column="9" selection-end-line="797" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/old/transfer_form.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/old/transfer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="2516">
@@ -538,20 +423,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="17000">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/info/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="986">
-          <caret line="42" column="16" selection-start-line="42" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/info/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2621" max-vertical-offset="3128">
-          <caret line="165" column="63" selection-start-line="165" selection-start-column="63" selection-end-line="165" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -680,7 +551,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.07370518" vertical-offset="1210" max-vertical-offset="4403">
           <caret line="69" column="76" selection-start-line="69" selection-start-column="76" selection-end-line="69" selection-end-column="76" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -695,7 +565,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.773585" vertical-offset="4080" max-vertical-offset="5865">
           <caret line="64" column="44" selection-start-line="64" selection-start-column="44" selection-end-line="64" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -710,7 +579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="391" max-vertical-offset="850">
           <caret line="28" column="53" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -718,7 +586,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29281768" vertical-offset="368" max-vertical-offset="4437">
           <caret line="31" column="26" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -768,7 +635,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41776937" vertical-offset="204" max-vertical-offset="24089">
           <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -776,22 +642,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="5.814815" vertical-offset="4853" max-vertical-offset="5355">
           <caret line="267" column="174" selection-start-line="267" selection-start-column="172" selection-end-line="267" selection-end-column="174" />
-          <folding>
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..users..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="UPDATE users..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="UPDATE users..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="SELECT symbo..assets..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="SELECT `pric..." />
-            <marker date="1419368857514" expanded="true" signature="-1:-1" placeholder="SELECT `pric..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -799,10 +649,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.3076925" vertical-offset="4315" max-vertical-offset="6375">
           <caret line="265" column="32" selection-start-line="265" selection-start-column="0" selection-end-line="266" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#fieldset#0;n#form#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -810,7 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.538462" vertical-offset="1602" max-vertical-offset="3264">
           <caret line="118" column="58" selection-start-line="118" selection-start-column="58" selection-end-line="118" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -818,9 +663,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.65384614" vertical-offset="0" max-vertical-offset="391">
           <caret line="1" column="67" selection-start-line="1" selection-start-column="67" selection-end-line="1" selection-end-column="67" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -828,7 +670,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.884615" vertical-offset="7409" max-vertical-offset="19839">
           <caret line="454" column="124" selection-start-line="454" selection-start-column="64" selection-end-line="454" selection-end-column="124" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -836,87 +677,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.9615383" vertical-offset="14634" max-vertical-offset="15793">
           <caret line="879" column="0" selection-start-line="879" selection-start-column="0" selection-end-line="892" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#5;n#!!top" expanded="true" />
-            <marker date="1419444276277" expanded="true" signature="1237:1345" placeholder="SELECT COUNT..users..." />
-            <marker date="1419444276277" expanded="true" signature="1433:1537" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419444276277" expanded="true" signature="1626:1733" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="1822:1972" placeholder="SELECT COUNT..." />
-            <marker date="1419444276277" expanded="true" signature="2742:2886" placeholder="SELECT COUNT..users..." />
-            <marker date="1419444276277" expanded="true" signature="2947:3081" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419444276277" expanded="true" signature="3143:3280" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="3342:3522" placeholder="SELECT COUNT..." />
-            <marker date="1419444276277" expanded="true" signature="4255:4399" placeholder="SELECT COUNT..users..." />
-            <marker date="1419444276277" expanded="true" signature="4460:4594" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419444276277" expanded="true" signature="4656:4793" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="4855:5035" placeholder="SELECT COUNT..." />
-            <marker date="1419444276277" expanded="true" signature="5768:5912" placeholder="SELECT COUNT..users..." />
-            <marker date="1419444276277" expanded="true" signature="5973:6107" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419444276277" expanded="true" signature="6169:6306" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="6368:6548" placeholder="SELECT COUNT..." />
-            <marker date="1419444276277" expanded="true" signature="7281:7426" placeholder="SELECT COUNT..users..." />
-            <marker date="1419444276277" expanded="true" signature="7487:7622" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419444276277" expanded="true" signature="7684:7822" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="7884:8065" placeholder="SELECT COUNT..." />
-            <marker date="1419444276277" expanded="true" signature="8798:8944" placeholder="SELECT COUNT..users..." />
-            <marker date="1419444276277" expanded="true" signature="9005:9141" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419444276277" expanded="true" signature="9203:9342" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="9404:9586" placeholder="SELECT COUNT..." />
-            <marker date="1419444276277" expanded="true" signature="10319:10465" placeholder="SELECT COUNT..users..." />
-            <marker date="1419444276277" expanded="true" signature="10526:10662" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419444276277" expanded="true" signature="10724:10863" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="10925:11107" placeholder="SELECT COUNT..." />
-            <marker date="1419444276277" expanded="true" signature="11842:11950" placeholder="SELECT COUNT..users..." />
-            <marker date="1419444276277" expanded="true" signature="12038:12142" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419444276277" expanded="true" signature="12231:12338" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="12427:12577" placeholder="SELECT COUNT..." />
-            <marker date="1419444276277" expanded="true" signature="13357:13466" placeholder="SELECT COUNT..users..." />
-            <marker date="1419444276277" expanded="true" signature="13555:13660" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419444276277" expanded="true" signature="13750:13858" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="13948:14099" placeholder="SELECT COUNT..." />
-            <marker date="1419444276277" expanded="true" signature="14889:14925" placeholder="SELECT COUNT..users..." />
-            <marker date="1419444276277" expanded="true" signature="15014:15052" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419444276277" expanded="true" signature="15142:15183" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="15273:15357" placeholder="SELECT COUNT..." />
-            <marker date="1419444276277" expanded="true" signature="19626:19684" placeholder="SELECT SUM(t..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="19865:19905" placeholder="SELECT SUM(u..accounts..." />
-            <marker date="1419444276277" expanded="true" signature="20822:20881" placeholder="SELECT symbo..assets..." />
-            <marker date="1419444276277" expanded="true" signature="21276:21370" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="21879:21941" placeholder="SELECT SUM(a..storage..." />
-            <marker date="1419444276277" expanded="true" signature="22163:22228" placeholder="SELECT SUM(q..portfolio..." />
-            <marker date="1419444276277" expanded="true" signature="22479:22564" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1419444276277" expanded="true" signature="24561:24600" placeholder="SELECT units..accounts..." />
-            <marker date="1419444276277" expanded="true" signature="25157:25209" placeholder="UPDATE accou..." />
-            <marker date="1419444276277" expanded="true" signature="25403:25515" placeholder="INSERT INTO ..." />
-            <marker date="1419444276277" expanded="true" signature="25807:25927" placeholder="SELECT depos..storage..." />
-            <marker date="1419444276277" expanded="true" signature="25949:25978" placeholder="SELECT * FRO..storage..." />
-            <marker date="1419444276277" expanded="true" signature="26030:26101" placeholder="SELECT symbo..storage..." />
-            <marker date="1419444276277" expanded="true" signature="31256:31342" placeholder="SELECT SUM(c..trades..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/account.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.037037" vertical-offset="1020" max-vertical-offset="1955">
-          <caret line="76" column="19" selection-start-line="76" selection-start-column="19" selection-end-line="76" selection-end-column="19" />
-          <folding>
-            <marker date="1419440275515" expanded="true" signature="324:373" placeholder="UPDATE notif..." />
-            <marker date="1419440275515" expanded="true" signature="636:686" placeholder="UPDATE notif..." />
-            <marker date="1419440275515" expanded="true" signature="828:895" placeholder="SELECT SUM(t..orderbook..." />
-            <marker date="1419440275515" expanded="true" signature="1057:1135" placeholder="SELECT symbo..portfolio..." />
-            <marker date="1419440275515" expanded="true" signature="1181:1243" placeholder="SELECT SUM(p..portfolio..." />
-            <marker date="1419440275515" expanded="true" signature="1754:1841" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1419440275515" expanded="true" signature="2099:2162" placeholder="SELECT SUM(q..portfolio..." />
-            <marker date="1419440275515" expanded="true" signature="2353:2429" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1419440275515" expanded="true" signature="2724:2771" placeholder="SELECT issue..assets..." />
-            <marker date="1419440275515" expanded="true" signature="3306:3376" placeholder="SELECT price..trades..." />
-            <marker date="1419440275515" expanded="true" signature="3821:3876" placeholder="SELECT * FRO..notification..." />
-            <marker date="1419440275515" expanded="true" signature="3908:3960" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419440275515" expanded="true" signature="4057:4207" placeholder="SELECT COUNT..." />
-            <marker date="1419440275515" expanded="true" signature="4399:4454" placeholder="SELECT COUNT..portfolio..." />
-            <marker date="1419440275515" expanded="true" signature="4551:4650" placeholder="SELECT SUM(c..trades..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -924,7 +685,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.730769" vertical-offset="0" max-vertical-offset="629">
           <caret line="21" column="34" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -932,86 +692,42 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6153846" vertical-offset="1275" max-vertical-offset="4998">
           <caret line="79" column="99" selection-start-line="79" selection-start-column="99" selection-end-line="79" selection-end-column="99" />
-          <folding>
-            <marker date="1419446452487" expanded="false" signature="5598:5613" placeholder="..." />
-            <marker date="1419446452487" expanded="true" signature="5614:5836" placeholder="..." />
-            <marker date="1419446452487" expanded="true" signature="5659:5828" placeholder="..." />
-            <marker date="1419446452487" expanded="true" signature="5738:5821" placeholder="..." />
-            <marker date="1419446452487" expanded="false" signature="5990:6005" placeholder="..." />
-            <marker date="1419446452487" expanded="true" signature="6006:6235" placeholder="..." />
-            <marker date="1419446452487" expanded="true" signature="6051:6227" placeholder="..." />
-            <marker date="1419446452487" expanded="true" signature="6132:6220" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/orders_form.php">
+    <entry file="file://$PROJECT_DIR$/public_html/account.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.153847" vertical-offset="667" max-vertical-offset="5831">
-          <caret line="67" column="99" selection-start-line="67" selection-start-column="99" selection-end-line="67" selection-end-column="99" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#1;n#!!top" expanded="true" />
-            <marker date="1419446489979" expanded="true" signature="4026:4041" placeholder="..." />
-            <marker date="1419446489979" expanded="false" signature="4453:4468" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="4469:4693" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="4515:4685" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="4595:4678" placeholder="..." />
-            <marker date="1419446489979" expanded="false" signature="4852:4867" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="4868:5098" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="4913:5090" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="4995:5083" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="5486:5644" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="7691:7721" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="8379:8397" placeholder="..." />
-            <marker date="1419446489979" expanded="false" signature="8802:8817" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="8818:9042" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="8864:9034" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="8944:9027" placeholder="..." />
-            <marker date="1419446489979" expanded="false" signature="9201:9216" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="9217:9447" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="9262:9439" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="9344:9432" placeholder="..." />
-            <marker date="1419446489979" expanded="true" signature="9720:9770" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/functions_testing.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.0" vertical-offset="2979" max-vertical-offset="6001">
-          <caret line="215" column="39" selection-start-line="215" selection-start-column="39" selection-end-line="215" selection-end-column="39" />
-          <folding>
-            <marker date="1419446858287" expanded="true" signature="361:398" placeholder="SELECT count..users..." />
-            <marker date="1419446858287" expanded="true" signature="545:590" placeholder="SELECT symbo..assets..." />
-            <marker date="1419446858287" expanded="true" signature="1158:1232" placeholder="SELECT price..orderbook..." />
-            <marker date="1419446858287" expanded="true" signature="1541:1615" placeholder="SELECT price..orderbook..." />
-            <marker date="1419446858287" expanded="true" signature="3654:3709" placeholder="UPDATE trade..." />
-            <marker date="1419446858287" expanded="true" signature="3936:3993" placeholder="SELECT symbo..assets..." />
-          </folding>
+        <state vertical-scroll-proportion="-6.3333335" vertical-offset="1103" max-vertical-offset="1955">
+          <caret line="85" column="15" selection-start-line="85" selection-start-column="15" selection-end-line="85" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/account_form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27878788" vertical-offset="9008" max-vertical-offset="9503">
-          <caret line="538" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="553" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#td#2;n#tr#1;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#strong#0;n#td#1;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#td#0;n#tr#2;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#th#3;n#tr#1;n#table#0;n#td#0;n#tr#2;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#3;n#tr#2;n#table#0;n#td#0;n#tr#2;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#td#0;n#tr#3;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#th#9;n#tr#1;n#table#0;n#td#0;n#tr#3;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#3;n#tr#3;n#table#0;n#td#0;n#tr#3;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-3.5" vertical-offset="4469" max-vertical-offset="9214">
+          <caret line="274" column="35" selection-start-line="274" selection-start-column="35" selection-end-line="274" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/functions_testing.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2173913" vertical-offset="2996" max-vertical-offset="6001">
+          <caret line="183" column="26" selection-start-line="183" selection-start-column="26" selection-end-line="183" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/orders_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8922495" vertical-offset="667" max-vertical-offset="5831">
+          <caret line="67" column="99" selection-start-line="67" selection-start-column="99" selection-end-line="67" selection-end-column="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/info/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06805293" vertical-offset="10538" max-vertical-offset="13107">
+          <caret line="622" column="0" selection-start-line="622" selection-start-column="0" selection-end-line="622" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
