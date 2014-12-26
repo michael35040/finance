@@ -181,7 +181,7 @@ function test()
     clear_portfolio();
     clear_history();
     clear_assets();
-    $units = setPrice(100000000);
+    $units = setPrice(1000000);
     query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
     query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE id=1", $units);
 
@@ -195,65 +195,65 @@ function test()
     //BITCOIN $350/31
     if($unittype!='XBT')
     {
-        publicOffering('XBT', 'Bitcoin (BTC)', 1, 10000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Bitcoin', 10, 'Each unit represents 1 Bit if Bitcoin (100 Satoshi). Conversion: 1 Bit (0.01 BTC) = 1 million Satoshi; 1 BTC = 100 million Satashi; 1 Satoshi = 0.00000001');
-        placeOrder('XBT', 'limit', 'b', 10000, 300, 1);
-        placeOrder('XBT', 'limit', 'a', 10000, 400, 1);
+        publicOffering('XBT', 'Bitcoin', 1, 1000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Bitcoin', 10, 'Each unit represents 1 Bit if Bitcoin (BTC) (100 Satoshi). Conversion: 1 Bit (0.01 BTC) = 1 million Satoshi; 1 BTC = 100 million Satashi; 1 Satoshi = 0.00000001');
+        placeOrder('XBT', 'limit', 'b', 1000, 300, 1);
+        placeOrder('XBT', 'limit', 'a', 1000, 400, 1);
     }
 
 
     // $ Dollar
     if($unittype!='USD')
     {
-        publicOffering('USD', 'U.S. Dollar', 1, 100000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Dollar', 10, 'Each unit represents $0.01 Dollar; USD - U.S. Dollar (United States)');
-        placeOrder('USD', 'limit', 'b', 100000, 34, 1);
-        placeOrder('USD', 'limit', 'a', 100000, 36, 1);
+        publicOffering('USD', 'U.S. Dollar', 1, 1000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Dollar', 10, 'Each unit represents $0.01 Dollar; USD - U.S. Dollar (United States)');
+        placeOrder('USD', 'limit', 'b', 1000, 34, 1);
+        placeOrder('USD', 'limit', 'a', 1000, 36, 1);
     }
 
 
     //GOLD $1200/31
-    publicOffering('XAU', 'Gold (Au)', 1, 500, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Gold', 10, 'Each unit represents 1 gram of 99.9% fine Gold. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');
-    placeOrder('XAU', 'limit', 'b', 500, 14, 1);
-    placeOrder('XAU', 'limit', 'a', 500, 15, 1);
+    publicOffering('XAU', 'Gold', 1, 1000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Gold', 10, 'Each unit represents 1 gram of 99.9% fine Gold (Au). Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');
+    placeOrder('XAU', 'limit', 'b', 1000, 14, 1);
+    placeOrder('XAU', 'limit', 'a', 1000, 15, 1);
 
     //SILVER $17/31
-    publicOffering('XAG', 'Silver (Ag)', 1, 75000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Silver', 10, 'Each unit represents 1 gram of 99.9% fine Silver. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');
-    placeOrder('XAG', 'limit', 'b', 75000, 15, 1);
-    placeOrder('XAG', 'limit', 'a', 75000, 19, 1);
+    publicOffering('XAG', 'Silver', 1, 1000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Silver', 10, 'Each unit represents 1 gram of 99.9% fine Silver (Ag). Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');
+    placeOrder('XAG', 'limit', 'b', 1000, 15, 1);
+    placeOrder('XAG', 'limit', 'a', 1000, 19, 1);
 
     //COPPER $4/31
-    publicOffering('XCU', 'Copper (Cu)', 1, 1000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Copper', 10, 'Each unit represents 1 gram of 99.9% fine Copper. Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');
+    publicOffering('XCU', 'Copper', 1, 1000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Copper', 10, 'Each unit represents 1 gram of 99.9% fine Copper (Cu). Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');
     placeOrder('XCU', 'limit', 'b', 1000, 3, 1);
     placeOrder('XCU', 'limit', 'a', 1000, 4, 1);
 
     // € Euro
-    publicOffering('EUR', 'Euro', 1, 50000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Euro', 10, 'Each unit represents &euro; 1 Euro. EUR - Euro (Euro Member Countries)');
-    placeOrder('EUR', 'limit', 'b', 50000, 60, 1);
-    placeOrder('EUR', 'limit', 'a', 50000, 65, 1);
+    publicOffering('EUR', 'Euro', 1, 1000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Euro', 10, 'Each unit represents &euro; 1 Euro. EUR - Euro (Euro Member Countries)');
+    placeOrder('EUR', 'limit', 'b', 1000, 60, 1);
+    placeOrder('EUR', 'limit', 'a', 1000, 65, 1);
 
     // £ Pound
-    publicOffering('GBP', 'British Pound', 1, 50000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Pound_(currency)', 10, 'Each unit represents &pound; 1 Pound. GBP - British Pound Sterling (United Kingdom)');
-    placeOrder('GBP', 'limit', 'b', 50000, 10, 1);
-    placeOrder('GBP', 'limit', 'a', 50000, 13, 1);
+    publicOffering('GBP', 'British Pound', 1, 1000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Pound_(currency)', 10, 'Each unit represents &pound; 1 Pound. GBP - British Pound Sterling (United Kingdom)');
+    placeOrder('GBP', 'limit', 'b', 1000, 10, 1);
+    placeOrder('GBP', 'limit', 'a', 1000, 13, 1);
 
     // ₹ Rupee
-    publicOffering('INR', 'Indian Rupee', 1, 50000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Rupee', 10, 'Each unit represents &#x20B9; 1 Rupee. INR - Indian Rupee (India)');
-    placeOrder('INR', 'limit', 'b', 50000, 1.5, 1);
-    placeOrder('INR', 'limit', 'a', 50000, 1.9, 1);
+    publicOffering('INR', 'Indian Rupee', 1, 1000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Rupee', 10, 'Each unit represents &#x20B9; 1 Rupee. INR - Indian Rupee (India)');
+    placeOrder('INR', 'limit', 'b', 1000, 1.5, 1);
+    placeOrder('INR', 'limit', 'a', 1000, 1.9, 1);
 
     // ¥ Yuan
-    publicOffering('CNY', 'Chinese Yuan Renminbi', 1, 50000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yuan', 10, 'Each unit represents &yen; 1 Yuan. CNY - Chinese Yuan Renminbi (China)');
-    placeOrder('CNY', 'limit', 'b', 50000, 25, 1);
-    placeOrder('CNY', 'limit', 'a', 50000, 30, 1);
+    publicOffering('CNY', 'Chinese Yuan Renminbi', 1, 1000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yuan', 10, 'Each unit represents &yen; 1 Yuan. CNY - Chinese Yuan Renminbi (China)');
+    placeOrder('CNY', 'limit', 'b', 1000, 25, 1);
+    placeOrder('CNY', 'limit', 'a', 1000, 30, 1);
 
     // ¥ Yen
-    publicOffering('JPY', 'Japanese Yen', 1, 50000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yen', 10, 'Each unit represents &yen; 1 Yen. JPY - Japanese Yen (Japan)');
-    placeOrder('JPY', 'limit', 'b', 50000, 0.3, 1);
-    placeOrder('JPY', 'limit', 'a', 50000, 0.4, 1);
+    publicOffering('JPY', 'Japanese Yen', 1, 1000, 'currency', 0.5, 'http://en.wikipedia.org/wiki/Yen', 10, 'Each unit represents &yen; 1 Yen. JPY - Japanese Yen (Japan)');
+    placeOrder('JPY', 'limit', 'b', 1000, 0.3, 1);
+    placeOrder('JPY', 'limit', 'a', 1000, 0.4, 1);
 
     //PULWAR $35/31
-    publicOffering('PWR', 'Pulwar Group, Inc.', 1, 50000, 'stock', 0.5, 'http://pulwar.com', 10, 'Each unit represents 1 share of the Pulwar Group.');
-    placeOrder('PWR', 'limit', 'b', 50000, 11, 1);
-    placeOrder('PWR', 'limit', 'a', 50000, 13, 1);
+    publicOffering('PWR', 'Pulwar Group, Inc.', 1, 1000, 'stock', 0.5, 'http://pulwar.com', 10, 'Each unit represents 1 share of the Pulwar Group.');
+    placeOrder('PWR', 'limit', 'b', 1000, 11, 1);
+    placeOrder('PWR', 'limit', 'a', 1000, 13, 1);
 
     //try {processOrderbook();}
     //catch exception
