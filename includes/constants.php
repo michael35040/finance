@@ -14,6 +14,7 @@ $sitename = 'Pulwar'; //leave a space afterwards
 
 //index & portfolio
 $unittype = "XBT"; //USD
+$unitsymbol = "b"; //USD
 $unittype2 = 'Cryptocurrency'; //currency or commodity
 $unitdescription = "Bitcoin Bits"; //U.S. Dollar
 $unitdescriptionshort = "Bits"; //Dollar

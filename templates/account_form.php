@@ -149,7 +149,7 @@
             /*['Mike',  {v: 10000, f: '$10,000'}, true],*/
             [
                 <?php echo("'" . strtoupper($unittype) . "',"); ?>
-                <?php  $totalUnits = ($units+$bidLocked); echo("{v: " . $totalUnits . ", f: '$" . number_format($totalUnits, $decimalplaces, ".", ",") . "'},"); ?>
+                <?php  $totalUnits = ($units+$bidLocked); echo("{v: " . $totalUnits . ", f: '" . number_format($totalUnits, $decimalplaces, ".", ",") . "'},"); ?>
                 <?php echo("{v: " . 1 . ", f: '$" . number_format(1, $decimalplaces, ".", ",") . "'},"); ?>
                 <?php  $totalUnits = ($units+$bidLocked); echo("{v: " . $totalUnits . ", f: '$" . number_format($totalUnits, $decimalplaces, ".", ",") . "'},"); ?>
 

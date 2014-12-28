@@ -443,8 +443,9 @@ $dash["volumetotal"] = $count[0]["volume"];
         <th>Asset</th>
         <th>Type</th>
         <th>Price</th>
-        <th>Assets<br>Issued (Storage)</th>
+        <th>Assets/Reserves<br>Issued (Storage)</th>
         <th>Liabilities (in Circulation)<br>Total (Account/Order Book)</th>
+        <th>Reserve<br>Ratio</th>
     </tr>
     <?php
 
@@ -462,13 +463,14 @@ $dash["volumetotal"] = $count[0]["volume"];
     ?>
     <tr>
         <td><?php echo($unittype); ?></td>
-        <td><?php echo('Currency'); ?></td>
+        <td><?php echo($unittype2); ?></td>
         <td><?php echo($unitsymbol . number_format(1,$decimalplaces,".",",")); ?></td>
         <td><?php echo(number_format(getPrice($totalUnits),$decimalplaces,".",",")); ?></td>
-
         <td><!--total(accounts/bid orders)-->
             <?php echo(number_format(getPrice($totalUnits),$decimalplaces,".",",")); ?> (<?php echo(number_format(getPrice($unitsAccounts),$decimalplaces,".",",")); ?>/<?php echo(number_format(getPrice($unitsLocked),$decimalplaces,".",",")); ?>)
         </td>
+        <td><?php echo('100%'); ?></td>
+
 
     </tr>
 
@@ -493,7 +495,7 @@ $dash["volumetotal"] = $count[0]["volume"];
         echo(ucfirst($type));
         echo('</td>');
 
-
+        //ASSET PRICE
         $AskPrice =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a' AND id=1)", $symbol);	  // query user's portfolio
         if(empty($AskPrice[0]["price"])){$AskPrice[0]["price"]=0;}
         //ASSETS PRICE
@@ -503,25 +505,38 @@ $dash["volumetotal"] = $count[0]["volume"];
         echo('</td>');
 
 
-        //ASSETS ISSUED
+        //OBLIGATIONS - ASSETS ISSUED
         $issued = $row["issued"]; //total issued
-        echo('<td>' . number_format($issued,0,".",","));
+        echo('<td>');
+        echo(number_format($issued,0,".",","));
         if($type=='commodity')
         {
             $storage = query("SELECT SUM(asw*quantity) AS weight FROM storage WHERE symbol=?", $symbol);
-            $storage = $storage[0]["weight"]*31.1034768;
-            echo(' (' . number_format($storage,$decimalplaces,".",",") . 'g)');
+            //CONVERT FROM OZT TO GRAMS
+            $storage = $storage[0]["weight"]*31.1034768; $unitofmeasure='g';
+            //IF LESS THAN GRAM = MILLIGRAM (mg)
+            if($storage<1){$storage=$storage*1000; $unitofmeasure='mg';}
+            //IF MORE THAN 1000 GRAMS: KILOGRAM (kg)
+            if($storage>1000){$storage=$storage/1000; $unitofmeasure='kg';}
+            //IF MORE THAN 1million grams: Megagrams (Mg)
+            if($storage>1000000){$storage=$storage/1000000; $unitofmeasure='Mg';}
+
+            echo(' (' . number_format($storage,2,".",",") . $unitofmeasure . ')');
         }
         echo('</td>');
 
-        $obligationPortfolio =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE (symbol =?)", $symbol);	  // query user's portfolio
+
+        //LIABILITIES - ASSETS IN CIRCULATION
+        //PORTFOLIO
+        $obligationPortfolio =	query("SELECT SUM(quantity) AS quantity FROM portfolio WHERE (symbol =?)", $symbol);
         if(empty($obligationPortfolio[0]["quantity"])){$obligationPortfolio[0]["quantity"]=0;}
-        $totalPortfolio = $obligationPortfolio[0]["quantity"]; //shares held
-        $obligationOrderbook =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a')", $symbol);	  // query user's portfolio
+        $totalPortfolio = $obligationPortfolio[0]["quantity"];
+        //ORDERBOOK
+        $obligationOrderbook =	query("SELECT SUM(quantity) AS quantity, price FROM orderbook WHERE (symbol =? AND side='a')", $symbol);
         if(empty($obligationOrderbook[0]["quantity"])){$obligationOrderbook[0]["quantity"]=0;}
-        $totalOrderbook = $obligationOrderbook[0]["quantity"]; //shares held
-        //ASSETS IN CIRCULATION
-        $obligations = ($totalPortfolio+$totalOrderbook); //total in circulation
+        $totalOrderbook = $obligationOrderbook[0]["quantity"];
+        //TOTAL
+        $obligations = ($totalPortfolio+$totalOrderbook);
         //$obligationMV = ($AskPrice*$obligations);
         echo('<td>');
         echo(number_format($obligations,0,".",","));
@@ -531,6 +546,11 @@ $dash["volumetotal"] = $count[0]["volume"];
         echo(number_format($totalOrderbook,0,".",","));
         echo(')</td>');
 
+
+        //RATIO
+        echo('<td>');
+        echo(number_format((($obligations/$issued)*100),2,".",",") . "%");
+        echo('</td>');
 
 
         echo('</tr>');

@@ -366,14 +366,17 @@ require("../../includes/constants.php");
 
 
 
-<?php
+            <?php
             $i = 0;
 
+            //BOARD MEMBERS
+            // On the first tier is the board of governors or directors: these individuals are elected by the shareholders of the corporation.
             $i++;
             $team[$i]['link'] = 'Chairman';
             $team[$i]['name'] = 'Ben Bernanke';
             $team[$i]['title'] = 'Chairman of Board';
-            $team[$i]['description'] = 'Leads the board of directors and chairs board meetings. Presiding officer of the corporate Board of directors. The Chairman influences the board of directors, which in turn elects and removes the officers of a corporation and oversees the human, financial, environmental and technical operations of a corporation.';
+            $team[$i]['description'] = "Leads the board of directors and chairs board meetings. Presiding officer of the corporate Board of directors. The Chairman influences the board of directors, which in turn elects and removes the officers of a corporation and oversees the human, financial, environmental and technical operations of a corporation.<br><br>
+                Chairman – Technically the leader of the corporation, the board chairman is responsible for running the board smoothly and effectively. His or her duties typically include maintaining strong communication with the chief executive officer and high-level executives, formulating the company's business strategy, representing management and the board to the general public and shareholders, and maintaining corporate integrity. A chairman is elected from the board of directors.";
             $team[$i]['img'] = '1';
 
 
@@ -395,8 +398,27 @@ require("../../includes/constants.php");
             $team[$i]['link'] = "CEO";
             $team[$i]['name'] = "John Stumpf";
             $team[$i]['title'] = 'Chief Executive Officer';
-            $team[$i]['description'] = 'Full responsibility for the activities of the company. Responsible for external relations and long-term strategy. The CEO signs major contracts, stock certificates and other legal documents, as required. The CEO acts under the direction of the board. For substantial actions to be taken, the CEO will act on behalf of the corporation by corporate resolution. The CEO of a corporation is the highest ranking management officer of a corporation and has final decisions over human, financial, environmental, technical operations of the corporation. The CEO is also a visionary, often leaving day-to-day operations to the President, COO or division heads. Other corporate officers such as the COO, CFO, CIO, and  division heads report to the CEO. The CEO is also often the Chairman of the Board, especially in closely held corporations and also often in public corporations. Recently, though, many public companies have separated the roles of Chairman and CEO (This is long-standing normal practice under the British System), resulting in a non-executive chairman, in order to improve corporate governance. President and CEO is a popular combination if there is a non-executive chairman.';
+            $team[$i]['description'] = "Full responsibility for the activities of the company. Responsible for external relations and long-term strategy. The CEO signs major contracts, stock certificates and other legal documents, as required. The CEO acts under the direction of the board. For substantial actions to be taken, the CEO will act on behalf of the corporation by corporate resolution. The CEO of a corporation is the highest ranking management officer of a corporation and has final decisions over human, financial, environmental, technical operations of the corporation. The CEO is also a visionary, often leaving day-to-day operations to the President, COO or division heads. Other corporate officers such as the COO, CFO, CIO, and  division heads report to the CEO. The CEO is also often the Chairman of the Board, especially in closely held corporations and also often in public corporations. Recently, though, many public companies have separated the roles of Chairman and CEO (This is long-standing normal practice under the British System), resulting in a non-executive chairman, in order to improve corporate governance. President and CEO is a popular combination if there is a non-executive chairman.<br><br>
+Chief Executive Officer (CEO) – As the top manager, the CEO is typically responsible for the corporation's entire operations and reports directly to the chairman and board of directors. It is the CEO's responsibility to implement board decisions and initiatives, and to maintain smooth operation of the firm with senior management's assistance. Often, the CEO will also be designated as the company's president and therefore be one of the inside directors on the board (if not the chairman). However, it is highly suggested that a company's CEO should not also be the company's chairman to ensure the chairman's independence and clear lines of authority.";
             $team[$i]['img'] = '4';
+
+
+            //Chief Operations Officer (COO) – Responsible for the corporation's operations, the COO looks after issues related to marketing, sales, production and personnel. More hands-on than the CEO, the COO looks after day-to-day activities while providing feedback to the CEO. The COO is often referred to as a senior vice president.
+
+            //Treasurer "<strong>Treasurer</strong><br>Responsible for the financial matters of the corporation. The treasurer is responsible for maintaining the financial corporate records and for preparing and presenting financial reports to the board, officers and shareholders. Legally recognized corporate officer entrusted with the fiduciary responsibility of caring for company funds. Often this title is held concurrently with that of Secretary in a dual role called secretary-treasurer. It can also be held concurrently with the title of CFO or fall under the jurisdiction of one, though the CFO tends to oversee the Finance Department instead, which deals with accounting and audits, while the Treasurer deals directly with company funds. Note, however, that the Treasurer has a reporting line to the Board of Directors, regardless of any other reporting lines conferred by concurrent titles.
+            //What is the difference between a CFO and a treasurer? The New York Times describes the position of a Chief Financial Officer, or CFO, as the person who is responsible for accounting, budgeting, financial analysis and the oversight of insurance, health insurance, real estate, banking, accounts receivable and legal issues. A treasurer is responsible for managing financial risk for the company across credit, currency, interest rates and operations. In business, a CFO generally oversees the performance of a treasurer. The CFO is responsible for all aspects of the company's financial management, while the treasurer is only concerned with one area, risk. According to an article in San Diego Source, the treasurer is responsible for the monitoring and investment of the company's cash so there is a balance between investments and returns. The same article notes that the treasurer may also be responsible for making sure the company's assets are adequately protected by insurance. San Diego Source describes the responsibilities of a CFO as overseeing controllership, the treasury, capital structure, executive reporting, financial intelligence and business strategy. The CFO is the highest financial officer in a company. This position often works in conjunction with the Chief Executive Officer, or CEO, and reports directly to the owner of the company or the board of directors.
+
+            $i++;
+            $team[$i]['link'] = 'CFO';
+            $team[$i]['name'] = 'Brian Moynihan';
+            $team[$i]['title'] = 'Chief Financial Officer';
+            $team[$i]['img'] = '6';
+            $team[$i]['description'] =
+                "<strong>Chief Financial Officer</strong><br>High level corporate officer with oversight of corporate finances; reports to the CEO. May concurrently hold the title of Treasurer or oversee such a position; it must be noted that Finance deals with accounting and audits, while Treasurer deals with company funds.
+                <br><br>
+                Also reporting directly to the CEO, the CFO is responsible for analyzing and reviewing financial data, reporting financial performance, preparing budgets and monitoring expenditures and costs. The CFO is required to present this information to the board of directors at regular intervals and provide it to shareholders and regulatory bodies such as the Securities and Exchange Commission (SEC). Also usually referred to as a senior vice president, the CFO routinely checks the corporation's financial health and integrity."
+                ;
+
 
             $i++;
             $team[$i]['link'] = 'President';
@@ -406,42 +428,32 @@ require("../../includes/constants.php");
             $team[$i]['img'] = '5';
 
 
-            $i++;
-            $team[$i]['link'] = 'CFO';
-            $team[$i]['name'] = 'Brian Moynihan';
-            $team[$i]['title'] = 'Treasurer/Chief Financial Officer';
-            $team[$i]['description'] =
-            $team[$i]['img'] = '6';
-            //CFO
-            '<strong>CFO</strong><br>High level corporate officer with oversight of corporate finances; reports to the CEO. May concurrently hold the title of Treasurer or oversee such a position; it must be noted that Finance deals with accounting and audits, while Treasurer deals with company funds. <br><br>' .
-            //Treasurer
-            '<strong>Treasurer</strong><br>Responsible for the financial matters of the corporation. The treasurer is responsible for maintaining the financial corporate records and for preparing and presenting financial reports to the board, officers and shareholders. Legally recognized corporate officer entrusted with the fiduciary responsibility of caring for company funds. Often this title is held concurrently with that of Secretary in a dual role called secretary-treasurer. It can also be held concurrently with the title of CFO or fall under the jurisdiction of one, though the CFO tends to oversee the Finance Department instead, which deals with accounting and audits, while the Treasurer deals directly with company funds. Note, however, that the Treasurer has a reporting line to the Board of Directors, regardless of any other reporting lines conferred by concurrent titles.';
-?>
+            ?>
             <?php
             $n=0;
             foreach ($team as $t)
             {
-            $n++;
-            ?>
+                $n++;
+                ?>
 
 
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <a href="#teamModal<?php echo($team[$n]['link']); ?>" class="portfolio-link" data-toggle="modal">
-                        <img src="img/team/<?php echo($team[$n]['img']); ?>.jpg" class="img-responsive img-circle" alt="">
-                    </a>
-                    <h4><?php echo($team[$n]['name']); ?></h4>
-                    <p class="text-muted"><?php echo($team[$n]['title']); ?></p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <a href="#teamModal<?php echo($team[$n]['link']); ?>" class="portfolio-link" data-toggle="modal">
+                            <img src="img/team/<?php echo($team[$n]['img']); ?>.jpg" class="img-responsive img-circle" alt="">
+                        </a>
+                        <h4><?php echo($team[$n]['name']); ?></h4>
+                        <p class="text-muted"><?php echo($team[$n]['title']); ?></p>
+                        <ul class="list-inline social-buttons">
+                            <li><a href="#"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
             <?php } ?>
 
