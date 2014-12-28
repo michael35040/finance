@@ -14,7 +14,7 @@ $sitename = 'Pulwar'; //leave a space afterwards
 
 //index & portfolio
 $unittype = "XBT"; //USD
-$unittype2 = 'Currency'; //currency or commodity
+$unittype2 = 'Cryptocurrency'; //currency or commodity
 $unitdescription = "Bitcoin Bits"; //U.S. Dollar
 $unitdescriptionshort = "Bits"; //Dollar
 $unitdescriptionlong = "Each unit represents 1 bit of Bitcoin (BTC). Conversion: 1 BTC = 1 million bits; 1 BTC = 100 million satoshi"; //$

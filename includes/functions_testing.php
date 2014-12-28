@@ -195,7 +195,7 @@ function test()
     //BITCOIN $350/31
     if($unittype!='XBT')
     {
-        publicOffering('XBT', 'Bitcoin', 1, 100000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Bitcoin', 10, 'Each unit represents 1 Bit if Bitcoin (BTC) (100 Satoshi). Conversion: 1 Bit (0.01 BTC) = 1 million Satoshi; 1 BTC = 100 million Satashi; 1 Satoshi = 0.00000001');
+        publicOffering('XBT', 'Bitcoin', 1, 100000, 'cryptocurrency', 0.5, 'http://en.wikipedia.org/wiki/Bitcoin', 10, 'Each unit represents 1 Bit if Bitcoin (BTC) (100 Satoshi). Conversion: 1 Bit (0.01 BTC) = 1 million Satoshi; 1 BTC = 100 million Satashi; 1 Satoshi = 0.00000001');
         placeOrder('XBT', 'limit', 'b', 1000, 300, 1);
         placeOrder('XBT', 'limit', 'a', 100000, 400, 1);
     }
@@ -209,8 +209,17 @@ function test()
         placeOrder('USD', 'limit', 'a', 100000, 36, 1);
     }
 
+    //XRP RIPPLE $1.0/1.5
+    publicOffering('XRP', 'Ripple', 1, 100000, 'cryptocurrency', 0.5, 'https://ripple.com/', 10, 'Each unit represents 1 Ripple.');
+    placeOrder('XRP', 'limit', 'b', 1000, 300, 1);
+    placeOrder('XRP', 'limit', 'a', 100000, 400, 1);
 
-    //GOLD $1200/31
+    //XST STELLAR $1.25/1.75
+    publicOffering('XST', 'Stellar', 1, 100000, 'cryptocurrency', 0.5, 'https://www.stellar.org/', 10, 'Each unit represents 1 Stellar');
+    placeOrder('XST', 'limit', 'b', 1000, 300, 1);
+    placeOrder('XST', 'limit', 'a', 100000, 400, 1);
+
+    //GOLD $1200/1300
     publicOffering('XAU', 'Gold', 1, 10000, 'commodity', 0.5, 'http://en.wikipedia.org/wiki/Gold', 10, 'Each unit represents 1 gram of 99.9% fine Gold (Au). Conversion: 1 gram = 0.0321507466 troy ounce; 1 troy ounce = 31.1034768 grams');
     placeOrder('XAU', 'limit', 'b', 1000, 14, 1);
     placeOrder('XAU', 'limit', 'a', 10000, 15, 1);
