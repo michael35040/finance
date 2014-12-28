@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
 
 
-$bidLocked =	query("SELECT SUM(total) AS total FROM orderbook WHERE (id=? AND side='b')", $id);	  // query user's portfolio
+$bidLocked = query("SELECT SUM(total) AS total FROM orderbook WHERE (id=? AND side='b')", $id);	  // query user's portfolio
 $bidLocked = getPrice($bidLocked[0]["total"]); //shares trading
 if($bidLocked==null){$bidLocked=0;}
 

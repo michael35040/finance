@@ -1,6 +1,14 @@
+<?php
+include '../../includes/functions.php';
+include '../../includes/functions_exchange.php';
+require("../../includes/db.php");
+require("../../includes/constants.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-<?php $sitename="Pulwar Financial Group"; ?>
+<?php $sitename="Pulwar Group"; ?>
 <head>
 
     <meta charset="utf-8">
@@ -28,8 +36,8 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="js//html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
     <![endif]-->
 
 
@@ -95,8 +103,8 @@
 <header>
     <div class="container">
         <div class="intro-text">
-            <div class="intro-lead-in">Invest with Excellence!</div>
-            <div class="intro-heading">Welcome</div>
+            <div class="intro-lead-in">Invest with Excellence</div>
+            <div class="intro-heading">Welcome!</div>
             <a href="#services" class="page-scroll btn btn-xl">Tell Me More</a>
         </div>
     </div>
@@ -108,10 +116,12 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Services</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 class="section-subheading text-muted">Solution Oriented</h3>
             </div>
         </div>
         <div class="row text-center">
+
+
 
             <!-- COMMERCE -->
             <div class="col-md-4">
@@ -120,7 +130,7 @@
                         <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
                     </span>
                 <h4 class="service-heading">Buy</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">Low fees</p>
             </div>
 
             <!-- INVESTING -->
@@ -130,7 +140,7 @@
                         <i class="fa fa-area-chart fa-stack-1x fa-inverse"></i>
                     </span>
                 <h4 class="service-heading">Invest</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">Transparent markets</p>
             </div>
 
             <!-- TRADING -->
@@ -140,7 +150,7 @@
                         <i class="fa fa-refresh fa-stack-1x fa-inverse"></i>
                     </span>
                 <h4 class="service-heading">Trade</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">Liquid assets</p>
             </div>
 
             <!-- SECURITY -->
@@ -150,7 +160,7 @@
                         <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
                     </span>
                 <h4 class="service-heading">Security</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">Cryptographically protected</p>
             </div>
 
             <!-- SERVICES -->
@@ -160,7 +170,7 @@
                         <i class="fa fa-cog fa-stack-1x fa-inverse"></i>
                     </span>
                 <h4 class="service-heading">Service</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">Investment advisory</p>
             </div>
 
             <!-- TRANSFER -->
@@ -170,8 +180,11 @@
                         <i class="fa fa-share-alt fa-stack-1x fa-inverse"></i>
                     </span>
                 <h4 class="service-heading">Transfer</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                <p class="text-muted">Instant and seamless</p>
             </div>
+
+
+
 
         </div>
     </div>
@@ -183,7 +196,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Asset Portfolio</h2>
-                <h3 class="section-subheading text-muted">Convert assets seamlessly.</h3>
+                <h3 class="section-subheading text-muted">Convert and transact seamlessly.</h3>
             </div>
         </div>
         <div class="row">
@@ -192,130 +205,55 @@
             <?php
             $modaldir="card/real/";
 
-            $n=0;
+            $assets =	query("SELECT symbol FROM assets ORDER BY symbol ASC");
+            foreach ($assets as $asset)		// for each of user's stocks
+            {
+                $assetQ =	query("SELECT symbol, name, date, issued, type, url, description FROM assets WHERE symbol =?", $asset["symbol"]);	  // query user's portfolio
+                $symbol = $assetQ[0]["symbol"];
+                $name = $assetQ[0]["name"];
+                $type = $assetQ[0]["type"];
+                $modalimage = $modaldir . strtolower($symbol) . '.jpg';
 
-            $n++;
-            $modaltitle[$n]="Gold";
-            $modalsubtitle[$n]="Element (Au)";
-            $modalimage[$n]="xau.jpg";
-            $modaltext[$n]="99.9% Fine Gold";
-            $modaltext2[$n]="Description of assets...";
-            $date[$n]="12/25/2014";
-            $rate[$n]="1.30";
-            $type[$n]="Commodity";
-
-            $n++;
-            $modaltitle[$n]="Silver";
-            $modalsubtitle[$n]="Element (Ag)";
-            $modalimage[$n]="xag.jpg";
-            $modaltext[$n]="99.9% Fine Silver";
-            $modaltext2[$n]="Description of assets...";
-            $date[$n]="12/25/2014";
-            $rate[$n]="1.30";
-            $type[$n]="Commodity";
-
-            $n++;
-            $modaltitle[$n]="Copper";
-            $modalsubtitle[$n]="Element (Cu)";
-            $modalimage[$n]="xcu.jpg";
-            $modaltext[$n]="99.9% Fine Copper";
-            $modaltext2[$n]="Description of assets...";
-            $date[$n]="12/25/2014";
-            $rate[$n]="1.30";
-            $type[$n]="Commodity";
-
-            $n++;
-            $modaltitle[$n]="Bitcoin";
-            $modalsubtitle[$n]="Bitcoin Foundation";
-            $modalimage[$n]="btc.jpg";
-            $modaltext[$n]="Bitcoin (BTC)";
-            $modaltext2[$n]="Description of assets...";
-            $date[$n]="12/25/2014";
-            $rate[$n]="1.30";
-            $type[$n]="Commodity";
-
-            $n++;
-            $modaltitle[$n]="Dollar";
-            $modalsubtitle[$n]="United States";
-            $modalimage[$n]="usd.jpg";
-            $modaltext[$n]="U.S. Dollar";
-            $modaltext2[$n]="Description of assets...";
-            $date[$n]="12/25/2014";
-            $rate[$n]="1.30";
-            $type[$n]="Commodity";
-
-            $n++;
-            $modaltitle[$n]="Yuan";
-            $modalsubtitle[$n]="China";
-            $modalimage[$n]="cny.jpg";
-            $modaltext[$n]="Chinese Yuan";
-            $modaltext2[$n]="Description of assets...";
-            $date[$n]="12/25/2014";
-            $rate[$n]="1.30";
-            $type[$n]="Commodity";
-
-            $n++;
-            $modaltitle[$n]="Euro";
-            $modalsubtitle[$n]="European Union";
-            $modalimage[$n]="eur.jpg";
-            $modaltext[$n]="European Euro";
-            $modaltext2[$n]="Description of assets...";
-            $date[$n]="12/25/2014";
-            $rate[$n]="1.30";
-            $type[$n]="Commodity";
-
-            $n++;
-            $modaltitle[$n]="Pound";
-            $modalsubtitle[$n]="Great Britain";
-            $modalimage[$n]="gbp.jpg";
-            $modaltext[$n]="British Pound";
-            $modaltext2[$n]="Description of assets...";
-            $date[$n]="12/25/2014";
-            $rate[$n]="1.30";
-            $type[$n]="Commodity";
-
-            $n++;
-            $modaltitle[$n]="Yen";
-            $modalsubtitle[$n]="Japan";
-            $modalimage[$n]="jpy.jpg";
-            $modaltext[$n]="Japanese Yen";
-            $modaltext2[$n]="Description of assets...";
-            $date[$n]="12/25/2014";
-            $rate[$n]="1.30";
-            $type[$n]="Commodity";
-
-
-
-
-
-
-
-
-            ?>
-
-
-
-            <?php
-            $number=0;
-            foreach($modaltitle as $title){
-                $i++;
                 ?>
-            <!-- Portfolio Modal -->
+                <!-- Portfolio Modal -->
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a href="#portfolioModal<?php echo($symbol); ?>" class="portfolio-link" data-toggle="modal">
+                        <div class="portfolio-hover">
+                            <div class="portfolio-hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/<?php echo($modalimage); ?>" class="img-responsive" alt="">
+                    </a>
+                    <div class="portfolio-caption">
+                        <h4><?php echo($symbol  . " - " . $name); ?></h4>
+                        <p class="text-muted"><?php echo(ucfirst($type)); ?></p>
+                    </div>
+                </div>
+
+            <?php }
+
+            //UNITS
+            $symbol = $unittype;
+            $name = $unitdescription;
+            $type = $unittype2;
+            $modalimage = $modaldir . strtolower($symbol) . '.jpg';
+            ?>
+            <!-- Portfolio (UNITS) Modal -->
             <div class="col-md-4 col-sm-6 portfolio-item">
-                <a href="#portfolioModal<?php echo($modaltitle[$i]); ?>" class="portfolio-link" data-toggle="modal">
+                <a href="#portfolioModal<?php echo($symbol); ?>" class="portfolio-link" data-toggle="modal">
                     <div class="portfolio-hover">
                         <div class="portfolio-hover-content">
                             <i class="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img src="img/portfolio/<?php echo($modaldir . $modalimage[$i]); ?>" class="img-responsive" alt="">
+                    <img src="img/portfolio/<?php echo($modalimage); ?>" class="img-responsive" alt="">
                 </a>
                 <div class="portfolio-caption">
-                    <h4><?php echo($modaltitle[$i]); ?></h4>
-                    <p class="text-muted"><?php echo($modalsubtitle[$i]); ?></p>
+                    <h4><?php echo($symbol  . " - " . $name); ?></h4>
+                    <p class="text-muted"><?php echo(ucfirst($type)); ?></p>
                 </div>
             </div>
-            <?php } ?>
 
 
 
@@ -331,7 +269,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">About</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 class="section-subheading text-muted">Who we are</h3>
             </div>
         </div>
         <div class="row">
@@ -344,10 +282,10 @@
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>2009-2011</h4>
-                                <h4 class="subheading">Our Humble Beginnings</h4>
+                                <h4 class="subheading">Phase One</h4>
                             </div>
                             <div class="timeline-body">
-                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                <p class="text-muted">Our start</p>
                             </div>
                         </div>
                     </li>
@@ -358,10 +296,10 @@
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>March 2011</h4>
-                                <h4 class="subheading">An Agency is Born</h4>
+                                <h4 class="subheading">Phase Two</h4>
                             </div>
                             <div class="timeline-body">
-                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                <p class="text-muted">International Expansion</p>
                             </div>
                         </div>
                     </li>
@@ -372,10 +310,10 @@
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>December 2012</h4>
-                                <h4 class="subheading">Transition to Full Service</h4>
+                                <h4 class="subheading">Phase Three</h4>
                             </div>
                             <div class="timeline-body">
-                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                <p class="text-muted">Innovative Technology</p>
                             </div>
                         </div>
                     </li>
@@ -386,10 +324,10 @@
                         <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4>July 2014</h4>
-                                <h4 class="subheading">Phase Two Expansion</h4>
+                                <h4 class="subheading">Phase Four</h4>
                             </div>
                             <div class="timeline-body">
-                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                <p class="text-muted">Giving Back</p>
                             </div>
                         </div>
                     </li>
@@ -406,13 +344,21 @@
     </div>
 </section>
 
+
+
+
+
 <!-- Team Section -->
-<section id="team" class="bg-light-gray">
+<section id="portfolio" class="bg-light-gray">
+
+    <!--<section id="team" class="bg-light-gray">-->
     <div class="container">
+
+
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Board of Directors</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 class="section-subheading text-muted">Visionaries</h3>
             </div>
         </div>
 
@@ -420,15 +366,72 @@
 
 
 
+<?php
+            $i = 0;
+
+            $i++;
+            $team[$i]['link'] = 'Chairman';
+            $team[$i]['name'] = 'Ben Bernanke';
+            $team[$i]['title'] = 'Chairman of Board';
+            $team[$i]['description'] = 'Leads the board of directors and chairs board meetings. Presiding officer of the corporate Board of directors. The Chairman influences the board of directors, which in turn elects and removes the officers of a corporation and oversees the human, financial, environmental and technical operations of a corporation.';
+            $team[$i]['img'] = '1';
+
+
+            $i++;
+            $team[$i]['link'] = 'Secretary';
+            $team[$i]['name'] = 'Jamie Dimon';
+            $team[$i]['title'] = 'Secretary of Board';
+            $team[$i]['description'] = 'Responsible to record the proceedings of the meetings of the stockholders and directors in a book to be kept for that purpose. Legally recognized "titled" corporate officer who reports to the Board of Directors and is responsible for keeping the records of the Board and the company. This title is often concurrently held by the treasurer in a dual position called secretary-treasurer; both positions may be concurrently held by the CFO. Note, however, that the Secretary has a reporting line to the Board of Directors, regardless of any other reporting lines conferred by concurrent titles.';
+            $team[$i]['img'] = '2';
+
+            $i++;
+            $team[$i]['link'] = 'Board';
+            $team[$i]['name'] = 'Michael Corbat';
+            $team[$i]['title'] = 'Board Member';
+            $team[$i]['description'] = '';
+            $team[$i]['img'] = '3';
+
+            $i++;
+            $team[$i]['link'] = "CEO";
+            $team[$i]['name'] = "John Stumpf";
+            $team[$i]['title'] = 'Chief Executive Officer';
+            $team[$i]['description'] = 'Full responsibility for the activities of the company. Responsible for external relations and long-term strategy. The CEO signs major contracts, stock certificates and other legal documents, as required. The CEO acts under the direction of the board. For substantial actions to be taken, the CEO will act on behalf of the corporation by corporate resolution. The CEO of a corporation is the highest ranking management officer of a corporation and has final decisions over human, financial, environmental, technical operations of the corporation. The CEO is also a visionary, often leaving day-to-day operations to the President, COO or division heads. Other corporate officers such as the COO, CFO, CIO, and  division heads report to the CEO. The CEO is also often the Chairman of the Board, especially in closely held corporations and also often in public corporations. Recently, though, many public companies have separated the roles of Chairman and CEO (This is long-standing normal practice under the British System), resulting in a non-executive chairman, in order to improve corporate governance. President and CEO is a popular combination if there is a non-executive chairman.';
+            $team[$i]['img'] = '4';
+
+            $i++;
+            $team[$i]['link'] = 'President';
+            $team[$i]['name'] = 'Lloyd Blankfein';
+            $team[$i]['title'] = 'President';
+            $team[$i]['description'] = 'Responsible for internal management and focuses on day-to-day operations. Legally recognized highest "titled" corporate officer outside of the CEO (who ranks highest). The President works directly for the Board of Directors and usually a member of the Board of Directors. The office of President can be limited by the Chairman/CEO to represent only one division within a corporation, such as the President of Sales. In the event there is no CEO, the President is the highest ranking officer but is not normally the Chairperson. There is much variation; often the CEO also holds the title of President, while a Chairman and CEO\'s deputy is often the President and COO. The President is often considered to be more focused upon daily operations compared to the CEO which is supposed to be the visionary.';
+            $team[$i]['img'] = '5';
+
+
+            $i++;
+            $team[$i]['link'] = 'CFO';
+            $team[$i]['name'] = 'Brian Moynihan';
+            $team[$i]['title'] = 'Treasurer/Chief Financial Officer';
+            $team[$i]['description'] =
+            $team[$i]['img'] = '6';
+            //CFO
+            '<strong>CFO</strong><br>High level corporate officer with oversight of corporate finances; reports to the CEO. May concurrently hold the title of Treasurer or oversee such a position; it must be noted that Finance deals with accounting and audits, while Treasurer deals with company funds. <br><br>' .
+            //Treasurer
+            '<strong>Treasurer</strong><br>Responsible for the financial matters of the corporation. The treasurer is responsible for maintaining the financial corporate records and for preparing and presenting financial reports to the board, officers and shareholders. Legally recognized corporate officer entrusted with the fiduciary responsibility of caring for company funds. Often this title is held concurrently with that of Secretary in a dual role called secretary-treasurer. It can also be held concurrently with the title of CFO or fall under the jurisdiction of one, though the CFO tends to oversee the Finance Department instead, which deals with accounting and audits, while the Treasurer deals directly with company funds. Note, however, that the Treasurer has a reporting line to the Board of Directors, regardless of any other reporting lines conferred by concurrent titles.';
+?>
+            <?php
+            $n=0;
+            foreach ($team as $t)
+            {
+            $n++;
+            ?>
+
 
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img src="img/team/1.jpg" class="img-responsive img-circle" alt="">
-                    <h4>Ben Bernanke</h4>
-                    <p class="text-muted">Chairman of Board
-                        <br>Leads the board of directors and chairs board meetings. Appointed by board.
-                        <br>Chairman - Presiding officer of the corporate Board of directors. The Chairman influences the board of directors, which in turn elects and removes the officers of a corporation and oversees the human, financial, environmental and technical operations of a corporation. The CEO may be combined with that of chairman to form the position of executive chairman. Recently,[when?] though, many companies have separated the roles of Chairman and CEO, resulting in a non-executive chairman, in order to improve corporate governance.
-                    </p>
+                    <a href="#teamModal<?php echo($team[$n]['link']); ?>" class="portfolio-link" data-toggle="modal">
+                        <img src="img/team/<?php echo($team[$n]['img']); ?>.jpg" class="img-responsive img-circle" alt="">
+                    </a>
+                    <h4><?php echo($team[$n]['name']); ?></h4>
+                    <p class="text-muted"><?php echo($team[$n]['title']); ?></p>
                     <ul class="list-inline social-buttons">
                         <li><a href="#"><i class="fa fa-twitter"></i></a>
                         </li>
@@ -440,53 +443,13 @@
                 </div>
             </div>
 
-
-
-
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <img src="img/team/2.jpg" class="img-responsive img-circle" alt="">
-                    <h4>Jamie Dimon</h4>
-                    <p class="text-muted">Secretary of Board
-                        <br>Responsible to record the proceedings of the meetings of the stockholders and directors in a book to be kept for that purpose.
-                        <br>Secretary - Legally recognized "titled" corporate officer who reports to the Board of Directors and is responsible for keeping the records of the Board and the company. This title is often concurrently held by the treasurer in a dual position called secretary-treasurer; both positions may be concurrently held by the CFO. Note, however, that the Secretary has a reporting line to the Board of Directors, regardless of any other reporting lines conferred by concurrent titles.
-                    </p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-
-
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <img src="img/team/3.jpg" class="img-responsive img-circle" alt="">
-                    <h4>Michael Corbat</h4>
-                    <p class="text-muted">Member of Board
-                    <br></p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <?php } ?>
 
 
 
 
 
-
-        </div>
+        </div><!--row-->
 
 
 
@@ -494,102 +457,9 @@
 
 
 
-        <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Executive Team</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-                </div>
-            </div>
 
 
 
-
-
-            <div class="row">
-
-
-
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <img src="img/team/4.jpg" class="img-responsive img-circle" alt="">
-                    <h4>Sara West</h4>
-                    <p class="text-muted">Chief Executive Officer
-                        <br>Full responsibility for the activities of the company. Responsible for external relations and long-term strategy. The CEO signs major contracts, stock certificates and other legal documents, as required. The CEO acts under the direction of the board. For substantial actions to be taken, the CEO will act on behalf of the corporation by corporate resolution. Appointed by board.
-                        <br>CEO - The CEO of a corporation is the highest ranking management officer of a corporation and has final decisions over human, financial, environmental, technical operations of the corporation. The CEO is also a visionary, often leaving day-to-day operations to the President, COO or division heads. Other corporate officers such as the COO, CFO, CIO, and division heads report to the CEO. The CEO is also often the Chairman of the Board, especially in closely held corporations and also often in public corporations. Recently, though, many public companies have separated the roles of Chairman and CEO (This is long-standing normal practice under the British System), resulting in a non-executive chairman, in order to improve corporate governance. President and CEO is a popular combination if there is a non-executive chairman.
-                    </p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-
-
-
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <img src="img/team/5.jpg" class="img-responsive img-circle" alt="">
-                    <h4>Adam Turkem</h4>
-                    <p class="text-muted">President
-                        <br>Responsible for internal management and focuses on day-to-day operations. Appointed by the CEO.
-                        <br>President - Legally recognized highest "titled" corporate officer outside of the CEO (who ranks highest). The President works directly for the Board of Directors and usually a member of the Board of Directors. The office of President can be limited by the Chairman/CEO to represent only one division within a corporation, such as the President of Sales. In the event there is no CEO, the President is the highest ranking officer but is not normally the Chairperson. There is much variation; often the CEO also holds the title of President, while a Chairman and CEO's deputy is often the President and COO. The President is often considered to be more focused upon daily operations compared to the CEO which is supposed to be the visionary.
-                    </p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-
-
-
-
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <img src="img/team/6.jpg" class="img-responsive img-circle" alt="">
-                    <h4>Emma Croix</h4>
-                    <p class="text-muted">Treasurer/Chief Financial Officer
-                        <br>Responsibile for the financial matters of the corporation. The treasurer is responsible for maintaining the financial corporate records and for preparing and presenting financial reports to the board, officers and shareholders. Appointed by the CEO.
-                        <br>CFO – high level corporate officer with oversight of corporate finances; reports to the CEO. May concurrently hold the title of Treasurer or oversee such a position; it must be noted that Finance deals with accounting and audits, while Treasurer deals with company funds.
-                        <br>Treasurer - legally recognized corporate officer entrusted with the fiduciary responsibility of caring for company funds. Often this title is held concurrently with that of Secretary in a dual role called secretary-treasurer. It can also be held concurrently with the title of CFO or fall under the jurisdiction of one, though the CFO tends to oversee the Finance Department instead, which deals with accounting and audits, while the Treasurer deals directly with company funds. Note, however, that the Treasurer has a reporting line to the Board of Directors, regardless of any other reporting lines conferred by concurrent titles.
-                    </p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-
-
-
-
-
-            </div>
-
-
-
-
-
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -599,25 +469,25 @@
         <div class="row">
             <div class="col-md-3 col-sm-6">
                 <a href="#">
-                    <img src="img/logos/envato.jpg" class="img-responsive img-centered" alt="">
+                    <img src="img/logos/usa.jpg" class="img-responsive img-centered" alt="">
                 </a>
             </div>
             <div class="col-md-3 col-sm-6">
                 <a href="#">
-                    <img src="img/logos/designmodo.jpg" class="img-responsive img-centered" alt="">
+                    <img src="img/logos/logo.jpg" class="img-responsive img-centered" alt="">
                 </a>
             </div>
             <div class="col-md-3 col-sm-6">
                 <a href="#">
-                    <img src="img/logos/themeforest.jpg" class="img-responsive img-centered" alt="">
+                    <img src="img/logos/dt.jpg" class="img-responsive img-centered" alt="">
                 </a>
             </div>
             <div class="col-md-3 col-sm-6">
                 <a href="#">
-                    <img src="img/logos/creative-market.jpg" class="img-responsive img-centered" alt="">
+                    <img src="img/logos/fed.jpg" class="img-responsive img-centered" alt="">
                 </a>
             </div>
-        </div>
+        </div><!--row-->
     </div>
 </aside>
 
@@ -626,9 +496,9 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Contact Us</h2>
-                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                <h3 class="section-subheading text-muted">How can we help?</h3>
             </div>
-        </div>
+        </div><!--row-->
         <div class="row">
             <div class="col-lg-12">
                 <form name="sentMessage" id="contactForm" novalidate>
@@ -661,7 +531,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div><!--row-->
     </div>
 </section>
 
@@ -693,6 +563,15 @@
     </div>
 </footer>
 
+
+
+
+
+
+
+
+
+
 <!-- Portfolio Modals -->
 <!-- Use the modals below to showcase details about your portfolio projects! -->
 
@@ -701,12 +580,90 @@
 
 
 <?php
-$i=0;
-foreach($modaltitle as $title){
-$i++;
+$modaldir="card/real/";
+
+$assets =	query("SELECT symbol, name, date, issued, type, url, description FROM assets ORDER BY symbol ASC");
+foreach ($assets as $asset)		// for each of user's stocks
+{
+    $symbol = $asset["symbol"];
+    $name = $asset["name"];
+    $date = $asset["date"];
+    $issued = $asset["issued"];
+    $type = $asset["type"];
+    $url = $asset["url"];
+    $description = $asset["description"];
+    $modalimage = $modaldir . strtolower($symbol) . '.jpg';
+
+    $rateQ =	query("SELECT price FROM trades WHERE symbol =? ORDER BY uid DESC LIMIT 0,1", $asset["symbol"]);	  // query user's portfolio
+    if(!empty($rateQ)){$rate = getPrice($rateQ[0]["price"]);}
+    else{$rate=0;}
+
+    $askQ =	query("SELECT price FROM orderbook WHERE symbol=? AND side='a' ORDER BY price ASC LIMIT 0,1", $asset["symbol"]);	  // query user's portfolio
+    if(!empty($askQ)){$ask = getPrice($askQ[0]["price"]);}
+    else{$ask=0;}
+
+    $bidQ =	query("SELECT price FROM orderbook WHERE symbol=? AND side='b' ORDER BY price DESC LIMIT 0,1", $asset["symbol"]);	  // query user's portfolio
+    if(!empty($bidQ)){$bid = getPrice($bidQ[0]["price"]);}
+    else{$bid=0;}
+
+
+
+
+    ?>
+    <!-- Portfolio Modal -->
+    <div class="portfolio-modal modal fade" id="portfolioModal<?php echo($symbol); ?>" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+
+                            <!-- Project Details Go Here -->
+                            <h2><?php echo($name); ?></h2>
+                            <p class="item-intro text-muted"><?php echo($symbol); ?></p>
+                            <img class="img-responsive img-centered" src="img/portfolio/<?php echo($modaldir . 'LG' . strtolower($symbol) . '.jpg'); ?>" alt="">
+                            <p><?php echo($description); ?></p>
+                            <ul class="list-inline">
+                                <li><strong>Price:</strong> <?php echo($unitsymbol . number_format($rate,$decimalplaces,".",",")); ?></li>
+                                <li><strong>Bid:</strong> <?php echo($unitsymbol . number_format($bid,$decimalplaces,".",",")); ?></li>
+                                <li><strong>Ask:</strong> <?php echo($unitsymbol . number_format($ask,$decimalplaces,".",",")); ?></li>
+                                <li><strong>Registered:</strong> <?php echo($date); ?></li>
+                                <li><strong>Type:</strong> <?php echo(ucfirst($type)); ?></li>
+                                <li><strong>Issued:</strong> <?php echo(number_format($issued,0,".",",")); ?></li>
+                                <li><strong>URL:</strong> <a href="<?php echo(htmlspecialchars($url)); ?>"><?php echo(htmlspecialchars($url)); ?></a></li>
+                            </ul>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Asset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php }
+
+
+
+//UNITS
+$symbol = $unittype;
+$name = $unitdescription;
+$date = 'N/A';
+$locked = query("SELECT SUM(total) AS total FROM orderbook WHERE (side='b')");
+$issued = query("SELECT SUM(units) AS total FROM accounts");
+$issued = $issued[0]["total"] + $locked[0]["total"];
+$type = $unittype2;
+$url = 'N/A';
+$description = $unitdescriptionlong;
+$modalimage = $modaldir . strtolower($symbol) . '.jpg';
 ?>
-<!-- Portfolio Modal 1 -->
-<div class="portfolio-modal modal fade" id="portfolioModal<?php echo($modaltitle[$i]); ?>" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- Portfolio Modal -->
+<div class="portfolio-modal modal fade" id="portfolioModal<?php echo($symbol); ?>" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-content">
         <div class="close-modal" data-dismiss="modal">
             <div class="lr">
@@ -720,25 +677,67 @@ $i++;
                     <div class="modal-body">
 
                         <!-- Project Details Go Here -->
-                        <h2><?php echo($modaltitle[$i]); ?></h2>
-                        <p class="item-intro text-muted"><?php echo($modalsubtitle[$i]); ?></p>
-                        <img class="img-responsive img-centered" src="img/portfolio/<?php echo($modaldir . "LG" . $modalimage[$i]); ?>" alt="">
-                        <p><?php echo($modaltext[$i]); ?></p>
-                        <p><?php echo($modaltext2[$i]); ?></p>
+                        <h2><?php echo($name); ?></h2>
+                        <p class="item-intro text-muted"><?php echo($symbol); ?></p>
+                        <img class="img-responsive img-centered" src="img/portfolio/<?php echo($modaldir . 'LG' . strtolower($symbol) . '.jpg'); ?>" alt="">
+                        <p><?php echo($description); ?></p>
                         <ul class="list-inline">
-                            <li>Date: <?php echo($date[$i]); ?></li>
-                            <li>Rate: <?php echo($rate[$i]); ?></li>
-                            <li>Type: <?php echo($type[$i]); ?></li>
+                            <li><strong>Price:</strong> <?php echo($unitsymbol . number_format(1,$decimalplaces,".",",")); ?></li>
+                            <li><strong>Bid:</strong> <?php echo($unitsymbol . number_format(1,$decimalplaces,".",",")); ?></li>
+                            <li><strong>Ask:</strong> <?php echo($unitsymbol . number_format(1,$decimalplaces,".",",")); ?></li>
+                            <li><strong>Registered:</strong> N/A</li>
+                            <li><strong>Type:</strong> <?php echo(ucfirst($type)); ?></li>
+                            <li><strong>Issued:</strong> <?php echo(number_format($issued,0,".",",")); ?></li>
+                            <li><strong>URL:</strong> <a href="<?php echo(htmlspecialchars($url)); ?>"><?php echo(htmlspecialchars($url)); ?></a></li>
                         </ul>
-
-
-                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Asset</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+<!-- Team Modal -->
+<?php
+$n=0;
+foreach ($team as $t)
+{
+    $n++;
+    ?>
+
+    <div class="portfolio-modal modal fade" id="teamModal<?php echo($team[$n]['link']); ?>" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+
+                            <!-- Project Details Go Here -->
+                            <h2><?php echo($team[$n]['name']); ?></h2>
+                            <p class="item-intro text-muted"><?php echo($team[$n]['title']); ?></p>
+                            <p><?php echo($team[$n]['description']); ?></p>
+
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <?php } ?>
 
 
