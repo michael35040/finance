@@ -469,7 +469,8 @@ $dash["volumetotal"] = $count[0]["volume"];
         <td><!--total(accounts/bid orders)-->
             <?php echo(number_format(getPrice($totalUnits),$decimalplaces,".",",")); ?> (<?php echo(number_format(getPrice($unitsAccounts),$decimalplaces,".",",")); ?>/<?php echo(number_format(getPrice($unitsLocked),$decimalplaces,".",",")); ?>)
         </td>
-        <td><?php echo('100%'); ?></td>
+        <td><?php echo(number_format((($totalUnits/$totalUnits)*100),2,".",",") . "%"); ?></td>
+        
 
 
     </tr>
