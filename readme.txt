@@ -3,19 +3,26 @@ LEDGER
 --------
 uid
 date
-type (trade, transfer, deposit, withdraw)
+payee (user id)
+reference (uid or hash to group a trade of 4 entries)
+category (trade, transfer, deposit, withdraw)
+asset (symbol ie. USD, BTC)
+amount (+100 or -100)
+xasset (symbol ie. BTC, USD)
+xamount (-100 or +100)
+status (cleared, pending, canceled)
+note (if canceled-reason)
 
-user1
-units1
-asset1
-qty1
+                                                  to calculate    to calculate
+                                                     total           cost
+                                                |------------|  |-------------|
+uid     date    payee   reference   category    asset   amount  xasset  xamount status      note
+1       1/1     1       1           trade       usd     +100    btc     -1      cleared 
+2       1/1     2       1           trade       usd     -100    btc     +1      cleared 
+3       1/1     1       1           trade       btc     +1      usd     -100    cleared 
+4       1/1     2       1           trade       btc     -1      usd     +100    cleared 
+       
 
-user2
-units2
-asset2
-qty2
-
-notes (order uid)
 
 =============
 ORDERBOOK
