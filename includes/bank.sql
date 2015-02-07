@@ -128,7 +128,6 @@ CREATE TABLE IF NOT EXISTS `history` (
 --
 
 TRUNCATE TABLE `history`;
-
 -- --------------------------------------------------------
 
 --
