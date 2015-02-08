@@ -606,7 +606,7 @@ function orderbook($symbol)
             {
                 //IF MARKET ADJUST THE TRADESIZE DOWN.
                 //CHECK TO SEE IF MARKET ORDER (if $bidtype='market')
-                if($topBidType='market') {
+                if($topBidType=='market') {
                     //IF LESS THAN 1, WE CANT GO SMALLER SO CANCEL
                     if ($tradeSize <= 1) {
                         query("ROLLBACK");
