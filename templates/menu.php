@@ -17,6 +17,7 @@
                         <li><a href="orders.php">ORDERS</a></li>
                         <li><a href="trades.php">TRADES</a></li>
                         <li><a href="history.php">HISTORY</a></li>
+                        <li><a href="ledger.php">LEDGER</a></li>
                         <li><a href="transparency.php">TRANSPARENCY</a></li>
                         <li><a href="information.php">INFORMATION</a></li>
                         <li><a href="status.php">STATUS</a></li>
