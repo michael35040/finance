@@ -120,6 +120,7 @@ CREATE TABLE IF NOT EXISTS `history` (
   `price` bigint(20) unsigned NOT NULL COMMENT 'or amount transfered',
   `commission` bigint(20) unsigned NOT NULL COMMENT 'commission',
   `total` bigint(20) unsigned NOT NULL COMMENT 'history-id-bid/ask or local-id-ask \r\n\r\nor transafer-id',
+`reference` varchar(64) NULL DEFAULT NULL COMMENT 'bid or ask uid or hash to group a trade of 4 entries',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -149,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `ledger` (
 `askuid` int(10) NULL DEFAULT NULL COMMENT 'if trade link to ask',
 `biduid` int(10) NULL DEFAULT NULL COMMENT 'if trade link to bid',
 `status` varchar(32) NOT NULL COMMENT '1-open/pending, 0-closed/cleared/completed, 2-canceled',
-`note` varchar(32) NOT NULL COMMENT 'if canceled-reason',
+`note` varchar(32) NULL DEFAULT NULL COMMENT 'if canceled-reason',
 PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 -- 
@@ -220,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `orderbook` (
   `id` int(9) NOT NULL COMMENT 'user id',
   `status` varchar(10) NOT NULL COMMENT '1-open/pending, 0-closed/cleared/completed, 2-canceled',
   `original` int(20) unsigned NOT NULL COMMENT 'original quantity',
-  `reference` varchar(64) NOT NULL COMMENT 'bid or ask uid or hash to group a trade of 4 entries',
+`reference` varchar(64) NULL DEFAULT NULL COMMENT 'bid or ask uid or hash to group a trade of 4 entries',
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -297,6 +298,8 @@ CREATE TABLE IF NOT EXISTS `trades` (
   `seller` int(10) NOT NULL COMMENT 'user id',
   `askorderuid` int(10) NOT NULL,
   `bidorderuid` int(10) NOT NULL,
+  `reference` varchar(64) NULL DEFAULT NULL COMMENT 'bid or ask uid or hash to group a trade of 4 entries',
+
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
