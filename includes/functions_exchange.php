@@ -29,6 +29,7 @@ function transfer($quantity, $symbol, $userid)
 
             // CHECK TO MAKE SURE AMOUNT IS LESS THAN WHAT THEY HAVE.
             $totalq = query("SELECT units FROM accounts WHERE id = ?", $id);
+            // $userQuantity = query("SELECT SUM(amount) AS quantity FROM ledger WHERE (user=? AND symbol=?)", $id, $symbol); //$unittype (ie USD or XBT) is native currency set in constants.php
             @$total = (float)$totalq[0]['units']; //convert array to value
             if ($total < $quantity){apologize("You tried to transfer " . number_format($quantity, 2, ".", ",") . " but you only have " . number_format($total, 2, ".", ",") . "!");}
 
@@ -99,6 +100,29 @@ function transfer($quantity, $symbol, $userid)
             //ERROR: TO MANY ROWS
             else { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("$topBidUser has too many $symbol Portfolios! #20b"); }  //throw new Exception(var_dump(get_defined_vars()));
         }
+
+
+//UPDATE LEDGER
+if($symbol==$unittype){$quantity=setPrice($quantity);} //if it is currency
+$referenceID=($payer . $payee . $quantity); //concatenate
+$reference=uniqid($referenceID,true); //unique id reference to trade
+$negquantity=($quantity*-1);
+//REMOVE
+if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+$transaction,
+$payer, $symbol, $negquantity, $reference,
+$payee, $symbol, $quantity, $reference,
+0, 'transfer-remove payer') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+//GIVE
+if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+$transaction,
+$payee, $symbol, $quantity, $reference,
+$payer, $symbol, $negquantity, $reference,
+0, 'transfer-give payee') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+
+
 
         //COMMIT
         query("COMMIT;"); //If no errors, commit changes
