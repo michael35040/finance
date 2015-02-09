@@ -250,12 +250,12 @@ function getCommission($total)
 function zeroQuantityCheck()
 {    require 'constants.php';
     if($loud!='quiet'){echo("<br>Conducting check for empty orders...");}
-    $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (quantity = 0) LIMIT 0, 1");
+    $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (quantity = 0 AND status=1) LIMIT 0, 1");
     $removedEmpty = 0;
     while(!empty($emptyOrders))
     {   $removedEmpty++;
         cancelOrder($emptyOrders[0]["uid"]); //try catch
-        $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (quantity = 0) LIMIT 0, 1"); }
+        $emptyOrders = query("SELECT quantity, uid FROM orderbook WHERE (quantity = 0 AND status=1) LIMIT 0, 1"); }
     if($removedEmpty>0){ if($loud!='quiet'){echo("<br>Removed: " . $removedEmpty . " empty orders.");  }}
     return($removedEmpty);
 }
@@ -317,6 +317,9 @@ function cancelOrder($uid)
         @$price = $order[0]["price"];
         @$id = $order[0]["id"];
         @$reference = $order[0]["reference"];
+        
+        if($quantity==0){$reason='trade completed'}; //completed 0
+        else{$reason='trade canceled';} //canceled 2
 
         query("SET AUTOCOMMIT=0");
         query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
@@ -340,7 +343,7 @@ function cancelOrder($uid)
             'order',
             $id, $symbol, $quantity, $reference,
             1, $symbol, $quantity, $reference,
-            0, 'canceled', $uid, $uid
+            0, $reason, $uid, $uid
             ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4"); }
             
         } elseif ($side == 'b') {
@@ -360,7 +363,7 @@ function cancelOrder($uid)
             'order',
             $id, $unittype, $total, $reference,
             1, $unittype, $total, $reference,
-            0, 'canceled', $uid, $uid
+            0, $reason, $uid, $uid
             ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4"); }
             
         }
