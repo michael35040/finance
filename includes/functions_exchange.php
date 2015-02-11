@@ -1388,6 +1388,7 @@ if($type=='limit' && $side=='a'){
     $price = setPrice($price);
     $transaction = 'ASK';
     $tradeAmount = 0;
+    $ledgerAmount = ($quantity*$price);//only for ledger xamount
     //CHECK TO SEE IF SELLER HAS ENOUGH SHARES
     $userQuantity = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol);//
     if(!empty($userQuantity)){$userQuantity = $userQuantity[0]["quantity"];}
@@ -1405,7 +1406,7 @@ status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 'order',
                 $id, $symbol, $negquantity, $reference,
-                1, $unittype, $tradeAmount, $reference,
+                1, $unittype, $ledgerAmount, $reference,
                 0, $transaction, $ouid, $ouid
             ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
 
@@ -1458,6 +1459,7 @@ elseif($type=='market' && $side=='a'){
     if(empty($limitOrders)) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
     $transaction = 'ASK';
     $tradeAmount = 0;
+    $ledgerAmount = ($quantity*$price);//only for ledger xamount
     //CHECK TO SEE IF SELLER HAS ENOUGH SHARES
     $userQuantity = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol);//
     if(!empty($userQuantity)){$userQuantity = $userQuantity[0]["quantity"];}
@@ -1475,7 +1477,7 @@ status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 'order',
                 $id, $symbol, $negquantity, $reference,
-                1, $unittype, $tradeamount, $reference,
+                1, $unittype, $ledgerAmount, $reference,
                 0, $transaction, $ouid, $ouid
             ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
 

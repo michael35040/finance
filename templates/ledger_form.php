@@ -75,11 +75,11 @@
 
         echo("<td>" . htmlspecialchars($row["xuser"]) . "</td>");
         echo("<td>" . htmlspecialchars(strtoupper($row["xsymbol"])) . "</td>");
-        if($row["symbol"]==$unittype){echo("<td>" . $unitsymbol . (number_format(getPrice($row["xamount"]),$decimalplaces,".",",")) . "</td>");}
+        if($row["xsymbol"]==$unittype){echo("<td>" . $unitsymbol . (number_format(getPrice($row["xamount"]),$decimalplaces,".",",")) . "</td>");}
         else{echo("<td>" . (number_format(($row["xamount"]),0,".",",")) . "</td>");}
 
-        echo("<td>" . htmlspecialchars($row["category"]) . "</td>");
-        echo("<td>" . htmlspecialchars(ucfirst(($row["note"])) . "</td>");
+        echo("<td>" . htmlspecialchars(ucfirst($row["category"])) . "</td>");
+        echo("<td>" . htmlspecialchars(ucfirst($row["note"])) . "</td>");
         echo("<td>" . htmlspecialchars($row["askuid"]) . "</td>");
         echo("<td>" . htmlspecialchars($row["biduid"]) . "</td>");
         echo("<td>" . htmlspecialchars($row["reference"]) . "</td>");

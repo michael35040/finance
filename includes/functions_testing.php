@@ -165,6 +165,7 @@ function clear_all()
     clear_portfolio();
     clear_history();
     clear_assets();
+    clear_ledger();
     query("  UPDATE `accounts` SET `units`=0,`loan`=0,`rate`=0,`approved`=1 WHERE 1");
 
 
@@ -181,9 +182,9 @@ function test()
     clear_portfolio();
     clear_history();
     clear_assets();
+    clear_ledger();
     $units = setPrice(1000000);
     query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
-    query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE id=1", $units);
 
 
 
@@ -299,6 +300,12 @@ function clear_history()
 {
     if (query("TRUNCATE TABLE `history`") === false)
     {echo("<br>Database history Failure");}
+}
+
+function clear_ledger()
+{
+    if (query("TRUNCATE TABLE `ledger`") === false)
+    {echo("<br>Database ledger Failure");}
 }
 
 function billionaire() //everyone is a billionaire! $$$ //for testing only
