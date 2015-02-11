@@ -52,10 +52,12 @@
         <th>X-Reference</th>
         <th>Status</th>
         <th>Note</th>
+        <th>Ask</th>
+        <th>Bid</th>
     </tr>
 
     <?php
-    $ledger = query("SELECT * FROM ledger ORDER BY uid DESC");
+    $ledger = query("SELECT * FROM ledger ORDER BY uid ASC");
 
     foreach ($ledger as $row)
     {
@@ -76,6 +78,8 @@
         echo("<td>" . htmlspecialchars($row["xreference"]) . "</td>");
         echo("<td>" . htmlspecialchars($row["status"]) . "</td>");
         echo("<td>" . htmlspecialchars($row["note"]) . "</td>");
+        echo("<td>" . htmlspecialchars($row["askuid"]) . "</td>");
+        echo("<td>" . htmlspecialchars($row["biduid"]) . "</td>");
         echo("</tr>");
     }
     if($ledger==null){echo('<td colspan="13">None</td>');}
