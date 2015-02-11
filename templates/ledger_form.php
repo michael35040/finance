@@ -55,7 +55,7 @@
     </tr>
 
     <?php
-    $ledger = query("SELECT * FROM ledger WHERE ORDER BY uid DESC");
+    $ledger = query("SELECT * FROM ledger ORDER BY uid DESC");
 
     foreach ($ledger as $row)
     {

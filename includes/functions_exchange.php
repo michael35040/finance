@@ -461,13 +461,13 @@ function OrderbookTop($symbol)
         }    //assign top price to the ask since it is a bid market order
         elseif($marketSide == 'a')
         {
-            $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
+            $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0 AND status=1) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
             while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'a') && (empty($bids))) {
                 cancelOrder($marketOrders[0]["uid"]);
                 //ORDER BY FIRST UID
-                $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market' AND quantity>0) ORDER BY uid ASC LIMIT 0, 1", $symbol, 'a');
+                $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market' AND quantity>0 AND status=1) ORDER BY uid ASC LIMIT 0, 1", $symbol, 'a');
                 //ORDER BY HIGHEST PRICE THEN FIRST UID
-                $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
+                $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0 AND status=1) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
             }
             $marketOrders[0]["price"]=$bids[0]["price"]; //give it the same price so they execute
             $asks = $marketOrders;
@@ -477,8 +477,8 @@ function OrderbookTop($symbol)
         else { throw new Exception("Market Side Error!"); }
     }
     elseif(empty($marketOrders))
-    {   $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
-        $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
+    {   $bids = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0 AND status=1) ORDER BY price DESC, uid ASC LIMIT 0, 1", $symbol, 'b');
+        $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0 AND status=1) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
         $tradeType = 'limit'; }
     else {throw new Exception("Market Order Error!");}
 
