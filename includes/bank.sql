@@ -48,7 +48,11 @@ TRUNCATE TABLE `accounts`;
 --
 
 INSERT INTO `accounts` (`id`, `units`, `loan`, `rate`, `approved`) VALUES
-(1, '0', '0', '0.000000000000000000000000000000', 1);
+(1, '1000000000', '0', '0.000000000000000000000000000000', 1);
+INSERT INTO `accounts` (`id`, `units`, `loan`, `rate`, `approved`) VALUES
+(2, '1000000000', '0', '0.000000000000000000000000000000', 1);
+INSERT INTO `accounts` (`id`, `units`, `loan`, `rate`, `approved`) VALUES
+(3, '1000000000', '0', '0.000000000000000000000000000000', 1);
 
 
 
@@ -348,6 +352,10 @@ TRUNCATE TABLE `users`;
 
 INSERT INTO `users` (`email`, `fname`, `lname`, `birth`, `address`, `city`, `region`, `zip`, `phone`, `question`, `answer`, `password`, `registered`, `last_login`, `ip`, `fails`, `active`) VALUES
 ('a@pulwar.com', 'a', 'pulwar', '2014-05-04', 'pulwar st 12 po #box 123', 'CityofPulwar', 'IA', 111112, 12, 'What?', 'Yeah!', '$2a$11$mSIPrGz706xUee70qha1NeWEZ/CR/.ufGS1uzTzr5wsQHApBx6Vz2', '2014-11-07 07:00:00', '2014-12-01 18:02:25', '143.85.101.19', 0, 1);
+INSERT INTO `users` (`email`, `fname`, `lname`, `birth`, `address`, `city`, `region`, `zip`, `phone`, `question`, `answer`, `password`, `registered`, `last_login`, `ip`, `fails`, `active`) VALUES
+('b@pulwar.com', 'a', 'pulwar', '2014-05-04', 'pulwar st 12 po #box 123', 'CityofPulwar', 'IA', 111112, 12, 'What?', 'Yeah!', '$2a$11$mSIPrGz706xUee70qha1NeWEZ/CR/.ufGS1uzTzr5wsQHApBx6Vz2', '2014-11-07 07:00:00', '2014-12-01 18:02:25', '143.85.101.19', 0, 1);
+INSERT INTO `users` (`email`, `fname`, `lname`, `birth`, `address`, `city`, `region`, `zip`, `phone`, `question`, `answer`, `password`, `registered`, `last_login`, `ip`, `fails`, `active`) VALUES
+('c@pulwar.com', 'a', 'pulwar', '2014-05-04', 'pulwar st 12 po #box 123', 'CityofPulwar', 'IA', 111112, 12, 'What?', 'Yeah!', '$2a$11$mSIPrGz706xUee70qha1NeWEZ/CR/.ufGS1uzTzr5wsQHApBx6Vz2', '2014-11-07 07:00:00', '2014-12-01 18:02:25', '143.85.101.19', 0, 1);
 
 -- --------------------------------------------------------
 

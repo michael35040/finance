@@ -443,18 +443,18 @@ function OrderbookTop($symbol)
     if($loud!='quiet'){echo("<br>[" . $symbol . "] Conducting check for top of orderbook...");}
 
     //MARKET ORDERS SHOULD BE AT TOP IF THEY EXIST
-    $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market' AND quantity>0) ORDER BY uid ASC LIMIT 0, 1", $symbol);
+    $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND type = 'market' AND quantity>0 AND status=1) ORDER BY uid ASC LIMIT 0, 1", $symbol);
     if(!empty($marketOrders))
     {   @$marketSide=$marketOrders[0]["side"];
         $tradeType = 'market';
         if($marketSide == 'b') {
-            $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
+            $asks = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0 AND status=1) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
             while ((!empty($marketOrders)) && ($marketOrders[0]["side"] == 'b') && (empty($asks))) {  //cancel all bid market orders since there are no limit ask orders.
                 cancelOrder($marketOrders[0]["uid"]);
                 //ORDER BY FIRST UID
-                $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market' AND quantity>0) ORDER BY uid ASC LIMIT 0, 1", $symbol, 'b');
+                $marketOrders = query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'market' AND quantity>0 AND status=1) ORDER BY uid ASC LIMIT 0, 1", $symbol, 'b');
                 //ORDER BY LOWEST PRICE THEN FIRST UID
-                $asks = query("SELECT 	* FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
+                $asks = query("SELECT 	* FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND quantity>0 AND status=1) ORDER BY price ASC, uid ASC LIMIT 0, 1", $symbol, 'a');
             }
             $marketOrders[0]["price"]=$asks[0]["price"]; //give it the same price so they execute
             $bids = $marketOrders;
