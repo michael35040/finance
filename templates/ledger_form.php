@@ -1,6 +1,6 @@
 
 <table class="table table-condensed  table-bordered" >
-    <tr   class="success" ><td colspan="13"  style="font-size:20px; text-align: center;">LEDGER (<?php echo(strtoupper($tabletitle)); ?>) &nbsp;
+    <tr   class="success" ><td colspan="14"  style="font-size:20px; text-align: center;">LEDGER (<?php echo(strtoupper($tabletitle)); ?>) &nbsp;
             <?php
             //	Display link to all history as long as your not already there
             if (isset($title))
@@ -33,8 +33,7 @@
 
             ?>
 
-
-        </td></tr> <!--blank row breaker-->
+        </td></tr> 
 
 
     <tr   class="active" >
