@@ -1405,7 +1405,7 @@ status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 'order',
                 $id, $symbol, $negquantity, $reference,
-                1, $symbol, $quantity, $reference,
+                1, $unittype, $tradeAmount, $reference,
                 0, $transaction, $ouid, $ouid
             ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
 
@@ -1440,7 +1440,7 @@ status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 'order',
                 $id, $unittype, $negtradeAmount, $reference,
-                1, $unittype, $tradeAmount, $reference,
+                1, $symbol, $quantity, $reference,
                 0, $transaction, $ouid, $ouid
             ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
 
@@ -1475,7 +1475,7 @@ status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 'order',
                 $id, $symbol, $negquantity, $reference,
-                1, $symbol, $quantity, $reference,
+                1, $unittype, $tradeamount, $reference,
                 0, $transaction, $ouid, $ouid
             ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
 
@@ -1513,7 +1513,7 @@ status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 'order',
                 $id, $unittype, $negtradeAmount, $reference,
-                1, $unittype, $tradeAmount, $reference,
+                1, $symbol, $quantity, $reference,
                 0, $transaction, $ouid, $ouid
             ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4"); }
 
@@ -1552,7 +1552,7 @@ status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                 'order',
                 $id, $unittype, $negtradeAmount, $reference,
-                1, $unittype, $tradeAmount, $reference,
+                1, $symbol, $quantity, $reference,
                 0, $transaction, $ouid, $ouid
             ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4"); }
 
