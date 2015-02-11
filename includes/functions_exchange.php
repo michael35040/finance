@@ -92,7 +92,7 @@ function transfer($quantity, $symbol, $userid)
             if ($countRows == 0)
             {   $tradeAmount=0;
                 if (query("INSERT INTO portfolio (id, symbol, quantity, price) VALUES (?, ?, ?, ?)", $userid, $symbol, $quantity, $tradeAmount) === false) {
-                query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #18, Bid Quantity & Trade Size"); } }
+                    query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #18, Bid Quantity & Trade Size"); } }
             //UPDATE IF ALREADY OWNED
             elseif($countRows == 1)
             {   if (query("UPDATE portfolio  SET quantity = (quantity + ?) WHERE (id = ? AND symbol = ?)", $quantity, $userid, $symbol) === false)
@@ -103,24 +103,24 @@ function transfer($quantity, $symbol, $userid)
 
 
 //UPDATE LEDGER
-if($symbol==$unittype){$quantity=setPrice($quantity);} //if it is currency
-$referenceID=($payer . $payee . $quantity); //concatenate
-$reference=uniqid($referenceID,true); //unique id reference to trade
-$negquantity=($quantity*-1);
+        if($symbol==$unittype){$quantity=setPrice($quantity);} //if it is currency
+        $referenceID=($payer . $payee . $quantity); //concatenate
+        $reference=uniqid($referenceID,true); //unique id reference to trade
+        $negquantity=($quantity*-1);
 //REMOVE
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+        if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
 VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-$transaction,
-$payer, $symbol, $negquantity, $reference,
-$payee, $symbol, $quantity, $reference,
-0, 'transfer-remove payer') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+                $transaction,
+                $payer, $symbol, $negquantity, $reference,
+                $payee, $symbol, $quantity, $reference,
+                0, 'transfer-remove payer') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
 //GIVE
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+        if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
 VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-$transaction,
-$payee, $symbol, $quantity, $reference,
-$payer, $symbol, $negquantity, $reference,
-0, 'transfer-give payee') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+                $transaction,
+                $payee, $symbol, $quantity, $reference,
+                $payer, $symbol, $negquantity, $reference,
+                0, 'transfer-give payee') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
 
 
 
@@ -341,8 +341,8 @@ function cancelOrder($uid)
         @$price = $order[0]["price"];
         @$id = $order[0]["id"];
         @$reference = $order[0]["reference"];
-        
-        if($quantity==0){$reason='trade completed'}; //completed 0
+
+        if($quantity==0){$reason='trade completed';} //completed 0
         else{$reason='trade canceled';} //canceled 2
 
         query("SET AUTOCOMMIT=0");
@@ -364,12 +364,12 @@ function cancelOrder($uid)
             xuser, xsymbol, xamount, xreference,
             status, note, biduid, askuid)
             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            'order',
-            $id, $symbol, $quantity, $reference,
-            1, $symbol, $quantity, $reference,
-            0, $reason, $uid, $uid
-            ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4"); }
-            
+                    'order',
+                    $id, $symbol, $quantity, $reference,
+                    1, $symbol, $quantity, $reference,
+                    0, $reason, $uid, $uid
+                ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4"); }
+
         } elseif ($side == 'b') {
             if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $total, $id) === false) //MOVE CASH TO units FUNDS
             {
@@ -384,17 +384,17 @@ function cancelOrder($uid)
             xuser, xsymbol, xamount, xreference,
             status, note, biduid, askuid)
             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            'order',
-            $id, $unittype, $total, $reference,
-            1, $unittype, $total, $reference,
-            0, $reason, $uid, $uid
-            ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4"); }
-            
+                    'order',
+                    $id, $unittype, $total, $reference,
+                    1, $unittype, $total, $reference,
+                    0, $reason, $uid, $uid
+                ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4"); }
+
         }
 
         //DELETE ORDER
         if (query("UPDATE orderbook SET status=2 WHERE uid=?", $uid) === false) {
-        //if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {
+            //if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {
             query("ROLLBACK");
             query("SET AUTOCOMMIT=1");
             throw new Exception("Failure Cancel 1");
@@ -407,8 +407,8 @@ function cancelOrder($uid)
         }
         else //($quantity <=0)
         { $price=0; $total=0;//order was executed and the price listed was not the actual amount and the total was what was left over.
-            if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", 
-            $id, $uid, 'EXECUTED', $symbol, $quantity, $price, $total) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3c"); }
+            if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                    $id, $uid, 'EXECUTED', $symbol, $quantity, $price, $total) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3c"); }
         }
 
 
@@ -599,7 +599,7 @@ function orderbook($symbol)
     $topAskPrice = (float)$asks[0]["price"];
     $topBidPrice = (float)$bids[0]["price"];
     $tradeType = $topOrders["tradeType"];
-    
+
 
     //PROCESS ORDERS
     $orderProcessed = 0; //orders processed
@@ -744,21 +744,21 @@ function orderbook($symbol)
             if (query("UPDATE orderbook SET quantity=(quantity-?) WHERE uid=?", $tradeSize, $topAskUID) === false)
             {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Size OB Failure: #3"); } //rollback on failure
 
- //UPDATE ORDER STATUS AS CLOSED (STATUS=0)
-if($tradeSize==$topAskSize)
-{
-if (query("UPDATE orderbook SET status=0 WHERE uid=?", $topAskUID) === false){query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update OB Failure: #5"); }
-}
-if($tradeSize==$topBidSize)
-{
-if (query("UPDATE orderbook SET status=0 WHERE uid=?", $topBidUID) === false){query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update OB Failure: #5"); }
-} 
+            //UPDATE ORDER STATUS AS CLOSED (STATUS=0)
+            if($tradeSize==$topAskSize)
+            {
+                if (query("UPDATE orderbook SET status=0 WHERE uid=?", $topAskUID) === false){query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update OB Failure: #5"); }
+            }
+            if($tradeSize==$topBidSize)
+            {
+                if (query("UPDATE orderbook SET status=0 WHERE uid=?", $topBidUID) === false){query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update OB Failure: #5"); }
+            }
 
 
             ///////////
             //ACCOUNTS
             ///////////
-                        //GIVE UNITS TO ASK USER MINUS COMMISSION
+            //GIVE UNITS TO ASK USER MINUS COMMISSION
             if (query("UPDATE accounts SET units = (units + ? - ?) WHERE id = ?", $tradeAmount, $commissionAmount, $topAskUser) === false)
             { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update Accounts Failure: #11"); }
             //GIVE COMMISSION TO ADMIN/OWNER
@@ -766,62 +766,62 @@ if (query("UPDATE orderbook SET status=0 WHERE uid=?", $topBidUID) === false){qu
             {   if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $commissionAmount, $adminid) === false)
             { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Update Accounts Failure: #11a"); }
             }
-            
+
             //ACCOUNTS LEDGER
-$referenceID=($topAskUID . $topBidUID . $tradeSize); //concatenate
-$reference=uniqid($referenceID,true); //unique id reference to trade
-$negtradeSize=($tradeSize*-1);
-$negtradeAmount=($tradeAmount*-1); //WHAT ABOUT COMMISSION            
+            $referenceID=($topAskUID . $topBidUID . $tradeSize); //concatenate
+            $reference=uniqid($referenceID,true); //unique id reference to trade
+            $negtradeSize=($tradeSize*-1);
+            $negtradeAmount=($tradeAmount*-1); //WHAT ABOUT COMMISSION
 //REMOVE ASK SHARES
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-'trade',
-$topAskUser, $symbol, $negtradeSize, $reference,
-$topBidUser, $unittype, $tradeAmount, $reference,
-0, 'ask-remove shares', $topBidUID, $topAskUID
-) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+                    'trade',
+                    $topAskUser, $symbol, $negtradeSize, $reference,
+                    $topBidUser, $unittype, $tradeAmount, $reference,
+                    0, 'ask-remove shares', $topBidUID, $topAskUID
+                ) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
 //GIVE BIDDER SHARES
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-'trade',
-$topBidUser, $symbol, $tradeSize, $reference,
-$topAskUser, $unittype, $negtradeAmount, $reference,
-0, 'bid-give shares', $topBidUID, $topAskUID
-) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+                    'trade',
+                    $topBidUser, $symbol, $tradeSize, $reference,
+                    $topAskUser, $unittype, $negtradeAmount, $reference,
+                    0, 'bid-give shares', $topBidUID, $topAskUID
+                ) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
 //REMOVE BIDDER UNITS
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-'trade',
-$topBidUser, $unittype, $negtradeAmount, $reference,
-$topAskUser, $symbol, $tradeSize, $reference,
-0, 'bid-remove units', $topBidUID, $topAskUID
-) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+                    'trade',
+                    $topBidUser, $unittype, $negtradeAmount, $reference,
+                    $topAskUser, $symbol, $tradeSize, $reference,
+                    0, 'bid-remove units', $topBidUID, $topAskUID
+                ) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
 //GIVE ASK UNITS
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-'trade',
-$topAskUser, $unittype, $tradeAmount, $reference,
-$topBidUser, $symbol, $negtradeSize, $reference,
-0, 'ask-give units', $topBidUID, $topAskUID
-) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+                    'trade',
+                    $topAskUser, $unittype, $tradeAmount, $reference,
+                    $topBidUser, $symbol, $negtradeSize, $reference,
+                    0, 'ask-give units', $topBidUID, $topAskUID
+                ) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
 //COMMISSION
-$negCommission=($commissionAmount*-1);
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+            $negCommission=($commissionAmount*-1);
+            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-'trade',
-$adminid, $unittype, $commissionAmount, $reference,
-$topBidUser, $unittype, $negCommission, $reference,
-0, 'admin-give commission', $topBidUID, $topAskUID
-) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+                    'trade',
+                    $adminid, $unittype, $commissionAmount, $reference,
+                    $topBidUser, $unittype, $negCommission, $reference,
+                    0, 'admin-give commission', $topBidUID, $topAskUID
+                ) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-'trade',
-$topBidUser, $unittype, $negCommission, $reference,
-$adminid, $unittype, $commissionAmount, $reference,
-0, 'bid-remove commission', $topBidUID, $topAskUID
-) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
-            
-            
+                    'trade',
+                    $topBidUser, $unittype, $negCommission, $reference,
+                    $adminid, $unittype, $commissionAmount, $reference,
+                    0, 'bid-remove commission', $topBidUID, $topAskUID
+                ) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+
+
 
             ///////////
             //PORTFOLIO
@@ -872,7 +872,7 @@ $adminid, $unittype, $commissionAmount, $reference,
             ///////////
             //TRADE
             ///////////
-            if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $topBidUser, $topAskUser, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount, $tradeType, $topBidUID, $topAskUID) === false)  { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21a"); }
+            if (query("INSERT INTO trades (symbol, buyer, seller, quantity, price, commission, total, type, bidorderuid, askorderuid, reference) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $symbol, $topBidUser, $topAskUser, $tradeSize, $tradePrice, $commissionAmount, $tradeAmount, $tradeType, $topBidUID, $topAskUID, $reference) === false)  { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #21a"); }
 
             //ALL THINGS OKAY, COMMIT TRANSACTIONS
             query("COMMIT;"); //If no errors, commit changes
@@ -989,8 +989,8 @@ function updateSymbol($symbol, $newSymbol, $userid, $name, $type, $url, $rating,
         if (query("UPDATE orderbook SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
         if (query("UPDATE portfolio SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
         if (query("UPDATE trades SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
-     if (query("UPDATE ledger SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
-        
+        if (query("UPDATE ledger SET symbol = ? WHERE symbol = ?", $newSymbol, $symbol) === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1");throw new Exception("Failure to update");}
+
     }
 
     query("COMMIT;"); //If no errors, commit changes
@@ -1022,8 +1022,8 @@ function delist($symbol)
 
     if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", 1, 0, 'DELISTED', $symbol, 0, 0, 0) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Failure: #RA4"); }
 
- if(query("UPDATE ledger SET status=3 WHERE (symbol = ? AND (status=0 OR status=1))", $symbol) === false){ query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("RA1"); }
- 
+    if(query("UPDATE ledger SET status=3 WHERE (symbol = ? AND (status=0 OR status=1))", $symbol) === false){ query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("RA1"); }
+
 }
 
 
@@ -1112,24 +1112,24 @@ function publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $ra
     }
 
 
-$referenceID=($userid . $issued); //concatenate
-$reference=uniqid($referenceID,true); //unique id reference to trade
+    $referenceID=($userid . $issued); //concatenate
+    $reference=uniqid($referenceID,true); //unique id reference to trade
 
 //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
 //GIVE BIDDER SHARES
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+    if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
 VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-'trade',
-$userid, $symbol, $ownersQuantity, $reference,
-$adminid, $unittype, 0, $reference,
-0, 'IPO') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+            'trade',
+            $userid, $symbol, $ownersQuantity, $reference,
+            $adminid, $unittype, 0, $reference,
+            0, 'IPO') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
 //INSERT FEE SHARES INTO PORTFOLIO OF ADMIN
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+    if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
 VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-'trade',
-$adminid, $symbol, $feeQuantity, $reference,
-$userid, $unittype, 0, $reference,
-0, 'IPO Fee') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+            'trade',
+            $adminid, $symbol, $feeQuantity, $reference,
+            $userid, $unittype, 0, $reference,
+            0, 'IPO Fee') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
 
 
     query("COMMIT;"); //If no errors, commit changes
@@ -1220,25 +1220,25 @@ function publicOffering2($symbol, $userid, $issued, $fee)
             apologize("Insert Admin Trade Error");
         }
     }
-    
+
     //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
-$referenceID=($userid . $issued); //concatenate
-$reference=uniqid($referenceID,true); //unique id reference to trade
+    $referenceID=($userid . $issued); //concatenate
+    $reference=uniqid($referenceID,true); //unique id reference to trade
 //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
 //GIVE BIDDER SHARES
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+    if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
 VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-'trade',
-$userid, $symbol, $ownersQuantity, $reference,
-$adminid, $unittype, 0, $reference,
-0, '2PO') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+            'trade',
+            $userid, $symbol, $ownersQuantity, $reference,
+            $adminid, $unittype, 0, $reference,
+            0, '2PO') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
 //INSERT FEE SHARES INTO PORTFOLIO OF ADMIN
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+    if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
 VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-'trade',
-$adminid, $symbol, $feeQuantity, $reference,
-$userid, $unittype, 0, $reference,
-0, '2PO Fee') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+            'trade',
+            $adminid, $symbol, $feeQuantity, $reference,
+            $userid, $unittype, 0, $reference,
+            0, '2PO Fee') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
 
 
 
@@ -1307,17 +1307,17 @@ function removeQuantity($symbol, $userid, $issued)
 
 
 //INSERT TRADE
-$referenceID=($userid . $issued); //concatenate
-$reference=uniqid($referenceID,true); //unique id reference to trade
+    $referenceID=($userid . $issued); //concatenate
+    $reference=uniqid($referenceID,true); //unique id reference to trade
 //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
 //GIVE BIDDER SHARES
-$negIssued=($issued*-1);
-if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+    $negIssued=($issued*-1);
+    if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
 VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-'trade',
-$userid, $symbol, $negIssued, $reference,
-$userid, $unittype, 0, $reference,
-0, 'RO') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
+            'trade',
+            $userid, $symbol, $negIssued, $reference,
+            $userid, $unittype, 0, $reference,
+            0, 'RO') === false) {query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Ledger Insert Failure"); }
 
 
 
@@ -1348,240 +1348,240 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
 //apologize(var_dump(get_defined_vars()));
 //CHECKS INPUT
 //CHECK FOR EMPTY VARIABLES
-    if(empty($symbol)) { throw new Exception("Invalid order. Trade symbol required."); } //check to see if empty
-    if (!ctype_alnum($symbol)) {throw new Exception("Symbol must be alphanumeric!");}
+if(empty($symbol)) { throw new Exception("Invalid order. Trade symbol required."); } //check to see if empty
+if (!ctype_alnum($symbol)) {throw new Exception("Symbol must be alphanumeric!");}
 //QUERY TO SEE IF SYMBOL EXISTS
-    $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
-    if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange! (7)");} //row count
-    $symbol = strtoupper($symbol); //cast to UpperCase
-    if(empty($type)) { throw new Exception("Invalid order. Trade type required."); } //check to see if empty
-    if($type!='market' && $type!='limit' && $type!='marketprice'){ throw new Exception("Invalid order type."); }
-    if(empty($side)) { throw new Exception("Invalid order. Trade side required."); } //check to see if empty
-    if($side!='a' && $side!='b'){ throw new Exception("Invalid order side."); }
-    if(!ctype_alpha($type) || !ctype_alpha($side)) { throw new Exception("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
+$symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
+if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange! (7)");} //row count
+$symbol = strtoupper($symbol); //cast to UpperCase
+if(empty($type)) { throw new Exception("Invalid order. Trade type required."); } //check to see if empty
+if($type!='market' && $type!='limit' && $type!='marketprice'){ throw new Exception("Invalid order type."); }
+if(empty($side)) { throw new Exception("Invalid order. Trade side required."); } //check to see if empty
+if($side!='a' && $side!='b'){ throw new Exception("Invalid order side."); }
+if(!ctype_alpha($type) || !ctype_alpha($side)) { throw new Exception("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
 //SET QUANTITY
-    if($type!='marketprice')
-    {
-        if(empty($quantity)) { throw new Exception("Invalid order. Trade quantity required."); } //check to see if empty
-        if($quantity>2000000000){ throw new Exception("Invalid order. Trade quantity exceeds limits."); }
-        if($quantity < 0){throw new Exception("Quantity must be positive!");}
-        if (preg_match("/^\d+$/", $quantity) == false) { throw new Exception("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
-        if (!is_int($quantity) ) { throw new Exception("Quantity must be numeric!");} //if quantity is numeric
-    }
+if($type!='marketprice')
+{
+    if(empty($quantity)) { throw new Exception("Invalid order. Trade quantity required."); } //check to see if empty
+    if($quantity>2000000000){ throw new Exception("Invalid order. Trade quantity exceeds limits."); }
+    if($quantity < 0){throw new Exception("Quantity must be positive!");}
+    if (preg_match("/^\d+$/", $quantity) == false) { throw new Exception("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
+    if (!is_int($quantity) ) { throw new Exception("Quantity must be numeric!");} //if quantity is numeric
+}
 //QUERY TO SEE IF USER EXISTS
-    if(empty($id)) { throw new Exception("Invalid order. User required."); } //check to see if empty
-    $userCheck = query("SELECT count(id) as number FROM users WHERE id =?", $id);
-    if ($userCheck[0]["number"] != 1) {throw new Exception("No user exists!");} //row count
+if(empty($id)) { throw new Exception("Invalid order. User required."); } //check to see if empty
+$userCheck = query("SELECT count(id) as number FROM users WHERE id =?", $id);
+if ($userCheck[0]["number"] != 1) {throw new Exception("No user exists!");} //row count
 
 
 $referenceID=($id); //concatenate
 $reference=uniqid($referenceID,true); //unique id reference to trade
 $ouid = null;
 
-    query("SET AUTOCOMMIT=0");
-    query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+query("SET AUTOCOMMIT=0");
+query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
 //LIMIT ASK
-    if($type=='limit' && $side=='a'){
-        if(empty($price)){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Limit order trade price required");}
-        if($price>9000000000000000000){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Trade price exceeds limits."); }
-        $price = setPrice($price);
-        $transaction = 'ASK';
-        $tradeAmount = 0;
-        //CHECK TO SEE IF SELLER HAS ENOUGH SHARES
-        $userQuantity = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol);//
-        if(!empty($userQuantity)){$userQuantity = $userQuantity[0]["quantity"];}
-        else{$userQuantity = 0;}
-        //ENSURE SELLER HAS ENOUGH QUANTITY
-        if($userQuantity <= 0) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Ask order failed. User (#" . $id . ")  quantity: " . $userQuantity);}
-        elseif($userQuantity < $quantity) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Ask order not placed. Trade quantity (" . $quantity . ") exceeds user (" . $id . ") quantity (" . $userQuantity . ").");}
-        elseif($userQuantity >= $quantity){if(query("UPDATE portfolio SET quantity = (quantity - ?) WHERE (id = ? AND symbol = ?)", $quantity, $id, $symbol) === false){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
-             $negquantity=$quantity*-1;
-if (query("INSERT INTO ledger (
+if($type=='limit' && $side=='a'){
+    if(empty($price)){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Limit order trade price required");}
+    if($price>9000000000000000000){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Trade price exceeds limits."); }
+    $price = setPrice($price);
+    $transaction = 'ASK';
+    $tradeAmount = 0;
+    //CHECK TO SEE IF SELLER HAS ENOUGH SHARES
+    $userQuantity = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol);//
+    if(!empty($userQuantity)){$userQuantity = $userQuantity[0]["quantity"];}
+    else{$userQuantity = 0;}
+    //ENSURE SELLER HAS ENOUGH QUANTITY
+    if($userQuantity <= 0) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Ask order failed. User (#" . $id . ")  quantity: " . $userQuantity);}
+    elseif($userQuantity < $quantity) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Ask order not placed. Trade quantity (" . $quantity . ") exceeds user (" . $id . ") quantity (" . $userQuantity . ").");}
+    elseif($userQuantity >= $quantity){if(query("UPDATE portfolio SET quantity = (quantity - ?) WHERE (id = ? AND symbol = ?)", $quantity, $id, $symbol) === false){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
+        $negquantity=$quantity*-1;
+        if (query("INSERT INTO ledger (
 category,
 user, symbol, amount, reference,
 xuser, xsymbol, xamount, xreference,
 status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-'order',
-$id, $symbol, $negquantity, $reference,
-1, $symbol, $quantity, $reference,
-0, $transaction, $ouid, $ouid
-) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
+                'order',
+                $id, $symbol, $negquantity, $reference,
+                1, $symbol, $quantity, $reference,
+                0, $transaction, $ouid, $ouid
+            ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
 
-            
-        }
-        else {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Portfolio Failure 4");}
+
     }
+    else {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Portfolio Failure 4");}
+}
 //LIMIT BUY
-    elseif($type=='limit' && $side=='b'){
-        if(empty($price)){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Limit order trade price required");}
-        if($price>9000000000000000000){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Trade price exceeds limits."); }
-        $price = setPrice($price);
-        $transaction = 'BID';
-        //QUERY CASH & UPDATE
-        $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
-        if(!empty($unitsQ[0]['units'])){$userUnits = $unitsQ[0]['units'];}	//convert array from query to value
-        //IF USERUNITS IS EMPTY (0, NULL, etc.)
-        else{query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") has unknown balance");}
-        //CHECK FOR 0 or NEGATIVE BALANCE
-        if($userUnits <= 0){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") balance: " . $userUnits);}
-        //DETERMINE TRADEAMOUNT BASED ON ORDER TYPE
-        $tradeAmount = $price * $quantity;
-        //ENSURE BUYER HAS ENOUGH FUNDS
-        if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Trade amount (" . $tradeAmount . ") exceeds user (" . $id . ") funds (" . $userUnits . ")." ); }
-        elseif($userUnits >= $tradeAmount){if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4");}
-             $negtradeAmount=$tradeAmount*-1;
-if (query("INSERT INTO ledger (
+elseif($type=='limit' && $side=='b'){
+    if(empty($price)){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Limit order trade price required");}
+    if($price>9000000000000000000){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Trade price exceeds limits."); }
+    $price = setPrice($price);
+    $transaction = 'BID';
+    //QUERY CASH & UPDATE
+    $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
+    if(!empty($unitsQ[0]['units'])){$userUnits = $unitsQ[0]['units'];}	//convert array from query to value
+    //IF USERUNITS IS EMPTY (0, NULL, etc.)
+    else{query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") has unknown balance");}
+    //CHECK FOR 0 or NEGATIVE BALANCE
+    if($userUnits <= 0){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") balance: " . $userUnits);}
+    //DETERMINE TRADEAMOUNT BASED ON ORDER TYPE
+    $tradeAmount = $price * $quantity;
+    //ENSURE BUYER HAS ENOUGH FUNDS
+    if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Trade amount (" . $tradeAmount . ") exceeds user (" . $id . ") funds (" . $userUnits . ")." ); }
+    elseif($userUnits >= $tradeAmount){if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4");}
+        $negtradeAmount=$tradeAmount*-1;
+        if (query("INSERT INTO ledger (
 category,
 user, symbol, amount, reference,
 xuser, xsymbol, xamount, xreference,
 status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-'order',
-$id, $unittype, $negtradeAmount, $reference,
-1, $unittype, $tradeAmount, $reference,
-0, $transaction, $ouid, $ouid
-) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
+                'order',
+                $id, $unittype, $negtradeAmount, $reference,
+                1, $unittype, $tradeAmount, $reference,
+                0, $transaction, $ouid, $ouid
+            ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
 
-            
-        }
-        else{  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 5");}
+
     }
+    else{  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 5");}
+}
 //MARKET ASK
-    elseif($type=='market' && $side=='a'){
-        $price=0;//market order doesn't require price
-        $otherSide='b';
-        //CHECK FOR LIMIT ORDERS SINCE MARKET ORDERS REQUIRE THEM
-        $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
-        $limitOrders = $limitOrdersQ[0]['limitorders'];
-        if(empty($limitOrders)) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
-        $transaction = 'ASK';
-        $tradeAmount = 0;
-        //CHECK TO SEE IF SELLER HAS ENOUGH SHARES
-        $userQuantity = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol);//
-        if(!empty($userQuantity)){$userQuantity = $userQuantity[0]["quantity"];}
-        else{$userQuantity = 0;}
-        //ENSURE SELLER HAS ENOUGH QUANTITY
-        if($userQuantity <= 0) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Ask order failed. User (#" . $id . ")  quantity: " . $userQuantity);}
-        elseif($userQuantity < $quantity) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Ask order not placed. Trade quantity (" . $quantity . ") exceeds user (" . $id . ") quantity (" . $userQuantity . ").");}
-        elseif($userQuantity >= $quantity){if(query("UPDATE portfolio SET quantity = (quantity - ?) WHERE (id = ? AND symbol = ?)", $quantity, $id, $symbol) === false){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
-             $negquantity=$quantity*-1;
-if (query("INSERT INTO ledger (
+elseif($type=='market' && $side=='a'){
+    $price=0;//market order doesn't require price
+    $otherSide='b';
+    //CHECK FOR LIMIT ORDERS SINCE MARKET ORDERS REQUIRE THEM
+    $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
+    $limitOrders = $limitOrdersQ[0]['limitorders'];
+    if(empty($limitOrders)) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
+    $transaction = 'ASK';
+    $tradeAmount = 0;
+    //CHECK TO SEE IF SELLER HAS ENOUGH SHARES
+    $userQuantity = query("SELECT quantity FROM portfolio WHERE (id = ? AND symbol = ?)", $id, $symbol);//
+    if(!empty($userQuantity)){$userQuantity = $userQuantity[0]["quantity"];}
+    else{$userQuantity = 0;}
+    //ENSURE SELLER HAS ENOUGH QUANTITY
+    if($userQuantity <= 0) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Ask order failed. User (#" . $id . ")  quantity: " . $userQuantity);}
+    elseif($userQuantity < $quantity) {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Ask order not placed. Trade quantity (" . $quantity . ") exceeds user (" . $id . ") quantity (" . $userQuantity . ").");}
+    elseif($userQuantity >= $quantity){if(query("UPDATE portfolio SET quantity = (quantity - ?) WHERE (id = ? AND symbol = ?)", $quantity, $id, $symbol) === false){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
+        $negquantity=$quantity*-1;
+        if (query("INSERT INTO ledger (
 category,
 user, symbol, amount, reference,
 xuser, xsymbol, xamount, xreference,
 status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-'order',
-$id, $symbol, $negquantity, $reference,
-1, $symbol, $quantity, $reference,
-0, $transaction, $ouid, $ouid
-) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
+                'order',
+                $id, $symbol, $negquantity, $reference,
+                1, $symbol, $quantity, $reference,
+                0, $transaction, $ouid, $ouid
+            ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 3"); }
 
-            
-        }
-        else {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Portfolio Failure 4");}
+
     }
+    else {query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Portfolio Failure 4");}
+}
 //MARKET BUY
-    elseif($type=='market' && $side=='b'){
-        $price=0;//market order doesn't require price
-        $otherSide='a';
-        //CHECK FOR LIMIT ORDERS SINCE MARKET ORDERS REQUIRE THEM
-        $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
-        $limitOrders = $limitOrdersQ[0]['limitorders'];
-        if(empty($limitOrders)) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
-        $transaction = 'BID';
-        //QUERY CASH & UPDATE
-        $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
-        if(!empty($unitsQ[0]['units'])){$userUnits = $unitsQ[0]['units'];}	//convert array from query to value
-        //IF USERUNITS IS EMPTY (0, NULL, etc.)
-        else{query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") has unknown balance");}
-        //CHECK FOR 0 or NEGATIVE BALANCE
-        if ($userUnits <= 0){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") balance: " . $userUnits);}
-        //DETERMINE TRADEAMOUNT BASED ON ORDER TYPE
-        $tradeAmount = $unitsQ[0]['units'];  //market orders lock all of the users funds to ensure it goes through
-        //ENSURE BUYER HAS ENOUGH FUNDS
-        if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Trade amount (" . $tradeAmount . ") exceeds user (" . $id . ") funds (" . $userUnits . ")." ); }
-        elseif($userUnits >= $tradeAmount){if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4");}
-             $negtradeAmount=$tradeAmount*-1;
-if (query("INSERT INTO ledger (
+elseif($type=='market' && $side=='b'){
+    $price=0;//market order doesn't require price
+    $otherSide='a';
+    //CHECK FOR LIMIT ORDERS SINCE MARKET ORDERS REQUIRE THEM
+    $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
+    $limitOrders = $limitOrdersQ[0]['limitorders'];
+    if(empty($limitOrders)) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
+    $transaction = 'BID';
+    //QUERY CASH & UPDATE
+    $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
+    if(!empty($unitsQ[0]['units'])){$userUnits = $unitsQ[0]['units'];}	//convert array from query to value
+    //IF USERUNITS IS EMPTY (0, NULL, etc.)
+    else{query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") has unknown balance");}
+    //CHECK FOR 0 or NEGATIVE BALANCE
+    if ($userUnits <= 0){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") balance: " . $userUnits);}
+    //DETERMINE TRADEAMOUNT BASED ON ORDER TYPE
+    $tradeAmount = $unitsQ[0]['units'];  //market orders lock all of the users funds to ensure it goes through
+    //ENSURE BUYER HAS ENOUGH FUNDS
+    if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Trade amount (" . $tradeAmount . ") exceeds user (" . $id . ") funds (" . $userUnits . ")." ); }
+    elseif($userUnits >= $tradeAmount){if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4");}
+        $negtradeAmount=$tradeAmount*-1;
+        if (query("INSERT INTO ledger (
 category,
 user, symbol, amount, reference,
 xuser, xsymbol, xamount, xreference,
 status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-'order',
-$id, $unittype, $negtradeAmount, $reference,
-1, $unittype, $tradeAmount, $reference,
-0, $transaction, $ouid, $ouid
-) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4"); }
+                'order',
+                $id, $unittype, $negtradeAmount, $reference,
+                1, $unittype, $tradeAmount, $reference,
+                0, $transaction, $ouid, $ouid
+            ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4"); }
 
-        }
-        else{  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 5");}
     }
+    else{  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 5");}
+}
 //CONVERT BUY
-    elseif($type=='marketprice' && $side=='b'){
-        if(empty($price)){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Trade price required for this order type.");}
-        if($price>9000000000000000000){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Trade price exceeds limits."); }
-        $price = setPrice($price);
-        $otherSide='a';
-        //CHECK FOR LIMIT ORDERS SINCE MARKET ORDERS REQUIRE THEM
-        $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
-        $limitOrders = $limitOrdersQ[0]['limitorders'];
-        if(empty($limitOrders)) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
-        $transaction = 'BID';
-        //QUERY CASH & UPDATE
-        $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
-        if(!empty($unitsQ[0]['units'])){$userUnits = $unitsQ[0]['units'];}	//convert array from query to value
-        //IF USERUNITS IS EMPTY (0, NULL, etc.)
-        else{query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") has unknown balance");}
-        //CHECK FOR 0 or NEGATIVE BALANCE
-        if ($userUnits <= 0){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") balance: " . $userUnits);}
-        //DETERMINE TRADEAMOUNT BASED ON ORDER TYPE
-        $tradeAmount = $price; //buyer only can spend what they listed in the price column
-        //ENSURE BUYER HAS ENOUGH FUNDS
-        if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Trade amount (" . $tradeAmount . ") exceeds user (" . $id . ") funds (" . $userUnits . ")." ); }
-        elseif($userUnits >= $tradeAmount){if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4");}
-             $negtradeAmount=$tradeAmount*-1;
-if (query("INSERT INTO ledger (
+elseif($type=='marketprice' && $side=='b'){
+    if(empty($price)){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Trade price required for this order type.");}
+    if($price>9000000000000000000){ query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Invalid order. Trade price exceeds limits."); }
+    $price = setPrice($price);
+    $otherSide='a';
+    //CHECK FOR LIMIT ORDERS SINCE MARKET ORDERS REQUIRE THEM
+    $limitOrdersQ = query("SELECT SUM(quantity) AS limitorders FROM orderbook WHERE (type='limit' AND side=? AND symbol=?)", $otherSide, $symbol);
+    $limitOrders = $limitOrdersQ[0]['limitorders'];
+    if(empty($limitOrders)) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("No limit orders.");}
+    $transaction = 'BID';
+    //QUERY CASH & UPDATE
+    $unitsQ =	query("SELECT units FROM accounts WHERE id = ?", $id); //query db how much cash user has
+    if(!empty($unitsQ[0]['units'])){$userUnits = $unitsQ[0]['units'];}	//convert array from query to value
+    //IF USERUNITS IS EMPTY (0, NULL, etc.)
+    else{query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") has unknown balance");}
+    //CHECK FOR 0 or NEGATIVE BALANCE
+    if ($userUnits <= 0){query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Order failed. User (#" . $id . ") balance: " . $userUnits);}
+    //DETERMINE TRADEAMOUNT BASED ON ORDER TYPE
+    $tradeAmount = $price; //buyer only can spend what they listed in the price column
+    //ENSURE BUYER HAS ENOUGH FUNDS
+    if ($userUnits < $tradeAmount) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Trade amount (" . $tradeAmount . ") exceeds user (" . $id . ") funds (" . $userUnits . ")." ); }
+    elseif($userUnits >= $tradeAmount){if(query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4");}
+        $negtradeAmount=$tradeAmount*-1;
+        if (query("INSERT INTO ledger (
 category,
 user, symbol, amount, reference,
 xuser, xsymbol, xamount, xreference,
 status, note, biduid, askuid)
 VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-'order',
-$id, $unittype, $negtradeAmount, $reference,
-1, $unittype, $tradeAmount, $reference,
-0, $transaction, $ouid, $ouid
-) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4"); }
+                'order',
+                $id, $unittype, $negtradeAmount, $reference,
+                1, $unittype, $tradeAmount, $reference,
+                0, $transaction, $ouid, $ouid
+            ) === false) { query("ROLLBACK"); query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 4"); }
 
-        }
-        else{  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 5");}
-        $type='market';//convert back to market order
     }
-    else{query("ROLLBACK");  query("SET AUTOCOMMIT=1");  throw new Exception("Invalid order."); };
+    else{  query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Updates Accounts Failure 5");}
+    $type='market';//convert back to market order
+}
+else{query("ROLLBACK");  query("SET AUTOCOMMIT=1");  throw new Exception("Invalid order."); };
 
 
 //INSERT INTO ORDERBOOK
-$status=1 //1-open/pending, 0-closed/cleared/completed, 2-canceled
-    if (query("INSERT INTO orderbook (symbol, side, type, price, total, quantity, id, status, original, reference) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 
-    $symbol, $side, $type, $price, $tradeAmount, $quantity, $id, $status, $quantity, $reference) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert Orderbook Failure"); }
+$status=1; //1-open/pending, 0-closed/cleared/completed, 2-canceled
+if (query("INSERT INTO orderbook (symbol, side, type, price, total, quantity, id, status, original, reference)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+        $symbol, $side, $type, $price, $tradeAmount, $quantity, $id, $status, $quantity, $reference) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert Orderbook Failure"); }
 
 //UPDATE HISTORY (ON ORDERS PAGE)
-    $rows = query("SELECT LAST_INSERT_ID() AS uid"); //this takes the id to the next page
-    $ouid = $rows[0]["uid"]; //sets sql query to var
-    if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $ouid, $transaction, $symbol, $quantity, $price, $tradeAmount) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3"); }
+$rows = query("SELECT LAST_INSERT_ID() AS uid"); //this takes the id to the next page
+$ouid = $rows[0]["uid"]; //sets sql query to var
+if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $ouid, $transaction, $symbol, $quantity, $price, $tradeAmount) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Insert History Failure 3"); }
 
-    //UPDATE ORDER ID IN LEDGER
-if($transaction=='BID'){ if (query("UPDATE ledger SET biduid=? WHERE reference=?", $ouid, $reference) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Update Ledger Failure 5a"); }
-if($transaction=='ASK'){ if (query("UPDATE ledger SET askuid=? WHERE reference=?", $ouid, $reference) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Update Ledger Failure 5b"); }
+//UPDATE ORDER ID IN LEDGER
+if($transaction=='BID'){ if (query("UPDATE ledger SET biduid=? WHERE reference=?", $ouid, $reference) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Update Ledger Failure 5a"); }}
+if($transaction=='ASK'){ if (query("UPDATE ledger SET askuid=? WHERE reference=?", $ouid, $reference) === false) { query("ROLLBACK");  query("SET AUTOCOMMIT=1"); throw new Exception("Update Ledger Failure 5b"); }}
 
 
     query("COMMIT;"); //If no errors, commit changes
     query("SET AUTOCOMMIT=1");
-    
+
 
 
     //PROCESS ORDERBOOK

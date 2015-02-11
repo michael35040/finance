@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98d2116d-c45c-42b6-b017-d0dbd15fc29c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/account_form.php" afterPath="$PROJECT_DIR$/templates/account_form.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/constants.php" afterPath="$PROJECT_DIR$/includes/constants.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/info/index.php" afterPath="$PROJECT_DIR$/public_html/info/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/transparency_form.php" afterPath="$PROJECT_DIR$/templates/transparency_form.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/functions_exchange.php" afterPath="$PROJECT_DIR$/includes/functions_exchange.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="finance.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,65 +28,182 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public_html/info/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3264151" vertical-offset="6746" max-vertical-offset="13294">
+            <state vertical-scroll-proportion="0.0" vertical-offset="6746" max-vertical-offset="13294">
               <caret line="407" column="14" selection-start-line="407" selection-start-column="14" selection-end-line="407" selection-end-column="14" />
               <folding>
-                <marker date="1419805172201" expanded="true" signature="7424:7469" placeholder="SELECT symbo..assets..." />
-                <marker date="1419805172201" expanded="true" signature="7590:7675" placeholder="SELECT symbo..." />
-                <marker date="1419805172201" expanded="true" signature="23406:23517" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="23452:23517" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="23946:24314" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="23979:24058" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="24091:24171" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="24204:24284" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="24498:25421" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="24526:25412" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="24552:25391" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="24596:24758" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="24625:24739" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="24802:24965" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="24831:24946" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25009:25170" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25038:25151" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25214:25376" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25243:25357" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25445:27835" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25473:27824" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25499:25721" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25547:25706" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25757:27803" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25793:27788" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25863:27769" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25901:27745" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="25948:27008" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="26001:26284" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="26337:26632" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="26685:26977" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="27055:27430" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="27108:27399" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="27543:27718" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="27845:28794" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="27873:28784" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="27899:28773" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="27934:28048" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="28083:28470" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="28139:28451" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="28164:28235" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="28260:28332" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="28357:28429" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="28505:28758" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="28557:28739" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="28582:28638" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="28663:28717" placeholder="..." />
-                <marker date="1419805172201" expanded="true" signature="28966:29055" placeholder="SELECT symbo..." />
-                <marker date="1419805172201" expanded="true" signature="29416:29484" placeholder="SELECT price..trades..." />
-                <marker date="1419805172201" expanded="true" signature="29635:29719" placeholder="SELECT price..orderbook..." />
-                <marker date="1419805172201" expanded="true" signature="29866:29951" placeholder="SELECT price..orderbook..." />
-                <marker date="1419805172201" expanded="true" signature="32424:32482" placeholder="SELECT SUM(t..orderbook..." />
-                <marker date="1419805172201" expanded="true" signature="32503:32543" placeholder="SELECT SUM(u..accounts..." />
+                <marker date="1423339748653" expanded="true" signature="7424:7469" placeholder="SELECT symbo..assets..." />
+                <marker date="1423339748653" expanded="true" signature="7590:7675" placeholder="SELECT symbo..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions_exchange.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/includes/functions_exchange.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="16.22202" vertical-offset="5881" max-vertical-offset="27030">
+              <caret line="866" column="0" selection-start-line="866" selection-start-column="0" selection-end-line="866" selection-end-column="0" />
+              <folding>
+                <element signature="e#69001#69015#0#PHP" expanded="false" />
+                <element signature="e#75564#77706#0#PHP" expanded="false" />
+                <element signature="e#77720#80134#0#PHP" expanded="false" />
+                <element signature="e#80149#82878#0#PHP" expanded="false" />
+                <marker date="1423617508226" expanded="true" signature="955:1006" placeholder="SELECT count..users..." />
+                <marker date="1423617508226" expanded="true" signature="1387:1426" placeholder="SELECT units..accounts..." />
+                <marker date="1423617508226" expanded="true" signature="2512:2564" placeholder="UPDATE accou..." />
+                <marker date="1423617508226" expanded="true" signature="2749:2859" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="3107:3159" placeholder="UPDATE accou..." />
+                <marker date="1423617508226" expanded="true" signature="3354:3464" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="3785:3826" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="4072:4128" placeholder="SELECT quant..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="4717:4771" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="4994:5050" placeholder="SELECT quant..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="5286:5357" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="5651:5728" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="6422:6566" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="6890:7034" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="7784:7916" placeholder="SELECT price..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="8166:8298" placeholder="SELECT price..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="8495:8536" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="8725:8766" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="8986:9118" placeholder="SELECT price..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="9288:9420" placeholder="SELECT price..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="9870:9911" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="10095:10530" placeholder="SELECT SUM(o..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="12152:12232" placeholder="SELECT quant..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="12403:12483" placeholder="SELECT quant..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="12896:12983" placeholder="SELECT quant..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="13323:13382" placeholder="SELECT units..accounts..." />
+                <marker date="1423617508226" expanded="true" signature="13607:13656" placeholder="UPDATE order..." />
+                <marker date="1423617508226" expanded="true" signature="14405:14486" placeholder="SELECT side,..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="14714:14795" placeholder="SELECT side,..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="15087:15185" placeholder="SELECT side,..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="15889:15965" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="16206:16431" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="16806:16858" placeholder="UPDATE accou..." />
+                <marker date="1423617508226" expanded="true" signature="17126:17351" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="17720:17761" placeholder="UPDATE order..." />
+                <marker date="1423617508226" expanded="true" signature="18235:18339" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="18710:18814" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="20000:20105" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="20286:20414" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="20732:20850" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="20954:21083" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="21394:21523" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="21772:21890" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="21995:22124" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="22541:22670" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="22711:22839" placeholder="SELECT * FRO..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="23726:23771" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="24516:24526" placeholder="..." />
+                <marker date="1423617508226" expanded="true" signature="24806:24847" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="25243:25272" placeholder="..." />
+                <marker date="1423617508226" expanded="true" signature="26642:26683" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="30046:30085" placeholder="SELECT total..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="32955:33059" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="33815:33886" placeholder="UPDATE order..." />
+                <marker date="1423617508226" expanded="true" signature="34116:34162" placeholder="SELECT quant..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="34741:34795" placeholder="UPDATE order..." />
+                <marker date="1423617508226" expanded="true" signature="35097:35138" placeholder="UPDATE order..." />
+                <marker date="1423617508226" expanded="true" signature="35353:35394" placeholder="UPDATE order..." />
+                <marker date="1423617508226" expanded="true" signature="35678:35734" placeholder="UPDATE accou..." />
+                <marker date="1423617508226" expanded="true" signature="36020:36072" placeholder="UPDATE accou..." />
+                <marker date="1423617508226" expanded="true" signature="36593:36757" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="37163:37327" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="37732:37896" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="38297:38461" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="38907:39071" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="39465:39629" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="40164:40228" placeholder="SELECT quant..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="40668:40755" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="41292:41343" placeholder="DELETE FROM ..." />
+                <marker date="1423617508226" expanded="true" signature="41637:41711" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="42104:42162" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="42432:42503" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="42798:42896" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="43530:43692" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="48851:48892" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="49206:49251" placeholder="UPDATE asset..." />
+                <marker date="1423617508226" expanded="true" signature="49410:49453" placeholder="UPDATE asset..." />
+                <marker date="1423617508226" expanded="true" signature="49610:49651" placeholder="UPDATE asset..." />
+                <marker date="1423617508226" expanded="true" signature="49807:49849" placeholder="UPDATE asset..." />
+                <marker date="1423617508226" expanded="true" signature="50007:50052" placeholder="UPDATE asset..." />
+                <marker date="1423617508226" expanded="true" signature="50218:50268" placeholder="UPDATE asset..." />
+                <marker date="1423617508226" expanded="true" signature="50445:50490" placeholder="UPDATE asset..." />
+                <marker date="1423617508226" expanded="true" signature="50633:50679" placeholder="UPDATE histo..." />
+                <marker date="1423617508226" expanded="true" signature="50822:50870" placeholder="UPDATE order..." />
+                <marker date="1423617508226" expanded="true" signature="51013:51061" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="51204:51249" placeholder="UPDATE trade..." />
+                <marker date="1423617508226" expanded="true" signature="51392:51437" placeholder="UPDATE ledge..." />
+                <marker date="1423617508226" expanded="true" signature="51867:51924" placeholder="UPDATE order..." />
+                <marker date="1423617508226" expanded="true" signature="52066:52103" placeholder="DELETE FROM ..." />
+                <marker date="1423617508226" expanded="true" signature="52258:52298" placeholder="DELETE FROM ..." />
+                <marker date="1423617508226" expanded="true" signature="52425:52529" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="52683:52755" placeholder="UPDATE ledge..." />
+                <marker date="1423617508226" expanded="true" signature="53866:53907" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="54218:54357" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="54649:54705" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="54921:54992" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="55291:55389" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="55867:56015" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="56285:56343" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="56550:56621" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="56958:57056" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="57669:57817" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="58273:58417" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="58735:58879" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="59800:59841" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="60261:60313" placeholder="UPDATE asset..." />
+                <marker date="1423617508226" expanded="true" signature="60515:60571" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="60787:60858" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="61148:61246" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="61704:61852" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="62111:62169" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="62376:62447" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="62774:62872" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="63491:63639" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="64159:64303" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="64621:64765" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="65689:65730" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="66010:66062" placeholder="UPDATE asset..." />
+                <marker date="1423617508226" expanded="true" signature="66251:66307" placeholder="SELECT symbo..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="66680:66757" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="67188:67246" placeholder="SELECT quant..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="67638:67786" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="68213:68357" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="69347:69388" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="70897:70946" placeholder="SELECT count..users..." />
+                <marker date="1423617508226" expanded="true" signature="71790:71850" placeholder="SELECT quant..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="72460:72536" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="72730:72895" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="73770:73809" placeholder="SELECT units..accounts..." />
+                <marker date="1423617508226" expanded="true" signature="74703:74755" placeholder="UPDATE accou..." />
+                <marker date="1423617508226" expanded="true" signature="74949:75114" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="75762:75857" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="76175:76235" placeholder="SELECT quant..portfolio..." />
+                <marker date="1423617508226" expanded="true" signature="76845:76921" placeholder="UPDATE portf..." />
+                <marker date="1423617508226" expanded="true" signature="77115:77280" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="77918:78013" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="78282:78321" placeholder="SELECT units..accounts..." />
+                <marker date="1423617508226" expanded="true" signature="79288:79340" placeholder="UPDATE accou..." />
+                <marker date="1423617508226" expanded="true" signature="79534:79699" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="80636:80731" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1423617508226" expanded="true" signature="81000:81039" placeholder="SELECT units..accounts..." />
+                <marker date="1423617508226" expanded="true" signature="81982:82034" placeholder="UPDATE accou..." />
+                <marker date="1423617508226" expanded="true" signature="82228:82393" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="83079:83220" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="83616:83720" placeholder="INSERT INTO ..." />
+                <marker date="1423617508226" expanded="true" signature="83967:84011" placeholder="UPDATE ledge..." />
+                <marker date="1423617508226" expanded="true" signature="84181:84225" placeholder="UPDATE ledge..." />
+                <marker date="1423617508226" expanded="true" signature="85390:85431" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="86006:86047" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="86646:86687" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="86948:86989" placeholder="SELECT symbo..assets..." />
+                <marker date="1423617508226" expanded="true" signature="87206:87266" placeholder="SELECT COALE..accounts..." />
+                <marker date="1423617508226" expanded="true" signature="87910:87970" placeholder="SELECT COALE..accounts..." />
               </folding>
             </state>
           </provider>
@@ -97,7 +212,7 @@
       <file leaf-file-name="transparency.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public_html/transparency.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="391">
+            <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="391">
               <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
@@ -107,63 +222,63 @@
       <file leaf-file-name="transparency_form.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/transparency_form.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.4444447" vertical-offset="8209" max-vertical-offset="16133">
-              <caret line="503" column="75" selection-start-line="503" selection-start-column="75" selection-end-line="503" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="8226" max-vertical-offset="16150">
+              <caret line="504" column="75" selection-start-line="504" selection-start-column="75" selection-end-line="504" selection-end-column="75" />
               <folding>
-                <marker date="1419800655403" expanded="true" signature="1237:1345" placeholder="SELECT COUNT..users..." />
-                <marker date="1419800655403" expanded="true" signature="1433:1537" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419800655403" expanded="true" signature="1626:1733" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="1822:1972" placeholder="SELECT COUNT..." />
-                <marker date="1419800655403" expanded="true" signature="2742:2886" placeholder="SELECT COUNT..users..." />
-                <marker date="1419800655403" expanded="true" signature="2947:3081" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419800655403" expanded="true" signature="3143:3280" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="3342:3522" placeholder="SELECT COUNT..." />
-                <marker date="1419800655403" expanded="true" signature="4255:4399" placeholder="SELECT COUNT..users..." />
-                <marker date="1419800655403" expanded="true" signature="4460:4594" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419800655403" expanded="true" signature="4656:4793" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="4855:5035" placeholder="SELECT COUNT..." />
-                <marker date="1419800655403" expanded="true" signature="5768:5912" placeholder="SELECT COUNT..users..." />
-                <marker date="1419800655403" expanded="true" signature="5973:6107" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419800655403" expanded="true" signature="6169:6306" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="6368:6548" placeholder="SELECT COUNT..." />
-                <marker date="1419800655403" expanded="true" signature="7281:7426" placeholder="SELECT COUNT..users..." />
-                <marker date="1419800655403" expanded="true" signature="7487:7622" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419800655403" expanded="true" signature="7684:7822" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="7884:8065" placeholder="SELECT COUNT..." />
-                <marker date="1419800655403" expanded="true" signature="8798:8944" placeholder="SELECT COUNT..users..." />
-                <marker date="1419800655403" expanded="true" signature="9005:9141" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419800655403" expanded="true" signature="9203:9342" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="9404:9586" placeholder="SELECT COUNT..." />
-                <marker date="1419800655403" expanded="true" signature="10319:10465" placeholder="SELECT COUNT..users..." />
-                <marker date="1419800655403" expanded="true" signature="10526:10662" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419800655403" expanded="true" signature="10724:10863" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="10925:11107" placeholder="SELECT COUNT..." />
-                <marker date="1419800655403" expanded="true" signature="11842:11950" placeholder="SELECT COUNT..users..." />
-                <marker date="1419800655403" expanded="true" signature="12038:12142" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419800655403" expanded="true" signature="12231:12338" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="12427:12577" placeholder="SELECT COUNT..." />
-                <marker date="1419800655403" expanded="true" signature="13357:13466" placeholder="SELECT COUNT..users..." />
-                <marker date="1419800655403" expanded="true" signature="13555:13660" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419800655403" expanded="true" signature="13750:13858" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="13948:14099" placeholder="SELECT COUNT..." />
-                <marker date="1419800655403" expanded="true" signature="14889:14925" placeholder="SELECT COUNT..users..." />
-                <marker date="1419800655403" expanded="true" signature="15014:15052" placeholder="SELECT COUNT..assets..." />
-                <marker date="1419800655403" expanded="true" signature="15142:15183" placeholder="SELECT COUNT..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="15273:15357" placeholder="SELECT COUNT..." />
-                <marker date="1419800655403" expanded="true" signature="19669:19727" placeholder="SELECT SUM(t..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="19908:19948" placeholder="SELECT SUM(u..accounts..." />
-                <marker date="1419800655403" expanded="true" signature="20905:20964" placeholder="SELECT symbo..assets..." />
-                <marker date="1419800655403" expanded="true" signature="21380:21474" placeholder="SELECT SUM(q..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="22010:22072" placeholder="SELECT SUM(a..storage..." />
-                <marker date="1419800655403" expanded="true" signature="22816:22881" placeholder="SELECT SUM(q..portfolio..." />
-                <marker date="1419800655403" expanded="true" signature="23110:23195" placeholder="SELECT SUM(q..orderbook..." />
-                <marker date="1419800655403" expanded="true" signature="25248:25287" placeholder="SELECT units..accounts..." />
-                <marker date="1419800655403" expanded="true" signature="25844:25896" placeholder="UPDATE accou..." />
-                <marker date="1419800655403" expanded="true" signature="26090:26202" placeholder="INSERT INTO ..." />
-                <marker date="1419800655403" expanded="true" signature="26494:26614" placeholder="SELECT depos..storage..." />
-                <marker date="1419800655403" expanded="true" signature="26636:26665" placeholder="SELECT * FRO..storage..." />
-                <marker date="1419800655403" expanded="true" signature="26717:26788" placeholder="SELECT symbo..storage..." />
-                <marker date="1419800655403" expanded="true" signature="31943:32029" placeholder="SELECT SUM(c..trades..." />
+                <marker date="1423339767537" expanded="true" signature="1237:1345" placeholder="SELECT COUNT..users..." />
+                <marker date="1423339767537" expanded="true" signature="1433:1537" placeholder="SELECT COUNT..assets..." />
+                <marker date="1423339767537" expanded="true" signature="1626:1733" placeholder="SELECT COUNT..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="1822:1972" placeholder="SELECT COUNT..." />
+                <marker date="1423339767537" expanded="true" signature="2742:2886" placeholder="SELECT COUNT..users..." />
+                <marker date="1423339767537" expanded="true" signature="2947:3081" placeholder="SELECT COUNT..assets..." />
+                <marker date="1423339767537" expanded="true" signature="3143:3280" placeholder="SELECT COUNT..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="3342:3522" placeholder="SELECT COUNT..." />
+                <marker date="1423339767537" expanded="true" signature="4255:4399" placeholder="SELECT COUNT..users..." />
+                <marker date="1423339767537" expanded="true" signature="4460:4594" placeholder="SELECT COUNT..assets..." />
+                <marker date="1423339767537" expanded="true" signature="4656:4793" placeholder="SELECT COUNT..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="4855:5035" placeholder="SELECT COUNT..." />
+                <marker date="1423339767537" expanded="true" signature="5768:5912" placeholder="SELECT COUNT..users..." />
+                <marker date="1423339767537" expanded="true" signature="5973:6107" placeholder="SELECT COUNT..assets..." />
+                <marker date="1423339767537" expanded="true" signature="6169:6306" placeholder="SELECT COUNT..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="6368:6548" placeholder="SELECT COUNT..." />
+                <marker date="1423339767537" expanded="true" signature="7281:7426" placeholder="SELECT COUNT..users..." />
+                <marker date="1423339767537" expanded="true" signature="7487:7622" placeholder="SELECT COUNT..assets..." />
+                <marker date="1423339767537" expanded="true" signature="7684:7822" placeholder="SELECT COUNT..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="7884:8065" placeholder="SELECT COUNT..." />
+                <marker date="1423339767537" expanded="true" signature="8798:8944" placeholder="SELECT COUNT..users..." />
+                <marker date="1423339767537" expanded="true" signature="9005:9141" placeholder="SELECT COUNT..assets..." />
+                <marker date="1423339767537" expanded="true" signature="9203:9342" placeholder="SELECT COUNT..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="9404:9586" placeholder="SELECT COUNT..." />
+                <marker date="1423339767537" expanded="true" signature="10319:10465" placeholder="SELECT COUNT..users..." />
+                <marker date="1423339767537" expanded="true" signature="10526:10662" placeholder="SELECT COUNT..assets..." />
+                <marker date="1423339767537" expanded="true" signature="10724:10863" placeholder="SELECT COUNT..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="10925:11107" placeholder="SELECT COUNT..." />
+                <marker date="1423339767537" expanded="true" signature="11842:11950" placeholder="SELECT COUNT..users..." />
+                <marker date="1423339767537" expanded="true" signature="12038:12142" placeholder="SELECT COUNT..assets..." />
+                <marker date="1423339767537" expanded="true" signature="12231:12338" placeholder="SELECT COUNT..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="12427:12577" placeholder="SELECT COUNT..." />
+                <marker date="1423339767537" expanded="true" signature="13357:13466" placeholder="SELECT COUNT..users..." />
+                <marker date="1423339767537" expanded="true" signature="13555:13660" placeholder="SELECT COUNT..assets..." />
+                <marker date="1423339767537" expanded="true" signature="13750:13858" placeholder="SELECT COUNT..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="13948:14099" placeholder="SELECT COUNT..." />
+                <marker date="1423339767537" expanded="true" signature="14889:14925" placeholder="SELECT COUNT..users..." />
+                <marker date="1423339767537" expanded="true" signature="15014:15052" placeholder="SELECT COUNT..assets..." />
+                <marker date="1423339767537" expanded="true" signature="15142:15183" placeholder="SELECT COUNT..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="15273:15357" placeholder="SELECT COUNT..." />
+                <marker date="1423339767537" expanded="true" signature="19669:19727" placeholder="SELECT SUM(t..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="19908:19948" placeholder="SELECT SUM(u..accounts..." />
+                <marker date="1423339767537" expanded="true" signature="20970:21029" placeholder="SELECT symbo..assets..." />
+                <marker date="1423339767537" expanded="true" signature="21445:21539" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="22075:22137" placeholder="SELECT SUM(a..storage..." />
+                <marker date="1423339767537" expanded="true" signature="22881:22946" placeholder="SELECT SUM(q..portfolio..." />
+                <marker date="1423339767537" expanded="true" signature="23175:23260" placeholder="SELECT SUM(q..orderbook..." />
+                <marker date="1423339767537" expanded="true" signature="25313:25352" placeholder="SELECT units..accounts..." />
+                <marker date="1423339767537" expanded="true" signature="25909:25961" placeholder="UPDATE accou..." />
+                <marker date="1423339767537" expanded="true" signature="26155:26267" placeholder="INSERT INTO ..." />
+                <marker date="1423339767537" expanded="true" signature="26559:26679" placeholder="SELECT depos..storage..." />
+                <marker date="1423339767537" expanded="true" signature="26701:26730" placeholder="SELECT * FRO..storage..." />
+                <marker date="1423339767537" expanded="true" signature="26782:26853" placeholder="SELECT symbo..storage..." />
+                <marker date="1423339767537" expanded="true" signature="32008:32094" placeholder="SELECT SUM(c..trades..." />
               </folding>
             </state>
           </provider>
@@ -175,12 +290,12 @@
             <state vertical-scroll-proportion="0.0" vertical-offset="3397" max-vertical-offset="6154">
               <caret line="212" column="90" selection-start-line="212" selection-start-column="90" selection-end-line="212" selection-end-column="90" />
               <folding>
-                <marker date="1419784409916" expanded="true" signature="361:398" placeholder="SELECT count..users..." />
-                <marker date="1419784409916" expanded="true" signature="545:590" placeholder="SELECT symbo..assets..." />
-                <marker date="1419784409916" expanded="true" signature="1158:1232" placeholder="SELECT price..orderbook..." />
-                <marker date="1419784409916" expanded="true" signature="1541:1615" placeholder="SELECT price..orderbook..." />
-                <marker date="1419784409916" expanded="true" signature="3654:3709" placeholder="UPDATE trade..." />
-                <marker date="1419784409916" expanded="true" signature="3936:3993" placeholder="SELECT symbo..assets..." />
+                <marker date="1423339739413" expanded="true" signature="361:398" placeholder="SELECT count..users..." />
+                <marker date="1423339739413" expanded="true" signature="545:590" placeholder="SELECT symbo..assets..." />
+                <marker date="1423339739413" expanded="true" signature="1158:1232" placeholder="SELECT price..orderbook..." />
+                <marker date="1423339739413" expanded="true" signature="1541:1615" placeholder="SELECT price..orderbook..." />
+                <marker date="1423339739413" expanded="true" signature="3654:3709" placeholder="UPDATE trade..." />
+                <marker date="1423339739413" expanded="true" signature="3936:3993" placeholder="SELECT symbo..assets..." />
               </folding>
             </state>
           </provider>
@@ -189,7 +304,7 @@
       <file leaf-file-name="constants.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/constants.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.4629629" vertical-offset="0" max-vertical-offset="884">
+            <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="884">
               <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
               <folding />
             </state>
@@ -202,7 +317,7 @@
             <state vertical-scroll-proportion="-6.5384617" vertical-offset="2397" max-vertical-offset="9214">
               <caret line="151" column="93" selection-start-line="151" selection-start-column="93" selection-end-line="151" selection-end-column="93" />
               <folding>
-                <marker date="1419803135737" expanded="false" signature="12807:12823" placeholder="..." />
+                <marker date="1423339765989" expanded="false" signature="12807:12823" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -266,20 +381,21 @@
         <option value="$PROJECT_DIR$/public_html/404/404.html" />
         <option value="$PROJECT_DIR$/public_html/image/index.php" />
         <option value="$PROJECT_DIR$/public_html/404/index.php" />
-        <option value="$PROJECT_DIR$/includes/functions_exchange.php" />
         <option value="$PROJECT_DIR$/includes/functions_testing.php" />
         <option value="$PROJECT_DIR$/templates/transparency_form.php" />
         <option value="$PROJECT_DIR$/includes/constants.php" />
         <option value="$PROJECT_DIR$/templates/account_form.php" />
         <option value="$PROJECT_DIR$/public_html/info/index.php" />
+        <option value="$PROJECT_DIR$/includes/functions_exchange.php" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="154" />
-    <option name="width" value="1212" />
-    <option name="height" value="728" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -367,7 +483,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="154" y="0" width="1212" height="728" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -455,6 +571,16 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/templates/account_form.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2397" max-vertical-offset="9214">
+          <caret line="151" column="93" selection-start-line="151" selection-start-column="93" selection-end-line="151" selection-end-column="93" />
+          <folding>
+            <marker date="1423339765989" expanded="false" signature="12807:12823" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/old/transfer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="2516">
@@ -559,13 +685,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="2822">
           <caret line="9" column="41" selection-start-line="9" selection-start-column="41" selection-end-line="9" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../info/public_html/transfer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25660378" vertical-offset="0" max-vertical-offset="2516">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -745,13 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/functions_exchange.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="10.855046" vertical-offset="1020" max-vertical-offset="24157">
-          <caret line="408" column="52" selection-start-line="408" selection-start-column="52" selection-end-line="408" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/404/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="1564">
@@ -778,19 +890,19 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="3397" max-vertical-offset="6154">
           <caret line="212" column="90" selection-start-line="212" selection-start-column="90" selection-end-line="212" selection-end-column="90" />
           <folding>
-            <marker date="1419784409916" expanded="true" signature="361:398" placeholder="SELECT count..users..." />
-            <marker date="1419784409916" expanded="true" signature="545:590" placeholder="SELECT symbo..assets..." />
-            <marker date="1419784409916" expanded="true" signature="1158:1232" placeholder="SELECT price..orderbook..." />
-            <marker date="1419784409916" expanded="true" signature="1541:1615" placeholder="SELECT price..orderbook..." />
-            <marker date="1419784409916" expanded="true" signature="3654:3709" placeholder="UPDATE trade..." />
-            <marker date="1419784409916" expanded="true" signature="3936:3993" placeholder="SELECT symbo..assets..." />
+            <marker date="1423339739413" expanded="true" signature="361:398" placeholder="SELECT count..users..." />
+            <marker date="1423339739413" expanded="true" signature="545:590" placeholder="SELECT symbo..assets..." />
+            <marker date="1423339739413" expanded="true" signature="1158:1232" placeholder="SELECT price..orderbook..." />
+            <marker date="1423339739413" expanded="true" signature="1541:1615" placeholder="SELECT price..orderbook..." />
+            <marker date="1423339739413" expanded="true" signature="3654:3709" placeholder="UPDATE trade..." />
+            <marker date="1423339739413" expanded="true" signature="3936:3993" placeholder="SELECT symbo..assets..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public_html/transparency.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="391">
+        <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="391">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
@@ -798,72 +910,83 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/transparency_form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.4444447" vertical-offset="8209" max-vertical-offset="16133">
-          <caret line="503" column="75" selection-start-line="503" selection-start-column="75" selection-end-line="503" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="8226" max-vertical-offset="16150">
+          <caret line="504" column="75" selection-start-line="504" selection-start-column="75" selection-end-line="504" selection-end-column="75" />
           <folding>
-            <marker date="1419800655403" expanded="true" signature="1237:1345" placeholder="SELECT COUNT..users..." />
-            <marker date="1419800655403" expanded="true" signature="1433:1537" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419800655403" expanded="true" signature="1626:1733" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="1822:1972" placeholder="SELECT COUNT..." />
-            <marker date="1419800655403" expanded="true" signature="2742:2886" placeholder="SELECT COUNT..users..." />
-            <marker date="1419800655403" expanded="true" signature="2947:3081" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419800655403" expanded="true" signature="3143:3280" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="3342:3522" placeholder="SELECT COUNT..." />
-            <marker date="1419800655403" expanded="true" signature="4255:4399" placeholder="SELECT COUNT..users..." />
-            <marker date="1419800655403" expanded="true" signature="4460:4594" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419800655403" expanded="true" signature="4656:4793" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="4855:5035" placeholder="SELECT COUNT..." />
-            <marker date="1419800655403" expanded="true" signature="5768:5912" placeholder="SELECT COUNT..users..." />
-            <marker date="1419800655403" expanded="true" signature="5973:6107" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419800655403" expanded="true" signature="6169:6306" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="6368:6548" placeholder="SELECT COUNT..." />
-            <marker date="1419800655403" expanded="true" signature="7281:7426" placeholder="SELECT COUNT..users..." />
-            <marker date="1419800655403" expanded="true" signature="7487:7622" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419800655403" expanded="true" signature="7684:7822" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="7884:8065" placeholder="SELECT COUNT..." />
-            <marker date="1419800655403" expanded="true" signature="8798:8944" placeholder="SELECT COUNT..users..." />
-            <marker date="1419800655403" expanded="true" signature="9005:9141" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419800655403" expanded="true" signature="9203:9342" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="9404:9586" placeholder="SELECT COUNT..." />
-            <marker date="1419800655403" expanded="true" signature="10319:10465" placeholder="SELECT COUNT..users..." />
-            <marker date="1419800655403" expanded="true" signature="10526:10662" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419800655403" expanded="true" signature="10724:10863" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="10925:11107" placeholder="SELECT COUNT..." />
-            <marker date="1419800655403" expanded="true" signature="11842:11950" placeholder="SELECT COUNT..users..." />
-            <marker date="1419800655403" expanded="true" signature="12038:12142" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419800655403" expanded="true" signature="12231:12338" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="12427:12577" placeholder="SELECT COUNT..." />
-            <marker date="1419800655403" expanded="true" signature="13357:13466" placeholder="SELECT COUNT..users..." />
-            <marker date="1419800655403" expanded="true" signature="13555:13660" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419800655403" expanded="true" signature="13750:13858" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="13948:14099" placeholder="SELECT COUNT..." />
-            <marker date="1419800655403" expanded="true" signature="14889:14925" placeholder="SELECT COUNT..users..." />
-            <marker date="1419800655403" expanded="true" signature="15014:15052" placeholder="SELECT COUNT..assets..." />
-            <marker date="1419800655403" expanded="true" signature="15142:15183" placeholder="SELECT COUNT..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="15273:15357" placeholder="SELECT COUNT..." />
-            <marker date="1419800655403" expanded="true" signature="19669:19727" placeholder="SELECT SUM(t..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="19908:19948" placeholder="SELECT SUM(u..accounts..." />
-            <marker date="1419800655403" expanded="true" signature="20905:20964" placeholder="SELECT symbo..assets..." />
-            <marker date="1419800655403" expanded="true" signature="21380:21474" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="22010:22072" placeholder="SELECT SUM(a..storage..." />
-            <marker date="1419800655403" expanded="true" signature="22816:22881" placeholder="SELECT SUM(q..portfolio..." />
-            <marker date="1419800655403" expanded="true" signature="23110:23195" placeholder="SELECT SUM(q..orderbook..." />
-            <marker date="1419800655403" expanded="true" signature="25248:25287" placeholder="SELECT units..accounts..." />
-            <marker date="1419800655403" expanded="true" signature="25844:25896" placeholder="UPDATE accou..." />
-            <marker date="1419800655403" expanded="true" signature="26090:26202" placeholder="INSERT INTO ..." />
-            <marker date="1419800655403" expanded="true" signature="26494:26614" placeholder="SELECT depos..storage..." />
-            <marker date="1419800655403" expanded="true" signature="26636:26665" placeholder="SELECT * FRO..storage..." />
-            <marker date="1419800655403" expanded="true" signature="26717:26788" placeholder="SELECT symbo..storage..." />
-            <marker date="1419800655403" expanded="true" signature="31943:32029" placeholder="SELECT SUM(c..trades..." />
+            <marker date="1423339767537" expanded="true" signature="1237:1345" placeholder="SELECT COUNT..users..." />
+            <marker date="1423339767537" expanded="true" signature="1433:1537" placeholder="SELECT COUNT..assets..." />
+            <marker date="1423339767537" expanded="true" signature="1626:1733" placeholder="SELECT COUNT..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="1822:1972" placeholder="SELECT COUNT..." />
+            <marker date="1423339767537" expanded="true" signature="2742:2886" placeholder="SELECT COUNT..users..." />
+            <marker date="1423339767537" expanded="true" signature="2947:3081" placeholder="SELECT COUNT..assets..." />
+            <marker date="1423339767537" expanded="true" signature="3143:3280" placeholder="SELECT COUNT..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="3342:3522" placeholder="SELECT COUNT..." />
+            <marker date="1423339767537" expanded="true" signature="4255:4399" placeholder="SELECT COUNT..users..." />
+            <marker date="1423339767537" expanded="true" signature="4460:4594" placeholder="SELECT COUNT..assets..." />
+            <marker date="1423339767537" expanded="true" signature="4656:4793" placeholder="SELECT COUNT..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="4855:5035" placeholder="SELECT COUNT..." />
+            <marker date="1423339767537" expanded="true" signature="5768:5912" placeholder="SELECT COUNT..users..." />
+            <marker date="1423339767537" expanded="true" signature="5973:6107" placeholder="SELECT COUNT..assets..." />
+            <marker date="1423339767537" expanded="true" signature="6169:6306" placeholder="SELECT COUNT..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="6368:6548" placeholder="SELECT COUNT..." />
+            <marker date="1423339767537" expanded="true" signature="7281:7426" placeholder="SELECT COUNT..users..." />
+            <marker date="1423339767537" expanded="true" signature="7487:7622" placeholder="SELECT COUNT..assets..." />
+            <marker date="1423339767537" expanded="true" signature="7684:7822" placeholder="SELECT COUNT..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="7884:8065" placeholder="SELECT COUNT..." />
+            <marker date="1423339767537" expanded="true" signature="8798:8944" placeholder="SELECT COUNT..users..." />
+            <marker date="1423339767537" expanded="true" signature="9005:9141" placeholder="SELECT COUNT..assets..." />
+            <marker date="1423339767537" expanded="true" signature="9203:9342" placeholder="SELECT COUNT..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="9404:9586" placeholder="SELECT COUNT..." />
+            <marker date="1423339767537" expanded="true" signature="10319:10465" placeholder="SELECT COUNT..users..." />
+            <marker date="1423339767537" expanded="true" signature="10526:10662" placeholder="SELECT COUNT..assets..." />
+            <marker date="1423339767537" expanded="true" signature="10724:10863" placeholder="SELECT COUNT..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="10925:11107" placeholder="SELECT COUNT..." />
+            <marker date="1423339767537" expanded="true" signature="11842:11950" placeholder="SELECT COUNT..users..." />
+            <marker date="1423339767537" expanded="true" signature="12038:12142" placeholder="SELECT COUNT..assets..." />
+            <marker date="1423339767537" expanded="true" signature="12231:12338" placeholder="SELECT COUNT..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="12427:12577" placeholder="SELECT COUNT..." />
+            <marker date="1423339767537" expanded="true" signature="13357:13466" placeholder="SELECT COUNT..users..." />
+            <marker date="1423339767537" expanded="true" signature="13555:13660" placeholder="SELECT COUNT..assets..." />
+            <marker date="1423339767537" expanded="true" signature="13750:13858" placeholder="SELECT COUNT..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="13948:14099" placeholder="SELECT COUNT..." />
+            <marker date="1423339767537" expanded="true" signature="14889:14925" placeholder="SELECT COUNT..users..." />
+            <marker date="1423339767537" expanded="true" signature="15014:15052" placeholder="SELECT COUNT..assets..." />
+            <marker date="1423339767537" expanded="true" signature="15142:15183" placeholder="SELECT COUNT..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="15273:15357" placeholder="SELECT COUNT..." />
+            <marker date="1423339767537" expanded="true" signature="19669:19727" placeholder="SELECT SUM(t..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="19908:19948" placeholder="SELECT SUM(u..accounts..." />
+            <marker date="1423339767537" expanded="true" signature="20970:21029" placeholder="SELECT symbo..assets..." />
+            <marker date="1423339767537" expanded="true" signature="21445:21539" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="22075:22137" placeholder="SELECT SUM(a..storage..." />
+            <marker date="1423339767537" expanded="true" signature="22881:22946" placeholder="SELECT SUM(q..portfolio..." />
+            <marker date="1423339767537" expanded="true" signature="23175:23260" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1423339767537" expanded="true" signature="25313:25352" placeholder="SELECT units..accounts..." />
+            <marker date="1423339767537" expanded="true" signature="25909:25961" placeholder="UPDATE accou..." />
+            <marker date="1423339767537" expanded="true" signature="26155:26267" placeholder="INSERT INTO ..." />
+            <marker date="1423339767537" expanded="true" signature="26559:26679" placeholder="SELECT depos..storage..." />
+            <marker date="1423339767537" expanded="true" signature="26701:26730" placeholder="SELECT * FRO..storage..." />
+            <marker date="1423339767537" expanded="true" signature="26782:26853" placeholder="SELECT symbo..storage..." />
+            <marker date="1423339767537" expanded="true" signature="32008:32094" placeholder="SELECT SUM(c..trades..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/constants.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4629629" vertical-offset="0" max-vertical-offset="884">
+        <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="884">
           <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/info/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6746" max-vertical-offset="13294">
+          <caret line="407" column="14" selection-start-line="407" selection-start-column="14" selection-end-line="407" selection-end-column="14" />
+          <folding>
+            <marker date="1423339748653" expanded="true" signature="7424:7469" placeholder="SELECT symbo..assets..." />
+            <marker date="1423339748653" expanded="true" signature="7590:7675" placeholder="SELECT symbo..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -872,69 +995,173 @@
         <state vertical-scroll-proportion="-6.5384617" vertical-offset="2397" max-vertical-offset="9214">
           <caret line="151" column="93" selection-start-line="151" selection-start-column="93" selection-end-line="151" selection-end-column="93" />
           <folding>
-            <marker date="1419803135737" expanded="false" signature="12807:12823" placeholder="..." />
+            <marker date="1423339765989" expanded="false" signature="12807:12823" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/info/index.php">
+    <entry file="file://$PROJECT_DIR$/includes/functions_exchange.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3264151" vertical-offset="6746" max-vertical-offset="13294">
-          <caret line="407" column="14" selection-start-line="407" selection-start-column="14" selection-end-line="407" selection-end-column="14" />
+        <state vertical-scroll-proportion="16.22202" vertical-offset="5881" max-vertical-offset="27030">
+          <caret line="866" column="0" selection-start-line="866" selection-start-column="0" selection-end-line="866" selection-end-column="0" />
           <folding>
-            <marker date="1419805172201" expanded="true" signature="7424:7469" placeholder="SELECT symbo..assets..." />
-            <marker date="1419805172201" expanded="true" signature="7590:7675" placeholder="SELECT symbo..." />
-            <marker date="1419805172201" expanded="true" signature="23406:23517" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="23452:23517" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="23946:24314" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="23979:24058" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="24091:24171" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="24204:24284" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="24498:25421" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="24526:25412" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="24552:25391" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="24596:24758" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="24625:24739" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="24802:24965" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="24831:24946" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25009:25170" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25038:25151" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25214:25376" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25243:25357" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25445:27835" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25473:27824" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25499:25721" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25547:25706" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25757:27803" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25793:27788" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25863:27769" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25901:27745" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="25948:27008" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="26001:26284" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="26337:26632" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="26685:26977" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="27055:27430" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="27108:27399" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="27543:27718" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="27845:28794" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="27873:28784" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="27899:28773" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="27934:28048" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="28083:28470" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="28139:28451" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="28164:28235" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="28260:28332" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="28357:28429" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="28505:28758" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="28557:28739" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="28582:28638" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="28663:28717" placeholder="..." />
-            <marker date="1419805172201" expanded="true" signature="28966:29055" placeholder="SELECT symbo..." />
-            <marker date="1419805172201" expanded="true" signature="29416:29484" placeholder="SELECT price..trades..." />
-            <marker date="1419805172201" expanded="true" signature="29635:29719" placeholder="SELECT price..orderbook..." />
-            <marker date="1419805172201" expanded="true" signature="29866:29951" placeholder="SELECT price..orderbook..." />
-            <marker date="1419805172201" expanded="true" signature="32424:32482" placeholder="SELECT SUM(t..orderbook..." />
-            <marker date="1419805172201" expanded="true" signature="32503:32543" placeholder="SELECT SUM(u..accounts..." />
+            <element signature="e#69001#69015#0#PHP" expanded="false" />
+            <element signature="e#75564#77706#0#PHP" expanded="false" />
+            <element signature="e#77720#80134#0#PHP" expanded="false" />
+            <element signature="e#80149#82878#0#PHP" expanded="false" />
+            <marker date="1423617508226" expanded="true" signature="955:1006" placeholder="SELECT count..users..." />
+            <marker date="1423617508226" expanded="true" signature="1387:1426" placeholder="SELECT units..accounts..." />
+            <marker date="1423617508226" expanded="true" signature="2512:2564" placeholder="UPDATE accou..." />
+            <marker date="1423617508226" expanded="true" signature="2749:2859" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="3107:3159" placeholder="UPDATE accou..." />
+            <marker date="1423617508226" expanded="true" signature="3354:3464" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="3785:3826" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="4072:4128" placeholder="SELECT quant..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="4717:4771" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="4994:5050" placeholder="SELECT quant..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="5286:5357" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="5651:5728" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="6422:6566" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="6890:7034" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="7784:7916" placeholder="SELECT price..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="8166:8298" placeholder="SELECT price..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="8495:8536" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="8725:8766" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="8986:9118" placeholder="SELECT price..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="9288:9420" placeholder="SELECT price..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="9870:9911" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="10095:10530" placeholder="SELECT SUM(o..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="12152:12232" placeholder="SELECT quant..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="12403:12483" placeholder="SELECT quant..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="12896:12983" placeholder="SELECT quant..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="13323:13382" placeholder="SELECT units..accounts..." />
+            <marker date="1423617508226" expanded="true" signature="13607:13656" placeholder="UPDATE order..." />
+            <marker date="1423617508226" expanded="true" signature="14405:14486" placeholder="SELECT side,..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="14714:14795" placeholder="SELECT side,..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="15087:15185" placeholder="SELECT side,..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="15889:15965" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="16206:16431" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="16806:16858" placeholder="UPDATE accou..." />
+            <marker date="1423617508226" expanded="true" signature="17126:17351" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="17720:17761" placeholder="UPDATE order..." />
+            <marker date="1423617508226" expanded="true" signature="18235:18339" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="18710:18814" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="20000:20105" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="20286:20414" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="20732:20850" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="20954:21083" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="21394:21523" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="21772:21890" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="21995:22124" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="22541:22670" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="22711:22839" placeholder="SELECT * FRO..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="23726:23771" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="24516:24526" placeholder="..." />
+            <marker date="1423617508226" expanded="true" signature="24806:24847" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="25243:25272" placeholder="..." />
+            <marker date="1423617508226" expanded="true" signature="26642:26683" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="30046:30085" placeholder="SELECT total..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="32955:33059" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="33815:33886" placeholder="UPDATE order..." />
+            <marker date="1423617508226" expanded="true" signature="34116:34162" placeholder="SELECT quant..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="34741:34795" placeholder="UPDATE order..." />
+            <marker date="1423617508226" expanded="true" signature="35097:35138" placeholder="UPDATE order..." />
+            <marker date="1423617508226" expanded="true" signature="35353:35394" placeholder="UPDATE order..." />
+            <marker date="1423617508226" expanded="true" signature="35678:35734" placeholder="UPDATE accou..." />
+            <marker date="1423617508226" expanded="true" signature="36020:36072" placeholder="UPDATE accou..." />
+            <marker date="1423617508226" expanded="true" signature="36593:36757" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="37163:37327" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="37732:37896" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="38297:38461" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="38907:39071" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="39465:39629" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="40164:40228" placeholder="SELECT quant..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="40668:40755" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="41292:41343" placeholder="DELETE FROM ..." />
+            <marker date="1423617508226" expanded="true" signature="41637:41711" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="42104:42162" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="42432:42503" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="42798:42896" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="43530:43692" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="48851:48892" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="49206:49251" placeholder="UPDATE asset..." />
+            <marker date="1423617508226" expanded="true" signature="49410:49453" placeholder="UPDATE asset..." />
+            <marker date="1423617508226" expanded="true" signature="49610:49651" placeholder="UPDATE asset..." />
+            <marker date="1423617508226" expanded="true" signature="49807:49849" placeholder="UPDATE asset..." />
+            <marker date="1423617508226" expanded="true" signature="50007:50052" placeholder="UPDATE asset..." />
+            <marker date="1423617508226" expanded="true" signature="50218:50268" placeholder="UPDATE asset..." />
+            <marker date="1423617508226" expanded="true" signature="50445:50490" placeholder="UPDATE asset..." />
+            <marker date="1423617508226" expanded="true" signature="50633:50679" placeholder="UPDATE histo..." />
+            <marker date="1423617508226" expanded="true" signature="50822:50870" placeholder="UPDATE order..." />
+            <marker date="1423617508226" expanded="true" signature="51013:51061" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="51204:51249" placeholder="UPDATE trade..." />
+            <marker date="1423617508226" expanded="true" signature="51392:51437" placeholder="UPDATE ledge..." />
+            <marker date="1423617508226" expanded="true" signature="51867:51924" placeholder="UPDATE order..." />
+            <marker date="1423617508226" expanded="true" signature="52066:52103" placeholder="DELETE FROM ..." />
+            <marker date="1423617508226" expanded="true" signature="52258:52298" placeholder="DELETE FROM ..." />
+            <marker date="1423617508226" expanded="true" signature="52425:52529" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="52683:52755" placeholder="UPDATE ledge..." />
+            <marker date="1423617508226" expanded="true" signature="53866:53907" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="54218:54357" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="54649:54705" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="54921:54992" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="55291:55389" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="55867:56015" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="56285:56343" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="56550:56621" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="56958:57056" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="57669:57817" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="58273:58417" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="58735:58879" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="59800:59841" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="60261:60313" placeholder="UPDATE asset..." />
+            <marker date="1423617508226" expanded="true" signature="60515:60571" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="60787:60858" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="61148:61246" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="61704:61852" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="62111:62169" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="62376:62447" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="62774:62872" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="63491:63639" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="64159:64303" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="64621:64765" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="65689:65730" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="66010:66062" placeholder="UPDATE asset..." />
+            <marker date="1423617508226" expanded="true" signature="66251:66307" placeholder="SELECT symbo..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="66680:66757" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="67188:67246" placeholder="SELECT quant..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="67638:67786" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="68213:68357" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="69347:69388" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="70897:70946" placeholder="SELECT count..users..." />
+            <marker date="1423617508226" expanded="true" signature="71790:71850" placeholder="SELECT quant..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="72460:72536" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="72730:72895" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="73770:73809" placeholder="SELECT units..accounts..." />
+            <marker date="1423617508226" expanded="true" signature="74703:74755" placeholder="UPDATE accou..." />
+            <marker date="1423617508226" expanded="true" signature="74949:75114" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="75762:75857" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="76175:76235" placeholder="SELECT quant..portfolio..." />
+            <marker date="1423617508226" expanded="true" signature="76845:76921" placeholder="UPDATE portf..." />
+            <marker date="1423617508226" expanded="true" signature="77115:77280" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="77918:78013" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="78282:78321" placeholder="SELECT units..accounts..." />
+            <marker date="1423617508226" expanded="true" signature="79288:79340" placeholder="UPDATE accou..." />
+            <marker date="1423617508226" expanded="true" signature="79534:79699" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="80636:80731" placeholder="SELECT SUM(q..orderbook..." />
+            <marker date="1423617508226" expanded="true" signature="81000:81039" placeholder="SELECT units..accounts..." />
+            <marker date="1423617508226" expanded="true" signature="81982:82034" placeholder="UPDATE accou..." />
+            <marker date="1423617508226" expanded="true" signature="82228:82393" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="83079:83220" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="83616:83720" placeholder="INSERT INTO ..." />
+            <marker date="1423617508226" expanded="true" signature="83967:84011" placeholder="UPDATE ledge..." />
+            <marker date="1423617508226" expanded="true" signature="84181:84225" placeholder="UPDATE ledge..." />
+            <marker date="1423617508226" expanded="true" signature="85390:85431" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="86006:86047" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="86646:86687" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="86948:86989" placeholder="SELECT symbo..assets..." />
+            <marker date="1423617508226" expanded="true" signature="87206:87266" placeholder="SELECT COALE..accounts..." />
+            <marker date="1423617508226" expanded="true" signature="87910:87970" placeholder="SELECT COALE..accounts..." />
           </folding>
         </state>
       </provider>
