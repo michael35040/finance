@@ -79,7 +79,7 @@
         else{echo("<td>" . (number_format(($row["xamount"]),0,".",",")) . "</td>");}
 
         echo("<td>" . htmlspecialchars($row["category"]) . "</td>");
-        echo("<td>" . htmlspecialchars($row["note"]) . "</td>");
+        echo("<td>" . htmlspecialchars(ucfirst(($row["note"])) . "</td>");
         echo("<td>" . htmlspecialchars($row["askuid"]) . "</td>");
         echo("<td>" . htmlspecialchars($row["biduid"]) . "</td>");
         echo("<td>" . htmlspecialchars($row["reference"]) . "</td>");
