@@ -1,4 +1,6 @@
 
+
+
 <table class="table table-condensed  table-bordered" >
     <tr   class="success" ><td colspan="14"  style="font-size:20px; text-align: center;">LEDGER (<?php echo(strtoupper($tabletitle)); ?>) &nbsp;
             <?php
@@ -59,7 +61,6 @@
     </tr>
 
     <?php
-    $ledger = query("SELECT * FROM ledger ORDER BY uid ASC");
 
     foreach ($ledger as $row)
     {

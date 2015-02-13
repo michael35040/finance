@@ -88,6 +88,28 @@
 
 
 
+<table class="table table-condensed  table-bordered" >
+    <tr>
+        <td><b>Symbol</b></td>
+        <td><b>Amount (Sum of Ledger)</b></td>
+    </tr>
+    <?php
+
+    $accounts = query("SELECT `symbol`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`user`=? AND `category`='trade') GROUP BY `symbol`", $id);
+
+
+    foreach ($accounts as $row) {
+
+        echo("<tr>");
+        echo("<td>" . htmlspecialchars($row["symbol"]) . "</td>");
+        echo("<td>" . number_format(($row["amount"]),0,".",",") . "</td>");
+        echo("<tr>");
+
+    }
+    ?>
+</table>
+
+
 
 
 
@@ -523,6 +545,12 @@
 </div>
 </div>
 </div>
+
+
+
+
+
+
 
 
 

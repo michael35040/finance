@@ -12,17 +12,17 @@ if(isset($_POST['history']))
         $title = "All";
         $tabletitle = "All";
     } //for unlimited option
-} 
+}
 
-//HISTORY
-//$ledger = query("SELECT * FROM ledger WHERE (user=?) ORDER BY uid DESC $limit", $id);
+
+$ledger = query("SELECT * FROM ledger WHERE (user=? OR xuser=?) ORDER BY uid ASC $limit", $id, $id);
 
 render(
     "ledger_form.php",
     [
         "title" => $title,
-        //"ledger" => $ledger,
-        "tabletitle" => $tabletitle,
+        "ledger" => $ledger,
+        "tabletitle" => $tabletitle
     ]);
 
 ?>
