@@ -22,8 +22,9 @@
             <th>Registered</th>
 			<th>Fails</th> 
             <th>IP</th>
-            <th><?php echo($unittype) //set in finance.php ?></th>
+            <th><?php echo($unittype) //set in finance.php ?> Available</th>
             <th>Locked</th>
+            <th>Total</th>
             <th>Active</th>
             <th>Lock</th>
 
@@ -33,6 +34,8 @@
 
     <tbody>
 <?php
+$lockedunits=0;
+$availableunits=0;
 
 	    foreach ($searchusers as $row)
         {   
@@ -47,6 +50,7 @@
             echo("<td>" . htmlspecialchars($row["ip"]) . "</td>"); 
             echo("<td>" . number_format($row["units"],2,".",",") . "</td>");
             echo("<td>" . number_format($row["locked"],2,".",",") . "</td>");
+            echo("<td>" . number_format(($row["locked"]+$row["units"]),2,".",",") . "</td>");
 
 
             if($row["active"]==1)
@@ -61,9 +65,17 @@
             }
 
             echo("</tr>");
+            
+        $lockedunits=$lockedunits+$row["units"];
+	$availableunits=$availableunits+$row["locked"];  
+	
         }
     ?>
     </tbody>
 </table>
+
+Total Locked: <?php echo $lockedunits; ?><br>
+Total Available:  <?php echo $availableunits; ?><br>
+Total Units:  <?php echo ($lockedunits + $availableunits); ?><br>
 
 <?php //var_dump(get_defined_vars()); ?>
