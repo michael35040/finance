@@ -144,3 +144,29 @@ Total: <?php echo $totalunits; ?>
 
 
 
+
+
+<table class="table table-condensed  table-bordered" >
+    <tr>
+        <td><b>Symbol</b></td>
+        <td><b>Locked (Sum of Ledger All)</b></td>
+    </tr>
+    <?php
+    $locked = query("SELECT `symbol`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`category`='order' AND `status`=1) GROUP BY `symbol`"); //trade, order, deposit, withdraw, transfer
+
+
+    foreach ($locked as $row) {
+
+        if($row["symbol"]==$unittype){$row["amount"]=getPrice($row["amount"]);}
+        echo("<tr>");
+        echo("<td>" . htmlspecialchars($row["symbol"]) . "</td>");
+        echo("<td>" . number_format(($row["amount"]),0,".",",") . "</td>");
+        echo("<tr>");
+
+    }
+    ?>
+</table>
+
+
+
+
