@@ -881,7 +881,7 @@ if(!empty($asks) || !empty($bids)){
                         <td>Price</td>
                     </tr>
                     <?php
-                    foreach ($bids as $row)
+                    foreach ($asks as $row)
                     {
                         //if($row["side"]=='b'){$side='BID';}; if($row["side"]=='a'){$side='ASK ';};
                         echo("<tr>");
