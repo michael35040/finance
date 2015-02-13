@@ -920,9 +920,9 @@ if(!empty($asks) || !empty($bids)){
                     <?php
                     foreach ($lastorders  as $row)
                     {
-                        //if($row["side"]=='b'){$side='BID';}; if($row["side"]=='a'){$side='ASK ';};
+                        if($row["side"]=='b'){$side='Bid';} elseif($row["side"]=='a'){$side='Ask ';} else{$side='';}
                         echo("<tr>");
-                        echo("<td>" . (number_format($row["uid"],0,".","")) . htmlspecialchars($row["side"]) . "</td>");
+                        echo("<td>" . (number_format($row["uid"],0,".","")) . " (" . htmlspecialchars($side) . ")</td>");
                         //echo("<td>" . htmlspecialchars($side) . "</td>");
                         echo("<td>" . htmlspecialchars(date('m/d H:i',strtotime($row["date"]))) . "</td>");
                         //echo("<td>" . htmlspecialchars(date('Y-m-d H:i:s',strtotime($row["date"]))) . "</td>");
