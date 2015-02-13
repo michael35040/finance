@@ -26,7 +26,7 @@ if($loud!='quiet'){echo date("Y-m-d H:i:s");
         //while ($i < 26) {
         $randomOrders=0;
         if($loud!='quiet'){echo("<br><b>[" . $symbol . "] Placing Orders...</b>");}
-        while ($randomOrders < 50) //number of orders
+        while ($randomOrders < 10) //number of orders
         {
             $sideNum = mt_rand(1, 2);
             $percent=mt_rand(95,105);$percent=$percent/100;
@@ -48,7 +48,7 @@ if($loud!='quiet'){echo date("Y-m-d H:i:s");
             }
 
             $quantity = mt_rand(1, 100);
-            $id = mt_rand(2, $numberUsers);
+            $id = mt_rand(1, $numberUsers);
 
 
             try {
