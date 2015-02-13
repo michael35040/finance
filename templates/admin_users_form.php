@@ -79,3 +79,68 @@ Total Available:  <?php echo $availableunits; ?><br>
 Total Units:  <?php echo ($lockedunits + $availableunits); ?><br>
 
 <?php //var_dump(get_defined_vars()); ?>
+
+
+
+
+
+
+
+
+<table class="table table-condensed  table-bordered" >
+    <tr>
+        <td><b>User</b></td>
+        <td><b>Amount (LEDGER)</b></td>
+    </tr>
+    <?php
+    $accounts = query("SELECT `user`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`symbol`='XBT' AND `category`!='order') GROUP BY `user`"); //trade, order, deposit, withdraw, transfer
+
+    $totalunits=0;
+    foreach ($accounts as $row) {
+
+        //if($row["symbol"]==$unittype){$row["amount"]=getPrice($row["amount"]);}
+        echo("<tr>");
+        echo("<td>" . htmlspecialchars($row["user"]) . "</td>");
+        echo("<td>" . number_format(($row["amount"]),0,".",",") . "</td>");
+        echo("<tr>");
+        $totalunits=$totalunits+$row["amount"];
+
+    }
+    ?>
+</table>
+Total: <?php echo $totalunits; ?>
+
+
+
+
+
+
+
+
+
+
+
+<table class="table table-condensed  table-bordered" >
+    <tr>
+        <td><b>Symbol</b></td>
+        <td><b>Amount (Sum of Ledger All)</b></td>
+    </tr>
+    <?php
+    $accounts = query("SELECT `symbol`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`category`!='order') GROUP BY `symbol`"); //trade, order, deposit, withdraw, transfer
+
+
+    foreach ($accounts as $row) {
+
+        if($row["symbol"]==$unittype){$row["amount"]=getPrice($row["amount"]);}
+        echo("<tr>");
+        echo("<td>" . htmlspecialchars($row["symbol"]) . "</td>");
+        echo("<td>" . number_format(($row["amount"]),0,".",",") . "</td>");
+        echo("<tr>");
+
+    }
+    ?>
+</table>
+
+
+
+
