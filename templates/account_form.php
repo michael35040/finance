@@ -81,6 +81,34 @@
 
 
 
+<table class="table table-condensed  table-bordered" >
+    <tr>
+        <td><b>User</b></td>
+        <td><b>Amount (LEDGER)</b></td>
+    </tr>
+    <?php
+    $accounts = query("SELECT `user`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`symbol`='XBT' AND `category`!='order') GROUP BY `user`"); //trade, order, deposit, withdraw, transfer
+
+    $totalunits=0;
+    foreach ($accounts as $row) {
+
+        //if($row["symbol"]==$unittype){$row["amount"]=getPrice($row["amount"]);}
+        echo("<tr>");
+        echo("<td>" . htmlspecialchars($row["user"]) . "</td>");
+        echo("<td>" . number_format(($row["amount"]),0,".",",") . "</td>");
+        echo("<tr>");
+        $totalunits=$totalunits+$row["amount"];
+
+    }
+    ?>
+</table>
+Total: <?php echo $totalunits; ?>
+
+
+
+
+
+
 
 
 
