@@ -95,11 +95,17 @@
     </tr>
     <?php
 
-    $accounts = query("SELECT `symbol`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`user`=? AND `category`='trade') GROUP BY `symbol`", $id);
+
+        //NOT CALCULATING UNITTYPE CORRECTLY
+        //I BELIEVE IT IS BECAUSE IT IS BLOCKING ORDER WHICH
+        //THIS IS SHOWING HIGHER THAN THE OTHER SO IT IS NOT SUBTRACTING OPEN ORDERS
+        //BUT THE SHARES ARE SHOWING CORRECTLY
+    $accounts = query("SELECT `symbol`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`user`=? AND `category`!='order') GROUP BY `symbol`", $id); //trade, order, deposit, withdraw, transfer
 
 
     foreach ($accounts as $row) {
 
+        if($row["symbol"]==$unittype){$row["amount"]=getPrice($row["amount"]);}
         echo("<tr>");
         echo("<td>" . htmlspecialchars($row["symbol"]) . "</td>");
         echo("<td>" . number_format(($row["amount"]),0,".",",") . "</td>");

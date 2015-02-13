@@ -186,7 +186,33 @@ function test()
     $units = setPrice(1000000);
     query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
 
+    $referenceID = ($id); //concatenate
+    $reference = uniqid($referenceID, true); //unique id reference to trade
 
+    $userCheck = query("SELECT count(id) as number FROM users");
+    $numberUsers=$userCheck[0]["number"];
+    $numberUsers=$numberUsers+1;
+    $id=1;
+    while($id<$numberUsers)
+    {
+        if (query("INSERT INTO ledger (
+                    category,
+                    user, symbol, amount, reference,
+                    xuser, xsymbol, xamount, xreference,
+                    status, note, biduid, askuid)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                'DEPOSIT',
+                $id, $unittype, $units, $reference,
+                1, $unittype, $units, $reference,
+                0, 'Initial', null, null
+            ) === false
+        ) {
+            query("ROLLBACK");
+            query("SET AUTOCOMMIT=1");
+            throw new Exception("Updates Accounts Failure 3");
+        }
+        $id++;
+    }
 
 
 

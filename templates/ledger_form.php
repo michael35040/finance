@@ -84,7 +84,7 @@
         echo("<td>" . htmlspecialchars($row["askuid"]) . "</td>");
         echo("<td>" . htmlspecialchars($row["biduid"]) . "</td>");
         echo("<td>" . htmlspecialchars($row["reference"]) . "</td>");
-//        echo("<td>" . htmlspecialchars($row["xreference"]) . "</td>");
+        //        echo("<td>" . htmlspecialchars($row["xreference"]) . "</td>");
         echo("<td>" . htmlspecialchars($row["status"]) . "</td>");
         echo("</tr>");
     }
