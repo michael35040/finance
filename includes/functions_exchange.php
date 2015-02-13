@@ -408,13 +408,13 @@ function cancelOrderCheck()
         echo("<br>Conducting check for canceled orders...");
     }
     //Check to see if anyone canceled any orders
-    $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
+    $cancelOrders = query("SELECT side, uid FROM orderbook WHERE (type = 'cancel' AND status!=2) ORDER BY uid ASC LIMIT 0, 1");
     $canceledNumber = 0;
     while (!empty($cancelOrders)) {
         cancelOrder($cancelOrders[0]["uid"], 'Cancel User (#0-User)'); //user chose to cancel
 
         //Search again to see if anymore
-        $cancelOrders = query("SELECT side, uid FROM orderbook WHERE type = 'cancel' ORDER BY uid ASC LIMIT 0, 1");
+        $cancelOrders = query("SELECT side, uid FROM orderbook WHERE  (type = 'cancel' AND status!=2) ORDER BY uid ASC LIMIT 0, 1");
         $canceledNumber++;
     }
     if ($canceledNumber > 0) {
