@@ -86,12 +86,35 @@
 
 
 
+<table class="table table-condensed  table-bordered" >
+    <tr>
+        <td><b>Symbol</b></td>
+        <td><b>Amount (Sum of Ledger All)</b></td>
+    </tr>
+    <?php
+    $accounts = query("SELECT `symbol`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`category`!='order') GROUP BY `symbol`"); //trade, order, deposit, withdraw, transfer
+
+
+    foreach ($accounts as $row) {
+
+        if($row["symbol"]==$unittype){$row["amount"]=getPrice($row["amount"]);}
+        echo("<tr>");
+        echo("<td>" . htmlspecialchars($row["symbol"]) . "</td>");
+        echo("<td>" . number_format(($row["amount"]),0,".",",") . "</td>");
+        echo("<tr>");
+
+    }
+    ?>
+</table>
+
+
+
 
 
 <table class="table table-condensed  table-bordered" >
     <tr>
         <td><b>Symbol</b></td>
-        <td><b>Amount (Sum of Ledger)</b></td>
+        <td><b>Amount (Sum of Ledger User)</b></td>
     </tr>
     <?php
 
