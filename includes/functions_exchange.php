@@ -1033,7 +1033,21 @@ function orderbook($symbol)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Ledger Insert Failure");
             }
-//COMMISSION
+
+//COMMISSION-Remove
+            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'trade',
+                    $topBidUser, $unittype, $negCommission, $reference,
+                    $adminid, $unittype, $commissionAmount, $reference,
+                    0, 'COMMISSION-Remove', $topBidUID, $topAskUID
+                ) === false
+            ) {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Ledger Insert Failure");
+            }
+//COMMISSION-Give
             $negCommission = ($commissionAmount * -1);
             if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
@@ -1047,20 +1061,6 @@ function orderbook($symbol)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Ledger Insert Failure");
             }
-//COMMISSION
-            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
-                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'trade',
-                    $topBidUser, $unittype, $negCommission, $reference,
-                    $adminid, $unittype, $commissionAmount, $reference,
-                    0, 'COMMISSION-Remove', $topBidUID, $topAskUID
-                ) === false
-            ) {
-                query("ROLLBACK");
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Ledger Insert Failure");
-            }
-
 
             ///////////
             //PORTFOLIO
