@@ -142,7 +142,7 @@ DROP TABLE IF EXISTS `ledger`;
 CREATE TABLE IF NOT EXISTS `ledger` (
 `uid` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique id',
 `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-`category` varchar(32) NOT NULL COMMENT 'trade, transfer, deposit, withdraw',
+`category` varchar(32) NOT NULL COMMENT 'order, trade, transfer, deposit, withdraw',
 `user` int(10) NOT NULL COMMENT 'payee user id',
 `symbol` varchar(10) NOT NULL COMMENT 'asset symbol',
 `amount` bigint(20) NOT NULL COMMENT 'positive or negative sign',
