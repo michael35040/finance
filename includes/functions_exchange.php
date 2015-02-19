@@ -975,6 +975,12 @@ function orderbook($symbol)
                     throw new Exception("Update Accounts Failure: #11a");
                 }
             }
+            
+            
+            
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //NEED TO REMOVE FROM THE LEDGER 'ORDER' CATEGORY FOR DUAL ENTRY ACCOUNTING.
+            //LINK TO PLACE ORDER FUNCTION ln 1800-1900
 
             //ACCOUNTS LEDGER
             $referenceID = ($topAskUID . $topBidUID . $tradeSize); //concatenate
@@ -1869,6 +1875,15 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Updates Accounts Failure 3");
             }
+            
+            
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //NEED TO ADD TO THE LEDGER 'ORDER' CATEGORY FOR DUAL ENTRY ACCOUNTING.
+            //ENSURE WE ADD IT TO EACH PART OF THIS PLACE ORDER FUNCTION WHERE WE INSERT LEDGER
+            //LINK TO EXCHANGE FUNCTION ~ln 1000
+            
+
+
             $negquantity = $quantity * -1;
             if (query("INSERT INTO ledger (
                     category,
