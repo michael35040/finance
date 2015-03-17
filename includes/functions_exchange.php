@@ -981,6 +981,19 @@ function orderbook($symbol)
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //NEED TO REMOVE FROM THE LEDGER 'ORDER' CATEGORY FOR DUAL ENTRY ACCOUNTING.
             //LINK TO PLACE ORDER FUNCTION ln 1800-1900
+            //added to the ledger (category 'order') the amount of the order in the place order function
+            //now we need to insert into the ledger a negative number of the amount that has been traded
+            //i.e. insert into ledger category=order amount=amount-quantity
+            //
+            //user has 100x [100x]
+            //user places sell order for 45x [-45x order][+45 locked]
+            //trade occurs 20x [-20 locked][+20 other user]
+            //-----
+            //now user has 55x available, 25x locked, and sold 20x to other user.
+            //
+            //But do I need to have a lock feature at all? don't want seller to place multiple orders from teh same base qty. So yes.
+            //refund the locked amount when order is canceled.
+            
 
             //ACCOUNTS LEDGER
             $referenceID = ($topAskUID . $topBidUID . $tradeSize); //concatenate
