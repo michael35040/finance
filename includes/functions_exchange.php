@@ -153,7 +153,7 @@ function transfer($quantity, $symbol, $userid)
         if ($symbol == $unittype) {
             $quantity = setPrice($quantity);
         } //if it is currency
-        $referenceID = ($payer . $payee . $quantity); //concatenate
+        $referenceID = ($userid . mt_rand(1000,9999) ); //random incase uniqid happens at same microseconds
         $reference = uniqid($referenceID, true); //unique id reference to trade
         $negquantity = ($quantity * -1);
 //REMOVE
@@ -996,7 +996,7 @@ function orderbook($symbol)
             
 
             //ACCOUNTS LEDGER
-            $referenceID = ($topAskUID . $topBidUID . $tradeSize); //concatenate
+            $referenceID = ($topAskUser . mt_rand(1000,9999) ); //random incase uniqid happens at same microseconds
             $reference = uniqid($referenceID, true); //unique id reference to trade
             $negtradeSize = ($tradeSize * -1);
             $negtradeAmount = ($tradeAmount * -1); //WHAT ABOUT COMMISSION
@@ -1502,7 +1502,7 @@ function publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $ra
     }
 
 
-    $referenceID = ($userid . $issued); //concatenate
+    $referenceID = ($userid . mt_rand(1000,9999) ); //random incase uniqid happens at same microseconds
     $reference = uniqid($referenceID, true); //unique id reference to trade
 
 //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
@@ -1627,7 +1627,7 @@ function publicOffering2($symbol, $userid, $issued, $fee)
     }
 
     //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
-    $referenceID = ($userid . $issued); //concatenate
+    $referenceID = ($userid . mt_rand(1000,9999) ); //random incase uniqid happens at same microseconds
     $reference = uniqid($referenceID, true); //unique id reference to trade
 //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
 //GIVE BIDDER SHARES
@@ -1728,7 +1728,7 @@ function removeQuantity($symbol, $userid, $issued)
 
 
 //INSERT TRADE
-    $referenceID = ($userid . $issued); //concatenate
+    $referenceID = ($userid . mt_rand(1000,9999) ); //random incase uniqid happens at same microseconds
     $reference = uniqid($referenceID, true); //unique id reference to trade
 //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
 //GIVE BIDDER SHARES
@@ -1843,7 +1843,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     } //row count
 
 
-    $referenceID = ($id); //concatenate
+    $referenceID = ($userid . mt_rand(1000,9999) ); //random incase uniqid happens at same microseconds
     $reference = uniqid($referenceID, true); //unique id reference to trade
     $ouid = null;
 
