@@ -1,4 +1,17 @@
 <?php
+
+//to do
+//sequence of orders on ledger
+//1. place order. done.
+//2. remove shares from user. ???
+//3. add shares to 'order'. ???
+//4. trade happens or user cancels. done.
+//5. remove shares from order. ???
+//6. add shares to new owner. ???
+
+
+
+
 //throw new Exception(var_dump(get_defined_vars()));
 function transfer($quantity, $symbol, $userid)
 {
