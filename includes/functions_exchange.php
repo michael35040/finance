@@ -1846,6 +1846,30 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     $referenceID = ($userid . mt_rand(1000,9999) ); //random incase uniqid happens at same microseconds
     $reference = uniqid($referenceID, true); //unique id reference to trade
     $ouid = null;
+    
+    
+    function ledgerinsert($transaction, $value1, $value2)
+    {
+                    if (query("INSERT INTO ledger (
+                    category,
+                    user, symbol, amount, reference,
+                    xuser, xsymbol, xamount, xreference,
+                    status, note, biduid, askuid)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'order',
+                    $id, $symbol, $value1, $reference,
+                    1, $unittype, $value2, $reference,
+                    0, $transaction, $ouid, $ouid
+                ) === false
+            ) {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Updates Accounts Failure 3");
+            }
+    }
+    ;
+    
+    
 
     query("SET AUTOCOMMIT=0");
     query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
@@ -1889,32 +1913,9 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
                 throw new Exception("Updates Accounts Failure 3");
             }
             
-            
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //NEED TO ADD TO THE LEDGER 'ORDER' CATEGORY FOR DUAL ENTRY ACCOUNTING.
-            //ENSURE WE ADD IT TO EACH PART OF THIS PLACE ORDER FUNCTION WHERE WE INSERT LEDGER
-            //LINK TO EXCHANGE FUNCTION ~ln 1000
-            
-
 
             $negquantity = $quantity * -1;
-            if (query("INSERT INTO ledger (
-                    category,
-                    user, symbol, amount, reference,
-                    xuser, xsymbol, xamount, xreference,
-                    status, note, biduid, askuid)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order',
-                    $id, $symbol, $negquantity, $reference,
-                    1, $unittype, $ledgerAmount, $reference,
-                    0, $transaction, $ouid, $ouid
-                ) === false
-            ) {
-                query("ROLLBACK");
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Updates Accounts Failure 3");
-            }
-
+            ledgerinsert($transaction, $negquantity, $ledgerAmount);
 
         } else {
             query("ROLLBACK");
@@ -1970,23 +1971,13 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Updates Accounts Failure 4");
             }
+            
+            
+            
+            
+            
             $negtradeAmount = $tradeAmount * -1;
-            if (query("INSERT INTO ledger (
-                    category,
-                    user, symbol, amount, reference,
-                    xuser, xsymbol, xamount, xreference,
-                    status, note, biduid, askuid)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order',
-                    $id, $unittype, $negtradeAmount, $reference,
-                    1, $symbol, $quantity, $reference,
-                    0, $transaction, $ouid, $ouid
-                ) === false
-            ) {
-                query("ROLLBACK");
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Updates Accounts Failure 3");
-            }
+            ledgerinsert($transaction, $negtradeAmount, $quantity);
 
 
         } else {
@@ -2031,23 +2022,12 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Updates Accounts Failure 3");
             }
+            
+            
+            
+            
             $negquantity = $quantity * -1;
-            if (query("INSERT INTO ledger (
-                    category,
-                    user, symbol, amount, reference,
-                    xuser, xsymbol, xamount, xreference,
-                    status, note, biduid, askuid)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order',
-                    $id, $symbol, $negquantity, $reference,
-                    1, $unittype, $ledgerAmount, $reference,
-                    0, $transaction, $ouid, $ouid
-                ) === false
-            ) {
-                query("ROLLBACK");
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Updates Accounts Failure 3");
-            }
+            ledgerinsert($transaction, $negquantity, $ledgerAmount);
 
 
         } else {
@@ -2098,23 +2078,12 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Updates Accounts Failure 4");
             }
+            
+
+            //remove from user
             $negtradeAmount = $tradeAmount * -1;
-            if (query("INSERT INTO ledger (
-                    category,
-                    user, symbol, amount, reference,
-                    xuser, xsymbol, xamount, xreference,
-                    status, note, biduid, askuid)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order',
-                    $id, $unittype, $negtradeAmount, $reference,
-                    1, $symbol, $quantity, $reference,
-                    0, $transaction, $ouid, $ouid
-                ) === false
-            ) {
-                query("ROLLBACK");
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Updates Accounts Failure 4");
-            }
+            ledgerinsert($transaction, $negtradeAmount, $quantity);
+
 
         } else {
             query("ROLLBACK");
@@ -2174,23 +2143,13 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Updates Accounts Failure 4");
             }
+            
+            
+            
+            //remove from user
             $negtradeAmount = $tradeAmount * -1;
-            if (query("INSERT INTO ledger (
-                    category,
-                    user, symbol, amount, reference,
-                    xuser, xsymbol, xamount, xreference,
-                    status, note, biduid, askuid)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order',
-                    $id, $unittype, $negtradeAmount, $reference,
-                    1, $symbol, $quantity, $reference,
-                    0, $transaction, $ouid, $ouid
-                ) === false
-            ) {
-                query("ROLLBACK");
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Updates Accounts Failure 4");
-            }
+            ledgerinsert($transaction, $negtradeAmount, $quantity);
+
 
         } else {
             query("ROLLBACK");
