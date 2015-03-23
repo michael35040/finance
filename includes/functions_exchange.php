@@ -979,7 +979,7 @@ function orderbook($symbol)
             
             
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //NEED TO REMOVE FROM THE LEDGER 'ORDER' CATEGORY FOR DUAL ENTRY ACCOUNTING.
+            //REMOVE FROM THE LEDGER THOSE IN THE 'ORDER' CATEGORY FOR DUAL ENTRY ACCOUNTING.
             //LINK TO PLACE ORDER FUNCTION ln 1800-1900
             //added to the ledger (category 'order') the amount of the order in the place order function
             //now we need to insert into the ledger a negative number of the amount that has been traded
@@ -1000,10 +1000,10 @@ function orderbook($symbol)
             $reference = uniqid($referenceID, true); //unique id reference to trade
             $negtradeSize = ($tradeSize * -1);
             $negtradeAmount = ($tradeAmount * -1); //WHAT ABOUT COMMISSION
-//REMOVE ASK SHARES
+//REMOVE ASK SHARES (REMOVE FROM 'ORDER' CATEGORY SINCE THAT IS WHERE IT WAS PLACED IN placeorder() function)
             if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'trade',
+                    'order',
                     $topAskUser, $symbol, $negtradeSize, $reference,
                     $topBidUser, $unittype, $tradeAmount, $reference,
                     0, 'ASK-Remove Shares', $topBidUID, $topAskUID
@@ -1026,10 +1026,10 @@ function orderbook($symbol)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Ledger Insert Failure");
             }
-//REMOVE BIDDER UNITS
+//REMOVE BIDDER UNITS (REMOVE FROM 'ORDER' CATEGORY SINCE THAT IS WHERE IT WAS PLACED IN placeorder() function)
             if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'trade',
+                    'order',
                     $topBidUser, $unittype, $negtradeAmount, $reference,
                     $topAskUser, $symbol, $tradeSize, $reference,
                     0, 'BID-Remove Units', $topBidUID, $topAskUID
