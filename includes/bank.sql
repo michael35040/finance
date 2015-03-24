@@ -142,7 +142,7 @@ DROP TABLE IF EXISTS `ledger`;
 CREATE TABLE IF NOT EXISTS `ledger` (
 `uid` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique id',
 `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-`category` varchar(32) NOT NULL COMMENT 'order, locked, trade, transfer, deposit, withdraw',
+`category` varchar(32) NOT NULL COMMENT 'locked, available',
 `user` int(10) NOT NULL COMMENT 'payee user id',
 `symbol` varchar(10) NOT NULL COMMENT 'asset symbol',
 `amount` bigint(20) NOT NULL COMMENT 'positive or negative sign',
@@ -154,6 +154,7 @@ CREATE TABLE IF NOT EXISTS `ledger` (
 `askuid` int(10) NULL DEFAULT NULL COMMENT 'if trade link to ask',
 `biduid` int(10) NULL DEFAULT NULL COMMENT 'if trade link to bid',
 `status` varchar(32) NOT NULL COMMENT '1-open/pending, 0-closed/cleared/completed, 2-canceled',
+`type` varchar(32) NOT NULL COMMENT 'order, trade, transfer, deposit, withdraw',
 `note` varchar(32) NULL DEFAULT NULL COMMENT 'if canceled-reason',
 PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
