@@ -999,10 +999,10 @@ function orderbook($symbol)
             $reference = uniqid($referenceID, true); //unique id reference to trade
             $negtradeSize = ($tradeSize * -1);
             $negtradeAmount = ($tradeAmount * -1); //WHAT ABOUT COMMISSION
-//REMOVE ASK SHARES (REMOVE FROM 'ORDER' CATEGORY SINCE THAT IS WHERE IT WAS PLACED IN placeorder() function)
-            if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+//REMOVE ASK SHARES 
+if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order', 'locked',
+                    'trade', 'locked',
                     $topAskUser, $symbol, $negtradeSize, $reference,
                     $topBidUser, $unittype, $tradeAmount, $reference,
                     0, 'ASK-Remove Shares', $topBidUID, $topAskUID
@@ -1025,10 +1025,10 @@ function orderbook($symbol)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Ledger Insert Failure");
             }
-//REMOVE BIDDER UNITS (REMOVE FROM 'ORDER' CATEGORY SINCE THAT IS WHERE IT WAS PLACED IN placeorder() function)
-            if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+//REMOVE BIDDER UNITS 
+if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order', 'available',
+                    'trade', 'locked',
                     $topBidUser, $unittype, $negtradeAmount, $reference,
                     $topAskUser, $symbol, $tradeSize, $reference,
                     0, 'BID-Remove Units', $topBidUID, $topAskUID
@@ -1055,7 +1055,7 @@ function orderbook($symbol)
 //COMMISSION-Remove
             if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'trade', 'available',
+                    'trade', 'locked',
                     $topBidUser, $unittype, $negCommission, $reference,
                     $adminid, $unittype, $commissionAmount, $reference,
                     0, 'COMMISSION-Remove', $topBidUID, $topAskUID
@@ -1846,9 +1846,31 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     $reference = uniqid($referenceID, true); //unique id reference to trade
     $ouid = null;
     
-    
+    //sub function for all order types
     function ledgerinsert($transaction, $value1, $value2)
     {
+        $neg_value1=$value1*-1;
+        $neg_value2=$value2*-1;
+        
+        //remove from available
+                    if (query("INSERT INTO ledger (
+                    type, category,
+                    user, symbol, amount, reference,
+                    xuser, xsymbol, xamount, xreference,
+                    status, note, biduid, askuid)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'order', 'available',
+                    $id, $symbol, $neg_value1, $reference,
+                    1, $unittype, $value2, $reference,
+                    0, $transaction, $ouid, $ouid
+                ) === false
+            ) {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Updates Accounts Failure 3a");
+            }        
+        
+        //add to locked
                     if (query("INSERT INTO ledger (
                     type, category,
                     user, symbol, amount, reference,
@@ -1857,13 +1879,13 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
                     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     'order', 'locked',
                     $id, $symbol, $value1, $reference,
-                    1, $unittype, $value2, $reference,
+                    1, $unittype, $neg_value2, $reference,
                     0, $transaction, $ouid, $ouid
                 ) === false
             ) {
                 query("ROLLBACK");
                 query("SET AUTOCOMMIT=1");
-                throw new Exception("Updates Accounts Failure 3");
+                throw new Exception("Updates Accounts Failure 3b");
             }
     }
     ;
@@ -1913,8 +1935,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             }
             
 
-            $negquantity = $quantity * -1;
-            ledgerinsert($transaction, $negquantity, $ledgerAmount);
+            ledgerinsert($transaction, $quantity, $ledgerAmount);
 
         } else {
             query("ROLLBACK");
@@ -1970,13 +1991,9 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Updates Accounts Failure 4");
             }
+        
             
-            
-            
-            
-            
-            $negtradeAmount = $tradeAmount * -1;
-            ledgerinsert($transaction, $negtradeAmount, $quantity);
+            ledgerinsert($transaction, $tradeAmount, $quantity);
 
 
         } else {
@@ -2023,8 +2040,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             }
             
             
-            $negquantity = $quantity * -1;
-            ledgerinsert($transaction, $negquantity, $ledgerAmount);
+            ledgerinsert($transaction, $quantity, $ledgerAmount);
 
 
         } else {
@@ -2078,8 +2094,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             
 
             //remove from user
-            $negtradeAmount = $tradeAmount * -1;
-            ledgerinsert($transaction, $negtradeAmount, $quantity);
+            ledgerinsert($transaction, $tradeAmount, $quantity);
 
 
         } else {
@@ -2144,8 +2159,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             
             
             //remove from user
-            $negtradeAmount = $tradeAmount * -1;
-            ledgerinsert($transaction, $negtradeAmount, $quantity);
+            ledgerinsert($transaction, $tradeAmount, $quantity);
 
 
         } else {
