@@ -1,14 +1,17 @@
 <?php
 
 //to do
-//sequence of orders on ledger
-//1. place order. done.
-//2. remove shares from user. ???
-//3. add shares to 'order'. ???
-//4. trade happens or user cancels. done.
-//5. remove shares from order. ???
-//6. add shares to new owner. ???
+//added status and category.
+//category is whether it is locked or available
+//if locked, user has order
+//unlocked for when order is completed
+//all entries should be double
+//1. need to go to cancel and add double entry. (remove locked category and add to available)
+//2. need to go to trade and add double entry. (remove locked category and add to available)
+//3. need to go to place order and add double entry. (remove from available and add to locked)
 
+
+//look into renaming category and type. Type is okay. Cateogyr might be 'avaialbitliy' or 'locked' with 0/1
 
 
 
@@ -170,9 +173,9 @@ function transfer($quantity, $symbol, $userid)
         $reference = uniqid($referenceID, true); //unique id reference to trade
         $negquantity = ($quantity * -1);
 //REMOVE
-        if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
-VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-                $transaction,
+        if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                $transaction, 'available',
                 $payer, $symbol, $negquantity, $reference,
                 $payee, $symbol, $quantity, $reference,
                 0, 'transfer-remove payer') === false
@@ -182,9 +185,9 @@ VALUES (?,?,?,?,?,?,?,?,?,?,?)",
             throw new Exception("Ledger Insert Failure");
         }
 //GIVE
-        if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
-VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-                $transaction,
+        if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                $transaction, 'available', 
                 $payee, $symbol, $quantity, $reference,
                 $payer, $symbol, $negquantity, $reference,
                 0, 'transfer-give payee') === false
@@ -483,12 +486,12 @@ function cancelOrder($uid, $reason = null)
             }
             //UPDATE LEDGER
             if (query("INSERT INTO ledger (
-            category,
+            type, category,
             user, symbol, amount, reference,
             xuser, xsymbol, xamount, xreference,
             status, note, biduid, askuid)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order',
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'order', 'locked',
                     $id, $symbol, $quantity, $reference,
                     1, $symbol, $quantity, $reference,
                     0, $reason, $buid, $auid
@@ -508,12 +511,12 @@ function cancelOrder($uid, $reason = null)
             }
             //UPDATE LEDGER
             if (query("INSERT INTO ledger (
-            category,
+            type, category,
             user, symbol, amount, reference,
             xuser, xsymbol, xamount, xreference,
             status, note, biduid, askuid)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order',
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'order', 'locked',
                     $id, $unittype, $total, $reference,
                     1, $unittype, $total, $reference,
                     0, $reason, $buid, $auid
@@ -989,24 +992,7 @@ function orderbook($symbol)
                 }
             }
             
-            
-            
-            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //REMOVE FROM THE LEDGER THOSE IN THE 'ORDER' CATEGORY FOR DUAL ENTRY ACCOUNTING.
-            //LINK TO PLACE ORDER FUNCTION ln 1800-1900
-            //added to the ledger (category 'order') the amount of the order in the place order function
-            //now we need to insert into the ledger a negative number of the amount that has been traded
-            //i.e. insert into ledger category=order amount=amount-quantity
-            //
-            //user has 100x [100x]
-            //user places sell order for 45x [-45x order][+45 locked]
-            //trade occurs 20x [-20 locked][+20 other user]
-            //-----
-            //now user has 55x available, 25x locked, and sold 20x to other user.
-            //
-            //But do I need to have a lock feature at all? don't want seller to place multiple orders from teh same base qty. So yes.
-            //refund the locked amount when order is canceled.
-            
+        
 
             //ACCOUNTS LEDGER
             $referenceID = ($topAskUser . mt_rand(1000,9999) ); //random incase uniqid happens at same microseconds
@@ -1014,9 +1000,9 @@ function orderbook($symbol)
             $negtradeSize = ($tradeSize * -1);
             $negtradeAmount = ($tradeAmount * -1); //WHAT ABOUT COMMISSION
 //REMOVE ASK SHARES (REMOVE FROM 'ORDER' CATEGORY SINCE THAT IS WHERE IT WAS PLACED IN placeorder() function)
-            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
-                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order',
+            if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'order', 'locked',
                     $topAskUser, $symbol, $negtradeSize, $reference,
                     $topBidUser, $unittype, $tradeAmount, $reference,
                     0, 'ASK-Remove Shares', $topBidUID, $topAskUID
@@ -1027,9 +1013,9 @@ function orderbook($symbol)
                 throw new Exception("Ledger Insert Failure");
             }
 //GIVE BIDDER SHARES
-            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
-                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'trade',
+            if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'trade', 'available',
                     $topBidUser, $symbol, $tradeSize, $reference,
                     $topAskUser, $unittype, $negtradeAmount, $reference,
                     0, 'BID-Give Shares', $topBidUID, $topAskUID
@@ -1040,9 +1026,9 @@ function orderbook($symbol)
                 throw new Exception("Ledger Insert Failure");
             }
 //REMOVE BIDDER UNITS (REMOVE FROM 'ORDER' CATEGORY SINCE THAT IS WHERE IT WAS PLACED IN placeorder() function)
-            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
-                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order',
+            if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'order', 'available',
                     $topBidUser, $unittype, $negtradeAmount, $reference,
                     $topAskUser, $symbol, $tradeSize, $reference,
                     0, 'BID-Remove Units', $topBidUID, $topAskUID
@@ -1053,9 +1039,9 @@ function orderbook($symbol)
                 throw new Exception("Ledger Insert Failure");
             }
 //GIVE ASK UNITS
-            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
-                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'trade',
+            if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'trade', 'available',
                     $topAskUser, $unittype, $tradeAmount, $reference,
                     $topBidUser, $symbol, $negtradeSize, $reference,
                     0, 'ASK-Give Units', $topBidUID, $topAskUID
@@ -1067,9 +1053,9 @@ function orderbook($symbol)
             }
 
 //COMMISSION-Remove
-            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
-                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'trade',
+            if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'trade', 'available',
                     $topBidUser, $unittype, $negCommission, $reference,
                     $adminid, $unittype, $commissionAmount, $reference,
                     0, 'COMMISSION-Remove', $topBidUID, $topAskUID
@@ -1081,9 +1067,9 @@ function orderbook($symbol)
             }
 //COMMISSION-Give
             $negCommission = ($commissionAmount * -1);
-            if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
-                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'trade',
+            if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'trade', 'available',
                     $adminid, $unittype, $commissionAmount, $reference,
                     $topBidUser, $unittype, $negCommission, $reference,
                     0, 'COMMISSION-Give', $topBidUID, $topAskUID
@@ -1520,9 +1506,9 @@ function publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $ra
 
 //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
 //GIVE BIDDER SHARES
-    if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
-VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-            'trade',
+    if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+            'trade', 'available',
             $userid, $symbol, $ownersQuantity, $reference,
             $adminid, $unittype, 0, $reference,
             0, 'IPO') === false
@@ -1532,9 +1518,9 @@ VALUES (?,?,?,?,?,?,?,?,?,?,?)",
         throw new Exception("Ledger Insert Failure");
     }
 //INSERT FEE SHARES INTO PORTFOLIO OF ADMIN
-    if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
-VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-            'trade',
+    if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+            'trade', 'available',
             $adminid, $symbol, $feeQuantity, $reference,
             $userid, $unittype, 0, $reference,
             0, 'IPO Fee') === false
@@ -1644,9 +1630,9 @@ function publicOffering2($symbol, $userid, $issued, $fee)
     $reference = uniqid($referenceID, true); //unique id reference to trade
 //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
 //GIVE BIDDER SHARES
-    if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
-VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-            'trade',
+    if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+            'trade', 'available',
             $userid, $symbol, $ownersQuantity, $reference,
             $adminid, $unittype, 0, $reference,
             0, '2PO') === false
@@ -1656,9 +1642,9 @@ VALUES (?,?,?,?,?,?,?,?,?,?,?)",
         throw new Exception("Ledger Insert Failure");
     }
 //INSERT FEE SHARES INTO PORTFOLIO OF ADMIN
-    if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
-VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-            'trade',
+    if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+            'trade', 'available',
             $adminid, $symbol, $feeQuantity, $reference,
             $userid, $unittype, 0, $reference,
             0, '2PO Fee') === false
@@ -1746,9 +1732,9 @@ function removeQuantity($symbol, $userid, $issued)
 //INSERT SHARES INTO PORTFOLIO OF OWNER MINUS FEE
 //GIVE BIDDER SHARES
     $negIssued = ($issued * -1);
-    if (query("INSERT INTO ledger (category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
-VALUES (?,?,?,?,?,?,?,?,?,?,?)",
-            'trade',
+    if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note)
+VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+            'trade', 'available',
             $userid, $symbol, $negIssued, $reference,
             $userid, $unittype, 0, $reference,
             0, 'RO') === false
@@ -1864,12 +1850,12 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     function ledgerinsert($transaction, $value1, $value2)
     {
                     if (query("INSERT INTO ledger (
-                    category,
+                    type, category,
                     user, symbol, amount, reference,
                     xuser, xsymbol, xamount, xreference,
                     status, note, biduid, askuid)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order',
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'order', 'locked',
                     $id, $symbol, $value1, $reference,
                     1, $unittype, $value2, $reference,
                     0, $transaction, $ouid, $ouid
@@ -2035,8 +2021,6 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Updates Accounts Failure 3");
             }
-            
-            
             
             
             $negquantity = $quantity * -1;
