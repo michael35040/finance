@@ -196,12 +196,12 @@ function test()
     while($id<$numberUsers)
     {
         if (query("INSERT INTO ledger (
-                    category,
+                    type, category,
                     user, symbol, amount, reference,
                     xuser, xsymbol, xamount, xreference,
                     status, note, biduid, askuid)
                     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                'DEPOSIT',
+                'DEPOSIT', 'available',
                 $id, $unittype, $units, $reference,
                 1, $unittype, $units, $reference,
                 0, 'Initial', null, null
