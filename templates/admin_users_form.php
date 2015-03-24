@@ -93,7 +93,7 @@ Total Units:  <?php echo ($lockedunits + $availableunits); ?><br>
         <td><b>Amount (LEDGER)</b></td>
     </tr>
     <?php
-    $accounts = query("SELECT `user`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`symbol`='XBT' AND `category`!='order') GROUP BY `user`"); //trade, order, deposit, withdraw, transfer
+    $accounts = query("SELECT `user`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`symbol`='XBT' AND `category`!='locked') GROUP BY `user`"); //trade, order, deposit, withdraw, transfer
 
     $totalunits=0;
     foreach ($accounts as $row) {
@@ -126,7 +126,7 @@ Total: <?php echo $totalunits; ?>
         <td><b>Amount (Sum of Ledger All)</b></td>
     </tr>
     <?php
-    $accounts = query("SELECT `symbol`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`category`!='order') GROUP BY `symbol`"); //trade, order, deposit, withdraw, transfer
+    $accounts = query("SELECT `symbol`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`category`!='locked') GROUP BY `symbol`"); //trade, order, deposit, withdraw, transfer
 
 
     foreach ($accounts as $row) {
@@ -152,7 +152,7 @@ Total: <?php echo $totalunits; ?>
         <td><b>Locked (Sum of Ledger All)</b></td>
     </tr>
     <?php
-    $locked = query("SELECT `symbol`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`category`='order' AND `status`=1) GROUP BY `symbol`"); //trade, order, deposit, withdraw, transfer
+    $locked = query("SELECT `symbol`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`category`='locked' AND `status`=1) GROUP BY `symbol`"); //trade, order, deposit, withdraw, transfer
 
 
     foreach ($locked as $row) {
