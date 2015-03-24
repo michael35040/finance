@@ -619,7 +619,7 @@
                     //I BELIEVE IT IS BECAUSE IT IS BLOCKING ORDER WHICH
                     //THIS IS SHOWING HIGHER THAN THE OTHER SO IT IS NOT SUBTRACTING OPEN ORDERS
                     //BUT THE SHARES ARE SHOWING CORRECTLY
-                    $accounts = query("SELECT `symbol`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`user`=? AND `category`!='order') GROUP BY `symbol`", $id); //trade, order, deposit, withdraw, transfer
+                    $accounts = query("SELECT `symbol`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`user`=? AND `category`!='locked') GROUP BY `symbol`", $id); //trade, order, deposit, withdraw, transfer
 
 
                     foreach ($accounts as $row) {
