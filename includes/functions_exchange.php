@@ -10,6 +10,8 @@
 //2. need to go to trade and add double entry. (remove locked category and add to available)
 //3. need to go to place order and add double entry. (remove from available and add to locked)
 
+//4. CHECK INTO cHANGING THE WAY WE REMOVE ORDERS (CANCEL FUNCTION ~ln600) FROM SIMLPY CHANGING THE STATUS VALUE
+//      TO ACTUALLY MOVING THE ORDER TO A NEW TABLE FOR OLD ORDERS. THIS SHOULD SPEED UP THE PROCESS WHEN WE ARE MATCHING ORDERS
 
 //look into renaming category and type. Type is okay. Cateogyr might be 'avaialbitliy' or 'locked' with 0/1
 
@@ -484,7 +486,25 @@ function cancelOrder($uid, $reason = null)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Failure Cancel 2");
             }
-            //UPDATE LEDGER
+            //REMOVE FROM LOCKED
+            $neg_quantity=$quantity*-1;
+            if (query("INSERT INTO ledger (
+            type, category,
+            user, symbol, amount, reference,
+            xuser, xsymbol, xamount, xreference,
+            status, note, biduid, askuid)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'order', 'locked',
+                    $id, $symbol, $neg_quantity, $reference,
+                    1, $symbol, $neg_quantity, $reference,
+                    0, $reason, $buid, $auid
+                ) === false
+            ) {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Updates Accounts Failure 4");
+            }
+            //ADD TO AVAILABLE
             if (query("INSERT INTO ledger (
             type, category,
             user, symbol, amount, reference,
@@ -501,7 +521,6 @@ function cancelOrder($uid, $reason = null)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Updates Accounts Failure 4");
             }
-
         } elseif ($side == 'b') {
             if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $total, $id) === false) //MOVE CASH TO units FUNDS
             {
@@ -509,7 +528,25 @@ function cancelOrder($uid, $reason = null)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Failure Cancel 4");
             }
-            //UPDATE LEDGER
+            //REMOVE FROM LOCKED
+            $neg_total=$total*-1;
+            if (query("INSERT INTO ledger (
+            type, category,
+            user, symbol, amount, reference,
+            xuser, xsymbol, xamount, xreference,
+            status, note, biduid, askuid)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'order', 'locked',
+                    $id, $unittype, $neg_total, $reference,
+                    1, $unittype, $neg_total, $reference,
+                    0, $reason, $buid, $auid
+                ) === false
+            ) {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Updates Accounts Failure 4");
+            }
+            //ADD TO AVAILABLE
             if (query("INSERT INTO ledger (
             type, category,
             user, symbol, amount, reference,
@@ -526,10 +563,13 @@ function cancelOrder($uid, $reason = null)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Updates Accounts Failure 4");
             }
-
         }
 
         //DELETE ORDER
+        //*******************************************
+        //CONSIDER INSTEAD OF UPDATING ORDERBOOK, DELETE ORDER FROM THIS TABLE AND ADD TO NEW TABLE
+        //SO WHEN WE ARE SORTING THE TABLE FOR EXISTING ORDERS (ORDERBOOK), IT WILL BE QUICKER
+        //*************************************
         if (query("UPDATE orderbook SET status=2 WHERE uid=?", $uid) === false) {
             //if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {
             query("ROLLBACK");
