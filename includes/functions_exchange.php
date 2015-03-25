@@ -943,7 +943,7 @@ function orderbook($symbol)
 
                         //COMMISSION AMOUNT ON NEW AMOUNT
                         $commissionAmount = getCommission($tradeAmount);
-
+                        $negCommission = $commissionAmount * -1;
 
                         //CHECK AGAIN WITH NEW AMOUNT
                         if ($orderbookUnits < ($tradeAmount + $commissionAmount)) {
