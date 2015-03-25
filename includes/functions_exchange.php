@@ -1805,8 +1805,10 @@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
 //////////////////
 //FUNCTION FOR PLACE ORDER LEDGER INSERT
     //sub function for all order types
-    function ledgerinsert($transaction, $value1, $value2, $reference, $id)
+    function ledgerinsert($transaction, $value1, $value2, $reference, $id, $symbol, $unittype)
     {
+
+$ouid=null;
 
     $neg_value1=$value1*-1;
     $neg_value2=$value2*-1;
@@ -1977,7 +1979,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             }
             
 
-            ledgerinsert($transaction, $quantity, $ledgerAmount, $reference, $id);
+            ledgerinsert($transaction, $quantity, $ledgerAmount, $reference, $id, $symbol, $unittype);
 
         } else {
             query("ROLLBACK");
@@ -2035,7 +2037,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             }
         
             
-            ledgerinsert($transaction, $tradeAmount, $quantity, $reference, $id);
+            ledgerinsert($transaction, $tradeAmount, $quantity, $reference, $id, $symbol, $unittype);
 
 
         } else {
@@ -2082,7 +2084,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             }
             
             
-            ledgerinsert($transaction, $quantity, $ledgerAmount, $reference, $id);
+            ledgerinsert($transaction, $quantity, $ledgerAmount, $reference, $id, $symbol, $unittype);
 
 
         } else {
@@ -2136,7 +2138,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             
 
             //remove from user
-            ledgerinsert($transaction, $tradeAmount, $quantity, $reference, $id);
+            ledgerinsert($transaction, $tradeAmount, $quantity, $reference, $id, $symbol, $unittype);
 
 
         } else {
@@ -2201,7 +2203,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             
             
             //remove from user
-            ledgerinsert($transaction, $tradeAmount, $quantity, $reference, $id);
+            ledgerinsert($transaction, $tradeAmount, $quantity, $reference, $id, $symbol, $unittype);
 
 
         } else {
