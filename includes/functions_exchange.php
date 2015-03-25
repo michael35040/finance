@@ -1882,7 +1882,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     } //row count
 
 
-    $referenceID = ($userid . mt_rand(1000,9999) ); //random incase uniqid happens at same microseconds
+    $referenceID = ($id . mt_rand(1000,9999) ); //random incase uniqid happens at same microseconds
     $reference = uniqid($referenceID, true); //unique id reference to trade
     $ouid = null;
     
