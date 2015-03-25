@@ -1928,7 +1928,6 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
                 throw new Exception("Updates Accounts Failure 3b");
             }
     }
-    ;
     
     
 
