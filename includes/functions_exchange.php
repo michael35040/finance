@@ -1802,7 +1802,52 @@ VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
 
 
 
+//////////////////
+//FUNCTION FOR PLACE ORDER LEDGER INSERT
+    //sub function for all order types
+    function ledgerinsert($transaction, $value1, $value2, $reference, $id)
+    {
 
+    $neg_value1=$value1*-1;
+    $neg_value2=$value2*-1;
+        
+        //remove from available
+                    if (query("INSERT INTO ledger (
+                    type, category,
+                    user, symbol, amount, reference,
+                    xuser, xsymbol, xamount, xreference,
+                    status, note, biduid, askuid)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'order', 'available',
+                    $id, $symbol, $neg_value1, $reference,
+                    1, $unittype, $value2, $reference,
+                    0, $transaction, $ouid, $ouid
+                ) === false
+            ) {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Updates Accounts Failure 3a");
+            }        
+        
+        //add to locked
+                    if (query("INSERT INTO ledger (
+                    type, category,
+                    user, symbol, amount, reference,
+                    xuser, xsymbol, xamount, xreference,
+                    status, note, biduid, askuid)
+                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'order', 'locked',
+                    $id, $symbol, $value1, $reference,
+                    1, $unittype, $neg_value2, $reference,
+                    0, $transaction, $ouid, $ouid
+                ) === false
+            ) {
+                query("ROLLBACK");
+                query("SET AUTOCOMMIT=1");
+                throw new Exception("Updates Accounts Failure 3b");
+            }
+    }
+    
 
 
 
@@ -1886,49 +1931,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
     $reference = uniqid($referenceID, true); //unique id reference to trade
     $ouid = null;
     
-    //sub function for all order types
-    function ledgerinsert($transaction, $value1, $value2)
-    {
-        $neg_value1=$value1*-1;
-        $neg_value2=$value2*-1;
-        
-        //remove from available
-                    if (query("INSERT INTO ledger (
-                    type, category,
-                    user, symbol, amount, reference,
-                    xuser, xsymbol, xamount, xreference,
-                    status, note, biduid, askuid)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order', 'available',
-                    $id, $symbol, $neg_value1, $reference,
-                    1, $unittype, $value2, $reference,
-                    0, $transaction, $ouid, $ouid
-                ) === false
-            ) {
-                query("ROLLBACK");
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Updates Accounts Failure 3a");
-            }        
-        
-        //add to locked
-                    if (query("INSERT INTO ledger (
-                    type, category,
-                    user, symbol, amount, reference,
-                    xuser, xsymbol, xamount, xreference,
-                    status, note, biduid, askuid)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'order', 'locked',
-                    $id, $symbol, $value1, $reference,
-                    1, $unittype, $neg_value2, $reference,
-                    0, $transaction, $ouid, $ouid
-                ) === false
-            ) {
-                query("ROLLBACK");
-                query("SET AUTOCOMMIT=1");
-                throw new Exception("Updates Accounts Failure 3b");
-            }
-    }
-    
+
     
 
     query("SET AUTOCOMMIT=0");
@@ -1974,7 +1977,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             }
             
 
-            ledgerinsert($transaction, $quantity, $ledgerAmount);
+            ledgerinsert($transaction, $quantity, $ledgerAmount, $reference, $id);
 
         } else {
             query("ROLLBACK");
@@ -2032,7 +2035,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             }
         
             
-            ledgerinsert($transaction, $tradeAmount, $quantity);
+            ledgerinsert($transaction, $tradeAmount, $quantity, $reference, $id);
 
 
         } else {
@@ -2079,7 +2082,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             }
             
             
-            ledgerinsert($transaction, $quantity, $ledgerAmount);
+            ledgerinsert($transaction, $quantity, $ledgerAmount, $reference, $id);
 
 
         } else {
@@ -2133,7 +2136,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             
 
             //remove from user
-            ledgerinsert($transaction, $tradeAmount, $quantity);
+            ledgerinsert($transaction, $tradeAmount, $quantity, $reference, $id);
 
 
         } else {
@@ -2198,7 +2201,7 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             
             
             //remove from user
-            ledgerinsert($transaction, $tradeAmount, $quantity);
+            ledgerinsert($transaction, $tradeAmount, $quantity, $reference, $id);
 
 
         } else {
