@@ -9,6 +9,9 @@ $assets = []; //to send to next page
 
 $indexMarketCap = 0;
 $indexValue = 0;
+
+$timeframe=null; //set to null incase we have no assets (prevent error)
+
 foreach ($allAssets as $row)		// for each of user's stocks
 {
     $asset = [];
