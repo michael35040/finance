@@ -186,6 +186,8 @@ function test()
     $units = setPrice(1000000);
     query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
 
+    $id=1; //give it value of 1 since this is test.
+    
     $referenceID = ($id); //concatenate
     $reference = uniqid($referenceID, true); //unique id reference to trade
 
