@@ -1812,6 +1812,9 @@ $ouid=null;
     $neg_value1=$value1*-1;
     $neg_value2=$value2*-1;
         
+        //to make the symbol XBT for bids
+        if($transaction=='BID'){$temp_unittype=$unittype;$unittype=$symbol;$symbol=$temp_unittype;}
+        
         //remove from available
                     if (query("INSERT INTO ledger (
                     type, category,
