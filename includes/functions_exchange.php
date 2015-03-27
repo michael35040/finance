@@ -943,7 +943,6 @@ function orderbook($symbol)
 
                         //COMMISSION AMOUNT ON NEW AMOUNT
                         $commissionAmount = getCommission($tradeAmount);
-                        $negCommission = $commissionAmount * -1;
 
                         //CHECK AGAIN WITH NEW AMOUNT
                         if ($orderbookUnits < ($tradeAmount + $commissionAmount)) {
@@ -1093,6 +1092,7 @@ if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, 
             }
 
 //COMMISSION-Remove
+            $negCommission = ($commissionAmount * -1);
             if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     'trade', 'locked',
@@ -1106,7 +1106,6 @@ if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, 
                 throw new Exception("Ledger Insert Failure");
             }
 //COMMISSION-Give
-            $negCommission = ($commissionAmount * -1);
             if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, xuser, xsymbol, xamount, xreference, status, note, biduid, askuid)
                         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     'trade', 'available',
