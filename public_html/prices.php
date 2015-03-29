@@ -30,7 +30,21 @@ var_dump($platinum);
 var_dump($palladium); 
 var_dump($rhodium);
 */
+?>
+<table>
+<tr>
+<td></td>
+<td>Bid</td>
+<td>Ask</td>
+<td>Change</td>
+</tr>
 
+<tr>
+<td>Gold</td>
+<td><?php echo($gold["bid"]); ?></td>
+<td><?php echo($gold["ask"]); ?></td>
+<td><td><?php echo($gold["change"]); ?></td>
+</tr>
 
 
 //echo(var_dump(get_defined_vars()));
