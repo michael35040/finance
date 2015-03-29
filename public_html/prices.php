@@ -41,7 +41,7 @@ var_dump($rhodium);
 
 <tr>
 <td>Gold</td>
-<td><?php echo($gold["bid"]); ?></td>
+<td>$<?php echo(number_format($gold["bid"],2,".","")); ?></td>
 <td><?php echo($gold["ask"]); ?></td>
 <td><td><?php echo($gold["change"]); ?></td>
 </tr>
