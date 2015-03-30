@@ -12,14 +12,14 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="account.php">ACCOUNT</a></li>
                         <li><a href="assets.php">ASSETS</a></li>
-                        <li><a href="convert.php">CONVERT</a></li>
+                        <!--<li><a href="convert.php">CONVERT</a></li>-->
                         <li><a href="exchange.php">EXCHANGE</a></li>
                         <li><a href="orders.php">ORDERS</a></li>
                         <li><a href="trades.php">TRADES</a></li>
                         <li><a href="history.php">HISTORY</a></li>
                         <li><a href="ledger.php">LEDGER</a></li>
-                        <li><a href="transparency.php">TRANSPARENCY</a></li>
                         <li><a href="information.php">INFORMATION</a></li>
+                        <li><a href="transparency.php">TRANSPARENCY</a></li>
                         <li><a href="status.php">STATUS</a></li>
                         <li><a href="update.php">UPDATE</a></li>
 
