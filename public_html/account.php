@@ -32,13 +32,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 }
 
 
+//LEDGER
+$bidLocked = query("SELECT SUM(amount) AS total FROM ledger WHERE (user=? AND symbol=? AND category=?)", $id, $unittype, 'locked'); // query user's portfolio
+$bidLocked = getPrice($bidLocked[0]["total"]); //shares trading
+if($bidLocked==null){$bidLocked=0;}
 
-
-
-
+/* //ACCOUNTS 
 $bidLocked = query("SELECT SUM(total) AS total FROM orderbook WHERE (id=? AND side='b')", $id);	  // query user's portfolio
 $bidLocked = getPrice($bidLocked[0]["total"]); //shares trading
 if($bidLocked==null){$bidLocked=0;}
+*/
 
 $userPortfolio =	query("SELECT symbol, quantity, price FROM portfolio WHERE id = ? ORDER BY symbol ASC", $_SESSION["id"]);
 
