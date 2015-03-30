@@ -105,11 +105,21 @@
                         @$active = $users[0]["active"];
                         if($active==1)
                         {
+                            
                             // query cash for template
+                            
+                            /*
+                            //ACCOUNTS UNITS
                             $accounts =	query("SELECT units FROM accounts WHERE id = ?", $id);	 //query db //, loan, rate, approved
                             if(empty($accounts)){$units=0;}
                             else{$units = getPrice($accounts[0]["units"]);}
-
+                            */
+                            
+                            //LEDGER
+                            $accounts = query("SELECT SUM(amount) AS total FROM ledger WHERE (user=? AND symbol=? AND category=?)", $id, $unittype, 'available'); // query user's portfolio
+                            if(empty($accounts)){$units=0;}
+                            //if($accounts==null){$accounts=0;}
+                            $accounts = getPrice($accounts[0]["total"]); 
 
 
                             include("menu.php");
