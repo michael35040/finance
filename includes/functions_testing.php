@@ -108,13 +108,192 @@ function populatetrades()
 }
 
 
+function createStocks()
+{
+/*
+Roman Numerals (1:I, 5:V, 10:X, 50:L, 100:C, 500:D, 1000:M)
+*/
+$symbol='SCAE';
+$name='Silver Coin American Eagle (99.9% 1ozt)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description=$name;
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
 
+$symbol='SCCM';
+$name='Silver Coin Canadian Mint 1ozt (99.9% 1ozt)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description='Mapleleaf, Wildlife, Birds of Prey, etc.';
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SCAVP';
+$name='Silver Coin Austria Vienna Philharmonic (99.9% 1ozt)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description=$name;
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SCML';
+$name='Silver Coin Mexican Libertad (99.9% 1ozt)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description=$name;
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SCAPM';
+$name='Silver Coin Australia Perth Mint Coins (99.9% 1ozt)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description='(Kangaroo, Koala, Kookaburra, Lunar etc.)';
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SCBB';
+$name='Silver Coin British Britannia (99.9% 1ozt)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description=$name;
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SCO';
+$name='Silver Coin Other (99.9% 1ozt)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description='(American The Beautiful, Chinese Panda, Armenia Noahs Ark, New Zealand Kiwi, Somalia Elephant, etc)';
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SCAJ';
+$name='Silver American Junk (90% ~.715ozt/$1 face)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description=$name;
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SBI';
+$name='Silver Bullion 1 (99.9% 1ozt)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description=$name;
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SBV';
+$name='Silver Bullion 5 (99.9% 5ozt)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description=$name;
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SBX';
+$name='Silver Bullion 10 (99.9% 10ozt)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description=$name;
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SBL';
+$name='Silver Bullion 50 (99.9% 50ozt)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description=$name;
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SBC';
+$name='Silver Bullion 100 (99.9% 100ozt)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description=$name;
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SBO';
+$name='Silver Bullion Other (99.9% Other weight)';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description=$name;
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+
+
+}
+
+/*
 function createStocks()
 {    require 'constants.php';//for $divisor
 if($loud!='quiet') {echo("Creating Stocks");
     echo date("Y-m-d H:i:s");
     $startDate =  time();}
     $lastSymbol =	query("SELECT symbol FROM assets ORDER BY symbol DESC LIMIT 0, 1");
+
+
     if($lastSymbol==null){$symbol='A';}
     else{$symbol = $lastSymbol[0]["symbol"]; $symbol++;}
 
@@ -153,7 +332,7 @@ if($loud!='quiet') {$endDate = time();
 
 }
 
-
+*/
 
 
 
