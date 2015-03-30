@@ -146,6 +146,7 @@ CREATE TABLE IF NOT EXISTS `ledger` (
 `user` int(10) NOT NULL COMMENT 'payee user id',
 `symbol` varchar(10) NOT NULL COMMENT 'asset symbol',
 `amount` bigint(20) NOT NULL COMMENT 'positive or negative sign',
+`balance` bigint(20) NOT NULL COMMENT 'sum of current balance for quick query',
 `reference` varchar(64) NOT NULL COMMENT 'bid or ask uid or hash to group a trade of 4 entries',
 `xuser` int(9) NOT NULL COMMENT 'counter payer user id',
 `xsymbol` varchar(10) NOT NULL COMMENT 'FOR COST counter symbol',
