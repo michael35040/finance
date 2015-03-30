@@ -118,8 +118,8 @@
                             //LEDGER
                             $accounts = query("SELECT SUM(amount) AS total FROM ledger WHERE (user=? AND symbol=? AND category=?)", $id, $unittype, 'available'); // query user's portfolio
                             if(empty($accounts)){$units=0;}
-                            //if($accounts==null){$accounts=0;}
-                            $accounts = getPrice($accounts[0]["total"]); 
+                            //if($accounts==null){$units=0;}
+                            $units = getPrice($accounts[0]["total"]); 
 
 
                             include("menu.php");
