@@ -31,22 +31,56 @@ var_dump($palladium);
 var_dump($rhodium);
 */
 ?>
+
+<style>
+ table {
+     border-collapse: collapse;
+ }
+ table, td, th {
+     border: 1px solid black;
+ }
+</style>
+
 <table>
-<tr>
-<td></td>
-<td>Bid</td>
-<td>Ask</td>
-<td>Change</td>
-</tr>
+ <tr>
+  <th></th>
+  <th>Bid</th>
+  <th>Ask</th>
+  <th>Change</th>
+ </tr>
+ <tr>
+  <td>Gold</td>
+  <td><?php echo(number_format($gold["bid"],2,".","")); ?></td>
+  <td><?php echo(number_format($gold["ask"],2,".","")); ?></td>
+  <td><?php echo(number_format($gold["change"],2,".","")); ?></td>
+ </tr>
+ <tr>
+  <td>Silver</td>
+  <td><?php echo(number_format($silver["bid"],2,".","")); ?></td>
+  <td><?php echo(number_format($silver["ask"],2,".","")); ?></td>
+  <td><?php echo(number_format($silver["change"],2,".","")); ?></td>
+ </tr>
+ <tr>
+  <td>Platinum</td>
+  <td><?php echo(number_format($platinum["bid"],2,".","")); ?></td>
+  <td><?php echo(number_format($platinum["ask"],2,".","")); ?></td>
+  <td><?php echo(number_format($platinum["change"],2,".","")); ?></td>
+ </tr>
+ <tr>
+  <td>Palladium</td>
+  <td><?php echo(number_format($palladium["bid"],2,".","")); ?></td>
+  <td><?php echo(number_format($palladium["ask"],2,".","")); ?></td>
+  <td><?php echo(number_format($palladium["change"],2,".","")); ?></td>
+ </tr>
+ <tr>
+  <td>Rhodium</td>
+  <td><?php echo(number_format($rhodium["bid"],2,".","")); ?></td>
+  <td><?php echo(number_format($rhodium["ask"],2,".","")); ?></td>
+  <td><?php echo(number_format($rhodium["change"],2,".","")); ?></td>
+ </tr>
+</table>
 
-<tr>
-<td>Gold</td>
-<td>$<?php echo(number_format($gold["bid"],2,".","")); ?></td>
-<td><?php echo($gold["ask"]); ?></td>
-<td><td><?php echo($gold["change"]); ?></td>
-</tr>
-
-
+<?php
 //echo(var_dump(get_defined_vars()));
 /*
 //START EXAMPLE
