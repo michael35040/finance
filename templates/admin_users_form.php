@@ -66,17 +66,32 @@ $availableunits=0;
 
             echo("</tr>");
             
-        $lockedunits=$lockedunits+$row["units"];
-	$availableunits=$availableunits+$row["locked"];  
+        $lockedunits=$lockedunits+$row["locked"];
+	$availableunits=$availableunits+$row["units"];  
 	
         }
     ?>
     </tbody>
 </table>
 
-Total Locked: <?php echo $lockedunits; ?><br>
-Total Available:  <?php echo $availableunits; ?><br>
-Total Units:  <?php echo ($lockedunits + $availableunits); ?><br>
+ACCOUNTS<br>
+Total Locked: <?php echo number_format(($lockedunits),2,".",","); ?><br>
+Total Available:  <?php echo number_format(($availableunits),2,".",","); ?><br>
+Total Units:  <?php echo number_format(($lockedunits + $availableunits),2,".",","); ?><br>
+<BR><BR>
+<?php
+
+$ledgerlocked = query("SELECT SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`symbol`='XBT' AND `category`='locked')"); 
+$ledgeravailable = query("SELECT SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`symbol`='XBT' AND `category`='available')"); 
+$ledgerlock = getPrice($ledgerlocked[0]["amount"]);
+$ledgerunit = getPrice($ledgeravailable[0]["amount"]);
+$ledgertotal = $ledgerlock+$ledgerunit;
+?>
+
+LEDGER<br>
+Total Locked: <?php echo number_format(($ledgerlock),2,".",","); ?><br>
+Total Available:  <?php echo number_format(($ledgerunit),2,".",",");  ?><br>
+Total Units:  <?php echo number_format(($ledgertotal),2,".",","); ?><br>
 
 <?php //var_dump(get_defined_vars()); ?>
 
@@ -93,12 +108,12 @@ Total Units:  <?php echo ($lockedunits + $availableunits); ?><br>
         <td><b>Amount (LEDGER)</b></td>
     </tr>
     <?php
-    $accounts = query("SELECT `user`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`symbol`='XBT' AND `category`!='locked') GROUP BY `user`"); //trade, order, deposit, withdraw, transfer
+    $accounts = query("SELECT `user`, SUM(`amount`) AS 'amount' FROM `ledger` WHERE (`symbol`='XBT' AND `category`='available') GROUP BY `user`"); //trade, order, deposit, withdraw, transfer
 
     $totalunits=0;
     foreach ($accounts as $row) {
 
-        //if($row["symbol"]==$unittype){$row["amount"]=getPrice($row["amount"]);}
+        $row["amount"]=getPrice($row["amount"]);
         echo("<tr>");
         echo("<td>" . htmlspecialchars($row["user"]) . "</td>");
         echo("<td>" . number_format(($row["amount"]),0,".",",") . "</td>");
