@@ -113,56 +113,44 @@ function createStocks()
 /*
 Roman Numerals (1:I, 5:V, 10:X, 50:L, 100:C, 500:D, 1000:M)
 */
-$symbol='SCAE';
-$name='Silver Coin American Eagle (99.9% 1ozt)';
+$symbol='SAE';
+$name='Silver 1ozt Coins U.S. Mint';
 $userid=1;
 $issued=1000;
 $type='commodity';
 $fee=0;
 $url='http://www.pulwar.com';
 $rating=10;
-$description=$name;
+$description='Silver American Eagle';
 try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
 catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
 
-$symbol='SCCM';
-$name='Silver Coin Canadian Mint 1ozt (99.9% 1ozt)';
+$symbol='SCM';
+$name='Silver 1ozt Coins Canadian Mint';
 $userid=1;
 $issued=1000;
 $type='commodity';
 $fee=0;
 $url='http://www.pulwar.com';
 $rating=10;
-$description='Mapleleaf, Wildlife, Birds of Prey, etc.';
+$description='Silver Mapleleaf, Wildlife, Birds of Prey, etc.';
 try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
 catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
 
-$symbol='SCAVP';
-$name='Silver Coin Austria Vienna Philharmonic (99.9% 1ozt)';
+$symbol='SAM';
+$name='Silver 1ozt Coins Austrian Mint';
 $userid=1;
 $issued=1000;
 $type='commodity';
 $fee=0;
 $url='http://www.pulwar.com';
 $rating=10;
-$description=$name;
+$description='Silver Coin Austria Vienna Philharmonic';
 try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
 catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
 
-$symbol='SCML';
-$name='Silver Coin Mexican Libertad (99.9% 1ozt)';
-$userid=1;
-$issued=1000;
-$type='commodity';
-$fee=0;
-$url='http://www.pulwar.com';
-$rating=10;
-$description=$name;
-try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
-catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
-
-$symbol='SCAPM';
-$name='Silver Coin Australia Perth Mint Coins (99.9% 1ozt)';
+$symbol='SAP';
+$name='Silver 1ozt Coins Australia Perth Mint';
 $userid=1;
 $issued=1000;
 $type='commodity';
@@ -173,8 +161,20 @@ $description='(Kangaroo, Koala, Kookaburra, Lunar etc.)';
 try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
 catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
 
-$symbol='SCBB';
-$name='Silver Coin British Britannia (99.9% 1ozt)';
+$symbol='SML';
+$name='Silver 1ozt Coins Mexican Mint';
+$userid=1;
+$issued=1000;
+$type='commodity';
+$fee=0;
+$url='http://www.pulwar.com';
+$rating=10;
+$description='Silver Mexican Libertad';
+try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
+catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
+
+$symbol='SBB';
+$name='Silver 1ozt Coins British Britannia';
 $userid=1;
 $issued=1000;
 $type='commodity';
@@ -186,7 +186,7 @@ try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, 
 catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
 
 $symbol='SCO';
-$name='Silver Coin Other (99.9% 1ozt)';
+$name='Silver 1ozt Coins Other';
 $userid=1;
 $issued=1000;
 $type='commodity';
@@ -197,8 +197,8 @@ $description='(American The Beautiful, Chinese Panda, Armenia Noahs Ark, New Zea
 try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
 catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
 
-$symbol='SCAJ';
-$name='Silver American Junk (90% ~.715ozt/$1 face)';
+$symbol='SAC';
+$name='Silver American Constituional Silver Coins 1837-1964 (90% ~.715ozt/$1 face)';
 $userid=1;
 $issued=1000;
 $type='commodity';
@@ -338,19 +338,35 @@ if($loud!='quiet') {$endDate = time();
 
 
 function clear_all()
-{
+{ require 'constants.php';
     clear_orderbook();
     clear_trades();
     clear_portfolio();
     clear_history();
     clear_assets();
     clear_ledger();
-    query("  UPDATE `accounts` SET `units`=0,`loan`=0,`rate`=0,`approved`=1 WHERE 1");
+    
+    $units = setPrice(1000000);
+    query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
 
-
-    //try {processOrderbook();}
-    //catch exception
-    //catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
+    $i=1;
+    $n=4;
+    while($i<$n)
+    {
+        query("INSERT INTO ledger (
+                        type, category,
+                        user, symbol, amount, reference,
+                        xuser, xsymbol, xamount, xreference,
+                        status, note, biduid, askuid)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'DEPOSIT', 'available',
+                    $id, $unittype, $units, $reference,
+                    1, $unittype, $units, $reference,
+                    0, 'Initial', null, null
+                )
+    
+    $i++;
+    }
 
 }
 
