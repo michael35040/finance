@@ -108,11 +108,12 @@ function populatetrades()
 }
 
 
+
+//Roman Numerals (1:I, 5:V, 10:X, 50:L, 100:C, 500:D, 1000:M)
+
 function createStocks()
 {
-/*
-Roman Numerals (1:I, 5:V, 10:X, 50:L, 100:C, 500:D, 1000:M)
-*/
+
 $symbol='SAE';
 $name='Silver 1ozt Coins U.S. Mint';
 $userid=1;
@@ -285,6 +286,8 @@ catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->ge
 
 }
 
+
+
 /*
 function createStocks()
 {    require 'constants.php';//for $divisor
@@ -338,84 +341,57 @@ if($loud!='quiet') {$endDate = time();
 
 
 function clear_all()
-{ require 'constants.php';
+{
     clear_orderbook();
     clear_trades();
     clear_portfolio();
     clear_history();
     clear_assets();
     clear_ledger();
+}
+
+function test()
+{ 
+    require 'constants.php';
+    
+    clear_all();
     
     $units = setPrice(1000000);
-    query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
+    query("UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
 
-    $i=1;
-    $n=4;
-    while($i<$n)
-    {
+    $id=1;
+    $userCheck = query("SELECT count(id) as number FROM users");
+    $n=$userCheck[0]["number"];
+
+    $referenceID = ($id); //concatenate
+    $reference = uniqid($referenceID, true); //unique id reference to trade
+
+    while($id<=$n){
         query("INSERT INTO ledger (
                         type, category,
                         user, symbol, amount, reference,
                         xuser, xsymbol, xamount, xreference,
                         status, note, biduid, askuid)
-                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     'DEPOSIT', 'available',
                     $id, $unittype, $units, $reference,
                     1, $unittype, $units, $reference,
                     0, 'Initial', null, null
-                )
+                );
     
-    $i++;
+    $id++;
     }
-
+    
+createStocks();
+populatetrades();
+    
 }
 
-function test()
-{ require 'constants.php';
-    clear_orderbook();
-    clear_trades();
-    clear_portfolio();
-    clear_history();
-    clear_assets();
-    clear_ledger();
-    $units = setPrice(1000000);
-    query("  UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
-
-    $id=1; //give it value of 1 since this is test.
-    
-    $referenceID = ($id); //concatenate
-    $reference = uniqid($referenceID, true); //unique id reference to trade
-
-    $userCheck = query("SELECT count(id) as number FROM users");
-    $numberUsers=$userCheck[0]["number"];
-    $numberUsers=$numberUsers+1;
-    $id=1;
-    while($id<$numberUsers)
-    {
-        if (query("INSERT INTO ledger (
-                    type, category,
-                    user, symbol, amount, reference,
-                    xuser, xsymbol, xamount, xreference,
-                    status, note, biduid, askuid)
-                    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                'DEPOSIT', 'available',
-                $id, $unittype, $units, $reference,
-                1, $unittype, $units, $reference,
-                0, 'Initial', null, null
-            ) === false
-        ) {
-            query("ROLLBACK");
-            query("SET AUTOCOMMIT=1");
-            throw new Exception("Updates Accounts Failure 3");
-        }
-        $id++;
-    }
 
 
 
 
-
-
+/*
     //BITCOIN $350/31
     if($unittype!='XBT')
     {
@@ -491,8 +467,7 @@ function test()
     //try {processOrderbook();}
     //catch exception
     //catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
-
-}
+*/
 
 function clear_orderbook()
 {
