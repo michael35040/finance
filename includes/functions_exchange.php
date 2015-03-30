@@ -481,6 +481,7 @@ function cancelOrder($uid, $reason = null)
 
 
         if ($side == 'a') {
+            
             if (query("UPDATE portfolio SET quantity = (quantity + ?) WHERE (symbol = ? AND id = ?)", $quantity, $symbol, $id) === false) {
                 query("ROLLBACK");
                 query("SET AUTOCOMMIT=1");
@@ -521,6 +522,8 @@ function cancelOrder($uid, $reason = null)
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Updates Accounts Failure 4");
             }
+            
+            
         } elseif ($side == 'b') {
             if (query("UPDATE accounts SET units = (units + ?) WHERE id = ?", $total, $id) === false) //MOVE CASH TO units FUNDS
             {
@@ -2032,6 +2035,9 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             query("SET AUTOCOMMIT=1");
             throw new Exception("Trade amount (" . $tradeAmount . ") exceeds user (" . $id . ") funds (" . $userUnits . ").");
         } elseif ($userUnits >= $tradeAmount) {
+
+            ledgerinsert($transaction, $tradeAmount, $quantity, $reference, $id, $symbol, $unittype);
+    
             if (query("UPDATE accounts SET units = (units - ?) WHERE id = ?", $tradeAmount, $id) === false) {
                 query("ROLLBACK");
                 query("SET AUTOCOMMIT=1");
@@ -2039,7 +2045,6 @@ function placeOrder($symbol, $type, $side, $quantity, $price, $id)
             }
         
             
-            ledgerinsert($transaction, $tradeAmount, $quantity, $reference, $id, $symbol, $unittype);
 
 
         } else {
