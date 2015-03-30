@@ -54,7 +54,7 @@
                 <div class="input-group">
                     <a href="logout.php">
                         <button type="button" class="btn btn-danger  btn-sm ">
-                        <b>EXIT</b>
+                        <!--<b>EXIT</b>-->
                         <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </a>
