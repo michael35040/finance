@@ -1,5 +1,16 @@
 <?php
 
+//SELECTING TOP MEASUREMENT
+/*
+Select TOP 1 *
+FROM dbo.Transaction
+WHERE UserID = 3 and CurrencyID = 1
+ORDER By TransactionDate desc
+//http://dba.stackexchange.com/questions/5608/writing-a-simple-bank-schema-how-should-i-keep-my-balances-in-sync-with-their-t
+
+*/
+
+
 //to do
 //added status and category.
 //category is whether it is locked or available
