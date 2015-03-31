@@ -7,6 +7,7 @@ FROM dbo.Transaction
 WHERE UserID = 3 and CurrencyID = 1
 ORDER By TransactionDate desc
 //http://dba.stackexchange.com/questions/5608/writing-a-simple-bank-schema-how-should-i-keep-my-balances-in-sync-with-their-t
+//http://dba.stackexchange.com/questions/33737/is-it-ok-to-keep-a-value-which-updates-in-a-table
 
 */
 
