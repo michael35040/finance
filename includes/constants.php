@@ -18,8 +18,9 @@ $unitsymbol = "$"; //$ b
 $unittype2 = 'currency'; //currency or commodity
 $unitdescription = "U.S. Dollar"; //U.S. Dollar
 $unitdescriptionshort = "Dollar"; //Dollar
-$unitdescriptionlong = "$"
-//Each unit represents 1 bit of Bitcoin (BTC). Conversion: 1 BTC = 1 million bits; 1 BTC = 100 million satoshi"; //$
+$unitdescriptionlong = "$";
+//Each unit represents 1 bit of Bitcoin (BTC). Conversion: 1 BTC = 1 million bits; 1 BTC = 100 million satoshi
+//$
 $decimalplaces = 2;
 //grams  &cent;  &micro; &euro; &pound; &yen; &sect;
 
