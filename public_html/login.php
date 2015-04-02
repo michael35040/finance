@@ -86,7 +86,7 @@ $askGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` 
 
     <meta charset="UTF-8">
 
-    <title>Pulwar Log In</title>
+    <title><?php echo(htmlspecialchars($sitename)); ?> Log In</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 
 
@@ -275,7 +275,7 @@ $askGroup =	query("SELECT `price`, SUM(`quantity`) AS quantity FROM `orderbook` 
 <div class="body"></div>
 <div class="grad"></div>
 <div class="header">
-    <div>Pulwar<br><span>Log In</span></div>
+    <div><?php echo(htmlspecialchars($sitename)); ?><br><span>Log In</span></div>
 </div>
 <br>
 
