@@ -8,7 +8,7 @@ require("../../includes/constants.php");
 
 <!DOCTYPE html>
 <html lang="en">
-<?php $sitename="Pulwar Group"; ?>
+<?php //$sitename="Pulwar Group"; ?>
 <head>
 
     <meta charset="utf-8">
@@ -17,7 +17,7 @@ require("../../includes/constants.php");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo($sitename); ?></title>
+    <title><?php echo(htmlspecialchars($sitename)); ?></title>
 
     <!-- Bootstrap Core CSS -->
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
@@ -62,7 +62,7 @@ require("../../includes/constants.php");
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top"><?php echo($sitename); ?></a>
+            <a class="navbar-brand page-scroll" href="#page-top"><?php echo(htmlspecialchars($sitename)); ?></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -551,7 +551,7 @@ Chief Executive Officer (CEO) – As the top manager, the CEO is typically respo
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <span class="copyright">Copyright &copy; <?php echo($sitename); ?> 2014</span>
+                <span class="copyright">Copyright &copy; <?php echo(htmlspecialchars($sitename)); ?> 2014</span>
             </div>
             <div class="col-md-4">
                 <ul class="list-inline social-buttons">
