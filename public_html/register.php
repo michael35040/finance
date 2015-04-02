@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 <meta charset="UTF-8">
 
-<title>Pulwar Register</title>
+<title><?php echo(htmlspecialchars($sitename)); ?> Register</title>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 
 
@@ -330,7 +330,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 <div class="body"></div>
 <div class="grad"></div>
 <div class="header">
-    <div>Pulwar<br><span>Register</span></div>
+    <div><?php echo(htmlspecialchars($sitename)); ?><br><span>Register</span></div>
 </div>
 <br>
 
