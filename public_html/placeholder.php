@@ -1,7 +1,5 @@
 <?php
-
-// Set the content-type
-header('Content-Type: image/png');
+header('Content-Type: image/png'); // Set the content-type
 require("../includes/config.php");
 //apologize(var_dump(get_defined_vars()));
 
@@ -184,3 +182,4 @@ imagedestroy($im);
 
 
 
+?>
