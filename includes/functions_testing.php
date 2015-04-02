@@ -111,6 +111,7 @@ function populatetrades()
 
 //Roman Numerals (1:I, 5:V, 10:X, 50:L, 100:C, 500:D, 1000:M)
 
+/*
 function createStocks()
 {
 
@@ -282,13 +283,11 @@ $description=$name;
 try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
 catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
 
-
-
 }
+*/
 
 
 
-/*
 function createStocks()
 {    require 'constants.php';//for $divisor
 if($loud!='quiet') {echo("Creating Stocks");
@@ -335,7 +334,6 @@ if($loud!='quiet') {$endDate = time();
 
 }
 
-*/
 
 
 
