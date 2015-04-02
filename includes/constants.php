@@ -10,15 +10,16 @@
 $adminid = 1;
 
 //header & footer
-$sitename = 'Pulwar'; //leave a space afterwards
+$sitename = 'Element'; //Pulwar or Element
 
 //index & portfolio
-$unittype = "XBT"; //USD
-$unitsymbol = "b"; //USD
-$unittype2 = 'Cryptocurrency'; //currency or commodity
-$unitdescription = "Bitcoin Bits"; //U.S. Dollar
-$unitdescriptionshort = "Bits"; //Dollar
-$unitdescriptionlong = "Each unit represents 1 bit of Bitcoin (BTC). Conversion: 1 BTC = 1 million bits; 1 BTC = 100 million satoshi"; //$
+$unittype = "USD"; //USD BTC
+$unitsymbol = "$"; //$ b
+$unittype2 = 'currency'; //currency or commodity
+$unitdescription = "U.S. Dollar"; //U.S. Dollar
+$unitdescriptionshort = "Dollar"; //Dollar
+$unitdescriptionlong = "$"
+//Each unit represents 1 bit of Bitcoin (BTC). Conversion: 1 BTC = 1 million bits; 1 BTC = 100 million satoshi"; //$
 $decimalplaces = 2;
 //grams  &cent;  &micro; &euro; &pound; &yen; &sect;
 
