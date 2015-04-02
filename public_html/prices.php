@@ -42,12 +42,15 @@ var_dump($rhodium);
 </style>
 
 <table>
+<thead>
  <tr>
-  <th></th>
+  <th>Element</th>
   <th>Bid</th>
   <th>Ask</th>
   <th>Change</th>
  </tr>
+</thead>
+<tbody>
  <tr>
   <td>Gold</td>
   <td><?php echo(number_format($gold["bid"],2,".","")); ?></td>
@@ -78,8 +81,49 @@ var_dump($rhodium);
   <td><?php echo(number_format($rhodium["ask"],2,".","")); ?></td>
   <td><?php echo(number_format($rhodium["change"],2,".","")); ?></td>
  </tr>
+</tbody> 
 </table>
 
+<br>
+<br>
+
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>#</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+ <td>GSR</td>
+ <td><?php echo(number_format(($gold["bid"]/$silver["bid"]),2,".","")); ?></td>
+ <td>Gold/Silver Ratio</td>
+</tr>
+<tr>
+ <td>Silver Pound</td>
+ <td><?php echo(number_format(($silver["bid"]*14.5833333),2,".","")); ?></td>
+ <td>1 pound = 14.5833333 troy ounces</td>
+</tr>
+<tr>
+ <td>Silver Ounce</td>
+ <td><?php echo(number_format(($silver["bid"]*1),2,".","")); ?></td>
+ <td>1 Troy Ounce</td>
+</tr>
+ <td>Silver Gram</td>
+ <td><?php echo(number_format(($silver["bid"]/31.1034768),2,".","")); ?></td>
+ <td>31.1034768 = 1 troy ounce</td>
+</tr>
+<tr>
+ <td>Silver Grain</td>
+ <td><?php echo(number_format(($silver["bid"]/480),2,".","")); ?></td>
+ <td>480 grain = 1 troy ounce</td>
+</tr>
+</tbody>
+</table>
+
+ 
 <?php
 //echo(var_dump(get_defined_vars()));
 /*
