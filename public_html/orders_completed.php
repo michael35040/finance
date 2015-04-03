@@ -52,7 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 /*
 else
 {
-
 } //else !post , 
 */
 $orders = query("SELECT * FROM orderbookcompleted WHERE (id = ? $option) ORDER BY uid DESC $limit", $id);
