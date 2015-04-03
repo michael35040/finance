@@ -26,7 +26,7 @@
 
     <thead>
     <tr class="success">
-        <td colspan="10" style="font-size:20px; text-align: center;">ORDERS (<?php echo(strtoupper($tabletitle)); ?>) &nbsp;
+        <td colspan="10" style="font-size:20px; text-align: center;">OPEN ORDERS (<?php echo(strtoupper($tabletitle)); ?>) &nbsp;
             <?php
             //	Display link to all history as long as your not already there
             if (isset($tabletitle))
@@ -62,7 +62,7 @@
         <th>Symbol</th>
         <th>Side</th>
         <th>Type</th>
-        <th>Placed/Remaining</th> <!--original-/-quantity-->
+        <th>Remaining/Placed</th> <!--quantity--/--original-->
         <th>Price</th>
         <th>Total</th>
         <th>Status</th>
@@ -99,7 +99,7 @@
         //echo("<td " . $color . ">" . htmlspecialchars(strtoupper($row["symbol"])) . "</td>");
         echo("<td " . $color . ">" . htmlspecialchars(strtoupper($row["side"])) . "</td>");
         echo("<td " . $color . ">" . htmlspecialchars(strtoupper($row["type"])) . "</td>");
-        echo("<td " . $color . ">" . number_format($row["original"], 0, ".", ",")  . "/" . number_format($row["quantity"], 0, ".", ",") . "</td>");
+        echo("<td " . $color . ">" . number_format($row["quantity"], 0, ".", ",")  . "/" . number_format($row["original"], 0, ".", ",") . " (" . number_format( (100-(($row["quantity"]/$row["original"])*100)) , 0, ".", ",") . "% Filled)</td>");
         echo("<td " . $color . ">" . $unitsymbol . number_format($price, $decimalplaces, ".", ",") . "</td>");
         echo("<td " . $color . ">" . $unitsymbol . number_format($total, $decimalplaces, ".", ",") . "</td>");
         
