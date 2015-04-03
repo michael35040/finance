@@ -585,21 +585,20 @@ function cancelOrder($uid, $reason = null)
         //CONSIDER INSTEAD OF UPDATING ORDERBOOK, DELETE ORDER FROM THIS TABLE AND ADD TO NEW TABLE
         //SO WHEN WE ARE SORTING THE TABLE FOR EXISTING ORDERS (ORDERBOOK), IT WILL BE QUICKER
         //*************************************
-    //NEW METHOD        
-        if (query("INSERT INTO orderbookcomplete (uid, date, symbol, side, type, price, total, quantity, id, status, original, reference)
-            SELECT (uid, date, symbol, side, type, price, total, quantity, id, status, original, reference)
-            FROM orderbook 
-            WHERE uid=?", $uid)=== false){query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Insert into OB complete");}
-
-        if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Delete OB");}
-
-/* //OLD METHOD
-        if (query("UPDATE orderbook SET (total=0, quantity=0, status=2) WHERE uid=?", $uid) === false) {
+        
+        //update status to 2-canceled
+        if (query("UPDATE orderbook SET status=2 WHERE uid=?", $uid) === false) {
             query("ROLLBACK");
             query("SET AUTOCOMMIT=1");
             throw new Exception("Failure Cancel 1");
         }
-*/
+        
+        //insert into completed orderbook
+        if (query("INSERT INTO orderbookcomplete SELECT * FROM orderbook WHERE uid=?", $uid)=== false)
+            {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Insert into OB complete");}
+
+        //delete from old orderbook
+        if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Delete OB");}
 
         //UPDATE HISTORY
         if ($quantity > 0) //to prevent spamming history with cleanup of orderbook of empty orders.
@@ -1021,19 +1020,35 @@ function orderbook($symbol)
             } //rollback on failure
 
             //UPDATE ORDER STATUS AS CLOSED (STATUS=0)
+            
+            //if tradesize is same as ask size, then this order is complete
             if ($tradeSize == $topAskSize) {
                 if (query("UPDATE orderbook SET status=0 WHERE uid=?", $topAskUID) === false) {
                     query("ROLLBACK");
                     query("SET AUTOCOMMIT=1");
                     throw new Exception("Update OB Failure: #5");
                 }
+                //take order and put it into orderbook complete
+                if (query("INSERT INTO orderbookcomplete SELECT * FROM orderbook WHERE uid=?", $topAskUID)=== false)
+                    {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Insert into OB complete");}
+                //delete the order from open orderbook as it is complete
+                if (query("DELETE FROM orderbook WHERE (uid = ?)", $topAskUID) === false) {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Delete OB");}
+                
             }
+            
+            //if tradesize is same as bid size, then this order is complete
             if ($tradeSize == $topBidSize) {
                 if (query("UPDATE orderbook SET status=0 WHERE uid=?", $topBidUID) === false) {
                     query("ROLLBACK");
                     query("SET AUTOCOMMIT=1");
                     throw new Exception("Update OB Failure: #5");
                 }
+                //take order and put it into orderbook complete
+                if (query("INSERT INTO orderbookcomplete SELECT * FROM orderbook WHERE uid=?", $topBidUID)=== false)
+                    {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Insert into OB complete");}
+                //delete the order from open orderbook as it is complete
+                if (query("DELETE FROM orderbook WHERE (uid = ?)", $topBidUID) === false) {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Delete OB");}
+                
             }
 
 
