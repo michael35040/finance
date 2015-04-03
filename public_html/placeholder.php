@@ -130,7 +130,7 @@ $bbox = imagettfbbox($size, $rotation, $font, $text);
 $x = $bbox[0] + (imagesx($im) / 2) - ($bbox[4] / 2) - 5; //horizontal
 $y = $bbox[1] + (imagesy($im) / 2) - ($bbox[5] / 2) - 5; //vertical
 imagettftext($im, $size, $rotation, ($x+1), ($y+1), $shadow, $font, $text);
-imagettftext($im, $size, $rotation, $x, $y, $fontcolor2, $font, $text);
+//imagettftext($im, $size, $rotation, $x, $y, $fontcolor2, $font, $text);
 
 
 //NAME TEXT
