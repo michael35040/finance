@@ -26,7 +26,7 @@
 
     <thead>
     <tr class="success">
-        <td colspan="10" style="font-size:20px; text-align: center;">OPEN ORDERS (<?php echo(strtoupper($tabletitle)); ?>) &nbsp;
+        <td colspan="10" style="font-size:20px; text-align: center;">CLOSED ORDERS (<?php echo(strtoupper($tabletitle)); ?>) &nbsp;
             <?php
             //	Display link to all history as long as your not already there
             if (isset($tabletitle))
