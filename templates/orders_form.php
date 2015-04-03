@@ -26,33 +26,7 @@
 
     <thead>
     <tr class="success">
-        <td colspan="10" style="font-size:20px; text-align: center;">OPEN ORDERS (<?php echo(strtoupper($tabletitle)); ?>) &nbsp;
-            <?php
-            //	Display link to all history as long as your not already there
-            if (isset($tabletitle))
-            {
-                if ($tabletitle !== "All")
-                {
-                    echo('<span class="input-group-btn" style="display:inline;">
-    <form  method="post" action="orders.php"><button type="submit" class="btn btn-success btn-xs" name="history" value="all">
-        <span class="glyphicon glyphicon-plus-sign"></span> Show All
-    </button></form>
-</span>
-                
-                ');
-                }
-                else
-                {
-                    echo('<span class="input-group-btn" style="display:inline;">
-    <form method="post" action="orders.php"><button type="submit" class="btn btn-success btn-xs" name="history" value="limit">
-        <span class="glyphicon glyphicon-minus-sign"></span> Show Last 10
-    </button></form>
-</span>
-                
-                ');
-                }
-            }
-            ?>
+        <td colspan="10" style="font-size:20px; text-align: center;">OPEN ORDERS 
         </td></tr>
     <tr class="active">
 
@@ -101,12 +75,20 @@
         echo("<td " . $color . ">" . htmlspecialchars(strtoupper($row["type"])) . "</td>");
         echo("<td " . $color . ">" . number_format($row["quantity"], 0, ".", ",")  . "/" . number_format($row["original"], 0, ".", ",") . " (" . number_format( (100-(($row["quantity"]/$row["original"])*100)) , 0, ".", ",") . "% Filled)</td>");
         echo("<td " . $color . ">" . $unitsymbol . number_format($price, $decimalplaces, ".", ",") . "</td>");
-        echo("<td " . $color . ">" . $unitsymbol . number_format($total, $decimalplaces, ".", ",") . "</td>");
         
+           
+        echo("<td " . $color . ">");
+            if($row["side"]=="bid"){
+                    echo (
+                        $unitsymbol . number_format($total, $decimalplaces, ".", ",") 
+                    );}    
+            echo("</td>"); 
+
         if($row["status"]==0){$stext='Completed';}
         elseif($row["status"]==1){$stext='Pending';}
         elseif($row["status"]==2){$stext='Canceled';}
         else{$stext='';}
+        
         echo("<td " . $color . ">" . number_format($row["status"], 0, ".", ",") . "-" . $stext . "</td>");
         
         echo("</tr>");
