@@ -111,10 +111,10 @@ function populatetrades()
 
 //Roman Numerals (1:I, 5:V, 10:X, 50:L, 100:C, 500:D, 1000:M)
 
-/*
+
 function createStocks()
 {
-
+/*
 $symbol='SAE';
 $name='Silver 1ozt Coins U.S. Mint';
 $userid=1;
@@ -282,114 +282,8 @@ $rating=10;
 $description=$name;
 try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description); }
 catch(Exception $e) {echo('<br>Error on Commodity Offering: ' . $symbol . $e->getMessage());}
-
-}
 */
 
-
-
-function createStocks()
-{    require 'constants.php';//for $divisor
-if($loud!='quiet') {echo("Creating Stocks");
-    echo date("Y-m-d H:i:s");
-    $startDate =  time();}
-    $lastSymbol =	query("SELECT symbol FROM assets ORDER BY symbol DESC LIMIT 0, 1");
-
-
-    if($lastSymbol==null){$symbol='A';}
-    else{$symbol = $lastSymbol[0]["symbol"]; $symbol++;}
-
-if($loud!='quiet') {echo("<br>Symbol: " . $symbol);}
-    $i=0;
-    while ($i < 7) {
-        $name=('The ' . $symbol . ' Co.');
-        $userid=mt_rand(2,3);
-        $issued = 2 * (mt_rand(1, 100) * 100000);
-        $type='stock'; //or commodity
-        $fee=(mt_rand(1,100)/100);//0.45;
-        $url=('http://www.' . $symbol . '.com');
-        $rating=mt_rand(1,10);
-        $description=('Makes a lot of ' . $symbol);
-        // publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description)
-        try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description);
-            $quantity = $issued / 2;
-            $price = mt_rand(1, 40) * $divisor * ($issued / 2);
-            //query("INSERT INTO `portfolio` (`id`, `symbol`, `quantity`, `price`) VALUES (3, ?, ?, ?)", $symbol, $quantity, $price);
-            if($loud!='quiet') {echo("<br>Issued-[Symbol:" . $symbol . ", Quantity:" . $quantity . ", Fee:" . $fee . "]<br>");
-            echo($publicOffering);}
-            $symbol++;
-            $i++;
-        }
-        catch(Exception $e) {echo('<br>Error on Public Stock Offering: ' . $symbol . $e->getMessage());}
-    }
-if($loud!='quiet') {$endDate = time();
-    echo("<br>");
-    echo date("Y-m-d H:i:s");
-    echo("<br>");
-    $endDate = time();
-    $totalTime = $endDate - $startDate;
-    $speed = $i / $totalTime;
-    echo("<br>Issued " . $i . " stocks offerings in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");}
-    return ($i);
-
-}
-
-
-
-
-
-function clear_all()
-{
-    clear_orderbook();
-    clear_trades();
-    clear_portfolio();
-    clear_history();
-    clear_assets();
-    clear_ledger();
-}
-
-function test()
-{ 
-    require 'constants.php';
-    
-    clear_all();
-    
-    $units = setPrice(1000000);
-    query("UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
-
-    $id=1;
-    $userCheck = query("SELECT count(id) as number FROM users");
-    $n=$userCheck[0]["number"];
-
-    $referenceID = ($id); //concatenate
-    $reference = uniqid($referenceID, true); //unique id reference to trade
-
-    while($id<=$n){
-        query("INSERT INTO ledger (
-                        type, category,
-                        user, symbol, amount, reference,
-                        xuser, xsymbol, xamount, xreference,
-                        status, note, biduid, askuid)
-                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                    'DEPOSIT', 'available',
-                    $id, $unittype, $units, $reference,
-                    1, $unittype, $units, $reference,
-                    0, 'Initial', null, null
-                );
-    
-    $id++;
-    }
-    
-createStocks();
-populatetrades();
-    
-}
-
-
-
-
-
-/*
     //BITCOIN $350/31
     if($unittype!='XBT')
     {
@@ -465,11 +359,123 @@ populatetrades();
     //try {processOrderbook();}
     //catch exception
     //catch(Exception $e) {echo 'Message: ' .$e->getMessage();}
+
+}
+
+/*
+function createStocks()
+{    require 'constants.php';//for $divisor
+if($loud!='quiet') {echo("Creating Stocks");
+    echo date("Y-m-d H:i:s");
+    $startDate =  time();}
+    $lastSymbol =	query("SELECT symbol FROM assets ORDER BY symbol DESC LIMIT 0, 1");
+
+
+    if($lastSymbol==null){$symbol='A';}
+    else{$symbol = $lastSymbol[0]["symbol"]; $symbol++;}
+
+if($loud!='quiet') {echo("<br>Symbol: " . $symbol);}
+    $i=0;
+    while ($i < 7) {
+        $name=('The ' . $symbol . ' Co.');
+        $userid=mt_rand(2,3);
+        $issued = 2 * (mt_rand(1, 100) * 100000);
+        $type='stock'; //or commodity
+        $fee=(mt_rand(1,100)/100);//0.45;
+        $url=('http://www.' . $symbol . '.com');
+        $rating=mt_rand(1,10);
+        $description=('Makes a lot of ' . $symbol);
+        // publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description)
+        try { $publicOffering = publicOffering($symbol, $name, $userid, $issued, $type, $fee, $url, $rating, $description);
+            $quantity = $issued / 2;
+            $price = mt_rand(1, 40) * $divisor * ($issued / 2);
+            //query("INSERT INTO `portfolio` (`id`, `symbol`, `quantity`, `price`) VALUES (3, ?, ?, ?)", $symbol, $quantity, $price);
+            if($loud!='quiet') {echo("<br>Issued-[Symbol:" . $symbol . ", Quantity:" . $quantity . ", Fee:" . $fee . "]<br>");
+            echo($publicOffering);}
+            $symbol++;
+            $i++;
+        }
+        catch(Exception $e) {echo('<br>Error on Public Stock Offering: ' . $symbol . $e->getMessage());}
+    }
+if($loud!='quiet') {$endDate = time();
+    echo("<br>");
+    echo date("Y-m-d H:i:s");
+    echo("<br>");
+    $endDate = time();
+    $totalTime = $endDate - $startDate;
+    $speed = $i / $totalTime;
+    echo("<br>Issued " . $i . " stocks offerings in " . $totalTime . " seconds! " . $speed . " orders/sec<br><br>");}
+    return ($i);
+
+}
 */
+
+
+
+
+function clear_all()
+{
+    clear_orderbook();
+    clear_orderbookcomplete();
+    clear_trades();
+    clear_portfolio();
+    clear_history();
+    clear_assets();
+    clear_ledger();
+}
+
+function test()
+{ 
+    require 'constants.php';
+    
+    clear_all();
+    
+    $units = setPrice(1000000);
+    query("UPDATE `accounts` SET `units`=?,`loan`=0,`rate`=0,`approved`=1 WHERE 1", $units);
+
+    $id=1;
+    $userCheck = query("SELECT count(id) as number FROM users");
+    $n=$userCheck[0]["number"];
+
+    $referenceID = ($id); //concatenate
+    $reference = uniqid($referenceID, true); //unique id reference to trade
+
+    while($id<=$n){
+        query("INSERT INTO ledger (
+                        type, category,
+                        user, symbol, amount, reference,
+                        xuser, xsymbol, xamount, xreference,
+                        status, note, biduid, askuid)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    'DEPOSIT', 'available',
+                    $id, $unittype, $units, $reference,
+                    1, $unittype, $units, $reference,
+                    0, 'Initial', null, null
+                );
+    
+    $id++;
+    }
+    
+createStocks();
+populatetrades();
+    
+}
+
+
+
+
+
+
 
 function clear_orderbook()
 {
     if (query("TRUNCATE TABLE `orderbook`") === false)
+    {echo("Database orderbook Failure");}
+}
+
+function clear_orderbookcomplete()
+{
+    if (query("TRUNCATE TABLE `orderbookcomplete`") === false)
     {echo("Database orderbook Failure");}
 }
 
