@@ -69,8 +69,7 @@ else
 */
 $orders = query("SELECT * FROM orderbook WHERE (id = ? $option) ORDER BY uid DESC", $id);
 $ordertotal = query("SELECT SUM(total) AS sumtotal FROM orderbook WHERE (id = ? $option)", $id);
-$history = query("SELECT ouid, date, symbol, transaction, total FROM history WHERE (id = ? $option2) ORDER BY uid DESC LIMIT 0, 50", $id);
-render("orders_form.php", ["title" => $title, "tabletitle" => $tabletitle, "orders" => $orders,  "ordertotal" => $ordertotal, "history" => $history]);
+render("orders_form.php", ["title" => $title, "tabletitle" => $tabletitle, "orders" => $orders,  "ordertotal" => $ordertotal]);
 
 ?>
 
