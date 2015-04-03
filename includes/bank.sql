@@ -239,6 +239,35 @@ TRUNCATE TABLE `orderbook`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `orderbook`
+--     bigint(20) unsigned NOT NULL DEFAULT '0',  
+
+
+DROP TABLE IF EXISTS `orderbookcomplete`;
+CREATE TABLE IF NOT EXISTS `orderbookcomplete` (
+  `uid` int(10) NOT NULL COMMENT 'unique id but no ai since it comes from other table',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `symbol` varchar(10) NOT NULL,
+  `side` varchar(1) NOT NULL COMMENT 'a:ask or b:bid',
+  `type` varchar(6) NOT NULL COMMENT 'limit or market',
+  `price` bigint(20) unsigned NOT NULL,
+  `total` bigint(20) unsigned NOT NULL COMMENT 'if bid order fund amount that is locked',
+  `quantity` int(65) NOT NULL COMMENT 'size quantity of order',
+  `id` int(10) NOT NULL COMMENT 'user id',
+  `status` varchar(10) NOT NULL COMMENT '1-open/pending, 0-closed/cleared/completed, 2-canceled',
+  `original` int(20) unsigned NOT NULL COMMENT 'original quantity',
+  `reference` varchar(64) NULL DEFAULT NULL COMMENT 'bid or ask uid or hash to group a trade of 4 entries',
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `orderbookcomplete`
+--
+
+TRUNCATE TABLE `orderbookcomplete`;
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `portfolio`
 --
 
