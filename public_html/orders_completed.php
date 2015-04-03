@@ -42,23 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     }
     
     
-    if (isset($_POST["cancel"]))
-    {
-        $uid = $_POST["cancel"];
-        if ($uid == 'ALL') 
-        { //CANCEL ALL USERS ORDERS
-            if (query("UPDATE orderbook SET type = 'cancel' WHERE id = ?", $id) === false) {apologize("Unable to cancel all orders!");}
-            
-        } 
-        else 
-        { //CANCEL ONLY 1 ORDER
-            if (!ctype_digit($uid)){apologize("Invalid order #");}
-            if (query("UPDATE orderbook SET type = 'cancel' WHERE uid = ?", $uid) === false) {apologize("Unable to cancel order!");}
-            
-        }
-    }
-    
-    
     if (isset($_POST["history"]))
     {
         $history = $_POST["history"];
@@ -72,10 +55,10 @@ else
 
 } //else !post , 
 */
-$orders = query("SELECT * FROM orderbook WHERE (id = ? $option) ORDER BY uid DESC $limit", $id);
-$ordertotal = query("SELECT SUM(total) AS sumtotal FROM orderbook WHERE (id = ? $option)", $id);
+$orders = query("SELECT * FROM orderbookcompleted WHERE (id = ? $option) ORDER BY uid DESC $limit", $id);
+$ordertotal = query("SELECT SUM(total) AS sumtotal FROM orderbookcompleted WHERE (id = ? $option)", $id);
 $history = query("SELECT ouid, date, symbol, transaction, total FROM history WHERE (id = ? $option2) ORDER BY uid DESC $limit", $id);
-render("orders_form.php", ["title" => $title, "tabletitle" => $tabletitle, "orders" => $orders,  "ordertotal" => $ordertotal, "history" => $history]);
+render("orders_completed_form.php", ["title" => $title, "tabletitle" => $tabletitle, "orders" => $orders,  "ordertotal" => $ordertotal, "history" => $history]);
 
 ?>
 
