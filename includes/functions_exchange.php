@@ -470,6 +470,7 @@ function cancelOrder($uid, $reason = null)
         @$price = $order[0]["price"];
         @$id = $order[0]["id"];
         @$reference = $order[0]["reference"];
+        @$total = $order[0]["total"];
 
 
         if ($side == 'a') {
@@ -489,7 +490,6 @@ function cancelOrder($uid, $reason = null)
         query("SET AUTOCOMMIT=0");
         query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
 
-        @$total = $order[0]["total"];
 
 
         if ($side == 'a') {
@@ -585,12 +585,21 @@ function cancelOrder($uid, $reason = null)
         //CONSIDER INSTEAD OF UPDATING ORDERBOOK, DELETE ORDER FROM THIS TABLE AND ADD TO NEW TABLE
         //SO WHEN WE ARE SORTING THE TABLE FOR EXISTING ORDERS (ORDERBOOK), IT WILL BE QUICKER
         //*************************************
-        if (query("UPDATE orderbook SET status=2 WHERE uid=?", $uid) === false) {
-            //if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {
+    //NEW METHOD        
+        if (query("INSERT INTO orderbookcomplete (uid, date, symbol, side, type, price, total, quantity, id, status, original, reference)
+            SELECT (uid, date, symbol, side, type, price, total, quantity, id, status, original, reference)
+            FROM orderbook 
+            WHERE uid=?", $uid)=== false){query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Insert into OB complete");}
+
+        if (query("DELETE FROM orderbook WHERE (uid = ?)", $uid) === false) {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Delete OB");}
+
+/* //OLD METHOD
+        if (query("UPDATE orderbook SET (total=0, quantity=0, status=2) WHERE uid=?", $uid) === false) {
             query("ROLLBACK");
             query("SET AUTOCOMMIT=1");
             throw new Exception("Failure Cancel 1");
         }
+*/
 
         //UPDATE HISTORY
         if ($quantity > 0) //to prevent spamming history with cleanup of orderbook of empty orders.
