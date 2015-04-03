@@ -3,8 +3,6 @@ require("../includes/config.php");
 
 $id =  $_SESSION["id"];
 $title = "Orders";
-$limit = "LIMIT 0, 10"; //active orders
-$limit2 = "LIMIT 0, 10"; //order history
 $tabletitle = "Last 10";
 $option = '';
 $option2 = '';
@@ -26,7 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
         //apologize(var_dump(get_defined_vars()));
 
-        $limit = "";
         $tabletitle = (htmlspecialchars($symbol) . " Ask Orders");
     }
     
@@ -34,10 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     if (isset($_POST["side"]))
     {
         if($_POST["side"]=='b'){$option = "AND side = 'b'";
-            $limit = "";
             $tabletitle = "Bid Orders";}
         else{$option = "AND side = 'a'";
-            $limit = "";
             $tabletitle = "Ask Orders";}
     }
     
@@ -62,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     if (isset($_POST["history"]))
     {
         $history = $_POST["history"];
-        if ($history == "all") {$limit = ""; $tabletitle = "All";}
+        if ($history == "all") {$tabletitle = "All";}
     }
     
 }
@@ -72,9 +67,9 @@ else
 
 } //else !post , 
 */
-$orders = query("SELECT * FROM orderbook WHERE (id = ? $option) ORDER BY uid DESC $limit", $id);
+$orders = query("SELECT * FROM orderbook WHERE (id = ? $option) ORDER BY uid DESC", $id);
 $ordertotal = query("SELECT SUM(total) AS sumtotal FROM orderbook WHERE (id = ? $option)", $id);
-$history = query("SELECT ouid, date, symbol, transaction, total FROM history WHERE (id = ? $option2) ORDER BY uid DESC $limit", $id);
+$history = query("SELECT ouid, date, symbol, transaction, total FROM history WHERE (id = ? $option2) ORDER BY uid DESC LIMIT 0, 50", $id);
 render("orders_form.php", ["title" => $title, "tabletitle" => $tabletitle, "orders" => $orders,  "ordertotal" => $ordertotal, "history" => $history]);
 
 ?>
