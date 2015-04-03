@@ -587,12 +587,13 @@ function cancelOrder($uid, $reason = null)
         //*************************************
         
         //update status to 2-canceled
+        /*
         if (query("UPDATE orderbook SET status=2 WHERE uid=?", $uid) === false) {
             query("ROLLBACK");
             query("SET AUTOCOMMIT=1");
             throw new Exception("Failure Cancel 1");
         }
-        
+        */
         //insert into completed orderbook
         if (query("INSERT INTO orderbookcomplete SELECT * FROM orderbook WHERE uid=?", $uid)=== false)
             {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Insert into OB complete");}
@@ -1019,38 +1020,6 @@ function orderbook($symbol)
                 throw new Exception("Size OB Failure: #3");
             } //rollback on failure
 
-            //UPDATE ORDER STATUS AS CLOSED (STATUS=0)
-            
-            //if tradesize is same as ask size, then this order is complete
-            if ($tradeSize == $topAskSize) {
-                if (query("UPDATE orderbook SET status=0 WHERE uid=?", $topAskUID) === false) {
-                    query("ROLLBACK");
-                    query("SET AUTOCOMMIT=1");
-                    throw new Exception("Update OB Failure: #5");
-                }
-                //take order and put it into orderbook complete
-                if (query("INSERT INTO orderbookcomplete SELECT * FROM orderbook WHERE uid=?", $topAskUID)=== false)
-                    {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Insert into OB complete");}
-                //delete the order from open orderbook as it is complete
-                if (query("DELETE FROM orderbook WHERE (uid = ?)", $topAskUID) === false) {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Delete OB");}
-                
-            }
-            
-            //if tradesize is same as bid size, then this order is complete
-            if ($tradeSize == $topBidSize) {
-                if (query("UPDATE orderbook SET status=0 WHERE uid=?", $topBidUID) === false) {
-                    query("ROLLBACK");
-                    query("SET AUTOCOMMIT=1");
-                    throw new Exception("Update OB Failure: #5");
-                }
-                //take order and put it into orderbook complete
-                if (query("INSERT INTO orderbookcomplete SELECT * FROM orderbook WHERE uid=?", $topBidUID)=== false)
-                    {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Insert into OB complete");}
-                //delete the order from open orderbook as it is complete
-                if (query("DELETE FROM orderbook WHERE (uid = ?)", $topBidUID) === false) {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Delete OB");}
-                
-            }
-
 
             ///////////
             //ACCOUNTS
@@ -1069,9 +1038,6 @@ function orderbook($symbol)
                     throw new Exception("Update Accounts Failure: #11a");
                 }
             }
-            
-        
-
             //ACCOUNTS LEDGER
             $referenceID = ($topAskUser . mt_rand(1000,9999) ); //random incase uniqid happens at same microseconds
             $reference = uniqid($referenceID, true); //unique id reference to trade
@@ -1246,6 +1212,45 @@ if (query("INSERT INTO ledger (type, category, user, symbol, amount, reference, 
                 query("SET AUTOCOMMIT=1");
                 throw new Exception("Failure: #21a");
             }
+
+
+
+            /////////
+            //UPDATE ORDER STATUS AS CLOSED (STATUS=0)
+            
+            //if tradesize is same as ask size, then this order is complete
+            if ($tradeSize == $topAskSize) {
+                if (query("UPDATE orderbook SET status=0 WHERE uid=?", $topAskUID) === false) {
+                    query("ROLLBACK");
+                    query("SET AUTOCOMMIT=1");
+                    throw new Exception("Update OB Failure: #5");
+                }
+                /*MOVE THIS TO CANCEL ORDER
+                //take order and put it into orderbook complete
+                if (query("INSERT INTO orderbookcomplete SELECT * FROM orderbook WHERE uid=?", $topAskUID)=== false)
+                    {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Insert into OB complete");}
+                //delete the order from open orderbook as it is complete
+                if (query("DELETE FROM orderbook WHERE (uid = ?)", $topAskUID) === false) {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Delete OB");}
+                */
+            }
+            
+            //if tradesize is same as bid size, then this order is complete
+            if ($tradeSize == $topBidSize) {
+                if (query("UPDATE orderbook SET status=0 WHERE uid=?", $topBidUID) === false) {
+                    query("ROLLBACK");
+                    query("SET AUTOCOMMIT=1");
+                    throw new Exception("Update OB Failure: #5");
+                }
+                /*MOVE THIS TO CANCEL ORDER
+                //take order and put it into orderbook complete
+                if (query("INSERT INTO orderbookcomplete SELECT * FROM orderbook WHERE uid=?", $topBidUID)=== false)
+                    {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Insert into OB complete");}
+                //delete the order from open orderbook as it is complete
+                if (query("DELETE FROM orderbook WHERE (uid = ?)", $topBidUID) === false) {query("ROLLBACK");query("SET AUTOCOMMIT=1");throw new Exception("Failure Delete OB");}
+                */
+            }
+
+
 
             //ALL THINGS OKAY, COMMIT TRANSACTIONS
             query("COMMIT;"); //If no errors, commit changes
