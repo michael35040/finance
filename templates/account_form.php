@@ -258,11 +258,14 @@
 
 <table class="table table-striped table-condensed table-bordered" >
 
+<!--
     <tr  class="success">
         <td colspan="2" style="font-size:20px; text-align:center;">NETWORTH</td>
     </tr>
-
+-->
     <!-- NETWORTH ROW -->
+
+<!--
     <tr class="active">
         <td style="width:50%">
             <strong>TOTAL</strong>
@@ -270,27 +273,17 @@
         <td style="width:50%">
             <strong><div style="text-align:right">
                     <?php
-                    $networth = ($portfolioTotal + $units + $bidLocked);
-                    echo($unitsymbol . htmlspecialchars(number_format($networth, $decimalplaces, ".", ","))); //networth defined previously
+                    //$networth = ($portfolioTotal + $units + $bidLocked);
+                    //echo($unitsymbol . htmlspecialchars(number_format($networth, $decimalplaces, ".", ","))); //networth defined previously
                     ?>
                 </div></strong>
         </td>
     </tr>
+-->
 
 
     <tr>
         <td colspan="2">
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -300,14 +293,14 @@
                     <td colspan="8" style="font-size:20px; text-align: center;">ACCOUNTS</td>
                 </tr>
                 <tr   class="active">
-                    <th>Asset</th>
-                    <th>Locked*</th>
-                    <th>Available</th>
-                    <th><div style="text-align:right">Value</div></th>
+                    <th>Currency</th>
+                    <th>Locked Funds</th>
+                    <th>Available Funds</th>
+                    <th><div style="text-align:right">Total Funds</div></th>
                 </tr>
                 <tr><!--USD-->
                     <td><?php echo(strtoupper($unittype)) //set in finance.php ?></td></td>
-                    <td><?php echo("<form action='orders.php' method='post'><span class='nobutton'><button type='submit' name='side' value='b'>" . $unitsymbol . number_format($bidLocked,$decimalplaces,".",",") . "</button></span></form>"); ?></td>
+                    <td><?php echo("<form action='orders.php' method='post'><span class='nobutton'><button type='submit' name='side' value='b'>" . $unitsymbol . number_format($bidLocked,$decimalplaces,".",",") . " (Open Orders)</button></span></form>"); ?></td>
                     <td><?php echo($unitsymbol . number_format($units,$decimalplaces,".",",")) ?></td>
                     <td><div style="text-align:right"><?php echo($unitsymbol . number_format(($units+$bidLocked),$decimalplaces,".",",")) ?></div></td>
                 </tr>
