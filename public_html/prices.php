@@ -155,7 +155,7 @@ $1 Face Value, Morgan/Peace (0.7734 ozt): <?php echo(number_format(($silver["bid
   <tr>
    <td>Type</td>
    <td>Value</td>
-   <td>ASW</td>
+   <td>ASW*</td>
    <td>Note</td>
   </tr>
  </thead>
@@ -279,7 +279,7 @@ $1 Face Value, Morgan/Peace (0.7734 ozt): <?php echo(number_format(($silver["bid
  
  </tbody>
  </table>
- 
+ *Actual Silver Weight
  
  
 <?php
