@@ -86,22 +86,19 @@ var_dump($rhodium);
 
 <br>
 <br>
+Gold/Silver Ratio (GSR): <?php echo(number_format(($gold["bid"]/$silver["bid"]),2,".",",")); ?>
+<br>
+<br>
 
 <table>
 <thead>
 <tr>
-<th>Element</th>
+<th>Size</th>
 <th>#</th>
 <th>Note</th>
 </tr>
 </thead>
 <tbody>
-<tr>
- <td>GSR</td>
- <td><?php echo(number_format(($gold["bid"]/$silver["bid"]),2,".",",")); ?></td>
- <td>Gold/Silver Ratio</td>
-</tr>
-
 <tr>
  <td>Silver Fat Man</td>
  <td>$<?php echo(number_format(($silver["bid"]*3224.74),2,".",",")); ?></td>
