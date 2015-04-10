@@ -103,6 +103,12 @@ var_dump($rhodium);
 </tr>
 
 <tr>
+ <td>Silver Fat Man</td>
+ <td>$<?php echo(number_format(($silver["bid"]*3224.74),2,".",",")); ?></td>
+ <td>Fat Adult Male = 221.12lbs = 3,224.74 troy ounces</td>
+</tr>
+
+<tr>
  <td>Silver Man</td>
  <td>$<?php echo(number_format(($silver["bid"]*2668.75),2,".",",")); ?></td>
  <td>Average Adult Male = 183lbs = 2,668.75 troy ounces</td>
@@ -134,6 +140,147 @@ var_dump($rhodium);
 </tbody>
 </table>
 
+ 
+ <br>
+$1 Face Value, New (0.723 ozt): <?php echo(number_format(($silver["bid"]*.723),2,".",",")); ?>x
+ <br>
+$1 Face Value, Worn (0.715 ozt): <?php echo(number_format(($silver["bid"]*.715),2,".",",")); ?>x
+ <br>
+$1 Face Value, Morgan/Peace (0.7734 ozt): <?php echo(number_format(($silver["bid"]*.7734),2,".",",")); ?>x
+  <br>
+
+ 
+ <table>
+ <thead>
+  <tr>
+   <td>Type</td>
+   <td>Value</td>
+   <td>ASW</td>
+   <td>Note</td>
+  </tr>
+ </thead>
+ 
+ <tbody>
+
+
+
+  <tr>
+  <td>Jefferson War Nickle (1942-1945)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.0563),2,".",",")); ?></td>
+  <td>0.0723 ozt</td>
+  <td>56% Copper, 35% Silver, 9% Manganese</td>
+ </tr>
+
+  <tr>
+  <td>Barber Dime (1892-1916)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.0723),2,".",",")); ?></td>
+  <td>0.0723 ozt</td>
+  <td>90% Silver; $1 Face: <?php echo(number_format(($silver["bid"]*(10*.0723)),2,".",",")); ?></td>
+ </tr>
+
+  <tr>
+  <td>Mercury Dime (1916-1945)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.0723),2,".",",")); ?></td>
+  <td>0.0723 ozt</td>
+  <td>90% Silver; $1 Face: <?php echo(number_format(($silver["bid"]*(10*.0723)),2,".",",")); ?></td>
+ </tr>
+
+  <tr>
+  <td>Roosevelt Dime (1946-1964)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.0723),2,".",",")); ?></td>
+  <td>0.0723 ozt</td>
+  <td>90% Silver; $1 Face: <?php echo(number_format(($silver["bid"]*(10*.0723)),2,".",",")); ?></td>
+ </tr>
+
+  <tr>
+  <td>Barber Quarter (1892-1916)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.1808),2,".",",")); ?></td>
+  <td>0.1808 ozt</td>
+  <td>90% Silver; $1 Face: <?php echo(number_format(($silver["bid"]*(4*.1808)),2,".",",")); ?></td>
+ </tr>
+
+  <tr>
+  <td>Standing Liberty Quarter (1916-1930)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.1808),2,".",",")); ?></td>
+  <td>0.1808 ozt</td>
+  <td>90% Silver; $1 Face: <?php echo(number_format(($silver["bid"]*(4*.1808)),2,".",",")); ?></td>
+ </tr>
+
+  <tr>
+  <td>Washington Quarter (1932-1964)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.1808),2,".",",")); ?></td>
+  <td>0.1808 ozt</td>
+  <td>90% Silver; $1 Face: <?php echo(number_format(($silver["bid"]*(4*.1808)),2,".",",")); ?></td>
+ </tr>
+
+  <tr>
+  <td>Barber Half Dollar (1892-1915)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.36169),2,".",",")); ?></td>
+  <td>0.36169 ozt</td>
+  <td>90% Silver; $1 Face: <?php echo(number_format(($silver["bid"]*(2*.36169)),2,".",",")); ?></td>
+ </tr>
+
+  <tr>
+  <td>Franklin Half Dollar (1948-1963)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.36169),2,".",",")); ?></td>
+  <td>0.36169 ozt</td>
+  <td>90% Silver; $1 Face: <?php echo(number_format(($silver["bid"]*(2*.36169)),2,".",",")); ?></td>
+ </tr>
+
+  <tr>
+  <td>Kennedy Half Dollar (1964)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.36169),2,".",",")); ?></td>
+  <td>0.36169 ozt</td>
+  <td>90% Silver; $1 Face: <?php echo(number_format(($silver["bid"]*(2*.36169)),2,".",",")); ?></td>
+ </tr>
+  
+  <tr>
+  <td>Kennedy Half Dollar (1965-1970)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.1479),2,".",",")); ?></td>
+  <td>0.1479 ozt</td>
+  <td>40% Silver, 60% Copper; $1 Face: <?php echo(number_format(($silver["bid"]*(2*.1479)),2,".",",")); ?></td>
+ </tr>
+ 
+  <tr>
+  <td>Morgan Dollar (1878-1921)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.7734),2,".",",")); ?></td>
+  <td>0.7734 ozt</td>
+  <td>90% Silver, Face: <?php echo(number_format(($silver["bid"]*.7734),2,".",",")); ?></td>
+ </tr>
+ 
+  <tr>
+  <td>Peace Dollar (1921-1935)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.7734),2,".",",")); ?></td>
+  <td>0.7734 ozt</td>
+  <td>90% Silver, Face: <?php echo(number_format(($silver["bid"]*.7734),2,".",",")); ?></td>
+ </tr>
+ 
+  <tr>
+  <td>Eisenhower (1971-1978)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*.3161),2,".",",")); ?></td>
+  <td>0.3161 ozt</td>
+  <td>60% Copper, 40% Silver</td>
+ </tr>
+ 
+  <tr>
+  <td>American Silver Eagle (1986-Present)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*1),2,".",",")); ?></td>
+  <td>1 ozt</td>
+  <td>99.93% Silver</td>
+ </tr>
+ 
+  <tr>
+  <td>America the Beautiful 'Quarter' (2010-Present)</td>
+  <td>$<?php echo(number_format(($silver["bid"]*5),2,".",",")); ?></td>
+  <td>5 ozt</td>
+  <td>99.93% Silver</td>
+ </tr>
+ 
+ 
+ </tbody>
+ </table>
+ 
+ 
  
 <?php
 //echo(var_dump(get_defined_vars()));
