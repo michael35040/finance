@@ -279,6 +279,9 @@ $1 Face Value, Morgan/Peace (0.7734 ozt): <?php echo(number_format(($silver["bid
  *Actual Silver Weight
  
  
+ <br>
+ <img src="http://www.kitco.com/images/live/silver.gif">
+ 
 <?php
 //echo(var_dump(get_defined_vars()));
 /*
