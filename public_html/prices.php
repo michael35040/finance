@@ -284,8 +284,8 @@ $1 Face Value, Morgan/Peace (0.7734 ozt): <?php echo(number_format(($silverprice
  
  <br>
  <img src="http://www.kitco.com/images/live/silver.gif">
- 
- 
+  <br>
+  <br>
  
  <?php $silvergram=$silverprice/31.1034768; ?>
  
@@ -360,20 +360,20 @@ Cities premised their currency upon a drachma of varying weight so that coins we
 <br>
 
 <br>
-Ancient Prices
+<b>Ancient Prices</b>
 <br>
 Before delving into the discussion of silver’s historical value, a few starting conditions are important to understand. First, it’s difficult to equate modern and ancient labor. A lot of labor in ancient times was performed by slaves and the translations of “laborer” or “craftsman” into modern terms is imprecise at best, as are concepts like the length of a normal workday. Likewise, prices can be skewed by the more primitive state of trade – modern conveniences like wine and spices seem quite expensive in medieval England, but part of that is clearly due to the fact that they weren’t produced in England and long trade routes and/or wars took their toll on prices.
 Going back to ancient Babylon, we know that workers earned the equivalent of about 2.1 grams of silver per day (about 1/15 of an ounce or a little more than $2 in today’s silver prices). At that time, the price of a sheep ranged from 2.6 g to 16 g of silver (about $2 to $16 in today’s prices), which compares to recent prices of about $90 to $120.
 Apparently it was better to be a laborer in ancient Greece, as typical wages were about 1 attic drachma (4.3 g of silver) in the fifth century and about 2.5 drachmai by 377. In the fifth century, a drachma would buy you approximately 3 kg of olive oil and three drachmai would buy you a medimnos of wheat (about 54 liters). While the price of that medimos climbed to 5 drachmai by the 4th century, it basically still worked out that a day’s labor would buy about two weeks worth of food for one person (if they lived on bread alone).
 The Romans may have brought many valuable inventions to the world, but debasement and serious inflation are inventions that humanity probably could have done without. Although the Roman day wage of 1.2 denarii (4.2 g of silver) was pretty consistent with wages during the time of the Greeks, there was huge inflation and debasement from the time of Nero through Diocletian and beyond. As the Romans gutted the silver content of the denarius from 3.5 g of 98% silver to 3.4 g of 94% silver on down to 40% and then almost nothing, the price of a “measure” of wheat soared by about 15,000 times over about 250 years [see also Preparing For Economic Headwinds: Bill Gross’ Commodity Picks].
 <br>
-The Medieval Times
+<b>The Medieval Times</b>
 <br>
 While the medieval period saw a pronounced increase in trade and the growth of cities, it was also marked by wars and plagues that significantly depopulated large swathes of Europe. In many cases, depopulation led to pressures for higher wages and the nobility often fought back with wage controls.
 Around 1300 AD, a laborer in England could expect two earn about 2 pounds sterling in a year, or about 672 g of silver (about 2.1 g of silver per day, given the different workweek of medieval times). Likewise, we know a thatcher in 1261 could look to earn about 2 pennies a day or 2.8 g of silver. Thatchers’ pay increased to about 3 pence (approximately 4.2 g of silver) in 1341, 4 pence in 1381, and 6 pence in 1481. Along the way, a city “craftsman” could look to earn about 4 pence a day in the 1350s.
 So what would those wages buy? In the early 14th century, wine cost between 3 pence and 10 pence per gallon in England, and two dozen eggs could be had for 1 pent. Some time later, an axe cost about 5 pence in mid-15thcentury England, while wheat cost about 0.2 g of silver per liter (not much different than the per-liter price in ancient Greece).
 <br>
-The Industrial Age
+<b>The Industrial Age</b>
 <br>
 By the 18th and 19th centuries, the use of paper money was increasingly common alongside silver and gold coins. What’s more, the price of gold and silver were increasingly fixed and stable for long stretches of time. Sir Isaac Newton fixed the price of gold in 1717, and it pretty much stayed at that at the price (excluding the years of the Napoleonic Wars) until World War 1 [see also 3 Metals Outshining Gold].
 Likewise, the price of silver more or less stayed at about $1.30/oz from the founding of the U.S. through the Civil War. Prices were exceptionally turbulent during the Civil War (rising to nearly $3/oz) and stayed above $1.30/oz until the late 1870s. Prices generally declined through the latter years of the 19th century, dipping below $0.60/oz in 1897, and mostly hovered in the $0.50s through to World War I. From a low of about $0.25/oz in 1932, silver generally climbed thereafter – moving above $0.70/oz after World War II, moving past $0.80/oz in 1950, and crossing $1/oz in 1960.
@@ -381,7 +381,7 @@ Silver jumped alongside gold throughout the 1970s, and spiked to $50 an ounce in
 Tracing the path of wages, we have an average wage of about $1 per day in the latter part of the 19th century, or about 25 g of silver. When Henry Ford revolutionized the auto industry (and how companies viewed wages) in 1914 and offered $5/day (about 10oz of silver), the average daily wage was about $2.34 per day.
 When federal minimum wages began in 1938, the nominal value of those wages were about $2/day (or more than 4.5 ounces). Those wages climbed to about $16 per day in 1974 (about 3.6 ounces of silver) to $58 today (or about 1.75 ounces of silver). Said differently, today’s minimum wage buys about 13 times the amount of silver that the average daily wage in ancient Greece bought.
 <br>
-The Future
+<b>The Future</b>
 <br>
 Silver’s value throughout history has always been volatile, as the supply of labor, foodstuffs and consumer goods waxed and waned with wars, trade growth and technological innovation. Given how modern governments view monetary policy as something of a panacea, though, it seems like ongoing inflation is a pretty safe bet.
 It is worth asking whether the price of silver stacks up as fair. For more than 2,000 years, somewhere between 1/10th and 1/15th of an ounce of silver would buy you a day’s labor; in today’s terms, that would suggest that silver should trade for $264, if U.S. wages should be seen as the global standard. By way of comparison, minimum wages in China’s Guangdong province (an area with extensive manufacturing activity) would work out to about $6/day on average or about 5.6 g of silver – about half the wages in 4th century Greece, so it really is a case of what you consider to be the representative global wage [see also Doomsday Special: 7 Hard Assets You Can Hold In Your Hand].
@@ -390,19 +390,20 @@ It is also interesting to see that the value of gold today is more than 50-times
 
 
 <br>
-Average Wage
+<b>Average Wage</b>
 <br>
-Building Craftsman (1850-1899)
+Building Craftsman (1850-1899): 24g
 <br>
-Laborers (1850-1899)
+Laborers (1850-1899): 13.8g
 <br>
-Building Craftsman (1900-1913)
+Building Craftsman (1900-1913): 63.9g
 <br>
-Laborers (1900-1913)
+Laborers (1900-1913): 39.5g
 <br>
 *1850 Comstock Lode Discovery
 <br>
-Wanlockhead in 1844
+<br>
+<b>Wanlockhead in 1844: 12 pence = 1 shilling; 20 shilling = 1 pound.</b>
 <br>
 Miners 60p week
 <br>
