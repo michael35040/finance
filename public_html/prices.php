@@ -148,6 +148,7 @@ $1 Face Value, Worn (0.715 ozt): <?php echo(number_format(($silverprice*.715),2,
  <br>
 $1 Face Value, Morgan/Peace (0.7734 ozt): <?php echo(number_format(($silverprice*.7734),2,".",",")); ?>x
   <br>
+  Constitutional Dollar = 371.25 grains of pure silver (0.7734375 troy ounce)<br><br>
 
  
  <table>
