@@ -1619,11 +1619,983 @@ The only way that you would actually pay 28% would be if you are in the 28% tax 
 
 
 
+<hr>
 
 
 
 
 
+
+<br>
+<center><h2>COMEX 101:</h2><h3>All About the Gold and Silver Futures Market</h3></center>
+<br>
+
+Although this page usually refers specifically to silver, the same applies to gold with a few minor differences (e.g. the contract size of 100 vs 5,000 oz, and the costs involved).<p>
+
+Silver futures are just an agreement between two parties, where one agrees to buy a specific amount of silver from the other at a set time in the future.  In the United States, this is normally done through an organization called COMEX.<p>
+
+
+<br><h3>What is a Short Sale?</h3>
+A short sale is when someone agrees to sell silver in the future (which they usually do not have).  This is perfectly legal, and necessary for the futures market to work.  Without someone agreeing to sell in the future (the short), nobody could agree to buy in the future (the long).  There must be one short seller for every long.  The short seller is hoping that the price of silver will go down, and that when the contract expires, they will simply be paid the difference in the price of silver if it has gone down.  There is a chance that they may need to deliver the physical silver (regardless of how the price moves), in which case they would need to buy it.<p>
+
+<br><h3>How Does the Buying Process Work (Going Long)?</h3>
+Let's say it is January 1, 2010.  You decide that you want to buy some silver.  You decide to 'go long' 1 contract of June, 2010 silver at $20/ounce.  This means that you agree to buy 5,000 ounces of silver (the amount per contract) in June, 2010 (although if you do not want to take delivery, you can sell the contract before June, 2010) <!-- https://marketforceanalysis.com/index_assets/COMEX%20Inventory%20Shows%20Alarming%20Trend.pdf implies 'held into delivery month' -->.  <!-- REMOVED 03 Dec 2010: In reality, you would have a margin account, in which case you only have to put down a percentage of what you owe -- but that just complicates things, so let's assume you just buy the one contract and pay the $100,000 on January 1, 2010. --><p>
+
+In order for you to make this agreement, someone else needs to 'go short' 1 contract of June, 2010 silver at $20/ounce, in which they agree to sell 5,000 ounces of silver at $20 in June.  If they want, they can deliver the silver to the warehouse and get their $20/ounce, or they can buy a long position to offset their short position.<p>
+
+<br><h3>Where Does the Silver Come From (Taking Delivery)?</h3>
+The vast majority of futures contracts end up being settled in cash, where no silver changes hands.  But, if you want the physical silver, you can get it -- after all, that is the whole point of the futures market.  <!-- At this point, let's assume that the COMEX warehouses had no silver in them when you made your purchase.-->  When your contract is about to expire, here are the possible outcomes:<p>
+
+<ol>
+<li>You decide that you want the silver, and you want to keep it in the COMEX warehouse.  You wait (called 'standing for delivery'), and by the end of June, 2010 the short will have given the Clearing House a Notice of Intention to Deliver.  The Clearing House will then send an Assignment Notification to the seller and to you, which lets you know who the seller is, and a list of the serial numbers of the bars you will receive.<!-- 7A06(C) -->  You will also receive an invoice.  The short will deliver to a COMEX warehouse the 5,000 ounces of silver (or turn in a warehouse receipt, if they have one -- it appears that they can buy them from bullion banks that have silver in the Registered category).  You are then given the warehouse receipt (or your dealer can hold it for you), at which point you own the silver.
+
+<li>You decide that you want to take delivery.  The same as situation #1 happens, except you then immediately request delivery and turn in your warehouse receipt.  You get your silver.
+
+<li>You decide that you do not want the silver, you want to take the profit or loss.  In this case, you sell your contract at the current price (before the beginning of June, 2010 -- or else you may have to take delivery).  If the price is now $21, you make $5,000 profit; if it is $19, you have a $5,000 loss <!-- REMOVED 03 Dec 2010: (if you trade on margin, these figures would be much higher) -->.
+
+<li>You decide that you do not want the silver, but you want to keep a futures position.  In this case, you roll over the contract, by selling your current contract and buying one for a future month.
+</ol>
+
+<br><h3>What is in the Warehouses?</h3>
+COMEX has several warehouses for metals (see the lists for <a href="http://www.cmegroup.com/trading/metals/silver-depositories.html">silver</a> and <a href="http://www.cmegroup.com/trading/metals/gold-depositories.html">gold</a>).  They contain lots of silver.  They had 152.003 million ounces (as of 17 Jan 2013), worth about 
+<script>
+document.write( '$' + FormatDollars( 20.82 * 152.003, 2 ) );
+</script>
+million.  This is split into two categories: Eligible and Registered.<p>  <!-- See https://www.kitcomm.com/showthread.php?t=29225&page=4 -->
+
+<!--
+Eligible silver is silver that has been purchased (and paid for) by a long at some point in the past (that they are currently paying storage fees for), and is eligible for delivery at any point that the client wants.  It has been assigned to the clients, who have the serial numbers of their bars.<p>
+-->
+Eligible silver is silver that is in a COMEX vault and has been determined to meet the COMEX requirements (e.g. minimum fineness and weight, acceptable refiner).  Often this is silver that has been purchased by a long (paid in full, not part of a COMEX contract) at some point in the past (that they are currently paying storage fees for).  The silver is eligible for delivery at any point that the owner wants.  It has been assigned to the owner, who has the serial numbers of their bars.  Eventually, it will either be delivered to the owner, or become registered silver.  It is the same as silver in any other vault, except that the silver is within the COMEX system (known to meet COMEX requirements).<p>
+
+Registered silver is silver that is sitting in the COMEX warehouse, and can be used to settle a contract.  The warehouse has issued a depository receipt (warrant).  Warrants are issued in the name of an Exchange Clearing Member (corporations that handle trades, typically for their customers), not individual traders.  When a short needs to settle their contract, the silver they provide the long must be registered.  The short can buy it from a bullion bank, convert eligible silver they have, or use silver they they had previously stopped (from a long contract).
+
+As of 17 Jan 2013, there were 37.976 million ounces of registered silver (available), worth about
+<script>
+document.write( '$' + FormatDollars( 20.82 * 37.976, 2 ) );
+</script>
+million and 114.027 million ounces of eligible silver (customer owned) in the COMEX warehouses, worth about
+<script>
+document.write( '$' + FormatDollars( 20.82 * 114.027, 2 ) + ' million.' );
+</script>
+<p>
+
+
+<br><h3>Position Limits</h3>
+COMEX has position limits, which are the maximum number of contracts that you can have open at one time.  As of this writing (June, 2010), anyone with 150 silver (or gold) contracts needs to report to COMEX their positions.  The limit is 1,500 contracts in the current (spot) month for silver (3,000 contracts for gold), with 6,000 silver (or gold) contracts in all months combined.  The position limits can be found at the <a href="http://www.cmegroup.com/rulebook/files/CBOTChapter5_InterpretationClean.pdf">COMEX website</a>.<p>
+
+For silver, the 1,500 contracts controls 7,500,000 ounces of silver, worth about
+<script>
+document.write( '$' + FormatDollars( 20.82 * 7.5, 2 ) );
+</script>
+
+million.  For gold, the 3,000 contracts controls 300,000 ounces of gold, worth about 
+<script>
+document.write( '$' + FormatDollars( 1341.10 * .3, 2 ) );
+</script>
+million.<p>
+
+<br><h3>Costs</h3>
+
+There are various costs involved in purchasing silver (or gold) through the futures markets.  Here are the ones we are aware of:<p>
+
+<ul>
+<li>A commission, paid to your broker, that includes exchange fees.  This is to buy the original contract and receive delivery on it.  One person reported a $100 broker fee for handling delivery (in addition to the standard commission to buy the original contract). <!-- http://goldismoney2.com/showthread.php?4856-Delivery-of-a-COMEX-silver-contract-My-experience -->
+<li>The actual cost of the silver.  This is the price per ounce multiplied by the number of ounces you will actually receive (which may vary up to 6%).
+<li>If the seller pre-paid storage costs, you will be responsible for up to 30 days worth (per <a href="http://www.cmegroup.com/rulebook/NYMEX/1/7A.pdf">7A06(F)</a>), but you would have paid that to the warehouse anyways if the seller had not prepaid.  The seller has to pay the storage costs up to and including the day of delivery.
+<li>If the seller paid for 'in and out labor', you are required to pay half of it, but you would have paid that anyways if the seller had not paid the fee.  In other words, the seller paid to have the silver put into the warehouse and taken out of the warehouse -- so you are responsible for the cost to get it out of the warehouse. <!-- 7A06(F) -->
+<li>Transportation.  You can pick it up yourself (which is not recommended!), or have it transported for you.  For silver, the one report we've heard of is about $1,000-$2,000 to deliver 1 contract (5,000 ounces).  In 2003, Brinks would have charged up to $.09 to $.27/ounce for gold (minimum $135), plus a $20 security charge per a <a href="http://www.silverbearcafe.com/private/paperintogold.html">silverbearcafe</a> article (confirmed about $150 in 2009 <a href="http://goldnews.bullionvault.com/turning_gold_futures_gold">here</a>).  
+<li>Monthly storage fee, if you have the silver or gold stored in a warehouse.  COMEX reports <!-- www.cmegroup.com/trading/metals/files/Storage_charges_for_precious_metals.pdf --> in June, 2010 that for silver it costs from $30-$35/month per contract, or $.072-$.084/oz per year.  However, the Delaware Depository lists their cost as $20/contract per month, or $.048/year per ounce (in 2004, they charged $18.50/month).  For gold, it is $12-$15/bar monthly, or $1.44-$1.80/year per ounce.
+<li>'Out Charge' or 'Delivery Out' - The charge to remove the silver from the warehouse.  In June, 2010 COMEX reports that the out charge is $125 per contract ($.025/ounce), although Delaware Depository states $100/contract ($.02/ounce) on their website <!-- http://www.delawaredepository.com/bullion/exchange.asp -->($65 in 2004).  For gold, it is $25 per bar ($.25/ounce).
+<li>If you take delivery, and want to send the silver back to the warehouse (sell it short), you would need to pay to have the bar assayed and/or recertified. This is not necessary if you just hold on to the warehouse receipt.
+</ul>
+
+<br><h3>Margins</h3>
+When you buy a long position or sell a short position, it is done on margin.  So if you buy a long contract for 5,000 ounces of silver for June, 2010 at $20, the total value of the silver is $100,000.  However, you would only be required to put down a small amount (perhaps $5,000).  If the price of silver goes up, the money is deposited into your account.  If the price of silver goes down, money is removed from your account, and when it gets below a certain amount, you are required to immediately come up with the more money (or else your position is sold).<p>
+
+Let's again assume that silver is $20/ounce, and you have $100,000 to spend.  If you wanted to put all that money into physical silver (as opposed to futures), you could go out to a bullion store and spend $100,000 and get it today.  Or, you could put down a small amount ($5,000 in the example above), and then pay the other $95,000 when you received the delivery notice.<p>
+
+If you are looking to play the market, and think the price of silver is going to go up, you could instead buy 20 long contracts (100,000 ounces of silver worth $2M) for that $100,000.  If silver goes up $1, you would make $100,000, and double your money!  If silver goes down $1, though, it wipes out your entire investment, and you would be required to put up another $100,000 to keep the position (or else it would be liquidated, or sold).<p>
+
+This leverage can obviously be very lucrative, or very dangerous (if you are not careful).<p>
+
+<br><h3>Offsetting</h3>
+You may have noticed that buyers are required to take delivery of metal, and sellers are required to make delivery of the metal -- unless they offset their positions.  So how does <i>that</i> work?<p>
+
+Let's say that there are currently no June, 2010 contracts.  You are the first to buy one, and you go long 1 contract.  For that to happen, someone else goes short 1 contract (promising to deliver the silver in June, 2010).  The short is required to either deliver, or buy an offsetting position (in this case, 1 long contract).  Since there is only 1 long contract they can buy (yours), if they buy it, they would have to deliver to themselves -- so the exchange doesn't require them to deliver.  If you were not willing to sell your long contract, the short would have to provide you with the metal (but there are market makers that help ensure that the short can buy an offsetting long contract).<p>
+
+Or, let's say that you ("Long A") buy 1 long contract for June, 2010.  Someone ("Short A") sells short 1 contract, in order for you to buy.  Then, someone else ("Long B") goes long 1 contract (which requires another person ("Short B") to go short 1 contract).  At this point, there are 2 people with a long position, and 2 people with a short position.  If Short A does not want to deliver, he can buy the long contract from Long B.  Now there is 1 person with a long position (you, Long A) and one person with a short position (Short B).  When it comes time to deliver, Short B will provide the silver to you.  Short A is now also Long B, so as before, the exchange doesn't require him to deliver to himself.<p>
+
+That's how offsetting works.  Essentially, if you have both long and short positions, any extras get cancelled out.  So if you have 1,000 long positions and 100 short positions, you end up with 900 long positions.  Or, if you have 1,000 short positions and 100 long positions, you end up with 900 short positions.<p>
+
+<br><h3>Delivery Notices</h3>
+A short seller is required to either close out his position by buying an offsetting long position, or deliver the silver.  This is done by issuing a delivery notice ("Notice of Intention to Deliver").  COMEX then decides which long will be assigned the delivery (whoever bought their long position first), and sends an Assignment Notification (to the long and short), and the long must then accept and pay for a warehouse receipt (which they can pay to keep stored at the warehouse, or pay to have physical delivery).<p>
+
+COMEX has reports on how many delivery notices were generated each <a href="http://www.cmegroup.com/delivery_reports/MetalsIssuesAndStopsReport.pdf">day</a>, <a href="http://www.cmegroup.com/delivery_reports/MetalsIssuesAndStopsMTDReport.pdf">month</a>, and <a href="http://www.cmegroup.com/delivery_reports/MetalsIssuesAndStopsYTDReport.pdf">year</a>.  The reports show which firms had clients issue the notices (shorts delivering the silver), and which stopped the notices (had clients receiving the silver).<p> 
+
+<br><h3>Is a Long Guaranteed to Receive Silver?</h3>
+Yes.  Some people are confused about this, as COMEX doesn't make it clear to people who aren't active in futures.  Someone active in futures knows that a futures contract is exactly that -- a contract.  It is a contract to buy or sell a specific amount of metal at a specific month in the future at a specific 
+price.<p>
+
+The confusion arises because the short gets to decide when they deliver the silver -- either at the beginning of the month, the middle, or the end.  A long cannot <i>initiate</i> the process.  However, the short <i>must</i> initiate the process at some point during the month -- they are required to do so by their contract.<p>
+
+Another point that confuses novices is when they read that when a short gives a Delivery Notice, COMEX will assign it to the long that got their position earliest.  This makes it sound like some longs won't be assigned delivery.  But, for every long there is a short, so it just means that earlier purchasers of long positions will get delivery earlier in the month; those that got their positions more recently may have to wait closer to the end of the month.  But all longs will be assigned a delivery, unless they buy an offsetting short position.<p>
+
+The final piece of the puzzle is what happens if the short does not deliver the silver?  In this case, the Clearing Member (the firm that the short's contract went through) is required to deliver the silver (per <a href="http://www.cmegroup.com/rulebook/NYMEX/1/7B.pdf">7B02</a>).  If they cannot, COMEX rules state that COMEX will not be liable for more than the value of the metal at the time of default (per <a href="http://www.cmegroup.com/rulebook/NYMEX/1/7B.pdf">7B14</a>), and only if they are notified within 60 minutes.  However, we are not aware of instances that this has happened, and the person to receive the silver was not fairly compensated.  If there were such a default, it would seriously damage the reputation of the COMEX, and could possibly disrupt the silver market, so it would be avoided at all costs.  And, a long in theory would be able to sue the short and the Clearing Member (and probably COMEX, although they would be better protected).<p>
+
+<br><h3>Can you be Forced to Take or Make Delivery?</h3>
+Yes and no.  Specifically, futures contracts are exactly that -- contracts to buy or sell something in the future.  So if you buy a long contract, you are obligated to take delivery; if you sell a short contract, you are obligated to deliver the silver.  But, if you do not want to, you can offset your contract (e.g. sell short if you have a long contract), which gets rid of your obligation.<p>
+
+<br><h3>The Delivery Month</h3>
+The Delivery Month is the month in which the short is required to deliver the silver.  However, there are a number of dates involved:
+
+<ul>
+<li>First business day of the month.  This is the first day that a short can file a Notice of Intention to Deliver.
+
+<li>Notice of Intent to Deliver Day.  This is the day that the short files the Notice of Intention to Deliver.  This may be on any business day of the delivery month.
+
+<li>Date of Presentation, appears to be the same as the Notice of Intent to Deliver Day. The Date of Presentation is the day before the Notice Day.  COMEX does not define it, but mentions it in 7A06(C)(3).
+
+<li>Notice Day.  This is the day that the Clearing House (COMEX) issues an Assignment Notification to the long and the short.  This is the day prior to the Delivery Day.
+
+<li>Delivery Day.  This is the day that the short transfers ownership of the silver to the long, by exchanging a warehouse receipt.
+
+<li>Third last business day of the month.  This is the last day that contracts may be traded. <!-- http://www.cmegroup.com/trading/metals/precious/gold_contract_specifications.html -->
+</ul>
+
+
+<br><h3>Why Farther Months Cost More</h3>
+If you look at the futures price of silver, you'll notice that in most cases, the longer it is until delivery, the more the contract costs.  For example, as of this writing, June 2010 silver is $18.18, but June 2014 silver is $18.84.  This is a situation referred to as <i>contango</i>, and is normal.<p>
+
+At first, people might assume that is because people expect the price of silver to rise.  However, the real reason for that is because the short seller (if they are not naked) has to pay warehouse storage fees, and loses interest that he could make on his money if he sold the silver today.  So the short is going to want more money the farther out the contract is.  And the long is willing to pay that, since they avoid paying storage fees and make interest on their money.<p>
+
+There are rare exceptions to this rule, where something called <i>backwardation</i> occurs.  Backwardation means that the closer months cost more than the farther months.  This can happen if there is concern that silver may not be easily available in the future, and that you are more likely to get your silver if you choose a closer month.  This is a very bullish situation, and would likely lead to higher prices.<p>
+
+
+<br><h3>Report: Commitment of Traders</h3>
+The <a href="http://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm">Commitment of Traders</a> is a report published by the CFTC every week.  It lists how many contracts are held by the 4 largest traders combined and how many are held by the 8 largest traders combined.  It also reports how many contracts are held by various categories of traders (currently, "Producer/Merchant/Processor/User", "Swap Dealers", "Managed Money", "Other Reportables" and "Nonreportable Positions" (traders with less than 150 contracts)).<p>
+
+Most people will not find much use for this data.  However, it can be used to help determine if there is market manipulation.  For example, if the 4 largest traders have a very high percentage of the open interest, it is more likely that they could influence the price.<p>
+
+
+<br><h3>Report: Bank Participation Report</h3>
+The <a href="http://www.cftc.gov/MarketReports/BankParticipationReports/index.htm">Bank Participation Report</a> is a report published by the CFTC every month.  It lists how many banks have short or long positions in each futures market, and what percentage of the open interest is held by all the banks combined.<p>
+
+Most people will not find much use for this data.  However, it can be used to help determine if banks are able to influence the price of silver.<p>
+
+<!--
+<br><h3>Report: Index Investment Data</h3>
+The <a href="http://www.cftc.gov/MarketReports/IndexInvestmentData/index.htm">Index Investment Data Report</a> is a report published by the CFTC every quarter.  It lists how many contracts are held by swap dealers and index traders.<p>
+-->
+
+<br><h3>Options</h3>
+Options give you the right (but not obligation) to buy or sell futures contracts, at a set price at a set time in the future.  A call option lets you buy silver, a put option lets you sell it.<p>
+
+For example, if silver is $20/ounce and you think it will go to $25/ounce by December, you could buy $22 December call options.  If silver does go to $25/ounce by December, you would be able to sell the options for about $3/ounce profit.  Or, you could pay the $22/ounce and convert them to futures contracts (which you could then have delivered or stored in a warehouse, if you wished).<p>
+
+
+<br><h3>Terms</h3>
+<dl>
+  <dt>Backwardation</dt>
+    <dd>- The situation where silver will cost more for closer delivery months.  This can occur if there is a concern that silver may not be delivered in the future.  See also Backwardation.</dd>
+  <dt>Bank Participation Report</dt>
+    <dd>- A <a href="http://www.cftc.gov/MarketReports/BankParticipationReports/index.htm">report</a> by the CFTC that shows how many banks hold futures positions, and how many contracts are held in total by all the banks.</dd>
+  <dt>CFTC</dt>
+    <dd>- The Commodities Futures Trading Commission, the organization in the United States that is responsible for overseeing the futures markets.</dd>
+  <dt>Clearing House</dt>
+    <dd>- The organization that is in charge of clearing futures contracts (COMEX) (see <a href="http://www.cmegroup.com/rulebook/NYMEX/1/NYMEX-COMEX_Definitions.pdf">COMEX site</a>).</dd>
+  <dt>Clearing Member</dt>
+    <dd>- A firm that is approved by COMEX for clearing transactions (see <a href="http://www.cmegroup.com/rulebook/NYMEX/1/NYMEX-COMEX_Definitions.pdf">COMEX site</a>).</dd>
+  <dt>Contango</dt>
+    <dd>- The normal situation where the longer it will be until the delivery month, the more the silver will cost (to account for storage fees).  See also Backwardation.</dd>
+  <dt>Contract</dt>
+    <dd>- A set amount of silver (5,000oz) or gold (100oz) to be bought or sold on a specific date.  So if you go long 10 contracts of silver, you will be buying 50,000 ounces of silver.</dd>
+  <dt>COT</dt>
+    <dd>- The Commitment of Traders report.  This is issued by the <a href="http://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm">CFTC</a>, and lists number of contracts held by largest 4 and 8 traders, as well as a breakdown of contracts by the type of trader.</dd>
+  <dt>Delivery Day</dt>
+    <dd>- The day that the long receives the warehouse receipt.  It can be any business day in the delivery month.  For more details, see <a href="http://www.cmegroup.com/rulebook/NYMEX/1/7A.pdf">NYMEX Rulebook 7A06-E(1)</a>.  The warehouse receipt is received electronically, normally at 7:30AM CST (8:30AM EST).</dd>
+  <dt>Delivery Notice</dt>
+    <dd>- See Notice of Intention to Deliver.</dd>
+  <dt>Eligible</dt>
+    <dd>- When referring to silver in a warehouse, it means that the silver is eligible for delivery (to a long that has a warehouse receipt, and is paying storage fees).  See also Registered.</dd>
+  <dt>Long</dt>
+    <dd>- Agreeing to buy a specific amount of silver in the future at a set price in a set month.  See also Short.</dd>
+  <dt>Naked Short</dt>
+    <dd>- Someone who agrees to sell silver in the future, but does not have any silver to back up the contract. This is legal (the person just needs to buy real silver before or at delivery, or buy an offsetting long position before the contract is up).</dd>
+  <dt>Notice Day</dt>
+    <dd>- The day that an Assignment Notification is issued by the Clearing House (COMEX) to the buyer and seller.  This is the day that the seller finds out who the buyer is, and the buyer finds out who the seller is, and the serial numbers of the bars that they will receive. See <a href="http://www.cmegroup.com/rulebook/NYMEX/1/7A.pdf">7A06(C)</a>.</dd>
+  <dt>Notice of Intention to Deliver</dt>
+    <dd>- A notice from the short that states that he will be delivering the silver, and which bars will be delivered.  Someone who is short silver <i>must</i> file a 'Notice of Intention to Deliver' with the COMEX, unless they instead buy an offsetting long position, so they do not have to deliver the silver. See <a href="http://www.cmegroup.com/rulebook/NYMEX/1/7A.pdf">7A06(B)</a>.</dd>
+  <dt>Offsetting Position</dt>
+    <dd>- The opposite of the position that you have.  If you have a short contract, you can buy a long contract (for the same month and price), which is called the offsetting position.  One you have done so, you have no obligation to deliver the silver.  If you have a long contract, you can sell a short contract (for the same month and price), and then you do not have to take delivery.</dd>
+  <dt>Open Interest</dt>
+    <dd>- The total number of contracts for a given commodity and monthly.  So if for June 2010 silver there are 13,580 longs (in which case there are also 13,580 shorts), you would say the open interest for June, 2010 silver is 13,580.</dd>
+  <dt>Registered</dt>
+    <dd>- When referring to silver in a warehouse, it means that the silver is owned by COMEX and/or bullion banks, and can be bought by shorts for delivery.  See also Eligible.</dd>
+  <dt>Short</dt>
+    <dd>- Agreeing to sell a specific amount of silver in the future at a set price in a set month.  See also Long.</dd>
+  <dt>Standing for Delivery</dt>
+    <dd>- Waiting until your long contract expires, to get your silver.</dd>
+  <dt>Stop</dt>
+    <dd>- A term indicating that a delivery notice was given to the buyer.  In delivery reports, COMEX shows both how many Delivery Notices were 'issued' (the short notifying that they would be delivered) and 'stopped' (the long receiving the delivery notice).</dd>
+  <dt>Warehouse Receipt</dt>
+    <dd>- A 'receipt' that entitles you to a specific amount of silver.  It lists the specific bars that you own, including the brand and serial numbers. <!-- Rulebook 112.07 --></dd>
+  <dt>Warrant</dt>
+    <dd>- The method used to give you ownership of silver in a warehouse, per <a href="http://www.law.cornell.edu/ucc/7/overview.html">Article 7 of the Uniform Commercial Code</a>.  It is the same as a warehouse receipt.</dd>
+</dl>
+
+
+<br><h3>Other Information (was: Remaining Questions)</h3>
+<ul>
+<li>Who owns the Registered silver in the COMEX warehouses (bullion banks, clearing members, or others)?<br>
+ <ul>
+ <li>One <a href="http://silveraxis.com/todayinsilver/2008/10/01/random-thoughts-about-a-random-market/">source</a> suggests that the registered category is silver that is owned by investors, both long and short (anyone that stood for delivery without removing the silver from COMEX).  It also suggests that the eligible category is for longs that stood for delivery, and chose to store their silver at COMEX (but that makes little sense, as you have to pay storage fees if you have a warehouse receipt, right?).
+ <li>It appears clear now that the Registered category is for silver that has been "registered for delivery", and someone holds the warrant for those bars.  This could be anyone (which includes bullion banks as well as longs that stand for delivery, but continue to store their bars in the COMEX vault).
+ </ul>
+<li>Who can access the Registered silver in the COMEX warehouses (bullion banks, clearing members, or others)?
+ <ul>
+ <li>Whoever has the warrant has access to the Registered silver.
+ </ul>
+<li>Ultimately, all the silver in the Registered and Eligible categories meets COMEX requirements for size and quality.  The difference is that the Registered category has had a warehouse receipt generated.
+</ul>
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+
+
+<h1>All About Silver Weight...</h1>
+
+Silver is almost always sold in troy ounces (occasionally, it is sold in grams or kilograms).<p>
+
+A troy ounce is slightly heavier than an avoirdupois (United States) ounce, weighing 1.097142857 avoirdupois ounces.  A troy ounce is also 31.1034768g (versus an avoirdupois ounce that weighs 28.3495231g).<p>
+
+Large quantities of silver are usually measured in millions of ounces (for example, a silver ETF may contain 300 million ounces).  Occasionally, tons will be used (although tons are more commonly used with gold).  A ton of silver always means a metric ton, which weighs 32,150.7466 troy ounces.<p>
+
+You may occasionally see silver sold by the 'pound', but this is almost always done by individuals or inexperienced dealers (or scam artists).  That's because the times that pounds are used, it usually comes about when an individual weighs the silver on a bathroom or postage scale (using avoirdupois pounds and ounces).  So they are probably referring to an avoirdupois pound, which actually weighs more than a troy pound (an avoirdupois pound is 16 avoirdupois ounces, whereas a troy pound is 12 troy ounces).  But, they could be referring to a troy pound.  A scammer selling a 'pound' of silver will typically sell a troy pound to someone who thinks that it is 16 troy ounces of silver (when in fact it is 12 ounces).  The scammer avoids any legal problems, because a pound of silver is indeed 12 troy ounces.<p>
+
+<table border>
+<tr><td>1 Troy Ounce =</td><td>1.097142857 Avoirdupois Ounces</td></tr>
+<tr><td>1 Troy Ounce =</td><td>31.1034768 grams</td></tr>
+<tr><td>1 Troy Pound =</td><td>12 Troy Ounces</td></tr>
+
+<tr><td>1 Kilogram =</td><td>1,000 Grams</td></tr>
+<tr><td>1 Kilogram =</td><td>32.1507466 troy ounces</td></tr>
+
+<tr><td>1 Avoirdupois Ounce =</td><td>0.911458333452013 Troy Ounces</td></tr>
+<tr><td>1 Avoirdupois Pound =</td><td>16 Avoirdupois Ounces</td></tr>
+
+<tr><td><font color="lightgray">1 troy ton =</font></td><td><font color="lightgray">2450 troy lb.</font></td></tr>
+<tr><td>1 Metric Ton =</td><td>1,000 kilograms</td></tr>
+<tr><td>1 Metric Ton =</td><td>32,150.7466 troy ounces</td></tr>
+</table>
+
+
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+
+<h1>Spot, Premiums, Discounts, Spreads, and Fees</h1>
+
+When you buy or sell silver (or gold), there are a lot of variables that come into play in determining the price (unless you simply buy a bar marked '$100' at a yard sale).  Some dealers make this very easy (showing just the price you pay per ounce), others make it harder (by not making shipping costs or commission charges easily accessible).<p>
+
+The most important variable is the current spot price.  This is typically updated many times each minute throughout the day (the notable exception being on weekends, when the price is not changed).  It is based on the price of futures contracts for the nearest delivery month.  But if the spot price of silver is $15/ounce, you won't pay $15 for an ounce of silver.<p>
+
+Like all other businesses, dealers cannot sell to you for the same price that they buy something.  In retail, this is called a markup (e.g. the store may pay $200 for a TV, and sell it to you for $250, resulting in a $50 markup).  With precious metals, dealers typically buy from customers as well as sell to customers.  The difference in price is called a 'spread'.  So a dealer may have a 3% spread between their buy and sell prices (so if you buy something from them, and sell it back while the spot price is the same, you will lose 3% from the spread).<p>
+
+The next factor is premiums and discounts.  If a dealer sells to you (or buys from you) above the spot price, the difference between the sell (or buy) price and spot is called the 'premium.'  Alternatively, if they sell or buy below the spot price, the difference is called the 'discount.'  The premium for some products is higher than for other products.  For example, the premium for 1 ounce .999 fine coins is usually higher than for 1 ounce .999 fine medals (ones not produced by a government), and .999 fine coins/medals that weigh less than an ounce usually have a higher premium than those that weigh an ounce.<p>
+
+Another factor is fees (such as shipping, commissions, and taxes).  Most 'brick and mortal' dealers do not charge any fees other than taxes (if applicable).  Most online dealers charge shipping, but not tax.  Some upscale dealers charge commissions (typically ones that have salespeople that call you occasionally).<p>
+
+So there you have it!<p>
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+<center>
+<h1>How the Spot Price of Silver or Gold is Determined</h1>
+<h2> Or, if the price <i>is</i> manipulated, who sells precious metals cheaply?</h2>
+</center>
+<br>
+
+<h3>The Old Days</h3>
+One of the most well-known sources of the 'spot price' of silver or gold is the London Gold and Silver Fixings.  They started in 1897 (for silver) and 1919 (for gold), and are fairly simple.  A group of 'market participants' (mostly banks, currently 6 for gold and 3 for silver) convene once (silver) or twice (gold) a day to determine the spot price.  They start with the current spot price, and see if there would be more buyers or sellers if the spot price was kept the same.  If more buyers, the price is raised; if more sellers, the price is lowered.  This is continued until the orders can be filled at one price.<p>
+People buying or selling silver or gold outside this process would simply do so at the spot price.  This system worked pretty well, and couldn't easily be manipulated, since real silver and gold was (presumably) changing hands.<p>
+
+<h3>Today</h3>
+Today, the London Fixings still carry on.  However, they now really just act as a way to get a once- or twice-a-day value for the price of silver or gold.<p>
+
+However, most silver today is bought or sold based on up-to-the-minute spot prices, which are based on the futures market and the OTC (Over the Counter) market, both of which trade massive amounts of silver and gold (the sheer volume implies that it is for speculation, to take advantage of short-term price fluctuations; most of the silver or gold is never in the hands of the buyers or sellers).  In the case of futures markets, computer generated trades appear to dominate, which essentially day trade, likely buying and selling within minutes.<p>
+
+In the United States, the COMEX is where the futures contracts are traded.  Amazingly, about <a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AG_TRADEDPERDELIVERED">447.12</a> ounces of silver are traded on COMEX for every ounce that is delivered!<p>
+
+Given how much silver is bought or sold by computer programs, and how little is delivered, it appears that the spot price is primarily set by the few people that do this massive amount of day trading in silver.  Some people question whether or not the price of silver (or gold) is manipulated, and it is easy to see why.  It almost certainly is manipulated, it's just a question of whether the people manipulating it are doing so intentionally or not.<p>
+
+<h3>Physical Silver Pricing - Who Sells Cheap?</h3>
+
+For the people that think that the silver price is artificially low, the question becomes, 'If the price is being held down, who is selling silver at an artificially low price?'.  The thought is that if the price is artificially low, more people will buy than sell, and eventually there won't be any more silver to buy.  So why is there (almost) always silver to buy?<p>
+
+First, the largest source of new silver by far is the mining companies.  They <i>have</i> to sell their silver.  In theory, they could store it waiting for a better price, but then they won't have money coming in to pay for their operations.  Otherwise, they have to accept whatever the current price is.  And people aren't going to buy for more than the spot price today (unless there isn't anywhere else to get it, but there almost always is).<p>
+
+The other major source of silver is recycled silver.  The companies melting and refining the old silver don't care what the price is, since the silver wasn't theirs to begin with (they have to buy the silver that is being refined).  Since they have to both buy and sell, they have to use the current spot price (again, since buyers won't pay more than the spot price).<p>
+
+For so-called 'retail silver' (such as silver eagles, smaller silver bars, and 90% junk silver coins), some of that comes to market through estates.  The people selling off the estates aren't likely to know (or even care) whether the value of silver is higher than the spot price.  They will just sell the silver for something close to the spot price.  For those that have silver and are looking to sell it themselves, dealers aren't going to pay higher than the spot price (plus/minus a small premium depending on the item), so they need to either sell based on the current spot price, or hold on for a higher price later (but, the spot price could go down by the time they finally get tired of waiting).<p>
+
+So for the most part, the only people that might like to sell silver, but aren't willing to sell based on the current spot price, are those that are both convinced that the value of silver is much higher than the current spot price, and can wait to sell.  And that accounts for a very, very small percentage of the market.<p>
+
+So if the market <i>is</i> manipulated, and the price is artificially low, that doesn't mean that silver won't come to the market.<p>
+
+
+<br><br><br><br><br><br>
+<!--
+...
+o 97% is paper trades not delivered
+[                                 97%                                                                                                   ! 3% ]
+
+o You would think from demand, a fairly large amount of people would cooperate in determining price.  But no, b/c 97% is in futures market
+
+o Jewelry owners [GOLD!!!] often are fine getting 20-60% of spot, even though they could likely sell on eBay for much more
+	o And, they pay much more than spot
+
+o No simple rule-of-thumb is used, like with stocks [P/E].
+-->
+
+
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+<center>
+<h1>About.Ag - Is the Price of Silver Manipulated?</h1>
+<br><br>
+</center>
+
+Many people claim that the price of silver and gold are manipulated.<p>
+
+On the one hand, it would be hard to manipulate a multi-trillion-dollar market (gold).  It would likely take a large government or large group of traders to do this, and would be hard to pull off without the help of COMEX and the CFTC.<p>
+
+On the other hand, about 100 times as much silver and gold trade on COMEX and other paper exchanges each day than there is demand for.  And silver (and gold) aren't as easy to price as, say, stock in a company.  The problem with manipulating most markets is that you have to convince people to either buy at an inflated price, or sell at an artificially low price.  But with silver (and gold), if you can control the 'spot price', you can get people to sell at a price that is lower than it otherwise should be.  The 'spot price' is often the current price of futures on COMEX, the very ones that have a trading volume about 100 times as much real silver.<p>
+
+Another interesting fact is that the price of silver directly tracks the price of gold.  Throughout the day, if the price of gold starts going up, within a couple of minutes the price of silver rises too.  And if the price of gold falls, silver will follow.  This either means that the people trading silver futures are also trading gold futures (and enter the prices in the same way), or the people trading silver believe that its value is based on the exact same fundamentals as gold (mostly ignoring the large differences between the two metals).<p>
+
+Some people feel that silver and gold are manipulated by short sellers of silver and gold futures.  The idea is that if there is a huge amount of silver or gold being sold short (where someone promises to deliver it in the future, even though they may not have it), they will have to eventually buy that silver or gold, at which point the prices would rise.  On the other hand, some people believe that the short sellers are able to rig prices downwards, where they can then buy back the silver at prices near what they were when they originally entered the market.<p>
+
+So is the price manipulated?  Do some research, and you can decide.<p>
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+<center>
+<form action="http://www.google.com" id="cse-search-box">
+  <div>
+     Search Site:     <input type="hidden" name="cx" value="partner-pub-4695996828499555:8855427495" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="35" />
+    <input type="submit" name="sa" value="Search" />
+  </div>
+</form>
+</center>
+<p><!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_floating_style addthis_32x32_style" style="left:50px;top:50px;">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-510ad2c560c0351a"></script>
+<!-- AddThis Button END -->
+<p>
+<div style="width: 775px; margin-left: auto; margin-right: auto; font: .875em Arial, sans-serif;">
+
+<h1>Record High Silver Spot Price in 1980</h1>
+
+There are lots of claims as to what the record price was in 1980 -- $41.50, $48.80, $<b>49.45</b>, $50, $50.50, etc.<p>
+
+Why is this?  Because there is the London Fix, New York closing price, intraday high, and other figures that people could use.<p>
+<br>
+
+<h2>Highest London Fix</h2>
+
+We believe the best price to use as the record high price of silver in 1980 is $<b>49.45</b>, which was the <a href="http://www.lbma.org.uk">London Fix</a> on January 18, 1980.<p>
+
+This represents a group of bullion banks with buyers and sellers discovering a mutually agreeable price, at a set point in time (avoiding adding 'high', 'low', and 'average' to the mix).<p>
+
+<h2>Highest New York Closing Price</h2>
+
+In 1980, there was no &quot;New York&quot; closing price.  Trading was done both at COMEX (in New York) and CBOT (in Chicago).  As far as we can tell, the COMEX and CBOT closing prices were not actively followed, nor can we even find a record of what they were.  Trading at times was fairly light (especially after the liquidation only order), so the closing price would not necessarily be the most useful price to use.<p>
+
+The COMEX closing prices for January, 1980 silver <i>appear</i> to have been $48.80 on January 17, 1980 and $46.80 on January 18, 1980.  These are from Jerome Smith's &quot;Silver Profits in the 80's&quot; (p.20), and a few other sources.  However, none state definitively that those were COMEX closing prices.<p>
+
+
+<h2>Intraday</h2>
+The intraday high refers to the highest price during the day.  According to "Financial Crises: Understanding the Powerwar U.S. Experience" p.71, and "The Great Silver Bubble" p.144, the intraday price of silver on January 18 1980 reached $50.36 on COMEX and $52.50 on CBOT.
+
+<h2>Other Prices</h2>
+COMEX rules prevented the silver price from moving up or down more than $1 a day (but did not apply to the current month).  As a result, the price for March, 1980 silver hit a high of just $41.50 on January 21, 1980, according to Paul Sarnoff's &quot;Silver Bulls&quot; (p.82).<p>
+
+On April 22, 2011 the Wikipedia article <a href="http://en.wikipedia.org/wiki/Silver_Thursday">Silver Thursday</a> shows a price of $48.70, which appears to be made-up.  This price appears as "The previous day the price had risen to $48.70 in New York", but it is not specified where or how that price came from.<p>
+
+<!--
+A thread at Ki*co used $50.35 as the COMEX high, and $54.00 as an intraday high, but are extremely unreliable!<p>-->
+
+
+<h2>High Price Chart, Low to High!</h2>
+
+<table border>
+<tr><th>Price</th><th>Date</th><th>Description</th></tr>
+<tr><td>$41.50</td><td>January 21, 1980</td><td>COMEX May, 1980 High</td></tr>
+<tr><td>$48.40</td><td>January 17, 1980</td><td>COMEX Settlement Price</td></tr>
+<tr><td>$48.70</td><td>January 17, 1980</td><td>Unknown.  Appears in Wikipedia 'Silver Thursday'.<br>Also in The Great Silver Bubble as:<br> "The previous day the price had risen to $48.70 in New York."</td></tr>
+<tr><td>$49.45</td><td>January 18, 1980</td><td>London Fix</td></tr>
+<tr><td>$50.36</td><td>January 18, 1980</td><td>Intraday COMEX High</td></tr>
+<tr><td>$52.50</td><td>January 18, 1980</td><td>Intraday CBOT High</td></tr>
+</table>
+
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+<center><h1>Mills Silver is FAKE</h1></center>
+
+<h3>What is 'Mills Silver'?</h3>
+
+The short answer is that it is not real silver!<p>
+
+A slightly longer answer is that these are fake silver bars, made of a base metal (such as copper or lead), and (presumably) have silver electroplated on them.  We estimate that there is less than $.05 worth of silver on each one.<p>
+
+'Mills Silver' is a term apparently made up by the CMC Mint (selling on auction sites as ameropaintball).  'Mil' is a term used to indicate a thickness of silver/gold plating.  Until February, 2010 we had not heard of the term 'mills silver'.  At that time, though, the CMC Mint started mass producing many different bars of a base metal and labelling them ".100 MILLS .999 FINE SILVER - 1 TROY OZ" or ".100 Mills.999 Fine Silver - 1 Troy Oz Ounce" or "1 OZ .100 MILLS.999 FINE SILVER" or "100 MILLS FINE SILVER - 1 OZ TROY" or "100 mills .999 Fine Silver - 1 Oz Troy" or "1 Troy oz - 100 mills - 999 Silver" (and probably some other variations).<p>
+
+The term 'mil' when electroplating silver refers to 1/1000".  The items marked '100 mills', if referring to 'mils', would be 1/10" thick on each side -- yet a standard real silver bar is 91 mils thick (.091").  Clearly, these are not electroplated with 100 mils of silver, or they would really contain about 2 ounces of silver, and the company would quickly go out of business.  Therefore, the ones marked '.100 mills' probably mean '.100 mils', or 1/10,000".  That is 1/910th the thickness of a standard silver bar, and multiplied by 2 (as all sides should have the electroplate on them) is 1/455th the thickness of a standard silver bar.  That's about 0.22% silver, or 22 parts silver per 978 parts of lead/copper/whatever.  Or a value of less than $.05 even with silver at $20/ounce.<p>
+
+The term 'mills' has a legal meaning in the United States; it refers to 1/10 cent.  As such, these bars may be considered counterfeit coins.<p>
+
+<h3>Should I buy something labeled 'mills silver'?</h3>
+No, unless it is clearly marked as being electroplated.  In many countries, it is illegal to buy, sell, or ship items that are not marked properly.  All of the bars/rounds labelled 'mills' that we have encountered were not (in our opinion) legal to buy, sell, or ship in the United States.  They also violate the Hobby Protection Act in the United States, as they are not marked with 'COPY'.<p>
+
+Of course, if you find one of these stunningly beautiful, and don't mind the legal risks of buying and owning one, and don't mind that you won't be able to sell it later, go ahead and buy one.<p>
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+<br>
+
+<table width="100%">
+<tr><td>
+<table>
+<script>
+document.write( '<tr><td colspan=3>Melt Values: <font color="gray">&nbsp;&nbsp;(spot at $20.82, as of 10 Mar 2014)</font></td></tr>' );
+document.write( '<tr><td>1 Oz <a href="/MillsSilver.htm">100 Mills</a> Silver Bar/Round:</td><td>&nbsp;</td><td>$' + FormatDollars( 20.82 / 455, 5 ) + "</td></tr>" );
+document.write( '<tr><td>1 Oz Silver Bar/Round:</td><td>&nbsp;</td><td>$' + FormatDollars( 20.82, 5 ) + "</td></tr>" );
+document.write( "<tr><td>$1 90% Silver Coins (.715oz):</td><td>&nbsp;</td><td>$" + FormatDollars( 20.82 * .715, 5 ) + "</td></tr>" );
+document.write( "<tr><td>10oz Silver Bar:</td><td>&nbsp;</td><td>$" + FormatDollars( 20.82 * 10, 5 ) + "</td></tr>" );
+document.write( "<tr><td>Tube of Silver Eagles (20oz):</td><td>&nbsp;</td><td>$" + FormatDollars( 20.82 * 20, 5 ) + "</td></tr>" );
+</script>
+</table>
+</td>
+<td align="center" width="5%">
+</td>
+<td align=right>
+<table>
+<script>
+document.write( '<tr><td colspan=3>Melt Values: <font color="gray">&nbsp;&nbsp;(spot at $20.82, as of 10 Mar 2014)</font></td></tr>' );
+document.write( "<tr><td>100oz Silver Bar:</td><td>&nbsp;</td><td>$" + FormatDollars( 20.82 * 100, 6 ) + "</td></tr>" );
+document.write( "<tr><td>Monster Box Silver Eagles (500oz):</td><td>&nbsp;</td><td>$" + FormatDollars( 20.82 * 500, 6 ) + "</td></tr>" );
+document.write( "<tr><td>$1,000FV 90% Silver (715oz):</td><td>&nbsp;</td><td>$" + FormatDollars( 20.82 * 715, 6 ) + "</td></tr>" );
+document.write( "<tr><td>1,000 Oz Silver Bar:</td><td>&nbsp;</td><td>$" + FormatDollars( 20.82 * 1000, 6 ) + "</td></tr>" );
+</script>
+</table>
+</td></tr>
+</table>
+
+<br>
+<center>
+</center>
+
+
+
+<table width="90%">
+<tr><td width="50%">
+
+QUICK STATS <font color="#808080">(spot as of about 10 Mar 2014 16:00, most others updated 17 Jan 2013; click values for full details)</font><br><br>
+
+<table border width="100%">
+<tr><th width="30%">Stat</th><th width="30%">Silver</th><th width="30%">Gold</th><th width="10%">Ratio</th></tr>
+<tr><td>Spot Price:</td><td><b>$20.82</b></td><td>$1341.10</td><td><b><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_SILVERGOLD">64.41</a>:1</b></td></tr>
+<tr><td>Physical Spot Price:</td><td><b>$<a style="text-decoration:none; color: black;" href="statinfo.htm?var=PHYSICALSILVERSPOT">21.06</a></b></td><td>$<a style="text-decoration:none; color: black;" href="statinfo.htm?var=PHYSICALGOLDSPOT">1349.92</a></td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_PHYSICALSPOT">64.10</a>:1</td></tr>
+<tr><td>Total Identified Gold/Silver:</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=TOTAL_SILVER_HOLDINGS">602.829</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=TOTAL_GOLD_HOLDINGS">1187.193</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_TOTAL_HOLDINGS">0.51</a>:1</td></tr>
+<tr><td>Highest Price Ever (London Fix):</td><td>$<a style="text-decoration:none; color: black;" href="statinfo.htm?var=SILVER_HIGHPRICE_NOMINAL">49.45</a> (18 Jan 1980)</td><td>$<a style="text-decoration:none; color: black;" href="statinfo.htm?var=GOLD_HIGHPRICE_NOMINAL">1218.25</a> (03 Dec 2009)</td><td>todo</td></tr>
+<tr><td>Highest Price, Inflation Adjusted:</td><td>$<a style="text-decoration:none; color: black;" href="statinfo.htm?var=SILVER_HIGHPRICE_ADJUSTED">127.60</a> (18 Jan 1980)</td><td>$<a style="text-decoration:none; color: black;" href="statinfo.htm?var=GOLD_HIGHPRICE_ADJUSTED">2193.25</a> (18 Jan 1980)</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_HIGHPRICE_ADJUSTED">17.19</a>:1</td></tr>
+<tr><td>Estimated Mined To Date:</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=SILVER_EVER_MINED">44542.001</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=GOLD_EVER_MINED">4250.000</a> Million Ounces</td><td><b><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_MINED_EVER">10.48</a>:1</b> http://www.gold-eagle.com/editorials_05/zurbuchen011506pv.html</td></tr>
+<tr><td>Currently Mined, Annually:</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=SILVER_MINED_CURRENTLY">680.900</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=GOLD_MINED_CURRENTLY">79.895</a> Million Ounces</td><td><b><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_MINED_CURRENTLY">8.52</a>:1</b> http://www.silverinstitute.org/supply_demand.php & http://www.invest.gold.org/sites/en/why_gold/demand_and_supply/</td></tr>
+<tr><td>Annual Demand:</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=SILVER_ANNUAL_DEMAND">888.400</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=GOLD_ANNUAL_DEMAND">122.324</a> Million Ounces</td><td><b><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_ANNUAL_DEMAND">7.26</a>:1</b> http://www.silverinstitute.org/supply_demand.php & http://www.research.gold.org/supply_demand/</td></tr>
+<tr><td>U.S. Eagles, Sold Last Month:</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=USMINT_AG_OZLASTMONTH">3.160</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=USMINT_AU_OZLASTMONTH">0.137</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_USMINT_OZLASTMONTH">23.15</a>:1 http://www.usmint.gov/mint_programs/american_eagles/?flash=yes&action=sales&year=2010 & http://www.usmint.gov/mint_programs/american_eagles/?flash=yes&action=sales&year=2010</td></tr>
+</table>
+<br><br>
+<table border width="100%">
+<tr><th width="30%">Stat</th><th width="30%">Silver</th><th width="30%">Gold</th><th width="10%">Ratio</th></tr>
+<tr><td>COMEX Open Interest:</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AG_OPENINTEREST">687.710</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AU_OPENINTEREST">44.130</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_COMEX_OPENINTEREST">15.58</a>:1</td></tr>
+<tr><td>COMEX Top 4 Net Short:</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AG_NETSHORT4">279.898</a> Million Ounces (<a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AG_NETSHORT4_PC">40.70</a>%)</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AU_NETSHORT4">17.696</a> Million Ounces (<a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AU_NETSHORT4_PC">40.10</a>%)</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_COMEX_NETSHORT4">15.82</a>:1</td></tr>
+<tr><td>COMEX Daily Volume (Traded):</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AG_DAILYVOLUME">292.265</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AU_DAILYVOLUME">23.154</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_COMEX_TRADED">12.62</a>:1 http://www.cmegroup.com/tools-information/build-a-report.html?report=dailybulletin</td></tr>
+<tr><td>COMEX Daily Volume (Delivered):</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AG_DAILYDELIVERY">0.654</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AU_DAILYDELIVERY">0.011</a> Million Ounces</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_COMEX_DELIVERED">60.28</a>:1 http://www.cmegroup.com/delivery_reports/MetalsIssuesAndStopsYTDReport.pdf</td></tr>
+<tr><td>COMEX Ounces Traded Per Ounce Delivered:</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AG_TRADEDPERDELIVERED">447.12</a>:1</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AU_TRADEDPERDELIVERED">2135.36</a>:1</td><td>n/a</td></tr>
+<tr><td>% of Annual Demand Met by COMEX:</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AG_DEMAND_PERCENT">18.39</a>%</td><td><a style="text-decoration:none; color: black;" href="statinfo.htm?var=COMEX_AU_DEMAND_PERCENT">2.22</a>%</td><td>n/a</td></tr>
+</table>
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+<h1>Gold Versus Silver</h1>
+
+<h3>Which is better? You decide</h3>
+
+We believe that silver has more profit potential than gold in the long term.  However, we also know that silver is more volatile than gold.  So let's take a look at the various arguments of why gold is a good investment, why silver is a good investment, and how gold and silver compare to each other.<p>
+
+
+<table border>
+<tr><th>Reason</th><th>Winner</th><th>Silver Details</th><th>Gold Details</th></tr>
+
+<tr><td>Current use as money</td><td>Gold</td><td>Silver is neither used as money, nor as a reserve by governments.  As such, it does not receive much value for those purposes.</td><td>Gold isn't currently used as money, but is used as reserves by governments.  As such, it is given a high value.</td></tr>
+
+<tr><td>Value due to Beauty</td><td>Neither</td><td>Silver was originally used in part because of its beauty, that could not be matched with other metals.  However, today inexpensive silver plating is virtually indistinguishable from pure silver.</td><td>The same holds true for gold.</td></tr>
+
+<tr><td>Silver/Gold Ratio</td><td>Silver</td><td>The silver/gold ratio is how much silver gold can buy.  As of 10 Mar 2014, it is <a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_SILVERGOLD">64.41</a>:1 (meaning that an ounce of gold will buy <a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_SILVERGOLD">64.41</a> ounces of silver).  Historically, this has been about 15:1 (see <a href="http://www.dani2989.com/gold/goldsirverratio180027092004gb.htm">explanation</a> or <a href="http://goldinfo.net/silver600.html">graph</a>), and came about in diverse geographic areas, suggesting that a 15:1 ratio is 'normal' (assuming that silver and gold are used as money).  There have been roughly <a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_MINED_EVER">10.48</a> ounces of silver mined for every ounce of gold (currently, it is <a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_MINED_CURRENTLY">8.52</a>:1), which likely accounts for why for centuries the ratio was about 15:1.  If for some reason the silver/gold ratio returned to 15:1, silver would increase in price significantly. <!-- {450%} (or gold could go down {90%}, or a combination of the two). --></td><td>It could be argued from the silver/gold ratio that silv
+er no longer has monetary value, and therefore the ratio could continue to increase.</td></tr>
+
+<tr><td>Ounces of Gold + Silver ever mined</td><td>Debatable</td><td>Historically, about <a href="http://www.gold-eagle.com/editorials_05/zurbuchen011506pv.html"><a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_MINED_EVER">10.48</a> ounces of silver</a> have been mined for every ounce of gold.  This backs the idea of a 15:1 silver/gold ratio (presumably, the idea was that on average people would have half their wealth in gold, and half in silver).  It could also be argued that since silver is also an industrial metal (I.E. a lot is consumed, never to be seen again), the silver ratio should be lower than the <a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_MINED_EVER">10.48</a>:1 mined ratio.  If people desired equal values of silver and gold, and silver and gold were distributed evenly, there would be about an <a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_MINED_EVER">10.48</a>:1 ratio (assuming silver used industrially could be used; if not, the ratio would be more in favor of silver).  This would result in a {550%} increase in the price of silver (or corresponding decrease in the price of gold).</td><td>There is a lot more silver mined than gold, and therefore gold should be more valuable than si
+lver.  That's pretty clear (unless there are other extreme factors involved).</td></tr>
+
+
+<!--
+<tr><td>Historical Precedence</td><td>Silver</td><td>Silver has historically traded at about a 15:1 ratio against gold, whereas today it trades at <a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_SILVERGOLD">64.41</a>:1.<br>Silver has traded as high as $<a style="text-decoration:none; color: black;" href="statinfo.htm?var=SILVER_HIGHPRICE_NOMINAL">49.45</a> ($<a style="text-decoration:none; color: black;" href="statinfo.htm?var=SILVER_HIGHPRICE_ADJUSTED">127.60</a> adjusted for inflation), but is just $20.82 (as of 10 Mar 2014).<br>  Got silver?</td><td>The highest price of gold in 1980 (about $850) has been passed, but the inflation-adjusted high ($<a style="text-decoration:none; color: black;" href="statinfo.htm?var=GOLD_HIGHPRICE_ADJUSTED">2193.25</a>) has not (gold is currently trading at $1341.10).</td></tr>
+-->
+
+
+
+<tr><td>Ounces of Gold + Silver currently mined</td><td>Silver</td><td>The best estimates show <a href="http://www.silverinstitute.org/supply_demand.php"><a style="text-decoration:none; color: black;" href="statinfo.htm?var=SILVER_MINED_CURRENTLY">680.900</a> million ounces</a> of silver mined per year in 2008, and <a href="http://www.invest.gold.org/sites/en/why_gold/demand_and_supply/"><a style="text-decoration:none; color: black;" href="statinfo.htm?var=GOLD_MINED_CURRENTLY">79.895</a> million ounces</a> of gold mined per year (per GFMS Ltd.). That works out to <a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_MINED_CURRENTLY">8.52</a> ounces of silver mined annually for every ounce of gold, which suggests that silver should be priced at about 1/8 the price of gold, requiring silver to rise about about {750%} to reach it.</td><td>Again, it could be argued that so much more silver being mined than gold justifies golds higher price.</td></tr>
+
+<tr><td>Previous Highs</td><td>Silver</td><td>Silver's highest ever price was right around $50/ounce (it traded over that, but the daily settlement price was slightly lower).  As of this writing, silver is trading for 30% of that price, meaning that silver would have to go up 235% to reach that price.</td><td>As of this writing, gold is trading higher than its high of $850/oz on January 21, 1980.</td></tr>
+
+<tr><td>Previous Highs - Inflation-adjusted</td><td>Silver</td><td>Silver's <a href="http://www.westegg.com/inflation/">inflation-adjusted high</a> is about $130, over 8 times the current price as of this writing.  In other words, if we hit an inflation-adjusted high, silver would be at $132, and go up over 700%.</td><td>Gold's inflation-adjusted price is about $2,275, about 2 times the current price as of this writing.  In other words, if we hit an inflation-adjusted high, gold would be at $2,275, and go up over 100%.</td></tr>
+
+<td>Roman pay</td><td>Silver</td><td>According to <a href="http://en.wikipedia.org/wiki/Denarius">Wikipedia</a>, a Roman soldier would typically be paid 1 denarius per day of work, equating to at least US$58 (based on minimum wage).  At between 3.4-3.9g per coin, that works out to $462 to $530 an ounce.  These are just rough estimates, though!</td><td>The Aureus was about 7.3-8g of gold, and equal to 25 denari.  That works out to a silver:gold ratio of about 11-12:1, or gold being valued at roughly $5,000 an ounce (based on the labor it could buy).  These are just rough estimates, though!</td></tr>
+<tr><td>Bulk silver/gold</td><td>Silver</td><td>The largest known stockpiles of silver amount to less than 1 billion ounces (such as Comex warehouses and the SLV ETF).  If someone (perhaps a government) wanted to buy, say, 100 million ounces of silver, there would be nowhere to buy it at once.  It would require buying it on the open market, raising the price of silver in the process.</td><td>There are numerous stockpiles of gold; the governments of many countries have plenty of gold on hand.  To raise the price of gold, governments would need to add to their stockpiles.</td></tr>
+
+<td>Potential Price Manipulation</td><td>Both</td><td>There are people who claim that the price of silver (and gold) are manipulated to the downside (I.E. the price is lower than it really should be).  There is evidence that suggests that this could be the case (either the 'conspiracy theory' version, or just simply that computer investment programs are unintentionally keeping the prices down).  If this were true, it could benefit the prices of silver and gold.</td><td>Same as with silver.</td></tr>
+<tr><td>Underlying Face Value</td><td>Silver</td><td>You can easily buy 1 ounce silver Canadian Maple coins that, at this writing, are guaranteed not to lose more than about 68% of their value.  Similarly, 40% U.S. Kennedy Half Dollars are guaranteed to be worth US$.50 each, and contain 4.6g of silver each, and at current prices guarantees that you cannot lose more than 80% of your investment.  Of course, if silver prices ever did get that low again ($3-$5/oz), these coins could be sold at more than face value, as they likely would sell for a fairly high premium.  And, this argument only applies if you buy silver coins with a high face-value-to-silver ratio.</td><td>Right now, U.S. Gold Eagles have a face value of approximately 5% of the value of the gold, meaning that your investment would have to drop about 95% for the face value to become a factor.</td></tr>
+
+<td>Investment Demand (ETFs)</td><td>Debatable</td><td>As of this writing, the value of the largest gold ETF (GLD) is 7.75 times as much as the largest silver ETF (SLV) ($37.57B vs $4.85B).  If people invested as much in silver as gold (by selling some gold and buying silver, in the ETFs), that would result in $16.36B invested in silver, which would require buying 1.1 billion ounces (likely more than is currently available), which would drive prices much higher (Warren Buffett's purchase of 130 million ounces in 1997-1998 caused the price to spike to 80% over 7 months).</td><td>Gold investors could simply argue that gold is more valuable than silver, and more perceived as money than silver, and therefore one should devote a much smaller amount of their precious metals investment to silver.</td></tr>
+<tr><td>Return to Gold/Silver Standard</td><td>Depends</td><td>It may be unlikely that we would return to a gold/silver standard.  But if we did, and silver was part of it (bi-metal), and all gold and silver ever mined were divided evenly among everyone, there would be 6.4 ounces of silver per person, and .6 ounces of gold per person.  That's if all silver ever mined could be obtained for coinage.  Today, a $1,000 silver investment would get you 10 times that 6.4 ounces.</td><td>This also shows that gold is very rare, with less than an ounce per person to go around.</td></tr>
+
+<td>Available Gold and Silver</td><td>Silver</td><td>Most silver that has been mined has 'disappeared', either into products, or even investments.  Most experts would be amazed if a person or organization could obtain even 10% of the silver ever mined (4-5 billion ounces).  The price spike after Warren Buffett's 130 million ounce purchase helps confirm this (if there were 40+ billion ounces available, buying .3% would not have had such a major impact on the price).</td><td>About <a href="http://www.research.gold.org/supply_demand/">11%</a> of the gold mined each year is used industrially (compared to <a href="http://www.silverinstitute.org/supply_demand.php">62%</a> for silver), and much of that is eventually recycled.  As a result, most gold ever mined is still available (only <a href="http://www.invest.gold.org/sites/en/why_gold/demand_and_supply/">2% is unaccounted for</a>).</td></tr>
+
+
+<!-- STOCKPILES: -->
+<tr><td>Stockpiles of gold and silver</td><td>Silver</td><td>The best estimates are that there are roughly 6 billion ounces of gold that could be sold without mining (943 million ounces by our count in government stockpiles and ETFs), but perhaps a few billion ounces of silver that could be sold without mining (482 million ounces in government stockpiles and ETFs, by our count).  So there may be less silver available for sale than gold!  That would suggest silver prices roughly equal to gold prices, resulting in a whopping 6600% increase in the price of silver!</td><td>n/a</td></tr>
+
+<td>Government Stockpiles</td><td>Debatable</td><td>There are nearly no government stockpiles of silver at present.  The United States used to have about <a href="http://www.onlygold.com/articles/ayr_2007/A_Modern_Silver_Story.asp">3 billion ounces</a> of silver, but has gotten rid of it all.  If governments want silver at some point, it will significantly increase demand, and therefore the price of silver.</td><td>Plenty of governments have plenty of gold (nearly 1 billion ounces total, per <a href="http://en.wikipedia.org/wiki/Official_gold_reserves">Wikipedia</a>.  This helps increase the perceived value of gold versus silver.</td></tr>
+<tr><td>ETFs</td><td>Silver</td><td>The biggest silver ETF (SLV) has a market cap of <a href="http://us.ishares.com/product_info/fund/overview/SLV.htm">$4.9B</a> (as of 29 Jan 2010).  As of 22 Nov 2009, total gold ETF holdings were <a href="http://www.commodityonline.com/futures-trading/technical/Combined-Gold-ETF-holdings-at-56.4-million-ounces-12931.html">56.4 million ounces</a>, worth about $64B.  That's 13 times as much money in gold as silver, suggesting that silver prices would go much higher if equal amounts were invested in gold and silver.</td><td>The same stats could be used to say that silver no longer has monetary value.</td></tr>
+
+<tr><td>Economist Adam Smith</td><td>Silver</td><td>In Wealth of Nations, the famous economist Adam Smith stated "We ought naturally to expect, therefore, that there should always be in the market, not only a greater quantity, but a greater value of silver than of gold." <!-- In the 'Variations in the Proportion between the respective Values of Gold and Silver' section, I.11.181  --> He is saying that the value of all the silver in the world (I.E. the market capitalization) should be higher than that of all the gold in the world.  In other words, the silver:gold ratio should be <i>less than</i> the <a style="text-decoration:none; color: black;" href="statinfo.htm?var=RATIO_MINED_EVER">10.48</a>:1 ratio of silver to gold ever mined.</td><td>Of course, those words were written in a time of bimetalism; since then, there was a gold standard and then the current fiat system.  As a result, silver is in less demand than it otherwise might be.</td></tr>
+
+
+<td>Retail Shortages</td><td>Silver</td><td>In March, 2008 there was an unprecedented shortage of 'retail silver' (physical silver in forms that all but the largest investors typically purchase). Most large bullion dealers were out of most or all of their silver (and their suppliers were out, too) for a few weeks.  Again, in August, 2008, major shortages occurred.  This could be attributed to the silver market being small, but if shortages of retail silver haven't occurred in the past, it's a sign that either [1] there is less silver available than before, or [2] investors are purchasing more silver than in the past, or [3] dealers were reducing their inventory (which doesn't make business sense).  As one of these shortages began, The Tulving Co started selling 1000 ounce silver bars, suggesting that it was one of the few forms of silver that could be obtained (they are rarely sold in the retail market).</td><td>There have been minor retail gold shortages, but not to the extent of the silver shortages.  The 
+argument that silver shortages occurred because the silver market is small don't help -- if the silver market is so small, it would take less investor demand to cause prices to rise.</td></tr>
+<tr><td>Financial Advisors Recommend Precious Metals</td><td>Debatable</td><td>Most financial advisors recommand having precious metals in a diversified portfolio (typically 5% to 10%).  Most people do not.  Over $10 trillion is invested in stocks.  If 5% of that were in precious metals, split between gold and silver, that's $250 billion each that would be moved into gold and silver.  At today's prices, that would buy over 16 billion ounces of silver, which would be impossible to find, forcing the price up drastically.</td><td>Doing so would also create demand for 250 million ounces of gold, but that demand could be met if needed by government selling (or, the price of gold would rise -- but not as much as with silver).</td></tr>
+
+<td></td><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td><td></td></tr>
+
+</table>
+
+
+
+
+
+<hr>
+
+
+
+
+
+<pre>
+Summary of CFTC Meeting to Examine Futures and Options Trading in the Metals Markets, March 25 2010.
+
+Note that there may be a few remarks mis-attributed, as you had to memorize faces as people were introduced.
+And this is from a biased viewpoint (as were the viewpoints of most at the meeting, and listening to it).
+
+---
+PARTICIPANTS:
+CFTC Chairman Gary Gensler
+CFTC Commissioner Michael Dunn
+CFTC Commissioner Jill E. Sommers
+CFTC Commissioner Bart Chilton
+CFTC Commissioner Scott D. O'Malia
+
+Panel One:
+   Dan Berkovitz, General Counsel, CFTC
+   Steve Sherrod, Division of Market Oversight, CFTC
+
+Panel Two:
+   Jeff Burghardt, Luvata
+   Jeremy Charles, HSBC Bank USA, NA
+   Tom LaSala, CME Group
+   Mark Epstein, Individual Trader
+
+Panel Three:
+   Tom Callahan, NYSE Euronext
+   Dr. Henry G. Jarecki, Gresham Investment Management
+   Bill Murphy, Gold Antitrust Action Committee
+   Kevin Norrish, Barclays Capital
+   John Lothian, John Lothian & Co.
+
+Panel Four:
+   Richard Strait, Triland USA, a Division of Mitsubishi Corporation
+   Simon Grenfell, Deutsche Bank
+   Mike Masters, Masters Capital
+   Harvey Organ, Individual Investor
+   Jeffrey Christian, CPM Group
+
+---
+
+MEETING NOTES:
+
+
+o Chairman Gensler started by mentioning that they are looking for comments by public, through April 30, 2010, sent to metalshearing [at] cftc dot gov.  But at the end mentioned the April 30 deadline as being for the Energies comments.  Maybe they will be merged?
+
+o 9:13 Commissioner Dunn said that they usually do not tell the public when there is an investigation.
+	o Futures are a 'Zero sum game' -> for every  winner, there's a loser
+	o If OTC rules are not made too, then futures market will move to non-transparent OTC
+		o [MY COMMENT: That's fine; OTC doesn't set prices, so it would help price discovery to remove people trading large quantities in <1 second]
+
+o 9:16 Commissioner Sommers spoke.
+o 9:18 Commissioner Chilton spoke, he supports position limits
+o 9:18 Commissioner O'Malia spoke.
+o 9:21 Dan Berkovitz, General Counsel, CFTC, spoke.
+...
+o 9:31 Someone spoke; LBMA OTC accounts for 50% of trading
+	o 9:37 The 'Summary of Traders at or Above Positions Limits' slide; those numbers not previously released to public.
+	o 9:39 They are owner level, not trader level.  Top 4 net short are copper/gold/silver [see slide]
+o 9:40 Gensler asked Dan Berkovitz about manipulation allegations, should they be addressed here?
+	o Generally inappropriate to discuss current investigations, nor mention market participants by name.
+	o Witnesses should refrain from specific allegations to specific parties
+o 9:42 Chilton: 'We are not censoring our witnesses' testimony"
+
+o CMEGROUP said that CFTC can't impose limits, since excessive speculation has not been proved.
+	o 9:43 Berkowitz says his interpretation is that a finding of excessive speculation is NOT necessary for imposing position limits
+o 9:48 Dunn: 
+	o 9:51 DMO (Director of Market Oversight): When accountability limits hit, they monitor daily. They get consent to get more info; if they cannot get it, trader cannot go above limit.
+	o Dunn: All of these [large 4 shorts] were sanctioned by the CFTC then, right?
+		o DMO was evading, talking about how there were 20+(?) exemptions in gold, 5(?) exemptions gold/silver.
+	o Dunn: 'So you have sanctioned what is going on, right?'
+		o DMO: DMO doesn't do anything in particular; the exchange gathers the info.  DMO doesn't do anything when traders exceed levels
+o 9:55 Sommers:
+	o What would justify a trader having these large short positions?  DMO?Dunn?  They don't have to justify it unless hard limit hit.
+	o Examples of how traders have justified exemptions?  DMO?DUNN?: There are a variety; the most typical is bonafide hedging position (where trade holds a cash position in gold, hedges in futures).
+o 9:56 Chilton:
+	o We must promote price activity, but we can't list traders. This concerns Chilton. Making the Bank report less transparent not good. Why did we do it?
+	o If a banker has a position so large that it would reveal the trader, shouldn't that pique our interest?
+		DMO: Yes.
+	o We need mandatory hard-cap limits. If a someone is over the limit, you're in violation. If they still do it, fined, etc.
+	o Physical shortages: Some had forecast that the market would drop.
+		o ?: ETFs are linked through arbitrage to Comex.
+
+10:08 They then moved on  to Panel 2.  That had Tom Callahan, NYSE Euronext; Dr. Henry G. Jarecki, Gresham Investment Management; Bill Murphy, Gold Antitrust Action Committee; Kevin Norrish, Barclays Capital; John Lothian, John Lothian & Co.
+
+10:12 Tom LaSala (CME Group).  Excessive speculation has not occurred. The 'Fringe' group GATA has not supported their position with credible evidence. Position limits Would shift volume outside of the CFTC's reach. LBMA deliveries dwarf those of Comex (except in November 2009 and January 2010).
+
+10:16 Jeremy Charles (HSBC). With position limits, activity will move to other markets. He suggests that banks have real gold/silver in London, but are shorting it in US [I add: why? Perhaps can't short in London?]. The CFTC should have clear exemptions for (bonafide?) hedging.
+
+10:20 Mark Epstein.  He is a market maker, for 2-sided markets. He has a computer program that adjusts constantly. He closes out positions at end of day, so no overnight risk [I add: wouldn't that mean that he sells positions right before closing; could that manipulate?]. Often it is Second-by-second or millisecond-by-millisecond.  Typically he trades between 1,000-2,000 contracts per day.
+o On Feb 4? at 10:15AM, in 1/4 second, 2,000 futures contracts were sold and caused the price to go down 100 ticks.  That's 200,000oz of gold, or $215 million. Stuff like this stuff happens every day.
+o He bought physical silver in May 2008.  The price went from $17 down to $8.25 up to 19.50. At the end of 2008, he took physical delivery of 1,000oz silver bars, had them melted into 100oz bars, because of the huge price discrepancy between futures markets and retail markets.
+o He believes that the 7.5Moz limit in silver is too high.  Market has net short position of 30,000 short contracts, HUGE. They must have had exemptions, this isn't hedging.  Silver behaves like no other market.
+o The short position has a chilling effect on market makers, so they need to widen price spreads to account for the increased risk. The big players set prices.  The short positions are irresponsibly large.
+o There is the risk of failure to deliver the silver, would hurt COMEX.
+o He thinks limits should be 2,000 contracts, or 1,000 for the delivery month. Only exemptions should be for bonafide hedgers.
+
+10:27 Jeff Burghardt (Luvata).  He thinks hedge funds are causing prices to go up.  If funds had smaller positions, volatility would go down. He suggests higher margin requirements. Position limits would affect only a few if any funds, margin requirements would affect all funds.
+
+10:32 Diarmuid O’Hegarty (LME).  Talking about base metals, e.g. copper.
+
+10:37 Gensler asked Q: What is the nature in the silver market of large concentrated shorts?
+	o Charles (HSBC):  Short positions are hedged by loco London (in their case, can't talk about other banks). They sell short to get cash for operations, too.
+		o HSBC maintains a long position, so they can provide their clients with silver, the clients buy it.
+	o Epstein: That is the role of the futures market (if you have silver, you can then sell it short). The issue with silver is for example on 24 Mar 2010 8:37:53, someone dumped 272 contracts, silver went down 14 ticks or about 1/2%, all within 50ms.  He says that if 2000 silver contracts were sold insantly, it would definitely be 'limit down'(!!!).
+	o Q: high frequency algorithms. Epstein, do you see someone on other side with much more powerful program?
+		o Epstein: There is a counterparty to every transaction. A bank buying/selling $5M-$10M of silver would massively affect the price.
+	o Q: Are you colocated [have a computer right next to Comex computers]?
+		o Epstein: Yes, anyone can get access to buy/sell quickly at Comex in Chicago.
+	o Q: Some people complained to the CFTC that they couldn't buy silver, but Epstein did.
+		o Epstein: I took delivery. I had a truck pick it up from exchange. There are 115 million ounces in the exchange, he just got slip (warehouse receipt) for some of it.
+			o Epstein: Once you take the bars off exchange, if you want to put them back, they need to be re-assayed, which would be expensive.
+			o Epstein: Futures market needs to track the physical market; there was a $2-3 difference in 2008, the futures market was not serving its purpose.
+			o Epstein: Comex could lose all silver. People could have drained all the silver if the price difference kept up.
+	o Q: What would happen if people drained the silver vaults at Comex?
+		o Tom LaSala: If there was a high demand for metal, metal would come in to replenish supplies.
+			o We're not a coin market, that's why coins may be expensive when 1000oz bars through Comex are not.
+
+10:50	o Sommers->Lasala(CME): How do energy/metals markets relate?
+		o Being in the pit, you would have a 'feel' of market; with electronic trading you do not. It's more liquid now. Some markets are more volatile than others, normally smaller markets [e.g. silver] are affected more.
+		o Perhaps that large order in silver was made in error when the order book was shallow. It was not necessarily a party with high concentration.
+10:53	o Sommers->Lasala(CME): Bonafide hedging exemptions. Why would you, or not, grant them? 
+		o Lasala: They are not granted blindly. You apply for one, stipulate your book, state what is behind your position. Grants are for a finite number of contracts.
+		o Sometimes, I have no doubt in my mind they have the metal, but we can't give them an exemption because it would affect the price/market.
+		o The limits are historically small; Lasala wanted to keep them that way.
+
+10:56	o Chilton->Lasala: You took 28 actions in metals. Some were to maintain position, some to reduce; how many to reduce?
+		o Lasala: I don't know, I will supply them after the meeting.
+	o Chilton: Did you instruct any of the big shorts to reduce?	
+		o Lasala: I think so. [!!!]
+	o Chilton: Where there any fines?
+		o There is at least 1 matter pending. [!!!]
+11:00	o Chilton: Jeremy Charles/HSBC, for your bank's own funds, you don't feel that you should be allowed to go over limits, right (e.g. for banks own purposes, not for customers)
+		o Jeremy Charles: We would use an exemption to hedge one contract against another.
+			o Jeremy Charles: I think it's a misconception that there are large (unhedged?) short positions out there. [!!!]
+		o Q: Would you be opposed to limits for your own book?  That is being proposed in energies.
+11:02	o O'Malia -> Jeremy Charles:
+		o Jeremy Charles: The stocks of gold/silver in London are massive compared to Comex stocks.  For shortages, there's a shortage of one type of product. Physical metal is always available; if you want 1 million ounces of gold, HSBC can get within 48 hours with no problem.  There is a massive stock in London.
+11:06	o Epstein: The difference in May and July futures contracts is about $.02, that's about the storage cost.  It is always that way.  But it was trading $.10 in the other direction (in example he mentioned re: early 2008)
+	o If it is moving $.12 between months, something significant is taking place.  It should never happen that Comex is the easiest way to get physical metal.
+11:07 	o (?). They try to make sure there is enough supply for spot month deliveries. It would trigger a potential action. The rules of exchange allow positions to be forced to be closed out.
+11:09	o Gensler->LaSala. Gold/silver have the same limits, but gold is 5 times the size of silver market, why is that?
+		o LaSala: That is the way it historically has been.
+	o Gensler Q: How often do you talk to Top 4 Shorts?
+		o LaSala: We talk to them Where appropriate, when necessary.
+	o Gensler Q: How Often?
+		o LaSala: Not daily. If we know about their positions, then we leave it alone.
+	o Gensler: In the case of being short futures, and long gold: HSBC says they have large inventory. London is the primary settlement globally. Metal normally kept in vault if short.
+	o Gensler: More transparency would be helpful.
+	o LaSala: We did a recent review of large shorts. They will share with the Director of Market Oversight (DMO).  Numbers are comparable to what they were in the past.
+		o [My Note: Why were they not shared already???]
+11:15	o Jeff Burghardt(?): It looks like the pricing of copper has moved away from the fundamentals.  e.g. there was an earthquake in Chile, and the price moved just $.07, whereas it moves much more than that when a large player moves into the market.
+11:17-12:01 missed.
+12:01 Kevin Norrish(?) Barclays has some people with large projects, they need to deal with large quanties of risk.  Smaller investors take other side(?).
+	o Norrish: U.S. futures market provides liquidity and price discovery, and is 'exportable'. Position limits would move investments to other countries.
+	o Norrish: Index investors are price stabilizers. They buy when prices are too low, sell when prices are too high.
+12:04 o Dr. Henry G. Jarecki (GIM). He helps customers diversify their portfolios.
+		o Futures have been imune to the problems that plagued stocks, bonds, and the real estate market. He witnessed the Hunt Brothers trying to corner the market.  The price went up high, but 'Billions of dollars of silver came on the market', and the little guys had more silver than the Hunt Brothers had money. [!!!]
+		o He feels that all his customers shouldn't be lumped together (for position limits?). His small firm might be forced to move to overseas markets.
+		o He suggests that [1] Position limits would cause trading to go to OTC, or physical storage. [2] Trade data, who benefits(?). [3] Rules should apply to the implementor (not the beneficiary), should be attributed to beneficiary(?), [4] It is trivial to identify end users.
+12:11	o John Lothian.  Gold has little industrial value; it's a belief of store of wealth, a replacement for money.  Gold is useful if a nation's debt may be defaulted on.
+	o Lothian: Low interest rates played role to rising gold price.
+	o Lothian: Some think central bankers and others keep price down. That is 'intellectually dishonest'.
+		o We didn't have as many tools for risk in 1970s
+		o Those alleging manipulation are 'Politically opportunistic' (and other diskind words; 'charlatains'). Healthy skepticism OK, not 'pseudo-skeptical behavior'.
+12:16 The CFTC webcast connection failed through 12:20.
+12:20 Bill Murphy, GATA, was reading very fast from a paper; presumably same text as is online at CFTC.
+12:22 Gensler Q: Concentration is higher in silver, etc. than most markets.  Help us understand how concentration helps orderly markets.
+		o A: Norrish: Barclays needs to be able to take large positions.
+	Gensler Q: If very concentrated, could you get tipping point where there would be less liquidity? 
+		o A: Lothian: Consolidation is occurring, causing the concentration. The tipping point is an issue; your challenge is whether or not to be courageous [based on a 'courageous' quote earlier].  We've lost transparency with electronic trading.
+	Gensler->Jarecki.  HSBC says that the short positions are covered with cash gold. Then why is so much physical inventory short; it almost seems constant.
+		o Jarecki: There is a great deal of lending of metals from merchants to jewelers, etc. They buy the metal, sell it forward, lend out.
+	   o Some people buy and sell forward (e.g. copper), because it is cheaper to do. Buy from one facility, sell at another for arbitrage.
+12:29 Dunn:  If position limits, ...
+	A: Jarecki: Over centuries, regulations caused trade to move from location to location; it stays in one place until there is a good reason to move elsewhere.
+12:37	Bill Murphy: There is no point in having position limits if the big boys can still trade [I.E. if exemptions are granted to anyone].
+12:38 Chilton-> Calahan, you have position limits in London, too, right?.  It's the specific level that's important.
+	o Chilton: Position Limit is solid concept, just has to be right number.  So what is too much concentration?
+		o Calahan: We account for just 5% of market, so limits (that were inherited from CBOT) were relative to size of their market, and are adequate.
+		o Calahan: The limits are working out well.  Federally mandated limits vs. exchanges deciding the limits. The exchange can monitor/change limits as needed.
+12:43 O'Malia Q: Would position limits spare price increases?
+	A1: It is inconclusive whether or not it would help pricing, based on CFTC data. [based on agricultural markets]
+	A2: Metals markets are big and liquid. Limits would make prices more volatile in the short term.
+	A3: Jarecki: The evidence shows that these high prices existed in all markets (even steel/iron; outside futures(?)). The massive amounts of printed money had to go somewhere.
+	A4: Lothian: It adds friction, hurts price signals. Higher prices means we need more production, more selling. Anything retarding that hurts price signal, people will go to OTC.
+	A5: Murphy. Anything limiting ability of big bullion banks is a plus, it leads to better price discovery.
+12:49 Gensler said he thinks that position limits do not retard; for example, traffic lights are 'friction', they slows down traffic, but are necessary.
+	o Gensler: High concentration, does it help price discovery? We have found a rational way to deal with leverage in futures market.
+	o Gensler: The clearing mechanism isn't perfect, but works well. It should be in OTC market too.
+12:51 Dunn: ->Norrish. Why aren't we walking into the same problem that happened with the housing market?
+	 	o Norrish: Commodities worked best, there was accurate discovery, and no distress.
+		o Norrish: Some risks are large, for example, it could be building a $10B copper mine. They need large financial institutions to help with risk, who may then feed out the risk to the market gradually.
+	Dunn: I'm concerned about those institutions and systemic risk.  Thanks to the Chair for selling the concept of position limits to the EU last week.
+12:55	Dunn: Q: If we get OTC regulation, should we put in position limits at that time?
+	o Callahan: Correction: We have no position limits in London.  Doing it simultaneously would be best.
+	o Jarecki: In the metals markets, it is trivial to own physical material. Our customers put 100% margin, buy gold/silver/copper in warehouses.
+	  Jarecki: People who don't trust currencies don't want broker & exchange & clearinghouse to stand between them, especially those worried about inflation. There is a risk that people will move futures paper into warehouses, and that there will be shortages.
+	  [!!!But that means futures are holding down prices!!!]
+
+o 1:00 Chilton: $200 Billion went into the markets through 2008. Position limits build confidence in the markets: it is rational, with parameters. But we need to have the right limits (e.g. if too high, limits do nothing).
+	o Chilton->Norrish.  Norrish: It is very difficult to distinguish a hedge vs. speculative trading, e.g. a farmer selling next year's corn crop, the crop could be less than he thought.
+		Norrish: Imagine that multiplied 1000s of times. That's what financials deal with every day.
+	Chilton: Exemptions should be targeted, e.g. a $10B copper mine might be OK. If it is too complicated to figure out w/limits, that makes me queasy.
+	Chilton->Murphy. You are critical of Comex, and say they are complicit to manipulation. Can you give the commission evidence of how/when?
+		o Murphy: We have 11 years worth of evidence. 2 days ago we got a whistleblower, we will be handing out the information to the press after this meeting.
+		o Murphy: March 23, 2010 GATA got an E-mail from Andrew McQuire of Goldman Sachs, that Chase brags about making money. In 2009 he contacted the CFTC, and described in detail the routine manipulation at Comex and options expiration, rollover, etc.
+		o Murphy: He gave CFTC 2 days notice of the Feb 5 attack on the gold price, and it was exactly as predicted. It would not be possible to predict that unless the market is manipulated.
+		o Murphy: It is common knowledge to flush out the shorts before the discussion today. $1100-$1150 in gold options, so sell short to overwhelm bids.  March 19. Thumbed noses at CFTC.
+	Chilton: Thank you, that was more specific than I was expecting. But, we don't want to discuss individual circumstances.
+	O'Malia-> Jarecki? Norish?. Epstein said there was a 'Chilling effect with large orders'.
+		A: Market makers sometimes harasses large orders, they join bid/offer, use market data.
+		A: Often people want to sell all at one time, with no execution risk. Large players want to play and teach market makers a lesson once in a while [!!! THAT IS MANIPULATION!!!].
+	Jarecki: Don't the large sellers lose out, since the last lots get sold at a lower price?
+	O'Malia: There were 4 recommendations...
+	Jarecki: Everything to stop fraud is great. But, having regulations just because they are good is bad.
+1:15 Gensler: America benefits from a regulated economy.
+1:17 Dunn-> ? A: OTC market, you would just get a piece of it, and piece of world futures trade. We need global regulators to agree to position limits or transparency. Otherwise, it puts us in a bad position here [in the U.S.].
+1:19 Chilton: There is a concern in waiting for other countries, but someone has to go first; we need to be the leaders. [!!!]
+	Chilton-> Jarecki, what is enough? 50%? A: If you own 20% of soybeans in world, you're in a unique situation, others should know abot it. Practical implication. (?)
+1:21 Gensler: We'll leave and come back.
+1:33 Meeting Resumed.
+
+--- Panel 4
+
+1:33 Gensler: Jeffrey Christian, CPM Group, here via teleconference.
+1:38 Strait(?) OTC. Jarecki warns that people will move from futures to owning the metal.  He is against positions limits.
+	o Strait: Epstein talked about buying 1000oz bars to melt into 100 bars.  100oz bars are the most desired product, so the supply was limited. Futures market is basis that fabricated markets use for pricing.
+	o Strait: Futures are not meant to be end-all for consumer. It takes up to 20 days to deliver contract.
+1:44 Masters: There is manipulation when large traders place large trades; limits would make it harder to manipulate markets.
+		o Excessive speculation: No speculator can individually cause harm, but they as a whole harm price discovery. Limits reduce their dominance; not restraint of 1 specific trader.
+		o Speculators should never have more than 50% of open interest, because then they dominate.  In the past, they were about 25% [where?] with few liquidity complaints.
+		o The ideal varies by market, but 25% is good starting point.
+		o Consumables should use both manipulative limits and speculative limits, whichever is lower.  Precious metals can be consumed, but more often they are held. So speculation is OK.
+		o Passive speculation caused the run-up over past 8 years. It accounts for the lion's share of open interest.  Active speculation adds liquidity (buying and selling), passive speculation allocates the metals and drains them by buying large quantities. It undermines the process, destroys price discovery.
+			[BUT: that is saying that buying physical metal undermines price discovery! If that happens, the market is the problem!]
+		o CFTC needs to address passive speculation.
+1:50 Organ: The 2008 Bank Participation reports showed that 1-2 banks had 169Moz silver. In July 2008, the same had 31MOz. A short increased of 138Moz is 20% of annual mine production.
+		o Silver has the largest concentrated short position in any commodity.  Gold, 3-or-less in August 2008, there was an 11-fold increase, a short increase of 8 million ounces, or about 11% of the annual world production
+		o Silver: Ted Butler calculated that JPMorgan was short 200 million ounces.
+		o Billions of dollars were lost in 2008. Most futures markets have a limit of 1-2% of annual production; gold-silver exceed that, which allows manipulation. Limits must be on both long+short. Hedgers should deposit 40% in warehouse, provide affidavit of 100% ownership and that they will not lease, etc.
+1:56 Christian, CPM.  Some proposals he has heard today wouldn't do any good. Position limits won't help; there is a risk if ill-conceived/ill-applied.
+		o Position limits are like Sarbanes-Oxley. He was surprised that so many people speaking today felt that banks are not bonafide hedgers.
+2:04 Gensler->Strait: A: Segregating the banks' order books is difficult, since they are making markets for their customers.
+		o A: Clearing: The CFTC should encourage clearing, bring in OTC clearing, it improves transparency. Q: If CFTC implements OTC limits, how would it impact Clearport traffic?
+		o Gensler: Clearing reduces risk.
+2:07 Gensler->Masters: You are saying that gold and precious metals are not consumable, so we should take a different approach for each?
+		o Masters:  Copper is a consumable, precious metals are not, so precious metals should have manipulative limits not speculation limits.
+     Gensler: Limits on the near-month helps control manipulation. Is that it?
+		o Masters: Yes, and all-months-combined limit is for speculation. 
+2:08 Dunn->Strait+Masters(?):  You say that there could be a bubble if there are no position limits, or OTC: 
+     Dunn->Strait: wheat vs. metals. If people would just buy the real thing, should we have a different type of silver contract?
+		o Strait/Masters(?): Silver is mainly OTC. Japan, Hong Kong, Russia, you're doing loco London not Comex. So no, no new market. 'Silver is different than gold'. He was upset at the platinum/palladium ETFs.
+     Sommers to Strait+Masters(?).  A: Platinum+Palladium are strategic. Having them in an ETF shocked me, it is insane. It will artificially drive up prices of important metals. The CFTC should have oversight of that, not SEC(?) OCC(?).
+2:16 Chilton: The 2008 high demand and high retail price of silver with a low futures price. It gave people concern and it should be addressed.  Yes, if our limits are ill-conceived that would be bad, "duh"! 
+2:18 Chilton->Masters: How would you apply limits?
+		o Masters: By contract, exemptions? Banks as hedgers, the rules should apply.
+     Chilton: 'Massive passives' should as mass have limit, but how?
+		o Masters: Zero would be best.
+2:21 Chilton->Masters: It there a way for individuals to play the markets.
+		o Masters:  If you ask the individuals 'What is a contango?', 99% wouldn't be able to answer. Go buy TIPS, buy the Euro, they are a lot more liquid.
+		[In other words, take note individuals: you shouldn't buy gold because you don't know the rules.  Just buy a government-backed inflation-protected bond, or a hedge against the dollar]
+2:22 O'Malia: How do we make position limits stick?
+		o Masters(?) London Mercantile Exchange is dominant, we don't have jurisdiction there.
+2:24 O'Malia: -> Christian. The net short positions exceeds the physical supply. Should we be concerned that the shorts wouldn't be able to deliver?
+		o Christian: No. It's been that way for decades, there are mechanisms for cash settlements. Most short positions are hedges offsetting OTC longs.
+		o Organ: I see a risk. As China, Russia, etc. demand physical, it put pressures on Comex. At some point in time, we will have a failure.
+		o Ethan Douglas, assisting Organ: The LBMA has 20Moz trading in gold per day, net. That's $5.4Trillion/year. Not 100% backed, it is a fractional reserve. Unallocated = unsecured, because it is fractional reserve.
+		o Ethan Douglas: Hedgers are paper hedgeing paper. It is a Ponzi scheme. 
+		o (?) People trust bullion banks, trust the paper.
+2:28 Dunn->Christian: Precious metals are financial assets, they trade at 100 times the underlying physical. Buyers are voting for the paper.
+		o Christian: The 2008 explosion of shorts on futures market, Organ implied that it causes the prices to go down. Bullion banks were selling gold/silver hand over fist in OTC, physical, because everyone was buying. Bullion banks had to hedge, so they sold short.
+			[BUT, that makes no sense!]
+		o Christian: With limits on futures markets, they would find another way to hedge; someone will supply that.
+2:31 Dunn->Organ. 'How could it not be manipulative, having such big shorts?'
+		o Organ: I'm concerned of the size of short positions of the 1-2 banks and their manipulation of prices. Like yesterday (down .5% in seconds). They are controlling prices. Comex should be the price discovery, but 1-2 banks are making sure they determine the price; we're seeing the opposite of price discovery.
+2:33 Chilton: Arbitrage: I have seen valid arguments on both sides.  We could be the gold standard of regulation, and build confidence in our markets.  Without limits, would markets leave U.S.?
+		o Organ: Huge exemptions have to be addressed. If similar to 1-2% of annual products.
+		o Masters?: People want more regulation and transparency. The thought of people trading in Dubai is an empty threat. What if there is another crisis, will the government of Dubai stand behind it? Is the counterparty OK?
+2:38 Gensler->Christian: We're hearing that bullion banks are hedging.  How does that work?
+		o Christian(?): I misspoke, in August 2008 it was liquidation of leveraged PM positions, bullion banks were buying, going short to hedge.
+     Gensler: What *are* the bullion banks hedging on other side? Is it warehouse receipts?
+		o Christian: They are hedging a tremendous number of things. On the bullion bank's books you will find gold forward purchases from mining and refiners. Gold leased to electronics makers and jewellers, etc.
+		o Christian: Producers sell the gold the minute it leaves their mine, and goes to smelter. The bullion bank buys it, agrees on a price, but can't sell until it is out of refinery (could be 2 weeks, could be 6 months). So they sell short.
+			[Could this cause the huge price swings? e.g. bullion bank just dumps 10MOz of gold from past couple months, buys it back when out of refinery???]
+		o Christian: When they get the metal, they can unwind the hedge. Deritivitves are also sold to insurance, etc. often long exposure in gold; offset with shorts.
+		o Christian: There has been talk about physical and how "There isn't much out there".  If I look at the large short positions, I ask myself 'Where are other shorts being hedged?'. He believes they have more that gold/silver that needs hedging, he believes it is done as OTC in London.
+		[But why is the short amount fairly constant?]
+2:43 Meeting adjourned.
+Gensler said that the comment period for ENERGY was good until April 30th.  Please comment, send records.
+
+
+</pre>
+
+END!<br><br>
+
+Nothing more to add; changes will be corrections, edits, clarity, etc.
 
 
 
