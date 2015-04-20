@@ -2036,29 +2036,6 @@ So is the price manipulated?  Do some research, and you can decide.<p>
 
 
 
-<center>
-<form action="http://www.google.com" id="cse-search-box">
-  <div>
-     Search Site:     <input type="hidden" name="cx" value="partner-pub-4695996828499555:8855427495" />
-    <input type="hidden" name="ie" value="UTF-8" />
-    <input type="text" name="q" size="35" />
-    <input type="submit" name="sa" value="Search" />
-  </div>
-</form>
-</center>
-<p><!-- AddThis Button BEGIN -->
-<div class="addthis_toolbox addthis_floating_style addthis_32x32_style" style="left:50px;top:50px;">
-<a class="addthis_button_preferred_1"></a>
-<a class="addthis_button_preferred_2"></a>
-<a class="addthis_button_preferred_3"></a>
-<a class="addthis_button_preferred_4"></a>
-<a class="addthis_button_compact"></a>
-</div>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-510ad2c560c0351a"></script>
-<!-- AddThis Button END -->
-<p>
-<div style="width: 775px; margin-left: auto; margin-right: auto; font: .875em Arial, sans-serif;">
-
 <h1>Record High Silver Spot Price in 1980</h1>
 
 There are lots of claims as to what the record price was in 1980 -- $41.50, $48.80, $<b>49.45</b>, $50, $50.50, etc.<p>
