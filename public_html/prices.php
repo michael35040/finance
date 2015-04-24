@@ -2578,7 +2578,21 @@ Nothing more to add; changes will be corrections, edits, clarity, etc.
 
 
 
+<hr>
+Why did silver go up to $50 in 1979-1980?
+<br>
+Hunt Brothers (Nelson Bunker Hunt & William Herbert Hunt) attempting to corner the silver market using leverage. Lverage is the use of various financial instruments or borrowed capital, such as margin, to increase the potential return of an investment.
+Nelson Bunker Hunt and William Herbert Hunt, the sons of Texas oil billionaire Haroldson Lafayette Hunt, Jr., had for some time been attempting to corner the market in silver. In 1979, the price for silver jumped from $6 per troy ounce ($0.193/g) to a record high of $48.70 per troy ounce ($1.566/g), which represents an increase of 712%. The brothers were estimated to hold one third of the entire world supply of silver (other than that held by governments). The situation for other prospective purchasers of silver was so dire that the jeweller Tiffany's took out a full page ad in The New York Times, condemning the Hunt Brothers and stating "We think it is unconscionable for anyone to hoard several billion, yes billion, dollars' worth of silver and thus drive the price up so high that others must pay artificially high prices for articles made of silver".
+But on January 7, 1980, in response to the Hunts' accumulation, the exchange rules regarding leverage were changed, when COMEX adopted "Silver Rule 7" placing heavy restrictions on the purchase of commodities on margin. The Hunt brothers had borrowed heavily to finance their purchases, and as the price began to fall again, dropping over 50% in just four days, they were unable to meet their obligations, causing panic in the markets.
 
+
+<br><br>
+Why did silver go up to $50 in 2011?
+<br>
+The answer you're looking for is the DEBT CEILING debacle. The 2010 midterm elections led to the Obama v Tea Party House... (you can see the chart creep from $17 to $30 as the elections approached) Then as the split and threats started to materialize between late 2010 and 2011, silver found a "new normal" between $25 and $30. Then the first few months of 2011 saw Moody's and S&P downgrade the outlook on the US finances! (This was HUGE in the finance world!) That's when silver climbed to $50.
+Then as it became likely that Geithner would order the treasury to use extraordinary measures to delay the crisis, silver settled back at $35... as the freak show continued throughout the summer, silver bounced between $33 and $43.
+As it became clear that the "financial apocalypse" would be delayed by late summer, people dumped silver, and the price quickly went back the level of the "new normal" of around $30.
+I'll note silver didn't shoot up simply because it was in a bubble. There was immense risk to the world economy that summer, and people drove prices up by buying defensive commodities. When the risk (short term) subsided, investors reallocated their assets. It may well have been a bubble as well, as you can see when comparing silver with gold during that time. Guys like Schiff deny a bubble ever existed. I don't really know... it looks like a grey issue to me.
  
 <?php
 //echo(var_dump(get_defined_vars()));
