@@ -2577,23 +2577,50 @@ Nothing more to add; changes will be corrections, edits, clarity, etc.
 
 
 
-
 <hr>
-Why did silver go up to $50 in 1979-1980?
-<br>
-Hunt Brothers (Nelson Bunker Hunt & William Herbert Hunt) attempting to corner the silver market using leverage. Lverage is the use of various financial instruments or borrowed capital, such as margin, to increase the potential return of an investment.
-Nelson Bunker Hunt and William Herbert Hunt, the sons of Texas oil billionaire Haroldson Lafayette Hunt, Jr., had for some time been attempting to corner the market in silver. In 1979, the price for silver jumped from $6 per troy ounce ($0.193/g) to a record high of $48.70 per troy ounce ($1.566/g), which represents an increase of 712%. The brothers were estimated to hold one third of the entire world supply of silver (other than that held by governments). The situation for other prospective purchasers of silver was so dire that the jeweller Tiffany's took out a full page ad in The New York Times, condemning the Hunt Brothers and stating "We think it is unconscionable for anyone to hoard several billion, yes billion, dollars' worth of silver and thus drive the price up so high that others must pay artificially high prices for articles made of silver".
+
+
+==Why did Silver go to $50/ozt?==
+
+===1979-1980===
+
+
+Hunt Brothers (Nelson Bunker Hunt & William Herbert Hunt) attempted to corner the silver market using leverage. Leverage is the use of various financial instruments or borrowed capital, such as margin, to increase the potential return of an investment.
+
+Nelson Bunker Hunt and William Herbert Hunt, the sons of Texas oil billionaire Haroldson Lafayette Hunt, Jr., had for some time been attempting to corner the market in silver.
+
+From 1973 the [[Nelson Bunker Hunt|Hunt brothers]] began [[cornering the market]] in silver, helping to cause a spike in January 1980 of the London Silver Fix to $49.45 per troy ounce, silver futures to reach an intraday all-time high of $50.35 per troy ounce and a reduction of the gold/silver ratio down to 1:17.0 (gold also peaked the same day in 1980, at $850 per troy ounce).<ref>http://www.silverinstitute.org/hist_priceuk.php  {{Wayback|url=http://www.silverinstitute.org/hist_priceuk.php|date =20111103021300}}</ref><ref>{{cite news| url=http://www.bloomberg.com/news/2010-09-24/silver-climbs-to-30-year-high-beating-gold-with-its-26-advance-this-year.html | work=Bloomberg | first1=Pham-Duy | last1=Nguyen | first2=Nicholas | last2=Larkin | title=Silver Futures Jump to 30-Year High: Gold Is Steady After Topping ,300 | date=September 24, 2010| archiveurl=http://web.archive.org/web/20140209122524/http://www.bloomberg.com/news/2010-09-24/silver-climbs-to-30-year-high-beating-gold-with-its-26-advance-this-year.html | archivedate=February 9, 2014 }}</ref>
+
+In the last nine months of 1979, the brothers were estimated to be holding over 100 million troy ounces of silver and several large silver [[futures contract]]s.<ref>[http://silverbearcafe.com/private/01.09/circlek.html H.L. Hunt and the Circle K Cowboys] {{Wayback|url=http://silverbearcafe.com/private/01.09/circlek.html|date =20120510231848}}</ref> However, a combination of changed trading rules on the [[New York Mercantile Exchange]] (NYMEX) and the intervention of the [[Federal Reserve]] put an end to the game. By 1982 the London Silver Fix had collapsed by 90% to $4.90 per troy ounce.<ref>http://www.silverfixing.com/timeline.pdf</ref>
+
+In 1979, the price for silver jumped from $6 per troy ounce ($0.193/g) to a record high of $48.70 per troy ounce ($1.566/g), which represents an increase of 712%. The brothers were estimated to hold one third of the entire world supply of silver (other than that held by governments). The situation for other prospective purchasers of silver was so dire that the jeweler Tiffany's took out a full page ad in The New York Times, condemning the Hunt Brothers and stating "We think it is unconscionable for anyone to hoard several billion, yes billion, dollars' worth of silver and thus drive the price up so high that others must pay artificially high prices for articles made of silver".
+
 But on January 7, 1980, in response to the Hunts' accumulation, the exchange rules regarding leverage were changed, when COMEX adopted "Silver Rule 7" placing heavy restrictions on the purchase of commodities on margin. The Hunt brothers had borrowed heavily to finance their purchases, and as the price began to fall again, dropping over 50% in just four days, they were unable to meet their obligations, causing panic in the markets.
 
+However, there were other factors in the increase in price. There was concern about the U.S. geopolitical hegemony and dollar's status.
 
-<br><br>
-Why did silver go up to $50 in 2011?
-<br>
-The answer you're looking for is the DEBT CEILING debacle. The 2010 midterm elections led to the Obama v Tea Party House... (you can see the chart creep from $17 to $30 as the elections approached) Then as the split and threats started to materialize between late 2010 and 2011, silver found a "new normal" between $25 and $30. Then the first few months of 2011 saw Moody's and S&P downgrade the outlook on the US finances! (This was HUGE in the finance world!) That's when silver climbed to $50.
-Then as it became likely that Geithner would order the treasury to use extraordinary measures to delay the crisis, silver settled back at $35... as the freak show continued throughout the summer, silver bounced between $33 and $43.
-As it became clear that the "financial apocalypse" would be delayed by late summer, people dumped silver, and the price quickly went back the level of the "new normal" of around $30.
-I'll note silver didn't shoot up simply because it was in a bubble. There was immense risk to the world economy that summer, and people drove prices up by buying defensive commodities. When the risk (short term) subsided, investors reallocated their assets. It may well have been a bubble as well, as you can see when comparing silver with gold during that time. Guys like Schiff deny a bubble ever existed. I don't really know... it looks like a grey issue to me.
+U.S. Hegemony-The U.S. was seen as weakening with regard to how it handled the Iran hostage crisis. During 1979 and 1980 Democratic President Jimmy Carter was trying to figure out how to free the hostages that were taken in November 1979 at the U.S. Embassy in Tehran, Iran. Other than a failed rescue mission in April 1980, not much was done to free the hostages. The hostages were to remain in captivity until January 20 of 1981, the date of Ronald Reagan’s inauguration. A month after U.S. hostages were taken in Iran, Russia invaded Afghanistan. Jimmy Carter’s response to this naked aggression was to boycott the 1980 Summer Olympics held in Moscow, Russia.
+
+U.S. Dollar-U.S. President Richard Nixon ended the international convertibility of the U.S. dollar to gold (Bretton Woods) on August 16, 1971 (Nixon Shock). The U.S. attempted to revalue to price of gold from $35 to $38 (12/71) to $42.22 (10/73). In October 1976, the U.S. government officially changed the definition of the dollar; references to gold were removed from statutes. From this point, the international monetary system was made of pure fiat money. The late 1970s and early 1980s were an era of gas lines and double digit price inflation as consumer prices rose so swiftly that grocery stores hired “price changers” whose sole task was to mark the inventory higher. Pink Floyd’s bleak double album “The Wall” was released in November, 1979 and topped the charts during a time when it looked like United States was falling and had seen its better days.
+
+===2010-2011===
+
+There was immense risk to the world economy that summer and investors drove the prices up buy buying defensive commodities (silver & gold). When the short-term risk subsided, investors reallocated their assets back into yielding (dividend or interest) investments such as stocks or bonds.
+
+The 2011 [[United States debt ceiling]] crisis was the major factor for the rise in price. The 2010 U.S. midterm elections led to the [[President Obama]] vs. [[Tea Party movement]] battle. The price of silver steadily rose from $17 to $30 as the elections approached. Then as the split and threats started to materialize between late 2010 and 2011, silver found a "new normal" between $25 and $30.
+
+In 2011, Republicans in Congress demanded deficit reduction as part of raising the debt ceiling.  The resulting contention was resolved on 2 August 2011 by the [[Budget Control Act of 2011]].
  
+Then the first few months of 2011, Moody's and S&P downgraded the outlook on US finances. This was a major shock to the financial world; that's when silver climbed to $50. On 5 August 2011, S&P issued the first ever [[United States federal government credit-rating downgrade|downgrade in the federal government's credit rating]], citing their April warnings, the difficulty of bridging the parties and that the resulting agreement fell well short of the hoped-for comprehensive 'grand bargain'.<ref>{{cite web
+| url =  http://www.standardandpoors.com/ratings/articles/en/us/?assetID=1245316529563
+| title =  United States of America Long-Term Rating Lowered To 'AA+' Due To Political Risks, Rising Debt Burden; Outlook Negative
+}}</ref> The credit downgrade and debt ceiling debacle contributed to the [[Dow Jones Industrial Average]] falling nearly 2,000 points in late July and August. Following the downgrade itself, the DJIA had one of its worst days in history and fell 635 points on August 8.{{sfn|Sweet|8 August 2011}}
+
+Then as it became likely that U.S. Secretary of Treasury [[Timothy Geithner]] would order the treasury to use extraordinary measures to delay the crisis, silver settled back at $35. As the debacle continued during the summer, silver moved in the range of $33 to $43.
+
+As it became clear that the "financial apocalypse" would be delayed by late summer, people dumped silver commodities and moved back into U.S. equities. The price of silver quickly went back the level of the "new normal" of around $30.
+
+Whether classifying silver's movement as a 'bubble' (seen when comparing silver with gold) has been debatable with [[Peter Schiff]] denying that a bubble ever existed.
  
  
  
