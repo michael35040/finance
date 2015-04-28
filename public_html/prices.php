@@ -2579,7 +2579,7 @@ Nothing more to add; changes will be corrections, edits, clarity, etc.
 
 <hr>
 
-
+<pre>
 ==Why did Silver go to $50/ozt?==
 
 ===1979-1980===
@@ -2621,17 +2621,17 @@ Then as it became likely that U.S. Secretary of Treasury [[Timothy Geithner]] wo
 As it became clear that the "financial apocalypse" would be delayed by late summer, people dumped silver commodities and moved back into U.S. equities. The price of silver quickly went back the level of the "new normal" of around $30.
 
 Whether classifying silver's movement as a 'bubble' (seen when comparing silver with gold) has been debatable with [[Peter Schiff]] denying that a bubble ever existed.
- 
+ </pre>
  
  
  
  
  <hr>
+ <pre> 
  
  
  
- 
- 
+
 12th to 17th Century, GSR was 12:1.
 
 
@@ -2979,9 +2979,9 @@ This was meant to be a temporary measure with the gold price of the dollar, and 
 
  
  
- 
+  </pre>
  <hr>
- 
+  <pre>
  
  
  
@@ -3100,8 +3100,8 @@ Gold is scarce, and it has always been considered to be money. A person can take
  
  
  
- 
- 
+  </pre>
+ <hr>
  
  
  
