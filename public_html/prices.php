@@ -2594,6 +2594,495 @@ Then as it became likely that Geithner would order the treasury to use extraordi
 As it became clear that the "financial apocalypse" would be delayed by late summer, people dumped silver, and the price quickly went back the level of the "new normal" of around $30.
 I'll note silver didn't shoot up simply because it was in a bubble. There was immense risk to the world economy that summer, and people drove prices up by buying defensive commodities. When the risk (short term) subsided, investors reallocated their assets. It may well have been a bubble as well, as you can see when comparing silver with gold during that time. Guys like Schiff deny a bubble ever existed. I don't really know... it looks like a grey issue to me.
  
+ 
+ 
+ 
+ 
+ 
+ <hr>
+ 
+ 
+ 
+ 
+ 
+12th to 17th Century, GSR was 12:1.
+
+
+1717, the master of the Royal Mint, Sir Isaac Netwon, introducued a new mint ratio as between silver and gold, and this had the effect of putting the Kingdom of Britain on a de facto gold standard. Isaac Newton monetized silver and set the ratio at 15.5 early in the 18th century and this held until 1873.
+
+
+1785, United States adopted silver standard based on the "Spanish Milled Dollar" in 1785, codified in 1792.															
+In the 1780s, Thomas Jefferson, Robert Morris and Alexander Hamilton recommended to Congress the value of a decimal system. This system would also apply to monies in the United States. The question was what type of standard: gold, silver or both.[14] The United States adopted a silver standard based on the Spanish milled dollar in 1785.
+The Spanish dollar was the coin upon which the original United States dollar was based, and it remained legal tender in the United States until the Coinage Act of 1857. Because it was widely used in Europe, the Americas, and the Far East, it became the first world currency by the late 18th century.[2][3] Aside from the U.S. dollar, several other existing currencies, such as the Canadian dollar, the Japanese yen, the Chinese yuan, the Philippine peso, and several currencies in Latin America, were initially based on the Spanish dollar and other 8-real coins. Diverse theories link the origin of the "$" symbol to the columns and stripes that appear on one side of the Spanish dollar.
+US and Europe drained of silver
+From 1750 to 1870, wars within Europe as well as an ongoing trade deficit with China (which sold to Europe but had little use for European goods) drained silver from the economies of Western Europe and the United States. Coins were struck in smaller and smaller numbers, and there was a proliferation of bank and stock notes used as money.
+1792, Coinage Act of 1792 15:1 ratio; 1ozt Gold $20.67/24.75 grains Gold $1; 371.25grains Silver $1; 
+The United States adopted a silver standard based on the "Spanish milled dollar" (eight-real, piece of eight) in 1785. This was codified in the 1792 Mint and Coinage Act, and by the federal government's use of the "Bank of the United States" to hold its reserves, as well as establishing a fixed ratio of gold to the US dollar. This was, in effect, a derivative silver standard, since the bank was not required to keep silver to back all of its currency. This began a long series of attempts for America to create a bimetallic standard for the US dollar, which would continue until the 1920s. Gold and silver coins were legal tender, including the Spanish real. Because of the huge debt taken on by the US federal government to finance the Revolutionary War, silver coins struck by the government left circulation, and in 1806 President Jefferson suspended the minting of silver coins.
+1834, Coinage Act of 1834 16:1 ratio; 1ozt Gold $20.67/23.2 grains Gold $1; 371.25grains Silver $1; 														
+
+1849, California Gold Rush
+1853, Silver coinage (except $1) debased 
+1859, Comstock Lode – Nevada Silver Rush
+The US Treasury was put on a strict hard money standard, doing business only in gold or silver coin as part of the Independent Treasury Act of 1848, which legally separated the accounts of the federal government from the banking system. However the fixed rate of gold to silver overvalued silver in relation to the demand for gold to trade or borrow from England. Following Gresham's law, silver poured into the US, which traded with other silver nations, and gold moved out. In 1853 the US reduced the silver weight of coins, to keep them in circulation, and in 1857 removed legal tender status from foreign coinage.
+1861-1865, American Civil War
+In 1857, the final crisis of the free banking era of international finance began, as American banks suspended payment in silver, rippling through the very young international financial system of central banks. In 1861 the US government suspended payment in gold and silver, effectively ending the attempts to form a silver standard basis for the dollar. Through the 1860-1871 period, various attempts to resurrect bi-metallic standards were made, including one based on the gold and silver franc; however, with the rapid influx of silver from new deposits, the expectation of scarcity of silver ended.
+The combination that produced economic stability was restriction of supply of new notes, a government monopoly on the issuance of notes directly and indirectly, a central bank, and a single unit of value. As notes devalued, or silver ceased to circulate as a store of value, or there was a depression, governments demanding specie as payment drained the circulating medium out of the economy. At the same time there was a dramatically expanded need for credit, and large banks were being chartered in various states, including those in Japan by 1872. The need for stability in monetary affairs would produce a rapid acceptance of the gold standard in the period that followed.
+The Coinage Act of 1873, enacted by the United States Congress in 1873, embraced the gold standard and de-monetized silver. Western mining interests and others who wanted silver in circulation labeled this measure the "Crime of '73". For about five years, gold was the only metallic standard in the United States until passage of the Bland-Allison Act on February 28, 1878, requiring the US Treasury to purchase domestic silver bullion to be minted into legal tender coins co-existent with gold coins. Silver Certificate Series 1878 was issued to join the gold certificates already in circulation.
+1933-1934, Gold (1/20.67th oz in 1933 to 1/35th in 1934 by Rooosevelt															
+By acts of Congress in 1933, including the Gold Reserve Act and the Silver Purchase Act of 1934, the domestic economy was taken off the gold standard and placed on the silver standard for the first time. The Treasury Department was reempowered to issue paper currency redeemable in silver dollars and bullion, thereby divorcing the domestic economy from bimetallism and leaving it on the silver standard, although international settlements were still in gold.[6]
+This meant that for every ounce of silver in the U.S. Treasury's vaults, the U.S. government could continue to issue money against it. These silver certificates were shredded upon redemption since the redeemed silver was no longer in the Treasury. With the world market price of silver having been in excess of $1.29 per troy ounce since 1960, silver began to flow out of the Treasury at an increasing rate. To slow the drain, President Kennedy ordered a halt to issuing $5 and $10 silver certificates in 1962. That left the $1 silver certificate as the only denomination being issued.
+1944, Bretton Woods Created
+Preparing to rebuild the international economic system while World War II was still raging, 730 delegates from all 44 Allied nations gathered at the Mount Washington Hotel in Bretton Woods, New Hampshire, United States, for the United Nations Monetary and Financial Conference, also known as the Bretton Woods Conference. The delegates deliberated during 1–22 July 1944, and signed the Bretton Woods agreement on its final day. Setting up a system of rules, institutions, and procedures to regulate the international monetary system, these accords established the International Monetary Fund (IMF) and the International Bank for Reconstruction and Development (IBRD), which today is part of the World Bank Group. The United States, which controlled two thirds of the world's gold, insisted that the Bretton Woods system rest on both gold and the US dollar. Soviet representatives attended the conference but later declined to ratify the final agreements, charging that the institutions they had created were "branches of Wall Street."[1] These organizations became operational in 1945 after a sufficient number of countries had ratified the agreement.
+
+1963, Silver removed from currency
+On June 4, 1963, Kennedy signed Public Law 88-36, which marked the beginning of the end for even the $1 silver certificate. The law authorized the Federal Reserve to issue $1 and $2 bills, and revoked the Silver Purchase Act of 1934, which authorized the Secretary of the Treasury to issue silver certificates (by now limited to the $1 denomination). Because it would be several months before the new $1 Federal Reserve Notes could enter circulation in quantity, there was a need to issue silver certificates in the interim. Because the Agricultural Adjustment Act of 1933 granted the right to issue silver certificates to the president, Kennedy issued Executive Order 11110 to delegate that authority to the Treasury Secretary during the transition
+Silver certificates continued to be issued until late 1963, when the $1 Federal Reserve Note was released into circulation. For several years, existing silver certificates could be redeemed for silver, but this practice was halted on June 24, 1968
+
+1971, Nixon completely decoupled the US Dollar and Gold															
+Finally, President Richard Nixon announced[7] on August 15, 1971 the end of the Bretton Woods international monetary system meaning that the United States would no longer redeem currency for gold or any other precious metal, forming the final step in abandoning the gold and silver standards. This announcement was part of the economic measures now known as the "Nixon Shock".
+Due to the monetary policy of the U.S Federal Reserve, calls for a return to the gold standard have returned.[citation needed] Some states have chosen to use a loophole in the Federal Reserve act that gives individual states the right to issue currencies of gold or silver coins or rounds.[citation needed] This was done because the Federal Reserve act does not allow them to print their own currency if they wished.[citation needed] As of January 2012, Utah allowed the payment of debt to be settled in silver and gold, and the value of the American silver or gold rounds used was pegged to the price of the given precious metal.[citation needed] Payment in some cases can be requested to be made in silver or gold rounds. As of 2011, eleven other U.S states were currently exploring their options to possibly make similar changes like Utah.[8]
+
+
+
+
+
+
+GOLD STANDARD
+
+US: Pre-Civil War
+In 1792, Congress passed the Mint and Coinage Act. It authorized the Federal Government's use of the Bank of the United States to hold its reserves, as well as establish a fixed ratio of gold to the U.S. dollar. Gold and silver coins were legal tender, as was the Spanish Real. In 1792 the market price of gold was about 15 times that of silver.[14] Silver coins left circulation, exported to pay for the debts taken on to finance the American Revolutionary War. In 1806 President Jefferson suspended the minting of silver coins. This resulted in a derivative silver standard, since the Bank of the United States was not required to fully back its currency with reserves. This began a long series of attempts by the United States to create a bi-metallic standard.
+The intention was to use gold for large denominations, and silver for smaller denominations. A problem with bimetallic standards was that the metals' absolute and relative market prices changed. The mint ratio (the rate at which the mint was obligated to pay/receive for gold relative to silver) remained fixed at 15 ounces of silver to 1 ounce of gold, whereas the market rate fluctuated from 15.5 to 1 to 16 to 1. With the Coinage Act of 1834, Congress passed an act that changed the mint ratio to approximately 16 to 1. Gold discoveries in California in 1848 and later in Australia lowered the gold price to fall relative to silver; this drove silver money from circulation because it was worth more in the market than as money.[16] Passage of the Independent Treasury Act of 1848 placed the U.S. on a strict hard-money standard. Doing business with the American government required gold or silver coins.
+Government accounts were legally separated from the banking system. However, the mint ratio (the fixed exchange rate between gold and silver at the mint) continued to overvalue gold. In 1853, the US reduced the silver weight of coins to keep them in circulation and in 1857 removed legal tender status from foreign coinage. In 1857 the final crisis of the free banking era began as American banks suspended payment in silver, with ripples through the developing international financial system. Due to the inflationary finance measures undertaken to help pay for the US Civil War, the government found it difficult to pay its obligations in gold or silver and suspended payments of obligations not legally specified in specie (gold bonds); this led banks to suspend the conversion of bank liabilities (bank notes and deposits) into specie. In 1862 paper money was made legal tender. It was a fiat money (not convertible on demand at a fixed rate into specie). These notes came to be called "greenbacks".[16]
+US: Post-Civil War
+After the Civil War, Congress wanted to reestablish the metallic standard at pre-war rates. The market price of gold in greenbacks was above the pre-War fixed price ($20.67 per ounce of gold) requiring deflation to achieve the pre-War price. This was accomplished by growing the stock of money less rapidly than real output. By 1879 the market price matched the mint price of gold ($20.67 per ounce). The coinage act of 1873 (also known as the Crime of ‘73) demonetized silver. This act removed the 412.5 grain silver dollar from circulation. Subsequently silver was only used in coins worth less than $1 (fractional currency). With the resumption of convertibility on June 30, 1879 the government again paid its debts in gold, accepted greenbacks for customs and redeemed greenbacks on demand in gold. Greenbacks were therefore perfect substitutes for gold coins. During the latter part of the nineteenth century the use of silver and a return to the bimetallic standard were recurrent political issues, raised especially by William Jennings Bryan, the People's Party and the Free Silver movement . In 1900 the gold dollar was declared the standard unit of account and a gold reserve for government issued paper notes was established. Greenbacks, silver certificates, and silver dollars continued to be legal tender, all redeemable in gold.[16]
+Fluctuations in the US gold stock, 1862–1877
+US gold stock
+1862	59 tons
+1866	81 tons
+1875	50 tons
+1878	78 tons
+The US had a gold stock of 1.9 million ounces (59 t) in 1862. Stocks rose to 2.6 (81 t) in 1866, declined in 1875 to 1.6 million ounces (50 t) and rose to 2.5 million (78 t) in 1878. Net exports did not mirror that pattern. In the decade before the Civil War net exports were roughly constant; postwar they varied erratically around pre-war levels, but fell significantly in 1877 and became negative in 1878 and 1879. The net import of gold meant that the foreign demand for American currency to purchase goods, services, and investments exceeded the corresponding American demands for foreign currencies. In the final years of the greenback period (1862–1879), gold production increased while gold exports decreased. The decrease in gold exports was considered by some to be a result of changing monetary conditions. The demands for gold during this period were as a speculative vehicle, and for its primary use in the foreign exchange markets financing international trade. The major effect of the increase in gold demand by the public and Treasury was to reduce exports of gold and increase the Greenback price of gold relative to purchasing power.[17]
+Gold exchange standard
+ 	This section needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (March 2013)
+Towards the end of the 19th century, some silver standard countries began to peg their silver coin units to the gold standards of the United Kingdom or the US. In 1898, British India pegged the silver rupee to the pound sterling at a fixed rate of 1s 4d, while in 1906, the Straits Settlements adopted a gold exchange standard against sterling, fixing the silver Straits dollar at 2s 4d.
+Around the start of the 20th century, the Philippines pegged the silver peso/dollar to the U.S. dollar at 50 cents. This move was assisted by the passage of the Philippines Coinage Act by the United States Congress on March 3, 1903.[18] Around the same time Mexico and Japan pegged their currencies to the dollar. When Siam adopted a gold exchange standard in 1908, only China and Hong Kong remained on the silver standard.
+When adopting the gold standard, many European nations changed the name of their currency from Daler (Sweden and Denmark) or Gulden (Austria-Hungary) to Crown, since the former names were traditionally associated with silver coins and the latter with gold coins.
+Impact of World War I
+Governments with insufficient tax revenue suspended convertibility repeatedly in the 19th century. The real test, however, came in the form of World War I, a test which "it failed utterly" according to economist Richard Lipsey.[7]
+By the end of 1913, the classical gold standard was at its peak but World War I caused many countries to suspend or abandon it. According to Lawrence Officer the main cause of the gold standard’s failure to resume its previous position after World War 1 was “the Bank of England's precarious liquidity position and the gold-exchange standard.” A run on sterling caused Britain to impose exchange controls that fatally weakened the standard; convertibility was not legally suspended, but gold prices no longer played the role that they did before.[19] In financing the war and abandoning gold, many of the belligerents suffered drastic inflations. Price levels doubled in the US and Britain, tripled in France and quadrupled in Italy. Exchange rates change less, even though European inflations were more severe than America’s. This meant that the costs of American goods decreased relative to those in Europe. Between August 1914 and spring of 1915, the dollar value of US exports tripled and its trade surplus exceeded $1 billion for the first time.[20]
+Ultimately, the system could not deal quickly enough with the large balance of payments deficits and surpluses; this was previously attributed to downward wage rigidity brought about by the advent of unionized labor, but is now considered as an inherent fault of the system that arose under the pressures of war and rapid technological change. In any case, prices had not reached equilibrium by the time of the Great Depression, which served to kill off the system completely.[7]
+For example, Germany had gone off the gold standard in 1914, and could not effectively return to it because War reparations had cost it much of its gold reserves. During the Occupation of the Ruhr the German central bank (Reichsbank) issued enormous sums of non-convertible marks to support workers who were on strike against the French occupation and to buy foreign currency for reparations; this led to the German hyperinflation of the early 1920s and the decimation of the German middle class.
+The US did not suspend the gold standard during the war. The newly created Federal Reserve intervened in currency markets and sold bonds to “sterilize”[vague] some of the gold imports that would have otherwise increased the stock of money.[citation needed] By 1927 many countries had returned to the gold standard.[16] As a result of World War 1 the United States, which had been a net debtor country, had become a net creditor by 1919.[21]
+Gold bullion replaces gold specie as standard
+ 
+William McKinley ran for president on the basis of the gold standard.
+The gold specie standard ended in the United Kingdom and the rest of the British Empire at the outbreak of World War I. Treasury notes replaced the circulation of gold sovereigns and gold half sovereigns. Legally, the gold specie standard was not repealed. The end of the gold standard was successfully effected by the Bank of England through appeals to patriotism urging citizens not to redeem paper money for gold specie. It was only in 1925, when Britain returned to the gold standard in conjunction with Australia and South Africa that the gold specie standard was officially ended.
+The British Gold Standard Act 1925 both introduced the gold bullion standard and simultaneously repealed the gold specie standard. The new standard ended the circulation of gold specie coins. Instead, the law compelled the authorities to sell gold bullion on demand at a fixed price, but only in the form of bars containing approximately four hundred troy ounces (12 kg) of fine gold.[22] John Maynard Keynes argued against the deflationary dangers of resuming the gold standard.[23]
+Many other countries followed Britain in returning to the gold standard, this was followed by a period of relative stability but also deflation.[24] This state of affairs lasted until the Great Depression (1929–1939) forced countries off the gold standard. In September 19, 1931, speculative attacks on the pound forced Britain to abandon the gold standard. Loans from American and French Central Banks of £50,000,000 were insufficient and exhausted in a matter of weeks, due to large gold outflows across the Atlantic.[25][26][27] The British benefited from this departure. They could now use monetary policy to stimulate the economy. Australia and New Zealand had already left the standard and Canada quickly followed suit.
+The interwar partially backed gold standard was inherently unstable, because of the conflict between the expansion of liabilities to foreign central banks and the resulting deterioration in the Bank of England's reserve ratio. France was then attempting to make Paris a world class financial center, and it received large gold flows as well.[28]
+In May 1931 a run on Austria's largest commercial bank caused it to fail. The run spread to Germany, where the central bank also collapsed. International financial assistance was too late and in July 1931 Germany adopted exchange controls, followed by Austria in October. The Austrian and German experiences, as well as British budgetary and political difficulties, were among the factors that destroyed confidence in sterling, which occurred in mid-July 1931. Runs ensued and the Bank of England lost much of its reserves.
+Depression and World War II
+ 
+Ending the gold standard and economic recovery during the Great Depression.[29]
+Great Depression
+Some economic historians, such as Barry Eichengreen, blame the gold standard of the 1920s for prolonging the economic depression which started in 1929 and lasted for about a decade.[30] Adherence to the gold standard prevented the Federal Reserve from expanding the money supply to stimulate the economy, fund insolvent banks and fund government deficits that could "prime the pump" for an expansion. Once off the gold standard, it became free to engage in such money creation. The gold standard limited the flexibility of the central banks' monetary policy by limiting their ability to expand the money supply. In the US, the Federal Reserve was required by law to have gold backing 40% of its demand notes.[31] Others including former Federal Reserve Chairman Ben Bernanke and Nobel Prize-winner Milton Friedman place the blame for the severity and length of the Great Depression at the feet of the Federal Reserve, mostly due to the deliberate tightening of monetary policy even after the gold standard.[32] They blamed the US major economic contraction in 1937 on tightening of monetary policy resulting in higher cost of capital, weaker securities markets, reduced net government contribution to income, the undistributed profits tax and higher labor costs.[33] The money supply peaked in March 1937, with a trough in May 1938.[34]
+Higher interest rates intensified the deflationary pressure on the dollar and reduced investment in U.S. banks. Commercial banks converted Federal Reserve Notes to gold in 1931, reducing its gold reserves and forcing a corresponding reduction in the amount of currency in circulation. This speculative attack created a panic in the U.S. banking system. Fearing imminent devaluation many depositors withdrew funds from U.S. banks.[35] As bank runs grew, a reverse multiplier effect caused a contraction in the money supply.[36] Additionally the New York Fed had loaned over $150 million in gold (over 240 tons) to European Central Banks. This transfer contracted the US money supply. The foreign loans became questionable once Britain, Germany, Austria and other European countries went off the gold standard in 1931 and weakened confidence in the dollar.[37]
+The forced contraction of the money supply resulted in deflation. Even as nominal interest rates dropped, inflation-adjusted real interest rates remained high, rewarding those who held onto money instead of spending it, further slowing the economy.[38] Recovery in the United States was slower than in Britain, in part due to Congressional reluctance to abandon the gold standard and float the U.S. currency as Britain had done.[39]
+In the early 1930s, the Federal Reserve defended the dollar by raising interest rates, trying to increase the demand for dollars. This helped attract international investors who bought foreign assets with gold.[35]
+Congress passed the Gold Reserve Act on 30 January 1934; the measure nationalized all gold by ordering Federal Reserve banks to turn over their supply to the U.S. Treasury. In return the banks received gold certificates to be used as reserves against deposits and Federal Reserve notes. The act also authorized the president to devalue the gold dollar. Under this authority the president, on 31 January 1934, changed the value of the dollar from $20.67 to the troy ounce to $35 to the troy ounce, a devaluation of over 40%.
+Other factors in the prolongation of the Great Depression include trade wars and the reduction in international trade caused by barriers such as Smoot-Hawley Tariff in the US and the Imperial Preference policies of Great Britain,[40] the failure of central banks to act responsibly,[41] government policies designed to prevent wages from falling, such as the Davis-Bacon Act of 1931, during the deflationary period resulting in production costs dropping slower than sales prices, thereby injuring business profits[42] and increases in taxes to reduce budget deficits and to support new programs such as Social Security. The US top marginal income tax rate went from 25% to 63% in 1932 and to 79% in 1936,[43] while the bottom rate increased over tenfold, from .375% in 1929 to 4% in 1932.[44] The concurrent massive drought resulted in the US Dust Bowl.
+The Austrian School claimed that the Great Depression was the result of a credit bust.[45] Alan Greenspan wrote that the bank failures of the 1930s were sparked by Great Britain dropping the gold standard in 1931. This act "tore asunder" any remaining confidence in the banking system.[46] Financial historian Niall Ferguson wrote that what made the Great Depression truly 'great' was the European banking crisis of 1931.[47] According to Fed Chairman Marriner Eccles, the root cause was the concentration of wealth resulting in a stagnating or decreasing standard of living for the poor and middle class. These classes went into debt, producing the credit explosion of the 1920s. Eventually the debt load grew too heavy, resulting in the massive defaults and financial panics of the 1930s.[48]
+World War II
+Under the Bretton Woods international monetary agreement of 1944, the gold standard was kept without domestic convertibility. The role of gold was severely constrained, as other countries’ currencies were fixed in terms of the dollar. Many countries kept reserves in gold and settled accounts in gold. Still they preferred to settle balances with other currencies, with the American dollar becoming the favorite. The International Monetary Fund was established to help with the exchange process and assist nations in maintaining fixed rates. Within Bretton Woods adjustment was cushioned through credits that helped countries avoid deflation. Under the old standard, a country with an overvalued currency would lose gold and experience deflation until the currency was again valued correctly. Most countries defined their currencies in terms of dollars, but some countries imposed trading restrictions to protect reserves and exchange rates. Therefore, most countries' currencies were still basically inconvertible. In the late 1950s, the exchange restrictions were dropped and gold became an important element in international financial settlements.[16]
+Bretton Woods
+ 	This section needs additional citations for verification. Please help improve this article by adding citations to reliable sources. Unsourced material may be challenged and removed. (October 2013)
+Main article: Bretton Woods system
+After the Second World War, a system similar to a gold standard and sometimes described as a "gold exchange standard" was established by the Bretton Woods Agreements. Under this system, many countries fixed their exchange rates relative to the U.S. dollar and central banks could exchange dollar holdings into gold at the official exchange rate of $35 per ounce; this option was not available to firms or individuals. All currencies pegged to the dollar thereby had a fixed value in terms of gold.[7]
+Starting in the 1959-1969 administration of President Charles de Gaulle and continuing until 1970, France reduced its dollar reserves, exchanging them for gold at the official exchange rate, reducing US economic influence. This, along with the fiscal strain of federal expenditures for the Vietnam War and persistent balance of payments deficits, led U.S. President Richard Nixon to end international convertibility of the U.S. dollar to gold on August 15, 1971 (the "Nixon Shock").
+This was meant to be a temporary measure with the gold price of the dollar, and the official rate of exchanges remaining constant. Revaluing currencies was the main purpose of this plan. No official revaluation or redemption occurred. The dollar subsequently floated. In December 1971, the “Smithsonian Agreement” was reached. In this agreement, the dollar was devalued from $35 per troy ounce of gold to $38. Other countries' currencies appreciated. This was the official price of the dollar, and policies to maintain its value relative to other currencies. However, gold convertibility did not resume. In October 1973, the price was raised to $42.22. Once again, the devaluation was insufficient. Within two weeks of the second devaluation the dollar was left to float. The $42.22 par value was made official in September 1973, long after it had been abandoned in practice. In October 1976, the government officially changed the definition of the dollar; references to gold were removed from statutes. From this point, the international monetary system was made of pure fiat money.
+
+
+
+<style type="text/css">
+	table.tableizer-table {
+	border: 1px solid #CCC; font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+} 
+.tableizer-table td {
+	padding: 4px;
+	margin: 3px;
+	border: 1px solid #ccc;
+}
+.tableizer-table th {
+	background-color: #104E8B; 
+	color: #FFF;
+	font-weight: bold;
+}
+</style><table class="tableizer-table">
+<tr class="tableizer-firstrow"><td>Year</td><td>Silver</td><td>Gold</td><td>GSR</td></tr>
+ <tr><td>1792</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1793</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1794</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1795</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1796</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1797</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1798</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1799</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1800</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1801</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1802</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1803</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1804</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1805</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1806</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1807</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1808</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1809</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1810</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1811</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1812</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1813</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1814</td><td>1.453</td><td>19.39</td><td>13.35</td></tr>
+ <tr><td>1815</td><td>1.477</td><td>19.39</td><td>13.13</td></tr>
+ <tr><td>1816</td><td>1.323</td><td>19.39</td><td>14.66</td></tr>
+ <tr><td>1817</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1818</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1819</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1820</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1821</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1822</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1823</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1824</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1825</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1826</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1827</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1828</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1829</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1830</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1831</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1832</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1833</td><td>1.293</td><td>19.39</td><td>15.00</td></tr>
+ <tr><td>1834</td><td>1.293</td><td>20.69</td><td>16.00</td></tr>
+ <tr><td>1835</td><td>1.293</td><td>20.65</td><td>15.97</td></tr>
+ <tr><td>1836</td><td>1.293</td><td>20.65</td><td>15.97</td></tr>
+ <tr><td>1837</td><td>1.350</td><td>20.65</td><td>15.30</td></tr>
+ <tr><td>1838</td><td>1.296</td><td>20.65</td><td>15.93</td></tr>
+ <tr><td>1839</td><td>1.296</td><td>20.65</td><td>15.93</td></tr>
+ <tr><td>1840</td><td>1.296</td><td>20.65</td><td>15.93</td></tr>
+ <tr><td>1841</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1842</td><td>1.293</td><td>20.65</td><td>15.97</td></tr>
+ <tr><td>1843</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1844</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1845</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1846</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1847</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1848</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1849</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1850</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1851</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1852</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1853</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1854</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1855</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1856</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1857</td><td>1.294</td><td>20.65</td><td>15.96</td></tr>
+ <tr><td>1858</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1859</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1860</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1861</td><td>1.292</td><td>20.65</td><td>15.98</td></tr>
+ <tr><td>1862</td><td>1.709</td><td>20.65</td><td>12.08</td></tr>
+ <tr><td>1863</td><td>1.952</td><td>20.65</td><td>10.58</td></tr>
+ <tr><td>1864</td><td>2.939</td><td>20.65</td><td>7.03</td></tr>
+ <tr><td>1865</td><td>1.889</td><td>20.65</td><td>10.93</td></tr>
+ <tr><td>1866</td><td>1.766</td><td>20.65</td><td>11.69</td></tr>
+ <tr><td>1867</td><td>1.741</td><td>20.65</td><td>11.86</td></tr>
+ <tr><td>1868</td><td>1.747</td><td>20.65</td><td>11.82</td></tr>
+ <tr><td>1869</td><td>1.569</td><td>20.65</td><td>13.16</td></tr>
+ <tr><td>1870</td><td>1.430</td><td>20.65</td><td>14.44</td></tr>
+ <tr><td>1871</td><td>1.412</td><td>20.65</td><td>14.62</td></tr>
+ <tr><td>1872</td><td>1.449</td><td>20.66</td><td>14.26</td></tr>
+ <tr><td>1873</td><td>1.421</td><td>20.66</td><td>14.54</td></tr>
+ <tr><td>1874</td><td>1.411</td><td>20.66</td><td>14.64</td></tr>
+ <tr><td>1875</td><td>1.394</td><td>20.66</td><td>14.82</td></tr>
+ <tr><td>1876</td><td>1.315</td><td>20.66</td><td>15.71</td></tr>
+ <tr><td>1877</td><td>1.212</td><td>20.66</td><td>17.05</td></tr>
+ <tr><td>1878</td><td>1.100</td><td>20.66</td><td>18.78</td></tr>
+ <tr><td>1879</td><td>1.144</td><td>20.65</td><td>18.05</td></tr>
+ <tr><td>1880</td><td>1.116</td><td>20.66</td><td>18.51</td></tr>
+ <tr><td>1881</td><td>1.129</td><td>20.66</td><td>18.30</td></tr>
+ <tr><td>1882</td><td>1.099</td><td>20.66</td><td>18.80</td></tr>
+ <tr><td>1883</td><td>1.110</td><td>20.66</td><td>18.61</td></tr>
+ <tr><td>1884</td><td>1.064</td><td>20.66</td><td>19.42</td></tr>
+ <tr><td>1885</td><td>1.032</td><td>20.66</td><td>20.02</td></tr>
+ <tr><td>1886</td><td>1.006</td><td>20.65</td><td>20.53</td></tr>
+ <tr><td>1887</td><td>0.970</td><td>20.65</td><td>21.29</td></tr>
+ <tr><td>1888</td><td>0.936</td><td>20.66</td><td>22.07</td></tr>
+ <tr><td>1889</td><td>0.959</td><td>20.65</td><td>21.53</td></tr>
+ <tr><td>1890</td><td>1.056</td><td>20.66</td><td>19.56</td></tr>
+ <tr><td>1891</td><td>0.956</td><td>20.68</td><td>21.63</td></tr>
+ <tr><td>1892</td><td>0.840</td><td>20.68</td><td>24.62</td></tr>
+ <tr><td>1893</td><td>0.703</td><td>20.68</td><td>29.42</td></tr>
+ <tr><td>1894</td><td>0.615</td><td>20.66</td><td>33.59</td></tr>
+ <tr><td>1895</td><td>0.677</td><td>20.65</td><td>30.50</td></tr>
+ <tr><td>1896</td><td>0.664</td><td>20.71</td><td>31.19</td></tr>
+ <tr><td>1897</td><td>0.590</td><td>20.71</td><td>35.10</td></tr>
+ <tr><td>1898</td><td>0.603</td><td>20.71</td><td>34.34</td></tr>
+ <tr><td>1899</td><td>0.600</td><td>20.66</td><td>34.43</td></tr>
+ <tr><td>1900</td><td>0.648</td><td>20.68</td><td>31.91</td></tr>
+ <tr><td>1901</td><td>0.558</td><td>20.71</td><td>37.11</td></tr>
+ <tr><td>1902</td><td>0.487</td><td>20.69</td><td>42.48</td></tr>
+ <tr><td>1903</td><td>0.560</td><td>20.67</td><td>36.91</td></tr>
+ <tr><td>1904</td><td>0.612</td><td>20.68</td><td>33.79</td></tr>
+ <tr><td>1905</td><td>0.655</td><td>20.64</td><td>31.51</td></tr>
+ <tr><td>1906</td><td>0.969</td><td>20.62</td><td>21.28</td></tr>
+ <tr><td>1907</td><td>0.552</td><td>20.66</td><td>37.43</td></tr>
+ <tr><td>1908</td><td>0.494</td><td>20.67</td><td>41.84</td></tr>
+ <tr><td>1909</td><td>0.529</td><td>20.68</td><td>39.09</td></tr>
+ <tr><td>1910</td><td>0.553</td><td>20.64</td><td>37.32</td></tr>
+ <tr><td>1911</td><td>0.556</td><td>20.64</td><td>37.12</td></tr>
+ <tr><td>1912</td><td>0.640</td><td>20.65</td><td>32.27</td></tr>
+ <tr><td>1913</td><td>0.584</td><td>20.64</td><td>35.34</td></tr>
+ <tr><td>1914</td><td>0.503</td><td>20.72</td><td>41.19</td></tr>
+ <tr><td>1915</td><td>0.561</td><td>20.72</td><td>36.93</td></tr>
+ <tr><td>1916</td><td>0.758</td><td>20.72</td><td>27.34</td></tr>
+ <tr><td>1917</td><td>0.899</td><td>20.72</td><td>23.05</td></tr>
+ <tr><td>1918</td><td>1.019</td><td>20.72</td><td>20.33</td></tr>
+ <tr><td>1919</td><td>1.336</td><td>20.70</td><td>15.49</td></tr>
+ <tr><td>1920</td><td>0.655</td><td>20.68</td><td>31.57</td></tr>
+ <tr><td>1921</td><td>0.663</td><td>20.58</td><td>31.04</td></tr>
+ <tr><td>1922</td><td>0.643</td><td>20.66</td><td>32.13</td></tr>
+ <tr><td>1923</td><td>0.650</td><td>21.32</td><td>32.80</td></tr>
+ <tr><td>1924</td><td>0.692</td><td>20.69</td><td>29.90</td></tr>
+ <tr><td>1925</td><td>0.692</td><td>20.64</td><td>29.83</td></tr>
+ <tr><td>1926</td><td>0.538</td><td>20.63</td><td>38.35</td></tr>
+ <tr><td>1927</td><td>0.583</td><td>20.64</td><td>35.40</td></tr>
+ <tr><td>1928</td><td>0.577</td><td>20.66</td><td>35.81</td></tr>
+ <tr><td>1929</td><td>0.488</td><td>20.63</td><td>42.27</td></tr>
+ <tr><td>1930</td><td>0.330</td><td>20.65</td><td>62.58</td></tr>
+ <tr><td>1931</td><td>0.304</td><td>17.06</td><td>56.12</td></tr>
+ <tr><td>1932</td><td>0.254</td><td>20.69</td><td>81.46</td></tr>
+ <tr><td>1933</td><td>0.437</td><td>26.33</td><td>60.25</td></tr>
+ <tr><td>1934</td><td>0.544</td><td>34.69</td><td>63.77</td></tr>
+ <tr><td>1935</td><td>0.584</td><td>34.84</td><td>59.66</td></tr>
+ <tr><td>1936</td><td>0.454</td><td>34.87</td><td>76.81</td></tr>
+ <tr><td>1937</td><td>0.438</td><td>34.79</td><td>79.43</td></tr>
+ <tr><td>1938</td><td>0.428</td><td>34.85</td><td>81.43</td></tr>
+ <tr><td>1939</td><td>0.350</td><td>34.42</td><td>98.34</td></tr>
+ <tr><td>1940</td><td>0.348</td><td>33.85</td><td>97.27</td></tr>
+ <tr><td>1941</td><td>0.351</td><td>33.85</td><td>96.44</td></tr>
+ <tr><td>1942</td><td>0.448</td><td>33.85</td><td>75.56</td></tr>
+ <tr><td>1943</td><td>0.448</td><td>33.85</td><td>75.56</td></tr>
+ <tr><td>1944</td><td>0.448</td><td>33.85</td><td>75.56</td></tr>
+ <tr><td>1945</td><td>0.708</td><td>34.71</td><td>49.03</td></tr>
+ <tr><td>1946</td><td>0.867</td><td>34.71</td><td>40.03</td></tr>
+ <tr><td>1947</td><td>0.746</td><td>34.71</td><td>46.53</td></tr>
+ <tr><td>1948</td><td>0.700</td><td>34.71</td><td>49.59</td></tr>
+ <tr><td>1949</td><td>0.733</td><td>31.69</td><td>43.23</td></tr>
+ <tr><td>1950</td><td>0.800</td><td>34.72</td><td>43.40</td></tr>
+ <tr><td>1951</td><td>0.880</td><td>34.72</td><td>39.45</td></tr>
+ <tr><td>1952</td><td>0.833</td><td>34.60</td><td>41.54</td></tr>
+ <tr><td>1953</td><td>0.853</td><td>34.84</td><td>40.84</td></tr>
+ <tr><td>1954</td><td>0.853</td><td>35.04</td><td>41.08</td></tr>
+ <tr><td>1955</td><td>0.905</td><td>35.03</td><td>38.71</td></tr>
+ <tr><td>1956</td><td>0.914</td><td>34.99</td><td>38.28</td></tr>
+ <tr><td>1957</td><td>0.898</td><td>34.95</td><td>38.92</td></tr>
+ <tr><td>1958</td><td>0.899</td><td>35.10</td><td>39.04</td></tr>
+ <tr><td>1959</td><td>0.914</td><td>35.10</td><td>38.40</td></tr>
+ <tr><td>1960</td><td>0.914</td><td>35.27</td><td>38.59</td></tr>
+ <tr><td>1961</td><td>1.033</td><td>35.25</td><td>34.12</td></tr>
+ <tr><td>1962</td><td>1.199</td><td>35.23</td><td>29.38</td></tr>
+ <tr><td>1963</td><td>1.293</td><td>35.07</td><td>27.12</td></tr>
+ <tr><td>1964</td><td>1.293</td><td>35.10</td><td>27.15</td></tr>
+ <tr><td>1965</td><td>1.293</td><td>35.12</td><td>27.16</td></tr>
+ <tr><td>1966</td><td>1.293</td><td>35.13</td><td>27.17</td></tr>
+ <tr><td>1967</td><td>2.060</td><td>34.95</td><td>16.97</td></tr>
+ <tr><td>1968</td><td>1.959</td><td>38.69</td><td>19.75</td></tr>
+ <tr><td>1969</td><td>1.807</td><td>41.09</td><td>22.74</td></tr>
+ <tr><td>1970</td><td>1.635</td><td>35.94</td><td>21.98</td></tr>
+ <tr><td>1971</td><td>1.394</td><td>40.80</td><td>29.27</td></tr>
+ <tr><td>1972</td><td>1.976</td><td>58.16</td><td>29.43</td></tr>
+ <tr><td>1973</td><td>3.137</td><td>97.32</td><td>31.02</td></tr>
+ <tr><td>1974</td><td>4.391</td><td>159.26</td><td>36.27</td></tr>
+ <tr><td>1975</td><td>4.085</td><td>161.02</td><td>39.42</td></tr>
+ <tr><td>1976</td><td>4.347</td><td>124.84</td><td>28.72</td></tr>
+ <tr><td>1977</td><td>4.706</td><td>147.71</td><td>31.39</td></tr>
+ <tr><td>1978</td><td>5.930</td><td>193.22</td><td>32.58</td></tr>
+ <tr><td>1979</td><td>21.793</td><td>306.68</td><td>14.07</td></tr>
+ <tr><td>1980</td><td>16.393</td><td>612.56</td><td>37.37</td></tr>
+ <tr><td>1981</td><td>8.432</td><td>460.03</td><td>54.56</td></tr>
+ <tr><td>1982</td><td>10.586</td><td>375.67</td><td>35.49</td></tr>
+ <tr><td>1983</td><td>9.121</td><td>424.35</td><td>46.52</td></tr>
+ <tr><td>1984</td><td>6.694</td><td>360.48</td><td>53.85</td></tr>
+ <tr><td>1985</td><td>5.888</td><td>317.26</td><td>53.88</td></tr>
+ <tr><td>1986</td><td>5.364</td><td>367.66</td><td>68.54</td></tr>
+ <tr><td>1987</td><td>6.790</td><td>446.46</td><td>65.75</td></tr>
+ <tr><td>1988</td><td>6.108</td><td>436.94</td><td>71.54</td></tr>
+ <tr><td>1989</td><td>5.543</td><td>381.44</td><td>68.81</td></tr>
+ <tr><td>1990</td><td>4.068</td><td>383.51</td><td>94.27</td></tr>
+ <tr><td>1991</td><td>3.909</td><td>362.11</td><td>92.63</td></tr>
+ <tr><td>1992</td><td>3.710</td><td>343.82</td><td>92.67</td></tr>
+ <tr><td>1993</td><td>4.968</td><td>359.77</td><td>72.42</td></tr>
+ <tr><td>1994</td><td>4.769</td><td>384.00</td><td>80.52</td></tr>
+ <tr><td>1995</td><td>5.148</td><td>384.17</td><td>74.63</td></tr>
+ <tr><td>1996</td><td>4.730</td><td>387.77</td><td>81.98</td></tr>
+ <tr><td>1997</td><td>5.945</td><td>330.98</td><td>55.67</td></tr>
+ <tr><td>1998</td><td>5.549</td><td>294.24</td><td>53.03</td></tr>
+ <tr><td>1999</td><td>5.218</td><td>278.88</td><td>53.45</td></tr>
+ <tr><td>2000</td><td>4.951</td><td>279.11</td><td>56.38</td></tr>
+ <tr><td>2001</td><td>4.370</td><td>271.04</td><td>62.02</td></tr>
+ <tr><td>2002</td><td>4.600</td><td>309.73</td><td>67.34</td></tr>
+ <tr><td>2003</td><td>4.876</td><td>363.38</td><td>74.53</td></tr>
+ <tr><td>2004</td><td>6.671</td><td>409.72</td><td>61.42</td></tr>
+ <tr><td>2005</td><td>7.316</td><td>444.74</td><td>60.79</td></tr>
+ <tr><td>2006</td><td>11.545</td><td>603.46</td><td>52.27</td></tr>
+ <tr><td>2007</td><td>13.384</td><td>695.39</td><td>51.96</td></tr>
+ <tr><td>2008</td><td>14.989</td><td>871.96</td><td>58.17</td></tr>
+ <tr><td>2009</td><td>13.110</td><td>972.35</td><td>74.17</td></tr>
+ <tr><td>2010</td><td>20.193</td><td>1224.53</td><td>60.64</td></tr>
+ <tr><td>2011</td><td>35.119</td><td>1571.52</td><td>44.75</td></tr>
+ <tr><td>2012</td><td>31.150</td><td>1668.98</td><td>53.58</td></tr>
+ <tr><td>2013</td><td>23.793</td><td>1411.23</td><td>59.31</td></tr>
+ <tr><td>2014</td><td>20.484</td><td>1293.08</td><td>63.13</td></tr>
+ <tr><td>2015</td><td> </td><td> </td><td> </td></tr>
+</table>
+
+
+
+
+
+ 
+ 
+ 
+ <hr>
+ 
+ 
+ 
+ 
+ 
+ 
+ Deflation Precedes Hyperinflation-Long Answer 
+
+It is impossible to call the exact time that the U.S. dollar will collapse; I would be a fool to try. But I will tell you that I think our fiat monetary system is approaching the end of its lifespan right now. I certainly didn't read the signs which predict hyperinflation until now. The signs that a hyperinflation is coming are detailed here. To qualify this post I will tell you that I am an avid reader, and I have a Masters Degree in administration, and a Bachelors Degree in history with minors in psychology and economics
+
+I believe that a monetary collapse is fast approaching. I have been studying economic history to figure out how the U.S. could possibly have asset deflation when hyperinflation is what I was betting on. It seems counterintuitive that deflation could be occurring (cheaper assets) when liquidity is flooded into the economy from Federal Reserve policy. 
+
+The problem with economies is that they are not machines. An economy is not controlled by the monetary policy of governments or central banks. Evidence of this is QE1 and QE2: the liquidity did nothing to free up credit markets. The QE did not work because, fear has taken center stage. People are not buying homes because it is hard to catch a falling knife-they are scared of depreciation and they are not secure in their jobs. Economies are controlled by people within the economy. People spend fiat when they are sure of their job security, and they have faith that the future will be secure. Fiat works well when people are secure. Machines do not have desires, and fears about the future. If the economy were a machine you would only have to give it gas and it would run faster. But when you gas an economy, you can never be sure of the result. In trying to re-inflate the housing market Ben Bernanke has caused inflation in other areas. Bernanke’s sworn enemy is deflation, and he will fall for the deflationary head fake very soon. 
+
+What I discovered is that before hyperinflation there is always a period of asset deflation and a fiat currency rally. We are seeing that fiat rally in the U.S. dollar right now. Even gold and silver (both assets) are deflating as people clamor for U.S. dollars and U.S. Treasuries. This is one obvious sign of the impending fiat collapse. What is not disputed is that when people get scared, they raise cash or flee to the next best sure thing: U.S. treasuries. Cash is king: but this is only for a short time.
+
+The Federal Reserve has created money as a back stop to take the moral hazard out of every bad investment for some time. That easy money from the fed is “scared money” trying to find safety. Institutions now find it too risky to loan money to the American consumer. Americans have been losing their jobs and swimming in debts for years. The jobs that left are simply gone-and they are not coming back. These bailed out institutions can’t believe their good fortune and they pay their employees and executives with the easy money from the fed. People who would have lost their jobs when their institutions failed are also bailed out. But, these employees are not certain of the economy so they hang onto their money. They do not buy a bigger house, or a new car, and they spend less. They keep their money in U.S. dollars and treasuries which they believe are certain to be a store of value. The institutions freeze pay, and refuse to hire new employees or invest in job creation.
+
+It is all about the flow of capital. This is how it looks when money flows into the pyramid during credibility inflation. Picture this upside down pyramid as “credibility inflation” which has been occurring for the past forty years. Money flows into those investments which have “credibility”.
+
+=Credit Default Swaps
+=Collateralized Debt Obligations
+=Mortgage Backed Securities
+=Small Business
+=Real Estate
+=Diamonds and Gemstones
+=OTC Stocks
+=Commodities
+=MUNI Bonds
+=Corporate Bonds
+=Listed Stocks
+=Government Bonds
+=Treasury Bills
+=Federal Reserve Notes (Paper Money)
+=Gold
+
+You will notice that the dollar is at the bottom of the inverse pyramid, right above gold. For the past forty years people inflated assets with "credibility" all manner of bubbles and asset classes with easy credit. Think dot com bubble, think real estate bubble, think commodity bubble. Now as capital exits, the assets, businesses and derivatives it flows down and the U.S. dollar certainly sees a rally. But that will be short lived (it is happening now). The dollar is not the true foundation of the pyramid since it is merely a "government sponsored fraud". And as such, its value can be EASILY controlled by the Fed. As the higher levels on the pyramid have lost credibility there is only one place for smart money to flow to and that is the U.S. Dollar-and eventually Gold! The flight to quality will certainly end with gold since it is an asset with intrinsic value. 
+
+
+Countesy of FOFOA-All fiat currency is a short position on gold.
+Notice the bottleneck at the bottom of the pyramid? That is because there are not enough U.S. dollars or gold to supply everyone who will want them. This sounds wrong doesn't it? Well you should know that the U.S. holds 90% of the money supply in reserve. Only about ten percent of the U.S. dollars are actually in circulation. Most of the money supply actually only exists in the form of zeros and decimals in bank computers. When people rush to banks to get their fiat, there will have to be a bank holiday to get fiat to the banks. And after that rush to fiat, when fear chases people out of the dollar there is not enough gold in the world to convert the trillions in fiat which will seek conversion from zero value paper. All of the gold in the world has a value of about 9 trillion dollars. The debt of the U.S. alone is almost twice the value of all gold in the world. 
+
+When the confidence is shattered there are not enough dollars to provide cash to everyone who will demand it. That is when the banks will need a bank holiday. Banks will close for a few days so that the U.S. can supply them with dollars which everyone will want. In every country which experienced hyperinflation it was like lightning had struck. What I have done is researched what actually occurs directly before a period of hyperinflation.
+
+Here is the progression which confirms the hyperinflationary direction.
+1. Monetization of bad debts is the beginning-bailouts, car and home buying subsidies-buying all bad debts and FDIC insurance-nobody loses
+2. Deflation of assets is the second stage-as people become fearful of investing and fearful banks invest in safe assets-like cash and treasuries
+3. A rise in the value U.S. dollar will follow-(happening now) up 13% since flirting with 71.
+4. Next is the collapse of the dollar when fear takes over and the dollars will immediately seek conversion to value
+
+It is after #4 in the progression that the Federal Reserve will resort to printing money in greater quantity to meet their obligations. The fear is what causes the hyperinflation. The fear of holding dollars which are supposed to be a store of value. Businesses will demand cash and reject checks and credit cards before the hyperinflation takes hold. 
+
+You see most of this has started already. It has begun and yet the fear has not gripped the public yet. They have not recognized the deflationary head fake. When people do realize what is happening it will be too late to preserve your wealth or gather what you need to sustain you through the hyperinflationary time.
+
+Have a look at the chart to see when Zimbabwe's hyperinflation started. 
+
+
+
+The next chart is the "deflationary head-fake" (Argentina) right before the onset of hyperinflation as the private bank credit money disappears...
+
+
+
+So first comes hyperinflation, then, and only then, comes the massive printing as the central bank tries desperately to keep the government functioning. So don't look for massive printing to see hyperinflation coming. Look for the monetization of bad debt (already happened) and the first signs of real price inflation (we are seeing it now in food and health care 10%), even in the face of apparently deflationary forces. 
+
+...velocity & money demand.
+Jim Powell explained velocity:
+And that brings us to what economists call velocity. Money responds to the law of supply and demand just as everything else does. Velocity is the speed at which money changes hands. When demand for the money is high, money changes hands more slowly, and velocity is low. This is deflationary....When demand for the money is low, velocity is high.
+
+A key point is that velocity and money supply can act as substitutes for each other. A 10% rise in velocity has the same effect as a 10% rise in money supply. The biggest problem with velocity and money demand is they can turn 180 degrees overnight. If people trust the currency, and suddenly perceive some kind of big threat to their futures, money demand can shoot up.
+
+If you don't spend your money, that's the same thing as taking it out of circulation. This can instantly cause the equivalent of a sharp deflation of the money supply by 10 or 20 percent, or more.
+
+That's what happened in the Great Depression. The Fed was inflating. In 1932, the money supply was $20 billion, and by 1940 it was $38 billion. But fear was so great that velocity was falling faster than money supply was rising. This is why Franklin Roosevelt said in his first inaugural speech, "The only thing we have to fear is fear itself." People were afraid to spend their money, as they are now, and velocity was falling, which has the same effect as deflation, because if you don't spend your money, it's not in circulation.
+
+These wild shifts in money demand and velocity have the same effect as massive, instantaneous shifts up and down in money supply. It's like we're having a huge inflation, then a deflation, every few hours — because our fears change every few hours — because the politicians have all this arbitrary power and we don't know what they're going to do to us!
+
+It is important to see that the economy is not a machine. Machines don't feel, they don't have fear...But people, biological organisms, do have feelings. They do fear, and their fears can change instantaneously.
+
+Velocity of money is just like the stock market which is controlled by fear and greed.
+
+The world is certainly not going to end after the currency collapse. We will just move to a fresh system. The government will certainly repudiate the current U.S. Dollars, and it will be decades before the general public will accept another fiat currency backed by nothing. But in the mean time your ability to survive the currency collapse is most important. Understand this: hyperinflation is the process of saving debt at all costs, even buying it outright for cash. This is exactly what our congress and quasi-government Federal Reserve has been doing.
+
+This has caused issuers of bad debt to stop issuing debt and flee to safer investments, which in turn has caused the public to have less credit? This is what is impossible to control for our government-even the operation twist will be unsuccessful in making banks free up credit for consumers. And all of this has caused the deflationary head fake which has led to a flight to U.S. dollars. And this will all end in a currency confidence collapse. And dollars will seek conversion to real goods. And that is when hyperinflation will begin.
+
+Further References:
+Fiat Paper Money: The History and Evolution of our Currency Raph T. Foster
+FOFOA- http://fofoa.blogspot.com/2010/09/just-another-hyperinflation-post-part-2.html
+My Blog: http://tacticaldefensellc.com/Blog.html
+James Quinn
+Peter Schiff
+Michael Pento 
+
+Saving Private Ryan 
+
+There was a scene in the movie, Saving Private Ryan where an American soldier was shot and dying. His comrades gathered around him and tried to stop the bleeding.
+The soldiers try to save the man by pouring sulfa on his gut wound. The wounded man asks for morphine. They quickly give him a shot of morphine. It does nothing for the man and the bleeding intensifies. Quickly the soldiers pour more sulfa on his wound; the bleeding will not stop. Finally one soldier begs the wounded man, “How can we fix you?” The wounded man asks for more morphine. At this point the men all look at each other. They realize another shot of morphine will kill the wounded man. But they understand that he is dead anyway…so they give him the morphine. Better that he dies comfortably. 
+
+This is the way I see the American economy. The American economy is the dying soldier in the movie. The morphine is the QE1,2 and eventually 3. The QE will kill the economy, but the economy is going to die anyway. So with nothing to lose, and some temporary comfort to gain, the QE is administered in whatever dose that is necessary to arrest the pain. 
+
+Gold is money 
+
+Originally Posted by kenn682 
+Your explaination seems to lend credence and gives the operative dynamic to what Gonzalo Lira has previously stated! If accurate, this makes this craziness we're seeing even more scary. Could you expalin why gold is at the bottom of the inverse pyramid? I have my guess but what do I know?! Peace
+
+ 
+
+People abandoned gold when they got comfortable with paper. This process took hundreds of years. So now when someone sees a 100 dollar bill on the sidewalk, they actually see GOLD. It has intrinsic value for what it can buy, and what people have been conditioned to believe about the paper. The governments of the world were successful in teaching people to trade paper. Paper holds value. Paper is not gold; but right now it is. 
+
+When a person sees a piece of paper with $100 printed on it, they see value. But lately people see that the same $100 loses purchasing power each year. And the government cannot be trusted to mange the supply of paper. 
+
+It is the law of supply and demand which dictates: when supply exceeds demand, the price will fall. The oversupply of fiat has already happened. The government sees that spending has not picked up, so they suspect "Deflation". But America is awash in liquidity-it is just that people are hanging on to the fiat as a store of value. Soon people will discover that holding fiat is dangerous-they will buy anything of value-chairs, lamps, backpacks-anything that can hold value; it will all be better than holding paper since the purchased item can be traded later. 
+
+Gold is scarce, and it has always been considered to be money. A person can take gold anywhere in the world and it will be weighed-and you will receive what you like. When people realize that they have been fooled into thinking paper was money, they will seek to convert their fiat to the only logical honest money. In every case of currency failure: people turn to gold and silver since it is a store of value. There have been more than three thousand examples of fiat currency in the world, and every single one has ended in failure. No exceptions.
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 <?php
 //echo(var_dump(get_defined_vars()));
 /*
