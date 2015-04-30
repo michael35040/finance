@@ -1360,7 +1360,7 @@
 		</div>
 		
 		<p class="guidelines" id="guide_2"><small><b>Keep this as basic as possible! 
-		Use the drop-down box as examples (You might have to double-click the box).</b> 
+		Use the drop-down box as examples (You might have to double-click the box to display).</b> 
 		That way we can group similar items together. 
 		Use notes for more detailed information. Ex: Eagle, Maple, Britannia, Libertad, Round, 
 		Bar, etc. There is NO NEED to redundantly list the country or metal type (ex: ASE, or 
