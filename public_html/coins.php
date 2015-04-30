@@ -1,129 +1,3 @@
-<?php
-
-/*
-
-require("../includes/config.php");  // configuration
-$id = $_SESSION["id"]; //get id from session
-if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
-{
-	
-    $metal = $_POST["metal"];		//ag, au, pd, pt
-    $origin = $_POST["origin"];		//generic or country (ge, us)
-    $year = $_POST["year"];		//year of minting
-    $itemtype = $_POST["itemtype"];		//
-    $actualmetalweight = $_POST["actualmetalweight"];	//
-    $quantity = $_POST["quantity"];		//
-    $costdollar = $_POST["costdollar"];	//
-    $costcents = $_POST["costcents"];	//
-    $costsotherdollar = $_POST["costsotherdollar"];	//
-    $costsothercents = $_POST["costsothercents"];	//
-    $costrebatedollar = $_POST["costrebatedollar"];	//
-    $costrebatecents = $_POST["costrebatecents"];	//
-    $spotdollar = $_POST["spotdollar"];	//
-    $spotcents = $_POST["spotcents"];	//
-    $company = $_POST["company"];		//
-    $ordernumber = $_POST["ordernumber"];	//
-    $trackingnumber = $_POST["trackingnumber"];	//
-    $purchasemonth = $_POST["purchasemonth"];	//
-    $purchaseday = $_POST["purchaseday"];	//
-    $purchaseyear = $_POST["purchaseyear"];	//
-    $notes = $_POST["notes"];		//
-
-*/
-
-
-
-    /*
-    //@$quantity = (int)$_POST["quantity"]; //not set on market orders
-    //@$dollar = (int)$_POST["dollar"]; //not set on market orders
-    //@$cents = (int)$_POST["cents"]; //not set on market orders
-    //@$tradeTotal = (float)$tradeTotal; //convert string to float
-    //@$commissionTotal = (float)$commissionTotal; //convert string to float
-    //@$quantity = (int)$quantity; //convert string to float
-    //render("success_form.php", ["title" => "Success", "transaction" => $transaction, "symbol" => $symbol, "value" => $tradeTotal, "quantity" => $quantity, "commissiontotal" => $commissionTotal]); // render success form
-     */
-
-/*
-//CHECK FOR EMPTY VARIABLES
-if (empty($symbol)) {throw new Exception("Invalid order. Trade symbol required.");} //check to see if empty
-
-    $dollar = sanatize("quantity", $dollar);
-    if($cents>99 || $cents<0){apologize("Incorrect decimal!");}
-    //if($cents!=0 && $cents!=25 && $cents!=50 && $cents!=75){apologize("Incorrect decimal!");}
-    $cents=$cents/100;
-    $price=$dollar+$cents;
-
-    //FORMATS AND SCRUBS VARIABLES
-    $quantity = sanatize("quantity", $quantity);
-    $symbol = sanatize("alphabet", $symbol);
-    $type = sanatize("alphabet", $type);
-    $side = sanatize("alphabet", $side);
-
-
-//QUERY TO SEE IF SYMBOL EXISTS
-$symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
-if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange! (7)");} //row count
-
-if (!ctype_alnum($symbol)) {throw new Exception("Symbol must be alphanumeric!");}
-
-$symbol = strtoupper($symbol); //cast to UpperCase
-
-if ($type != 'market' && $type != 'limit' && $type != 'marketprice') {throw new Exception("Invalid order type.");}
-
-if (!ctype_alpha($type) || !ctype_alpha($side)) {throw new Exception("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
-
-if ($quantity > 2000000000) {throw new Exception("Invalid order. Trade quantity exceeds limits.");}
-
-if ($quantity < 0) {throw new Exception("Quantity must be positive!");}
-
-if (preg_match("/^\d+$/", $quantity) == false) {throw new Exception("The quantity must enter a whole, positive integer.");} // if quantity is invalid (not a whole positive integer)
-
-if (!is_int($quantity)) {throw new Exception("Quantity must be numeric!");} //if quantity is numeric
-
-//QUERY TO SEE IF USER EXISTS
-if (empty($id)) {throw new Exception("Invalid order. User required.");} //check to see if empty
-$userCheck = query("SELECT count(id) as number FROM users WHERE id =?", $id);
-if ($userCheck[0]["number"] != 1) {throw new Exception("No user exists!");} //row count
-
-
-query("SET AUTOCOMMIT=0");
-query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
-
-//INSERT INTO ORDERBOOK
-$status = 1; //1-open/pending, 0-closed/cleared/completed, 2-canceled
-if (query("INSERT INTO orderbook (symbol, side, type, price, total, quantity, id, status, original, reference)
-VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-$symbol, $side, $type, $price, $tradeAmount, $quantity, $id, $status, $quantity, $reference) === false
-) {
-query("ROLLBACK");
-query("SET AUTOCOMMIT=1");
-throw new Exception("Insert Orderbook Failure");
-}
-//UPDATE HISTORY (ON ORDERS PAGE)
-$rows = query("SELECT LAST_INSERT_ID() AS uid"); //this takes the id to the next page
-$ouid = $rows[0]["uid"]; //sets sql query to var
-if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $ouid, $transaction, $symbol, $quantity, $price, $tradeAmount) === false) {
-query("ROLLBACK");
-query("SET AUTOCOMMIT=1");
-throw new Exception("Insert History Failure 3");
-}
-
-
-query("COMMIT;"); //If no errors, commit changes
-query("SET AUTOCOMMIT=1");
-//PROCESS ORDERBOOK
-
-redirect("orders.php");
-*/
-
-
-/*
-} //if post
-else
-{
-*/
-	?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -1695,6 +1569,138 @@ Enter a positive number. This will be subtract from costs to determine price pai
 </html>
 
 
+
+
+
+<?php
+
+/*
+
+require("../includes/config.php");  // configuration
+$id = $_SESSION["id"]; //get id from session
+if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
+{
+	
+    $metal = $_POST["metal"];		//ag, au, pd, pt
+    $origin = $_POST["origin"];		//generic or country (ge, us)
+    $year = $_POST["year"];		//year of minting
+    $itemtype = $_POST["itemtype"];		//
+    $actualmetalweight = $_POST["actualmetalweight"];	//
+    $quantity = $_POST["quantity"];		//
+    $costdollar = $_POST["costdollar"];	//
+    $costcents = $_POST["costcents"];	//
+    $costsotherdollar = $_POST["costsotherdollar"];	//
+    $costsothercents = $_POST["costsothercents"];	//
+    $costrebatedollar = $_POST["costrebatedollar"];	//
+    $costrebatecents = $_POST["costrebatecents"];	//
+    $spotdollar = $_POST["spotdollar"];	//
+    $spotcents = $_POST["spotcents"];	//
+    $company = $_POST["company"];		//
+    $ordernumber = $_POST["ordernumber"];	//
+    $trackingnumber = $_POST["trackingnumber"];	//
+    $purchasemonth = $_POST["purchasemonth"];	//
+    $purchaseday = $_POST["purchaseday"];	//
+    $purchaseyear = $_POST["purchaseyear"];	//
+    $notes = $_POST["notes"];		//
+
+*/
+
+
+
+    /*
+    //@$quantity = (int)$_POST["quantity"]; //not set on market orders
+    //@$dollar = (int)$_POST["dollar"]; //not set on market orders
+    //@$cents = (int)$_POST["cents"]; //not set on market orders
+    //@$tradeTotal = (float)$tradeTotal; //convert string to float
+    //@$commissionTotal = (float)$commissionTotal; //convert string to float
+    //@$quantity = (int)$quantity; //convert string to float
+    //render("success_form.php", ["title" => "Success", "transaction" => $transaction, "symbol" => $symbol, "value" => $tradeTotal, "quantity" => $quantity, "commissiontotal" => $commissionTotal]); // render success form
+     */
+
+/*
+//CHECK FOR EMPTY VARIABLES
+if (empty($symbol)) {throw new Exception("Invalid order. Trade symbol required.");} //check to see if empty
+
+    $dollar = sanatize("quantity", $dollar);
+    if($cents>99 || $cents<0){apologize("Incorrect decimal!");}
+    //if($cents!=0 && $cents!=25 && $cents!=50 && $cents!=75){apologize("Incorrect decimal!");}
+    $cents=$cents/100;
+    $price=$dollar+$cents;
+
+    //FORMATS AND SCRUBS VARIABLES
+    $quantity = sanatize("quantity", $quantity);
+    $symbol = sanatize("alphabet", $symbol);
+    $type = sanatize("alphabet", $type);
+    $side = sanatize("alphabet", $side);
+
+
+//QUERY TO SEE IF SYMBOL EXISTS
+$symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
+if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange! (7)");} //row count
+
+if (!ctype_alnum($symbol)) {throw new Exception("Symbol must be alphanumeric!");}
+
+$symbol = strtoupper($symbol); //cast to UpperCase
+
+if ($type != 'market' && $type != 'limit' && $type != 'marketprice') {throw new Exception("Invalid order type.");}
+
+if (!ctype_alpha($type) || !ctype_alpha($side)) {throw new Exception("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
+
+if ($quantity > 2000000000) {throw new Exception("Invalid order. Trade quantity exceeds limits.");}
+
+if ($quantity < 0) {throw new Exception("Quantity must be positive!");}
+
+if (preg_match("/^\d+$/", $quantity) == false) {throw new Exception("The quantity must enter a whole, positive integer.");} // if quantity is invalid (not a whole positive integer)
+
+if (!is_int($quantity)) {throw new Exception("Quantity must be numeric!");} //if quantity is numeric
+
+//QUERY TO SEE IF USER EXISTS
+if (empty($id)) {throw new Exception("Invalid order. User required.");} //check to see if empty
+$userCheck = query("SELECT count(id) as number FROM users WHERE id =?", $id);
+if ($userCheck[0]["number"] != 1) {throw new Exception("No user exists!");} //row count
+
+
+query("SET AUTOCOMMIT=0");
+query("START TRANSACTION;"); //initiate a SQL transaction in case of error between transaction and commit
+
+//INSERT INTO ORDERBOOK
+$status = 1; //1-open/pending, 0-closed/cleared/completed, 2-canceled
+if (query("INSERT INTO orderbook (symbol, side, type, price, total, quantity, id, status, original, reference)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+$symbol, $side, $type, $price, $tradeAmount, $quantity, $id, $status, $quantity, $reference) === false
+) {
+query("ROLLBACK");
+query("SET AUTOCOMMIT=1");
+throw new Exception("Insert Orderbook Failure");
+}
+//UPDATE HISTORY (ON ORDERS PAGE)
+$rows = query("SELECT LAST_INSERT_ID() AS uid"); //this takes the id to the next page
+$ouid = $rows[0]["uid"]; //sets sql query to var
+if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $ouid, $transaction, $symbol, $quantity, $price, $tradeAmount) === false) {
+query("ROLLBACK");
+query("SET AUTOCOMMIT=1");
+throw new Exception("Insert History Failure 3");
+}
+
+
+query("COMMIT;"); //If no errors, commit changes
+query("SET AUTOCOMMIT=1");
+//PROCESS ORDERBOOK
+
+redirect("orders.php");
+*/
+
+
+/*
+} //if post
+else
+{
+*/
+	?>
+	
+	
+	
+	
 <? 
 /*
 } //render form
