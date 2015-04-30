@@ -6,6 +6,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 	
     $metal = $_POST["metal"];	//ag, au, pd, pt
     $origin = $_POST["origin"];	//generic or country (ge, us)
+    $year = $_POST["year"];	//year of minting
+    itemtype
+    
+    
+    
+    
     
     
     @$type = $_POST["type"]; //limit or market
@@ -90,20 +96,15 @@ else
 		<label class="description" for="element_14">Origin </label>
 		<div>
 		<select class="element select medium" id="element_14" name="origin"> 
-
 			<option value="" selected="selected" disabled>Country/Generic</option>
-		
 			<option value="ZZ">Generic</option>
-			
 			<option value="US">United States</option>
 			<option value="AU">Australia</option>
 			<option value="AT">Austria</option>
 			<option value="CA">Canada</option>
 			<option value="MX">Mexico</option>
 			<option value="GB">Great Britain/United Kingdom</option>
-		
 			<option value="" disabled>-------</option>			
-					
 			<option value="AF">Afghanistan</option>
 			<option value="AX">Åland Islands</option>
 			<option value="AL">Albania</option>
@@ -353,7 +354,6 @@ else
 			<option value="YE">Yemen</option>
 			<option value="ZM">Zambia</option>
 			<option value="ZW">Zimbabwe</option>
-
 		</select>
 		</div><p class="guidelines" id="guide_14"><small>Generic or country of coin</small></p> 
 		</li>		
@@ -1381,128 +1381,157 @@ else
 		      <option>1001</option>
 		      <option>1000</option>
 		      <option value="0000" >Prior</option>
-
-
 		</select>
 		</div><p class="guidelines" id="guide_20"><small>What year was the coin minted/produced?</small></p> 
-		</li>		<li id="li_2" >
-		<label class="description" for="element_2">Description of Item </label>
+		</li>		
+		
+		
+		<li id="li_2" >
+		<label class="description" for="element_2">Type/Description of Item </label>
 		<div>
-			<input id="element_2" name="element_2" class="element text medium" type="text" maxlength="255" value=""/> 
+			<input id="element_2" name="itemtype" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div><p class="guidelines" id="guide_2"><small>Ex: Eagle, Maple, Britannia, Libertad, Round, Bar, etc.</small></p> 
-		</li>		<li id="li_15" >
+		</li>		
+		
+		<li id="li_15" >
 		<label class="description" for="element_15">Purity/Fineness </label>
 		<div>
 		<select class="element select medium" id="element_15" name="element_15"> 
 			<option value="" selected="selected"></option>
-<option value="9999" >9999 (Four 9s)</option>
-<option value="9990" >999 (24k)</option>
-<option value="9950" >995 (Gold-Good delivery bars)</option>
-<option value="9900" >990</option>
-<option value="9860" >986 (Gold-Ducat)</option>
-<option value="9800" >980 (Silver-Mexico)</option>
-<option value="9583" >958.3 (23k)</option>
-<option value="9580" >958 (Silver-Britannia)</option>
-<option value="9500" >950 (Silver-French)</option>
-<option value="9250" >925 (Sterling)</option>
-<option value="9160" >916 (22k)</option>
-<option value="9000" >900 (Silver-U.S.)</option>
-<option value="8350" >835 (Silver-Germany)</option>
-<option value="9330" >833 (20k) (Silver-Dutch, Swedish, Germans)</option>
-<option value="8300" >830 (Silver-Scandinavian)</option>
-<option value="8000" >800 (Silver-Canadian, Egyptian, Germany)</option>
-<option value="7500" >750 (18k) (Silver-German, Swiss, Austro-Hugarian)</option>
-<option value="7200" >720 (Silver-Mexico)</option>
-<option value="6250" >625 (15k)</option>
-<option value="5850" >585 (14k)</option>
-<option value="4170" >417 (10k)</option>
-<option value="3750" >375 (9k)</option>
-<option value="2200" >333 (8k)</option>
-
+			<option value="9999" >9999 (Four 9s)</option>
+			<option value="9990" >999 (24k)</option>
+			<option value="9950" >995 (Gold-Good delivery bars)</option>
+			<option value="9900" >990</option>
+			<option value="9860" >986 (Gold-Ducat)</option>
+			<option value="9800" >980 (Silver-Mexico)</option>
+			<option value="9583" >958.3 (23k)</option>
+			<option value="9580" >958 (Silver-Britannia)</option>
+			<option value="9500" >950 (Silver-French)</option>
+			<option value="9250" >925 (Sterling)</option>
+			<option value="9160" >916 (22k)</option>
+			<option value="9000" >900 (Silver-U.S.)</option>
+			<option value="8350" >835 (Silver-Germany)</option>
+			<option value="9330" >833 (20k) (Silver-Dutch, Swedish, Germans)</option>
+			<option value="8300" >830 (Silver-Scandinavian)</option>
+			<option value="8000" >800 (Silver-Canadian, Egyptian, Germany)</option>
+			<option value="7500" >750 (18k) (Silver-German, Swiss, Austro-Hugarian)</option>
+			<option value="7200" >720 (Silver-Mexico)</option>
+			<option value="6250" >625 (15k)</option>
+			<option value="5850" >585 (14k)</option>
+			<option value="4170" >417 (10k)</option>
+			<option value="3750" >375 (9k)</option>
+			<option value="2200" >333 (8k)</option>
 		</select>
 		</div><p class="guidelines" id="guide_15"><small>Select the fineness/purity of the metal. If no correct choice, select nearest option.
 ex: 14k=585, 99.9%=999, 90%=900.</small></p> 
-		</li>		<li id="li_4" >
+		</li>		
+		
+		<li id="li_4" >
 		<label class="description" for="element_4">Actual Metal Weight (AGW/ASW/etc.) </label>
 		<div>
-			<input id="element_4" name="element_4" class="element text small" type="text" maxlength="255" value=""/> 
+			<input id="element_4" name="actualmetalweight" class="element text small" type="text" maxlength="255" value=""/> 
 		</div><p class="guidelines" id="guide_4"><small>Actual metal weight (silver, gold, etc.) of just one item (coin, bar, round). This will be multiplied by the quantity of items.</small></p> 
-		</li>		<li id="li_3" >
+		</li>		
+		
+		<li id="li_3" >
 		<label class="description" for="element_3">Quantity of Items </label>
 		<div>
-			<input id="element_3" name="element_3" class="element text small" type="text" maxlength="255" value=""/> 
+			<input id="element_3" name="quantity" class="element text small" type="text" maxlength="255" value=""/> 
 		</div><p class="guidelines" id="guide_3"><small>The number of items for this purchase. This will multiply the ASW to determine the total number of ounces for this purchase.</small></p> 
-		</li>		<li class="section_break">
+		</li>		
+		
+		
+		
+		
+		<li class="section_break">
 			<h3>----- PRICING -----</h3>
 			<p></p>
-		</li>		<li id="li_5" >
+		</li>		
+
+		<li id="li_5" >
 		<label class="description" for="element_5">Cost </label>
 		<span class="symbol">$</span>
 		<span>
-			<input id="element_5_1" name="element_5_1" class="element text currency" size="10" value="" type="text" /> .		
+			<input id="element_5_1" name="costdollar" class="element text currency" size="10" value="" type="text" /> .		
 			<label for="element_5_1">Dollars</label>
 		</span>
 		<span>
-			<input id="element_5_2" name="element_5_2" class="element text" size="2" maxlength="2" value="" type="text" />
+			<input id="element_5_2" name="costcents" class="element text" size="2" maxlength="2" value="" type="text" />
 			<label for="element_5_2">Cents</label>
 		</span>
 		<p class="guidelines" id="guide_5"><small>Primary cost of the coin/bullion excluding tax, shipping, etc.?</small></p> 
-		</li>		<li id="li_6" >
+		</li>		
+		
+		<li id="li_6" >
 		<label class="description" for="element_6">Other Costs </label>
 		<span class="symbol">$</span>
 		<span>
-			<input id="element_6_1" name="element_6_1" class="element text currency" size="10" value="" type="text" /> .		
+			<input id="element_6_1" name="costsotherdollar" class="element text currency" size="10" value="" type="text" /> .		
 			<label for="element_6_1">Dollars</label>
 		</span>
 		<span>
-			<input id="element_6_2" name="element_6_2" class="element text" size="2" maxlength="2" value="" type="text" />
+			<input id="element_6_2" name="costsothercents" class="element text" size="2" maxlength="2" value="" type="text" />
 			<label for="element_6_2">Cents</label>
 		</span>
 		<p class="guidelines" id="guide_6"><small>Shipping, Handling, Taxes, Fuel Cost, etc.</small></p> 
-		</li>		<li id="li_7" >
+		</li>		
+		
+		<li id="li_7" >
 		<label class="description" for="element_7">Rebate </label>
 		<span class="symbol">$</span>
 		<span>
-			<input id="element_7_1" name="element_7_1" class="element text currency" size="10" value="" type="text" /> .		
+			<input id="element_7_1" name="costrebatedollar" class="element text currency" size="10" value="" type="text" /> .		
 			<label for="element_7_1">Dollars</label>
 		</span>
 		<span>
-			<input id="element_7_2" name="element_7_2" class="element text" size="2" maxlength="2" value="" type="text" />
+			<input id="element_7_2" name="costrebatecents" class="element text" size="2" maxlength="2" value="" type="text" />
 			<label for="element_7_2">Cents</label>
 		</span>
 		<p class="guidelines" id="guide_7"><small>Credit Card Cash Backs, eBates, Coupons.
 Enter a positive number. This will be subtract from costs to determine price paid per ounce. </small></p> 
-		</li>		<li id="li_8" >
+		</li>		
+
+		<li id="li_8" >
 		<label class="description" for="element_8">Spot Price </label>
 		<span class="symbol">$</span>
 		<span>
-			<input id="element_8_1" name="element_8_1" class="element text currency" size="10" value="" type="text" /> .		
+			<input id="element_8_1" name="spotdollar" class="element text currency" size="10" value="" type="text" /> .		
 			<label for="element_8_1">Dollars</label>
 		</span>
 		<span>
-			<input id="element_8_2" name="element_8_2" class="element text" size="2" maxlength="2" value="" type="text" />
+			<input id="element_8_2" name="spotcents" class="element text" size="2" maxlength="2" value="" type="text" />
 			<label for="element_8_2">Cents</label>
 		</span>
 		<p class="guidelines" id="guide_8"><small>Spot price of metal at time or date of purchase</small></p> 
 		</li>		<li class="section_break">
 			<h3>----- ORDER INFORMATION -----</h3>
 			<p></p>
-		</li>		<li id="li_9" >
+		</li>		
+		
+		<li id="li_9" >
 		<label class="description" for="element_9">Company </label>
 		<div>
-			<input id="element_9" name="element_9" class="element text medium" type="text" maxlength="255" value=""/> 
+			<input id="element_9" name="company" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div><p class="guidelines" id="guide_9"><small>Company, person, or entity from where acquired.</small></p> 
-		</li>		<li id="li_10" >
+		</li>		
+		
+		<li id="li_10" >
 		<label class="description" for="element_10">Order Number </label>
 		<div>
-			<input id="element_10" name="element_10" class="element text medium" type="text" maxlength="255" value=""/> 
+			<input id="element_10" name="ordernumber" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div> 
-		</li>		<li id="li_11" >
+		</li>		
+
+		<li id="li_11" >
 		<label class="description" for="element_11">Tracking Number </label>
 		<div>
-			<input id="element_11" name="element_11" class="element text medium" type="text" maxlength="255" value=""/> 
+			<input id="element_11" name="trackingnumber" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div><p class="guidelines" id="guide_11"><small>Shipping Tracking Number if available</small></p> 
-		</li>		<li id="li_12" >
+		</li>		
+		
+		
+		
+		<li id="li_12" >
 		<label class="description" for="element_12">Date of Acquisition/Purchase </label>
 		<span>
 			<input id="element_12_1" name="element_12_1" class="element text" size="2" maxlength="2" value="" type="text"> /
@@ -1531,7 +1560,28 @@ Enter a positive number. This will be subtract from costs to determine price pai
 			});
 		</script>
 		 
-		</li>		<li id="li_16" >
+		</li>		
+		
+
+actualmetalweight
+quantity
+costdollar
+costcents
+costsotherdollar
+costsothercents
+costrebatedollar
+costrebatecents
+spotdollar
+spotcents
+company
+ordernumber
+trackingnumber
+
+		
+		
+		
+		
+		<li id="li_16" >
 		<label class="description" for="element_16">Notes </label>
 		<div>
 			<textarea id="element_16" name="element_16" class="element textarea medium"></textarea> 
