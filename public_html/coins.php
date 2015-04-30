@@ -1465,6 +1465,9 @@ else
 				  <option value="Maple Leaf">
 				  <option value="Britannia">
 				  <option value="Libertad">
+				  <option value="Dollar">
+				  <option value="Quarter">
+				  <option value="Dime">
 				</datalist>
 
 		<!--	<input id="element_2" name="itemtype" class="element text medium" type="text" maxlength="255" value=""/> -->
