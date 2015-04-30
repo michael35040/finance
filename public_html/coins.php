@@ -1456,8 +1456,21 @@ else
 		<li id="li_2" >
 		<label class="description" for="element_2">Type/Description of Item </label>
 		<div>
-			<input id="element_2" name="itemtype" class="element text medium" type="text" maxlength="255" value=""/> 
-		</div><p class="guidelines" id="guide_2"><small>Ex: Eagle, Maple, Britannia, Libertad, Round, Bar, etc.</small></p> 
+			
+			<input list="itemtype" id="element_2" name="itemtype" class="element text medium" >
+				<datalist id="itemtype">
+				  <option value="Round">
+				  <option value="Bar">
+				  <option value="Eagle">
+				  <option value="Maple Leaf">
+				  <option value="Britannia">
+				  <option value="Libertad">
+				</datalist>
+
+		<!--	<input id="element_2" name="itemtype" class="element text medium" type="text" maxlength="255" value=""/> -->
+		</div>
+		
+		<p class="guidelines" id="guide_2"><small>Ex: Eagle, Maple, Britannia, Libertad, Round, Bar, etc.</small></p> 
 		</li>		
 		
 		<li id="li_15" >
