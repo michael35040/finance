@@ -22,7 +22,13 @@
 			<p>Watch your stack grow!</p>
 		</div>						
 	
-	<p>Use this form to add to your stack! For best results, if you have multiple difference products in the same order, it is best to divide the order into their same items and then divide the shipping costs and put the results into this form.</p>
+	<p>
+	Use this form to add to your stack! For best results, 
+	if you have multiple different products from the 
+	same order, it is best to divide the order into their 
+	same items and then divide the shipping costs 
+	and put the results into this form.
+	</p>
 	
 	<ul >
 					
@@ -1544,8 +1550,41 @@ Enter a positive number. This will be subtract from costs to determine price pai
 		<li id="li_9" >
 		<label class="description" for="element_9">Company </label>
 		<div>
-			<input id="element_9" name="company" class="element text medium" type="text" maxlength="255" value=""/> 
-		</div><p class="guidelines" id="guide_9"><small>Company, person, or entity from where acquired.</small></p> 
+				<input list="company" id="element_9" name="company" class="element text medium" >
+				<datalist id="company">
+				  <option value="Amagi Metals">
+				  <option value="APMEX">
+				  <option value="BGASC">
+				  <option value="Bullion Direct">
+				  <option value="eBay">
+				  <option value="Gainesville Coins">
+				  <option value="Golden Eagle Coin">
+				  <option value="GoldMart">
+				  <option value="GovMint">
+				  <option value="JCS Gold">
+				  <option value="JM Bullion">
+				  <option value="Liberty">
+				  <option value="MCM Modern Coin Mart">
+				  <option value="Monarch Precious Metals">
+				  <option value="Pinehurst Coin Exchange">
+				  <option value="Provident Metals">
+				  <option value="Shiny Bars">
+				  <option value="Silvertowne">
+				  <option value="Silver Gold Bull">
+				  <option value="Scottsdale Silver">
+				  <option value="SD Bullion">
+				  <option value="Texas Precious Metals">
+				  <option value="Other">
+				  	
+				  <option value="Tulving">
+				  <option value="Kitco">
+				  <option value="Merit Gold">
+				  <option value="Mulligan Mint">
+				  <option value="Local Coin Store">
+				  <option value="Pawn Shop">
+				</datalist>
+			<!--<input id="element_9" name="company" class="element text medium" type="text" maxlength="255" value=""/> -->
+		</div><p class="guidelines" id="guide_9"><small>Check our drop-down menu to try to keep same format. Company, person, or entity from where acquired.</small></p> 
 		</li>		
 		
 		<li id="li_10" >
