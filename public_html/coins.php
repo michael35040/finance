@@ -1359,7 +1359,14 @@
 		<!--	<input id="element_2" name="itemtype" class="element text medium" type="text" maxlength="255" value=""/> -->
 		</div>
 		
-		<p class="guidelines" id="guide_2"><small><b>Keep this as basic as possible! Use the drop-down box as examples.</b> That way we can group similar items together. Use notes for more detailed information. Ex: Eagle, Maple, Britannia, Libertad, Round, Bar, etc. There is NO NEED to redundantly list the country or metal type (ex: ASE, or American Silver Eagle) as this is already covered in previous entries. This value is used so you can see how much of your 'stack' is composed of silver quarters or American Silver Eagles so it needs be exactly the same.</small></p> 
+		<p class="guidelines" id="guide_2"><small><b>Keep this as basic as possible! 
+		Use the drop-down box as examples (You might have to double-click the box).</b> 
+		That way we can group similar items together. 
+		Use notes for more detailed information. Ex: Eagle, Maple, Britannia, Libertad, Round, 
+		Bar, etc. There is NO NEED to redundantly list the country or metal type (ex: ASE, or 
+		American Silver Eagle) as this is already covered in previous entries. This value is 
+		used so you can see how much of your 'stack' is composed of silver quarters or American 
+		Silver Eagles so it needs be exactly the same.</small></p> 
 		</li>	
 		
 		
