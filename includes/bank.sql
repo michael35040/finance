@@ -189,6 +189,45 @@ TRUNCATE TABLE `login`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `metals`
+--
+
+DROP TABLE IF EXISTS `metals`;
+CREATE TABLE IF NOT EXISTS `metals` (
+  `uid` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique id',
+  `id` int(10) unsigned NOT NULL COMMENT 'user id',
+  `metal` varchar(100) NOT NULL COMMENT 'silver, gold, pallium, platinum',
+  `type` varchar(100) NOT NULL COMMENT 'short description',
+  `origin` varchar(100) NOT NULL COMMENT 'country or generic',
+  `year` int(10) NOT NULL COMMENT 'year of mintage',
+  `description` varchar(255) NOT NULL COMMENT 'longer description',
+  `quantity` int(10) NOT NULL COMMENT 'qty',
+  `asw` DECIMAL(18,4) NOT NULL COMMENT 'actual silver weight',
+  `totalozt` DECIMAL(18,4) NOT NULL COMMENT 'total ozt',
+  `purity` int(10) NOT NULL COMMENT '999 925 900 etc',
+  `subtotal` DECIMAL(18,4) NOT NULL COMMENT 'cost of coins',
+  `shipping` DECIMAL(18,4) NOT NULL COMMENT 'shipping and handling',
+  `rebate` DECIMAL(18,4) NOT NULL COMMENT 'cc cashback ebates',
+  `total` DECIMAL(18,4) NOT NULL COMMENT 'total costs',
+  `cost` DECIMAL(18,4) NOT NULL COMMENT 'costs per ozt',
+  `spot` DECIMAL(18,4) NOT NULL COMMENT 'spot price at purchase',
+  `company` varchar(100) NOT NULL COMMENT 'seller company',
+  `ordernum` varchar(100) NOT NULL COMMENT 'order number',
+  `orderday` varchar(100) NOT NULL COMMENT 'order day',
+  `ordermonth` varchar(100) NOT NULL COMMENT 'order month',
+  `orderyear` varchar(100) NOT NULL COMMENT 'order year',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `metals`
+--
+
+TRUNCATE TABLE `metals`;
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notification`
 --
 
