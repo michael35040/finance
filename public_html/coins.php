@@ -164,7 +164,7 @@ else
 		<div>
 		<select class="element select medium" id="element_14" name="origin"> 
 			<option value="" selected="selected" disabled>Country/Generic</option>
-			<option value="ZZ">Generic</option>
+			<option value="ZZ">Generic Bullion or Unknown</option>
 			<option value="US">United States</option>
 			<option value="AU">Australia</option>
 			<option value="AT">Austria</option>
