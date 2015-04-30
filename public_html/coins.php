@@ -141,8 +141,8 @@ else
 	<ul >
 					
 		<li class="section_break">
-			<h3>----- COIN/BULLION INFORMATION -----</h3>
-			<p></p>
+			<h3>COIN/BULLION INFORMATION</h3>
+			<p>Specific information about the coin/bullion.</p>
 		</li>		
 		
 		
@@ -1510,9 +1510,15 @@ ex: 14k=585, 99.9%=999, 90%=900.</small></p>
 		
 		
 		
+		
+		
+		
+		
+		
+		
 		<li class="section_break">
-			<h3>----- PRICING -----</h3>
-			<p></p>
+			<h3>PRICING</h3>
+			<p>Pricing information about the order</p>
 		</li>		
 
 		<li id="li_5" >
@@ -1540,7 +1546,9 @@ ex: 14k=585, 99.9%=999, 90%=900.</small></p>
 			<input id="element_6_2" name="costsothercents" class="element text" size="2" maxlength="2" value="" type="text" />
 			<label for="element_6_2">Cents</label>
 		</span>
-		<p class="guidelines" id="guide_6"><small>Shipping, Handling, Taxes, Fuel Cost, etc.</small></p> 
+		<p class="guidelines" id="guide_6"><small>Shipping, Handling, Taxes, Fuel Cost, etc. 
+		Make sure you divide the shipping for each item in an order 
+		(i.e. You order 15 ASE and 5 CML; 75% (15/20) of the shipping costs go to the ASE and 25% (5/20) to the CML)</small></p> 
 		</li>		
 		
 		<li id="li_7" >
