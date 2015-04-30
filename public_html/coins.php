@@ -1548,7 +1548,7 @@ ex: 14k=585, 99.9%=999, 90%=900.</small></p>
 		</span>
 		<p class="guidelines" id="guide_6"><small>Shipping, Handling, Taxes, Fuel Cost, etc. 
 		Make sure you divide the shipping for each item in an order 
-		(i.e. You order 15 ASE and 5 CML; 75% (15/20) of the shipping costs go to the ASE and 25% (5/20) to the CML)</small></p> 
+		(i.e. You order 15 Eagles and 5 Maple Leafs; 75% (15/20) of the shipping costs go to the Eagles and 25% (5/20) to the Maple Leafs)</small></p> 
 		</li>		
 		
 		<li id="li_7" >
