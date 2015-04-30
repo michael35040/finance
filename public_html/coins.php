@@ -22,7 +22,7 @@
 			<p>Watch your stack grow!</p>
 		</div>						
 	
-	<p>Use this form to add to your stack!</p>
+	<p>Use this form to add to your stack! For best results, if you have multiple difference products in the same order, it is best to divide the order into their same items and then divide the shipping costs and put the results into this form.</p>
 	
 	<ul >
 					
@@ -1559,7 +1559,7 @@ Enter a positive number. This will be subtract from costs to determine price pai
 		<label class="description" for="element_11">Tracking Number </label>
 		<div>
 			<input id="element_11" name="trackingnumber" class="element text medium" type="text" maxlength="255" value=""/> 
-		</div><p class="guidelines" id="guide_11"><small>Shipping Tracking Number if available</small></p> 
+		</div><p class="guidelines" id="guide_11"><small>Shipping Tracking Number if available.</small></p> 
 		</li>		
 		
 		
