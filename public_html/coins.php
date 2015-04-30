@@ -1,4 +1,7 @@
 <?php
+
+/*
+
 require("../includes/config.php");  // configuration
 $id = $_SESSION["id"]; //get id from session
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
@@ -25,6 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $purchaseday = $_POST["purchaseday"];	//
     $purchaseyear = $_POST["purchaseyear"];	//
     $notes = $_POST["notes"];		//
+
+*/
+
+
 
     /*
     //@$quantity = (int)$_POST["quantity"]; //not set on market orders
@@ -109,9 +116,12 @@ query("SET AUTOCOMMIT=1");
 redirect("orders.php");
 */
 
+
+/*
 } //if post
 else
 {
+*/
 	?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -135,13 +145,15 @@ else
 			
 		<div class="form_description">
 			<h2>Metal Entry From</h2>
-			<p>Create your stack.</p>
+			<p>Watch your stack grow!</p>
 		</div>						
+	
+	<p>Use this form to add to your stack!</p>
 	
 	<ul >
 					
 		<li class="section_break">
-			<h3>COIN/BULLION INFORMATION</h3>
+			<h3><b>COIN/BULLION INFORMATION</b></h3>
 			<p>Specific information about the coin/bullion.</p>
 		</li>		
 		
@@ -1454,7 +1466,7 @@ else
 		
 		
 		<li id="li_2" >
-		<label class="description" for="element_2">Type/Description of Item </label>
+		<label class="description" for="element_2">Type of Item </label>
 		<div>
 			
 			<input list="itemtype" id="element_2" name="itemtype" class="element text medium" >
@@ -1473,15 +1485,16 @@ else
 		<!--	<input id="element_2" name="itemtype" class="element text medium" type="text" maxlength="255" value=""/> -->
 		</div>
 		
-		<p class="guidelines" id="guide_2"><small>Keep this as basic as possible. Use notes for more detailed information. Ex: Eagle, Maple, Britannia, Libertad, Round, Bar, etc.</small></p> 
+		<p class="guidelines" id="guide_2"><small><b>Keep this as basic as possible.</b> Use notes for more detailed information. Ex: Eagle, Maple, Britannia, Libertad, Round, Bar, etc.</small></p> 
 		</li>	
 		
 		
 		<li id="li_16" >
 		<label class="description" for="element_16">Notes </label>
 		<div>
-			<textarea id="element_16" name="notes" class="element textarea medium"></textarea> 
+			<textarea id="element_16" name="notes" class="element textarea small"></textarea> <!--medium-->
 		</div> 
+				<p class="guidelines" id="guide_2"><small>Use this space for any additional information regarding the coin or order.</small></p> 
 		</li>
 		
 		
@@ -1529,7 +1542,7 @@ ex: 14k=585, 99.9%=999, 90%=900.</small></p>
 		<label class="description" for="element_3">Quantity of Items </label>
 		<div>
 			<input id="element_3" name="quantity" class="element text small" type="text" maxlength="255" value=""/> 
-		</div><p class="guidelines" id="guide_3"><small>The number of items for this purchase. This will multiply the ASW to determine the total number of ounces for this purchase.</small></p> 
+		</div><p class="guidelines" id="guide_3"><small>The number of items for this purchase. If this order was for 25 silver quarters, put 25. This will multiply the AMW to determine the total number of ounces for this purchase.</small></p> 
 		</li>		
 		
 		
@@ -1542,7 +1555,7 @@ ex: 14k=585, 99.9%=999, 90%=900.</small></p>
 		
 		
 		<li class="section_break">
-			<h3>PRICING</h3>
+			<h3><b>PRICING</b></h3>
 			<p>Pricing information about the order</p>
 		</li>		
 
@@ -1608,7 +1621,7 @@ Enter a positive number. This will be subtract from costs to determine price pai
 		
 		
 		<li class="section_break">
-			<h3>ORDER INFORMATION</h3>
+			<h3><b>ORDER INFORMATION</b></h3>
 			<p>Details of your order.</p>
 		</li>		
 		
@@ -1683,6 +1696,7 @@ Enter a positive number. This will be subtract from costs to determine price pai
 
 
 <? 
-
+/*
 } //render form
+*/
 ?>
