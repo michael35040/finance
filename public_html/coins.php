@@ -1359,7 +1359,7 @@
 		<!--	<input id="element_2" name="itemtype" class="element text medium" type="text" maxlength="255" value=""/> -->
 		</div>
 		
-		<p class="guidelines" id="guide_2"><small><b>Keep this as basic as possible.</b> Use notes for more detailed information. Ex: Eagle, Maple, Britannia, Libertad, Round, Bar, etc.</small></p> 
+		<p class="guidelines" id="guide_2"><small><b>Keep this as basic as possible! Use the drop-down box as examples.</b> That way we can group similar items together. Use notes for more detailed information. Ex: Eagle, Maple, Britannia, Libertad, Round, Bar, etc. There is NO NEED to redundantly list the country or metal type (ex: ASE, or American Silver Eagle) as this is already covered in previous entries. This value is used so you can see how much of your 'stack' is composed of silver quarters or American Silver Eagles so it needs be exactly the same.</small></p> 
 		</li>	
 		
 		
@@ -1368,7 +1368,7 @@
 		<div>
 			<textarea id="element_16" name="notes" class="element textarea small"></textarea> <!--medium-->
 		</div> 
-				<p class="guidelines" id="guide_2"><small>Use this space for any additional information regarding the coin or order.</small></p> 
+				<p class="guidelines" id="guide_2"><small>Use this space for any additional information regarding the coin or order. For instance if it is a NGC/PCGS MS-70 slabbed, or UNC/PROOF condition--use this area.</small></p> 
 		</li>
 		
 		
