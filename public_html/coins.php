@@ -1366,7 +1366,8 @@
 		Bar, etc. There is NO NEED to redundantly list the country or metal type (ex: ASE, or 
 		American Silver Eagle) as this is already covered in previous entries. This value is 
 		used so you can see how much of your 'stack' is composed of silver quarters or American 
-		Silver Eagles so it needs be exactly the same.</small></p> 
+		Silver Eagles so it needs be exactly the same. If you are adding generic bullion, use the notes area
+		below to list refinery (i.e. Johnson & Matthey or Engelhard).</small></p> 
 		</li>	
 		
 		
@@ -1375,7 +1376,10 @@
 		<div>
 			<textarea id="element_16" name="notes" class="element textarea small"></textarea> <!--medium-->
 		</div> 
-				<p class="guidelines" id="guide_2"><small>Use this space for any additional information regarding the coin or order. For instance if it is a NGC/PCGS MS-70 slabbed, or UNC/PROOF condition--use this area.</small></p> 
+				<p class="guidelines" id="guide_2"><small>Use this space for any additional information 
+				regarding the coin or order. Such as the manufacturer of a generic round (ie Engelhard).
+				For instance if it is a NGC/PCGS MS-70 slabbed, or 
+				UNC/PROOF condition--use this area.</small></p> 
 		</li>
 		
 		
