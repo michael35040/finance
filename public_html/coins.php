@@ -4,18 +4,29 @@ $id = $_SESSION["id"]; //get id from session
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
 	
-    $metal = $_POST["metal"];	//ag, au, pd, pt
-    $origin = $_POST["origin"];	//generic or country (ge, us)
-    $year = $_POST["year"];	//year of minting
-    itemtype
-    
-    
-    
-    
-    
-    
-    @$type = $_POST["type"]; //limit or market
-    @$side = $_POST["side"]; //buy/bid or sell/ask 
+    $metal = $_POST["metal"];		//ag, au, pd, pt
+    $origin = $_POST["origin"];		//generic or country (ge, us)
+    $year = $_POST["year"];		//year of minting
+    $year = $_POST["itemtype"];		//
+    $year = $_POST["actualmetalweight"];	//
+    $year = $_POST["quantity"];		//
+    $year = $_POST["costdollar"];	//
+    $year = $_POST["costcents"];	//
+    $year = $_POST["costsotherdollar"];	//
+    $year = $_POST["costsothercents"];	//
+    $year = $_POST["costrebatedollar"];	//
+    $year = $_POST["costrebatecents"];	//
+    $year = $_POST["spotdollar"];	//
+    $year = $_POST["spotcents"];	//
+    $year = $_POST["company"];		//
+    $year = $_POST["ordernumber"];	//
+    $year = $_POST["trackingnumber"];	//
+    $year = $_POST["purchasemonth"];	//
+    $year = $_POST["purchaseday"];	//
+    $year = $_POST["purchaseyear"];	//
+    $year = $_POST["notes"];		//
+
+    /*
     @$quantity = (int)$_POST["quantity"]; //not set on market orders
     @$dollar = (int)$_POST["dollar"]; //not set on market orders
     @$cents = (int)$_POST["cents"]; //not set on market orders
@@ -36,12 +47,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     try {placeOrder($symbol, $type, $side, $quantity, $price, $id);}
     catch(Exception $e) {apologize($e->getMessage());}
 
-    redirect("orders.php");
-
     //@$tradeTotal = (float)$tradeTotal; //convert string to float
     //@$commissionTotal = (float)$commissionTotal; //convert string to float
     //@$quantity = (int)$quantity; //convert string to float
    // render("success_form.php", ["title" => "Success", "transaction" => $transaction, "symbol" => $symbol, "value" => $tradeTotal, "quantity" => $quantity, "commissiontotal" => $commissionTotal]); // render success form
+
+	*/
+
+    redirect("orders.php");
+
     } //if post
 else
 {
@@ -1534,15 +1548,15 @@ Enter a positive number. This will be subtract from costs to determine price pai
 		<li id="li_12" >
 		<label class="description" for="element_12">Date of Acquisition/Purchase </label>
 		<span>
-			<input id="element_12_1" name="element_12_1" class="element text" size="2" maxlength="2" value="" type="text"> /
+			<input id="element_12_1" name="purchasemonth" class="element text" size="2" maxlength="2" value="" type="text"> /
 			<label for="element_12_1">MM</label>
 		</span>
 		<span>
-			<input id="element_12_2" name="element_12_2" class="element text" size="2" maxlength="2" value="" type="text"> /
+			<input id="element_12_2" name="purchaseday" class="element text" size="2" maxlength="2" value="" type="text"> /
 			<label for="element_12_2">DD</label>
 		</span>
 		<span>
-	 		<input id="element_12_3" name="element_12_3" class="element text" size="4" maxlength="4" value="" type="text">
+	 		<input id="element_12_3" name="purchaseyear" class="element text" size="4" maxlength="4" value="" type="text">
 			<label for="element_12_3">YYYY</label>
 		</span>
 	
@@ -1561,36 +1575,18 @@ Enter a positive number. This will be subtract from costs to determine price pai
 		</script>
 		 
 		</li>		
-		
-
-actualmetalweight
-quantity
-costdollar
-costcents
-costsotherdollar
-costsothercents
-costrebatedollar
-costrebatecents
-spotdollar
-spotcents
-company
-ordernumber
-trackingnumber
-
-		
-		
-		
+	
 		
 		<li id="li_16" >
 		<label class="description" for="element_16">Notes </label>
 		<div>
-			<textarea id="element_16" name="element_16" class="element textarea medium"></textarea> 
+			<textarea id="element_16" name="notes" class="element textarea medium"></textarea> 
 		</div> 
 		</li>
 			
-					<li class="buttons">
+					
+		<li class="buttons">
 			    <input type="hidden" name="form_id" value="1004601" />
-			    
 				<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
 		</li>
 			</ul>
