@@ -1473,8 +1473,17 @@ else
 		<!--	<input id="element_2" name="itemtype" class="element text medium" type="text" maxlength="255" value=""/> -->
 		</div>
 		
-		<p class="guidelines" id="guide_2"><small>Ex: Eagle, Maple, Britannia, Libertad, Round, Bar, etc.</small></p> 
-		</li>		
+		<p class="guidelines" id="guide_2"><small>Keep this as basic as possible. Use notes for more detailed information. Ex: Eagle, Maple, Britannia, Libertad, Round, Bar, etc.</small></p> 
+		</li>	
+		
+		
+		<li id="li_16" >
+		<label class="description" for="element_16">Notes </label>
+		<div>
+			<textarea id="element_16" name="notes" class="element textarea medium"></textarea> 
+		</div> 
+		</li>
+		
 		
 		<li id="li_15" >
 		<label class="description" for="element_15">Purity/Fineness </label>
@@ -1594,10 +1603,45 @@ Enter a positive number. This will be subtract from costs to determine price pai
 			<label for="element_8_2">Cents</label>
 		</span>
 		<p class="guidelines" id="guide_8"><small>Spot price of metal at time or date of purchase</small></p> 
-		</li>		<li class="section_break">
-			<h3>----- ORDER INFORMATION -----</h3>
-			<p></p>
 		</li>		
+		
+		
+		
+		<li class="section_break">
+			<h3>ORDER INFORMATION</h3>
+			<p>Details of your order.</p>
+		</li>		
+		
+		
+				<li id="li_12" >
+		<label class="description" for="element_12">Date of Acquisition/Purchase </label>
+		<span>
+			<input id="element_12_1" name="purchasemonth" class="element text" size="2" maxlength="2" value="" type="text"> /
+			<label for="element_12_1">MM</label>
+		</span>
+		<span>
+			<input id="element_12_2" name="purchaseday" class="element text" size="2" maxlength="2" value="" type="text"> /
+			<label for="element_12_2">DD</label>
+		</span>
+		<span>
+	 		<input id="element_12_3" name="purchaseyear" class="element text" size="4" maxlength="4" value="" type="text">
+			<label for="element_12_3">YYYY</label>
+		</span>
+		<span id="calendar_12">
+			<img id="cal_img_12" class="datepicker" src="calendar.gif" alt="Pick a date.">	
+		</span>
+		<script type="text/javascript">
+			Calendar.setup({
+			inputField	 : "element_12_3",
+			baseField    : "element_12",
+			displayArea  : "calendar_12",
+			button		 : "cal_img_12",
+			ifFormat	 : "%B %e, %Y",
+			onSelect	 : selectDate
+			});
+		</script>
+		</li>	
+		
 		
 		<li id="li_9" >
 		<label class="description" for="element_9">Company </label>
@@ -1622,46 +1666,7 @@ Enter a positive number. This will be subtract from costs to determine price pai
 		
 		
 		
-		<li id="li_12" >
-		<label class="description" for="element_12">Date of Acquisition/Purchase </label>
-		<span>
-			<input id="element_12_1" name="purchasemonth" class="element text" size="2" maxlength="2" value="" type="text"> /
-			<label for="element_12_1">MM</label>
-		</span>
-		<span>
-			<input id="element_12_2" name="purchaseday" class="element text" size="2" maxlength="2" value="" type="text"> /
-			<label for="element_12_2">DD</label>
-		</span>
-		<span>
-	 		<input id="element_12_3" name="purchaseyear" class="element text" size="4" maxlength="4" value="" type="text">
-			<label for="element_12_3">YYYY</label>
-		</span>
-	
-		<span id="calendar_12">
-			<img id="cal_img_12" class="datepicker" src="calendar.gif" alt="Pick a date.">	
-		</span>
-		<script type="text/javascript">
-			Calendar.setup({
-			inputField	 : "element_12_3",
-			baseField    : "element_12",
-			displayArea  : "calendar_12",
-			button		 : "cal_img_12",
-			ifFormat	 : "%B %e, %Y",
-			onSelect	 : selectDate
-			});
-		</script>
-		 
-		</li>		
-	
-		
-		<li id="li_16" >
-		<label class="description" for="element_16">Notes </label>
-		<div>
-			<textarea id="element_16" name="notes" class="element textarea medium"></textarea> 
-		</div> 
-		</li>
-			
-					
+
 		<li class="buttons">
 			    <input type="hidden" name="form_id" value="1004601" />
 				<input id="saveForm" class="button_text" type="submit" name="submit" value="Submit" />
