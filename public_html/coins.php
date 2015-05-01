@@ -1624,7 +1624,6 @@ Enter a positive number. This will be subtract from costs to determine price pai
 
 <?php
 
-/*
 
 require("../includes/config.php");  // configuration
 $id = $_SESSION["id"]; //get id from session
@@ -1653,8 +1652,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $purchaseyear = $_POST["purchaseyear"];	//
     $notes = $_POST["notes"];		//
 
-*/
 
+
+if (empty($metal)) {throw new Exception("Metal value empty!");} //check to see if empty
+if (empty($origin)) {throw new Exception("Metal value empty!");} //check to see if empty
+if (empty($year)) {throw new Exception("Metal value empty!");} //check to see if empty
+if (empty($metal)) {throw new Exception("Metal value empty!");} //check to see if empty
+if (empty($metal)) {throw new Exception("Metal value empty!");} //check to see if empty
+if (empty($metal)) {throw new Exception("Metal value empty!");} //check to see if empty
+if (empty($metal)) {throw new Exception("Metal value empty!");} //check to see if empty
+
+    $dollar = sanatize("quantity", $dollar);
+    if($cents>99 || $cents<0){apologize("Incorrect decimal!");}
+    //if($cents!=0 && $cents!=25 && $cents!=50 && $cents!=75){apologize("Incorrect decimal!");}
+    $cents=$cents/100;
+    $price=$dollar+$cents;
 
 
     /*
@@ -1669,13 +1681,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
 /*
 //CHECK FOR EMPTY VARIABLES
-if (empty($symbol)) {throw new Exception("Invalid order. Trade symbol required.");} //check to see if empty
-
-    $dollar = sanatize("quantity", $dollar);
-    if($cents>99 || $cents<0){apologize("Incorrect decimal!");}
-    //if($cents!=0 && $cents!=25 && $cents!=50 && $cents!=75){apologize("Incorrect decimal!");}
-    $cents=$cents/100;
-    $price=$dollar+$cents;
 
     //FORMATS AND SCRUBS VARIABLES
     $quantity = sanatize("quantity", $quantity);
