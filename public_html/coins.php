@@ -188,8 +188,8 @@ else
 		<li id="li_1" >
 		<label class="description" for="element_1">Metal Content </label>
 		<div>
-		<select class="element select small" id="element_1" name="metal"> 
-			<option value="" selected="selected" disabled></option>
+		<select class="element select small" id="element_1" name="metal" required> 
+			<option value="" selected="selected" disabled>Metal</option>
 			<option value="ag" >Silver</option>
 			<option value="au" >Gold</option>
 			<option value="pd" >Palladium</option>
@@ -201,7 +201,7 @@ else
 		<li id="li_14" >
 		<label class="description" for="element_14">Origin </label>
 		<div>
-		<select class="element select medium" id="element_14" name="origin"> 
+		<select class="element select medium" id="element_14" name="origin" required> 
 			<option value="" selected="selected" disabled>Country/Generic</option>
 			<option value="ZZ">Generic Bullion or Unknown</option>
 			<option value="US">United States</option>
@@ -468,8 +468,9 @@ else
 		<li id="li_20" >
 		<label class="description" for="element_20">Year of Minting </label>
 		<div>
-		<select class="element select small" id="element_20" name="year"> 
-			<option value="" selected="selected"></option>
+		<select class="element select small" id="element_20" name="year" required> 
+		      <option selected="selected">2015</option>
+		       <option value="0000" >Unknown</option>
 		      <option>2015</option>
 		      <option>2014</option>
 		      <option>2013</option>
@@ -1486,7 +1487,7 @@ else
 		      <option>1002</option>
 		      <option>1001</option>
 		      <option>1000</option>
-		      <option value="0000" >Prior</option>
+		      <option value="0001" >Prior</option>
 		</select>
 		</div><p class="guidelines" id="guide_20"><small>What year was the coin minted/produced?</small></p> 
 		</li>		
@@ -1496,7 +1497,7 @@ else
 		<label class="description" for="element_2">Type of Item </label>
 		<div>
 			
-			<input list="itemtype" id="element_2" name="itemtype" class="element text medium" >
+			<input list="itemtype" id="element_2" name="itemtype" class="element text medium" required>
 				<datalist id="itemtype">
 				  <option value="Round">
 				  <option value="Bar">
@@ -1539,7 +1540,7 @@ else
 		<li id="li_15" >
 		<label class="description" for="element_15">Purity/Fineness </label>
 		<div>
-		<select class="element select medium" id="element_15" name="element_15"> 
+		<select class="element select medium" id="element_15" name="element_15" required> 
 			<option value="" selected="selected"></option>
 			<option value="9999" >9999 (Four 9s)</option>
 			<option value="9990" >999 (24k)</option>
@@ -1572,14 +1573,14 @@ ex: 14k=585, 99.9%=999, 90%=900.</small></p>
 		<li id="li_4" >
 		<label class="description" for="element_4">Actual Metal Weight (AGW/ASW/etc.) </label>
 		<div>
-			<input id="element_4" name="actualmetalweight" class="element text small" type="text" maxlength="255" value=""/> 
+			<input id="element_4" name="actualmetalweight" class="element text small" type="text" maxlength="255" min="0.000001" max="1000000" value=""/ required> 
 		</div><p class="guidelines" id="guide_4"><small>Actual metal weight (silver, gold, etc.) of just one item (coin, bar, round). This will be multiplied by the quantity of items.</small></p> 
 		</li>		
 		
 		<li id="li_3" >
 		<label class="description" for="element_3">Quantity of Items </label>
 		<div>
-			<input id="element_3" name="quantity" class="element text small" type="text" maxlength="255" value=""/> 
+			<input id="element_3" name="quantity" class="element text small" type="number" maxlength="255" min="1" max="1000000" value=""/ required> 
 		</div><p class="guidelines" id="guide_3"><small>The number of items for this purchase. If this order was for 25 silver quarters, put 25. This will multiply the AMW to determine the total number of ounces for this purchase.</small></p> 
 		</li>		
 		
@@ -1601,11 +1602,11 @@ ex: 14k=585, 99.9%=999, 90%=900.</small></p>
 		<label class="description" for="element_5">Cost </label>
 		<span class="symbol">$</span>
 		<span>
-			<input id="element_5_1" name="costdollar" class="element text currency" size="10" value="" type="text" /> .		
+			<input id="element_5_1" name="costdollar" class="element text currency" size="10" value="" type="number" min="0" max="1000000"  required /> .		
 			<label for="element_5_1">Dollars</label>
 		</span>
 		<span>
-			<input id="element_5_2" name="costcents" class="element text" size="2" maxlength="2" value="" type="text" />
+			<input id="element_5_2" name="costcents" class="element text" size="2" maxlength="2" value="" type="number" min="0" max="99" required />
 			<label for="element_5_2">Cents</label>
 		</span>
 		<p class="guidelines" id="guide_5"><small>Primary cost of the coin/bullion excluding tax, shipping, etc.?</small></p> 
@@ -1615,11 +1616,11 @@ ex: 14k=585, 99.9%=999, 90%=900.</small></p>
 		<label class="description" for="element_6">Other Costs </label>
 		<span class="symbol">$</span>
 		<span>
-			<input id="element_6_1" name="costsotherdollar" class="element text currency" size="10" value="" type="text" /> .		
+			<input id="element_6_1" name="costsotherdollar" class="element text currency" size="10" value="" type="number" min="0" max="1000000" required /> .		
 			<label for="element_6_1">Dollars</label>
 		</span>
 		<span>
-			<input id="element_6_2" name="costsothercents" class="element text" size="2" maxlength="2" value="" type="text" />
+			<input id="element_6_2" name="costsothercents" class="element text" size="2" maxlength="2" value="" type="number" min="0" max="99" required />
 			<label for="element_6_2">Cents</label>
 		</span>
 		<p class="guidelines" id="guide_6"><small>Shipping, Handling, Taxes, Fuel Cost, etc. 
@@ -1631,11 +1632,11 @@ ex: 14k=585, 99.9%=999, 90%=900.</small></p>
 		<label class="description" for="element_7">Rebate </label>
 		<span class="symbol">$</span>
 		<span>
-			<input id="element_7_1" name="costrebatedollar" class="element text currency" size="10" value="" type="text" /> .		
+			<input id="element_7_1" name="costrebatedollar" class="element text currency" size="10" value="" type="number" min="0" max="1000000" required /> .		
 			<label for="element_7_1">Dollars</label>
 		</span>
 		<span>
-			<input id="element_7_2" name="costrebatecents" class="element text" size="2" maxlength="2" value="" type="text" />
+			<input id="element_7_2" name="costrebatecents" class="element text" size="2" maxlength="2" value="" type="number" min="0" max="99" required />
 			<label for="element_7_2">Cents</label>
 		</span>
 		<p class="guidelines" id="guide_7"><small>Credit Card Cash Backs, eBates, Coupons.
@@ -1646,11 +1647,11 @@ Enter a positive number. This will be subtract from costs to determine price pai
 		<label class="description" for="element_8">Spot Price </label>
 		<span class="symbol">$</span>
 		<span>
-			<input id="element_8_1" name="spotdollar" class="element text currency" size="10" value="" type="text" /> .		
+			<input id="element_8_1" name="spotdollar" class="element text currency" size="10" value="" type="number" min="0" max="1000000" required /> .		
 			<label for="element_8_1">Dollars</label>
 		</span>
 		<span>
-			<input id="element_8_2" name="spotcents" class="element text" size="2" maxlength="2" value="" type="text" />
+			<input id="element_8_2" name="spotcents" class="element text" size="2" maxlength="2" value="" type="number" min="0" max="99" required />
 			<label for="element_8_2">Cents</label>
 		</span>
 		<p class="guidelines" id="guide_8"><small>Spot price of metal at time or date of purchase</small></p> 
