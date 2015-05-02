@@ -163,7 +163,7 @@ else
 	
 		<h1><a>Metal Entry From</a></h1>
 		
-		<form id="form_1004601" class="appnitro"  method="post" action="exchange.php">
+		<form id="form_1004601" class="appnitro"  method="post" action="form.php">
 
 			
 		<div class="form_description">
