@@ -60,9 +60,9 @@ if (empty($costrebatedollar)) {apologize("Metal value empty!");} //check to see 
 if (empty($costrebatecents)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($spotdollar)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($spotcents)) {apologize("Metal value empty!");} //check to see if empty
-if (empty($company)) {apologize("Metal value empty!");} //check to see if empty
-if (empty($ordernumber)) {apologize("Metal value empty!");} //check to see if empty
-if (empty($trackingnumber)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($company)) {$company="Unknown";} //check to see if empty
+if (empty($ordernumber)) {$ordernumber=null;} //check to see if empty
+if (empty($trackingnumber)) {$trackingnumber=null;} //check to see if empty
 if (empty($purchasemonth)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($purchaseday)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($purchaseyear)) {apologize("Metal value empty!");} //check to see if empty
