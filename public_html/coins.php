@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
 
 
- apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
+ //apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
 
     $metal = $_POST["metal"];		//ag, au, pd, pt
     $origin = $_POST["origin"];		//generic or country (ge, us)
@@ -40,12 +40,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
     $company = $_POST["company"];		//
     $ordernumber = $_POST["ordernumber"];	//
-    $trackingnumber = $_POST["trackingnumber"];	//
+//    $trackingnumber = $_POST["trackingnumber"];	//
     $purchasemonth = $_POST["purchasemonth"];	//
     $purchaseday = $_POST["purchaseday"];	//
     $purchaseyear = $_POST["purchaseyear"];	//
     $notes = $_POST["notes"];		//
     
+    /*
 if (empty($metal)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($origin)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($year)) {apologize("Metal value empty!");} //check to see if empty
@@ -62,11 +63,12 @@ if (empty($spotdollar)) {apologize("Metal value empty!");} //check to see if emp
 if (empty($spotcents)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($company)) {$company="Unknown";} //check to see if empty
 if (empty($ordernumber)) {$ordernumber=null;} //check to see if empty
-if (empty($trackingnumber)) {$trackingnumber=null;} //check to see if empty
+//if (empty($trackingnumber)) {$trackingnumber=null;} //check to see if empty
 if (empty($purchasemonth)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($purchaseday)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($purchaseyear)) {apologize("Metal value empty!");} //check to see if empty
 //if (empty($notes)) {apologize("Metal value empty!");} //check to see if empty
+*/
 
 
 if (query("
@@ -81,14 +83,13 @@ VALUES (
 	?,?,?,?,?,
 	?,?,?,?,?,
 	?,?,?,?,?,
-	?,?,?,?,?,
 	?	
 	)",
 	$id, $metal, $itemtype, $origin, $year,
 	$itemtype, $quantity, $asw, $totalozt, $purity,
 	$costs, $costsother, $costsrebates, $total, $perozt,
-	$spot, $company, $ordernum, $orderday, $ordermonth,
-	$orderyear) === false
+	$spot, $company, $ordernumber, $purchaseday, $purchasemonth,
+	$purchaseyear) === false
 ) {
 query("ROLLBACK");
 query("SET AUTOCOMMIT=1");
@@ -1800,13 +1801,15 @@ Enter a positive number. This will be subtract from costs to determine price pai
 		</div> 
 		</li>		
 
+
+<!--
 		<li id="li_11" >
 		<label class="description" for="element_11">Tracking Number </label>
 		<div>
 			<input id="element_11" name="trackingnumber" class="element text medium" type="text" maxlength="255" value=""/> 
 		</div><p class="guidelines" id="guide_11"><small>Shipping Tracking Number if available.</small></p> 
 		</li>		
-		
+-->		
 		
 		
 
