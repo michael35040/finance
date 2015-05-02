@@ -11,17 +11,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $origin = $_POST["origin"];		//generic or country (ge, us)
     $year = $_POST["year"];		//year of minting
     $itemtype = $_POST["itemtype"];		//
-    $actualmetalweight = $_POST["actualmetalweight"];	//
-    $actualmetalweightdecimal = $_POST["actualmetalweightdecimal"];	//
+    $asw = $_POST["actualmetalweight"];	//
     $quantity = $_POST["quantity"];		//
+    $purity = $_POST["purity"];		//
+    
     $costdollar = $_POST["costdollar"];	//
     $costcents = $_POST["costcents"];	//
+    $costs=($costdollar+($costcents/100));
+   
+    
     $costsotherdollar = $_POST["costsotherdollar"];	//
     $costsothercents = $_POST["costsothercents"];	//
+    $costsother=($costsotherdollar+($costsothercents/100));
+    
     $costrebatedollar = $_POST["costrebatedollar"];	//
     $costrebatecents = $_POST["costrebatecents"];	//
+    $costsrebates=($costrebatedollar+($costrebatecents/100));
+
+    $total = ($costs+$costsother-$costsrebates);
+    
     $spotdollar = $_POST["spotdollar"];	//
     $spotcents = $_POST["spotcents"];	//
+    $spot=($spotdollar+($spotcents/100));
+    
+    $totalozt = ($quantity*$asw);
+    $perozt = ($total/$totalozt);
+
+
     $company = $_POST["company"];		//
     $ordernumber = $_POST["ordernumber"];	//
     $trackingnumber = $_POST["trackingnumber"];	//
@@ -34,7 +50,7 @@ if (empty($metal)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($origin)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($year)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($itemtype)) {apologize("Metal value empty!");} //check to see if empty
-if (empty($actualmetalweight)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($asw)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($quantity)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($costdollar)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($costcents)) {apologize("Metal value empty!");} //check to see if empty
@@ -50,7 +66,34 @@ if (empty($trackingnumber)) {apologize("Metal value empty!");} //check to see if
 if (empty($purchasemonth)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($purchaseday)) {apologize("Metal value empty!");} //check to see if empty
 if (empty($purchaseyear)) {apologize("Metal value empty!");} //check to see if empty
-if (empty($notes)) {apologize("Metal value empty!");} //check to see if empty
+//if (empty($notes)) {apologize("Metal value empty!");} //check to see if empty
+
+
+if (query("
+INSERT INTO metals (
+	id, metal, type, origin, year, 
+	description, quantity, asw, totalozt, purity, 
+	subtotal, shipping, rebate, total, cost, 
+	spot, company, ordernum, orderday, ordermonth, 
+	orderyear)
+VALUES (
+	?,?,?,?,?,
+	?,?,?,?,?,
+	?,?,?,?,?,
+	?,?,?,?,?,
+	?,?,?,?,?,
+	?	
+	)",
+	$id, $metal, $itemtype, $origin, $year,
+	$itemtype, $quantity, $asw, $totalozt, $purity,
+	$costs, $costsother, $costsrebates, $total, $perozt,
+	$spot, $company, $ordernum, $orderday, $ordermonth,
+	$orderyear) === false
+) {
+query("ROLLBACK");
+query("SET AUTOCOMMIT=1");
+apologize("Insert Orderbook Failure");
+}
 
 
     /*
@@ -1541,7 +1584,7 @@ else
 		<li id="li_15" >
 		<label class="description" for="element_15">Purity/Fineness </label>
 		<div>
-		<select class="element select medium" id="element_15" name="element_15" required> 
+		<select class="element select medium" id="element_15" name="purity" required> 
 			<option value="" selected="selected"></option>
 			<option value="9999" >9999 (Four 9s)</option>
 			<option value="9990" >999 (24k)</option>
