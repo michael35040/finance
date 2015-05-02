@@ -1,14 +1,12 @@
-
-
-
 <?php
-
-
-require("../includes/config.php");  // configuration
+require("../../includes/config.php");  // configuration
 $id = $_SESSION["id"]; //get id from session
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
-	
+
+
+ apologize(var_dump(get_defined_vars()));       //dump all variables if i hit error
+
     $metal = $_POST["metal"];		//ag, au, pd, pt
     $origin = $_POST["origin"];		//generic or country (ge, us)
     $year = $_POST["year"];		//year of minting
@@ -31,27 +29,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $purchaseyear = $_POST["purchaseyear"];	//
     $notes = $_POST["notes"];		//
     
-if (empty($metal)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($origin)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($year)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($itemtype)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($actualmetalweight)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($quantity)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($costdollar)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($costcents)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($costsotherdollar)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($costsothercents)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($costrebatedollar)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($costrebatecents)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($spotdollar)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($spotcents)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($company)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($ordernumber)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($trackingnumber)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($purchasemonth)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($purchaseday)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($purchaseyear)) {throw new Exception("Metal value empty!");} //check to see if empty
-if (empty($notes)) {throw new Exception("Metal value empty!");} //check to see if empty
+if (empty($metal)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($origin)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($year)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($itemtype)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($actualmetalweight)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($quantity)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($costdollar)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($costcents)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($costsotherdollar)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($costsothercents)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($costrebatedollar)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($costrebatecents)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($spotdollar)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($spotcents)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($company)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($ordernumber)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($trackingnumber)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($purchasemonth)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($purchaseday)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($purchaseyear)) {apologize("Metal value empty!");} //check to see if empty
+if (empty($notes)) {apologize("Metal value empty!");} //check to see if empty
 
 
     /*
@@ -84,28 +82,28 @@ if (empty($notes)) {throw new Exception("Metal value empty!");} //check to see i
 
 //QUERY TO SEE IF SYMBOL EXISTS
 $symbolCheck = query("SELECT symbol FROM assets WHERE symbol =?", $symbol);
-if (count($symbolCheck) != 1) {throw new Exception("Incorrect Symbol. Not listed on the exchange! (7)");} //row count
+if (count($symbolCheck) != 1) {apologize("Incorrect Symbol. Not listed on the exchange! (7)");} //row count
 
-if (!ctype_alnum($symbol)) {throw new Exception("Symbol must be alphanumeric!");}
+if (!ctype_alnum($symbol)) {apologize("Symbol must be alphanumeric!");}
 
 $symbol = strtoupper($symbol); //cast to UpperCase
 
-if ($type != 'market' && $type != 'limit' && $type != 'marketprice') {throw new Exception("Invalid order type.");}
+if ($type != 'market' && $type != 'limit' && $type != 'marketprice') {apologize("Invalid order type.");}
 
-if (!ctype_alpha($type) || !ctype_alpha($side)) {throw new Exception("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
+if (!ctype_alpha($type) || !ctype_alpha($side)) {apologize("Type and side must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
 
-if ($quantity > 2000000000) {throw new Exception("Invalid order. Trade quantity exceeds limits.");}
+if ($quantity > 2000000000) {apologize("Invalid order. Trade quantity exceeds limits.");}
 
-if ($quantity < 0) {throw new Exception("Quantity must be positive!");}
+if ($quantity < 0) {apologize("Quantity must be positive!");}
 
-if (preg_match("/^\d+$/", $quantity) == false) {throw new Exception("The quantity must enter a whole, positive integer.");} // if quantity is invalid (not a whole positive integer)
+if (preg_match("/^\d+$/", $quantity) == false) {apologize("The quantity must enter a whole, positive integer.");} // if quantity is invalid (not a whole positive integer)
 
-if (!is_int($quantity)) {throw new Exception("Quantity must be numeric!");} //if quantity is numeric
+if (!is_int($quantity)) {apologize("Quantity must be numeric!");} //if quantity is numeric
 
 //QUERY TO SEE IF USER EXISTS
-if (empty($id)) {throw new Exception("Invalid order. User required.");} //check to see if empty
+if (empty($id)) {apologize("Invalid order. User required.");} //check to see if empty
 $userCheck = query("SELECT count(id) as number FROM users WHERE id =?", $id);
-if ($userCheck[0]["number"] != 1) {throw new Exception("No user exists!");} //row count
+if ($userCheck[0]["number"] != 1) {apologize("No user exists!");} //row count
 
 
 query("SET AUTOCOMMIT=0");
@@ -119,7 +117,7 @@ $symbol, $side, $type, $price, $tradeAmount, $quantity, $id, $status, $quantity,
 ) {
 query("ROLLBACK");
 query("SET AUTOCOMMIT=1");
-throw new Exception("Insert Orderbook Failure");
+apologize("Insert Orderbook Failure");
 }
 //UPDATE HISTORY (ON ORDERS PAGE)
 $rows = query("SELECT LAST_INSERT_ID() AS uid"); //this takes the id to the next page
@@ -127,7 +125,7 @@ $ouid = $rows[0]["uid"]; //sets sql query to var
 if (query("INSERT INTO history (id, ouid, transaction, symbol, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?, ?)", $id, $ouid, $transaction, $symbol, $quantity, $price, $tradeAmount) === false) {
 query("ROLLBACK");
 query("SET AUTOCOMMIT=1");
-throw new Exception("Insert History Failure 3");
+apologize("Insert History Failure 3");
 }
 
 
