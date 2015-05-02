@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $year = $_POST["year"];		//year of minting
     $itemtype = $_POST["itemtype"];		//
     $actualmetalweight = $_POST["actualmetalweight"];	//
+    $actualmetalweightdecimal = $_POST["actualmetalweightdecimal"];	//
     $quantity = $_POST["quantity"];		//
     $costdollar = $_POST["costdollar"];	//
     $costcents = $_POST["costcents"];	//
@@ -1570,23 +1571,34 @@ else
 ex: 14k=585, 99.9%=999, 90%=900.</small></p> 
 		</li>		
 		
+		
+		
+		
 		<li id="li_4" >
 		<label class="description" for="element_4">Actual Metal Weight (AGW/ASW/etc.) </label>
 		<div>
 			<input id="element_4" name="actualmetalweight" class="element text small" type="text" maxlength="255" min="0.000001" max="1000000" value=""/ required> 
-		</div><p class="guidelines" id="guide_4"><small>Actual metal weight (silver, gold, etc.) of just one item (coin, bar, round). This will be multiplied by the quantity of items.</small></p> 
-		</li>		
+		</div><p class="guidelines" id="guide_4"><small>Enter the number of troy ounces for each coin/bullion item (ex: 0.7723). Actual metal weight (silver, gold, etc.) of just one item (coin, bar, round). This will be multiplied by the quantity of items.</small></p> 
+		</li>
+
+		
+		
+		
+		
 		
 		<li id="li_3" >
 		<label class="description" for="element_3">Quantity of Items </label>
 		<div>
 			<input id="element_3" name="quantity" class="element text small" type="number" maxlength="255" min="1" max="1000000" value=""/ required> 
-		</div><p class="guidelines" id="guide_3"><small>The number of items for this purchase. If this order was for 25 silver quarters, put 25. This will multiply the AMW to determine the total number of ounces for this purchase.</small></p> 
+		</div>
+		<p class="guidelines" id="guide_3"><small>The number of items for this purchase. If this order was for 25 silver quarters, put 25. This will multiply the AMW to determine the total number of ounces for this purchase.</small></p> 
 		</li>		
 		
 		
 		
 		
+		
+
 		
 		
 		
@@ -1611,6 +1623,9 @@ ex: 14k=585, 99.9%=999, 90%=900.</small></p>
 		</span>
 		<p class="guidelines" id="guide_5"><small>Primary cost of the coin/bullion excluding tax, shipping, etc.?</small></p> 
 		</li>		
+		
+		
+		
 		
 		<li id="li_6" >
 		<label class="description" for="element_6">Other Costs </label>
