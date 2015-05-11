@@ -94,7 +94,7 @@ $guessdata =	query("SELECT id, price, name, date FROM spot WHERE (price=? AND ev
 
   <td>
         <?php 
-          echo(number_format($spotprice),$decimalplaces,".",","); 
+          echo(number_format($spotprice),2,".",","); 
           //echo(htmlspecialchars($guessdata[0]["price"]));
         ?>
   </td>
