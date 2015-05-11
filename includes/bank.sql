@@ -363,8 +363,8 @@ CREATE TABLE IF NOT EXISTS `spot` (
   `uid` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique id',
   `event` int(10) unsigned NOT NULL COMMENT 'event id',
   `id` int(10) unsigned NOT NULL COMMENT 'user id',
-  `spot` DECIMAL(18,4) NOT NULL COMMENT 'spot price at purchase',
-  `name` varchar(100) NOT NULL COMMENT 'reddit name',
+  `price` DECIMAL(18,2) NOT NULL COMMENT 'spot price',
+  `name` varchar(100) NULL DEFAULT NULL COMMENT 'name',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 --  UNIQUE KEY `symbol` (`symbol`),
   PRIMARY KEY (`uid`)
