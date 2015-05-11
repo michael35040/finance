@@ -21,24 +21,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $newguess = $_POST["newguess"];
   
     //CHECK TO MAKE SURE GUESS IS VALID
-      if (preg_match("/^([0-9.]+)$/", $price) == false) {apologize("You submitted an invalid price. Failure #1");}
+      if (preg_match("/^([0-9.]+)$/", $newguess) == false) {apologize("You submitted an invalid price. Failure #1. $newguess");}
     ////CURRENCY CHECK
       //ACCEPTS NEGATIVE NUMBER. REMOVE "-?" AT THE BEGINNING TO STOP
       //ACCEPTS ONLY ONE DECIMAL "0.7". IF YOU WANT IT TO ALWAYS BE TWO REPLACE "{1,2}" WITH {2}
-      if (preg_match("/^-?[0-9]+(?:\.[0-9]{1,2})?$/", $price) == false) {apologize("You submitted an invalid price. Failure #2");}
+      if (preg_match("/^-?[0-9]+(?:\.[0-9]{1,2})?$/", $newguess) == false) {apologize("You submitted an invalid price. Failure #2. $newguess");}
     //POSITIVE CHECK
-      if ($price < 0) {apologize("Price must be positive!");}
+      if ($newguess < 0) {apologize("Price must be positive!");}
     
     //SEE IF USER IS AUTHORIZED
     $countQ = query("SELECT COUNT(id) AS total, SUM(price) AS value FROM spot WHERE (id=?)", $id); // query database for user
     $numberguesses = $countQ[0]["total"];
-    if($numberguess>3){apologize("User has no available guesses!");}
+    if($numberguesses>3){apologize("User has no available guesses!");}
     
     //CHECK TO MAKE SURE PRICE ISNT TAKEN
     $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (price=?)", $newguess); // query database for user
   
       //INSERT TO DB
-    if (query("INSERT INTO ledger (id, price,event) VALUES (?,?)", $id, $newguess, $event) === false) {apologize("Unable to insert guess!");}
+    if (query("INSERT INTO ledger (id, price,event) VALUES (?,?,?)", $id, $newguess, $event) === false) {apologize("Unable to insert guess!");}
   
   } //isset
 } //if post
@@ -87,17 +87,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
 <?php 
 $guessdata =	query("SELECT id, price, name, date FROM spot WHERE (price=? AND event=?)", $spotprice, $event);
-
-if(!empty($guessdata)){
 ?>
 
-      
-      <td>
+  <td>
         <?php 
           echo(number_format(getPrice($spotprice),$decimalplaces,".",",")); 
           //echo(htmlspecialchars($guessdata[0]["price"]));
         ?>
-      </td>
+  </td>
+  
+<?php  
+if(!empty($guessdata)){
+?>
 
       <td>
         <?php echo(htmlspecialchars($guessdata["id"] )); ?>
@@ -111,8 +112,6 @@ if(!empty($guessdata)){
 else
 { //is empty
 ?>
-<td><?php echo($spotprice); ?></td>
-
 <td colspan="2">
   <form method="post" action="guess.php">
     <button type="submit" class="btn btn-danger btn-xs" name="newguess" value="<?php echo($spotprice) ?>">
