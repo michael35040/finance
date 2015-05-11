@@ -56,12 +56,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     // Retrieve the DOM from a given URL
     $html = file_get_html('http://www.kitco.com/mobile/');
     // Extract all text from a given cell
-    $gold["bid"] = $html->find('td[align="center"]', 4)->plaintext.'<br><hr>'; 
-    $gold["ask"] = $html->find('td[align="center"]', 5)->plaintext.'<br><hr>'; 
-    $gold["change"] = $html->find('td[align="center"]', 7)->plaintext.'<br><hr>'; 
     $silver["bid"] = $html->find('td[align="center"]', 9)->plaintext.'<br><hr>'; 
     $silver["ask"] = $html->find('td[align="center"]', 10)->plaintext.'<br><hr>';
     $silver["change"] = $html->find('td[align="center"]', 12)->plaintext.'<br><hr>'; 
+
+
+  $spot=$silver["bid"];
+  
+/*
+    $gold["bid"] = $html->find('td[align="center"]', 4)->plaintext.'<br><hr>'; 
+    $gold["ask"] = $html->find('td[align="center"]', 5)->plaintext.'<br><hr>'; 
+    $gold["change"] = $html->find('td[align="center"]', 7)->plaintext.'<br><hr>'; 
     $platinum["bid"] = $html->find('td[align="center"]', 14)->plaintext.'<br><hr>'; 
     $platinum["ask"] = $html->find('td[align="center"]', 15)->plaintext.'<br><hr>'; 
     $platinum["change"] = $html->find('td[align="center"]', 17)->plaintext.'<br><hr>';
@@ -71,22 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $rhodium["bid"] = $html->find('td[align="center"]', 24)->plaintext.'<br><hr>'; 
     $rhodium["ask"] = $html->find('td[align="center"]', 25)->plaintext.'<br><hr>';  
     $rhodium["change"] = $html->find('td[align="center"]', 27)->plaintext.'<br><hr>';
-
-
-
-//PULL DB QUERY OF CURRENT GUESSES
-  /*
-  //PULLS ALL GUESSES, AT THE MOMENT WE ARE JUST PULLING IT FOR EACH NUMBER
-  $guesses =	query("SELECT id, price, name, date FROM spot WHERE event = ? ORDER BY price ASC", $event);
-  if(!empty($guesses)) 
-  {
-    foreach ($guesses as $guess) { 
-      echo("");
-      if $guess["price"]==$price{$name==$guess["id"];$date==$guess["date"];
-    }
-  }
-  */
-
+*/
 
 
 //SHOW AVAIALBE GUESSES
@@ -131,6 +121,60 @@ Number Guesses:
 Guesses Left: <?php
     $guessesleft=$availableguesses-$numberguesses;
     echo($guessesleft); ?><br>
+  
+
+
+
+  
+<table>
+    <tr>
+      <td>PRICE</td>
+      <td>USER</td>
+      <td>DATE</td>
+      <td>DISTANCE FROM SPOT</td>
+      <td>BELOW NEXT BID</td>
+      <td>ABOVE NEXT BID</td>
+    </tr>    
+<?php
+//PULL DB QUERY OF CURRENT GUESSES
+  //PULLS ALL GUESSES, AT THE MOMENT WE ARE JUST PULLING IT FOR EACH NUMBER
+  $guesses =	query("SELECT id, price, name, date FROM spot WHERE event = ? ORDER BY price ASC", $event);
+  if(!empty($guesses)) 
+  {
+    $previous=0;
+    foreach ($guesses as $guess) { 
+      $distance =           ($guess["price"]-$spot);
+      $distancepercentage = 100*(($guess["price"]-$spot)/$spot);
+      $difference=$guess["price"]-$previous;
+      
+      
+      echo('<tr>
+          <td>' . $guess["price"] . '</td>
+          <td>' . $guess["name"] . '/' . $guess["id"] . '</td>
+          <td>' . $guess["date"] . '</td>
+          <td>' . $distance . ' (' . $distancepercentage . '%)</td>
+          
+          
+          
+        </tr>');
+      
+      //if $guess["price"]==$price{$name==$guess["id"];$date==$guess["date"];
+    $previous = $guess["price"];
+      
+    } //foreach
+    
+  } //if
+?>
+
+    
+  </table>
+  
+  
+  
+  
+  
+  
+  
   
     <table class="table table-striped table-condensed table-bordered" >
     <tr class="info">
