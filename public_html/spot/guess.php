@@ -13,4 +13,13 @@
 //THOSE TAKEN DISPLAY THOSE WHO GUESS
 
 
+
+////////////////
+//DB MODEL
+//SPOT (unique)
+//USERID (int)
+//REDDIT NAME (varchar)
+//TIMESTAMP (date)
+
+
 ?>
