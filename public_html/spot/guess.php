@@ -55,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 //PULL DB QUERY OF CURRENT GUESSES
   //PULLS ALL GUESSES, AT THE MOMENT WE ARE JUST PULLING IT FOR EACH NUMBER
   $guesses =	query("SELECT id, price, name, date FROM spot WHERE event = ? ORDER BY price ASC", $event);
+$count=count($guesses);
 
 
 
@@ -85,6 +86,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $rhodium["ask"] = $html->find('td[align="center"]', 25)->plaintext.'<br><hr>';  
     $rhodium["change"] = $html->find('td[align="center"]', 27)->plaintext.'<br><hr>';
 */
+
+//get closest
+function getClosest($search, $arr) {
+   $closest = null;
+   foreach($arr as $item) {
+      if($closest == null || abs($search - $closest) > abs($item - $search)) {
+         $closest = $item;
+      }
+   }
+   return $closest;
+}
+$winning=getClosest($guesses, $spot);
 
 
 //SHOW AVAIALBE GUESSES
@@ -131,7 +144,7 @@ Guesses Left: <?php
     echo($guessesleft); ?><br>
   
 Total Guesses: <?php echo($count); ?><br>
-
+Winning: <?php echo($winning); ?><br>
   
 <table>
     <tr>
@@ -156,7 +169,6 @@ for ($i = 0; $i < count($guesses); $i++) {
 }
 */
 
-$count=count($guesses);
 
   $i=0;
   foreach ($guesses as $guess) { 
@@ -168,6 +180,9 @@ $count=count($guesses);
         $thisValue = $guesses[$i]['price'];
         if($i>=($count-1)){$nextValue=384400;}else{$nextValue = $guesses[$i + 1]['price'];}
         $percentageDiff = ($nextValue-$thisValue)/$thisValue;
+
+$winning=0;
+if($spot-$thisValue)
 
       echo('<tr>
           <td>' . $guess["price"] . '</td>
