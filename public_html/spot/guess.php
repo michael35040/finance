@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     //POSITIVE CHECK
       if ($newguess < 0) {apologize("Price must be positive!");}
     
+      if ($newguess >384400){apologize("Maximum value is 384,400.00. 384,400km is the distance to da moon!")
 
 
     //SEE IF USER IS AUTHORIZED
@@ -162,7 +163,7 @@ $count=count($guesses);
 
         if($i==0){$prevValue=0;}else{$prevValue = $guesses[$i - 1]['price'];}
         $thisValue = $guesses[$i]['price'];
-        if($i>=($count-1)){$nextValue=99;}else{$nextValue = $guesses[$i + 1]['price'];}
+        if($i>=($count-1)){$nextValue=384400;}else{$nextValue = $guesses[$i + 1]['price'];}
         $percentageDiff = ($nextValue-$thisValue)/$thisValue;
 
       echo('<tr>
