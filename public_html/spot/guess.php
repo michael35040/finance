@@ -33,9 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
 
     //SEE IF USER IS AUTHORIZED
+    $availableguesses=3;
+  
     $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
     $numberguesses = $countQ[0]["total"];
-    if($numberguesses>3){apologize("User has no available guesses!");}
+    if($numberguesses>=$availableguesses){apologize("User has no available guesses!");}
     
     //CHECK TO MAKE SURE PRICE ISNT TAKEN
     $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (price=?)", $newguess); // query database for user
