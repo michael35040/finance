@@ -366,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `spot` (
   `spot` DECIMAL(18,4) NOT NULL COMMENT 'spot price at purchase',
   `name` varchar(100) NOT NULL COMMENT 'reddit name',
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  UNIQUE KEY `symbol` (`symbol`),
+--  UNIQUE KEY `symbol` (`symbol`),
   PRIMARY KEY (`uid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
