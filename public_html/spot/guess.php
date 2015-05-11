@@ -169,9 +169,11 @@ $count=count($guesses);
           <td>' . $guess["price"] . '</td>
           <td>' . $guess["name"] . '/' . $guess["id"] . '</td>
           <td>' . $guess["date"] . '</td>
-          <td>' . $distance . ' (' . $distancepercentage . '%)</td>
+          <td>' . $distance . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>
           <td>' . $prevValue . '</td>
           <td>' . $nextValue . '</td>
+
+
 
         </tr>');
     
