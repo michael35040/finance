@@ -88,11 +88,12 @@ $count=count($guesses);
 */
 
 //get closest
+//supplying array
 function getClosest($search, $arr) {
    $closest = null;
-   foreach($arr as $item) {
-      if($closest == null || abs($search - $closest) > abs($item - $search)) {
-         $closest = $item;
+   foreach($guesses as $guess) {
+      if($closest == null || abs($search - $closest) > abs($guess - $search)) {
+         $closest = $guess;
       }
    }
    return $closest;
