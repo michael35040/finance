@@ -29,6 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     //POSITIVE CHECK
       if ($newguess < 0) {apologize("Price must be positive!");}
     
+
+/*
     //SEE IF USER IS AUTHORIZED
     $countQ = query("SELECT COUNT(id) AS total, SUM(price) AS value FROM spot WHERE (id=?)", $id); // query database for user
     $numberguesses = $countQ[0]["total"];
@@ -36,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     
     //CHECK TO MAKE SURE PRICE ISNT TAKEN
     $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (price=?)", $newguess); // query database for user
+*/
   
       //INSERT TO DB
     if (query("INSERT INTO ledger (id, price,event) VALUES (?,?,?)", $id, $newguess, $event) === false) {apologize("Unable to insert guess!");}
@@ -91,7 +94,7 @@ $guessdata =	query("SELECT id, price, name, date FROM spot WHERE (price=? AND ev
 
   <td>
         <?php 
-          echo(number_format(getPrice($spotprice),$decimalplaces,".",",")); 
+          echo(number_format($spotprice),$decimalplaces,".",","); 
           //echo(htmlspecialchars($guessdata[0]["price"]));
         ?>
   </td>
@@ -120,7 +123,7 @@ else
   </form>
 </td>
       
-      <?php
+  <?php
   } //is empty
   ?></tr><?php
   $spotprice=$spotprice+0.01;
