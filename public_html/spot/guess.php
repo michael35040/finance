@@ -8,6 +8,35 @@ $event = 1;
 $availableguesses=3;
 
 
+//PULL NY SPOT
+    // Include the library
+    require('simple_html_dom.php');
+    // Retrieve the DOM from a given URL
+    $html = file_get_html('http://www.kitco.com/mobile/');
+    // Extract all text from a given cell
+    $silver["bid"] = $html->find('td[align="center"]', 9)->plaintext.'<br><hr>'; 
+    $silver["ask"] = $html->find('td[align="center"]', 10)->plaintext.'<br><hr>';
+    $silver["change"] = $html->find('td[align="center"]', 12)->plaintext.'<br><hr>'; 
+
+
+  $spot=$silver["bid"];
+  
+/*
+    $gold["bid"] = $html->find('td[align="center"]', 4)->plaintext.'<br><hr>'; 
+    $gold["ask"] = $html->find('td[align="center"]', 5)->plaintext.'<br><hr>'; 
+    $gold["change"] = $html->find('td[align="center"]', 7)->plaintext.'<br><hr>'; 
+    $platinum["bid"] = $html->find('td[align="center"]', 14)->plaintext.'<br><hr>'; 
+    $platinum["ask"] = $html->find('td[align="center"]', 15)->plaintext.'<br><hr>'; 
+    $platinum["change"] = $html->find('td[align="center"]', 17)->plaintext.'<br><hr>';
+    $palladium["bid"] = $html->find('td[align="center"]', 19)->plaintext.'<br><hr>'; 
+    $palladium["ask"] = $html->find('td[align="center"]', 20)->plaintext.'<br><hr>';
+    $palladium["change"] = $html->find('td[align="center"]', 22)->plaintext.'<br><hr>';
+    $rhodium["bid"] = $html->find('td[align="center"]', 24)->plaintext.'<br><hr>'; 
+    $rhodium["ask"] = $html->find('td[align="center"]', 25)->plaintext.'<br><hr>';  
+    $rhodium["change"] = $html->find('td[align="center"]', 27)->plaintext.'<br><hr>';
+*/
+
+
 //SEE IF USER NEEDS TO MAKE A GUESS
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
@@ -54,51 +83,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
 //PULL DB QUERY OF CURRENT GUESSES
   //PULLS ALL GUESSES, AT THE MOMENT WE ARE JUST PULLING IT FOR EACH NUMBER
-  $guesses =	query("SELECT id, price, name, date FROM spot WHERE event = ? ORDER BY price ASC", $event);
+  $guesses =	query("SELECT uid, id, price, name, date FROM spot WHERE event = ? ORDER BY price ASC", $event);
 $count=count($guesses);
+  if(!empty($guesses)) 
+  {
+
+  $i=0;
+  $winningDif=999999999;
+  foreach ($guesses as $guess) { 
+        $thisValue = $guesses[$i]['price'];
+        $currentDif = ($spot-$thisValue);
+        
+        //WINNING
+        if($currentDif<$winningDif&&$currentDif>0){$winning=$guesses[$i]['uid'];$winningDif=$currentDif;}
+  }
+
+  }//!empty
 
 
 
-//PULL NY SPOT
-    // Include the library
-    require('simple_html_dom.php');
-    // Retrieve the DOM from a given URL
-    $html = file_get_html('http://www.kitco.com/mobile/');
-    // Extract all text from a given cell
-    $silver["bid"] = $html->find('td[align="center"]', 9)->plaintext.'<br><hr>'; 
-    $silver["ask"] = $html->find('td[align="center"]', 10)->plaintext.'<br><hr>';
-    $silver["change"] = $html->find('td[align="center"]', 12)->plaintext.'<br><hr>'; 
 
 
-  $spot=$silver["bid"];
-  
-/*
-    $gold["bid"] = $html->find('td[align="center"]', 4)->plaintext.'<br><hr>'; 
-    $gold["ask"] = $html->find('td[align="center"]', 5)->plaintext.'<br><hr>'; 
-    $gold["change"] = $html->find('td[align="center"]', 7)->plaintext.'<br><hr>'; 
-    $platinum["bid"] = $html->find('td[align="center"]', 14)->plaintext.'<br><hr>'; 
-    $platinum["ask"] = $html->find('td[align="center"]', 15)->plaintext.'<br><hr>'; 
-    $platinum["change"] = $html->find('td[align="center"]', 17)->plaintext.'<br><hr>';
-    $palladium["bid"] = $html->find('td[align="center"]', 19)->plaintext.'<br><hr>'; 
-    $palladium["ask"] = $html->find('td[align="center"]', 20)->plaintext.'<br><hr>';
-    $palladium["change"] = $html->find('td[align="center"]', 22)->plaintext.'<br><hr>';
-    $rhodium["bid"] = $html->find('td[align="center"]', 24)->plaintext.'<br><hr>'; 
-    $rhodium["ask"] = $html->find('td[align="center"]', 25)->plaintext.'<br><hr>';  
-    $rhodium["change"] = $html->find('td[align="center"]', 27)->plaintext.'<br><hr>';
-*/
 
-//get closest
-//supplying array
-function getClosest($search, $arr) {
-   $closest = null;
-   foreach($guesses as $guess) {
-      if($closest == null || abs($search - $closest) > abs($guess - $search)) {
-         $closest = $guess;
-      }
-   }
-   return $closest;
-}
-$winning=getClosest($guesses, $spot);
 
 
 //SHOW AVAIALBE GUESSES
@@ -126,6 +132,7 @@ $winning=getClosest($guesses, $spot);
  }
 </style>
 
+<br>
 
 
 Spot (Bid):<?php echo(number_format((float)$silver["bid"],2,".","")); ?><br>
@@ -145,7 +152,7 @@ Guesses Left: <?php
     echo($guessesleft); ?><br>
   
 Total Guesses: <?php echo($count); ?><br>
-Winning: <?php echo($winning); ?><br>
+Winning UID: <?php echo($winning); ?><br>
   
 <table>
     <tr>
@@ -160,17 +167,6 @@ Winning: <?php echo($winning); ?><br>
   if(!empty($guesses)) 
   {
 
-/*  
-for ($i = 0; $i < count($guesses); $i++) {
-     if (isset($guesses[$i + 1])) {
-        $thisValue = $guesses[$i]['price'];
-        $nextValue = $guesses[$i + 1]['price'];
-        $percentageDiff = ($nextValue-$thisValue)/$thisValue;
-    }
-}
-*/
-
-
   $i=0;
   foreach ($guesses as $guess) { 
       
@@ -180,12 +176,13 @@ for ($i = 0; $i < count($guesses); $i++) {
         if($i==0){$prevValue=0;}else{$prevValue = $guesses[$i - 1]['price'];}
         $thisValue = $guesses[$i]['price'];
         if($i>=($count-1)){$nextValue=384400;}else{$nextValue = $guesses[$i + 1]['price'];}
-        $percentageDiff = ($nextValue-$thisValue)/$thisValue;
-
-$winning=0;
-if($spot-$thisValue)
-
-      echo('<tr>
+        //$percentageDiff = ($nextValue-$thisValue)/$thisValue;
+        //$currentDif = ($spot-$thisValue);
+      
+      if($guess["uid"]=$winning){echo('<tr bgcolor="#00FF00">');}
+      else{echo('<tr>');}
+      
+      echo('
           <td>' . $guess["price"] . '</td>
           <td>' . $guess["name"] . '/' . $guess["id"] . '</td>
           <td>' . $guess["date"] . '</td>
@@ -193,20 +190,14 @@ if($spot-$thisValue)
           <td>' . $prevValue . '</td>
           <td>' . $nextValue . '</td>
 
-
-
         </tr>');
     
     $i++;
     } //foreach
-
-
   } //if
 ?>
 
-    
   </table>
-  
   
   
   
