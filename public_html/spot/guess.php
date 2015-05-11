@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     //POSITIVE CHECK
       if ($newguess < 0) {apologize("Price must be positive!");}
     
-      if ($newguess >384400){apologize("Maximum value is 384,400.00. 384,400km is the distance to da moon!")
+      if ($newguess >384400){apologize("Maximum value is 384,400.00. 384,400km is the distance to da moon!");}
 
 
     //SEE IF USER IS AUTHORIZED
@@ -48,6 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
   
   } //isset
 } //if post
+
+
+
+
+//PULL DB QUERY OF CURRENT GUESSES
+  //PULLS ALL GUESSES, AT THE MOMENT WE ARE JUST PULLING IT FOR EACH NUMBER
+  $guesses =	query("SELECT id, price, name, date FROM spot WHERE event = ? ORDER BY price ASC", $event);
 
 
 
@@ -111,7 +118,7 @@ Spot (Bid):<?php echo(number_format((float)$silver["bid"],2,".","")); ?><br>
 Spot (Ask):<?php echo(number_format((float)$silver["ask"],2,".","")); ?><br>
 Spot (Change):<?php echo(number_format((float)$silver["change"],2,".","")); ?><br>
 
-Number Guesses: 
+Your Guesses: 
   <?php 
     $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
     $numberguesses = $countQ[0]["total"];
@@ -123,8 +130,7 @@ Guesses Left: <?php
     $guessesleft=$availableguesses-$numberguesses;
     echo($guessesleft); ?><br>
   
-
-
+Total Guesses: <?php echo($count); ?><br>
 
   
 <table>
@@ -137,9 +143,6 @@ Guesses Left: <?php
       <td>ABOVE NEXT BID</td>
     </tr>    
 <?php
-//PULL DB QUERY OF CURRENT GUESSES
-  //PULLS ALL GUESSES, AT THE MOMENT WE ARE JUST PULLING IT FOR EACH NUMBER
-  $guesses =	query("SELECT id, price, name, date FROM spot WHERE event = ? ORDER BY price ASC", $event);
   if(!empty($guesses)) 
   {
 
@@ -189,7 +192,6 @@ $count=count($guesses);
   </table>
   
   
-  Total Guesses: <?php echo($count); ?><br>
   
   
   
