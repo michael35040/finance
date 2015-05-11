@@ -5,6 +5,7 @@ $id = $_SESSION["id"]; //get id from session
 
 //CONTEST #1 FOR WHEN WE HAVE MULTIPLE CONTESTS/EVENTS
 $event = 1;
+$availableguesses=3;
 
 
 //SEE IF USER NEEDS TO MAKE A GUESS
@@ -33,8 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
 
     //SEE IF USER IS AUTHORIZED
-    $availableguesses=3;
-  
     $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
     $numberguesses = $countQ[0]["total"];
     if($numberguesses>=$availableguesses){apologize("User has no available guesses!");}
@@ -126,8 +125,12 @@ Number Guesses:
     $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
     $numberguesses = $countQ[0]["total"];
     echo($numberguesses); 
+    
   ?>
   <br>
+Guesses Left: <?php
+    $guessesleft=$availableguesses-$numberguesses;
+    echo($guessesleft); ?><br>
   
     <table class="table table-striped table-condensed table-bordered" >
     <tr class="info">
