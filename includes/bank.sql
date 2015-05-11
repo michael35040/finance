@@ -355,6 +355,29 @@ TRUNCATE TABLE `storage`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `spot`
+--
+
+DROP TABLE IF EXISTS `spot`;
+CREATE TABLE IF NOT EXISTS `spot` (
+  `uid` int(10) NOT NULL AUTO_INCREMENT COMMENT 'unique id',
+  `event` int(10) unsigned NOT NULL COMMENT 'event id',
+  `id` int(10) unsigned NOT NULL COMMENT 'user id',
+  `spot` DECIMAL(18,4) NOT NULL COMMENT 'spot price at purchase',
+  `name` varchar(100) NOT NULL COMMENT 'reddit name',
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY `symbol` (`symbol`),
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Truncate table before insert `spot`
+--
+
+TRUNCATE TABLE `spot`;
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `trades`
 --
 
