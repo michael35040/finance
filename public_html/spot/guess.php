@@ -141,28 +141,44 @@ Guesses Left: <?php
   $guesses =	query("SELECT id, price, name, date FROM spot WHERE event = ? ORDER BY price ASC", $event);
   if(!empty($guesses)) 
   {
-    $previous=0;
-    foreach ($guesses as $guess) { 
+
+/*  
+for ($i = 0; $i < count($guesses); $i++) {
+     if (isset($guesses[$i + 1])) {
+        $thisValue = $guesses[$i]['price'];
+        $nextValue = $guesses[$i + 1]['price'];
+        $percentageDiff = ($nextValue-$thisValue)/$thisValue;
+    }
+}
+*/
+
+$count=count($guesses);
+
+  $i=0;
+  foreach ($guesses as $guess) { 
+      
       $distance =           ($guess["price"]-$spot);
       $distancepercentage = 100*(($guess["price"]-$spot)/$spot);
-      $difference=$guess["price"]-$previous;
-      
-      
+
+        if($i==0){$prevValue=0;}else{$prevValue = $guesses[$i - 1]['price'];}
+        $thisValue = $guesses[$i]['price'];
+        if($i>=($count-1)){$nextValue=99;}else{$nextValue = $guesses[$i + 1]['price'];}
+        $percentageDiff = ($nextValue-$thisValue)/$thisValue;
+
       echo('<tr>
           <td>' . $guess["price"] . '</td>
           <td>' . $guess["name"] . '/' . $guess["id"] . '</td>
           <td>' . $guess["date"] . '</td>
           <td>' . $distance . ' (' . $distancepercentage . '%)</td>
-          
-          
-          
+          <td>' . $prevValue . '</td>
+          <td>' . $nextValue . '</td>
+
         </tr>');
-      
-      //if $guess["price"]==$price{$name==$guess["id"];$date==$guess["date"];
-    $previous = $guess["price"];
-      
-    } //foreach
     
+    $i++;
+    } //foreach
+
+
   } //if
 ?>
 
@@ -170,7 +186,7 @@ Guesses Left: <?php
   </table>
   
   
-  
+  Total Guesses: <?php echo($count); ?><br>
   
   
   
