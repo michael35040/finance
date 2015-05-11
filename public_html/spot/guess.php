@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
     //SEE IF USER IS AUTHORIZED
     $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
-    $numberguesses = $countQ["total"];
+    $numberguesses = $countQ[0]["total"];
     if($numberguesses>3){apologize("User has no available guesses!");}
     
     //CHECK TO MAKE SURE PRICE ISNT TAKEN
@@ -115,14 +115,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
 
 
-Spot (Bid):<?php echo(number_format($silver["bid"],2,".","")); ?><br>
-Spot (Ask):<?php echo(number_format($silver["ask"],2,".","")); ?><br>
-Spot (Change):<?php echo(number_format($silver["change"],2,".","")); ?><br>
+Spot (Bid):<?php echo(number_format((float)$silver["bid"],2,".","")); ?><br>
+Spot (Ask):<?php echo(number_format((float)$silver["ask"],2,".","")); ?><br>
+Spot (Change):<?php echo(number_format((float)$silver["change"],2,".","")); ?><br>
 
 Number Guesses: 
   <?php 
     $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
-    $numberguesses = $countQ["total"];
+    $numberguesses = $countQ[0]["total"];
     echo($numberguesses); 
   ?>
   <br>
