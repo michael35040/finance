@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     //POST DATA TO LOCAL
     $newguess = $_POST["newguess"];
   
+  
     //CHECK TO MAKE SURE GUESS IS VALID
       if (preg_match("/^([0-9.]+)$/", $newguess) == false) {apologize("You submitted an invalid price. Failure #1. $newguess");}
     ////CURRENCY CHECK
@@ -30,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
       if ($newguess < 0) {apologize("Price must be positive!");}
     
 
-/*
+
     //SEE IF USER IS AUTHORIZED
     $countQ = query("SELECT COUNT(id) AS total, SUM(price) AS value FROM spot WHERE (id=?)", $id); // query database for user
     $numberguesses = $countQ[0]["total"];
@@ -38,10 +39,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     
     //CHECK TO MAKE SURE PRICE ISNT TAKEN
     $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (price=?)", $newguess); // query database for user
-*/
+
   
       //INSERT TO DB
-    if (query("INSERT INTO ledger (id, price,event) VALUES (?,?,?)", $id, $newguess, $event) === false) {apologize("Unable to insert guess!");}
+    if (query("INSERT INTO spot (id,price,event) VALUES (?,?,?)", $id, $newguess, $event) === false) {apologize("Unable to insert guess!");}
   
   } //isset
 } //if post
@@ -68,10 +69,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 
 //SHOW AVAIALBE GUESSES
   ?>
-  
+<head>
+  <title>SPOT GUESS</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/scripts.js"></script>
+  <link href="css/bootstrap.css" rel="stylesheet"/>
+  <link href="css/styles.php" rel="stylesheet" media="screen"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
   
     <table class="table table-striped table-condensed table-bordered" >
-    <tr class="danger">
+    <tr class="info">
       <td colspan="3" style="font-size:20px; text-align: center;">SPOT GUESS
       </td>
     </tr>
@@ -94,7 +104,7 @@ $guessdata =	query("SELECT id, price, name, date FROM spot WHERE (price=? AND ev
 
   <td>
         <?php 
-          echo(number_format($spotprice),2,".",","); 
+          echo(number_format($spotprice, 2, ".", ",")); 
           //echo(htmlspecialchars($guessdata[0]["price"]));
         ?>
   </td>
@@ -104,11 +114,11 @@ if(!empty($guessdata)){
 ?>
 
       <td>
-        <?php echo(htmlspecialchars($guessdata["id"] )); ?>
+        <?php echo(htmlspecialchars($guessdata[0]["id"] )); ?>
       </td>
       
       <td>
-        <?php echo(htmlspecialchars(date('F j, Y, g:ia', strtotime($guess["date"])) )); ?>
+        <?php echo(htmlspecialchars(date('F j, Y, g:ia', strtotime($guessdata[0]["date"])) )); ?>
       </td>    
 <?
 }//!empty
@@ -117,8 +127,8 @@ else
 ?>
 <td colspan="2">
   <form method="post" action="guess.php">
-    <button type="submit" class="btn btn-danger btn-xs" name="newguess" value="<?php echo($spotprice) ?>">
-      GUESS<span class="glyphicon glyphicon-remove-circle"></span>
+    <button type="submit" class="btn btn-success btn-xs" name="newguess" value="<?php echo($spotprice) ?>">
+      <span class="glyphicon glyphicon-plus">GUESS</span>
     </button>
   </form>
 </td>
