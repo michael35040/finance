@@ -9,6 +9,19 @@ $availableguesses=20;
 $minval=0.01; //minimum value
 $maxval=50; //maximum price
 
+$format = 'Y-m-j G:i:s';
+$contestdate='2015-05-11 12:34:31'; //date of spot at 2400est
+$contestend=date ( $format, strtotime ( '-1 month' . $contestdate ) );; //last date to submit vote
+if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
+////
+//$format = 'Y-m-j G:i:s';
+//$date = date ( $format );
+//// - 7 days from today
+//echo date ( $format, strtotime ( '-7 day' . $date ) );
+//// - 1 month from today
+//echo date ( $format, strtotime ( '-1 month' . $date ) );
+
+
 //PULL NY SPOT
     // Include the library
     require('simple_html_dom.php');
@@ -136,7 +149,16 @@ $count=count($guesses);
  }
 </style>
 
+
 <br>
+CONTEST DATE: <?php echo $contestdate; //date of spot at 2400est
+?>
+<br>
+LAST DAY TO VOTE: <?php echo $contestend; ?>
+<br>
+<?php echo $contest; ?>
+<br>
+
 
 <table>
     <tr>
