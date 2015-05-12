@@ -34,7 +34,7 @@ if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
     $silver["change"] = $html->find('td[align="center"]', 12)->plaintext.'<br><hr>'; 
 
 
-  $spot=($silver["bid"]/$silver["ask"])*2;
+  $spot=($silver["bid"]+$silver["ask"])/2;
   
 /*
     $gold["bid"] = $html->find('td[align="center"]', 4)->plaintext.'<br><hr>'; 
@@ -168,7 +168,6 @@ CONTEST DATE: <?php echo $contestdate; ?> || LAST DAY TO VOTE: <?php echo $conte
 
 <table>
     <tr>
-        <th>SPOT</th>
         <th>Bid: <?php echo(number_format((float)$silver["bid"],2,".","")); ?></th>
         <th>Spot: <?php echo(number_format((float)$spot,2,".","")); ?></th>
         <th>Ask: <?php echo(number_format((float)$silver["ask"],2,".","")); ?></th>
@@ -177,15 +176,15 @@ CONTEST DATE: <?php echo $contestdate; ?> || LAST DAY TO VOTE: <?php echo $conte
 
     <tr>
         <th>GUESS</th>
-        <th>Your: <?php 
+        <th>Used: <?php 
     $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
     $numberguesses = $countQ[0]["total"];
     echo($numberguesses); 
   ?></th>
-        <th>Left:     <?php
+        <th>Available:     <?php
     $guessesleft=$availableguesses-$numberguesses;
     echo($guessesleft); ?> </th>
-        <th>Total: <?php echo($count); ?></th>
+        <th>Total (all): <?php echo($count); ?></th>
     </tr>
 </table>
 
@@ -217,6 +216,7 @@ $count=count($guessers);
   ?>
 
 
+<br>
 
 
 <form method="post" action="guess.php">
