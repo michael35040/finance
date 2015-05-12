@@ -165,6 +165,33 @@ $count=count($guesses);
 
 
 
+
+
+
+
+
+<table class="table table-striped table-condensed table-bordered" >
+    <tr>
+        <th>Bid</th>
+        <th>Spot</th>
+        <th>Ask</th>
+        <th>Change</th>
+    </tr>
+    <tr>
+        <td><?php echo(number_format((float)$silver["bid"],2,".","")); ?></td>
+        <td><?php echo(number_format((float)$spot,2,".","")); ?></td>
+        <td><?php echo(number_format((float)$silver["ask"],2,".","")); ?></td>
+        <td><?php echo(number_format((float)$silver["change"],2,".","")); ?></td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
 <!--DATE-->
 <br>
 <?php 
@@ -196,25 +223,10 @@ function secondsToTime($seconds) {
 
 
 
-<table class="table table-striped table-condensed table-bordered" >
-    <tr>
-        <th>Bid</th>
-        <th>Spot</th>
-        <th>Ask</th>
-        <th>Change</th>
-    </tr>
-    <tr>
-        <td><?php echo(number_format((float)$silver["bid"],2,".","")); ?></td>
-        <td><?php echo(number_format((float)$spot,2,".","")); ?></td>
-        <td><?php echo(number_format((float)$silver["ask"],2,".","")); ?></td>
-        <td><?php echo(number_format((float)$silver["change"],2,".","")); ?></td>
-    </tr>
-</table>
 
 
 
-
-<?php //echo('Contest is ' . $contest); ?><br>
+<?php //echo('Contest is ' . $contest); ?>
 <?php if($contest!='OPEN'){ ?><h2 style="color:red">CONTEST IS CLOSED!</h2><?php } ?>
 <?php if($contest=='OPEN'){ ?><h2 style="color:green">CONTEST IS OPEN!</h2>
 
