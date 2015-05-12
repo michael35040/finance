@@ -54,6 +54,12 @@ if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
 //SEE IF USER NEEDS TO MAKE A GUESS
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
+  if (isset($_POST["user"]))
+  {
+
+  }
+      
+    
   if (isset($_POST["clear"]))
   {
     if (query("TRUNCATE TABLE `spot`") === false){apologize("Clear Spot Database Failure");}
@@ -63,12 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
   {
     //CHECK DATE
     if($contest!='OPEN'){apologize("Contest is not open!");}
-      
-      
+     
     //POST DATA TO LOCAL
     $newguess = $_POST["newguess"];
-  
-  
     //CHECK TO MAKE SURE GUESS IS VALID
       if (preg_match("/^([0-9.]+)$/", $newguess) == false) {apologize("You submitted an invalid price. Failure #1. $newguess");}
     ////CURRENCY CHECK
@@ -189,6 +192,30 @@ LAST DAY TO VOTE: <?php echo $contestend; ?>
 
   <br>
   
+  
+  
+  
+  <?php
+  //USER GUESSERS DROP DOWN
+  $guessers =	query("SELECT uid FROM spot WHERE event = ? ORDER BY uid ASC", $event);
+$count=count($guessers);
+  if(!empty($guessers)) 
+  {
+      ?>
+  <form method="post" action="guess.php">
+    <select  name="user" >
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+<button type="submit" >GUESS SPOT</button>
+</form>          
+      
+      <?
+  }
+  ?>
+
+
 
 
 <form method="post" action="guess.php">
