@@ -55,11 +55,13 @@ $timeremaining=strtotime($format, $timeremaining);
 
 
 //SEE IF USER NEEDS TO MAKE A GUESS
-$filteruser=null;
+$filterusers=null;
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
   if (isset($_POST["user"]))
   {
+    $postUser = $_POST["user"];
+    $filterusers =	query("SELECT uid, id, price, name, date FROM spot WHERE (id=? AND event = ?) ORDER BY price ASC", $postUser, $event);
 
   }
       
@@ -217,6 +219,31 @@ $count=count($guessers);
   }
   ?>
 
+<br>
+<?php 
+if(!is_null($filterusers))
+{
+      foreach ($guesses as $guess) { 
+      
+    echo('
+    <table>
+    <tr><th>Price</th><th>ID</th><th>Date</th></tr>
+    <tr>');
+        echo('<td>' . number_format($guess["price"],2,".",",") . '</td>');
+        echo('<td>' . $guess["id"] . '</td>');  //. $guess["name"] . '/'
+        echo('<td>' . $guess["date"] . '</td>');
+    echo('
+    </tr>
+    </table>
+    ');
+    
+    $i++;
+    } //foreach
+    
+    
+}//if
+
+
 
 <br>
 
@@ -266,9 +293,9 @@ Winning: <?php echo $winning; ?>
 
         if($i==0){$prevValue=$minval;}else{$prevValue = $guesses[$i - 1]['price'];}
         $thisValue = $guesses[$i]['price'];
-        //if($i>=($count-1)){$nextValue=$maxval;}else{
-            $nextValue = $guesses[$i + 1]['price'];
-        //}
+        if($i>=($count-1)){$nextValue=$maxval;}else{
+            $nextValue = $guesses[$i + 1]['price'];}
+            
         //$percentageDiff = ($nextValue-$thisValue)/$thisValue;
         //$currentDif = ($spot-$thisValue);
       
