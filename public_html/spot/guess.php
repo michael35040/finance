@@ -6,7 +6,7 @@ $id = $_SESSION["id"]; //get id from session
 //CONTEST #1 FOR WHEN WE HAVE MULTIPLE CONTESTS/EVENTS
 $event = 1;
 $availableguesses=20;
-
+$maxval=50; //maximum price
 
 //PULL NY SPOT
     // Include the library
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     //POSITIVE CHECK
       if ($newguess < 0) {apologize("Price must be positive!");}
     
-      if ($newguess >384400){apologize("Maximum value is 384,400.00. 384,400km is the distance to da moon!");}
+      if ($newguess > $maxval){apologize("Maximum value is $maxval!");}
 
 
     //SEE IF USER IS AUTHORIZED
@@ -69,9 +69,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     if($numberguesses>=$availableguesses){apologize("User has no available guesses!");}
     
     //CHECK TO MAKE SURE PRICE ISNT TAKEN
-    $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (price=?)", $newguess); // query database for user
+    $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (price=? AND event=?)", $newguess, $event); // query database for user
+     $taken = $countQ[0]["total"];
+    if($taken>0){apologize("Price already taken!");}
 
-  
       //INSERT TO DB
     if (query("INSERT INTO spot (id,price,event) VALUES (?,?,?)", $id, $newguess, $event) === false) {apologize("Unable to insert guess!");}
   
@@ -89,7 +90,7 @@ $count=count($guesses);
   {
 
   $i=0;
-  $winningDif=999999999;
+  $winningDif=$maxval;
   foreach ($guesses as $guess) { 
         $thisValue = $guesses[$i]['price'];
         $currentDif = ($spot-$thisValue);
@@ -135,34 +136,61 @@ $count=count($guesses);
 
 <br>
 
+<table>
+    <tr>
+        <th>SPOT</th>
+        <th>Bid: <?php echo(number_format((float)$silver["bid"],2,".","")); ?></th>
+        <th>Ask: <?php echo(number_format((float)$silver["ask"],2,".","")); ?></th>
+        <th>Change: <?php echo(number_format((float)$silver["change"],2,".","")); ?></th>
+    </tr>
 
-Spot (Bid):<?php echo(number_format((float)$silver["bid"],2,".","")); ?><br>
-Spot (Ask):<?php echo(number_format((float)$silver["ask"],2,".","")); ?><br>
-Spot (Change):<?php echo(number_format((float)$silver["change"],2,".","")); ?><br>
-
-Your Guesses: 
-  <?php 
+    <tr>
+        <th>GUESS</th>
+        <th>Your: <?php 
     $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
     $numberguesses = $countQ[0]["total"];
     echo($numberguesses); 
-    
-  ?>
-  <br>
-Guesses Left: <?php
+  ?></th>
+        <th>Left:     <?php
     $guessesleft=$availableguesses-$numberguesses;
-    echo($guessesleft); ?><br>
+    echo($guessesleft); ?> </th>
+        <th>Total: <?php echo($count); ?></th>
+    </tr>
+</table>
+
+
+  <br>
   
-Total Guesses: <?php echo($count); ?><br>
-Winning UID: <?php echo($winning); ?><br>
+
+
+<form method="post" action="guess.php">
+    <select  name="newguess" >
+        <?php 
+        $i=10.00;
+        while($i<$maxval){ 
+            $i=round($i, 2); //$i=number_format(($i),2,".","")
+            $taken = query("SELECT COUNT(id) AS total FROM spot WHERE (price=?)", $i); // query database for user
+            $taken = $taken[0]["total"];
+            if($taken<=0){echo('<option value="' .  number_format(($i),2,".",",") . '">' . number_format(($i),2,".",",") . '</option>');} 
+            $i=$i+0.01;}  
+        ?>
+    </select>
+    
+<button type="submit" >GUESS SPOT</button>
+</form>
   
+  
+  
+<br><br>
+
 <table>
     <tr>
-      <td>PRICE</td>
-      <td>USER/UID</td>
-      <td>DATE</td>
-      <td>TO SPOT</td>
-      <td>TO PREV</td>
-      <td>TO NEXT</td>
+      <th>PRICE</th>
+      <th>USER</th>
+      <th>DATE</th>
+      <th>TO SPOT</th>
+      <th>TO PREV</th>
+      <th>TO NEXT</th>
     </tr>    
 <?php
   if(!empty($guesses)) 
@@ -180,12 +208,11 @@ Winning UID: <?php echo($winning); ?><br>
         //$percentageDiff = ($nextValue-$thisValue)/$thisValue;
         //$currentDif = ($spot-$thisValue);
       
-    echo('<tr>');
-        if($guess["uid"]==$winning){echo('<td>***' . number_format($guess["price"],2,".",",") . '</td>');}
-        else{echo('<td>' . number_format($guess["price"],2,".",",") . '</td>');}
-        echo('<td>' 
-        //. $guess["name"] . '/'
-         . $guess["id"] . '/' . $guess["uid"] . '</td>');
+        
+        if($guess["uid"]==$winning){echo('<tr style="color: #00FF00;">');}
+        else{echo('<tr>');}
+        echo('<td>' . number_format($guess["price"],2,".",",") . '</td>');
+        echo('<td>' . $guess["id"] . '</td>');  //. $guess["name"] . '/'
         echo('<td>' . $guess["date"] . '</td>');
         echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
         echo('<td>' . number_format(($guess["price"]-$prevValue),2,".",",") . '</td>');
@@ -201,77 +228,3 @@ Winning UID: <?php echo($winning); ?><br>
   
   
   
-  
-  
-  
-    <table class="table table-striped table-condensed table-bordered" >
-    <tr class="info">
-      <td colspan="3" style="font-size:20px; text-align: center;">SPOT GUESS
-      </td>
-    </tr>
-    <tr>
-      <td>PRICE</td>
-      <td>USER</td>
-      <td>DATE</td>
-    </tr>
-  <?php
-  $spotprice=10;
-  while($spotprice<20)
-  {
-      
-  ?>
-    <tr>
-
-<?php 
-$guessdata =	query("SELECT id, price, name, date FROM spot WHERE (price=? AND event=?)", $spotprice, $event);
-?>
-
-  <td>
-        <?php 
-          echo(number_format($spotprice, 2, ".", ",")); 
-          //echo(htmlspecialchars($guessdata[0]["price"]));
-        ?>
-  </td>
-  
-<?php  
-if(!empty($guessdata)){
-?>
-
-      <td>
-        <?php echo(htmlspecialchars($guessdata[0]["id"] )); ?>
-      </td>
-      
-      <td>
-        <?php echo(htmlspecialchars(date('F j, Y, g:ia', strtotime($guessdata[0]["date"])) )); ?>
-      </td>    
-<?
-}//!empty
-else
-{ //is empty
-?>
-<td colspan="2">
-  <form method="post" action="guess.php">
-    <button type="submit" class="btn btn-success btn-xs" name="newguess" value="<?php echo($spotprice) ?>">
-      <span class="glyphicon glyphicon-plus">GUESS</span>
-    </button>
-  </form>
-</td>
-      
-  <?php
-  } //is empty
-  ?></tr><?php
-  $spotprice=$spotprice+0.01;
-  }//while
-  ?>
-
-
-</table>
-
-<hr>
-
-
-        <form method="post" action="guess.php">
-          <button type="submit" class="btn btn-danger btn-xs" name="clear" value="yes">
-            <span class="glyphicon glyphicon-remove-circle"></span>CLEAR TABLE
-          </button>
-        </form>
