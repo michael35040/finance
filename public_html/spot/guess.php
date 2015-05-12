@@ -12,6 +12,7 @@ $maxval=50; //maximum price
 $format = 'Y-m-j G:i:s';
 $contestdate='2015-06-13 12:34:31'; //date of spot at 2400est
 $contestend=date ( $format, strtotime ( '-1 month' . $contestdate ) );; //last date to submit vote
+$timeremaining=$contestend-time(); //time left to vote
 if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
 ////
 //$format = 'Y-m-j G:i:s';
@@ -33,7 +34,7 @@ if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
     $silver["change"] = $html->find('td[align="center"]', 12)->plaintext.'<br><hr>'; 
 
 
-  $spot=$silver["bid"];
+  $spot=($silver["bid"]/$silver["ask"])*2;
   
 /*
     $gold["bid"] = $html->find('td[align="center"]', 4)->plaintext.'<br><hr>'; 
@@ -52,6 +53,7 @@ if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
 
 
 //SEE IF USER NEEDS TO MAKE A GUESS
+$filteruser=null;
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
   if (isset($_POST["user"]))
@@ -158,10 +160,7 @@ $count=count($guesses);
 
 
 <br>
-CONTEST DATE: <?php echo $contestdate; //date of spot at 2400est
-?>
-<br>
-LAST DAY TO VOTE: <?php echo $contestend; ?>
+CONTEST DATE: <?php echo $contestdate; ?> || LAST DAY TO VOTE: <?php echo $contestend; ?> || TIME REMAINING: <?php echo $timeremaining; ?>
 <br>
 <?php echo $contest; ?>
 <br>
@@ -171,6 +170,7 @@ LAST DAY TO VOTE: <?php echo $contestend; ?>
     <tr>
         <th>SPOT</th>
         <th>Bid: <?php echo(number_format((float)$silver["bid"],2,".","")); ?></th>
+        <th>Spot: <?php echo(number_format((float)$spot,2,".","")); ?></th>
         <th>Ask: <?php echo(number_format((float)$silver["ask"],2,".","")); ?></th>
         <th>Change: <?php echo(number_format((float)$silver["change"],2,".","")); ?></th>
     </tr>
@@ -204,9 +204,10 @@ $count=count($guessers);
       ?>
   <form method="post" action="guess.php">
     <select  name="user" >
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+        <?php   foreach ($guessers as $users) { 
+            echo('<option value="' . $user["uid"] . '">' . $user["uid"] . '</option>');
+        } //foreach
+        ?>
       </select>
 <button type="submit" >GUESS SPOT</button>
 </form>          
@@ -236,6 +237,10 @@ $count=count($guessers);
   
   
   
+<br><br>
+
+Winning: <?php echo $winning; ?>
+
 <br><br>
 
 <table>
