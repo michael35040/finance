@@ -292,7 +292,7 @@ if(!is_null($filterusers))
     
     <!--WINNING -->
 <?php 
-$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event = ? AND uid=?) ORDER BY price ASC", $event, $winning);
+//$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event = ? AND uid=?) ORDER BY price ASC", $event, $winning);
 ?>    
     
     
