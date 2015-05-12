@@ -1,7 +1,5 @@
 <?php
 // configuration
-require("../includes/config.php");
-$id = $_SESSION["id"]; //get id from session
 
 //CONTEST #1 FOR WHEN WE HAVE MULTIPLE CONTESTS/EVENTS
 $event = 1;
