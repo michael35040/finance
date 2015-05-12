@@ -232,7 +232,13 @@ function secondsToTime($seconds) {
 
 <table class="table table-striped table-condensed table-bordered" >
     <tr>
-    <th>
+        <th>New Guess</th>
+        <th>Used Guesses</th>
+        <th>Available Guesses</th>
+        <th>ALL Guesses</th>
+    </tr>
+    <tr>
+        <td>
         <form method="post" action="guess.php">
             <select  name="newguess" >
                 <?php 
@@ -245,15 +251,9 @@ function secondsToTime($seconds) {
                     $i=$i+0.01;}  
                 ?>
             </select>
-            <button type="submit" >GUESS SPOT</button>
+            <button type="submit" >Submit</button>
         </form>
-    </th>
-        <th>Used Guesses</th>
-        <th>Available Guesses</th>
-        <th>ALL Guesses</th>
-    </tr>
-    <tr>
-        <td></td>
+        </td>
         <td><?php 
             $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
             $numberguesses = $countQ[0]["total"];
