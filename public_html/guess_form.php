@@ -134,28 +134,6 @@ $count=count($guesses);
 
 //SHOW AVAIALBE GUESSES
   ?>
-<head>
-  <title>SPOT GUESS</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-  <script src="js/jquery.js"></script>
-  <script src="js/bootstrap.js"></script>
-  <script src="js/scripts.js"></script>
-  <link href="css/bootstrap.css" rel="stylesheet"/>
-  <link href="css/styles.php" rel="stylesheet" media="screen"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<style>
-   table {
-     border-collapse: collapse;
-     padding:0;
- }
- table, td, th {
-     border: 1px solid black;
-     padding:0;
-     
- }
-</style>
 
 
 
