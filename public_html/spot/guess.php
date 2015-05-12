@@ -14,8 +14,6 @@ $format = 'Y-m-j G:i:s';
 $contestdate='2015-06-13 12:34:31'; //date of spot at 2400est
 $contestend=date ( $format, strtotime ( '-1 month' . $contestdate ) );; //last date to submit vote
 if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
-$timeremaining=$contestend-time(); //time left to vote
-$timeremaining=strtotime($format, $timeremaining);
 ////
 //$format = 'Y-m-j G:i:s';
 //$date = date ( $format );
@@ -34,10 +32,7 @@ $timeremaining=strtotime($format, $timeremaining);
     $silver["bid"] = $html->find('td[align="center"]', 9)->plaintext.'<br><hr>'; 
     $silver["ask"] = $html->find('td[align="center"]', 10)->plaintext.'<br><hr>';
     $silver["change"] = $html->find('td[align="center"]', 12)->plaintext.'<br><hr>'; 
-
-
   $spot=($silver["bid"]+$silver["ask"])/2;
-  
 /*
     $gold["bid"] = $html->find('td[align="center"]', 4)->plaintext.'<br><hr>'; 
     $gold["ask"] = $html->find('td[align="center"]', 5)->plaintext.'<br><hr>'; 
@@ -52,6 +47,8 @@ $timeremaining=strtotime($format, $timeremaining);
     $rhodium["ask"] = $html->find('td[align="center"]', 25)->plaintext.'<br><hr>';  
     $rhodium["change"] = $html->find('td[align="center"]', 27)->plaintext.'<br><hr>';
 */
+
+
 
 
 //SEE IF USER NEEDS TO MAKE A GUESS
@@ -168,12 +165,32 @@ $count=count($guesses);
 
 
 
+<!--DATE-->
+<br>
+<?php 
+function secondsToTime($seconds) {
+    $dtF = new DateTime("@0");
+    $dtT = new DateTime("@$seconds");
+    return $dtF->diff($dtT)->format('%a days, %h hours, %i minutes and %s seconds');
+}
+?>
+CONTEST DATE: <?php echo $contestdate; ?><br> 
+TIME REMAINING TO VOTE: 
+    <?php 
+        $timeremaining=strtotime($contestdate)-time();
+        echo secondsToTime($timeremaining); 
+    ?><br>
+LAST DAY TO VOTE: <?php echo $contestend; ?><br>
+TIME REMAINING TO VOTE: 
+    <?php 
+        $timeremaining=strtotime($contestend)-time();
+        echo secondsToTime($timeremaining); 
+    ?><br>
+    
+    
+<br>
 
-<br>
-CONTEST DATE: <?php echo $contestdate; ?> || LAST DAY TO VOTE: <?php echo $contestend; ?> || TIME REMAINING: <?php echo $timeremaining; ?>
-<br>
-<?php echo $contest; ?>
-<br>
+
 
 
 
@@ -204,8 +221,17 @@ CONTEST DATE: <?php echo $contestdate; ?> || LAST DAY TO VOTE: <?php echo $conte
 </table>
 
 
- 
- 
+
+
+
+
+
+
+
+
+
+<?php echo('Contest is ' . $contest); ?>
+<?php if($contest=='OPEN'){ ?>
 <form method="post" action="guess.php">
     <select  name="newguess" >
         <?php 
@@ -218,66 +244,19 @@ CONTEST DATE: <?php echo $contestdate; ?> || LAST DAY TO VOTE: <?php echo $conte
             $i=$i+0.01;}  
         ?>
     </select>
-    
 <button type="submit" >GUESS SPOT</button>
 </form>
+<?php } //if ?>
+
   
   
   
-<br>
-
- 
- 
- 
- 
- 
- 
-  <br>
- 
-  <?php
-  //USER GUESSERS DROP DOWN
-  $guessers =	query("SELECT distinct id FROM spot WHERE (event = ?) ORDER BY uid ASC", $event);
-$count=count($guessers);
-  if(!empty($guessers)) 
-  {
-      ?>
-  <form method="post" action="guess.php">
-    <select  name="user" >
-        <?php   foreach ($guessers as $user) { 
-            echo('<option value="' . $user["id"] . '">' . $user["id"] . '</option>');
-        } //foreach
-        ?>
-      </select>
-<button type="submit" >SEARCH USER</button>
-</form>          
-      
-      <?
-  }
-  ?>
-
-
-
-
-
-
-<br>
-<?php 
-if(!is_null($filterusers))
-{ 
-    echo('<table><tr><th>Price</th><th>ID</th><th>Date</th></tr>');
-    foreach ($guesses as $guess) { 
-        echo('<tr>');
-        echo('<td>' . number_format($guess["price"],2,".",",") . '</td>');
-        echo('<td>' . $guess["id"] . '</td>');  //. $guess["name"] . '/'
-        echo('<td>' . $guess["date"] . '</td>');
-        echo('</tr>');
-    } //foreach
-     echo('</table>');
-}//if
-?>
-
-
-
+  
+  
+  
+  
+  
+  
 <br><br>
 
 <table>
@@ -297,7 +276,6 @@ if(!is_null($filterusers))
     
     
     <!--ALL-->
-    
 <?php
   if(!empty($guesses)) 
   {
@@ -333,3 +311,50 @@ if(!is_null($filterusers))
 ?>
 
   </table>
+
+
+
+
+
+
+
+
+
+
+<br>
+<!--FILTER BY USER-->
+<?php
+  //USER GUESSERS DROP DOWN
+  $guessers =	query("SELECT distinct id FROM spot WHERE (event = ?) ORDER BY uid ASC", $event);
+  if(!empty($guessers)) 
+  {
+      ?>
+  <form method="post" action="guess.php">
+    <select  name="user" >
+        <?php   foreach ($guessers as $user) { 
+            echo('<option value="' . $user["id"] . '">' . $user["id"] . '</option>');
+        } //foreach
+        ?>
+      </select>
+<button type="submit" >SEARCH USER</button>
+</form>          
+      
+      <?
+  }
+  ?>
+<br>
+<?php 
+if(!is_null($filterusers))
+{ 
+    echo('Filtered by user: ' . $postUser);
+    echo('<table><tr><th>Price</th><th>ID</th><th>Date</th></tr>');
+    foreach ($filterusers as $filtered) { 
+        echo('<tr>');
+        echo('<td>' . number_format($filtered["price"],2,".",",") . '</td>');
+        echo('<td>' . $filtered["id"] . '</td>');  //. $guess["name"] . '/'
+        echo('<td>' . $filtered["date"] . '</td>');
+        echo('</tr>');
+    } //foreach
+     echo('</table>');
+}//if
+?>
