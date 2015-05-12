@@ -197,19 +197,19 @@ CONTEST DATE: <?php echo $contestdate; ?> || LAST DAY TO VOTE: <?php echo $conte
   
   <?php
   //USER GUESSERS DROP DOWN
-  $guessers =	query("SELECT uid FROM spot WHERE event = ? ORDER BY uid ASC", $event);
+  $guessers =	query("SELECT distinct id FROM spot WHERE (event = ?) ORDER BY uid ASC", $event);
 $count=count($guessers);
   if(!empty($guessers)) 
   {
       ?>
   <form method="post" action="guess.php">
     <select  name="user" >
-        <?php   foreach ($guessers as $users) { 
-            echo('<option value="' . $user["uid"] . '">' . $user["uid"] . '</option>');
+        <?php   foreach ($guessers as $user) { 
+            echo('<option value="' . $user["id"] . '">' . $user["id"] . '</option>');
         } //foreach
         ?>
       </select>
-<button type="submit" >GUESS SPOT</button>
+<button type="submit" >SEARCH USER</button>
 </form>          
       
       <?
