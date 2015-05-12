@@ -360,12 +360,23 @@ function secondsToTime($seconds) {
 if(!is_null($filterusers))
 { 
     echo('Filtered by user: ' . $postUser);
-    echo('<table><tr><th>Price</th><th>ID</th><th>Date</th></tr>');
+    echo('
+    <table class="table table-striped table-condensed table-bordered" >
+    <tr>
+        <th>Price</th>
+        <th>ID</th>
+        <th>Date</th>
+        <th>To Spot</th>
+    </tr>');
     foreach ($filterusers as $filtered) { 
+        $distance =           ($filtered["price"]-$spot);
+        $distancepercentage = 100*(($filtered["price"]-$spot)/$spot);
+
         echo('<tr>');
         echo('<td>' . number_format($filtered["price"],2,".",",") . '</td>');
         echo('<td>' . $filtered["id"] . '</td>');  //. $guess["name"] . '/'
         echo('<td>' . $filtered["date"] . '</td>');
+        echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
         echo('</tr>');
     } //foreach
      echo('</table>');
