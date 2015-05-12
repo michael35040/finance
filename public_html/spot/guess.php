@@ -157,11 +157,11 @@ Winning UID: <?php echo($winning); ?><br>
 <table>
     <tr>
       <td>PRICE</td>
-      <td>NAME/USER/UID</td>
+      <td>USER/UID</td>
       <td>DATE</td>
-      <td>DISTANCE FROM SPOT</td>
-      <td>PREVIOUS BID</td>
-      <td>NEXT BID</td>
+      <td>TO SPOT</td>
+      <td>TO PREV</td>
+      <td>TO NEXT</td>
     </tr>    
 <?php
   if(!empty($guesses)) 
@@ -182,11 +182,13 @@ Winning UID: <?php echo($winning); ?><br>
     echo('<tr>');
         if($guess["uid"]==$winning){echo('<td>***' . $guess["price"] . '</td>');}
         else{echo('<td>' . $guess["price"] . '</td>');}
-        echo('<td>' . $guess["name"] . '/' . $guess["id"] . '/' . $guess["uid"] . '</td>');
+        echo('<td>' 
+        //. $guess["name"] 
+        . '/' . $guess["id"] . '/' . $guess["uid"] . '</td>');
         echo('<td>' . $guess["date"] . '</td>');
         echo('<td>' . $distance . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
-        echo('<td>' . $prevValue . '</td>');
-        echo('<td>' . $nextValue . '</td>');
+        echo('<td>' . ($guess["price"]-$prevValue) . '</td>');
+        echo('<td>' . ($nextValue-$guess["price"]) . '</td>');
     echo('</tr>');
     
     $i++;
