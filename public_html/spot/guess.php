@@ -187,7 +187,7 @@ Winning UID: <?php echo($winning); ?><br>
         //. $guess["name"] . '/'
          . $guess["id"] . '/' . $guess["uid"] . '</td>');
         echo('<td>' . $guess["date"] . '</td>');
-        echo('<td>' . $distance . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
+        echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
         echo('<td>' . number_format(($guess["price"]-$prevValue),2,".",",") . '</td>');
         echo('<td>' . number_format(($nextValue-$guess["price"]),2,".",",") . '</td>');
     echo('</tr>');
