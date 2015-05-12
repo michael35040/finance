@@ -204,7 +204,7 @@ $count=count($guesses);
       $distance =           ($guess["price"]-$spot);
       $distancepercentage = 100*(($guess["price"]-$spot)/$spot);
 
-        if($i==0){$prevValue=0;}else{$prevValue = $guesses[$i - 1]['price'];}
+        if($i==0){$prevValue=$minval;}else{$prevValue = $guesses[$i - 1]['price'];}
         $thisValue = $guesses[$i]['price'];
         if($i>=($count-1)){$nextValue=$maxval;}else{$nextValue = $guesses[$i + 1]['price'];}
         //$percentageDiff = ($nextValue-$thisValue)/$thisValue;
