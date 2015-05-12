@@ -272,8 +272,8 @@ function secondsToTime($seconds) {
   $i=0;
   foreach ($guesses as $guess) { 
       
-      $distance =           ($guess["price"]-$spot);
-      $distancepercentage = 100*(($guess["price"]-$spot)/$spot);
+      $distance =           ($spot-$guess["price"]);
+      $distancepercentage = 100*(($spot-$guess["price"])/$spot);
 
         if($i==0){$prevValue=$minval;}else{$prevValue = $guesses[$i - 1]['price'];}
         $thisValue = $guesses[$i]['price'];
@@ -284,7 +284,7 @@ function secondsToTime($seconds) {
         //$currentDif = ($spot-$thisValue);
       
         
-        if($guess["uid"]==$winning){echo('<tr style="color: #00FF00;">');}
+        if($guess["uid"]==$winning){echo('<tr style="color:green;font-weight: bolder;font-size: 150%;">');}
         else{echo('<tr>');}
         echo('<td>' . number_format($guess["price"],2,".",",") . '</td>');
         echo('<td>' . $guess["id"] . '</td>');  //. $guess["name"] . '/'
