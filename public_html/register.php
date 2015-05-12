@@ -142,7 +142,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     //random number to prevent user hitting back and resubmitting multiple regs.
     $_SESSION["code"]=mt_rand(0,9999);
 
-    redirect("status.php");
+   // redirect("status.php");
+    redirect("index.php");
 
 } //POST
 
