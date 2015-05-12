@@ -223,11 +223,10 @@ $count=count($guessers);
 <?php 
 if(!is_null($filterusers))
 {
+    
       foreach ($guesses as $guess) { 
       
     echo('
-    <table>
-    <tr><th>Price</th><th>ID</th><th>Date</th></tr>
     <tr>');
         echo('<td>' . number_format($guess["price"],2,".",",") . '</td>');
         echo('<td>' . $guess["id"] . '</td>');  //. $guess["name"] . '/'
@@ -242,7 +241,7 @@ if(!is_null($filterusers))
     
     
 }//if
-
+?>
 
 
 <br>
