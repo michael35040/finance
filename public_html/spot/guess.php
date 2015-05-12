@@ -163,11 +163,22 @@ $count=count($guesses);
 </style>
 
 
+
+
+
+
+
+
 <br>
 CONTEST DATE: <?php echo $contestdate; ?> || LAST DAY TO VOTE: <?php echo $contestend; ?> || TIME REMAINING: <?php echo $timeremaining; ?>
 <br>
 <?php echo $contest; ?>
 <br>
+
+
+
+
+
 
 
 <table>
@@ -193,11 +204,36 @@ CONTEST DATE: <?php echo $contestdate; ?> || LAST DAY TO VOTE: <?php echo $conte
 </table>
 
 
+ 
+ 
+<form method="post" action="guess.php">
+    <select  name="newguess" >
+        <?php 
+        $i=$minval;
+        while($i<=$maxval){ 
+            $i=round($i, 2); //$i=number_format(($i),2,".","")
+            $taken = query("SELECT COUNT(id) AS total FROM spot WHERE (price=?)", $i); // query database for user
+            $taken = $taken[0]["total"];
+            if($taken<=0){echo('<option value="' .  number_format(($i),2,".",",") . '">' . number_format(($i),2,".",",") . '</option>');} 
+            $i=$i+0.01;}  
+        ?>
+    </select>
+    
+<button type="submit" >GUESS SPOT</button>
+</form>
+  
+  
+  
+<br>
+
+ 
+ 
+ 
+ 
+ 
+ 
   <br>
-  
-  
-  
-  
+ 
   <?php
   //USER GUESSERS DROP DOWN
   $guessers =	query("SELECT distinct id FROM spot WHERE (event = ?) ORDER BY uid ASC", $event);
@@ -219,6 +255,11 @@ $count=count($guessers);
   }
   ?>
 
+
+
+
+
+
 <br>
 <?php 
 if(!is_null($filterusers))
@@ -236,30 +277,6 @@ if(!is_null($filterusers))
 ?>
 
 
-<br>
-
-
-<form method="post" action="guess.php">
-    <select  name="newguess" >
-        <?php 
-        $i=$minval;
-        while($i<=$maxval){ 
-            $i=round($i, 2); //$i=number_format(($i),2,".","")
-            $taken = query("SELECT COUNT(id) AS total FROM spot WHERE (price=?)", $i); // query database for user
-            $taken = $taken[0]["total"];
-            if($taken<=0){echo('<option value="' .  number_format(($i),2,".",",") . '">' . number_format(($i),2,".",",") . '</option>');} 
-            $i=$i+0.01;}  
-        ?>
-    </select>
-    
-<button type="submit" >GUESS SPOT</button>
-</form>
-  
-  
-  
-<br><br>
-
-Winning: <?php echo $winning; ?>
 
 <br><br>
 
@@ -271,7 +288,16 @@ Winning: <?php echo $winning; ?>
       <th>TO SPOT</th>
       <th>TO PREV</th>
       <th>TO NEXT</th>
-    </tr>    
+    </tr>   
+    
+    <!--WINNING -->
+<?php 
+$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event = ? AND uid=?) ORDER BY price ASC", $event, $winning);
+?>    
+    
+    
+    <!--ALL-->
+    
 <?php
   if(!empty($guesses)) 
   {
