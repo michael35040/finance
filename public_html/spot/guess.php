@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
       if ($newguess < 0) {apologize("Price must be positive!");}
     
       if ($newguess > $maxval){apologize("Maximum value is $maxval!");}
-      if ($newguess > $minval){apologize("Minimum value is $minval!");}
+      if ($newguess < $minval){apologize("Minimum value is $minval!");}
 
 
     //SEE IF USER IS AUTHORIZED
