@@ -183,8 +183,8 @@ Winning UID: <?php echo($winning); ?><br>
         if($guess["uid"]==$winning){echo('<td>***' . $guess["price"] . '</td>');}
         else{echo('<td>' . $guess["price"] . '</td>');}
         echo('<td>' 
-        //. $guess["name"] 
-        . '/' . $guess["id"] . '/' . $guess["uid"] . '</td>');
+        //. $guess["name"] . '/'
+         . $guess["id"] . '/' . $guess["uid"] . '</td>');
         echo('<td>' . $guess["date"] . '</td>');
         echo('<td>' . $distance . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
         echo('<td>' . ($guess["price"]-$prevValue) . '</td>');
