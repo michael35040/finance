@@ -9,9 +9,11 @@ $availableguesses=20;
 $minval=0.01; //minimum value
 $maxval=50; //maximum price
 
+
 $format = 'Y-m-j G:i:s';
 $contestdate='2015-06-13 12:34:31'; //date of spot at 2400est
 $contestend=date ( $format, strtotime ( '-1 month' . $contestdate ) );; //last date to submit vote
+if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
 $timeremaining=$contestend-time(); //time left to vote
 $timeremaining=strtotime($format, $timeremaining);
 ////
