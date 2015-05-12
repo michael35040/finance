@@ -13,7 +13,7 @@ $format = 'Y-m-j G:i:s';
 $contestdate='2015-06-13 12:34:31'; //date of spot at 2400est
 $contestend=date ( $format, strtotime ( '-1 month' . $contestdate ) );; //last date to submit vote
 $timeremaining=$contestend-time(); //time left to vote
-if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
+$timeremaining=strtotime($format, $timeremaining);
 ////
 //$format = 'Y-m-j G:i:s';
 //$date = date ( $format );
@@ -264,7 +264,9 @@ Winning: <?php echo $winning; ?>
 
         if($i==0){$prevValue=$minval;}else{$prevValue = $guesses[$i - 1]['price'];}
         $thisValue = $guesses[$i]['price'];
-        if($i>=($count-1)){$nextValue=$maxval;}else{$nextValue = $guesses[$i + 1]['price'];}
+        //if($i>=($count-1)){$nextValue=$maxval;}else{
+            $nextValue = $guesses[$i + 1]['price'];
+        //}
         //$percentageDiff = ($nextValue-$thisValue)/$thisValue;
         //$currentDif = ($spot-$thisValue);
       
@@ -275,7 +277,7 @@ Winning: <?php echo $winning; ?>
         echo('<td>' . $guess["id"] . '</td>');  //. $guess["name"] . '/'
         echo('<td>' . $guess["date"] . '</td>');
         echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
-        echo('<td>' . number_format(($guess["price"]-$prevValue),2,".",",") . '</td>');
+        echo('<td>' . number_format(($prevValue-$guess["price"]),2,".",",") . '</td>');
         echo('<td>' . number_format(($nextValue-$guess["price"]),2,".",",") . '</td>');
     echo('</tr>');
     
