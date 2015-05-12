@@ -222,24 +222,16 @@ $count=count($guessers);
 <br>
 <?php 
 if(!is_null($filterusers))
-{
-    
-      foreach ($guesses as $guess) { 
-      
-    echo('
-    <tr>');
+{ 
+    echo('<table><tr><th>Price</th><th>ID</th><th>Date</th></tr>');
+    foreach ($guesses as $guess) { 
+        echo('<tr>');
         echo('<td>' . number_format($guess["price"],2,".",",") . '</td>');
         echo('<td>' . $guess["id"] . '</td>');  //. $guess["name"] . '/'
         echo('<td>' . $guess["date"] . '</td>');
-    echo('
-    </tr>
-    </table>
-    ');
-    
-    $i++;
+        echo('</tr>');
     } //foreach
-    
-    
+     echo('</table>');
 }//if
 ?>
 
@@ -315,6 +307,3 @@ Winning: <?php echo $winning; ?>
 ?>
 
   </table>
-  
-  
-  
