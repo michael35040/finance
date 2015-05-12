@@ -245,6 +245,7 @@ function secondsToTime($seconds) {
                     $i=$i+0.01;}  
                 ?>
             </select>
+            <button type="submit" >GUESS SPOT</button>
         </form>
     </th>
         <th>Used Guesses</th>
@@ -252,7 +253,7 @@ function secondsToTime($seconds) {
         <th>ALL Guesses</th>
     </tr>
     <tr>
-        <td><button type="submit" >GUESS SPOT</button></td>
+        <td></td>
         <td><?php 
             $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
             $numberguesses = $countQ[0]["total"];
