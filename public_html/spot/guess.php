@@ -167,7 +167,7 @@ $count=count($guesses);
     <select  name="newguess" >
         <?php 
         $i=10.00;
-        while($i<$maxval){ 
+        while($i<=$maxval){ 
             $i=round($i, 2); //$i=number_format(($i),2,".","")
             $taken = query("SELECT COUNT(id) AS total FROM spot WHERE (price=?)", $i); // query database for user
             $taken = $taken[0]["total"];
