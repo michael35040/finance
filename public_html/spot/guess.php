@@ -10,7 +10,7 @@ $minval=0.01; //minimum value
 $maxval=50; //maximum price
 
 $format = 'Y-m-j G:i:s';
-$contestdate='2015-05-11 12:34:31'; //date of spot at 2400est
+$contestdate='2015-06-13 12:34:31'; //date of spot at 2400est
 $contestend=date ( $format, strtotime ( '-1 month' . $contestdate ) );; //last date to submit vote
 if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
 ////
@@ -56,11 +56,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
   if (isset($_POST["clear"]))
   {
-    if (query("TRUNCATE TABLE `spot`") === false){echo("Clear Spot Database Failure");}
+    if (query("TRUNCATE TABLE `spot`") === false){apologize("Clear Spot Database Failure");}
   }
   
   if (isset($_POST["newguess"])) 
   {
+    //CHECK DATE
+    if($contest!='OPEN'){apologize("Contest is not open!");}
+      
+      
     //POST DATA TO LOCAL
     $newguess = $_POST["newguess"];
   
