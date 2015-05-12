@@ -179,18 +179,15 @@ Winning UID: <?php echo($winning); ?><br>
         //$percentageDiff = ($nextValue-$thisValue)/$thisValue;
         //$currentDif = ($spot-$thisValue);
       
-      if($guess["uid"]=$winning){echo('<tr bgcolor="#00FF00">');}
-      else{echo('<tr>');}
-      
-      echo('
-          <td>' . $guess["price"] . '</td>
-          <td>' . $guess["name"] . '/' . $guess["id"] . '</td>
-          <td>' . $guess["date"] . '</td>
-          <td>' . $distance . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>
-          <td>' . $prevValue . '</td>
-          <td>' . $nextValue . '</td>
-
-        </tr>');
+    if($guess["uid"]==$winning){echo('***');}
+    echo('<tr>');
+        echo('<td>' . $guess["price"] . '</td>');
+        echo('<td>' . $guess["name"] . '/' . $guess["id"] . '/' . $guess["uid"] . '</td>');
+        echo('<td>' . $guess["date"] . '</td>');
+        echo('<td>' . $distance . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
+        echo('<td>' . $prevValue . '</td>');
+        echo('<td>' . $nextValue . '</td>');
+    echo('</tr>');
     
     $i++;
     } //foreach
