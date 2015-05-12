@@ -177,9 +177,9 @@ function secondsToTime($seconds) {
 <table class="table table-striped table-condensed table-bordered" >
     <tr>
         <th>CONTEST DATE</th>
-        <th>TIME REMAINING TO VOTE</th>
+        <th>TIME TO CLOSE</th>
         <th>LAST DAY TO VOTE</th>
-        <th>TIME REMAINING TO VOTE</th>
+        <th>TIME TO VOTE</th>
     </tr>
     <tr>
         <td><?php echo $contestdate; ?></td>
@@ -213,16 +213,34 @@ function secondsToTime($seconds) {
 
 
 
+
+<?php //echo('Contest is ' . $contest); ?><br>
+<?php if($contest!='OPEN'){ ?><h2 style="color:red">CONTEST IS CLOSED!</h2><?php } ?>
+<?php if($contest=='OPEN'){ ?><h2 style="color:green">CONTEST IS OPEN!</h2>
+
 <table class="table table-striped table-condensed table-bordered" >
     <tr>
-        <th colspan="3">GUESSES</th>
+    <th>
+        <form method="post" action="guess.php">
+            <select  name="newguess" >
+                <?php 
+                $i=$minval;
+                while($i<=$maxval){ 
+                    $i=round($i, 2); //$i=number_format(($i),2,".","")
+                    $taken = query("SELECT COUNT(id) AS total FROM spot WHERE (price=?)", $i); // query database for user
+                    $taken = $taken[0]["total"];
+                    if($taken<=0){echo('<option value="' .  number_format(($i),2,".",",") . '">' . number_format(($i),2,".",",") . '</option>');} 
+                    $i=$i+0.01;}  
+                ?>
+            </select>
+        </form>
+    </th>
+        <th>Used Guesses</th>
+        <th>Available Guesses</th>
+        <th>ALL Guesses</th>
     </tr>
     <tr>
-        <th>Used</th>
-        <th>Available</th>
-        <th>ALL</th>
-    </tr>
-    <tr>
+        <td><button type="submit" >GUESS SPOT</button></td>
         <td><?php 
             $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
             $numberguesses = $countQ[0]["total"];
@@ -231,35 +249,7 @@ function secondsToTime($seconds) {
         <td><?php echo($count); ?></td>
     </tr>
 </table>
-
-
-
-
-
-
-
-
-
-
-
-<?php echo('Contest is ' . $contest); ?>
-<?php if($contest=='OPEN'){ ?>
-<br>
-<form method="post" action="guess.php">
-    <select  name="newguess" >
-        <?php 
-        $i=$minval;
-        while($i<=$maxval){ 
-            $i=round($i, 2); //$i=number_format(($i),2,".","")
-            $taken = query("SELECT COUNT(id) AS total FROM spot WHERE (price=?)", $i); // query database for user
-            $taken = $taken[0]["total"];
-            if($taken<=0){echo('<option value="' .  number_format(($i),2,".",",") . '">' . number_format(($i),2,".",",") . '</option>');} 
-            $i=$i+0.01;}  
-        ?>
-    </select>
-<button type="submit" >GUESS SPOT</button>
-</form>
-<?php } //if ?>
+<?php } //if open ?>
 
   
   
@@ -268,10 +258,7 @@ function secondsToTime($seconds) {
   
   
   
-  
-  
-<br><br>
-
+ 
 <table class="table table-striped table-condensed table-bordered" >
     <tr>
       <th>PRICE</th>
