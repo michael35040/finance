@@ -174,49 +174,61 @@ function secondsToTime($seconds) {
     return $dtF->diff($dtT)->format('%a days, %h hours, %i minutes and %s seconds');
 }
 ?>
-CONTEST DATE: <?php echo $contestdate; ?><br> 
-TIME REMAINING TO VOTE: 
-    <?php 
-        $timeremaining=strtotime($contestdate)-time();
-        echo secondsToTime($timeremaining); 
-    ?><br>
-LAST DAY TO VOTE: <?php echo $contestend; ?><br>
-TIME REMAINING TO VOTE: 
-    <?php 
-        $timeremaining=strtotime($contestend)-time();
-        echo secondsToTime($timeremaining); 
-    ?><br>
-    
-    
-<br>
-
-
-
-
-
-
-
-
-
-<table>
+<table class="table table-striped table-condensed table-bordered" >
     <tr>
-        <th>Bid: <?php echo(number_format((float)$silver["bid"],2,".","")); ?></th>
-        <th>Spot: <?php echo(number_format((float)$spot,2,".","")); ?></th>
-        <th>Ask: <?php echo(number_format((float)$silver["ask"],2,".","")); ?></th>
-        <th>Change: <?php echo(number_format((float)$silver["change"],2,".","")); ?></th>
+        <th>CONTEST DATE</th>
+        <th>TIME REMAINING TO VOTE</th>
+        <th>LAST DAY TO VOTE</th>
+        <th>TIME REMAINING TO VOTE</th>
     </tr>
-
     <tr>
-        <th>GUESS</th>
-        <th>Used: <?php 
-    $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
-    $numberguesses = $countQ[0]["total"];
-    echo($numberguesses); 
-  ?></th>
-        <th>Available:     <?php
-    $guessesleft=$availableguesses-$numberguesses;
-    echo($guessesleft); ?> </th>
-        <th>Total (all): <?php echo($count); ?></th>
+        <td><?php echo $contestdate; ?></td>
+        <td><?php $timeremaining=strtotime($contestdate)-time();
+            echo secondsToTime($timeremaining); ?></td>
+        <td><?php echo $contestend; ?></td>
+        <td><?php $timeremaining=strtotime($contestend)-time();
+            echo secondsToTime($timeremaining); ?></td>
+    </tr>
+</table>
+
+
+
+
+
+
+<table class="table table-striped table-condensed table-bordered" >
+    <tr>
+        <th>Bid</th>
+        <th>Spot</th>
+        <th>Ask</th>
+        <th>Change</th>
+    </tr>
+    <tr>
+        <td><?php echo(number_format((float)$silver["bid"],2,".","")); ?></td>
+        <td><?php echo(number_format((float)$spot,2,".","")); ?></td>
+        <td><?php echo(number_format((float)$silver["ask"],2,".","")); ?></td>
+        <td><?php echo(number_format((float)$silver["change"],2,".","")); ?></td>
+    </tr>
+</table>
+
+
+
+<table class="table table-striped table-condensed table-bordered" >
+    <tr>
+        <th colspan="3">GUESSES</th>
+    </tr>
+    <tr>
+        <th>Used</th>
+        <th>Available</th>
+        <th>ALL</th>
+    </tr>
+    <tr>
+        <td><?php 
+            $countQ = query("SELECT COUNT(id) AS total FROM spot WHERE (id=?)", $id); // query database for user
+            $numberguesses = $countQ[0]["total"];
+            echo($numberguesses); ?></td>
+        <td><?php $guessesleft=$availableguesses-$numberguesses; echo($guessesleft); ?></td>
+        <td><?php echo($count); ?></td>
     </tr>
 </table>
 
@@ -232,6 +244,7 @@ TIME REMAINING TO VOTE:
 
 <?php echo('Contest is ' . $contest); ?>
 <?php if($contest=='OPEN'){ ?>
+<br>
 <form method="post" action="guess.php">
     <select  name="newguess" >
         <?php 
@@ -259,7 +272,7 @@ TIME REMAINING TO VOTE:
   
 <br><br>
 
-<table>
+<table class="table table-striped table-condensed table-bordered" >
     <tr>
       <th>PRICE</th>
       <th>USER</th>
