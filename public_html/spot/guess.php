@@ -6,6 +6,7 @@ $id = $_SESSION["id"]; //get id from session
 //CONTEST #1 FOR WHEN WE HAVE MULTIPLE CONTESTS/EVENTS
 $event = 1;
 $availableguesses=20;
+$minval=0.01; //minimum value
 $maxval=50; //maximum price
 
 //PULL NY SPOT
@@ -61,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
       if ($newguess < 0) {apologize("Price must be positive!");}
     
       if ($newguess > $maxval){apologize("Maximum value is $maxval!");}
+      if ($newguess > $minval){apologize("Minimum value is $minval!");}
 
 
     //SEE IF USER IS AUTHORIZED
@@ -166,7 +168,7 @@ $count=count($guesses);
 <form method="post" action="guess.php">
     <select  name="newguess" >
         <?php 
-        $i=10.00;
+        $i=$minval;
         while($i<=$maxval){ 
             $i=round($i, 2); //$i=number_format(($i),2,".","")
             $taken = query("SELECT COUNT(id) AS total FROM spot WHERE (price=?)", $i); // query database for user
@@ -204,7 +206,7 @@ $count=count($guesses);
 
         if($i==0){$prevValue=0;}else{$prevValue = $guesses[$i - 1]['price'];}
         $thisValue = $guesses[$i]['price'];
-        if($i>=($count-1)){$nextValue=384400;}else{$nextValue = $guesses[$i + 1]['price'];}
+        if($i>=($count-1)){$nextValue=$maxval;}else{$nextValue = $guesses[$i + 1]['price'];}
         //$percentageDiff = ($nextValue-$thisValue)/$thisValue;
         //$currentDif = ($spot-$thisValue);
       
