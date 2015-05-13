@@ -1,6 +1,9 @@
 <?php
 // configuration
 
+if(!isset($_SESSION["id"])){$id=0;}else{$id=$_SESSION["id"];}
+
+
 //CONTEST #1 FOR WHEN WE HAVE MULTIPLE CONTESTS/EVENTS
 $event = 1;
 $availableguesses=20;
