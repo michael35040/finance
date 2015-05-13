@@ -142,8 +142,8 @@
 
 
 <?php
-if(isset($_SESSION["id"]))
-{
+//if(isset($_SESSION["id"]))
+if(1==1){
 //placing it here it only shows up when logged on so no box on login screen
 ?>
     </div><!--top-->
