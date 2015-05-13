@@ -8,16 +8,7 @@ ob_start();
 // enable sessions
 session_start();
 
-if(isset($_SESSION["id"]))
+if(isset($_SESSION["id"])){header('Location: guess.php');} //logged in
+else{ header('Location: login.php'); } //not logged in
 //{ apologize(var_dump(get_defined_vars())); }//dump all variables if i hit error
-{
-    header('Location: guess.php');
-}
-else
-//{ apologize(var_dump(get_defined_vars())); }//dump all variables if i hit error
-{
-    //header('Location: info/index.php');
-    header('Location: guess.php');
-    //header('Location: login.php');
-}
 ?>
