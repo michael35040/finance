@@ -56,7 +56,7 @@ require("functions_testing.php"); //functions for testing
     }
 
     // require admin authentication; user id 1  /^def/
-    if (preg_match("{(?:withdraw|deposit|users|ipo:?)\.php$}", $_SERVER["PHP_SELF"]))
+    if (preg_match("{(?:withdraw|deposit|users:?)\.php$}", $_SERVER["PHP_SELF"]))
     {
         if ((!isset($_SESSION["id"])) || ($_SESSION["id"] != $adminid)) 
 	{ //redirect("index.php");
