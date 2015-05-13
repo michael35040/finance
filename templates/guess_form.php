@@ -126,19 +126,24 @@ $count=count($guesses);
   }
 
   }//!empty
-
-
-
-
-
-
-
-
-//SHOW AVAIALBE GUESSES
   ?>
 
 
 
+
+
+<?php
+if($id==1){
+?>
+    <form method="post" action="guess.php">
+        <button type="submit" class="btn btn-danger btn-xs" name="clear" value="yes">
+        <span class="glyphicon glyphicon-remove-circle"></span>CLEAR TABLE
+        </button>
+    </form>
+<?php
+}//if id==1
+
+?>
 
 
 
@@ -215,10 +220,10 @@ function secondsToTime($seconds) {
 
 <table class="table table-striped table-condensed table-bordered" >
     <tr>
-        <th>New Guess</th>
-        <th>Used Guesses</th>
-        <th>Available Guesses</th>
-        <th>ALL Guesses</th>
+        <th>NEW</th>
+        <th>USED</th>
+        <th>AVAILABLE</th>
+        <th>ALL</th>
     </tr>
     <tr>
         <td>
@@ -254,33 +259,114 @@ function secondsToTime($seconds) {
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
  
 
 <!--WINNING -->
 <table class="table table-striped table-condensed table-bordered" >
     <tr>
-        <th colspan="3">WINNING GUESS</th>
+        <th colspan="4">WINNING GUESS</th>
     </tr>
     <tr>
       <td><b>PRICE</b></td>
-      <td><b>USER</b></td>
+      <td><b>USER (ID)</b></td>
       <td><b>DATE</b></td>
+      <td><b>SPOT</b></th>
     </tr>   
 <?php 
 //$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? AND uid=?) ORDER BY price ASC", $event, $winning);
 $winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? AND price<=?) ORDER BY price DESC LIMIT 1", $event, $spot);
   if(!empty($winningQ)) 
   {
+        $distance =           ($winningQ[0]["price"]-$spot);
+        $distancepercentage = 100*(($winningQ[0]["price"]-$spot)/$spot);
+
     echo('<tr style="color:green;font-weight: bolder;font-size: 150%;">');
         echo('<td>' . number_format($winningQ[0]["price"],2,".",",") . '</td>');
-        echo('<td>' . $winningQ[0]["id"] . '</td>');  //. $guess["name"] . '/'
+        echo('<td><a href="http://www.reddit.com/user/' . $winningQ[0]["name"] . '" target="_blank">' . $winningQ[0]["name"] . '</a> (' . $winningQ[0]["id"] . ')</td>');  //. $guess["name"] . '/'
         echo('<td>' . $winningQ[0]["date"] . '</td>');
+        echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
     echo('</tr>');
     }
     else{echo('<tr><td colspan="3">None</td></tr>');}
     ?>
     
 </table>
+
+
+
+
+
+
+
+
+
+
+<!--FILTER BY USER-->
+<?php
+  //USER GUESSERS DROP DOWN
+  $guessers =	query("SELECT distinct id, name FROM spot WHERE (event = ?) ORDER BY name ASC", $event);
+  if(!empty($guessers)) 
+  {
+      ?>
+  <form method="post" action="guess.php">
+    <select  name="user" >
+        <?php   foreach ($guessers as $user) { 
+            echo('<option value="' . $user["id"] . '">'  . $user["name"] . '</option>');
+        } //foreach
+        ?>
+      </select>
+<button type="submit" >FIND USER</button>
+</form>          
+      
+      <?
+  }
+  ?>
+<br>
+<?php 
+if(!is_null($filterusers))
+{ 
+    echo('Filtered by user: ' . $postUser);
+    echo('
+    <table class="table table-striped table-condensed table-bordered" >
+    <tr>
+        <th>PRICE</th>
+        <th>USER (ID)</th>
+        <th>DATE</th>
+        <th>SPOT</th>
+    </tr>');
+    foreach ($filterusers as $filtered) { 
+        $distance =           ($filtered["price"]-$spot);
+        $distancepercentage = 100*(($filtered["price"]-$spot)/$spot);
+
+        echo('<tr>');
+        echo('<td>' . number_format($filtered["price"],2,".",",") . '</td>');
+        echo('<td>' . $filtered["name"] . ' (' . $filtered["id"] . ')</td>');  //. $guess["name"] . '/'
+        echo('<td>' . $filtered["date"] . '</td>');
+        echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
+        echo('</tr>');
+    } //foreach
+     echo('</table>');
+}//if
+?>
+
+
+
+
+
+
+
+
+
+
 
 <!--ALL-->
  <table class="table table-striped table-condensed table-bordered" >
@@ -289,7 +375,7 @@ $winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? 
     </tr>
     <tr>
       <td><b>PRICE</b></td>
-      <td><b>USER</b></td>
+      <td><b>USER (ID)</b></td>
       <td><b>SPOT</b></td>
       <td><b>PREV</b></td>
       <td><b>NEXT</b></td>
@@ -317,7 +403,7 @@ $winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? 
         if($guess["uid"]==$winning){echo('<tr style="color:green;font-weight: bolder;font-size: 150%;">');}
         else{echo('<tr>');}
         echo('<td>' . number_format($guess["price"],2,".",",") . '</td>');
-        echo('<td>' . $guess["id"] . '</td>');  //. $guess["name"] . '/'
+        echo('<td><a href="http://www.reddit.com/user/' . $guess["name"] . '" target="_blank">' . $guess["name"] . '</a> (' . $guess["id"] . ')</td>');  //. $guess["name"] . '/'
         echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
         echo('<td>' . number_format(($prevValue-$guess["price"]),2,".",",") . '</td>');
         echo('<td>' . number_format(($nextValue-$guess["price"]),2,".",",") . '</td>');
@@ -339,68 +425,3 @@ $winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? 
 
 
 
-
-
-<br>
-<!--FILTER BY USER-->
-<?php
-  //USER GUESSERS DROP DOWN
-  $guessers =	query("SELECT distinct id FROM spot WHERE (event = ?) ORDER BY uid ASC", $event);
-  if(!empty($guessers)) 
-  {
-      ?>
-  <form method="post" action="guess.php">
-    <select  name="user" >
-        <?php   foreach ($guessers as $user) { 
-            echo('<option value="' . $user["id"] . '">' . $user["id"] . '</option>');
-        } //foreach
-        ?>
-      </select>
-<button type="submit" >SEARCH USER</button>
-</form>          
-      
-      <?
-  }
-  ?>
-<br>
-<?php 
-if(!is_null($filterusers))
-{ 
-    echo('Filtered by user: ' . $postUser);
-    echo('
-    <table class="table table-striped table-condensed table-bordered" >
-    <tr>
-        <th>Price</th>
-        <th>ID</th>
-        <th>Date</th>
-        <th>Spot</th>
-    </tr>');
-    foreach ($filterusers as $filtered) { 
-        $distance =           ($filtered["price"]-$spot);
-        $distancepercentage = 100*(($filtered["price"]-$spot)/$spot);
-
-        echo('<tr>');
-        echo('<td>' . number_format($filtered["price"],2,".",",") . '</td>');
-        echo('<td>' . $filtered["id"] . '</td>');  //. $guess["name"] . '/'
-        echo('<td>' . $filtered["date"] . '</td>');
-        echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
-        echo('</tr>');
-    } //foreach
-     echo('</table>');
-}//if
-
-
-
-if($id==1){
-?>
-    <form method="post" action="guess.php">
-        <button type="submit" class="btn btn-danger btn-xs" name="clear" value="yes">
-        <span class="glyphicon glyphicon-remove-circle"></span>CLEAR TABLE
-        </button>
-    </form>
-<?php
-}//if id==1
-
-
-
-?>
