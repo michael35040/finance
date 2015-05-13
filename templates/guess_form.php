@@ -9,7 +9,7 @@ $maxval=50; //maximum price
 
 
 $format = 'Y-m-j G:i:s';
-$contestdate='2015-06-13 12:34:31'; //date of spot at 2400est
+$contestdate='2015-06-14 12:34:31'; //date of spot at 2400est
 $contestend=date ( $format, strtotime ( '-1 month' . $contestdate ) );; //last date to submit vote
 if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
 ////
@@ -61,10 +61,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
   }
       
     
-  if (isset($_POST["clear"]))
+  if (isset($_POST["clear"]) && $id==1)
   {
     if (query("TRUNCATE TABLE `spot`") === false){apologize("Clear Spot Database Failure");}
   }
+  
+  
   
   if (isset($_POST["newguess"])) 
   {
@@ -174,7 +176,7 @@ $count=count($guesses);
 function secondsToTime($seconds) {
     $dtF = new DateTime("@0");
     $dtT = new DateTime("@$seconds");
-    return $dtF->diff($dtT)->format('%a days, %h hours, %i minutes and %s seconds');
+    return $dtF->diff($dtT)->format('%a d, %h h, %i m, %s s');
 }
 ?>
 <table class="table table-striped table-condensed table-bordered" >
@@ -186,11 +188,16 @@ function secondsToTime($seconds) {
     </tr>
     <tr>
         <td><?php echo $contestdate; ?></td>
-        <td><?php $timeremaining=strtotime($contestdate)-time();
-            echo secondsToTime($timeremaining); ?></td>
+        <td><?php 
+            $timeremaining=strtotime($contestdate)-time();
+            if($timeremaining>0){echo secondsToTime($timeremaining); }else{echo("Contest is Closed!");}
+            ?></td>
         <td><?php echo $contestend; ?></td>
-        <td><?php $timeremaining=strtotime($contestend)-time();
-            echo secondsToTime($timeremaining); ?></td>
+        <td><?php 
+            
+            $timeremaining=strtotime($contestend)-time();
+            if($timeremaining>0){echo secondsToTime($timeremaining); }else{echo("Voting is Closed!");}
+            ?></td>
     </tr>
 </table>
 
@@ -248,23 +255,42 @@ function secondsToTime($seconds) {
   
   
  
+
+<!--WINNING -->
 <table class="table table-striped table-condensed table-bordered" >
     <tr>
-      <th>PRICE</th>
-      <th>USER</th>
-      <th>DATE</th>
-      <th>TO SPOT</th>
-      <th>TO PREV</th>
-      <th>TO NEXT</th>
+        <th colspan="3">WINNING GUESS</th>
+    </tr>
+    <tr>
+      <td><b>PRICE</b></td>
+      <td><b>USER</b></td>
+      <td><b>DATE</b></td>
     </tr>   
-    
-    <!--WINNING -->
 <?php 
-//$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event = ? AND uid=?) ORDER BY price ASC", $event, $winning);
-?>    
-    
-    
-    <!--ALL-->
+//$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? AND uid=?) ORDER BY price ASC", $event, $winning);
+$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? AND price<=?) ORDER BY price DESC LIMIT 1", $event, $spot);
+
+    echo('<tr style="color:green;font-weight: bolder;font-size: 150%;">');
+        echo('<td>' . number_format($winningQ[0]["price"],2,".",",") . '</td>');
+        echo('<td>' . $winningQ[0]["id"] . '</td>');  //. $guess["name"] . '/'
+        echo('<td>' . $winningQ[0]["date"] . '</td>');
+    echo('</tr>');
+    ?>
+</table>
+
+<!--ALL-->
+ <table class="table table-striped table-condensed table-bordered" >
+    <tr>
+        <th colspan="6">ALL GUESSES</th>
+    </tr>
+    <tr>
+      <td><b>PRICE</b></td>
+      <td><b>USER</b></td>
+      <td><b>SPOT</b></td>
+      <td><b>PREV</b></td>
+      <td><b>NEXT</b></td>
+      <td><b>DATE</b></td>
+    </tr>   
 <?php
   if(!empty($guesses)) 
   {
@@ -288,10 +314,10 @@ function secondsToTime($seconds) {
         else{echo('<tr>');}
         echo('<td>' . number_format($guess["price"],2,".",",") . '</td>');
         echo('<td>' . $guess["id"] . '</td>');  //. $guess["name"] . '/'
-        echo('<td>' . $guess["date"] . '</td>');
         echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
         echo('<td>' . number_format(($prevValue-$guess["price"]),2,".",",") . '</td>');
         echo('<td>' . number_format(($nextValue-$guess["price"]),2,".",",") . '</td>');
+        echo('<td>' . $guess["date"] . '</td>');
     echo('</tr>');
     
     $i++;
@@ -342,7 +368,7 @@ if(!is_null($filterusers))
         <th>Price</th>
         <th>ID</th>
         <th>Date</th>
-        <th>To Spot</th>
+        <th>Spot</th>
     </tr>');
     foreach ($filterusers as $filtered) { 
         $distance =           ($filtered["price"]-$spot);
@@ -357,4 +383,19 @@ if(!is_null($filterusers))
     } //foreach
      echo('</table>');
 }//if
+
+
+
+if($id==1){
+?>
+    <form method="post" action="guess.php">
+        <button type="submit" class="btn btn-danger btn-xs" name="clear" value="yes">
+        <span class="glyphicon glyphicon-remove-circle"></span>CLEAR TABLE
+        </button>
+    </form>
+<?php
+}//if id==1
+
+
+
 ?>
