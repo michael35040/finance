@@ -10,7 +10,7 @@
 $adminid = 1;
 
 //header & footer
-$sitename = 'Element'; //Pulwar or Element
+$sitename = 'Pulwar'; //Pulwar or Element
 
 //index & portfolio
 $unittype = "USD"; //USD BTC
