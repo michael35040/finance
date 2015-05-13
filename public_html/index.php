@@ -17,6 +17,7 @@ else
 //{ apologize(var_dump(get_defined_vars())); }//dump all variables if i hit error
 {
     //header('Location: info/index.php');
-    header('Location: login.php');
+    header('Location: guess.php');
+    //header('Location: login.php');
 }
 ?>
