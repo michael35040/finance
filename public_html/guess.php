@@ -2,7 +2,7 @@
 require("../includes/config.php");
 // if form was submitted
 $title = "Guess";
-$id =  $_SESSION["id"];
+if(!isset($_SESSION["id"])){$id=0;}else{$id=$_SESSION["id"];}
 
 //Guess
 //$history = query("SELECT * FROM history WHERE (id = ? AND (TRANSACTION='TRANSFER' OR TRANSACTION='DEPOSIT' OR TRANSACTION='WITHDRAW')) ORDER BY uid DESC $limit", $id);
