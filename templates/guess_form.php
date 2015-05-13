@@ -12,9 +12,9 @@ $maxval=50; //maximum price
 
 
 $format = 'Y-m-j G:i:s';
-$contestdate='2015-06-14 12:34:31'; //date of spot at 2400est
-$contestend=date ( $format, strtotime ( '-1 month' . $contestdate ) );; //last date to submit vote
-if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
+$contestclose='2015-05-20 12:00:00'; //date of spot at 2400est  
+$votingclose=date ( $format, strtotime ( '-1 month' . $contestclose ) );; //last date to submit vote
+if(strtotime($votingclose)>time()){$voting='OPEN';}else{$voting='CLOSED';}
 ////
 //$format = 'Y-m-j G:i:s';
 //$date = date ( $format );
@@ -24,17 +24,52 @@ if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
 //echo date ( $format, strtotime ( '-1 month' . $date ) );
 
 
+
+
+
+
+
+
+
+
+//PULL SPOT IF OLDER THAN 15 MINUTES
+$prices =	query("SELECT * FROM price");
+$pricedate=strtotime($prices[0]["date"]);
+
+if(time()<($pricedate+900)) //300=5m & 900=15m
+{
+    $bid=$prices[0]["bid"];
+    $spot=$prices[0]["spot"];
+    $ask=$prices[0]["ask"];
+    $change=$prices[0]["change"];
+}
+else
+{
 //PULL NY SPOT
     // Include the library
     require('simple_html_dom.php');
     // Retrieve the DOM from a given URL
     $html = file_get_html('http://www.kitco.com/mobile/');
     // Extract all text from a given cell
-    $silver["bid"] = $html->find('td[align="center"]', 9)->plaintext.'<br><hr>'; 
-    $silver["ask"] = $html->find('td[align="center"]', 10)->plaintext.'<br><hr>';
-    $silver["change"] = $html->find('td[align="center"]', 12)->plaintext.'<br><hr>'; 
-  $spot=($silver["bid"]+$silver["ask"])/2;
-/*
+    $bid = $html->find('td[align="center"]', 9)->plaintext.'<br><hr>'; 
+    $ask = $html->find('td[align="center"]', 10)->plaintext.'<br><hr>';
+    $change = $html->find('td[align="center"]', 12)->plaintext.'<br><hr>'; 
+    $spot=($bid+$ask)/2; $spot=number_format((float)$spot,2,".",""); 
+    
+ if (query("UPDATE `price` SET `bid`=?,`spot`=?,`ask`=?,`change`=? WHERE `id`=1", $bid, $spot, $ask, $change)) 
+ {apologize("Database Failure.");}
+ 
+ $prices =	query("SELECT * FROM price");
+$pricedate=strtotime($prices[0]["date"]);
+    $bid=$prices[0]["bid"];
+    $spot=$prices[0]["spot"];
+    $ask=$prices[0]["ask"];
+    $change=$prices[0]["change"];
+
+    //$pricedate=time();
+
+
+    /*
     $gold["bid"] = $html->find('td[align="center"]', 4)->plaintext.'<br><hr>'; 
     $gold["ask"] = $html->find('td[align="center"]', 5)->plaintext.'<br><hr>'; 
     $gold["change"] = $html->find('td[align="center"]', 7)->plaintext.'<br><hr>'; 
@@ -47,7 +82,13 @@ if(strtotime($contestend)>time()){$contest='OPEN';}else{$contest='CLOSED';}
     $rhodium["bid"] = $html->find('td[align="center"]', 24)->plaintext.'<br><hr>'; 
     $rhodium["ask"] = $html->find('td[align="center"]', 25)->plaintext.'<br><hr>';  
     $rhodium["change"] = $html->find('td[align="center"]', 27)->plaintext.'<br><hr>';
-*/
+    */
+}//if age
+
+
+
+
+
 
 
 
@@ -74,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
   if (isset($_POST["newguess"])) 
   {
     //CHECK DATE
-    if($contest!='OPEN'){apologize("Contest is not open!");}
+    if($voting!='OPEN'){apologize("Contest is not open!");}
      
     //POST DATA TO LOCAL
     $newguess = $_POST["newguess"];
@@ -152,22 +193,20 @@ if($id==1){
 
 
 
-
-
-
-
 <table class="table table-striped table-condensed table-bordered" >
     <tr>
         <th>Bid</th>
         <th>Spot</th>
         <th>Ask</th>
         <th>Change</th>
+        <th>Updated</th>
     </tr>
     <tr>
-        <td><?php echo(number_format((float)$silver["bid"],2,".","")); ?></td>
+        <td><?php echo(number_format((float)$bid,2,".","")); ?></td>
         <td><?php echo(number_format((float)$spot,2,".","")); ?></td>
-        <td><?php echo(number_format((float)$silver["ask"],2,".","")); ?></td>
-        <td><?php echo(number_format((float)$silver["change"],2,".","")); ?></td>
+        <td><?php echo(number_format((float)$ask,2,".","")); ?></td>
+        <td><?php echo(number_format((float)$change,2,".","")); ?></td>
+        <td><?php echo(date($format,$pricedate)); ?></td>
     </tr>
 </table>
 
@@ -195,32 +234,24 @@ function secondsToTime($seconds) {
         <th>TIME TO VOTE</th>
     </tr>
     <tr>
-        <td><?php echo $contestdate; ?></td>
+        <td><?php echo $contestclose; ?></td>
         <td><?php 
-            $timeremaining=strtotime($contestdate)-time();
-            if($timeremaining>0){echo secondsToTime($timeremaining); }else{echo("Contest is Closed!");}
+            $timeremaining=strtotime($contestclose)-time();
+            if($timeremaining>0){echo secondsToTime($timeremaining); }else{echo('Contest is Over!');}
             ?></td>
-        <td><?php echo $contestend; ?></td>
+        <td><?php echo $votingclose; ?></td>
         <td><?php 
             
-            $timeremaining=strtotime($contestend)-time();
-            if($timeremaining>0){echo secondsToTime($timeremaining); }else{echo("Voting is Closed!");}
+            $timeremaining=strtotime($votingclose)-time();
+            if($timeremaining>0){echo secondsToTime($timeremaining); }else{echo('Voting is Closed!');}
             ?></td>
     </tr>
 </table>
 
 
-
-
-
-
-
-
-
 <?php //echo('Contest is ' . $contest); ?>
-<?php if($contest!='OPEN'){ ?><h2 style="color:red">CONTEST IS CLOSED!</h2><?php } ?>
-<?php if($contest=='OPEN'){ ?><h2 style="color:green">CONTEST IS OPEN!</h2>
-
+<?php if($voting!='OPEN'){ ?><h2 style="color:red">VOTING IS CLOSED!</h2><?php } ?>
+<?php if($voting=='OPEN'){ ?><h2 style="color:green">VOTING IS OPEN!</h2>
 <table class="table table-striped table-condensed table-bordered" >
     <tr>
         <th>NEW</th>
@@ -258,10 +289,7 @@ function secondsToTime($seconds) {
   
   
   
-  
-  
-  
-  
+
   
   
   
@@ -281,8 +309,8 @@ function secondsToTime($seconds) {
     <tr>
       <td><b>PRICE</b></td>
       <td><b>USER (ID)</b></td>
-      <td><b>DATE</b></td>
       <td><b>SPOT</b></th>
+      <td><b>DATE</b></td>
     </tr>   
 <?php 
 //$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? AND uid=?) ORDER BY price ASC", $event, $winning);
@@ -295,8 +323,8 @@ $winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? 
     echo('<tr style="color:green;font-weight: bolder;font-size: 150%;">');
         echo('<td>' . number_format($winningQ[0]["price"],2,".",",") . '</td>');
         echo('<td><a href="http://www.reddit.com/user/' . $winningQ[0]["name"] . '" target="_blank">' . $winningQ[0]["name"] . '</a> (' . $winningQ[0]["id"] . ')</td>');  //. $guess["name"] . '/'
-        echo('<td>' . $winningQ[0]["date"] . '</td>');
         echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
+        echo('<td>' . $winningQ[0]["date"] . '</td>');
     echo('</tr>');
     }
     else{echo('<tr><td colspan="3">None</td></tr>');}
@@ -343,8 +371,8 @@ if(!is_null($filterusers))
     <tr>
         <th>PRICE</th>
         <th>USER (ID)</th>
-        <th>DATE</th>
         <th>SPOT</th>
+        <th>DATE</th>
     </tr>');
     foreach ($filterusers as $filtered) { 
         $distance =           ($filtered["price"]-$spot);
@@ -353,8 +381,8 @@ if(!is_null($filterusers))
         echo('<tr>');
         echo('<td>' . number_format($filtered["price"],2,".",",") . '</td>');
         echo('<td>' . $filtered["name"] . ' (' . $filtered["id"] . ')</td>');  //. $guess["name"] . '/'
-        echo('<td>' . $filtered["date"] . '</td>');
         echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
+        echo('<td>' . $filtered["date"] . '</td>');
         echo('</tr>');
     } //foreach
      echo('</table>');
@@ -439,19 +467,19 @@ if(!is_null($filterusers))
           google.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Spot', 'Guess'],<?php   
+          ['Price', 'Price/ID'],<?php   
 
 foreach ($guesses as $guess) 
 { 
-    echo('[ ' . $guess["price"] . ', ' . $guess["price"] . '],');   
+    echo('[ ' . $guess["price"] . ', ' . $guess["id"] . '],');   
 } //foreach
 ?>
         ]);
 
         var options = {
-          title: 'Spot Guesses',
-          hAxis: {title: 'Spot', minValue: 10, maxValue: 0},
-          vAxis: {title: 'Guess', minValue: 10, maxValue: 0},
+          //title: 'Spot Guesses',
+          hAxis: {title: 'Spot Price Guess', minValue: 0, maxValue: 0},
+          vAxis: {title: 'User ID', minValue: 0, maxValue: 0},
           legend: 'none'
         };
 
