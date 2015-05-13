@@ -427,4 +427,41 @@ if(!is_null($filterusers))
 
 
 
+<?php
+  if(!empty($guesses)) 
+  {
+?>
+
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
+       <div id="chart_div" style="width: 100%; height: 1000px;"></div>
+
+<script>
+          google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Spot', 'Guess'],<?php   
+
+foreach ($guesses as $guess) 
+{ 
+    echo('[ ' . $guess["price"] . ', ' . $guess["price"] . '],');   
+} //foreach
+?>
+        ]);
+
+        var options = {
+          title: 'Spot Guesses',
+          hAxis: {title: 'Spot', minValue: 10, maxValue: 0},
+          vAxis: {title: 'Guess', minValue: 10, maxValue: 0},
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+</script>
+
+<?php } //if ?>
+
+
 
