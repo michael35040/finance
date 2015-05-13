@@ -269,13 +269,17 @@ function secondsToTime($seconds) {
 <?php 
 //$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? AND uid=?) ORDER BY price ASC", $event, $winning);
 $winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? AND price<=?) ORDER BY price DESC LIMIT 1", $event, $spot);
-
+  if(!empty($winningQ)) 
+  {
     echo('<tr style="color:green;font-weight: bolder;font-size: 150%;">');
         echo('<td>' . number_format($winningQ[0]["price"],2,".",",") . '</td>');
         echo('<td>' . $winningQ[0]["id"] . '</td>');  //. $guess["name"] . '/'
         echo('<td>' . $winningQ[0]["date"] . '</td>');
     echo('</tr>');
+    }
+    else{echo('<tr><td colspan="3">None</td></tr>');}
     ?>
+    
 </table>
 
 <!--ALL-->
@@ -323,6 +327,7 @@ $winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? 
     $i++;
     } //foreach
   } //if
+  else{echo('<tr><td colspan="6">None</td></tr>');}
 ?>
 
   </table>
