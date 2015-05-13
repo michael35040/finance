@@ -11,8 +11,8 @@ session_start();
 require("db.php");
 require("constants.php");
 require("functions.php"); //standard website functions
-//require("functions_exchange.php"); //market exchange functions
-//require("functions_testing.php"); //functions for testing
+require("functions_exchange.php"); //market exchange functions
+require("functions_testing.php"); //functions for testing
 
     /***********************************************************************
      * config.php
@@ -35,7 +35,7 @@ require("functions.php"); //standard website functions
 	}
 
     // require authentication for most pages
-    if (!preg_match("{(?:login|logout|register|guess)\.php$}", $_SERVER["PHP_SELF"]))
+    if (!preg_match("{(?:login|logout|register)\.php$}", $_SERVER["PHP_SELF"]))
     {
         if (!isset($_SESSION["id"]))
         {
@@ -56,7 +56,7 @@ require("functions.php"); //standard website functions
     }
 
     // require admin authentication; user id 1  /^def/
-    if (preg_match("{(?:withdraw|deposit|users:?)\.php$}", $_SERVER["PHP_SELF"]))
+    if (preg_match("{(?:admin|administrator|adm:?)\.php$}", $_SERVER["PHP_SELF"]))
     {
         if ((!isset($_SESSION["id"])) || ($_SESSION["id"] != $adminid)) 
 	{ //redirect("index.php");
