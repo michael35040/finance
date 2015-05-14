@@ -519,7 +519,7 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
 	        echo('<td>' . $closestWinning[0]["date"] . '</td>');
 	    echo('</tr>');
     }
-    else{echo('<tr><td colspan="3">None</td></tr>');}
+    else{echo('<tr style="color:green;font-weight: bolder;font-size: 150%;"><td>Closest</td><td colspan="4">None</td></tr>');}
     ?>
     
 <!--GAMESHOW-->    
@@ -537,7 +537,7 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
 	        echo('<td>' . $cwogowinning[0]["date"] . '</td>');
 	    echo('</tr>');
     }
-    else{echo('<tr><td colspan="3">None</td></tr>');}
+    else{echo('<tr style="color:blue;font-weight: bolder;font-size: 150%;"><td>Without Going Over</td><td colspan="4">None</td></tr>');}
     ?>
 
 </table>
@@ -548,9 +548,9 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
 
 <form method="post" action="<?php echo($filename);?>.php">
 <select name="event">
-<?php $eventlists =	query("SELECT distinct event FROM spot WHERE 1 ORDER BY event DESC");
+<?php $eventlists =	query("SELECT distinct event FROM spot WHERE 1 ORDER BY event ASC");
   foreach ($eventlists as $eventnumber) { 
-	echo("<option>" . $eventnumber . "</option>");
+	echo("<option>" . $eventnumber["event"] . "</option>");
   } ?>
   </select>
 <button type="submit" >EVENT</button>
@@ -561,7 +561,7 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
 <!--FILTER BY USER-->
 <?php
   //USER GUESSERS DROP DOWN
-  $guessers =	query("SELECT distinct id, name FROM spot WHERE (event = ?) ORDER BY name ASC", $event);
+  $guessers =	query("SELECT distinct id, name FROM spot ORDER BY name ASC");
   if(!empty($guessers)) 
   {
       ?>
