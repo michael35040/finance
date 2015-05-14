@@ -249,8 +249,8 @@ $count=count($guesses);
         
         //WINNING
         //only positive diff
-	        $currentDif = ($spot-$thisValue); 
-        	if($currentDif<$winningDif&&$currentDif>0){$cwogoUID=$guesses[$i]['uid'];$winningDif=$currentDif;}
+	        //$currentDif = ($spot-$thisValue); 
+        	//if($currentDif<$winningDif&&$currentDif>0){$cwogoUID=$guesses[$i]['uid'];$winningDif=$currentDif;}
         //pos and neg diff
 	        $currentDif = abs($spot-$thisValue); //abs=makes absolute (pos whether neg or pos)
         	if($currentDif<$winningDif){$closestUID=$guesses[$i]['uid'];$winningDif=$currentDif;}
@@ -523,7 +523,7 @@ $winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? 
   	$cwogoUID = $winningQ[0]["uid"];
         $distance =           ($winningQ[0]["price"]-$spot);
         $distancepercentage = 100*(($winningQ[0]["price"]-$spot)/$spot);
-	    echo('<tr style="color:red;font-weight: bolder;font-size: 150%;">');
+	    echo('<tr style="color:blue;font-weight: bolder;font-size: 150%;">');
 	        echo('<td>Without Going Over</td>');
 	        echo('<td>' . number_format($winningQ[0]["price"],2,".",",") . '</td>');
 	        echo('<td><a href="http://www.reddit.com/user/' . $winningQ[0]["name"] . '" target="_blank">' . $winningQ[0]["name"] . '</a> (' . $winningQ[0]["id"] . ')</td>');  //. $guess["name"] . '/'
@@ -636,7 +636,7 @@ if(!is_null($filterusers))
       
         
         if($guess["uid"]==$closestUID){echo('<tr style="color:green;font-weight: bolder;font-size: 150%;">');}
-        elseif($guess["uid"]==$cwogoUID){echo('<tr style="color:red;font-weight: bolder;font-size: 150%;">');}
+        elseif($guess["uid"]==$cwogoUID){echo('<tr style="color:blue;font-weight: bolder;font-size: 150%;">');}
         else{echo('<tr>');}
         echo('<td>' . number_format($guess["price"],2,".",",") . '</td>');
         echo('<td><a href="http://www.reddit.com/user/' . $guess["name"] . '" target="_blank">' . $guess["name"] . '</a> (' . $guess["id"] . ')</td>');  //. $guess["name"] . '/'
