@@ -188,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
   if (isset($_POST["user"]))
   {
     $postUser = $_POST["user"];
-    $filterusers =	query("SELECT uid, id, price, name, date FROM spot WHERE (id=? AND event = ?) ORDER BY price ASC", $postUser, $event);
+    $filterusers =	query("SELECT uid, id, price, name, date, event FROM spot WHERE (id=?) ORDER BY price ASC", $postUser);
 
   }
       
@@ -548,7 +548,7 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
 
 <form method="post" action="<?php echo($filename);?>.php">
 <select name="event">
-<?php $eventlists =	query("SELECT distinct event FROM spot WHERE 1 ORDER BY event ASC");
+<?php $eventlists =	query("SELECT distinct event FROM spot WHERE 1 ORDER BY event DESC");
   foreach ($eventlists as $eventnumber) { 
 	echo("<option>" . $eventnumber["event"] . "</option>");
   } ?>
@@ -561,7 +561,7 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
 <!--FILTER BY USER-->
 <?php
   //USER GUESSERS DROP DOWN
-  $guessers =	query("SELECT distinct id, name FROM spot ORDER BY name ASC");
+  $guessers =	query("SELECT distinct id, name FROM spot WHERE event=? ORDER BY name ASC", $event);
   if(!empty($guessers)) 
   {
       ?>
@@ -590,6 +590,7 @@ if(!is_null($filterusers))
         <th>USER (ID)</th>
         <th>SPOT</th>
         <th>DATE</th>
+        <th>EVENT</th>
     </tr>');
     foreach ($filterusers as $filtered) { 
         $distance =           ($filtered["price"]-$spot);
@@ -600,6 +601,7 @@ if(!is_null($filterusers))
         echo('<td>' . $filtered["name"] . ' (' . $filtered["id"] . ')</td>');  //. $guess["name"] . '/'
         echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
         echo('<td>' . $filtered["date"] . '</td>');
+        echo('<td>' . $filtered["event"] . '</td>');
         echo('</tr>');
     } //foreach
      echo('</table>');
