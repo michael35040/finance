@@ -9,6 +9,7 @@ define("PASSWORD", "1qaz!QAZ1qaz!QAZ");    // your database's password
 
 $adminid = 1;
 $sitename = 'Spot'; //Pulwar or Element
+$filename = 'index'; //index.php or spot.php
 
 function apologize($message)
     {
@@ -128,8 +129,10 @@ $maxval=50; //maximum price
 
 
 $format = 'Y-m-j G:i:s';
-$contestclose='2015-05-20 12:00:00'; //date of spot at 2400est  
-$votingclose=date ( $format, strtotime ( '-1 month' . $contestclose ) );; //last date to submit vote
+$contestclose='2015-05-15 18:00:00'; //date of spot at 2400est  
+$votingclose='2015-04-20 12:00:00'; //date of spot at 2400est  
+//$votingclose=date ( $format, strtotime ( '-1 month' . $contestclose ) );; //last date to submit vote
+
 if(strtotime($votingclose)>time()){$voting='OPEN';}else{$voting='CLOSED';}
 
 
@@ -157,10 +160,12 @@ if(time()>($pricedate+900)){
  $prices =	query("SELECT * FROM price");
  	$pricedate=strtotime($prices[0]["date"]);
     	$bid=$prices[0]["bid"];
-    	$spot=$prices[0]["spot"];
     	$ask=$prices[0]["ask"];
     	$change=$prices[0]["change"];
-
+    	$spot=$prices[0]["spot"];
+	
+	//winning is actually bid not spot.
+	$spot=$bid;
 
 
 
@@ -330,7 +335,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 <?php
 if($id==1){
 ?>
-    <form method="post" action="spot.php">
+    <form method="post" action="<?php echo($filename);?>.php">
         <button type="submit" class="btn btn-danger btn-xs" name="clear" value="yes">
         <span class="glyphicon glyphicon-remove-circle"></span>CLEAR TABLE
         </button>
@@ -412,7 +417,7 @@ function secondsToTime($seconds) {
     </tr>
     <tr>
         <td>
-        <form method="post" action="spot.php">
+        <form method="post" action="<?php echo($filename);?>.php">
             <select  name="newguess" >
                 <?php 
                 $i=$minval;
@@ -547,7 +552,7 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
   if(!empty($guessers)) 
   {
       ?>
-  <form method="post" action="spot.php">
+  <form method="post" action="<?php echo($filename);?>.php">
     <select  name="user" >
         <?php   foreach ($guessers as $user) { 
             echo('<option value="' . $user["id"] . '">'  . $user["name"] . '</option>');
@@ -676,8 +681,8 @@ foreach ($guesses as $guess)
 
         var options = {
           //title: 'Spot Guesses',
-          hAxis: {title: 'Spot Price Guess', minValue: 0, maxValue: 0},
-          vAxis: {title: 'User ID', minValue: 0, maxValue: 0},
+          hAxis: {title: 'ID', minValue: 0, maxValue: 0},
+          vAxis: {title: 'Price', minValue: 0, maxValue: 0},
           legend: 'none'
         };
 
