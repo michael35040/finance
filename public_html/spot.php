@@ -134,18 +134,11 @@ if(strtotime($votingclose)>time()){$voting='OPEN';}else{$voting='CLOSED';}
 
 
 //PULL SPOT IF OLDER THAN 15 MINUTES
-$prices =	query("SELECT * FROM price");
+$prices =	query("SELECT date FROM price");
 $pricedate=strtotime($prices[0]["date"]);
 
-if(time()<($pricedate+900)) //300=5m & 900=15m
-{
-    $bid=$prices[0]["bid"];
-    $spot=$prices[0]["spot"];
-    $ask=$prices[0]["ask"];
-    $change=$prices[0]["change"];
-}
-else
-{
+//If data is not within 900 seconds, pull from kitco
+if(time()>($pricedate+900)){
 //PULL NY SPOT
     // Include the library
     require('simple_html_dom.php');
@@ -159,15 +152,15 @@ else
     
  if (query("UPDATE `price` SET `bid`=?,`spot`=?,`ask`=?,`change`=? WHERE `id`=1", $bid, $spot, $ask, $change)) 
  {apologize("Database Failure.");}
- 
- $prices =	query("SELECT * FROM price");
-$pricedate=strtotime($prices[0]["date"]);
-    $bid=$prices[0]["bid"];
-    $spot=$prices[0]["spot"];
-    $ask=$prices[0]["ask"];
-    $change=$prices[0]["change"];
+}
 
-}//if age
+ $prices =	query("SELECT * FROM price");
+ 	$pricedate=strtotime($prices[0]["date"]);
+    	$bid=$prices[0]["bid"];
+    	$spot=$prices[0]["spot"];
+    	$ask=$prices[0]["ask"];
+    	$change=$prices[0]["change"];
+
 
 
 
