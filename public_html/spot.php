@@ -362,7 +362,7 @@ $count=count($guesses);
 <?php
 if($id==1){
 ?>
-    <form method="post" action="guess.php">
+    <form method="post" action="spot.php">
         <button type="submit" class="btn btn-danger btn-xs" name="clear" value="yes">
         <span class="glyphicon glyphicon-remove-circle"></span>CLEAR TABLE
         </button>
@@ -444,7 +444,7 @@ function secondsToTime($seconds) {
     </tr>
     <tr>
         <td>
-        <form method="post" action="guess.php">
+        <form method="post" action="spot.php">
             <select  name="newguess" >
                 <?php 
                 $i=$minval;
@@ -552,7 +552,7 @@ $winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? 
   if(!empty($guessers)) 
   {
       ?>
-  <form method="post" action="guess.php">
+  <form method="post" action="spot.php">
     <select  name="user" >
         <?php   foreach ($guessers as $user) { 
             echo('<option value="' . $user["id"] . '">'  . $user["name"] . '</option>');
