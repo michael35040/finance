@@ -179,6 +179,12 @@ if(time()>($pricedate+900)){
 $filterusers=null;
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
+	
+  if (isset($_POST["event"]))
+  {
+  	$event=$_POST["event"];
+  }
+	
   if (isset($_POST["user"]))
   {
     $postUser = $_POST["user"];
@@ -540,8 +546,15 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
 
 
 
-
-
+<form method="post" action="<?php echo($filename);?>.php">
+<select name="event">
+<?php $eventlists =	query("SELECT distinct event FROM spot WHERE 1 ORDER BY event DESC");
+  foreach ($eventlists as $eventnumber) { 
+	echo("<option>" . $eventnumber . "</option>");
+  } ?>
+  </select>
+<button type="submit" >EVENT</button>
+</form>
 
 
 
