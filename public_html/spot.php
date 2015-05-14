@@ -1,95 +1,22 @@
 <?php
 
-    /***********************************************************************
-     * constants.php
-     *
-     *
-     * Global constants.
-     **********************************************************************/
-
 define("SERVER", "localhost");    // your database's server
 define("DATABASE", "bank");    // your database's name
-
-//define("USERNAME", "root");    // your database's username
-//define("PASSWORD", "");    // your database's password
 define("USERNAME", "hooah");    // your database's username
 define("PASSWORD", "1qaz!QAZ1qaz!QAZ");    // your database's password
 
 
-//authenticates in functions.php on line 119.
 
-//define("CAN_REGISTER", "any");
-//define("DEFAULT_ROLE", "member");
-//define("SECURE", FALSE);    // FOR DEVELOPMENT ONLY!!!!
-
-
-?>
-
-
-
-
-<?php
-
-    /***********************************************************************
-	 * finance.php
-     *
-     *
-     * Global finance constants.
-     **********************************************************************/
-//headers.php & config.php
 $adminid = 1;
-
-//header & footer
 $sitename = 'Spot'; //Pulwar or Element
-?>
 
-
-<?php
-    /***********************************************************************
-     * functions.php
-     *
-     * Helper functions.
-     **********************************************************************/
-
-
-    /**
-     * Apologizes to user with message.
-     */
 function apologize($message)
     {
         render("apology.php", ["message" => $message, "title" => "Sorry!"]);
         exit;
     }
 
-    /**
-     * Facilitates debugging by dumping contents of variable
-     * to browser.
-     */
-function dump($variable)
-    {
-        require("../templates/dump.php");
-        exit;
-    }
 
-    /**
-     * Logs out current user, if any.  Based on Example #1 at
-     * http://us.php.net/manual/en/function.session-destroy.php.
-     */
-function logout()
-    {
-        // unset any session variables
-        $_SESSION = array();
-
-        // expire cookie
-        if (!empty($_COOKIE[session_name()]))
-        {
-            setcookie(session_name(), "", time() - 42000);
-        }
-
-        // destroy session
-        session_destroy();
-
-    }
 function query(/* $sql [, ... ] */)
 	{
 	$sql = func_get_arg(0);  // SQL statement
@@ -125,281 +52,12 @@ function query(/* $sql [, ... ] */)
 	}
 }
 
-    /**
-     * Redirects user to destination, which can be
-     * a URL or a relative path on the local host.
-     *
-     * Because this function outputs an HTTP header, it
-     * must be called before caller outputs any HTML.
-     */
-function redirect($destination)
-    {
-        // handle URL
-        if (preg_match("/^https?:\/\//", $destination))
-        {
-            header("Location: " . $destination);
-        }
-
-        // handle absolute path
-        else if (preg_match("/^\//", $destination))
-        {
-            $protocol = (isset($_SERVER["HTTPS"])) ? "https" : "http";
-            $host = $_SERVER["HTTP_HOST"];
-            header("Location: $protocol://$host$destination");
-        }
-
-        // handle relative path
-        else
-        {
-            // adapted from http://www.php.net/header
-            $protocol = (isset($_SERVER["HTTPS"])) ? "https" : "http";
-            $host = $_SERVER["HTTP_HOST"];
-            $path = rtrim(dirname($_SERVER["PHP_SELF"]), "/\\");
-            header("Location: $protocol://$host$path/$destination");
-        }
-
-        // exit immediately since we're redirecting anyway
-        exit;
-    }
-
-    /**
-     * Renders template, passing in values.
-     */
-function render($template, $values = [])
-    {
-        // if template exists, render it
-        if (file_exists("../templates/$template"))
-        {
-            // extract variables into local scope
-            extract($values);
-
-            require("constants.php");
-
-            // render header
-            require("../templates/header.php");
-
-            // render template
-            require("../templates/$template");
-
-            // render footer
-            require("../templates/footer.php");
-        }
-
-        // else err
-        else
-        {
-            trigger_error("Invalid template: $template", E_USER_ERROR);
-        }
-    }
-
-
-function isValidEmail($email, $checkDNS = false)
-{
-
-    $valid = (
-            /* Preference for native version of function */
-            function_exists('filter_var') and filter_var($email, FILTER_VALIDATE_EMAIL)
-            ) || (
-                /* The maximum length of an e-mail address is 320 octets, per RFC 2821. */
-                strlen($email) <= 320
-                /*
-                 * The regex below is based on a regex by Michael Rushton.
-                 * However, it is not identical. I changed it to only consider routeable
-                 * addresses as valid. Michael's regex considers a@b a valid address
-                 * which conflicts with section 2.3.5 of RFC 5321 which states that:
-                 *
-                 * Only resolvable, fully-qualified domain names (FQDNs) are permitted
-                 * when domain names are used in SMTP. In other words, names that can
-                 * be resolved to MX RRs or address (i.e., A or AAAA) RRs (as discussed
-                 * in Section 5) are permitted, as are CNAME RRs whose targets can be
-                 * resolved, in turn, to MX or address RRs. Local nicknames or
-                 * unqualified names MUST NOT be used.
-                 *
-                 * This regex does not handle comments and folding whitespace. While
-                 * this is technically valid in an email address, these parts aren't
-                 * actually part of the address itself.
-                 */
-                and preg_match_all(
-                    '/^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?))'.
-                    '{255,})(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?))'.
-                    '{65,}@)(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|'.
-                    '(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22))'.
-                    '(?:\\.(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|'.
-                    '(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|'.
-                    '(?:\\x5C[\\x00-\\x7F]))*\\x22)))*@(?:(?:(?!.*[^.]{64,})'.
-                    '(?:(?:(?:xn--)?[a-z0-9]+(?:-+[a-z0-9]+)*\\.){1,126})'.'{1,}'.
-                    '(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-+[a-z0-9]+)*)|'.
-                    '(?:\\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|'.
-                    '(?:(?!(?:.*[a-f0-9][:\\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::'.
-                    '(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|'.
-                    '(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|'.
-                    '(?:(?!(?:.*[a-f0-9]:){5,})'.'(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::'.
-                    '(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|'.
-                    '(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\\.(?:(?:25[0-5])|'.
-                    '(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\\]))$/iD',
-                    $email)
-            );
-
-    if( $valid )
-    {   $tmp = explode('@',$email, 2); //passed to tmp variable to get around 'Only variables should be passed by reference in...'
-        if( $checkDNS && ($domain = end($tmp)) )
-        {
-            /*
-            Note:
-            Adding the dot enforces the root.
-            The dot is sometimes necessary if you are searching for a fully qualified domain
-            which has the same name as a host on your local domain.
-            Of course the dot does not alter results that were OK anyway.
-            */
-            return checkdnsrr($domain . '.', 'MX');
-        }
-        return true;
-    }
-    return false;
-}
-
-
-     
-
-function sanatize($type, $var)
-{
-	if($type=='phone')
-	{
-        $var = preg_replace("/[^0-9]/","", $var);
-        if (!is_numeric($var)) { apologize("Phone must be numeric!");} //if quantity is numeric
-            $var=(int)$var;
-	}
-	if($type=='date')
-	{
-        if (preg_match("/^[-0-9]+$/", $var) == false) {apologize(" You submitted an invalid date.");}
-	}
-	if($type=='address')
-	{ //only alpha numeric, space, period, and comma allowed.
-		$var = preg_replace("/[^0-9a-zA-Z .,#!?-]/", "", $var); //keep - at end or it will be interpreted as range.
-	}
-
-	if($type=='quantity')
-	{	$var = preg_replace("/[^0-9]$/", "", $var);
-		if ($var<0){ apologize("Quantity must be positive!");} //if quantity is numeric
-    		if (preg_match("/^\d+$/", $var) == false) { apologize("The quantity must enter a whole, positive integer."); } // if quantity is invalid (not a whole positive integer)
-    		$var=(int)$var;
-    		if (!is_int($var)){ apologize("Quantity must be numeric!");} //ctype_digit will return false on negative and decimals
-	}
-	if($type=='alphabet') //side, type, etc.
-	{	$var = preg_replace("/[^a-zA-Z]/", "", $var);
-    		if (!ctype_alpha($var)) { apologize("Must be alphabetic!");} //if symbol is alpha (alnum for alphanumeric)
-	}
-	if($type=='alnum') //side, type, etc.
-	{	$var = preg_replace("/[^0-9a-zA-Z]/", "", $var);
-    		if (!ctype_alnum($var)) { apologize("Must be alphabetic or numeric!");} //if symbol is alpha (alnum for alphanumeric)
-	}
-	if($type=='email') //side, type, etc.
-	{	
-		if (isValidEmail($var, true)==false) { apologize("Invalid email address!");}
-	}
-	
-       return($var);
-}
-function getIP()
-{
-    //GET CLIENT IP ADDRESS
-    $ipaddress = '';
-    if (getenv('HTTP_CLIENT_IP')):
-    { $ipaddress = getenv('HTTP_CLIENT_IP'); }
-    elseif(getenv('HTTP_X_FORWARDED_FOR')):
-    { $ipaddress = getenv('HTTP_X_FORWARDED_FOR'); }
-    elseif(getenv('HTTP_X_FORWARDED')):
-    { $ipaddress = getenv('HTTP_X_FORWARDED'); }
-    elseif(getenv('HTTP_FORWARDED_FOR')):
-    { $ipaddress = getenv('HTTP_FORWARDED_FOR'); }
-    elseif(getenv('HTTP_FORWARDED')):
-    { $ipaddress = getenv('HTTP_FORWARDED'); }
-    elseif(getenv('REMOTE_ADDR')):
-    { $ipaddress = getenv('REMOTE_ADDR'); }
-    else:
-    { $ipaddress = 'UNKNOWN'; }
-    endif;
-    return($ipaddress);
-}
-
-
-function isDomainAvailible($domain) //returns true, if domain is availible, false if not
-	{
-		//check, if a valid url is provided
-		if(!filter_var($domain, FILTER_VALIDATE_URL))
-			{ return false; }
-		//initialize curl
-		$curlInit = curl_init($domain);
-		curl_setopt($curlInit,CURLOPT_CONNECTTIMEOUT,3); //default was 10
-		curl_setopt($curlInit,CURLOPT_HEADER,true);
-		curl_setopt($curlInit,CURLOPT_NOBODY,true);
-		curl_setopt($curlInit,CURLOPT_RETURNTRANSFER,true);
-		 //get answer
-		$response = curl_exec($curlInit);
-		curl_close($curlInit);
-		if ($response){return true;}
-		else {return false;}
-	} 
 
 
 
-/*
-//BROWKEN AS A USER COULD LOG IN MULTIPLE TIMES A DAY AND NEVER EXCEED THE 1 DAY MARK WHICH WOULD THEN NEVER APLY INTEREST.
-function update_loans($id)
-{
-	$lastupdate = query("SELECT date FROM loan where uid = 1"); //query to see if loans are up to date
-	$lastupdate = $lastupdate[0]["date"];
-	$now = time(); //get current time in unix seconds
-	$days = floor($now / (24 * 60 * 60 )); //make time into days
-	$updatedays = ($days - $lastupdate); //subtract dates
-	if ($updatedays > 1){
-		if (query("UPDATE users SET loan = (loan + (loan * (? * (rate/365))))", $updatedays) === false)	{ apologize("Database Failure Loan Update #1."); } //update loan
-		if (query("UPDATE loan SET date = ? where uid = 1", $days) === false) { apologize("Database Failure Loan Update #2."); } } //update time
-	
-}
-function update_loans($id)
-{
-				$userquery = query("SELECT last_login, loan, rate FROM users where id = ?", $id); //query to see if loans are up to date
-				$lastupdate = ($userquery[0]["last_login"]); //query db how much units user has
-				$now = time(); //get current time in unix seconds
-				//$time = floor($now); // (24 * 60 * 60 )); //make time into days
-				$updatetime = ($now - $lastupdate); //subtract dates
-				$updatedays = ($updatetime / (24 * 60 * 60));
-				if ($updatedays > 1) //if it has been more than 1 day since login update loans
-					{
-					$oldloan = (float)$userquery[0]["loan"]; //convert array from query to value
-					$userrate = (float)$userquery[0]["rate"]; //convert array from query to value
-					$interest = ($oldloan * ( $updatedays * ($userrate/365))); //might need to use intval() on $updatedays to convert the float to int.
-					$newloan = ($oldloan + $interest);
-					if (query("UPDATE users SET loan = ? WHERE id = ?", $newloan, $id) === false)	
-					//	if (query("UPDATE users SET loan = (loan + (loan * (? * (rate/365))))", $updatedays) === false)	
-						{ apologize("Database Failure Loan Update #1."); } //update loan
-					//	if (query("UPDATE loan SET date = ? where uid = 1", $days) === false) 
-					//		{ apologize("Database Failure Loan Update #2."); } //update time
-					if (query("INSERT INTO history (id, transaction, symbol, shares, price) VALUES (?, ?, ?, ?, ?)", $id, 'INTEREST', $unittype, 		$updatedays, $interest) === false) { apologize("Database Failure Loan Update #3."); } //update history
-					$neginterest = ($interest *-1);
-					if (query("INSERT INTO history (id, transaction, symbol, shares, price) VALUES (?, ?, ?, ?, ?)", 1, 'INTEREST', $unittype, $id, $neginterest) === false) { apologize("Database Failure Loan Update #3."); } //update history
-				}
-}
-
-
-*/
-
-
-?>
-
-
-
-
-<?php
 
 // if form was submitted
 $title = "Guess";
-if(!isset($_SESSION["id"])){$id=0;}else{$id=$_SESSION["id"];}
-
-
-// configuration
-
 if(!isset($_SESSION["id"])){$id=0;}else{$id=$_SESSION["id"];}
 
 
@@ -414,21 +72,6 @@ $format = 'Y-m-j G:i:s';
 $contestclose='2015-05-20 12:00:00'; //date of spot at 2400est  
 $votingclose=date ( $format, strtotime ( '-1 month' . $contestclose ) );; //last date to submit vote
 if(strtotime($votingclose)>time()){$voting='OPEN';}else{$voting='CLOSED';}
-////
-//$format = 'Y-m-j G:i:s';
-//$date = date ( $format );
-//// - 7 days from today
-//echo date ( $format, strtotime ( '-7 day' . $date ) );
-//// - 1 month from today
-//echo date ( $format, strtotime ( '-1 month' . $date ) );
-
-
-
-
-
-
-
-
 
 
 //PULL SPOT IF OLDER THAN 15 MINUTES
@@ -465,23 +108,6 @@ $pricedate=strtotime($prices[0]["date"]);
     $ask=$prices[0]["ask"];
     $change=$prices[0]["change"];
 
-    //$pricedate=time();
-
-
-    /*
-    $gold["bid"] = $html->find('td[align="center"]', 4)->plaintext.'<br><hr>'; 
-    $gold["ask"] = $html->find('td[align="center"]', 5)->plaintext.'<br><hr>'; 
-    $gold["change"] = $html->find('td[align="center"]', 7)->plaintext.'<br><hr>'; 
-    $platinum["bid"] = $html->find('td[align="center"]', 14)->plaintext.'<br><hr>'; 
-    $platinum["ask"] = $html->find('td[align="center"]', 15)->plaintext.'<br><hr>'; 
-    $platinum["change"] = $html->find('td[align="center"]', 17)->plaintext.'<br><hr>';
-    $palladium["bid"] = $html->find('td[align="center"]', 19)->plaintext.'<br><hr>'; 
-    $palladium["ask"] = $html->find('td[align="center"]', 20)->plaintext.'<br><hr>';
-    $palladium["change"] = $html->find('td[align="center"]', 22)->plaintext.'<br><hr>';
-    $rhodium["bid"] = $html->find('td[align="center"]', 24)->plaintext.'<br><hr>'; 
-    $rhodium["ask"] = $html->find('td[align="center"]', 25)->plaintext.'<br><hr>';  
-    $rhodium["change"] = $html->find('td[align="center"]', 27)->plaintext.'<br><hr>';
-    */
 }//if age
 
 
@@ -569,21 +195,9 @@ $count=count($guesses);
   }
 
   }//!empty
-  ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
+  
+  
+  ?><!DOCTYPE html>
 <html lang="en">
 <style>
 
@@ -670,139 +284,12 @@ $count=count($guesses);
                     <img src="img/logo/<?php //echo($ranimg); ?>1.png" width="27" style="vertical-align:middle;" />
                     <?php if(isset($title)){echo("" . htmlspecialchars($title) . "");} ?>
                 </td>
-
-
-
-                <!-- Menu in style.css -->
-                <?php
-                //SHOW ON LOG IN ARGUMENT FOR MENU AND INFORMATION
-                if (isset($_SESSION["id"]))
-                {?>
-
-                    <td>
-                        <?php
-                        $users =query("SELECT id, email, fname, lname, active FROM users WHERE id = ?", $_SESSION["id"]);
-                        @$id = $users[0]["id"];
-                        @$email = $users[0]["email"];
-                        @$fname = $users[0]["fname"];
-                        @$lname = $users[0]["lname"];
-
-                        @$active = $users[0]["active"];
-                        if($active==1)
-                        {
-                            
-                            // query cash for template
-                            
-                            /*
-                            //ACCOUNTS UNITS
-                            $accounts =	query("SELECT units FROM accounts WHERE id = ?", $id);	 //query db //, loan, rate, approved
-                            if(empty($accounts)){$units=0;}
-                            else{$units = getPrice($accounts[0]["units"]);}
-                            */
-                            
-                            //LEDGER
-                            $accounts = query("SELECT SUM(amount) AS total FROM ledger WHERE (user=? AND symbol=? AND category=?)", $id, $unittype, 'available'); // query user's portfolio
-                            if(empty($accounts)){$units=0;}
-                            //if($accounts==null){$units=0;}
-                            $units = getPrice($accounts[0]["total"]); 
-
-
-
-    <div class="navigationBar" align="right">
-        <div class="btn-group">
-
-            <div class="btn-group">
-                <div class="input-group">
-                    <button id="bankButton" type="button" class="btn btn-default  btn-sm   dropdown-toggle" data-toggle="dropdown">
-                        <b>MENU</b>
-                    <span class="caret"></span>
-                    </button>
-
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="account.php">ACCOUNT</a></li>
-                        <li><a href="status.php">STATUS</a></li>
-                        <li><a href="update.php">UPDATE</a></li>
-
-                        <!--
-                         <li><a href="exchange-quick.php">X-QUICK</a></li>
-                        <li><a href="transfer.php">Transfer </a></li><li><a href="loan.php">Loan</a></li><?php //if ($loan < 0) { //-0.00000001 ?><li><a href="loanpay.php">Pay Loan</a></li> --><?php //} ?>
-                    </ul>
-                </div>
-            </div>
-
-
-            <?php if ($_SESSION["id"] == $adminid) { //ADMIN MENU FOR ADMIN?>
-
-                <div class="btn-group">
-                    <div class="input-group">
-                        <button id="adminButton" type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                            <!--<span class="glyphicon glyphicon-home"></span>&nbsp;-->
-                             <b>ADMIN</b>
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="admin.php">Dashboard</a></li>
-                            <li><a href="admin_users.php">Users </a></li>
-                            <li><a href="admin_offering.php">Offering </a></li>
-                            <li><a href="admin_update.php">Update </a></li>
-                        </ul>
-                    </div>
-                </div>
-            <?php } ?>
-
-            <div class="btn-group">
-                <div class="input-group">
-                    <a href="logout.php">
-                        <button type="button" class="btn btn-danger  btn-sm ">
-                        <!--<b>EXIT</b>-->
-                        <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                    </a>
-                </div>
-            </div>
-
-
-
-
-        </div><!--btn-group-->
-    </div><!--navigationBar-->
-
-
-
-                            //include("banner.php");
-                        } //if active==1
-                        ?>
-                    </td>
-
-
-                <?php
-                } //bracket for the show on log in argument
-                //var_dump(get_defined_vars()); //dump all variables anywhere (displays in header)
-                ?>
-
-
-
             </tr>
         </table>
 
 
-<?php
-if(1==1){ //if(isset($_SESSION["id"]))
-//placing it here it only shows up when logged on so no box on login screen
-?>
     </div><!--top-->
     <div id="middle" style="text-align:center;background-color:transparent;border:0;"> 
-<?php  
-} //bracket for the show on log in argument
-?>
-
-
-
-
-
-
-
-
 
 
 
@@ -1100,11 +587,13 @@ if(!is_null($filterusers))
           google.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Price', 'Price/ID'],<?php   
+          ['ID', 'Price'],
+          
+          <?php   
 
 foreach ($guesses as $guess) 
 { 
-    echo('[ ' . $guess["price"] . ', ' . $guess["id"] . '],');   
+    echo('[ ' . $guess["id"] . ', ' . $guess["price"] . '],');   
 } //foreach
 ?>
         ]);
