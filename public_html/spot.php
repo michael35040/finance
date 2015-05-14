@@ -246,10 +246,14 @@ $count=count($guesses);
   $winningDif=$maxval;
   foreach ($guesses as $guess) { 
         $thisValue = $guesses[$i]['price'];
-        $currentDif = ($spot-$thisValue);
         
         //WINNING
-        if($currentDif<$winningDif&&$currentDif>0){$winning=$guesses[$i]['uid'];$winningDif=$currentDif;}
+        //only positive diff
+	        $currentDif = ($spot-$thisValue); 
+        	if($currentDif<$winningDif&&$currentDif>0){$cwogoUID=$guesses[$i]['uid'];$winningDif=$currentDif;}
+        //pos and neg diff
+	        $currentDif = abs($spot-$thisValue); //abs=makes absolute (pos whether neg or pos)
+        	if($currentDif<$winningDif){$closestUID=$guesses[$i]['uid'];$winningDif=$currentDif;}
         $i++;
   }
 
@@ -483,32 +487,53 @@ function secondsToTime($seconds) {
 <!--WINNING -->
 <table class="table table-striped table-condensed table-bordered" >
     <tr>
-        <th colspan="4">WINNING GUESS</th>
+        <th colspan="5">WINNING GUESS</th>
     </tr>
     <tr>
+      <td><b>TYPE</b></td>
       <td><b>PRICE</b></td>
       <td><b>USER (ID)</b></td>
       <td><b>SPOT</b></th>
       <td><b>DATE</b></td>
-    </tr>   
+    </tr>  
+
+<!--CLOSEST-->    
 <?php 
-//$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? AND uid=?) ORDER BY price ASC", $event, $winning);
-$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? AND price<=?) ORDER BY price DESC LIMIT 1", $event, $spot);
+$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (uid=?) ORDER BY price DESC LIMIT 1", $closestUID);
   if(!empty($winningQ)) 
   {
         $distance =           ($winningQ[0]["price"]-$spot);
         $distancepercentage = 100*(($winningQ[0]["price"]-$spot)/$spot);
-
-    echo('<tr style="color:green;font-weight: bolder;font-size: 150%;">');
-        echo('<td>' . number_format($winningQ[0]["price"],2,".",",") . '</td>');
-        echo('<td><a href="http://www.reddit.com/user/' . $winningQ[0]["name"] . '" target="_blank">' . $winningQ[0]["name"] . '</a> (' . $winningQ[0]["id"] . ')</td>');  //. $guess["name"] . '/'
-        echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
-        echo('<td>' . $winningQ[0]["date"] . '</td>');
-    echo('</tr>');
+	    echo('<tr style="color:green;font-weight: bolder;font-size: 150%;">');
+	        echo('<td>Closest</td>');
+	        echo('<td>' . number_format($winningQ[0]["price"],2,".",",") . '</td>');
+	        echo('<td><a href="http://www.reddit.com/user/' . $winningQ[0]["name"] . '" target="_blank">' . $winningQ[0]["name"] . '</a> (' . $winningQ[0]["id"] . ')</td>');  //. $guess["name"] . '/'
+	        echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
+	        echo('<td>' . $winningQ[0]["date"] . '</td>');
+	    echo('</tr>');
     }
     else{echo('<tr><td colspan="3">None</td></tr>');}
     ?>
     
+<!--GAMESHOW-->    
+<?php 
+$winningQ =   query("SELECT uid, id, price, name, date FROM spot WHERE (event=? AND price<=?) ORDER BY price DESC LIMIT 1", $event, $spot);
+  if(!empty($winningQ)) 
+  {
+  	$cwogoUID = $winningQ[0]["uid"];
+        $distance =           ($winningQ[0]["price"]-$spot);
+        $distancepercentage = 100*(($winningQ[0]["price"]-$spot)/$spot);
+	    echo('<tr style="color:red;font-weight: bolder;font-size: 150%;">');
+	        echo('<td>Without Going Over</td>');
+	        echo('<td>' . number_format($winningQ[0]["price"],2,".",",") . '</td>');
+	        echo('<td><a href="http://www.reddit.com/user/' . $winningQ[0]["name"] . '" target="_blank">' . $winningQ[0]["name"] . '</a> (' . $winningQ[0]["id"] . ')</td>');  //. $guess["name"] . '/'
+	        echo('<td>' . number_format(($distance),2,".",",") . ' (' . number_format($distancepercentage,2,".",",") . '%)</td>');
+	        echo('<td>' . $winningQ[0]["date"] . '</td>');
+	    echo('</tr>');
+    }
+    else{echo('<tr><td colspan="3">None</td></tr>');}
+    ?>
+
 </table>
 
 
@@ -610,7 +635,8 @@ if(!is_null($filterusers))
         //$currentDif = ($spot-$thisValue);
       
         
-        if($guess["uid"]==$winning){echo('<tr style="color:green;font-weight: bolder;font-size: 150%;">');}
+        if($guess["uid"]==$closestUID){echo('<tr style="color:green;font-weight: bolder;font-size: 150%;">');}
+        elseif($guess["uid"]==$cwogoUID){echo('<tr style="color:red;font-weight: bolder;font-size: 150%;">');}
         else{echo('<tr>');}
         echo('<td>' . number_format($guess["price"],2,".",",") . '</td>');
         echo('<td><a href="http://www.reddit.com/user/' . $guess["name"] . '" target="_blank">' . $guess["name"] . '</a> (' . $guess["id"] . ')</td>');  //. $guess["name"] . '/'
