@@ -122,7 +122,7 @@ if(!isset($_SESSION["id"])){$id=0;}else{$id=$_SESSION["id"];}
 
 
 //CONTEST #1 FOR WHEN WE HAVE MULTIPLE CONTESTS/EVENTS
-$event = 1;
+$event = null;
 $availableguesses=20;
 $minval=0.01; //minimum value
 $maxval=50; //maximum price
@@ -167,6 +167,7 @@ if(time()>($pricedate+900)){
 	//winning is actually bid not spot.
 	$spot=$bid;
 
+// $eventsinfo =	query("SELECT event, voting, contest, name, link FROM spot WHERE (id=?) ORDER BY price ASC", $postUser);
 
 
 
@@ -179,6 +180,7 @@ if(time()>($pricedate+900)){
 $filterusers=null;
 if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
 {
+
 	
   if (isset($_POST["event"]))
   {
@@ -390,12 +392,14 @@ function secondsToTime($seconds) {
 ?>
 <table class="table table-striped table-condensed table-bordered" >
     <tr>
+        <th>EVENT</th>
         <th>CONTEST DATE</th>
         <th>TIME TO CLOSE</th>
         <th>LAST DAY TO VOTE</th>
         <th>TIME TO VOTE</th>
     </tr>
     <tr>
+        <td><?php echo $event; ?></td>
         <td><?php echo $contestclose; ?></td>
         <td><?php 
             $timeremaining=strtotime($contestclose)-time();
