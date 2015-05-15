@@ -5,12 +5,6 @@ define("DATABASE", "bank");    // your database's name
 define("USERNAME", "hooah");    // your database's username
 define("PASSWORD", "1qaz!QAZ1qaz!QAZ");    // your database's password
 
-
-
-$adminid = 1;
-$sitename = 'Spot'; //Pulwar or Element
-$filename = 'index'; //index.php or spot.php
-
 function apologize($message)
     {
         render("apology.php", ["message" => $message, "title" => "Sorry!"]);
@@ -114,10 +108,16 @@ function render($template, $values = [])
     }
 
 
+///////////////////////////////////////////////////////////////
+
+$adminid = 1;
+$sitename = 'Silver Bugs'; //Pulwar or Element
+$filename = 'index'; //index.php or spot.php
+
 
 
 // if form was submitted
-$title = "Guess";
+$title = "Ante Up!";
 if(!isset($_SESSION["id"])){$id=0;}else{$id=$_SESSION["id"];}
 
 
@@ -184,6 +184,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
   if (isset($_POST["event"]))
   {
   	$event=$_POST["event"];
+  	if($event='All')
+  	{
+  	  $guesses =	query("SELECT uid, id, price, name, date FROM spot ORDER BY price ASC");
+  	}
+  	else
+  	{
+  	  $guesses =	query("SELECT uid, id, price, name, date FROM spot WHERE (event = ?) ORDER BY price ASC", $event);
+  	}
   }
 	
   if (isset($_POST["user"]))
@@ -467,10 +475,10 @@ function secondsToTime($seconds) {
   
 //PULL DB QUERY OF CURRENT GUESSES
   //PULLS ALL GUESSES, AT THE MOMENT WE ARE JUST PULLING IT FOR EACH NUMBER
-  $guesses =	query("SELECT uid, id, price, name, date FROM spot WHERE (event = ?) ORDER BY price ASC", $event);
-$count=count($guesses);
+$count=0;
   if(!empty($guesses)) 
   {
+$count=count($guesses);
   $i=0;
   $winningDif=$maxval;
   foreach ($guesses as $guess) { 
@@ -498,7 +506,7 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
 <!--WINNING -->
 <table class="table table-striped table-condensed table-bordered" >
     <tr>
-        <th colspan="5">WINNING GUESS</th>
+        <th colspan="5">CURRENTLY WINNING GUESS</th>
     </tr>
     <tr>
       <td><b>TYPE</b></td>
@@ -555,6 +563,7 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
   foreach ($eventlists as $eventnumber) { 
 	echo("<option>" . $eventnumber["event"] . "</option>");
   } ?>
+  	<option>All</option>
   </select>
 <button type="submit" >EVENT</button>
 </form>
