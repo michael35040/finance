@@ -185,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
   if (isset($_POST["event"]))
   {
   	$event=$_POST["event"];
-  	if($event='All')
+  	if($event=='All')
   	{
   	  $guesses =	query("SELECT uid, id, price, name, date FROM spot ORDER BY price ASC");
   	$guessers =	query("SELECT distinct id, name FROM spot ORDER BY name ASC");
