@@ -634,6 +634,51 @@ if(!is_null($filterusers))
 
 
 
+<?php
+  if(!empty($guesses)) 
+  {
+?>
+
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
+       <div id="chart_div" style="width: 100%; height: 1000px;"></div>
+
+<script>
+          google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['ID', 'Price'],
+          
+          <?php   
+
+foreach ($guesses as $guess) 
+{ 
+    echo('[ ' . $guess["id"] . ', ' . $guess["price"] . '],');   
+} //foreach
+?>
+        ]);
+
+        var options = {
+          //title: 'Spot Guesses',
+          hAxis: {title: 'ID', minValue: 0, maxValue: 0},
+          vAxis: {title: 'Price', minValue: 0, maxValue: 0},
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+</script>
+
+<?php } //if ?>
+
+
+
+
+
+
+
+
 
 
 <!--ALL-->
@@ -689,43 +734,7 @@ if(!is_null($filterusers))
 
 
 
-<?php
-  if(!empty($guesses)) 
-  {
-?>
 
-<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
-       <div id="chart_div" style="width: 100%; height: 1000px;"></div>
-
-<script>
-          google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['ID', 'Price'],
-          
-          <?php   
-
-foreach ($guesses as $guess) 
-{ 
-    echo('[ ' . $guess["id"] . ', ' . $guess["price"] . '],');   
-} //foreach
-?>
-        ]);
-
-        var options = {
-          //title: 'Spot Guesses',
-          hAxis: {title: 'ID', minValue: 0, maxValue: 0},
-          vAxis: {title: 'Price', minValue: 0, maxValue: 0},
-          legend: 'none'
-        };
-
-        var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
-
-        chart.draw(data, options);
-      }
-</script>
-
-<?php } //if ?>
 
 
 
