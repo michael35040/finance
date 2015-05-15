@@ -188,6 +188,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
   	if($event='All')
   	{
   	  $guesses =	query("SELECT uid, id, price, name, date FROM spot ORDER BY price ASC");
+  	$guessers =	query("SELECT distinct id, name FROM spot ORDER BY name ASC");
+
   	}
   	else
   	{
@@ -477,7 +479,7 @@ function secondsToTime($seconds) {
 //PULL DB QUERY OF CURRENT GUESSES
   //PULLS ALL GUESSES, AT THE MOMENT WE ARE JUST PULLING IT FOR EACH NUMBER
 //don't want to overwrite if posted by user
-if ($_SERVER["REQUEST_METHOD"] != "POST")// if form is submitted
+if(empty($guesses)) // if form is submitted
 {
 $guesses =	query("SELECT uid, id, price, name, date FROM spot WHERE (event = ?) ORDER BY price ASC", $event);
 }
@@ -562,7 +564,7 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
 
 
 
-
+<!--filter by event-->
 <form method="post" action="<?php echo($filename);?>.php">
 <select name="event">
 <?php $eventlists =	query("SELECT distinct event FROM spot WHERE 1 ORDER BY event DESC");
@@ -576,10 +578,16 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
 
 
 
+
+
 <!--FILTER BY USER-->
 <?php
   //USER GUESSERS DROP DOWN
-  $guessers =	query("SELECT distinct id, name FROM spot WHERE event=? ORDER BY name ASC", $event);
+  //in case it is all
+  if(empty($guessers)){
+  	$guessers =	query("SELECT distinct id, name FROM spot WHERE event=? ORDER BY name ASC", $event);
+  }
+  
   if(!empty($guessers)) 
   {
       ?>
@@ -595,9 +603,6 @@ $cwogowinning =   query("SELECT uid, id, price, name, date FROM spot WHERE (even
       
       <?
   }
-  ?>
-<br>
-<?php 
 if(!is_null($filterusers))
 { 
     echo('Filtered by user: ' . $postUser);
