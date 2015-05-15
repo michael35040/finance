@@ -121,15 +121,17 @@ $title = "Ante Up!";
 if(!isset($_SESSION["id"])){$id=0;}else{$id=$_SESSION["id"];}
 
 
-$format = 'Y-m-j G:i:s';
 //CURRENT CONTeST INFO
-$event = null;
+$event = 6; //what it displays at beginning. Can be null.
+
+//current contest information
 $availableguesses=20;
 $minval=0.01; //minimum value
 $maxval=50; //maximum price
 $contestnumber=6; //number 6
 $contestclose='2015-05-15 18:00:00'; //date of spot at 2400est  
 $votingclose='2015-04-20 12:00:00'; //date of spot at 2400est  
+$format = 'Y-m-j G:i:s';
 //$votingclose=date ( $format, strtotime ( '-1 month' . $contestclose ) );; //last date to submit vote
 
 if(strtotime($votingclose)>time()){$voting='OPEN';}else{$voting='CLOSED';}
@@ -167,7 +169,6 @@ if(time()>($pricedate+900)){
 	$spot=$bid;
 
 // $eventsinfo =	query("SELECT event, voting, contest, name, link FROM spot WHERE (id=?) ORDER BY price ASC", $postUser);
-
 
 
 
@@ -475,10 +476,15 @@ function secondsToTime($seconds) {
   
 //PULL DB QUERY OF CURRENT GUESSES
   //PULLS ALL GUESSES, AT THE MOMENT WE ARE JUST PULLING IT FOR EACH NUMBER
-$count=0;
+//don't want to overwrite if posted by user
+if ($_SERVER["REQUEST_METHOD"] != "POST")// if form is submitted
+{
+$guesses =	query("SELECT uid, id, price, name, date FROM spot WHERE (event = ?) ORDER BY price ASC", $event);
+}
+
+  $count=count($guesses);
   if(!empty($guesses)) 
   {
-$count=count($guesses);
   $i=0;
   $winningDif=$maxval;
   foreach ($guesses as $guess) { 
