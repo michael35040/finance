@@ -121,14 +121,13 @@ $title = "Guess";
 if(!isset($_SESSION["id"])){$id=0;}else{$id=$_SESSION["id"];}
 
 
-//CONTEST #1 FOR WHEN WE HAVE MULTIPLE CONTESTS/EVENTS
+$format = 'Y-m-j G:i:s';
+//CURRENT CONTeST INFO
 $event = null;
 $availableguesses=20;
 $minval=0.01; //minimum value
 $maxval=50; //maximum price
-
-
-$format = 'Y-m-j G:i:s';
+$contestnumber=6; //number 6
 $contestclose='2015-05-15 18:00:00'; //date of spot at 2400est  
 $votingclose='2015-04-20 12:00:00'; //date of spot at 2400est  
 //$votingclose=date ( $format, strtotime ( '-1 month' . $contestclose ) );; //last date to submit vote
@@ -399,7 +398,7 @@ function secondsToTime($seconds) {
         <th>TIME TO VOTE</th>
     </tr>
     <tr>
-        <td><?php echo $event; ?></td>
+        <td><?php echo $contestnumber; ?></td>
         <td><?php echo $contestclose; ?></td>
         <td><?php 
             $timeremaining=strtotime($contestclose)-time();
@@ -468,7 +467,7 @@ function secondsToTime($seconds) {
   
 //PULL DB QUERY OF CURRENT GUESSES
   //PULLS ALL GUESSES, AT THE MOMENT WE ARE JUST PULLING IT FOR EACH NUMBER
-  $guesses =	query("SELECT uid, id, price, name, date FROM spot WHERE event = ? ORDER BY price ASC", $event);
+  $guesses =	query("SELECT uid, id, price, name, date FROM spot WHERE (event = ?) ORDER BY price ASC", $event);
 $count=count($guesses);
   if(!empty($guesses)) 
   {
@@ -625,7 +624,7 @@ if(!is_null($filterusers))
 <!--ALL-->
  <table class="table table-striped table-condensed table-bordered" >
     <tr>
-        <th colspan="6">ALL GUESSES</th>
+        <th colspan="6">ALL GUESSES FOR EVENT <?php echo($event); ?></th>
     </tr>
     <tr>
       <td><b>PRICE</b></td>
