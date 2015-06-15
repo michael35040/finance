@@ -9,6 +9,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $newpurchasepriceozt=$_POST["newpurchasepriceozt"];
     $movement=$_POST["movement"];
 
+    /*
+    $a=$currentstackpriceperozt;
+    $b=$newpurchaseozt;
+    $c=$newpurchasepriceozt;
+    $d=$movement;
+    $d=(((($e*$b)*$a)+($b*$c))/($e*$b))-$a
+    //$e='current stack size';
+    */
+    
+    
 //CHECK TO MAKE SURE THE MOVEMENT IS CURRENT VALUE
 //IF NEGATIVE MOVEMENT, NEW PURCHASE PRICE MUST BE LOWER
 if($movement<0 && $newpurchasepriceozt>$currentstackpriceperozt):
