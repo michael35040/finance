@@ -14,7 +14,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $b=$newpurchaseozt;
     $c=$newpurchasepriceozt;
     $d=$movement;
-    $d=(((($e*$b)*$a)+($b*$c))/($e*$b))-$a
+    $d=(((($e*$b)*$a)+($b*$c))/($e*$b))-$a;
+    d=((((e*b)*a)+(b*c))/(e*b))-a;
+    
+    //ANOTHER SOLVE
+    d=((ae+c)/e)-a
+    
+    
+    //POSSIBLE SOLVES BY ALGEBRA CALCULATOR
+    $d=((2.718282ba+bc)/2.718282b)-a;
+    $d=$c/$e;
+    $c=(2.718282*$d);
+    $d=(0.367879*$c);
     //$e='current stack size';
     */
     
