@@ -10,22 +10,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")// if form is submitted
     $d=$_POST["d"]; //Movement ($/ozt)
     $d=round($d, 5);
     //CHECKS
-    if($d<0 && $c>$a){ echo("Invalid numbers.<br>'Movement' (D) must be positive if the value of the 'New Purchaes Price' (C) is higher than 'Current Price of Stack' (A).");}
-    if($d>0 && $c<$a){ echo("Invalid numbers.<br>'Movement' (D) must be negative (-) if the value of the 'New Purchaes Price' (C) is lower than 'Current Price of Stack' (A).");}
-    //SOLVE FOR X    
-    $x=((-$a*$b)+($b*$c)-($b*$d))/$d;
-    $x=round($x, 2);
-    echo("
-    Stack Size: " . $x . "<br>
-    Old Cost: $" . $a . "/ozt (per ounce)<br> 
-    Old Cost: $" . ($a*$x) . " (total)<br> 
-    New Purchase: " . $b . " ozt <br>
-    New Purchase: $" . $c . "/ozt (per ounce)<br>
-    New Purchase: $" . ($b*$c) . " (total)<br> 
-    Movement: $" . $d . " <br> 
-    <hr>
-    "
-    );
+    if($d<0 && $c>$a):{echo("Invalid numbers!<br>'Movement' (D) must be positive if the value of the 'New Purchaes Price' (C) is higher than 'Current Price of Stack' (A).<hr>");}
+    elseif($d>0 && $c<$a):{echo("Invalid numbers!<br>'Movement' (D) must be negative (-) if the value of the 'New Purchaes Price' (C) is lower than 'Current Price of Stack' (A).<hr>");}
+    elseif($d==0):{echo("This algorithm requires the movement to be non-zero!<hr>");
+    else:
+        //SOLVE FOR X: x=(b(c-d-a))/d   
+        $x=($b*($c-$d-$a))/$d;
+        $x=round($x, 2);
+        echo("
+        Stack Size: " . $x . "<br>
+        Old Cost: $" . $a . "/ozt (per ounce)<br> 
+        Old Cost: $" . ($a*$x) . " (total)<br> 
+        New Purchase: " . $b . " ozt <br>
+        New Purchase: $" . $c . "/ozt (per ounce)<br>
+        New Purchase: $" . ($b*$c) . " (total)<br> 
+        Movement: $" . $d . " <br> 
+        <hr>
+        "
+        );
+    endif;
 } //if post
 echo('</font>');
 ?>
@@ -58,6 +61,8 @@ echo('</font>');
   *Ensure you use the negative (-) sign if it decreases the cost. No need to use the plus (+) sign for positive numbers.<br>
   Up to 5 decimal places.
   This value is the amount of change for the price per ounce. If you had 100ozt at $20/ozt ($2,000 total) and you bought 20ozt for $22/ozt ($440 total), the new price per ounce would be $20.33 ($2,440/120ozt). The difference between the original $20 and the new is an increase (+) of $0.33.
+  <br>
+  If you have the <b>'New Cost of Stack'</b>, simply subtract this from <b>'A'</b> and you have this figure.
   <br>
   If you only have a percent (ie. 4%), then take the value of 'New Purchase Size' (A) and multiply this by the percent given (ie. 4%) and you will get the value for this field.
   <hr>
