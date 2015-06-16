@@ -26,22 +26,43 @@ lower than 'Current Price of Stack' (A).<hr>");}
     else:
         
 
-//SOLVE FOR X: x=(b(c-d-a))/d   
-        $x=($b*($c-$d-$a))/$d;
+/* Old Stack Size:  x=(b(c-d-a))/d   
+$x=($b*($c-$d-$a))/$d;
+*/        
+/* New Stack Size
+d = movement
+d = new avg price - old avg price
+d = (a*old size + bc)/ x - (a*old size) / (old size)
+old size = x - b
+d = (a*(x-b) + bc)/ x - (a*(x-b)) / (x-b)
+d = (ax - ab + bc)/x - a
+d = (bc - ab)/x
+x = (bc - ab)/d
+$x =(($b*$c)-($a*$b))/$d;
+//SIMPLIFY
+x=b(c-a)/d
+$x=($b*($c-$a))/$d;
+*/
+
+//NEW STACK
+$x=($b*($c-$a))/$d;
+//OLD STACK
+$old_stack=$x-$b;
+        
         $x=round($x, 2);
         echo("
-        Old Stack: " . $x . "<br>
+        Old Stack: " . $old_stack . "<br>
         Old Cost: $" . $a . "/ozt 
 
 (per ounce)<br> 
-        Old Cost: $" . ($a*$x) . " (total)<br> 
+        Old Cost: $" . ($a*$old_stack) . " (total)<br> 
         New Purchase: " . $b . " ozt <br>
         New Purchase: $" . $c . "/ozt (per ounce)<br>
         
 
 New Purchase: $" . ($b*$c) . " (total)<br> 
         Movement: $" . $d . " <br> 
-        New Stack: " . ($x+$b) . "<br>
+        New Stack: " . ($x) . "<br>
         New Cost: $" . ($a+$d) . "/ozt (per 
 
 ounce)<br> 
