@@ -7,25 +7,16 @@ submitted
 {
     if (isset($_POST["event"])){$event=$_POST["event"];}
     $a=$_POST["a"]; //Old Cost of Stack ($/ozt)
-    $b=$_POST["b"]; //New Purchase 
-
-Size (ozt)
+    $b=$_POST["b"]; //New Purchase Size (ozt)
     $c=$_POST["c"]; //New Purchase Price ($/ozt)
     $d=$_POST["d"]; //Movement ($/ozt)
     $d=round($d, 5);
     //CHECKS
-    if($d<0 && $c>
-
-$a):{echo("Invalid numbers!<br>'Movement' (D) must be positive if the value of the 'New Purchaes Price' (C) is higher than 'Current Price of Stack' 
-
-(A).<hr>");}
-    elseif($d>0 && $c<$a):{echo("Invalid numbers!<br>'Movement' (D) must be negative (-) if the value of the 'New Purchaes Price' (C) is 
-
-lower than 'Current Price of Stack' (A).<hr>");}
+    if($d<0 && $c>$a):{echo("Invalid numbers!<br>'Movement' (D) must be positive if the value of the 'New Purchaes Price' (C) is higher than 'Current Price of Stack' (A).<hr>");}
+    elseif($d>0 && $c<$a):{echo("Invalid numbers!<br>'Movement' (D) must be negative (-) if the value of the 'New Purchaes Price' (C) is lower than 'Current Price of Stack' (A).<hr>");}
     elseif($d==0):{echo("This algorithm requires the movement to be non-zero!<hr>");}
     else:
         
-
 /* Old Stack Size:  x=(b(c-d-a))/d   
 $x=($b*($c-$d-$a))/$d;
 */        
