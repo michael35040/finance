@@ -35,8 +35,16 @@ x=b(c-a)/d
 $x=($b*($c-$a))/$d;
 */
 
+
+//new stack
+//  x=b(c-a)/d
+//old stack
+//  x=b(c-d-a)/d  
+
+
 //NEW STACK
 $x=($b*($c-$a))/$d;
+
 //OLD STACK
 $old_stack=$x-$b;
         
