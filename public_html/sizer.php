@@ -23,8 +23,10 @@ $x=($b*($c-$d-$a))/$d;
 /* New Stack Size
 d = movement
 d = new avg price - old avg price
+    new avg price = (a*old size + bc)/ x
+    old avg price = (a*old size) / (old size)
 d = (a*old size + bc)/ x - (a*old size) / (old size)
-old size = x - b
+    old size = x - b
 d = (a*(x-b) + bc)/ x - (a*(x-b)) / (x-b)
 d = (ax - ab + bc)/x - a
 d = (bc - ab)/x
