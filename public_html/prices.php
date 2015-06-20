@@ -104,8 +104,8 @@ Gold/Silver Ratio (GSR): <?php echo(number_format(($gold["bid"]/$silver["bid"]),
 <tbody>
 <tr>
  <td>Silver Fat Man</td>
- <td>$<?php echo(number_format(($silverprice*3224.74),2,".",",")); ?></td>
- <td>Fat Adult Male = 221.12lbs = 3,224.74 troy ounces</td>
+ <td>$<?php echo(number_format(($silverprice*3624.74),2,".",",")); ?></td>
+ <td>Fat Adult Male = 248.5536 lbs = 3,624.74 troy ounces</td>
 </tr>
 
 <tr>
