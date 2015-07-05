@@ -29,7 +29,7 @@ echo '<hr>JM Bullion<hr>';
 echo '<br>Gold: ';
 echo $gold->find('span', 19)->plaintext.'<br>';
 echo '<br>Palladium: ';
-echo $palladium->find('span', 18)->plaintext.'<br>';
+echo $palladium->find('span', 17)->plaintext.'<br>';
 echo '<br>Platinum: ';
 echo $platinum->find('span', 18)->plaintext.'<br>';
 echo '<br>Silver: ';
