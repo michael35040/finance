@@ -35,22 +35,35 @@ echo $platinum->find('span', 18)->plaintext.'<br>';
 echo '<br>Silver: ';
 echo $silver->find('span', 19)->plaintext.'<br>';
 
+// Retrieve the DOM from a given URL
+$gold = file_get_html('http://www.providentmetals.com/2015-1-oz-canadian-gold-maple-leaf.html');
+$palladium = file_get_html('http://www.providentmetals.com/2015-1-oz-canadian-palladium-maple-leaf.html');
+$platinum = file_get_html('http://www.providentmetals.com/2015-1-oz-canadian-platinum-maple-leaf.html');
+$silver = file_get_html('http://www.providentmetals.com/2015-canadian-silver-maple-leaf.html');
+// Extract all text from a given cell
+echo '<hr>Provident<hr>';
+
+
+$i=0;
+foreach($gold->find('td') as $e)
+{
+ echo $e->innertext . '=======' . $i . '<br>';
+$i++;
+}
+
+
 
 
 
 /*
-
-foreach($jmbGold->find('span') as $e)
-{
- echo $e->innertext . '=======' . $i . '<br>';
-$i++;
-}
-$i=0;
-foreach($apmexGold->find('td') as $e)
-{
- echo $e->innertext . '=======' . $i . '<br>';
-$i++;
-}
+echo '<br>Gold: ';
+echo $gold->find('td', 19)->plaintext.'<br>';
+echo '<br>Palladium: ';
+echo $palladium->find('td', 17)->plaintext.'<br>';
+echo '<br>Platinum: ';
+echo $platinum->find('td', 18)->plaintext.'<br>';
+echo '<br>Silver: ';
+echo $silver->find('td', 19)->plaintext.'<br>';
 
 
 //To prove it works.
