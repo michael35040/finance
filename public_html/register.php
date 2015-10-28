@@ -142,8 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     //random number to prevent user hitting back and resubmitting multiple regs.
     $_SESSION["code"]=mt_rand(0,9999);
 
-   // redirect("status.php");
-    redirect("index.php");
+    redirect("status.php");
 
 } //POST
 
@@ -158,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 <meta charset="UTF-8">
 
-<title><?php echo(htmlspecialchars($sitename)); ?> Register</title>
+<title>Pulwar Register</title>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
 
 
@@ -331,7 +330,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 <div class="body"></div>
 <div class="grad"></div>
 <div class="header">
-    <div><?php echo(htmlspecialchars($sitename)); ?><br><span>Register</span></div>
+    <div>Pulwar<br><span>Register</span></div>
 </div>
 <br>
 
@@ -367,11 +366,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             </tr><tr>
                 <td><input id="email" name="email"  placeholder="Email"  type="text" maxlength="60" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
-                <td><input id="phone" name="phone" placeholder="Phone"  type="text" maxlength="43" style="width:306px; border:1px solid #999999" required /></td>
-            </tr><tr>
+               
                 <td><input name="password" placeholder="Password" type="password" maxlength="31" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
                 <td><input name="confirmation" placeholder="Password Confirmation" type="password" maxlength="31" style="width:306px; border:1px solid #999999" required /></td>
+            </tr><tr>
+                
+                <td><input id="phone" name="phone" placeholder="Phone"  type="text" maxlength="43" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
                 <td><input id="address" name="address" placeholder="Address"  type="text" maxlength="120" style="width:306px; border:1px solid #999999" required /></td>
             </tr><tr>
