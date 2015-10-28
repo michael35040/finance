@@ -349,9 +349,7 @@ require("../../includes/constants.php");
 
 
 <!-- Team Section -->
-<section id="portfolio" class="bg-light-gray">
-
-    <!--<section id="team" class="bg-light-gray">-->
+<section id="team" class="bg-light-gray">
     <div class="container">
 
 
