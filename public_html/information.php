@@ -42,8 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 $asset["userlocked"] = $askQuantity;
 
         //ORDERS
-$bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND status=1) ORDER BY price DESC, uid ASC LIMIT 0, 5", $symbol, 'b');
-$asks =	query("SELECT * FROM orderbook WHERE (symbol = ? AND side = ? AND type = 'limit' AND status=1) ORDER BY price ASC, uid ASC LIMIT 0, 5", $symbol, 'a');
+$bids =	query("SELECT * FROM orderbook WHERE (symbol = ? AND price>0 AND side = ? AND type = 'limit' AND status=1) ORDER BY price DESC, uid ASC LIMIT 0, 5", $symbol, 'b');
+$asks =	query("SELECT * FROM orderbook WHERE (symbol = ? AND price>0 AND side = ? AND type = 'limit' AND status=1) ORDER BY price ASC, uid ASC LIMIT 0, 5", $symbol, 'a');
 $lastorders =	query("SELECT * FROM orderbook WHERE (symbol = ?) ORDER BY uid DESC LIMIT 0, 5", $symbol);
 
 
@@ -59,8 +59,8 @@ if(isset($bids[0]["price"])) {$bidsPrice=getPrice($bids[0]["price"]);}else{$bids
         $bidsGroupAll =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND price>0 AND side ='b' AND type = 'limit' AND status=1) GROUP BY `price` ORDER BY `price` DESC", $symbol);	  // query user's portfolio
 
         //TOTAL AMOUNT OF BIDS/ASKS IN ORDERBOOK
-        $bidsTotal =	query("SELECT SUM(`quantity`) AS bidtotal FROM `orderbook` WHERE (symbol = ? AND side ='b' AND type = 'limit' AND status=1)", $symbol);	  // query user's portfolio
-        $asksTotal =	query("SELECT SUM(`quantity`) AS asktotal FROM `orderbook` WHERE (symbol = ? AND side ='a' AND type = 'limit' AND status=1)", $symbol);	  // query user's portfolio
+        $bidsTotal =	query("SELECT SUM(`quantity`) AS bidtotal FROM `orderbook` WHERE (symbol = ? AND price>0 AND side ='b' AND type = 'limit' AND status=1)", $symbol);	  // query user's portfolio
+        $asksTotal =	query("SELECT SUM(`quantity`) AS asktotal FROM `orderbook` WHERE (symbol = ? AND price>0 AND side ='a' AND type = 'limit' AND status=1)", $symbol);	  // query user's portfolio
 $asset["bidstotal"] = $bidsTotal[0]['bidtotal'];
 $asset["askstotal"] = $asksTotal[0]['asktotal'];
         //if ($bidsTotal == 0){$bidsTotal = "No Orders";}
