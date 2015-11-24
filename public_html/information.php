@@ -51,12 +51,12 @@ if(isset($asks[0]["price"])) {$asksPrice=getPrice($asks[0]["price"]);}else{$asks
 if(isset($bids[0]["price"])) {$bidsPrice=getPrice($bids[0]["price"]);}else{$bidsPrice=0;}
 
         //ORDERS COMBINED FOR TABLE AND FOR CHARTS (COMBINED PRICE)
-        $asksGroup =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='a' AND type = 'limit' AND status=1) GROUP BY `price` ORDER BY `price` ASC  LIMIT 0, 5", $symbol);	  // query user's portfolio
-        $bidsGroup =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='b' AND type = 'limit' AND status=1) GROUP BY `price` ORDER BY `price` DESC  LIMIT 0, 5", $symbol);	  // query user's portfolio
+        $asksGroup =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND price>0 AND side ='a' AND type = 'limit' AND status=1) GROUP BY `price` ORDER BY `price` ASC  LIMIT 0, 5", $symbol);	  // query user's portfolio
+        $bidsGroup =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND price>0 AND side ='b' AND type = 'limit' AND status=1) GROUP BY `price` ORDER BY `price` DESC  LIMIT 0, 5", $symbol);	  // query user's portfolio
 
         //ORDERS COMBINED FOR TABLE AND FOR CHARTS (COMBINED PRICE) BID ASK WALL
-        $asksGroupAll =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='a' AND type = 'limit' AND status=1) GROUP BY `price` ORDER BY `price` ASC", $symbol);	  // query user's portfolio
-        $bidsGroupAll =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND side ='b' AND type = 'limit' AND status=1) GROUP BY `price` ORDER BY `price` DESC", $symbol);	  // query user's portfolio
+        $asksGroupAll =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND price>0 AND side ='a' AND type = 'limit' AND status=1) GROUP BY `price` ORDER BY `price` ASC", $symbol);	  // query user's portfolio
+        $bidsGroupAll =	query("SELECT price, SUM(`quantity`) AS quantity, date FROM `orderbook` WHERE (symbol = ? AND price>0 AND side ='b' AND type = 'limit' AND status=1) GROUP BY `price` ORDER BY `price` DESC", $symbol);	  // query user's portfolio
 
         //TOTAL AMOUNT OF BIDS/ASKS IN ORDERBOOK
         $bidsTotal =	query("SELECT SUM(`quantity`) AS bidtotal FROM `orderbook` WHERE (symbol = ? AND side ='b' AND type = 'limit' AND status=1)", $symbol);	  // query user's portfolio
